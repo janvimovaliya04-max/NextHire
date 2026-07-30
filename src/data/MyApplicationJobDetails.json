@@ -1,0 +1,6002 @@
+[
+  {
+    "applicationId": "APP001",
+    "company": "Palm Grove Digital",
+    "position": "Full Stack Developer",
+    "employmentType": "Full-time",
+    "experience": "1-2 Years",
+    "salary": "₹7 - ₹13 LPA",
+    "posted": "8 days ago",
+    "deadline": "2026-08-24",
+    "description": "Palm Grove Digital seeks a talented Full Stack Developer to help us build world-class products.",
+    "responsibilities": [
+      "Optimize application performance",
+      "Write and execute test cases",
+      "Coordinate with stakeholders on requirements",
+      "Collaborate with cross-functional teams"
+    ],
+    "skills": [
+      "Figma",
+      "Adobe XD",
+      "Data Visualization",
+      "Java",
+      "Postman"
+    ],
+    "benefits": [
+      "Free Meals",
+      "Gym Membership",
+      "Retirement Plan"
+    ],
+    "aboutCompany": "Palm Grove Digital is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP002",
+    "company": "Starforge Tech",
+    "position": "DevOps Engineer",
+    "employmentType": "Internship",
+    "experience": "5-7 Years",
+    "salary": "₹7 - ₹10 LPA",
+    "posted": "25 days ago",
+    "deadline": "2026-08-23",
+    "description": "Starforge Tech is hiring an experienced DevOps Engineer to support our expanding operations.",
+    "responsibilities": [
+      "Design and implement scalable solutions",
+      "Participate in code reviews",
+      "Define product roadmap and strategy",
+      "Build and maintain dashboards"
+    ],
+    "skills": [
+      "AWS",
+      "SQL",
+      "REST APIs",
+      "PostgreSQL",
+      "Excel"
+    ],
+    "benefits": [
+      "Childcare Support",
+      "Health Insurance",
+      "Free Meals"
+    ],
+    "aboutCompany": "Starforge Tech helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP003",
+    "company": "Zephyr Networks",
+    "position": "Full Stack Developer",
+    "employmentType": "Contract",
+    "experience": "3-5 Years",
+    "salary": "₹12 - ₹20 LPA",
+    "posted": "27 days ago",
+    "deadline": "2026-12-20",
+    "description": "Zephyr Networks is looking for a skilled Full Stack Developer to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Write and execute test cases",
+      "Maintain documentation and reports",
+      "Participate in code reviews",
+      "Analyze data to identify trends"
+    ],
+    "skills": [
+      "SQL",
+      "Adobe XD",
+      "AWS",
+      "REST APIs",
+      "Terraform"
+    ],
+    "benefits": [
+      "Wellness Programs",
+      "Gym Membership",
+      "Learning Budget"
+    ],
+    "aboutCompany": "Zephyr Networks specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP004",
+    "company": "Redshift Cloud",
+    "position": "Mobile App Developer",
+    "employmentType": "Remote",
+    "experience": "3-5 Years",
+    "salary": "₹7 - ₹11 LPA",
+    "posted": "20 days ago",
+    "deadline": "2026-12-06",
+    "description": "Join Redshift Cloud as a Mobile App Developer and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Mentor junior team members",
+      "Optimize application performance",
+      "Analyze data to identify trends",
+      "Maintain documentation and reports"
+    ],
+    "skills": [
+      "Adobe XD",
+      "TypeScript",
+      "React",
+      "JavaScript",
+      "Agile"
+    ],
+    "benefits": [
+      "Annual Bonus",
+      "Flexible Hours",
+      "Stock Options"
+    ],
+    "aboutCompany": "Redshift Cloud is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP005",
+    "company": "Clearwater Systems",
+    "position": "Business Analyst",
+    "employmentType": "Part-time",
+    "experience": "4-6 Years",
+    "salary": "₹10 - ₹25 LPA",
+    "posted": "29 days ago",
+    "deadline": "2026-12-15",
+    "description": "Join Clearwater Systems as a Business Analyst and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Participate in code reviews",
+      "Monitor system health and reliability",
+      "Manage project timelines and deliverables",
+      "Define product roadmap and strategy"
+    ],
+    "skills": [
+      "Excel",
+      "Machine Learning",
+      "Agile",
+      "GraphQL",
+      "Adobe XD"
+    ],
+    "benefits": [
+      "Remote Work Option",
+      "Paid Time Off",
+      "Wellness Programs"
+    ],
+    "aboutCompany": "Clearwater Systems is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP006",
+    "company": "Steelcrest Solutions",
+    "position": "Backend Developer",
+    "employmentType": "Remote",
+    "experience": "1-2 Years",
+    "salary": "₹18 - ₹23 LPA",
+    "posted": "26 days ago",
+    "deadline": "2026-12-14",
+    "description": "We are seeking a motivated Backend Developer to join Steelcrest Solutions and make a meaningful impact.",
+    "responsibilities": [
+      "Optimize application performance",
+      "Conduct user research and testing",
+      "Mentor junior team members",
+      "Manage project timelines and deliverables"
+    ],
+    "skills": [
+      "Excel",
+      "Python",
+      "Docker",
+      "User Research",
+      "Terraform"
+    ],
+    "benefits": [
+      "Childcare Support",
+      "Gym Membership",
+      "Learning Budget"
+    ],
+    "aboutCompany": "Steelcrest Solutions is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP007",
+    "company": "Granite Peak IT",
+    "position": "Machine Learning Engineer",
+    "employmentType": "Full-time",
+    "experience": "4-6 Years",
+    "salary": "₹3 - ₹11 LPA",
+    "posted": "17 days ago",
+    "deadline": "2026-08-17",
+    "description": "Granite Peak IT seeks a talented Machine Learning Engineer to help us build world-class products.",
+    "responsibilities": [
+      "Conduct user research and testing",
+      "Participate in code reviews",
+      "Design and implement scalable solutions",
+      "Build and maintain dashboards"
+    ],
+    "skills": [
+      "Selenium",
+      "User Research",
+      "Prototyping",
+      "Python",
+      "TypeScript"
+    ],
+    "benefits": [
+      "Wellness Programs",
+      "Health Insurance",
+      "Flexible Hours"
+    ],
+    "aboutCompany": "Granite Peak IT is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP008",
+    "company": "Solstice Innovations",
+    "position": "DevOps Engineer",
+    "employmentType": "Full-time",
+    "experience": "2-4 Years",
+    "salary": "₹15 - ₹19 LPA",
+    "posted": "3 days ago",
+    "deadline": "2026-12-16",
+    "description": "Join Solstice Innovations as a DevOps Engineer and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Maintain documentation and reports",
+      "Mentor junior team members",
+      "Manage project timelines and deliverables",
+      "Design and implement scalable solutions"
+    ],
+    "skills": [
+      "Excel",
+      "Prototyping",
+      "Machine Learning",
+      "Figma",
+      "User Research"
+    ],
+    "benefits": [
+      "Childcare Support",
+      "Free Meals",
+      "Retirement Plan"
+    ],
+    "aboutCompany": "Solstice Innovations specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP009",
+    "company": "Clearwater Systems",
+    "position": "Project Manager",
+    "employmentType": "Full-time",
+    "experience": "3-5 Years",
+    "salary": "₹18 - ₹28 LPA",
+    "posted": "15 days ago",
+    "deadline": "2026-11-15",
+    "description": "Join Clearwater Systems as a Project Manager and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Collaborate with cross-functional teams",
+      "Build and maintain dashboards",
+      "Write and execute test cases",
+      "Conduct user research and testing"
+    ],
+    "skills": [
+      "Adobe XD",
+      "Python",
+      "Node.js",
+      "React",
+      "JavaScript"
+    ],
+    "benefits": [
+      "Retirement Plan",
+      "Learning Budget",
+      "Flexible Hours"
+    ],
+    "aboutCompany": "Clearwater Systems is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP010",
+    "company": "Amberstone Technologies",
+    "position": "Product Manager",
+    "employmentType": "Internship",
+    "experience": "3-5 Years",
+    "salary": "₹6 - ₹11 LPA",
+    "posted": "24 days ago",
+    "deadline": "2026-11-19",
+    "description": "We are seeking a motivated Product Manager to join Amberstone Technologies and make a meaningful impact.",
+    "responsibilities": [
+      "Define product roadmap and strategy",
+      "Optimize application performance",
+      "Participate in code reviews",
+      "Collaborate with cross-functional teams"
+    ],
+    "skills": [
+      "AWS",
+      "Machine Learning",
+      "PostgreSQL",
+      "Scrum",
+      "Communication"
+    ],
+    "benefits": [
+      "Retirement Plan",
+      "Free Meals",
+      "Health Insurance"
+    ],
+    "aboutCompany": "Amberstone Technologies is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP011",
+    "company": "DataVantage",
+    "position": "Cloud Architect",
+    "employmentType": "Internship",
+    "experience": "2-4 Years",
+    "salary": "₹4 - ₹10 LPA",
+    "posted": "7 days ago",
+    "deadline": "2026-08-18",
+    "description": "We are seeking a motivated Cloud Architect to join DataVantage and make a meaningful impact.",
+    "responsibilities": [
+      "Design and implement scalable solutions",
+      "Analyze data to identify trends",
+      "Mentor junior team members",
+      "Participate in code reviews"
+    ],
+    "skills": [
+      "Node.js",
+      "TensorFlow",
+      "AWS",
+      "React",
+      "User Research"
+    ],
+    "benefits": [
+      "Retirement Plan",
+      "Health Insurance",
+      "Flexible Hours"
+    ],
+    "aboutCompany": "DataVantage specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP012",
+    "company": "BlueHarbor Software",
+    "position": "Machine Learning Engineer",
+    "employmentType": "Internship",
+    "experience": "0-1 Years",
+    "salary": "₹6 - ₹21 LPA",
+    "posted": "29 days ago",
+    "deadline": "2026-07-06",
+    "description": "We are seeking a motivated Machine Learning Engineer to join BlueHarbor Software and make a meaningful impact.",
+    "responsibilities": [
+      "Analyze data to identify trends",
+      "Define product roadmap and strategy",
+      "Coordinate with stakeholders on requirements",
+      "Mentor junior team members"
+    ],
+    "skills": [
+      "Linux",
+      "Machine Learning",
+      "Statistics",
+      "Git",
+      "Postman"
+    ],
+    "benefits": [
+      "Annual Bonus",
+      "Stock Options",
+      "Health Insurance"
+    ],
+    "aboutCompany": "BlueHarbor Software is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP013",
+    "company": "Sablewood Digital",
+    "position": "Scrum Master",
+    "employmentType": "Remote",
+    "experience": "2-4 Years",
+    "salary": "₹8 - ₹11 LPA",
+    "posted": "2 days ago",
+    "deadline": "2026-11-16",
+    "description": "Sablewood Digital is looking for a skilled Scrum Master to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Manage project timelines and deliverables",
+      "Collaborate with cross-functional teams",
+      "Design and implement scalable solutions",
+      "Coordinate with stakeholders on requirements"
+    ],
+    "skills": [
+      "Node.js",
+      "Power BI",
+      "Agile",
+      "Docker",
+      "JavaScript"
+    ],
+    "benefits": [
+      "Performance Bonus",
+      "Flexible Hours",
+      "Relocation Assistance"
+    ],
+    "aboutCompany": "Sablewood Digital is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP014",
+    "company": "Ironwood Digital",
+    "position": "Technical Writer",
+    "employmentType": "Part-time",
+    "experience": "4-6 Years",
+    "salary": "₹6 - ₹16 LPA",
+    "posted": "8 days ago",
+    "deadline": "2026-09-13",
+    "description": "We are seeking a motivated Technical Writer to join Ironwood Digital and make a meaningful impact.",
+    "responsibilities": [
+      "Build and maintain dashboards",
+      "Define product roadmap and strategy",
+      "Collaborate with cross-functional teams",
+      "Write and execute test cases"
+    ],
+    "skills": [
+      "Communication",
+      "AWS",
+      "Node.js",
+      "User Research",
+      "Figma"
+    ],
+    "benefits": [
+      "Paid Time Off",
+      "Annual Bonus",
+      "Remote Work Option"
+    ],
+    "aboutCompany": "Ironwood Digital is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP015",
+    "company": "OrbitLogic",
+    "position": "Financial Analyst",
+    "employmentType": "Contract",
+    "experience": "0-1 Years",
+    "salary": "₹7 - ₹12 LPA",
+    "posted": "15 days ago",
+    "deadline": "2026-11-23",
+    "description": "OrbitLogic seeks a talented Financial Analyst to help us build world-class products.",
+    "responsibilities": [
+      "Analyze data to identify trends",
+      "Maintain documentation and reports",
+      "Collaborate with cross-functional teams",
+      "Design and implement scalable solutions"
+    ],
+    "skills": [
+      "Excel",
+      "Docker",
+      "AWS",
+      "Git",
+      "Terraform"
+    ],
+    "benefits": [
+      "Annual Bonus",
+      "Performance Bonus",
+      "Stock Options"
+    ],
+    "aboutCompany": "OrbitLogic is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP016",
+    "company": "Vertex Dynamics",
+    "position": "Network Engineer",
+    "employmentType": "Internship",
+    "experience": "4-6 Years",
+    "salary": "₹12 - ₹30 LPA",
+    "posted": "9 days ago",
+    "deadline": "2026-07-03",
+    "description": "Vertex Dynamics is looking for a skilled Network Engineer to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Write and execute test cases",
+      "Build and maintain dashboards",
+      "Define product roadmap and strategy",
+      "Design and implement scalable solutions"
+    ],
+    "skills": [
+      "Excel",
+      "Selenium",
+      "TensorFlow",
+      "Machine Learning",
+      "Python"
+    ],
+    "benefits": [
+      "Flexible Hours",
+      "Retirement Plan",
+      "Free Meals"
+    ],
+    "aboutCompany": "Vertex Dynamics specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP017",
+    "company": "Zephyr Networks",
+    "position": "Backend Developer",
+    "employmentType": "Contract",
+    "experience": "5-7 Years",
+    "salary": "₹12 - ₹17 LPA",
+    "posted": "14 days ago",
+    "deadline": "2026-08-02",
+    "description": "Zephyr Networks is looking for a skilled Backend Developer to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Troubleshoot and resolve technical issues",
+      "Build and maintain dashboards",
+      "Participate in code reviews",
+      "Maintain documentation and reports"
+    ],
+    "skills": [
+      "Power BI",
+      "AWS",
+      "PostgreSQL",
+      "Scrum",
+      "Git"
+    ],
+    "benefits": [
+      "Stock Options",
+      "Remote Work Option",
+      "Childcare Support"
+    ],
+    "aboutCompany": "Zephyr Networks helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP018",
+    "company": "NimbusCloud",
+    "position": "Data Analyst",
+    "employmentType": "Full-time",
+    "experience": "5-6 Years",
+    "salary": "₹9 - ₹15 LPA",
+    "posted": "9 days ago",
+    "deadline": "2026-08-26",
+    "description": "NimbusCloud is looking for a skilled Data Analyst to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Coordinate with stakeholders on requirements",
+      "Mentor junior team members",
+      "Participate in code reviews",
+      "Define product roadmap and strategy"
+    ],
+    "skills": [
+      "Communication",
+      "PostgreSQL",
+      "CI/CD",
+      "Adobe XD",
+      "Java"
+    ],
+    "benefits": [
+      "Gym Membership",
+      "Stock Options",
+      "Relocation Assistance"
+    ],
+    "aboutCompany": "NimbusCloud is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP019",
+    "company": "Lumen Softworks",
+    "position": "Graphic Designer",
+    "employmentType": "Remote",
+    "experience": "5-7 Years",
+    "salary": "₹7 - ₹17 LPA",
+    "posted": "21 days ago",
+    "deadline": "2026-11-13",
+    "description": "Lumen Softworks is looking for a skilled Graphic Designer to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Collaborate with cross-functional teams",
+      "Analyze data to identify trends",
+      "Design and implement scalable solutions",
+      "Conduct user research and testing"
+    ],
+    "skills": [
+      "Excel",
+      "JavaScript",
+      "AWS",
+      "Machine Learning",
+      "PostgreSQL"
+    ],
+    "benefits": [
+      "Free Meals",
+      "Childcare Support",
+      "Learning Budget"
+    ],
+    "aboutCompany": "Lumen Softworks helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP020",
+    "company": "Copperline Tech",
+    "position": "Technical Writer",
+    "employmentType": "Internship",
+    "experience": "0-1 Years",
+    "salary": "₹15 - ₹21 LPA",
+    "posted": "9 days ago",
+    "deadline": "2026-07-23",
+    "description": "Copperline Tech seeks a talented Technical Writer to help us build world-class products.",
+    "responsibilities": [
+      "Troubleshoot and resolve technical issues",
+      "Define product roadmap and strategy",
+      "Manage project timelines and deliverables",
+      "Maintain documentation and reports"
+    ],
+    "skills": [
+      "Postman",
+      "GraphQL",
+      "Machine Learning",
+      "Node.js",
+      "MongoDB"
+    ],
+    "benefits": [
+      "Performance Bonus",
+      "Learning Budget",
+      "Gym Membership"
+    ],
+    "aboutCompany": "Copperline Tech is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP021",
+    "company": "Moonridge Labs",
+    "position": "Financial Analyst",
+    "employmentType": "Contract",
+    "experience": "2-4 Years",
+    "salary": "₹7 - ₹22 LPA",
+    "posted": "11 days ago",
+    "deadline": "2026-10-23",
+    "description": "Join Moonridge Labs as a Financial Analyst and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Optimize application performance",
+      "Maintain documentation and reports",
+      "Troubleshoot and resolve technical issues",
+      "Coordinate with stakeholders on requirements"
+    ],
+    "skills": [
+      "JIRA",
+      "CI/CD",
+      "Agile",
+      "Python",
+      "Linux"
+    ],
+    "benefits": [
+      "Stock Options",
+      "Relocation Assistance",
+      "Performance Bonus"
+    ],
+    "aboutCompany": "Moonridge Labs is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP022",
+    "company": "Duskwave Studios",
+    "position": "Business Analyst",
+    "employmentType": "Part-time",
+    "experience": "1-2 Years",
+    "salary": "₹10 - ₹16 LPA",
+    "posted": "17 days ago",
+    "deadline": "2026-10-26",
+    "description": "Duskwave Studios is hiring an experienced Business Analyst to support our expanding operations.",
+    "responsibilities": [
+      "Manage project timelines and deliverables",
+      "Maintain documentation and reports",
+      "Coordinate with stakeholders on requirements",
+      "Conduct user research and testing"
+    ],
+    "skills": [
+      "MongoDB",
+      "SQL",
+      "Power BI",
+      "CI/CD",
+      "Adobe XD"
+    ],
+    "benefits": [
+      "Childcare Support",
+      "Stock Options",
+      "Remote Work Option"
+    ],
+    "aboutCompany": "Duskwave Studios is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP023",
+    "company": "PixelForge Studios",
+    "position": "DevOps Engineer",
+    "employmentType": "Part-time",
+    "experience": "5-6 Years",
+    "salary": "₹4 - ₹22 LPA",
+    "posted": "14 days ago",
+    "deadline": "2026-12-19",
+    "description": "We are seeking a motivated DevOps Engineer to join PixelForge Studios and make a meaningful impact.",
+    "responsibilities": [
+      "Optimize application performance",
+      "Participate in code reviews",
+      "Design and implement scalable solutions",
+      "Maintain documentation and reports"
+    ],
+    "skills": [
+      "Python",
+      "AWS",
+      "Machine Learning",
+      "Adobe XD",
+      "JIRA"
+    ],
+    "benefits": [
+      "Childcare Support",
+      "Free Meals",
+      "Paid Time Off"
+    ],
+    "aboutCompany": "PixelForge Studios helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP024",
+    "company": "DataVantage",
+    "position": "Scrum Master",
+    "employmentType": "Remote",
+    "experience": "5-7 Years",
+    "salary": "₹10 - ₹15 LPA",
+    "posted": "26 days ago",
+    "deadline": "2026-10-22",
+    "description": "We are seeking a motivated Scrum Master to join DataVantage and make a meaningful impact.",
+    "responsibilities": [
+      "Conduct user research and testing",
+      "Coordinate with stakeholders on requirements",
+      "Monitor system health and reliability",
+      "Manage project timelines and deliverables"
+    ],
+    "skills": [
+      "Machine Learning",
+      "TensorFlow",
+      "Selenium",
+      "Leadership",
+      "Excel"
+    ],
+    "benefits": [
+      "Childcare Support",
+      "Stock Options",
+      "Gym Membership"
+    ],
+    "aboutCompany": "DataVantage is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP025",
+    "company": "Wavelength Tech",
+    "position": "Marketing Manager",
+    "employmentType": "Contract",
+    "experience": "3-5 Years",
+    "salary": "₹18 - ₹24 LPA",
+    "posted": "9 days ago",
+    "deadline": "2026-10-03",
+    "description": "Wavelength Tech is hiring an experienced Marketing Manager to support our expanding operations.",
+    "responsibilities": [
+      "Build and maintain dashboards",
+      "Troubleshoot and resolve technical issues",
+      "Manage project timelines and deliverables",
+      "Collaborate with cross-functional teams"
+    ],
+    "skills": [
+      "Kubernetes",
+      "Git",
+      "Adobe XD",
+      "REST APIs",
+      "Figma"
+    ],
+    "benefits": [
+      "Flexible Hours",
+      "Relocation Assistance",
+      "Childcare Support"
+    ],
+    "aboutCompany": "Wavelength Tech is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP026",
+    "company": "Zephyr Networks",
+    "position": "Software Engineer",
+    "employmentType": "Full-time",
+    "experience": "5-6 Years",
+    "salary": "₹6 - ₹21 LPA",
+    "posted": "13 days ago",
+    "deadline": "2026-11-23",
+    "description": "We are seeking a motivated Software Engineer to join Zephyr Networks and make a meaningful impact.",
+    "responsibilities": [
+      "Write and execute test cases",
+      "Build and maintain dashboards",
+      "Analyze data to identify trends",
+      "Optimize application performance"
+    ],
+    "skills": [
+      "Scrum",
+      "User Research",
+      "Adobe XD",
+      "Statistics",
+      "Terraform"
+    ],
+    "benefits": [
+      "Relocation Assistance",
+      "Wellness Programs",
+      "Health Insurance"
+    ],
+    "aboutCompany": "Zephyr Networks helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP027",
+    "company": "Emberlight Studios",
+    "position": "Network Engineer",
+    "employmentType": "Remote",
+    "experience": "0-1 Years",
+    "salary": "₹20 - ₹25 LPA",
+    "posted": "27 days ago",
+    "deadline": "2026-10-05",
+    "description": "We are seeking a motivated Network Engineer to join Emberlight Studios and make a meaningful impact.",
+    "responsibilities": [
+      "Conduct user research and testing",
+      "Troubleshoot and resolve technical issues",
+      "Maintain documentation and reports",
+      "Write and execute test cases"
+    ],
+    "skills": [
+      "SQL",
+      "Machine Learning",
+      "Kubernetes",
+      "Communication",
+      "JIRA"
+    ],
+    "benefits": [
+      "Health Insurance",
+      "Annual Bonus",
+      "Relocation Assistance"
+    ],
+    "aboutCompany": "Emberlight Studios is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP028",
+    "company": "Vertex Dynamics",
+    "position": "Software Engineer",
+    "employmentType": "Full-time",
+    "experience": "7-10 Years",
+    "salary": "₹9 - ₹17 LPA",
+    "posted": "25 days ago",
+    "deadline": "2026-10-09",
+    "description": "Vertex Dynamics is looking for a skilled Software Engineer to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Monitor system health and reliability",
+      "Manage project timelines and deliverables",
+      "Write and execute test cases",
+      "Build and maintain dashboards"
+    ],
+    "skills": [
+      "Adobe XD",
+      "Node.js",
+      "JavaScript",
+      "Java",
+      "Power BI"
+    ],
+    "benefits": [
+      "Stock Options",
+      "Health Insurance",
+      "Performance Bonus"
+    ],
+    "aboutCompany": "Vertex Dynamics specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP029",
+    "company": "Amberstone Technologies",
+    "position": "UI/UX Designer",
+    "employmentType": "Contract",
+    "experience": "2-4 Years",
+    "salary": "₹4 - ₹10 LPA",
+    "posted": "15 days ago",
+    "deadline": "2026-12-09",
+    "description": "Amberstone Technologies seeks a talented UI/UX Designer to help us build world-class products.",
+    "responsibilities": [
+      "Conduct user research and testing",
+      "Monitor system health and reliability",
+      "Coordinate with stakeholders on requirements",
+      "Collaborate with cross-functional teams"
+    ],
+    "skills": [
+      "Selenium",
+      "CI/CD",
+      "AWS",
+      "Java",
+      "REST APIs"
+    ],
+    "benefits": [
+      "Relocation Assistance",
+      "Free Meals",
+      "Stock Options"
+    ],
+    "aboutCompany": "Amberstone Technologies is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP030",
+    "company": "Meridian Softworks",
+    "position": "Support Engineer",
+    "employmentType": "Full-time",
+    "experience": "0-1 Years",
+    "salary": "₹4 - ₹12 LPA",
+    "posted": "28 days ago",
+    "deadline": "2026-12-20",
+    "description": "Meridian Softworks is hiring an experienced Support Engineer to support our expanding operations.",
+    "responsibilities": [
+      "Manage project timelines and deliverables",
+      "Optimize application performance",
+      "Maintain documentation and reports",
+      "Build and maintain dashboards"
+    ],
+    "skills": [
+      "Node.js",
+      "Data Visualization",
+      "MongoDB",
+      "Python",
+      "Scrum"
+    ],
+    "benefits": [
+      "Retirement Plan",
+      "Wellness Programs",
+      "Flexible Hours"
+    ],
+    "aboutCompany": "Meridian Softworks helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP031",
+    "company": "Redshift Cloud",
+    "position": "Database Administrator",
+    "employmentType": "Contract",
+    "experience": "7-10 Years",
+    "salary": "₹5 - ₹20 LPA",
+    "posted": "6 days ago",
+    "deadline": "2026-12-17",
+    "description": "We are seeking a motivated Database Administrator to join Redshift Cloud and make a meaningful impact.",
+    "responsibilities": [
+      "Optimize application performance",
+      "Coordinate with stakeholders on requirements",
+      "Monitor system health and reliability",
+      "Conduct user research and testing"
+    ],
+    "skills": [
+      "Terraform",
+      "TypeScript",
+      "Power BI",
+      "SQL",
+      "TensorFlow"
+    ],
+    "benefits": [
+      "Stock Options",
+      "Childcare Support",
+      "Wellness Programs"
+    ],
+    "aboutCompany": "Redshift Cloud is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP032",
+    "company": "Snowfield Systems",
+    "position": "Network Engineer",
+    "employmentType": "Internship",
+    "experience": "3-5 Years",
+    "salary": "₹3 - ₹21 LPA",
+    "posted": "28 days ago",
+    "deadline": "2026-09-06",
+    "description": "Snowfield Systems is hiring an experienced Network Engineer to support our expanding operations.",
+    "responsibilities": [
+      "Define product roadmap and strategy",
+      "Analyze data to identify trends",
+      "Build and maintain dashboards",
+      "Coordinate with stakeholders on requirements"
+    ],
+    "skills": [
+      "Terraform",
+      "Python",
+      "Prototyping",
+      "Postman",
+      "SQL"
+    ],
+    "benefits": [
+      "Stock Options",
+      "Free Meals",
+      "Relocation Assistance"
+    ],
+    "aboutCompany": "Snowfield Systems helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP033",
+    "company": "Cascade Cloud",
+    "position": "Marketing Manager",
+    "employmentType": "Contract",
+    "experience": "3-5 Years",
+    "salary": "₹10 - ₹28 LPA",
+    "posted": "15 days ago",
+    "deadline": "2026-07-03",
+    "description": "We are seeking a motivated Marketing Manager to join Cascade Cloud and make a meaningful impact.",
+    "responsibilities": [
+      "Monitor system health and reliability",
+      "Participate in code reviews",
+      "Analyze data to identify trends",
+      "Maintain documentation and reports"
+    ],
+    "skills": [
+      "GraphQL",
+      "Leadership",
+      "Prototyping",
+      "PostgreSQL",
+      "Machine Learning"
+    ],
+    "benefits": [
+      "Free Meals",
+      "Paid Time Off",
+      "Learning Budget"
+    ],
+    "aboutCompany": "Cascade Cloud is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP034",
+    "company": "Bayview Analytics",
+    "position": "Software Engineer",
+    "employmentType": "Contract",
+    "experience": "1-2 Years",
+    "salary": "₹7 - ₹13 LPA",
+    "posted": "4 days ago",
+    "deadline": "2026-12-07",
+    "description": "Bayview Analytics seeks a talented Software Engineer to help us build world-class products.",
+    "responsibilities": [
+      "Define product roadmap and strategy",
+      "Monitor system health and reliability",
+      "Design and implement scalable solutions",
+      "Participate in code reviews"
+    ],
+    "skills": [
+      "Figma",
+      "Leadership",
+      "Terraform",
+      "Prototyping",
+      "Linux"
+    ],
+    "benefits": [
+      "Flexible Hours",
+      "Stock Options",
+      "Annual Bonus"
+    ],
+    "aboutCompany": "Bayview Analytics specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP035",
+    "company": "Redshift Cloud",
+    "position": "Data Analyst",
+    "employmentType": "Remote",
+    "experience": "4-6 Years",
+    "salary": "₹20 - ₹25 LPA",
+    "posted": "9 days ago",
+    "deadline": "2026-07-02",
+    "description": "Join Redshift Cloud as a Data Analyst and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Maintain documentation and reports",
+      "Coordinate with stakeholders on requirements",
+      "Define product roadmap and strategy",
+      "Mentor junior team members"
+    ],
+    "skills": [
+      "AWS",
+      "Python",
+      "Linux",
+      "Leadership",
+      "TensorFlow"
+    ],
+    "benefits": [
+      "Learning Budget",
+      "Remote Work Option",
+      "Health Insurance"
+    ],
+    "aboutCompany": "Redshift Cloud is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP036",
+    "company": "Marbletech",
+    "position": "Full Stack Developer",
+    "employmentType": "Full-time",
+    "experience": "2-4 Years",
+    "salary": "₹10 - ₹14 LPA",
+    "posted": "19 days ago",
+    "deadline": "2026-12-22",
+    "description": "Join Marbletech as a Full Stack Developer and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Define product roadmap and strategy",
+      "Conduct user research and testing",
+      "Analyze data to identify trends",
+      "Collaborate with cross-functional teams"
+    ],
+    "skills": [
+      "Power BI",
+      "Docker",
+      "Scrum",
+      "Adobe XD",
+      "Prototyping"
+    ],
+    "benefits": [
+      "Relocation Assistance",
+      "Wellness Programs",
+      "Childcare Support"
+    ],
+    "aboutCompany": "Marbletech is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP037",
+    "company": "Meridian Softworks",
+    "position": "Machine Learning Engineer",
+    "employmentType": "Part-time",
+    "experience": "3-5 Years",
+    "salary": "₹15 - ₹18 LPA",
+    "posted": "20 days ago",
+    "deadline": "2026-12-04",
+    "description": "Meridian Softworks is hiring an experienced Machine Learning Engineer to support our expanding operations.",
+    "responsibilities": [
+      "Maintain documentation and reports",
+      "Collaborate with cross-functional teams",
+      "Design and implement scalable solutions",
+      "Participate in code reviews"
+    ],
+    "skills": [
+      "JIRA",
+      "Node.js",
+      "Selenium",
+      "Python",
+      "Scrum"
+    ],
+    "benefits": [
+      "Wellness Programs",
+      "Free Meals",
+      "Performance Bonus"
+    ],
+    "aboutCompany": "Meridian Softworks helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP038",
+    "company": "Granite Peak IT",
+    "position": "Backend Developer",
+    "employmentType": "Part-time",
+    "experience": "4-6 Years",
+    "salary": "₹20 - ₹28 LPA",
+    "posted": "23 days ago",
+    "deadline": "2026-10-03",
+    "description": "Granite Peak IT seeks a talented Backend Developer to help us build world-class products.",
+    "responsibilities": [
+      "Maintain documentation and reports",
+      "Define product roadmap and strategy",
+      "Participate in code reviews",
+      "Optimize application performance"
+    ],
+    "skills": [
+      "Docker",
+      "User Research",
+      "Adobe XD",
+      "Git",
+      "Terraform"
+    ],
+    "benefits": [
+      "Retirement Plan",
+      "Remote Work Option",
+      "Flexible Hours"
+    ],
+    "aboutCompany": "Granite Peak IT is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP039",
+    "company": "BlueHarbor Software",
+    "position": "HR Executive",
+    "employmentType": "Contract",
+    "experience": "5-6 Years",
+    "salary": "₹20 - ₹28 LPA",
+    "posted": "15 days ago",
+    "deadline": "2026-07-15",
+    "description": "BlueHarbor Software is hiring an experienced HR Executive to support our expanding operations.",
+    "responsibilities": [
+      "Manage project timelines and deliverables",
+      "Troubleshoot and resolve technical issues",
+      "Mentor junior team members",
+      "Define product roadmap and strategy"
+    ],
+    "skills": [
+      "SQL",
+      "JavaScript",
+      "Machine Learning",
+      "TypeScript",
+      "Excel"
+    ],
+    "benefits": [
+      "Health Insurance",
+      "Flexible Hours",
+      "Stock Options"
+    ],
+    "aboutCompany": "BlueHarbor Software is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP040",
+    "company": "Meridian Softworks",
+    "position": "QA Engineer",
+    "employmentType": "Remote",
+    "experience": "7-10 Years",
+    "salary": "₹15 - ₹18 LPA",
+    "posted": "25 days ago",
+    "deadline": "2026-08-16",
+    "description": "Meridian Softworks is hiring an experienced QA Engineer to support our expanding operations.",
+    "responsibilities": [
+      "Design and implement scalable solutions",
+      "Conduct user research and testing",
+      "Optimize application performance",
+      "Maintain documentation and reports"
+    ],
+    "skills": [
+      "Statistics",
+      "SQL",
+      "Leadership",
+      "PostgreSQL",
+      "Scrum"
+    ],
+    "benefits": [
+      "Learning Budget",
+      "Retirement Plan",
+      "Gym Membership"
+    ],
+    "aboutCompany": "Meridian Softworks is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP041",
+    "company": "BlueHarbor Software",
+    "position": "Business Analyst",
+    "employmentType": "Remote",
+    "experience": "0-1 Years",
+    "salary": "₹10 - ₹18 LPA",
+    "posted": "22 days ago",
+    "deadline": "2026-10-27",
+    "description": "We are seeking a motivated Business Analyst to join BlueHarbor Software and make a meaningful impact.",
+    "responsibilities": [
+      "Collaborate with cross-functional teams",
+      "Build and maintain dashboards",
+      "Analyze data to identify trends",
+      "Coordinate with stakeholders on requirements"
+    ],
+    "skills": [
+      "Docker",
+      "Agile",
+      "Data Visualization",
+      "Python",
+      "User Research"
+    ],
+    "benefits": [
+      "Wellness Programs",
+      "Relocation Assistance",
+      "Health Insurance"
+    ],
+    "aboutCompany": "BlueHarbor Software specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP042",
+    "company": "Brightpath Analytics",
+    "position": "Mobile App Developer",
+    "employmentType": "Contract",
+    "experience": "2-4 Years",
+    "salary": "₹10 - ₹28 LPA",
+    "posted": "25 days ago",
+    "deadline": "2026-07-07",
+    "description": "Brightpath Analytics is hiring an experienced Mobile App Developer to support our expanding operations.",
+    "responsibilities": [
+      "Mentor junior team members",
+      "Monitor system health and reliability",
+      "Troubleshoot and resolve technical issues",
+      "Collaborate with cross-functional teams"
+    ],
+    "skills": [
+      "Java",
+      "Power BI",
+      "Selenium",
+      "CI/CD",
+      "Python"
+    ],
+    "benefits": [
+      "Paid Time Off",
+      "Relocation Assistance",
+      "Flexible Hours"
+    ],
+    "aboutCompany": "Brightpath Analytics specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP043",
+    "company": "Silverline Tech",
+    "position": "Software Engineer",
+    "employmentType": "Remote",
+    "experience": "4-6 Years",
+    "salary": "₹5 - ₹23 LPA",
+    "posted": "30 days ago",
+    "deadline": "2026-12-10",
+    "description": "We are seeking a motivated Software Engineer to join Silverline Tech and make a meaningful impact.",
+    "responsibilities": [
+      "Coordinate with stakeholders on requirements",
+      "Mentor junior team members",
+      "Troubleshoot and resolve technical issues",
+      "Participate in code reviews"
+    ],
+    "skills": [
+      "Communication",
+      "Git",
+      "REST APIs",
+      "Postman",
+      "Data Visualization"
+    ],
+    "benefits": [
+      "Free Meals",
+      "Remote Work Option",
+      "Flexible Hours"
+    ],
+    "aboutCompany": "Silverline Tech is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP044",
+    "company": "Wavelength Tech",
+    "position": "HR Executive",
+    "employmentType": "Contract",
+    "experience": "7-10 Years",
+    "salary": "₹12 - ₹20 LPA",
+    "posted": "27 days ago",
+    "deadline": "2026-07-10",
+    "description": "Join Wavelength Tech as a HR Executive and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Mentor junior team members",
+      "Manage project timelines and deliverables",
+      "Troubleshoot and resolve technical issues",
+      "Build and maintain dashboards"
+    ],
+    "skills": [
+      "MongoDB",
+      "User Research",
+      "REST APIs",
+      "Communication",
+      "TypeScript"
+    ],
+    "benefits": [
+      "Retirement Plan",
+      "Stock Options",
+      "Free Meals"
+    ],
+    "aboutCompany": "Wavelength Tech specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP045",
+    "company": "Ironwood Digital",
+    "position": "Cloud Architect",
+    "employmentType": "Internship",
+    "experience": "5-6 Years",
+    "salary": "₹9 - ₹12 LPA",
+    "posted": "11 days ago",
+    "deadline": "2026-12-16",
+    "description": "Join Ironwood Digital as a Cloud Architect and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Mentor junior team members",
+      "Write and execute test cases",
+      "Design and implement scalable solutions",
+      "Manage project timelines and deliverables"
+    ],
+    "skills": [
+      "MongoDB",
+      "AWS",
+      "TensorFlow",
+      "Prototyping",
+      "Communication"
+    ],
+    "benefits": [
+      "Health Insurance",
+      "Free Meals",
+      "Remote Work Option"
+    ],
+    "aboutCompany": "Ironwood Digital helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP046",
+    "company": "Duskwave Studios",
+    "position": "UI/UX Designer",
+    "employmentType": "Full-time",
+    "experience": "5-7 Years",
+    "salary": "₹7 - ₹17 LPA",
+    "posted": "20 days ago",
+    "deadline": "2026-12-13",
+    "description": "Duskwave Studios seeks a talented UI/UX Designer to help us build world-class products.",
+    "responsibilities": [
+      "Optimize application performance",
+      "Build and maintain dashboards",
+      "Maintain documentation and reports",
+      "Monitor system health and reliability"
+    ],
+    "skills": [
+      "Statistics",
+      "User Research",
+      "JavaScript",
+      "Node.js",
+      "Power BI"
+    ],
+    "benefits": [
+      "Gym Membership",
+      "Retirement Plan",
+      "Annual Bonus"
+    ],
+    "aboutCompany": "Duskwave Studios specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP047",
+    "company": "Sablewood Digital",
+    "position": "Frontend Developer",
+    "employmentType": "Contract",
+    "experience": "0-1 Years",
+    "salary": "₹18 - ₹22 LPA",
+    "posted": "15 days ago",
+    "deadline": "2026-08-23",
+    "description": "Sablewood Digital is looking for a skilled Frontend Developer to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Build and maintain dashboards",
+      "Define product roadmap and strategy",
+      "Write and execute test cases",
+      "Analyze data to identify trends"
+    ],
+    "skills": [
+      "PostgreSQL",
+      "GraphQL",
+      "Machine Learning",
+      "Git",
+      "Power BI"
+    ],
+    "benefits": [
+      "Paid Time Off",
+      "Relocation Assistance",
+      "Performance Bonus"
+    ],
+    "aboutCompany": "Sablewood Digital specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP048",
+    "company": "BlueHarbor Software",
+    "position": "Data Analyst",
+    "employmentType": "Part-time",
+    "experience": "7-10 Years",
+    "salary": "₹9 - ₹15 LPA",
+    "posted": "16 days ago",
+    "deadline": "2026-11-05",
+    "description": "BlueHarbor Software is hiring an experienced Data Analyst to support our expanding operations.",
+    "responsibilities": [
+      "Mentor junior team members",
+      "Analyze data to identify trends",
+      "Maintain documentation and reports",
+      "Write and execute test cases"
+    ],
+    "skills": [
+      "Communication",
+      "Linux",
+      "User Research",
+      "Selenium",
+      "Node.js"
+    ],
+    "benefits": [
+      "Wellness Programs",
+      "Learning Budget",
+      "Performance Bonus"
+    ],
+    "aboutCompany": "BlueHarbor Software is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP049",
+    "company": "Palm Grove Digital",
+    "position": "Machine Learning Engineer",
+    "employmentType": "Internship",
+    "experience": "1-2 Years",
+    "salary": "₹10 - ₹18 LPA",
+    "posted": "7 days ago",
+    "deadline": "2026-10-28",
+    "description": "Join Palm Grove Digital as a Machine Learning Engineer and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Optimize application performance",
+      "Conduct user research and testing",
+      "Build and maintain dashboards",
+      "Coordinate with stakeholders on requirements"
+    ],
+    "skills": [
+      "Linux",
+      "Java",
+      "Agile",
+      "Terraform",
+      "Python"
+    ],
+    "benefits": [
+      "Performance Bonus",
+      "Gym Membership",
+      "Free Meals"
+    ],
+    "aboutCompany": "Palm Grove Digital is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP050",
+    "company": "Copperline Tech",
+    "position": "Sales Executive",
+    "employmentType": "Remote",
+    "experience": "4-6 Years",
+    "salary": "₹6 - ₹16 LPA",
+    "posted": "8 days ago",
+    "deadline": "2026-12-07",
+    "description": "Join Copperline Tech as a Sales Executive and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Maintain documentation and reports",
+      "Collaborate with cross-functional teams",
+      "Troubleshoot and resolve technical issues",
+      "Define product roadmap and strategy"
+    ],
+    "skills": [
+      "JavaScript",
+      "CI/CD",
+      "TensorFlow",
+      "GraphQL",
+      "Kubernetes"
+    ],
+    "benefits": [
+      "Flexible Hours",
+      "Annual Bonus",
+      "Learning Budget"
+    ],
+    "aboutCompany": "Copperline Tech helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP051",
+    "company": "Ironclad Systems",
+    "position": "Data Scientist",
+    "employmentType": "Internship",
+    "experience": "4-6 Years",
+    "salary": "₹8 - ₹16 LPA",
+    "posted": "27 days ago",
+    "deadline": "2026-08-09",
+    "description": "Ironclad Systems is hiring an experienced Data Scientist to support our expanding operations.",
+    "responsibilities": [
+      "Define product roadmap and strategy",
+      "Collaborate with cross-functional teams",
+      "Mentor junior team members",
+      "Coordinate with stakeholders on requirements"
+    ],
+    "skills": [
+      "Git",
+      "Adobe XD",
+      "Agile",
+      "GraphQL",
+      "SQL"
+    ],
+    "benefits": [
+      "Childcare Support",
+      "Relocation Assistance",
+      "Health Insurance"
+    ],
+    "aboutCompany": "Ironclad Systems is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP052",
+    "company": "Zephyr Networks",
+    "position": "Full Stack Developer",
+    "employmentType": "Contract",
+    "experience": "1-2 Years",
+    "salary": "₹18 - ₹26 LPA",
+    "posted": "19 days ago",
+    "deadline": "2026-10-27",
+    "description": "Join Zephyr Networks as a Full Stack Developer and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Mentor junior team members",
+      "Write and execute test cases",
+      "Conduct user research and testing",
+      "Manage project timelines and deliverables"
+    ],
+    "skills": [
+      "TypeScript",
+      "Adobe XD",
+      "Node.js",
+      "Communication",
+      "CI/CD"
+    ],
+    "benefits": [
+      "Gym Membership",
+      "Relocation Assistance",
+      "Flexible Hours"
+    ],
+    "aboutCompany": "Zephyr Networks specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP053",
+    "company": "PixelForge Studios",
+    "position": "Backend Developer",
+    "employmentType": "Internship",
+    "experience": "7-10 Years",
+    "salary": "₹4 - ₹8 LPA",
+    "posted": "8 days ago",
+    "deadline": "2026-11-05",
+    "description": "PixelForge Studios is hiring an experienced Backend Developer to support our expanding operations.",
+    "responsibilities": [
+      "Maintain documentation and reports",
+      "Monitor system health and reliability",
+      "Coordinate with stakeholders on requirements",
+      "Manage project timelines and deliverables"
+    ],
+    "skills": [
+      "Scrum",
+      "Git",
+      "AWS",
+      "Statistics",
+      "Terraform"
+    ],
+    "benefits": [
+      "Health Insurance",
+      "Free Meals",
+      "Learning Budget"
+    ],
+    "aboutCompany": "PixelForge Studios specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP054",
+    "company": "Ravenhurst Solutions",
+    "position": "Software Engineer",
+    "employmentType": "Full-time",
+    "experience": "5-6 Years",
+    "salary": "₹4 - ₹14 LPA",
+    "posted": "18 days ago",
+    "deadline": "2026-12-12",
+    "description": "Ravenhurst Solutions is hiring an experienced Software Engineer to support our expanding operations.",
+    "responsibilities": [
+      "Participate in code reviews",
+      "Collaborate with cross-functional teams",
+      "Mentor junior team members",
+      "Coordinate with stakeholders on requirements"
+    ],
+    "skills": [
+      "Figma",
+      "Java",
+      "React",
+      "MongoDB",
+      "Power BI"
+    ],
+    "benefits": [
+      "Remote Work Option",
+      "Childcare Support",
+      "Performance Bonus"
+    ],
+    "aboutCompany": "Ravenhurst Solutions specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP055",
+    "company": "OrbitLogic",
+    "position": "Content Strategist",
+    "employmentType": "Part-time",
+    "experience": "0-1 Years",
+    "salary": "₹15 - ₹21 LPA",
+    "posted": "27 days ago",
+    "deadline": "2026-08-11",
+    "description": "OrbitLogic is hiring an experienced Content Strategist to support our expanding operations.",
+    "responsibilities": [
+      "Coordinate with stakeholders on requirements",
+      "Design and implement scalable solutions",
+      "Troubleshoot and resolve technical issues",
+      "Manage project timelines and deliverables"
+    ],
+    "skills": [
+      "Excel",
+      "JIRA",
+      "Docker",
+      "Java",
+      "Kubernetes"
+    ],
+    "benefits": [
+      "Health Insurance",
+      "Learning Budget",
+      "Stock Options"
+    ],
+    "aboutCompany": "OrbitLogic is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP056",
+    "company": "Cobalt Interactive",
+    "position": "QA Engineer",
+    "employmentType": "Full-time",
+    "experience": "1-2 Years",
+    "salary": "₹3 - ₹8 LPA",
+    "posted": "24 days ago",
+    "deadline": "2026-10-17",
+    "description": "We are seeking a motivated QA Engineer to join Cobalt Interactive and make a meaningful impact.",
+    "responsibilities": [
+      "Mentor junior team members",
+      "Define product roadmap and strategy",
+      "Build and maintain dashboards",
+      "Manage project timelines and deliverables"
+    ],
+    "skills": [
+      "AWS",
+      "TensorFlow",
+      "Data Visualization",
+      "Adobe XD",
+      "JavaScript"
+    ],
+    "benefits": [
+      "Free Meals",
+      "Childcare Support",
+      "Gym Membership"
+    ],
+    "aboutCompany": "Cobalt Interactive is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP057",
+    "company": "Solstice Innovations",
+    "position": "Software Engineer",
+    "employmentType": "Full-time",
+    "experience": "7-10 Years",
+    "salary": "₹3 - ₹21 LPA",
+    "posted": "28 days ago",
+    "deadline": "2026-10-14",
+    "description": "We are seeking a motivated Software Engineer to join Solstice Innovations and make a meaningful impact.",
+    "responsibilities": [
+      "Collaborate with cross-functional teams",
+      "Troubleshoot and resolve technical issues",
+      "Build and maintain dashboards",
+      "Conduct user research and testing"
+    ],
+    "skills": [
+      "Git",
+      "Node.js",
+      "Kubernetes",
+      "Terraform",
+      "TypeScript"
+    ],
+    "benefits": [
+      "Relocation Assistance",
+      "Performance Bonus",
+      "Paid Time Off"
+    ],
+    "aboutCompany": "Solstice Innovations is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP058",
+    "company": "Cinderwood Labs",
+    "position": "Technical Writer",
+    "employmentType": "Remote",
+    "experience": "3-5 Years",
+    "salary": "₹4 - ₹8 LPA",
+    "posted": "28 days ago",
+    "deadline": "2026-12-21",
+    "description": "We are seeking a motivated Technical Writer to join Cinderwood Labs and make a meaningful impact.",
+    "responsibilities": [
+      "Mentor junior team members",
+      "Participate in code reviews",
+      "Optimize application performance",
+      "Build and maintain dashboards"
+    ],
+    "skills": [
+      "Communication",
+      "Agile",
+      "Scrum",
+      "AWS",
+      "TypeScript"
+    ],
+    "benefits": [
+      "Relocation Assistance",
+      "Learning Budget",
+      "Gym Membership"
+    ],
+    "aboutCompany": "Cinderwood Labs is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP059",
+    "company": "Redshift Cloud",
+    "position": "UI/UX Designer",
+    "employmentType": "Internship",
+    "experience": "1-2 Years",
+    "salary": "₹4 - ₹8 LPA",
+    "posted": "27 days ago",
+    "deadline": "2026-07-03",
+    "description": "Redshift Cloud is hiring an experienced UI/UX Designer to support our expanding operations.",
+    "responsibilities": [
+      "Define product roadmap and strategy",
+      "Design and implement scalable solutions",
+      "Manage project timelines and deliverables",
+      "Write and execute test cases"
+    ],
+    "skills": [
+      "MongoDB",
+      "Docker",
+      "Scrum",
+      "PostgreSQL",
+      "Machine Learning"
+    ],
+    "benefits": [
+      "Retirement Plan",
+      "Free Meals",
+      "Health Insurance"
+    ],
+    "aboutCompany": "Redshift Cloud is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP060",
+    "company": "Copperline Tech",
+    "position": "Project Manager",
+    "employmentType": "Part-time",
+    "experience": "1-2 Years",
+    "salary": "₹15 - ₹21 LPA",
+    "posted": "5 days ago",
+    "deadline": "2026-12-16",
+    "description": "Copperline Tech is hiring an experienced Project Manager to support our expanding operations.",
+    "responsibilities": [
+      "Coordinate with stakeholders on requirements",
+      "Manage project timelines and deliverables",
+      "Build and maintain dashboards",
+      "Collaborate with cross-functional teams"
+    ],
+    "skills": [
+      "Terraform",
+      "Adobe XD",
+      "Machine Learning",
+      "Java",
+      "JIRA"
+    ],
+    "benefits": [
+      "Annual Bonus",
+      "Free Meals",
+      "Retirement Plan"
+    ],
+    "aboutCompany": "Copperline Tech is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP061",
+    "company": "Northwind Data",
+    "position": "QA Engineer",
+    "employmentType": "Full-time",
+    "experience": "1-2 Years",
+    "salary": "₹15 - ₹30 LPA",
+    "posted": "3 days ago",
+    "deadline": "2026-08-24",
+    "description": "Northwind Data seeks a talented QA Engineer to help us build world-class products.",
+    "responsibilities": [
+      "Participate in code reviews",
+      "Optimize application performance",
+      "Coordinate with stakeholders on requirements",
+      "Mentor junior team members"
+    ],
+    "skills": [
+      "MongoDB",
+      "Selenium",
+      "GraphQL",
+      "CI/CD",
+      "TypeScript"
+    ],
+    "benefits": [
+      "Childcare Support",
+      "Performance Bonus",
+      "Retirement Plan"
+    ],
+    "aboutCompany": "Northwind Data is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP062",
+    "company": "DataVantage",
+    "position": "UI/UX Designer",
+    "employmentType": "Internship",
+    "experience": "5-6 Years",
+    "salary": "₹15 - ₹18 LPA",
+    "posted": "22 days ago",
+    "deadline": "2026-07-09",
+    "description": "We are seeking a motivated UI/UX Designer to join DataVantage and make a meaningful impact.",
+    "responsibilities": [
+      "Conduct user research and testing",
+      "Mentor junior team members",
+      "Optimize application performance",
+      "Analyze data to identify trends"
+    ],
+    "skills": [
+      "Figma",
+      "Data Visualization",
+      "Docker",
+      "PostgreSQL",
+      "Machine Learning"
+    ],
+    "benefits": [
+      "Flexible Hours",
+      "Annual Bonus",
+      "Gym Membership"
+    ],
+    "aboutCompany": "DataVantage is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP063",
+    "company": "Oakridge Systems",
+    "position": "Technical Writer",
+    "employmentType": "Full-time",
+    "experience": "3-5 Years",
+    "salary": "₹3 - ₹9 LPA",
+    "posted": "13 days ago",
+    "deadline": "2026-11-02",
+    "description": "Oakridge Systems is hiring an experienced Technical Writer to support our expanding operations.",
+    "responsibilities": [
+      "Participate in code reviews",
+      "Define product roadmap and strategy",
+      "Design and implement scalable solutions",
+      "Analyze data to identify trends"
+    ],
+    "skills": [
+      "Linux",
+      "TypeScript",
+      "Docker",
+      "Python",
+      "Statistics"
+    ],
+    "benefits": [
+      "Free Meals",
+      "Relocation Assistance",
+      "Remote Work Option"
+    ],
+    "aboutCompany": "Oakridge Systems specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP064",
+    "company": "Pinecrest Systems",
+    "position": "Scrum Master",
+    "employmentType": "Full-time",
+    "experience": "5-6 Years",
+    "salary": "₹12 - ₹22 LPA",
+    "posted": "3 days ago",
+    "deadline": "2026-10-28",
+    "description": "Pinecrest Systems is looking for a skilled Scrum Master to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Mentor junior team members",
+      "Collaborate with cross-functional teams",
+      "Build and maintain dashboards",
+      "Conduct user research and testing"
+    ],
+    "skills": [
+      "Machine Learning",
+      "Agile",
+      "Scrum",
+      "Linux",
+      "Docker"
+    ],
+    "benefits": [
+      "Relocation Assistance",
+      "Health Insurance",
+      "Learning Budget"
+    ],
+    "aboutCompany": "Pinecrest Systems specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP065",
+    "company": "Snowfield Systems",
+    "position": "Software Engineer",
+    "employmentType": "Internship",
+    "experience": "5-6 Years",
+    "salary": "₹4 - ₹19 LPA",
+    "posted": "28 days ago",
+    "deadline": "2026-07-08",
+    "description": "Snowfield Systems seeks a talented Software Engineer to help us build world-class products.",
+    "responsibilities": [
+      "Collaborate with cross-functional teams",
+      "Optimize application performance",
+      "Analyze data to identify trends",
+      "Monitor system health and reliability"
+    ],
+    "skills": [
+      "MongoDB",
+      "Adobe XD",
+      "Selenium",
+      "Node.js",
+      "Data Visualization"
+    ],
+    "benefits": [
+      "Gym Membership",
+      "Flexible Hours",
+      "Paid Time Off"
+    ],
+    "aboutCompany": "Snowfield Systems is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP066",
+    "company": "Skyline Analytics",
+    "position": "Financial Analyst",
+    "employmentType": "Contract",
+    "experience": "3-5 Years",
+    "salary": "₹20 - ₹25 LPA",
+    "posted": "8 days ago",
+    "deadline": "2026-07-05",
+    "description": "Join Skyline Analytics as a Financial Analyst and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Conduct user research and testing",
+      "Design and implement scalable solutions",
+      "Define product roadmap and strategy",
+      "Maintain documentation and reports"
+    ],
+    "skills": [
+      "Node.js",
+      "JIRA",
+      "Statistics",
+      "Communication",
+      "TensorFlow"
+    ],
+    "benefits": [
+      "Gym Membership",
+      "Performance Bonus",
+      "Retirement Plan"
+    ],
+    "aboutCompany": "Skyline Analytics is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP067",
+    "company": "Cobalt Interactive",
+    "position": "Graphic Designer",
+    "employmentType": "Contract",
+    "experience": "4-6 Years",
+    "salary": "₹5 - ₹23 LPA",
+    "posted": "3 days ago",
+    "deadline": "2026-10-15",
+    "description": "Cobalt Interactive seeks a talented Graphic Designer to help us build world-class products.",
+    "responsibilities": [
+      "Write and execute test cases",
+      "Build and maintain dashboards",
+      "Manage project timelines and deliverables",
+      "Collaborate with cross-functional teams"
+    ],
+    "skills": [
+      "CI/CD",
+      "Communication",
+      "TensorFlow",
+      "JavaScript",
+      "React"
+    ],
+    "benefits": [
+      "Learning Budget",
+      "Annual Bonus",
+      "Flexible Hours"
+    ],
+    "aboutCompany": "Cobalt Interactive is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP068",
+    "company": "Snowfield Systems",
+    "position": "Security Analyst",
+    "employmentType": "Part-time",
+    "experience": "5-7 Years",
+    "salary": "₹10 - ₹13 LPA",
+    "posted": "15 days ago",
+    "deadline": "2026-11-21",
+    "description": "Snowfield Systems seeks a talented Security Analyst to help us build world-class products.",
+    "responsibilities": [
+      "Mentor junior team members",
+      "Manage project timelines and deliverables",
+      "Design and implement scalable solutions",
+      "Write and execute test cases"
+    ],
+    "skills": [
+      "TensorFlow",
+      "AWS",
+      "MongoDB",
+      "SQL",
+      "Data Visualization"
+    ],
+    "benefits": [
+      "Gym Membership",
+      "Remote Work Option",
+      "Health Insurance"
+    ],
+    "aboutCompany": "Snowfield Systems specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP069",
+    "company": "Clearwater Systems",
+    "position": "Software Engineer",
+    "employmentType": "Internship",
+    "experience": "5-6 Years",
+    "salary": "₹12 - ₹17 LPA",
+    "posted": "12 days ago",
+    "deadline": "2026-09-10",
+    "description": "Clearwater Systems is hiring an experienced Software Engineer to support our expanding operations.",
+    "responsibilities": [
+      "Maintain documentation and reports",
+      "Conduct user research and testing",
+      "Write and execute test cases",
+      "Troubleshoot and resolve technical issues"
+    ],
+    "skills": [
+      "MongoDB",
+      "Node.js",
+      "AWS",
+      "REST APIs",
+      "Linux"
+    ],
+    "benefits": [
+      "Annual Bonus",
+      "Free Meals",
+      "Gym Membership"
+    ],
+    "aboutCompany": "Clearwater Systems is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP070",
+    "company": "Nexora Solutions",
+    "position": "Business Analyst",
+    "employmentType": "Internship",
+    "experience": "2-4 Years",
+    "salary": "₹18 - ₹23 LPA",
+    "posted": "30 days ago",
+    "deadline": "2026-09-10",
+    "description": "Nexora Solutions seeks a talented Business Analyst to help us build world-class products.",
+    "responsibilities": [
+      "Monitor system health and reliability",
+      "Collaborate with cross-functional teams",
+      "Analyze data to identify trends",
+      "Manage project timelines and deliverables"
+    ],
+    "skills": [
+      "REST APIs",
+      "MongoDB",
+      "Kubernetes",
+      "Prototyping",
+      "SQL"
+    ],
+    "benefits": [
+      "Gym Membership",
+      "Retirement Plan",
+      "Relocation Assistance"
+    ],
+    "aboutCompany": "Nexora Solutions is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP071",
+    "company": "Redshift Cloud",
+    "position": "QA Engineer",
+    "employmentType": "Part-time",
+    "experience": "2-4 Years",
+    "salary": "₹5 - ₹11 LPA",
+    "posted": "11 days ago",
+    "deadline": "2026-10-07",
+    "description": "Join Redshift Cloud as a QA Engineer and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Collaborate with cross-functional teams",
+      "Analyze data to identify trends",
+      "Define product roadmap and strategy",
+      "Troubleshoot and resolve technical issues"
+    ],
+    "skills": [
+      "Data Visualization",
+      "User Research",
+      "Prototyping",
+      "JavaScript",
+      "MongoDB"
+    ],
+    "benefits": [
+      "Childcare Support",
+      "Performance Bonus",
+      "Remote Work Option"
+    ],
+    "aboutCompany": "Redshift Cloud is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP072",
+    "company": "Pinecrest Systems",
+    "position": "UI/UX Designer",
+    "employmentType": "Internship",
+    "experience": "5-7 Years",
+    "salary": "₹20 - ₹25 LPA",
+    "posted": "24 days ago",
+    "deadline": "2026-10-02",
+    "description": "Join Pinecrest Systems as a UI/UX Designer and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Mentor junior team members",
+      "Conduct user research and testing",
+      "Analyze data to identify trends",
+      "Monitor system health and reliability"
+    ],
+    "skills": [
+      "TensorFlow",
+      "Adobe XD",
+      "User Research",
+      "Power BI",
+      "CI/CD"
+    ],
+    "benefits": [
+      "Childcare Support",
+      "Retirement Plan",
+      "Wellness Programs"
+    ],
+    "aboutCompany": "Pinecrest Systems specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP073",
+    "company": "Redshift Cloud",
+    "position": "Network Engineer",
+    "employmentType": "Remote",
+    "experience": "5-6 Years",
+    "salary": "₹10 - ₹18 LPA",
+    "posted": "25 days ago",
+    "deadline": "2026-10-17",
+    "description": "Join Redshift Cloud as a Network Engineer and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Coordinate with stakeholders on requirements",
+      "Participate in code reviews",
+      "Define product roadmap and strategy",
+      "Conduct user research and testing"
+    ],
+    "skills": [
+      "Kubernetes",
+      "Excel",
+      "React",
+      "Leadership",
+      "GraphQL"
+    ],
+    "benefits": [
+      "Paid Time Off",
+      "Flexible Hours",
+      "Free Meals"
+    ],
+    "aboutCompany": "Redshift Cloud is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP074",
+    "company": "Silverline Tech",
+    "position": "Project Manager",
+    "employmentType": "Internship",
+    "experience": "1-2 Years",
+    "salary": "₹5 - ₹13 LPA",
+    "posted": "15 days ago",
+    "deadline": "2026-11-05",
+    "description": "Join Silverline Tech as a Project Manager and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Coordinate with stakeholders on requirements",
+      "Mentor junior team members",
+      "Build and maintain dashboards",
+      "Write and execute test cases"
+    ],
+    "skills": [
+      "Scrum",
+      "React",
+      "Agile",
+      "Data Visualization",
+      "GraphQL"
+    ],
+    "benefits": [
+      "Stock Options",
+      "Relocation Assistance",
+      "Flexible Hours"
+    ],
+    "aboutCompany": "Silverline Tech is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP075",
+    "company": "Coral Reef Digital",
+    "position": "QA Engineer",
+    "employmentType": "Full-time",
+    "experience": "4-6 Years",
+    "salary": "₹20 - ₹30 LPA",
+    "posted": "26 days ago",
+    "deadline": "2026-08-05",
+    "description": "We are seeking a motivated QA Engineer to join Coral Reef Digital and make a meaningful impact.",
+    "responsibilities": [
+      "Monitor system health and reliability",
+      "Coordinate with stakeholders on requirements",
+      "Design and implement scalable solutions",
+      "Troubleshoot and resolve technical issues"
+    ],
+    "skills": [
+      "Leadership",
+      "TensorFlow",
+      "Python",
+      "SQL",
+      "Java"
+    ],
+    "benefits": [
+      "Annual Bonus",
+      "Stock Options",
+      "Remote Work Option"
+    ],
+    "aboutCompany": "Coral Reef Digital is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP076",
+    "company": "Moonridge Labs",
+    "position": "Security Analyst",
+    "employmentType": "Full-time",
+    "experience": "3-5 Years",
+    "salary": "₹4 - ₹12 LPA",
+    "posted": "8 days ago",
+    "deadline": "2026-09-04",
+    "description": "We are seeking a motivated Security Analyst to join Moonridge Labs and make a meaningful impact.",
+    "responsibilities": [
+      "Maintain documentation and reports",
+      "Define product roadmap and strategy",
+      "Conduct user research and testing",
+      "Mentor junior team members"
+    ],
+    "skills": [
+      "Node.js",
+      "Docker",
+      "Statistics",
+      "User Research",
+      "Java"
+    ],
+    "benefits": [
+      "Gym Membership",
+      "Paid Time Off",
+      "Performance Bonus"
+    ],
+    "aboutCompany": "Moonridge Labs specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP077",
+    "company": "Clearwater Systems",
+    "position": "UI/UX Designer",
+    "employmentType": "Part-time",
+    "experience": "1-2 Years",
+    "salary": "₹3 - ₹13 LPA",
+    "posted": "8 days ago",
+    "deadline": "2026-11-14",
+    "description": "Clearwater Systems seeks a talented UI/UX Designer to help us build world-class products.",
+    "responsibilities": [
+      "Build and maintain dashboards",
+      "Collaborate with cross-functional teams",
+      "Manage project timelines and deliverables",
+      "Define product roadmap and strategy"
+    ],
+    "skills": [
+      "Data Visualization",
+      "Java",
+      "REST APIs",
+      "Leadership",
+      "JavaScript"
+    ],
+    "benefits": [
+      "Gym Membership",
+      "Relocation Assistance",
+      "Learning Budget"
+    ],
+    "aboutCompany": "Clearwater Systems is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP078",
+    "company": "Sablewood Digital",
+    "position": "QA Engineer",
+    "employmentType": "Full-time",
+    "experience": "5-7 Years",
+    "salary": "₹8 - ₹14 LPA",
+    "posted": "24 days ago",
+    "deadline": "2026-12-21",
+    "description": "Join Sablewood Digital as a QA Engineer and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Write and execute test cases",
+      "Build and maintain dashboards",
+      "Manage project timelines and deliverables",
+      "Coordinate with stakeholders on requirements"
+    ],
+    "skills": [
+      "JIRA",
+      "Communication",
+      "Leadership",
+      "Kubernetes",
+      "Node.js"
+    ],
+    "benefits": [
+      "Free Meals",
+      "Childcare Support",
+      "Wellness Programs"
+    ],
+    "aboutCompany": "Sablewood Digital is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP079",
+    "company": "Granite Peak IT",
+    "position": "Data Scientist",
+    "employmentType": "Internship",
+    "experience": "7-10 Years",
+    "salary": "₹3 - ₹13 LPA",
+    "posted": "30 days ago",
+    "deadline": "2026-09-17",
+    "description": "Granite Peak IT is hiring an experienced Data Scientist to support our expanding operations.",
+    "responsibilities": [
+      "Write and execute test cases",
+      "Define product roadmap and strategy",
+      "Maintain documentation and reports",
+      "Participate in code reviews"
+    ],
+    "skills": [
+      "Linux",
+      "PostgreSQL",
+      "React",
+      "MongoDB",
+      "Terraform"
+    ],
+    "benefits": [
+      "Flexible Hours",
+      "Childcare Support",
+      "Learning Budget"
+    ],
+    "aboutCompany": "Granite Peak IT helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP080",
+    "company": "Havenware",
+    "position": "Sales Executive",
+    "employmentType": "Contract",
+    "experience": "4-6 Years",
+    "salary": "₹8 - ₹13 LPA",
+    "posted": "16 days ago",
+    "deadline": "2026-12-16",
+    "description": "Havenware is looking for a skilled Sales Executive to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Monitor system health and reliability",
+      "Optimize application performance",
+      "Collaborate with cross-functional teams",
+      "Coordinate with stakeholders on requirements"
+    ],
+    "skills": [
+      "JIRA",
+      "User Research",
+      "Linux",
+      "TypeScript",
+      "AWS"
+    ],
+    "benefits": [
+      "Flexible Hours",
+      "Learning Budget",
+      "Gym Membership"
+    ],
+    "aboutCompany": "Havenware is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP081",
+    "company": "Solstice Innovations",
+    "position": "Software Engineer",
+    "employmentType": "Internship",
+    "experience": "0-1 Years",
+    "salary": "₹9 - ₹14 LPA",
+    "posted": "23 days ago",
+    "deadline": "2026-10-12",
+    "description": "Solstice Innovations is hiring an experienced Software Engineer to support our expanding operations.",
+    "responsibilities": [
+      "Conduct user research and testing",
+      "Optimize application performance",
+      "Analyze data to identify trends",
+      "Maintain documentation and reports"
+    ],
+    "skills": [
+      "React",
+      "Node.js",
+      "Agile",
+      "GraphQL",
+      "Data Visualization"
+    ],
+    "benefits": [
+      "Childcare Support",
+      "Free Meals",
+      "Gym Membership"
+    ],
+    "aboutCompany": "Solstice Innovations specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP082",
+    "company": "NimbusCloud",
+    "position": "UI/UX Designer",
+    "employmentType": "Contract",
+    "experience": "5-7 Years",
+    "salary": "₹10 - ₹13 LPA",
+    "posted": "5 days ago",
+    "deadline": "2026-07-08",
+    "description": "We are seeking a motivated UI/UX Designer to join NimbusCloud and make a meaningful impact.",
+    "responsibilities": [
+      "Conduct user research and testing",
+      "Write and execute test cases",
+      "Troubleshoot and resolve technical issues",
+      "Design and implement scalable solutions"
+    ],
+    "skills": [
+      "TensorFlow",
+      "GraphQL",
+      "Node.js",
+      "Kubernetes",
+      "Prototyping"
+    ],
+    "benefits": [
+      "Learning Budget",
+      "Relocation Assistance",
+      "Retirement Plan"
+    ],
+    "aboutCompany": "NimbusCloud is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP083",
+    "company": "Amberstone Technologies",
+    "position": "Full Stack Developer",
+    "employmentType": "Full-time",
+    "experience": "4-6 Years",
+    "salary": "₹5 - ₹23 LPA",
+    "posted": "17 days ago",
+    "deadline": "2026-10-18",
+    "description": "Amberstone Technologies is hiring an experienced Full Stack Developer to support our expanding operations.",
+    "responsibilities": [
+      "Monitor system health and reliability",
+      "Mentor junior team members",
+      "Participate in code reviews",
+      "Conduct user research and testing"
+    ],
+    "skills": [
+      "Linux",
+      "Statistics",
+      "Postman",
+      "Docker",
+      "Kubernetes"
+    ],
+    "benefits": [
+      "Retirement Plan",
+      "Flexible Hours",
+      "Wellness Programs"
+    ],
+    "aboutCompany": "Amberstone Technologies specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP084",
+    "company": "Clearwater Systems",
+    "position": "Software Engineer",
+    "employmentType": "Remote",
+    "experience": "4-6 Years",
+    "salary": "₹8 - ₹18 LPA",
+    "posted": "23 days ago",
+    "deadline": "2026-07-18",
+    "description": "Clearwater Systems is hiring an experienced Software Engineer to support our expanding operations.",
+    "responsibilities": [
+      "Coordinate with stakeholders on requirements",
+      "Design and implement scalable solutions",
+      "Monitor system health and reliability",
+      "Define product roadmap and strategy"
+    ],
+    "skills": [
+      "JIRA",
+      "GraphQL",
+      "Data Visualization",
+      "Adobe XD",
+      "Docker"
+    ],
+    "benefits": [
+      "Stock Options",
+      "Childcare Support",
+      "Remote Work Option"
+    ],
+    "aboutCompany": "Clearwater Systems specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP085",
+    "company": "Oakridge Systems",
+    "position": "QA Engineer",
+    "employmentType": "Remote",
+    "experience": "1-2 Years",
+    "salary": "₹15 - ₹25 LPA",
+    "posted": "15 days ago",
+    "deadline": "2026-11-05",
+    "description": "Oakridge Systems is looking for a skilled QA Engineer to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Analyze data to identify trends",
+      "Optimize application performance",
+      "Monitor system health and reliability",
+      "Define product roadmap and strategy"
+    ],
+    "skills": [
+      "Leadership",
+      "Prototyping",
+      "Scrum",
+      "Node.js",
+      "Kubernetes"
+    ],
+    "benefits": [
+      "Learning Budget",
+      "Gym Membership",
+      "Flexible Hours"
+    ],
+    "aboutCompany": "Oakridge Systems helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP086",
+    "company": "Cinderwood Labs",
+    "position": "Network Engineer",
+    "employmentType": "Remote",
+    "experience": "0-1 Years",
+    "salary": "₹5 - ₹10 LPA",
+    "posted": "25 days ago",
+    "deadline": "2026-08-14",
+    "description": "Cinderwood Labs is looking for a skilled Network Engineer to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Manage project timelines and deliverables",
+      "Design and implement scalable solutions",
+      "Analyze data to identify trends",
+      "Coordinate with stakeholders on requirements"
+    ],
+    "skills": [
+      "Selenium",
+      "TypeScript",
+      "Adobe XD",
+      "PostgreSQL",
+      "Prototyping"
+    ],
+    "benefits": [
+      "Annual Bonus",
+      "Flexible Hours",
+      "Retirement Plan"
+    ],
+    "aboutCompany": "Cinderwood Labs specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP087",
+    "company": "Palm Grove Digital",
+    "position": "Scrum Master",
+    "employmentType": "Remote",
+    "experience": "2-4 Years",
+    "salary": "₹18 - ₹26 LPA",
+    "posted": "20 days ago",
+    "deadline": "2026-11-03",
+    "description": "Palm Grove Digital seeks a talented Scrum Master to help us build world-class products.",
+    "responsibilities": [
+      "Conduct user research and testing",
+      "Design and implement scalable solutions",
+      "Coordinate with stakeholders on requirements",
+      "Maintain documentation and reports"
+    ],
+    "skills": [
+      "MongoDB",
+      "JavaScript",
+      "Java",
+      "SQL",
+      "Excel"
+    ],
+    "benefits": [
+      "Gym Membership",
+      "Stock Options",
+      "Performance Bonus"
+    ],
+    "aboutCompany": "Palm Grove Digital helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP088",
+    "company": "Snowfield Systems",
+    "position": "Database Administrator",
+    "employmentType": "Part-time",
+    "experience": "5-6 Years",
+    "salary": "₹18 - ₹26 LPA",
+    "posted": "21 days ago",
+    "deadline": "2026-09-16",
+    "description": "Snowfield Systems is hiring an experienced Database Administrator to support our expanding operations.",
+    "responsibilities": [
+      "Mentor junior team members",
+      "Collaborate with cross-functional teams",
+      "Monitor system health and reliability",
+      "Write and execute test cases"
+    ],
+    "skills": [
+      "Selenium",
+      "TensorFlow",
+      "Scrum",
+      "Leadership",
+      "Communication"
+    ],
+    "benefits": [
+      "Stock Options",
+      "Learning Budget",
+      "Performance Bonus"
+    ],
+    "aboutCompany": "Snowfield Systems specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP089",
+    "company": "Cobalt Interactive",
+    "position": "Graphic Designer",
+    "employmentType": "Contract",
+    "experience": "1-2 Years",
+    "salary": "₹20 - ₹30 LPA",
+    "posted": "13 days ago",
+    "deadline": "2026-08-25",
+    "description": "Cobalt Interactive is hiring an experienced Graphic Designer to support our expanding operations.",
+    "responsibilities": [
+      "Participate in code reviews",
+      "Mentor junior team members",
+      "Collaborate with cross-functional teams",
+      "Analyze data to identify trends"
+    ],
+    "skills": [
+      "TensorFlow",
+      "Power BI",
+      "Git",
+      "AWS",
+      "React"
+    ],
+    "benefits": [
+      "Annual Bonus",
+      "Relocation Assistance",
+      "Performance Bonus"
+    ],
+    "aboutCompany": "Cobalt Interactive helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP090",
+    "company": "Amberstone Technologies",
+    "position": "Graphic Designer",
+    "employmentType": "Remote",
+    "experience": "7-10 Years",
+    "salary": "₹15 - ₹25 LPA",
+    "posted": "7 days ago",
+    "deadline": "2026-08-16",
+    "description": "We are seeking a motivated Graphic Designer to join Amberstone Technologies and make a meaningful impact.",
+    "responsibilities": [
+      "Troubleshoot and resolve technical issues",
+      "Analyze data to identify trends",
+      "Mentor junior team members",
+      "Write and execute test cases"
+    ],
+    "skills": [
+      "SQL",
+      "Agile",
+      "Data Visualization",
+      "Communication",
+      "Power BI"
+    ],
+    "benefits": [
+      "Stock Options",
+      "Performance Bonus",
+      "Learning Budget"
+    ],
+    "aboutCompany": "Amberstone Technologies is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP091",
+    "company": "DataVantage",
+    "position": "Project Manager",
+    "employmentType": "Full-time",
+    "experience": "5-6 Years",
+    "salary": "₹18 - ₹36 LPA",
+    "posted": "10 days ago",
+    "deadline": "2026-11-01",
+    "description": "Join DataVantage as a Project Manager and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Troubleshoot and resolve technical issues",
+      "Analyze data to identify trends",
+      "Monitor system health and reliability",
+      "Build and maintain dashboards"
+    ],
+    "skills": [
+      "Agile",
+      "GraphQL",
+      "JavaScript",
+      "React",
+      "Postman"
+    ],
+    "benefits": [
+      "Learning Budget",
+      "Paid Time Off",
+      "Annual Bonus"
+    ],
+    "aboutCompany": "DataVantage is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP092",
+    "company": "Pinecrest Systems",
+    "position": "Technical Writer",
+    "employmentType": "Remote",
+    "experience": "1-2 Years",
+    "salary": "₹12 - ₹20 LPA",
+    "posted": "27 days ago",
+    "deadline": "2026-11-22",
+    "description": "Join Pinecrest Systems as a Technical Writer and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Collaborate with cross-functional teams",
+      "Optimize application performance",
+      "Build and maintain dashboards",
+      "Define product roadmap and strategy"
+    ],
+    "skills": [
+      "GraphQL",
+      "Git",
+      "Postman",
+      "Data Visualization",
+      "Agile"
+    ],
+    "benefits": [
+      "Paid Time Off",
+      "Health Insurance",
+      "Childcare Support"
+    ],
+    "aboutCompany": "Pinecrest Systems is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP093",
+    "company": "Crestwave Labs",
+    "position": "Support Engineer",
+    "employmentType": "Part-time",
+    "experience": "5-7 Years",
+    "salary": "₹12 - ₹30 LPA",
+    "posted": "5 days ago",
+    "deadline": "2026-11-17",
+    "description": "Crestwave Labs seeks a talented Support Engineer to help us build world-class products.",
+    "responsibilities": [
+      "Build and maintain dashboards",
+      "Design and implement scalable solutions",
+      "Optimize application performance",
+      "Conduct user research and testing"
+    ],
+    "skills": [
+      "CI/CD",
+      "MongoDB",
+      "Data Visualization",
+      "User Research",
+      "Statistics"
+    ],
+    "benefits": [
+      "Free Meals",
+      "Performance Bonus",
+      "Annual Bonus"
+    ],
+    "aboutCompany": "Crestwave Labs helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP094",
+    "company": "NimbusCloud",
+    "position": "Mobile App Developer",
+    "employmentType": "Full-time",
+    "experience": "7-10 Years",
+    "salary": "₹4 - ₹19 LPA",
+    "posted": "19 days ago",
+    "deadline": "2026-09-26",
+    "description": "NimbusCloud is hiring an experienced Mobile App Developer to support our expanding operations.",
+    "responsibilities": [
+      "Maintain documentation and reports",
+      "Define product roadmap and strategy",
+      "Coordinate with stakeholders on requirements",
+      "Conduct user research and testing"
+    ],
+    "skills": [
+      "Adobe XD",
+      "React",
+      "Leadership",
+      "Selenium",
+      "Prototyping"
+    ],
+    "benefits": [
+      "Gym Membership",
+      "Free Meals",
+      "Performance Bonus"
+    ],
+    "aboutCompany": "NimbusCloud helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP095",
+    "company": "Nexora Solutions",
+    "position": "Content Strategist",
+    "employmentType": "Contract",
+    "experience": "5-6 Years",
+    "salary": "₹3 - ₹7 LPA",
+    "posted": "7 days ago",
+    "deadline": "2026-07-15",
+    "description": "Join Nexora Solutions as a Content Strategist and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Optimize application performance",
+      "Monitor system health and reliability",
+      "Participate in code reviews",
+      "Troubleshoot and resolve technical issues"
+    ],
+    "skills": [
+      "Data Visualization",
+      "Leadership",
+      "React",
+      "Kubernetes",
+      "Prototyping"
+    ],
+    "benefits": [
+      "Stock Options",
+      "Paid Time Off",
+      "Learning Budget"
+    ],
+    "aboutCompany": "Nexora Solutions helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP096",
+    "company": "Brightpath Analytics",
+    "position": "Cloud Architect",
+    "employmentType": "Contract",
+    "experience": "7-10 Years",
+    "salary": "₹10 - ₹20 LPA",
+    "posted": "18 days ago",
+    "deadline": "2026-09-22",
+    "description": "Join Brightpath Analytics as a Cloud Architect and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Participate in code reviews",
+      "Analyze data to identify trends",
+      "Manage project timelines and deliverables",
+      "Coordinate with stakeholders on requirements"
+    ],
+    "skills": [
+      "Adobe XD",
+      "CI/CD",
+      "Linux",
+      "Figma",
+      "Statistics"
+    ],
+    "benefits": [
+      "Learning Budget",
+      "Wellness Programs",
+      "Retirement Plan"
+    ],
+    "aboutCompany": "Brightpath Analytics is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP097",
+    "company": "Moonridge Labs",
+    "position": "Product Manager",
+    "employmentType": "Contract",
+    "experience": "2-4 Years",
+    "salary": "₹15 - ₹30 LPA",
+    "posted": "29 days ago",
+    "deadline": "2026-10-27",
+    "description": "Moonridge Labs is hiring an experienced Product Manager to support our expanding operations.",
+    "responsibilities": [
+      "Write and execute test cases",
+      "Analyze data to identify trends",
+      "Monitor system health and reliability",
+      "Collaborate with cross-functional teams"
+    ],
+    "skills": [
+      "PostgreSQL",
+      "TensorFlow",
+      "Excel",
+      "Leadership",
+      "Figma"
+    ],
+    "benefits": [
+      "Stock Options",
+      "Paid Time Off",
+      "Annual Bonus"
+    ],
+    "aboutCompany": "Moonridge Labs is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP098",
+    "company": "Bayview Analytics",
+    "position": "Product Manager",
+    "employmentType": "Remote",
+    "experience": "3-5 Years",
+    "salary": "₹15 - ₹21 LPA",
+    "posted": "8 days ago",
+    "deadline": "2026-07-22",
+    "description": "Join Bayview Analytics as a Product Manager and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Write and execute test cases",
+      "Collaborate with cross-functional teams",
+      "Optimize application performance",
+      "Build and maintain dashboards"
+    ],
+    "skills": [
+      "Leadership",
+      "AWS",
+      "Kubernetes",
+      "Python",
+      "Selenium"
+    ],
+    "benefits": [
+      "Relocation Assistance",
+      "Gym Membership",
+      "Wellness Programs"
+    ],
+    "aboutCompany": "Bayview Analytics helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP099",
+    "company": "Duskwave Studios",
+    "position": "Data Scientist",
+    "employmentType": "Remote",
+    "experience": "3-5 Years",
+    "salary": "₹7 - ₹10 LPA",
+    "posted": "30 days ago",
+    "deadline": "2026-07-21",
+    "description": "Duskwave Studios seeks a talented Data Scientist to help us build world-class products.",
+    "responsibilities": [
+      "Monitor system health and reliability",
+      "Troubleshoot and resolve technical issues",
+      "Write and execute test cases",
+      "Design and implement scalable solutions"
+    ],
+    "skills": [
+      "Scrum",
+      "JIRA",
+      "JavaScript",
+      "Agile",
+      "Statistics"
+    ],
+    "benefits": [
+      "Remote Work Option",
+      "Free Meals",
+      "Annual Bonus"
+    ],
+    "aboutCompany": "Duskwave Studios is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP100",
+    "company": "BrightSoft",
+    "position": "Project Manager",
+    "employmentType": "Remote",
+    "experience": "7-10 Years",
+    "salary": "₹4 - ₹14 LPA",
+    "posted": "10 days ago",
+    "deadline": "2026-10-21",
+    "description": "Join BrightSoft as a Project Manager and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Coordinate with stakeholders on requirements",
+      "Manage project timelines and deliverables",
+      "Mentor junior team members",
+      "Analyze data to identify trends"
+    ],
+    "skills": [
+      "Postman",
+      "Docker",
+      "MongoDB",
+      "Selenium",
+      "Communication"
+    ],
+    "benefits": [
+      "Gym Membership",
+      "Annual Bonus",
+      "Free Meals"
+    ],
+    "aboutCompany": "BrightSoft specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP101",
+    "company": "BrightSoft",
+    "position": "Sales Executive",
+    "employmentType": "Internship",
+    "experience": "5-6 Years",
+    "salary": "₹15 - ₹21 LPA",
+    "posted": "6 days ago",
+    "deadline": "2026-11-28",
+    "description": "BrightSoft seeks a talented Sales Executive to help us build world-class products.",
+    "responsibilities": [
+      "Build and maintain dashboards",
+      "Collaborate with cross-functional teams",
+      "Optimize application performance",
+      "Maintain documentation and reports"
+    ],
+    "skills": [
+      "AWS",
+      "JIRA",
+      "Kubernetes",
+      "Leadership",
+      "TypeScript"
+    ],
+    "benefits": [
+      "Stock Options",
+      "Health Insurance",
+      "Annual Bonus"
+    ],
+    "aboutCompany": "BrightSoft helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP102",
+    "company": "Amberstone Technologies",
+    "position": "Software Engineer",
+    "employmentType": "Part-time",
+    "experience": "0-1 Years",
+    "salary": "₹7 - ₹10 LPA",
+    "posted": "9 days ago",
+    "deadline": "2026-12-12",
+    "description": "Amberstone Technologies is looking for a skilled Software Engineer to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Mentor junior team members",
+      "Analyze data to identify trends",
+      "Design and implement scalable solutions",
+      "Optimize application performance"
+    ],
+    "skills": [
+      "Data Visualization",
+      "CI/CD",
+      "Docker",
+      "Linux",
+      "GraphQL"
+    ],
+    "benefits": [
+      "Performance Bonus",
+      "Stock Options",
+      "Childcare Support"
+    ],
+    "aboutCompany": "Amberstone Technologies specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP103",
+    "company": "Marbletech",
+    "position": "UI/UX Designer",
+    "employmentType": "Internship",
+    "experience": "3-5 Years",
+    "salary": "₹15 - ₹25 LPA",
+    "posted": "14 days ago",
+    "deadline": "2026-12-18",
+    "description": "Join Marbletech as a UI/UX Designer and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Maintain documentation and reports",
+      "Define product roadmap and strategy",
+      "Conduct user research and testing",
+      "Collaborate with cross-functional teams"
+    ],
+    "skills": [
+      "Prototyping",
+      "TensorFlow",
+      "GraphQL",
+      "Node.js",
+      "Docker"
+    ],
+    "benefits": [
+      "Health Insurance",
+      "Paid Time Off",
+      "Childcare Support"
+    ],
+    "aboutCompany": "Marbletech specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP104",
+    "company": "Ironwood Digital",
+    "position": "Scrum Master",
+    "employmentType": "Remote",
+    "experience": "7-10 Years",
+    "salary": "₹8 - ₹26 LPA",
+    "posted": "4 days ago",
+    "deadline": "2026-12-07",
+    "description": "Ironwood Digital is looking for a skilled Scrum Master to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Troubleshoot and resolve technical issues",
+      "Manage project timelines and deliverables",
+      "Mentor junior team members",
+      "Write and execute test cases"
+    ],
+    "skills": [
+      "Communication",
+      "Kubernetes",
+      "Data Visualization",
+      "Scrum",
+      "React"
+    ],
+    "benefits": [
+      "Paid Time Off",
+      "Wellness Programs",
+      "Gym Membership"
+    ],
+    "aboutCompany": "Ironwood Digital is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP105",
+    "company": "Moonridge Labs",
+    "position": "QA Engineer",
+    "employmentType": "Internship",
+    "experience": "5-7 Years",
+    "salary": "₹3 - ₹9 LPA",
+    "posted": "19 days ago",
+    "deadline": "2026-07-02",
+    "description": "Moonridge Labs is looking for a skilled QA Engineer to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Manage project timelines and deliverables",
+      "Write and execute test cases",
+      "Collaborate with cross-functional teams",
+      "Mentor junior team members"
+    ],
+    "skills": [
+      "JavaScript",
+      "Linux",
+      "Scrum",
+      "JIRA",
+      "Kubernetes"
+    ],
+    "benefits": [
+      "Childcare Support",
+      "Gym Membership",
+      "Free Meals"
+    ],
+    "aboutCompany": "Moonridge Labs helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP106",
+    "company": "Redshift Cloud",
+    "position": "Financial Analyst",
+    "employmentType": "Remote",
+    "experience": "2-4 Years",
+    "salary": "₹9 - ₹24 LPA",
+    "posted": "3 days ago",
+    "deadline": "2026-12-22",
+    "description": "Redshift Cloud is hiring an experienced Financial Analyst to support our expanding operations.",
+    "responsibilities": [
+      "Collaborate with cross-functional teams",
+      "Design and implement scalable solutions",
+      "Manage project timelines and deliverables",
+      "Optimize application performance"
+    ],
+    "skills": [
+      "Prototyping",
+      "Kubernetes",
+      "Adobe XD",
+      "Python",
+      "Java"
+    ],
+    "benefits": [
+      "Annual Bonus",
+      "Wellness Programs",
+      "Gym Membership"
+    ],
+    "aboutCompany": "Redshift Cloud is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP107",
+    "company": "Willowbrook Digital",
+    "position": "Scrum Master",
+    "employmentType": "Part-time",
+    "experience": "1-2 Years",
+    "salary": "₹6 - ₹24 LPA",
+    "posted": "12 days ago",
+    "deadline": "2026-08-09",
+    "description": "Willowbrook Digital is looking for a skilled Scrum Master to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Define product roadmap and strategy",
+      "Maintain documentation and reports",
+      "Optimize application performance",
+      "Conduct user research and testing"
+    ],
+    "skills": [
+      "Java",
+      "Power BI",
+      "Figma",
+      "Node.js",
+      "AWS"
+    ],
+    "benefits": [
+      "Performance Bonus",
+      "Health Insurance",
+      "Wellness Programs"
+    ],
+    "aboutCompany": "Willowbrook Digital is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP108",
+    "company": "Thornfield Tech",
+    "position": "Support Engineer",
+    "employmentType": "Remote",
+    "experience": "3-5 Years",
+    "salary": "₹20 - ₹23 LPA",
+    "posted": "13 days ago",
+    "deadline": "2026-10-08",
+    "description": "Thornfield Tech is looking for a skilled Support Engineer to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Design and implement scalable solutions",
+      "Manage project timelines and deliverables",
+      "Analyze data to identify trends",
+      "Participate in code reviews"
+    ],
+    "skills": [
+      "TypeScript",
+      "Power BI",
+      "CI/CD",
+      "Git",
+      "Prototyping"
+    ],
+    "benefits": [
+      "Stock Options",
+      "Relocation Assistance",
+      "Annual Bonus"
+    ],
+    "aboutCompany": "Thornfield Tech is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP109",
+    "company": "DataVantage",
+    "position": "Scrum Master",
+    "employmentType": "Contract",
+    "experience": "5-6 Years",
+    "salary": "₹5 - ₹20 LPA",
+    "posted": "18 days ago",
+    "deadline": "2026-10-02",
+    "description": "DataVantage seeks a talented Scrum Master to help us build world-class products.",
+    "responsibilities": [
+      "Build and maintain dashboards",
+      "Monitor system health and reliability",
+      "Optimize application performance",
+      "Define product roadmap and strategy"
+    ],
+    "skills": [
+      "Git",
+      "CI/CD",
+      "REST APIs",
+      "JIRA",
+      "User Research"
+    ],
+    "benefits": [
+      "Wellness Programs",
+      "Stock Options",
+      "Childcare Support"
+    ],
+    "aboutCompany": "DataVantage is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP110",
+    "company": "Clearwater Systems",
+    "position": "UI/UX Designer",
+    "employmentType": "Part-time",
+    "experience": "5-6 Years",
+    "salary": "₹12 - ₹27 LPA",
+    "posted": "14 days ago",
+    "deadline": "2026-11-17",
+    "description": "Join Clearwater Systems as a UI/UX Designer and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Analyze data to identify trends",
+      "Participate in code reviews",
+      "Build and maintain dashboards",
+      "Maintain documentation and reports"
+    ],
+    "skills": [
+      "SQL",
+      "TensorFlow",
+      "GraphQL",
+      "User Research",
+      "Postman"
+    ],
+    "benefits": [
+      "Health Insurance",
+      "Annual Bonus",
+      "Relocation Assistance"
+    ],
+    "aboutCompany": "Clearwater Systems is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP111",
+    "company": "Copperline Tech",
+    "position": "Backend Developer",
+    "employmentType": "Contract",
+    "experience": "4-6 Years",
+    "salary": "₹15 - ₹21 LPA",
+    "posted": "16 days ago",
+    "deadline": "2026-08-28",
+    "description": "Copperline Tech is looking for a skilled Backend Developer to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Participate in code reviews",
+      "Troubleshoot and resolve technical issues",
+      "Monitor system health and reliability",
+      "Collaborate with cross-functional teams"
+    ],
+    "skills": [
+      "Leadership",
+      "Power BI",
+      "Figma",
+      "Agile",
+      "TypeScript"
+    ],
+    "benefits": [
+      "Childcare Support",
+      "Annual Bonus",
+      "Relocation Assistance"
+    ],
+    "aboutCompany": "Copperline Tech helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP112",
+    "company": "Zephyr Networks",
+    "position": "Database Administrator",
+    "employmentType": "Full-time",
+    "experience": "7-10 Years",
+    "salary": "₹7 - ₹17 LPA",
+    "posted": "17 days ago",
+    "deadline": "2026-10-15",
+    "description": "Zephyr Networks is hiring an experienced Database Administrator to support our expanding operations.",
+    "responsibilities": [
+      "Troubleshoot and resolve technical issues",
+      "Participate in code reviews",
+      "Build and maintain dashboards",
+      "Define product roadmap and strategy"
+    ],
+    "skills": [
+      "Scrum",
+      "JavaScript",
+      "Adobe XD",
+      "Git",
+      "Java"
+    ],
+    "benefits": [
+      "Annual Bonus",
+      "Paid Time Off",
+      "Performance Bonus"
+    ],
+    "aboutCompany": "Zephyr Networks is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP113",
+    "company": "Moonridge Labs",
+    "position": "Machine Learning Engineer",
+    "employmentType": "Part-time",
+    "experience": "7-10 Years",
+    "salary": "₹6 - ₹16 LPA",
+    "posted": "8 days ago",
+    "deadline": "2026-10-19",
+    "description": "Moonridge Labs seeks a talented Machine Learning Engineer to help us build world-class products.",
+    "responsibilities": [
+      "Maintain documentation and reports",
+      "Troubleshoot and resolve technical issues",
+      "Build and maintain dashboards",
+      "Analyze data to identify trends"
+    ],
+    "skills": [
+      "Statistics",
+      "Communication",
+      "Selenium",
+      "PostgreSQL",
+      "Kubernetes"
+    ],
+    "benefits": [
+      "Free Meals",
+      "Paid Time Off",
+      "Wellness Programs"
+    ],
+    "aboutCompany": "Moonridge Labs specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP114",
+    "company": "Zephyr Networks",
+    "position": "Database Administrator",
+    "employmentType": "Full-time",
+    "experience": "5-6 Years",
+    "salary": "₹3 - ₹7 LPA",
+    "posted": "27 days ago",
+    "deadline": "2026-12-02",
+    "description": "Join Zephyr Networks as a Database Administrator and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Coordinate with stakeholders on requirements",
+      "Maintain documentation and reports",
+      "Participate in code reviews",
+      "Collaborate with cross-functional teams"
+    ],
+    "skills": [
+      "Git",
+      "Python",
+      "Figma",
+      "Data Visualization",
+      "Communication"
+    ],
+    "benefits": [
+      "Learning Budget",
+      "Health Insurance",
+      "Performance Bonus"
+    ],
+    "aboutCompany": "Zephyr Networks is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP115",
+    "company": "Marbletech",
+    "position": "Network Engineer",
+    "employmentType": "Contract",
+    "experience": "4-6 Years",
+    "salary": "₹3 - ₹18 LPA",
+    "posted": "1 days ago",
+    "deadline": "2026-07-17",
+    "description": "Marbletech is looking for a skilled Network Engineer to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Manage project timelines and deliverables",
+      "Coordinate with stakeholders on requirements",
+      "Monitor system health and reliability",
+      "Maintain documentation and reports"
+    ],
+    "skills": [
+      "Machine Learning",
+      "JIRA",
+      "AWS",
+      "Prototyping",
+      "Git"
+    ],
+    "benefits": [
+      "Stock Options",
+      "Retirement Plan",
+      "Performance Bonus"
+    ],
+    "aboutCompany": "Marbletech is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP116",
+    "company": "Frostline Networks",
+    "position": "Content Strategist",
+    "employmentType": "Remote",
+    "experience": "3-5 Years",
+    "salary": "₹9 - ₹13 LPA",
+    "posted": "12 days ago",
+    "deadline": "2026-10-15",
+    "description": "Join Frostline Networks as a Content Strategist and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Analyze data to identify trends",
+      "Maintain documentation and reports",
+      "Collaborate with cross-functional teams",
+      "Coordinate with stakeholders on requirements"
+    ],
+    "skills": [
+      "JavaScript",
+      "SQL",
+      "Agile",
+      "REST APIs",
+      "Leadership"
+    ],
+    "benefits": [
+      "Health Insurance",
+      "Gym Membership",
+      "Retirement Plan"
+    ],
+    "aboutCompany": "Frostline Networks specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP117",
+    "company": "Verdant Systems",
+    "position": "System Administrator",
+    "employmentType": "Part-time",
+    "experience": "3-5 Years",
+    "salary": "₹8 - ₹12 LPA",
+    "posted": "29 days ago",
+    "deadline": "2026-11-02",
+    "description": "Verdant Systems seeks a talented System Administrator to help us build world-class products.",
+    "responsibilities": [
+      "Mentor junior team members",
+      "Analyze data to identify trends",
+      "Write and execute test cases",
+      "Collaborate with cross-functional teams"
+    ],
+    "skills": [
+      "Terraform",
+      "User Research",
+      "JavaScript",
+      "JIRA",
+      "TypeScript"
+    ],
+    "benefits": [
+      "Health Insurance",
+      "Stock Options",
+      "Performance Bonus"
+    ],
+    "aboutCompany": "Verdant Systems specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP118",
+    "company": "Steelcrest Solutions",
+    "position": "Content Strategist",
+    "employmentType": "Remote",
+    "experience": "5-6 Years",
+    "salary": "₹4 - ₹12 LPA",
+    "posted": "6 days ago",
+    "deadline": "2026-11-08",
+    "description": "Steelcrest Solutions seeks a talented Content Strategist to help us build world-class products.",
+    "responsibilities": [
+      "Build and maintain dashboards",
+      "Optimize application performance",
+      "Define product roadmap and strategy",
+      "Monitor system health and reliability"
+    ],
+    "skills": [
+      "Kubernetes",
+      "SQL",
+      "Data Visualization",
+      "PostgreSQL",
+      "React"
+    ],
+    "benefits": [
+      "Flexible Hours",
+      "Relocation Assistance",
+      "Stock Options"
+    ],
+    "aboutCompany": "Steelcrest Solutions is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP119",
+    "company": "Emberlight Studios",
+    "position": "Security Analyst",
+    "employmentType": "Internship",
+    "experience": "7-10 Years",
+    "salary": "₹9 - ₹19 LPA",
+    "posted": "1 days ago",
+    "deadline": "2026-12-09",
+    "description": "Join Emberlight Studios as a Security Analyst and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Build and maintain dashboards",
+      "Manage project timelines and deliverables",
+      "Optimize application performance",
+      "Define product roadmap and strategy"
+    ],
+    "skills": [
+      "JIRA",
+      "REST APIs",
+      "SQL",
+      "Linux",
+      "Power BI"
+    ],
+    "benefits": [
+      "Free Meals",
+      "Flexible Hours",
+      "Childcare Support"
+    ],
+    "aboutCompany": "Emberlight Studios is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP120",
+    "company": "Nexora Solutions",
+    "position": "Cloud Architect",
+    "employmentType": "Contract",
+    "experience": "1-2 Years",
+    "salary": "₹18 - ₹23 LPA",
+    "posted": "24 days ago",
+    "deadline": "2026-10-11",
+    "description": "Nexora Solutions is looking for a skilled Cloud Architect to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Write and execute test cases",
+      "Analyze data to identify trends",
+      "Mentor junior team members",
+      "Build and maintain dashboards"
+    ],
+    "skills": [
+      "Terraform",
+      "AWS",
+      "Kubernetes",
+      "SQL",
+      "JIRA"
+    ],
+    "benefits": [
+      "Relocation Assistance",
+      "Wellness Programs",
+      "Paid Time Off"
+    ],
+    "aboutCompany": "Nexora Solutions is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP121",
+    "company": "Falconview Software",
+    "position": "Machine Learning Engineer",
+    "employmentType": "Remote",
+    "experience": "5-7 Years",
+    "salary": "₹4 - ₹14 LPA",
+    "posted": "18 days ago",
+    "deadline": "2026-07-20",
+    "description": "We are seeking a motivated Machine Learning Engineer to join Falconview Software and make a meaningful impact.",
+    "responsibilities": [
+      "Write and execute test cases",
+      "Analyze data to identify trends",
+      "Optimize application performance",
+      "Define product roadmap and strategy"
+    ],
+    "skills": [
+      "SQL",
+      "Power BI",
+      "Prototyping",
+      "Selenium",
+      "REST APIs"
+    ],
+    "benefits": [
+      "Remote Work Option",
+      "Retirement Plan",
+      "Annual Bonus"
+    ],
+    "aboutCompany": "Falconview Software is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP122",
+    "company": "Lumen Softworks",
+    "position": "System Administrator",
+    "employmentType": "Internship",
+    "experience": "1-2 Years",
+    "salary": "₹5 - ₹20 LPA",
+    "posted": "9 days ago",
+    "deadline": "2026-10-10",
+    "description": "Lumen Softworks is hiring an experienced System Administrator to support our expanding operations.",
+    "responsibilities": [
+      "Analyze data to identify trends",
+      "Participate in code reviews",
+      "Monitor system health and reliability",
+      "Maintain documentation and reports"
+    ],
+    "skills": [
+      "Statistics",
+      "Postman",
+      "Communication",
+      "AWS",
+      "Kubernetes"
+    ],
+    "benefits": [
+      "Annual Bonus",
+      "Health Insurance",
+      "Relocation Assistance"
+    ],
+    "aboutCompany": "Lumen Softworks is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP123",
+    "company": "Snowfield Systems",
+    "position": "Cloud Architect",
+    "employmentType": "Part-time",
+    "experience": "4-6 Years",
+    "salary": "₹8 - ₹23 LPA",
+    "posted": "27 days ago",
+    "deadline": "2026-12-20",
+    "description": "Snowfield Systems is hiring an experienced Cloud Architect to support our expanding operations.",
+    "responsibilities": [
+      "Conduct user research and testing",
+      "Monitor system health and reliability",
+      "Participate in code reviews",
+      "Mentor junior team members"
+    ],
+    "skills": [
+      "TypeScript",
+      "JIRA",
+      "Agile",
+      "Linux",
+      "Statistics"
+    ],
+    "benefits": [
+      "Performance Bonus",
+      "Childcare Support",
+      "Stock Options"
+    ],
+    "aboutCompany": "Snowfield Systems is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP124",
+    "company": "Pinecrest Systems",
+    "position": "Product Manager",
+    "employmentType": "Remote",
+    "experience": "0-1 Years",
+    "salary": "₹4 - ₹10 LPA",
+    "posted": "19 days ago",
+    "deadline": "2026-11-06",
+    "description": "We are seeking a motivated Product Manager to join Pinecrest Systems and make a meaningful impact.",
+    "responsibilities": [
+      "Monitor system health and reliability",
+      "Participate in code reviews",
+      "Mentor junior team members",
+      "Analyze data to identify trends"
+    ],
+    "skills": [
+      "Node.js",
+      "Scrum",
+      "Statistics",
+      "Kubernetes",
+      "CI/CD"
+    ],
+    "benefits": [
+      "Stock Options",
+      "Annual Bonus",
+      "Gym Membership"
+    ],
+    "aboutCompany": "Pinecrest Systems specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP125",
+    "company": "Clearwater Systems",
+    "position": "Machine Learning Engineer",
+    "employmentType": "Remote",
+    "experience": "5-6 Years",
+    "salary": "₹10 - ₹28 LPA",
+    "posted": "19 days ago",
+    "deadline": "2026-10-18",
+    "description": "Clearwater Systems seeks a talented Machine Learning Engineer to help us build world-class products.",
+    "responsibilities": [
+      "Write and execute test cases",
+      "Define product roadmap and strategy",
+      "Build and maintain dashboards",
+      "Monitor system health and reliability"
+    ],
+    "skills": [
+      "User Research",
+      "SQL",
+      "AWS",
+      "Power BI",
+      "PostgreSQL"
+    ],
+    "benefits": [
+      "Remote Work Option",
+      "Gym Membership",
+      "Performance Bonus"
+    ],
+    "aboutCompany": "Clearwater Systems is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP126",
+    "company": "Ironwood Digital",
+    "position": "Database Administrator",
+    "employmentType": "Full-time",
+    "experience": "1-2 Years",
+    "salary": "₹9 - ₹19 LPA",
+    "posted": "26 days ago",
+    "deadline": "2026-10-04",
+    "description": "Ironwood Digital is hiring an experienced Database Administrator to support our expanding operations.",
+    "responsibilities": [
+      "Participate in code reviews",
+      "Manage project timelines and deliverables",
+      "Monitor system health and reliability",
+      "Coordinate with stakeholders on requirements"
+    ],
+    "skills": [
+      "Adobe XD",
+      "TensorFlow",
+      "GraphQL",
+      "Agile",
+      "Communication"
+    ],
+    "benefits": [
+      "Childcare Support",
+      "Gym Membership",
+      "Performance Bonus"
+    ],
+    "aboutCompany": "Ironwood Digital is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP127",
+    "company": "Nexora Solutions",
+    "position": "Mobile App Developer",
+    "employmentType": "Part-time",
+    "experience": "5-7 Years",
+    "salary": "₹4 - ₹12 LPA",
+    "posted": "14 days ago",
+    "deadline": "2026-07-04",
+    "description": "Nexora Solutions is hiring an experienced Mobile App Developer to support our expanding operations.",
+    "responsibilities": [
+      "Build and maintain dashboards",
+      "Mentor junior team members",
+      "Define product roadmap and strategy",
+      "Participate in code reviews"
+    ],
+    "skills": [
+      "Prototyping",
+      "Leadership",
+      "PostgreSQL",
+      "AWS",
+      "TensorFlow"
+    ],
+    "benefits": [
+      "Free Meals",
+      "Retirement Plan",
+      "Wellness Programs"
+    ],
+    "aboutCompany": "Nexora Solutions is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP128",
+    "company": "OrbitLogic",
+    "position": "Project Manager",
+    "employmentType": "Full-time",
+    "experience": "2-4 Years",
+    "salary": "₹4 - ₹7 LPA",
+    "posted": "28 days ago",
+    "deadline": "2026-09-21",
+    "description": "Join OrbitLogic as a Project Manager and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Manage project timelines and deliverables",
+      "Design and implement scalable solutions",
+      "Troubleshoot and resolve technical issues",
+      "Coordinate with stakeholders on requirements"
+    ],
+    "skills": [
+      "MongoDB",
+      "Machine Learning",
+      "Communication",
+      "Adobe XD",
+      "Agile"
+    ],
+    "benefits": [
+      "Gym Membership",
+      "Remote Work Option",
+      "Childcare Support"
+    ],
+    "aboutCompany": "OrbitLogic helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP129",
+    "company": "Havenware",
+    "position": "QA Engineer",
+    "employmentType": "Full-time",
+    "experience": "3-5 Years",
+    "salary": "₹6 - ₹24 LPA",
+    "posted": "19 days ago",
+    "deadline": "2026-10-13",
+    "description": "Join Havenware as a QA Engineer and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Analyze data to identify trends",
+      "Define product roadmap and strategy",
+      "Monitor system health and reliability",
+      "Collaborate with cross-functional teams"
+    ],
+    "skills": [
+      "AWS",
+      "User Research",
+      "JIRA",
+      "GraphQL",
+      "TypeScript"
+    ],
+    "benefits": [
+      "Stock Options",
+      "Wellness Programs",
+      "Flexible Hours"
+    ],
+    "aboutCompany": "Havenware is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP130",
+    "company": "Highland Software",
+    "position": "Graphic Designer",
+    "employmentType": "Internship",
+    "experience": "1-2 Years",
+    "salary": "₹18 - ₹28 LPA",
+    "posted": "20 days ago",
+    "deadline": "2026-10-20",
+    "description": "Highland Software is hiring an experienced Graphic Designer to support our expanding operations.",
+    "responsibilities": [
+      "Build and maintain dashboards",
+      "Coordinate with stakeholders on requirements",
+      "Mentor junior team members",
+      "Conduct user research and testing"
+    ],
+    "skills": [
+      "JIRA",
+      "CI/CD",
+      "SQL",
+      "Kubernetes",
+      "TypeScript"
+    ],
+    "benefits": [
+      "Flexible Hours",
+      "Stock Options",
+      "Annual Bonus"
+    ],
+    "aboutCompany": "Highland Software is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP131",
+    "company": "Ironclad Systems",
+    "position": "Mobile App Developer",
+    "employmentType": "Remote",
+    "experience": "5-6 Years",
+    "salary": "₹12 - ₹27 LPA",
+    "posted": "14 days ago",
+    "deadline": "2026-11-05",
+    "description": "We are seeking a motivated Mobile App Developer to join Ironclad Systems and make a meaningful impact.",
+    "responsibilities": [
+      "Design and implement scalable solutions",
+      "Mentor junior team members",
+      "Maintain documentation and reports",
+      "Manage project timelines and deliverables"
+    ],
+    "skills": [
+      "JIRA",
+      "Selenium",
+      "Statistics",
+      "Linux",
+      "Kubernetes"
+    ],
+    "benefits": [
+      "Remote Work Option",
+      "Learning Budget",
+      "Wellness Programs"
+    ],
+    "aboutCompany": "Ironclad Systems is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP132",
+    "company": "DataVantage",
+    "position": "Graphic Designer",
+    "employmentType": "Remote",
+    "experience": "7-10 Years",
+    "salary": "₹10 - ₹15 LPA",
+    "posted": "7 days ago",
+    "deadline": "2026-10-18",
+    "description": "We are seeking a motivated Graphic Designer to join DataVantage and make a meaningful impact.",
+    "responsibilities": [
+      "Maintain documentation and reports",
+      "Mentor junior team members",
+      "Optimize application performance",
+      "Monitor system health and reliability"
+    ],
+    "skills": [
+      "TensorFlow",
+      "Statistics",
+      "Selenium",
+      "SQL",
+      "Java"
+    ],
+    "benefits": [
+      "Childcare Support",
+      "Retirement Plan",
+      "Stock Options"
+    ],
+    "aboutCompany": "DataVantage is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP133",
+    "company": "PixelForge Studios",
+    "position": "Product Manager",
+    "employmentType": "Internship",
+    "experience": "1-2 Years",
+    "salary": "₹7 - ₹12 LPA",
+    "posted": "25 days ago",
+    "deadline": "2026-10-19",
+    "description": "PixelForge Studios seeks a talented Product Manager to help us build world-class products.",
+    "responsibilities": [
+      "Collaborate with cross-functional teams",
+      "Analyze data to identify trends",
+      "Define product roadmap and strategy",
+      "Manage project timelines and deliverables"
+    ],
+    "skills": [
+      "GraphQL",
+      "User Research",
+      "JavaScript",
+      "TensorFlow",
+      "Figma"
+    ],
+    "benefits": [
+      "Relocation Assistance",
+      "Flexible Hours",
+      "Free Meals"
+    ],
+    "aboutCompany": "PixelForge Studios specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP134",
+    "company": "Solstice Innovations",
+    "position": "Graphic Designer",
+    "employmentType": "Full-time",
+    "experience": "3-5 Years",
+    "salary": "₹7 - ₹17 LPA",
+    "posted": "28 days ago",
+    "deadline": "2026-07-15",
+    "description": "Join Solstice Innovations as a Graphic Designer and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Define product roadmap and strategy",
+      "Monitor system health and reliability",
+      "Conduct user research and testing",
+      "Coordinate with stakeholders on requirements"
+    ],
+    "skills": [
+      "PostgreSQL",
+      "Machine Learning",
+      "Selenium",
+      "Kubernetes",
+      "Figma"
+    ],
+    "benefits": [
+      "Retirement Plan",
+      "Stock Options",
+      "Health Insurance"
+    ],
+    "aboutCompany": "Solstice Innovations is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP135",
+    "company": "Northwind Data",
+    "position": "Scrum Master",
+    "employmentType": "Contract",
+    "experience": "4-6 Years",
+    "salary": "₹12 - ₹17 LPA",
+    "posted": "11 days ago",
+    "deadline": "2026-12-10",
+    "description": "Northwind Data seeks a talented Scrum Master to help us build world-class products.",
+    "responsibilities": [
+      "Troubleshoot and resolve technical issues",
+      "Maintain documentation and reports",
+      "Collaborate with cross-functional teams",
+      "Design and implement scalable solutions"
+    ],
+    "skills": [
+      "Scrum",
+      "React",
+      "Terraform",
+      "Kubernetes",
+      "Power BI"
+    ],
+    "benefits": [
+      "Remote Work Option",
+      "Free Meals",
+      "Learning Budget"
+    ],
+    "aboutCompany": "Northwind Data specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP136",
+    "company": "Steelcrest Solutions",
+    "position": "Content Strategist",
+    "employmentType": "Internship",
+    "experience": "5-6 Years",
+    "salary": "₹10 - ₹15 LPA",
+    "posted": "19 days ago",
+    "deadline": "2026-12-09",
+    "description": "We are seeking a motivated Content Strategist to join Steelcrest Solutions and make a meaningful impact.",
+    "responsibilities": [
+      "Collaborate with cross-functional teams",
+      "Maintain documentation and reports",
+      "Define product roadmap and strategy",
+      "Troubleshoot and resolve technical issues"
+    ],
+    "skills": [
+      "Agile",
+      "Data Visualization",
+      "Terraform",
+      "GraphQL",
+      "Communication"
+    ],
+    "benefits": [
+      "Wellness Programs",
+      "Learning Budget",
+      "Performance Bonus"
+    ],
+    "aboutCompany": "Steelcrest Solutions is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP137",
+    "company": "Wavelength Tech",
+    "position": "Graphic Designer",
+    "employmentType": "Contract",
+    "experience": "1-2 Years",
+    "salary": "₹20 - ₹38 LPA",
+    "posted": "21 days ago",
+    "deadline": "2026-12-23",
+    "description": "Wavelength Tech seeks a talented Graphic Designer to help us build world-class products.",
+    "responsibilities": [
+      "Optimize application performance",
+      "Participate in code reviews",
+      "Troubleshoot and resolve technical issues",
+      "Coordinate with stakeholders on requirements"
+    ],
+    "skills": [
+      "Statistics",
+      "Terraform",
+      "TypeScript",
+      "Linux",
+      "MongoDB"
+    ],
+    "benefits": [
+      "Paid Time Off",
+      "Performance Bonus",
+      "Remote Work Option"
+    ],
+    "aboutCompany": "Wavelength Tech is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP138",
+    "company": "Oakridge Systems",
+    "position": "HR Executive",
+    "employmentType": "Internship",
+    "experience": "0-1 Years",
+    "salary": "₹3 - ₹6 LPA",
+    "posted": "4 days ago",
+    "deadline": "2026-12-26",
+    "description": "Oakridge Systems is looking for a skilled HR Executive to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Troubleshoot and resolve technical issues",
+      "Coordinate with stakeholders on requirements",
+      "Design and implement scalable solutions",
+      "Mentor junior team members"
+    ],
+    "skills": [
+      "Communication",
+      "Python",
+      "Machine Learning",
+      "Postman",
+      "Kubernetes"
+    ],
+    "benefits": [
+      "Gym Membership",
+      "Annual Bonus",
+      "Remote Work Option"
+    ],
+    "aboutCompany": "Oakridge Systems is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP139",
+    "company": "Verdant Systems",
+    "position": "Database Administrator",
+    "employmentType": "Full-time",
+    "experience": "5-6 Years",
+    "salary": "₹4 - ₹14 LPA",
+    "posted": "22 days ago",
+    "deadline": "2026-12-06",
+    "description": "Verdant Systems is hiring an experienced Database Administrator to support our expanding operations.",
+    "responsibilities": [
+      "Monitor system health and reliability",
+      "Troubleshoot and resolve technical issues",
+      "Define product roadmap and strategy",
+      "Participate in code reviews"
+    ],
+    "skills": [
+      "Machine Learning",
+      "SQL",
+      "AWS",
+      "Python",
+      "Figma"
+    ],
+    "benefits": [
+      "Wellness Programs",
+      "Flexible Hours",
+      "Remote Work Option"
+    ],
+    "aboutCompany": "Verdant Systems is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP140",
+    "company": "Coral Reef Digital",
+    "position": "Technical Writer",
+    "employmentType": "Full-time",
+    "experience": "5-6 Years",
+    "salary": "₹3 - ₹6 LPA",
+    "posted": "23 days ago",
+    "deadline": "2026-09-27",
+    "description": "Join Coral Reef Digital as a Technical Writer and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Mentor junior team members",
+      "Collaborate with cross-functional teams",
+      "Participate in code reviews",
+      "Optimize application performance"
+    ],
+    "skills": [
+      "SQL",
+      "AWS",
+      "TypeScript",
+      "GraphQL",
+      "CI/CD"
+    ],
+    "benefits": [
+      "Remote Work Option",
+      "Relocation Assistance",
+      "Retirement Plan"
+    ],
+    "aboutCompany": "Coral Reef Digital specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP141",
+    "company": "OrbitLogic",
+    "position": "Technical Writer",
+    "employmentType": "Part-time",
+    "experience": "2-4 Years",
+    "salary": "₹15 - ₹20 LPA",
+    "posted": "15 days ago",
+    "deadline": "2026-09-24",
+    "description": "We are seeking a motivated Technical Writer to join OrbitLogic and make a meaningful impact.",
+    "responsibilities": [
+      "Conduct user research and testing",
+      "Maintain documentation and reports",
+      "Mentor junior team members",
+      "Participate in code reviews"
+    ],
+    "skills": [
+      "SQL",
+      "AWS",
+      "Kubernetes",
+      "Docker",
+      "REST APIs"
+    ],
+    "benefits": [
+      "Learning Budget",
+      "Relocation Assistance",
+      "Retirement Plan"
+    ],
+    "aboutCompany": "OrbitLogic specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP142",
+    "company": "Amberstone Technologies",
+    "position": "Product Manager",
+    "employmentType": "Contract",
+    "experience": "3-5 Years",
+    "salary": "₹6 - ₹14 LPA",
+    "posted": "25 days ago",
+    "deadline": "2026-12-01",
+    "description": "Amberstone Technologies seeks a talented Product Manager to help us build world-class products.",
+    "responsibilities": [
+      "Conduct user research and testing",
+      "Manage project timelines and deliverables",
+      "Participate in code reviews",
+      "Monitor system health and reliability"
+    ],
+    "skills": [
+      "Agile",
+      "Linux",
+      "React",
+      "Power BI",
+      "Statistics"
+    ],
+    "benefits": [
+      "Relocation Assistance",
+      "Flexible Hours",
+      "Stock Options"
+    ],
+    "aboutCompany": "Amberstone Technologies helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP143",
+    "company": "Palm Grove Digital",
+    "position": "Security Analyst",
+    "employmentType": "Internship",
+    "experience": "5-6 Years",
+    "salary": "₹3 - ₹13 LPA",
+    "posted": "30 days ago",
+    "deadline": "2026-09-05",
+    "description": "Palm Grove Digital is hiring an experienced Security Analyst to support our expanding operations.",
+    "responsibilities": [
+      "Manage project timelines and deliverables",
+      "Maintain documentation and reports",
+      "Design and implement scalable solutions",
+      "Mentor junior team members"
+    ],
+    "skills": [
+      "Node.js",
+      "Java",
+      "Python",
+      "Excel",
+      "Figma"
+    ],
+    "benefits": [
+      "Health Insurance",
+      "Retirement Plan",
+      "Relocation Assistance"
+    ],
+    "aboutCompany": "Palm Grove Digital is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP144",
+    "company": "Granite Peak IT",
+    "position": "Database Administrator",
+    "employmentType": "Remote",
+    "experience": "2-4 Years",
+    "salary": "₹9 - ₹24 LPA",
+    "posted": "23 days ago",
+    "deadline": "2026-10-03",
+    "description": "Granite Peak IT is hiring an experienced Database Administrator to support our expanding operations.",
+    "responsibilities": [
+      "Collaborate with cross-functional teams",
+      "Analyze data to identify trends",
+      "Troubleshoot and resolve technical issues",
+      "Manage project timelines and deliverables"
+    ],
+    "skills": [
+      "Figma",
+      "Git",
+      "User Research",
+      "TypeScript",
+      "Agile"
+    ],
+    "benefits": [
+      "Performance Bonus",
+      "Gym Membership",
+      "Childcare Support"
+    ],
+    "aboutCompany": "Granite Peak IT is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP145",
+    "company": "Solstice Innovations",
+    "position": "Support Engineer",
+    "employmentType": "Full-time",
+    "experience": "7-10 Years",
+    "salary": "₹6 - ₹9 LPA",
+    "posted": "8 days ago",
+    "deadline": "2026-07-14",
+    "description": "Solstice Innovations seeks a talented Support Engineer to help us build world-class products.",
+    "responsibilities": [
+      "Conduct user research and testing",
+      "Write and execute test cases",
+      "Analyze data to identify trends",
+      "Maintain documentation and reports"
+    ],
+    "skills": [
+      "JIRA",
+      "Docker",
+      "Python",
+      "Kubernetes",
+      "Selenium"
+    ],
+    "benefits": [
+      "Wellness Programs",
+      "Learning Budget",
+      "Paid Time Off"
+    ],
+    "aboutCompany": "Solstice Innovations is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP146",
+    "company": "Moonridge Labs",
+    "position": "Product Manager",
+    "employmentType": "Full-time",
+    "experience": "5-7 Years",
+    "salary": "₹5 - ₹13 LPA",
+    "posted": "24 days ago",
+    "deadline": "2026-07-25",
+    "description": "We are seeking a motivated Product Manager to join Moonridge Labs and make a meaningful impact.",
+    "responsibilities": [
+      "Analyze data to identify trends",
+      "Manage project timelines and deliverables",
+      "Collaborate with cross-functional teams",
+      "Troubleshoot and resolve technical issues"
+    ],
+    "skills": [
+      "Node.js",
+      "Statistics",
+      "Communication",
+      "Data Visualization",
+      "GraphQL"
+    ],
+    "benefits": [
+      "Health Insurance",
+      "Wellness Programs",
+      "Performance Bonus"
+    ],
+    "aboutCompany": "Moonridge Labs specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP147",
+    "company": "Redshift Cloud",
+    "position": "Data Analyst",
+    "employmentType": "Full-time",
+    "experience": "0-1 Years",
+    "salary": "₹4 - ₹8 LPA",
+    "posted": "8 days ago",
+    "deadline": "2026-12-17",
+    "description": "Redshift Cloud is looking for a skilled Data Analyst to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Participate in code reviews",
+      "Write and execute test cases",
+      "Mentor junior team members",
+      "Build and maintain dashboards"
+    ],
+    "skills": [
+      "REST APIs",
+      "Git",
+      "JIRA",
+      "JavaScript",
+      "Scrum"
+    ],
+    "benefits": [
+      "Stock Options",
+      "Learning Budget",
+      "Retirement Plan"
+    ],
+    "aboutCompany": "Redshift Cloud helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP148",
+    "company": "Moonridge Labs",
+    "position": "Business Analyst",
+    "employmentType": "Full-time",
+    "experience": "2-4 Years",
+    "salary": "₹15 - ₹25 LPA",
+    "posted": "4 days ago",
+    "deadline": "2026-11-22",
+    "description": "Join Moonridge Labs as a Business Analyst and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Define product roadmap and strategy",
+      "Manage project timelines and deliverables",
+      "Write and execute test cases",
+      "Optimize application performance"
+    ],
+    "skills": [
+      "Node.js",
+      "Communication",
+      "Linux",
+      "CI/CD",
+      "TypeScript"
+    ],
+    "benefits": [
+      "Flexible Hours",
+      "Paid Time Off",
+      "Wellness Programs"
+    ],
+    "aboutCompany": "Moonridge Labs is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP149",
+    "company": "Redshift Cloud",
+    "position": "Data Scientist",
+    "employmentType": "Internship",
+    "experience": "3-5 Years",
+    "salary": "₹7 - ₹13 LPA",
+    "posted": "15 days ago",
+    "deadline": "2026-09-19",
+    "description": "Redshift Cloud seeks a talented Data Scientist to help us build world-class products.",
+    "responsibilities": [
+      "Define product roadmap and strategy",
+      "Troubleshoot and resolve technical issues",
+      "Participate in code reviews",
+      "Design and implement scalable solutions"
+    ],
+    "skills": [
+      "Python",
+      "Scrum",
+      "Java",
+      "Adobe XD",
+      "User Research"
+    ],
+    "benefits": [
+      "Learning Budget",
+      "Gym Membership",
+      "Free Meals"
+    ],
+    "aboutCompany": "Redshift Cloud is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP150",
+    "company": "Emberlight Studios",
+    "position": "QA Engineer",
+    "employmentType": "Part-time",
+    "experience": "5-6 Years",
+    "salary": "₹20 - ₹28 LPA",
+    "posted": "4 days ago",
+    "deadline": "2026-08-17",
+    "description": "We are seeking a motivated QA Engineer to join Emberlight Studios and make a meaningful impact.",
+    "responsibilities": [
+      "Write and execute test cases",
+      "Design and implement scalable solutions",
+      "Monitor system health and reliability",
+      "Analyze data to identify trends"
+    ],
+    "skills": [
+      "SQL",
+      "JavaScript",
+      "Adobe XD",
+      "Prototyping",
+      "Scrum"
+    ],
+    "benefits": [
+      "Free Meals",
+      "Learning Budget",
+      "Wellness Programs"
+    ],
+    "aboutCompany": "Emberlight Studios is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP151",
+    "company": "Meridian Softworks",
+    "position": "Full Stack Developer",
+    "employmentType": "Full-time",
+    "experience": "5-6 Years",
+    "salary": "₹18 - ₹33 LPA",
+    "posted": "3 days ago",
+    "deadline": "2026-11-19",
+    "description": "Join Meridian Softworks as a Full Stack Developer and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Participate in code reviews",
+      "Analyze data to identify trends",
+      "Coordinate with stakeholders on requirements",
+      "Build and maintain dashboards"
+    ],
+    "skills": [
+      "Agile",
+      "TypeScript",
+      "TensorFlow",
+      "Terraform",
+      "Adobe XD"
+    ],
+    "benefits": [
+      "Flexible Hours",
+      "Stock Options",
+      "Remote Work Option"
+    ],
+    "aboutCompany": "Meridian Softworks is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP152",
+    "company": "Quantum Byte",
+    "position": "UI/UX Designer",
+    "employmentType": "Remote",
+    "experience": "5-7 Years",
+    "salary": "₹10 - ₹28 LPA",
+    "posted": "11 days ago",
+    "deadline": "2026-10-04",
+    "description": "Join Quantum Byte as a UI/UX Designer and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Mentor junior team members",
+      "Analyze data to identify trends",
+      "Troubleshoot and resolve technical issues",
+      "Coordinate with stakeholders on requirements"
+    ],
+    "skills": [
+      "Docker",
+      "SQL",
+      "Selenium",
+      "CI/CD",
+      "JavaScript"
+    ],
+    "benefits": [
+      "Stock Options",
+      "Learning Budget",
+      "Remote Work Option"
+    ],
+    "aboutCompany": "Quantum Byte is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP153",
+    "company": "Clearwater Systems",
+    "position": "DevOps Engineer",
+    "employmentType": "Part-time",
+    "experience": "0-1 Years",
+    "salary": "₹12 - ₹15 LPA",
+    "posted": "22 days ago",
+    "deadline": "2026-09-09",
+    "description": "We are seeking a motivated DevOps Engineer to join Clearwater Systems and make a meaningful impact.",
+    "responsibilities": [
+      "Coordinate with stakeholders on requirements",
+      "Mentor junior team members",
+      "Manage project timelines and deliverables",
+      "Monitor system health and reliability"
+    ],
+    "skills": [
+      "Power BI",
+      "AWS",
+      "Communication",
+      "Kubernetes",
+      "Docker"
+    ],
+    "benefits": [
+      "Health Insurance",
+      "Retirement Plan",
+      "Stock Options"
+    ],
+    "aboutCompany": "Clearwater Systems specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP154",
+    "company": "Skyline Analytics",
+    "position": "Content Strategist",
+    "employmentType": "Full-time",
+    "experience": "0-1 Years",
+    "salary": "₹18 - ₹22 LPA",
+    "posted": "19 days ago",
+    "deadline": "2026-11-09",
+    "description": "Skyline Analytics is looking for a skilled Content Strategist to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Participate in code reviews",
+      "Maintain documentation and reports",
+      "Mentor junior team members",
+      "Design and implement scalable solutions"
+    ],
+    "skills": [
+      "SQL",
+      "MongoDB",
+      "Docker",
+      "JavaScript",
+      "Communication"
+    ],
+    "benefits": [
+      "Health Insurance",
+      "Remote Work Option",
+      "Performance Bonus"
+    ],
+    "aboutCompany": "Skyline Analytics helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP155",
+    "company": "Moonridge Labs",
+    "position": "Cloud Architect",
+    "employmentType": "Part-time",
+    "experience": "4-6 Years",
+    "salary": "₹9 - ₹24 LPA",
+    "posted": "6 days ago",
+    "deadline": "2026-09-07",
+    "description": "Moonridge Labs is hiring an experienced Cloud Architect to support our expanding operations.",
+    "responsibilities": [
+      "Mentor junior team members",
+      "Design and implement scalable solutions",
+      "Write and execute test cases",
+      "Conduct user research and testing"
+    ],
+    "skills": [
+      "Power BI",
+      "Linux",
+      "Statistics",
+      "Scrum",
+      "Leadership"
+    ],
+    "benefits": [
+      "Health Insurance",
+      "Flexible Hours",
+      "Annual Bonus"
+    ],
+    "aboutCompany": "Moonridge Labs helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP156",
+    "company": "Crestwave Labs",
+    "position": "Machine Learning Engineer",
+    "employmentType": "Full-time",
+    "experience": "5-6 Years",
+    "salary": "₹12 - ₹18 LPA",
+    "posted": "21 days ago",
+    "deadline": "2026-11-26",
+    "description": "Crestwave Labs is hiring an experienced Machine Learning Engineer to support our expanding operations.",
+    "responsibilities": [
+      "Mentor junior team members",
+      "Manage project timelines and deliverables",
+      "Define product roadmap and strategy",
+      "Troubleshoot and resolve technical issues"
+    ],
+    "skills": [
+      "PostgreSQL",
+      "Data Visualization",
+      "TypeScript",
+      "REST APIs",
+      "Terraform"
+    ],
+    "benefits": [
+      "Remote Work Option",
+      "Health Insurance",
+      "Learning Budget"
+    ],
+    "aboutCompany": "Crestwave Labs is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP157",
+    "company": "Coral Reef Digital",
+    "position": "QA Engineer",
+    "employmentType": "Part-time",
+    "experience": "1-2 Years",
+    "salary": "₹10 - ₹20 LPA",
+    "posted": "25 days ago",
+    "deadline": "2026-11-08",
+    "description": "Join Coral Reef Digital as a QA Engineer and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Maintain documentation and reports",
+      "Participate in code reviews",
+      "Analyze data to identify trends",
+      "Manage project timelines and deliverables"
+    ],
+    "skills": [
+      "React",
+      "Adobe XD",
+      "REST APIs",
+      "PostgreSQL",
+      "JIRA"
+    ],
+    "benefits": [
+      "Remote Work Option",
+      "Stock Options",
+      "Performance Bonus"
+    ],
+    "aboutCompany": "Coral Reef Digital is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP158",
+    "company": "Sablewood Digital",
+    "position": "Support Engineer",
+    "employmentType": "Remote",
+    "experience": "3-5 Years",
+    "salary": "₹3 - ₹13 LPA",
+    "posted": "19 days ago",
+    "deadline": "2026-11-05",
+    "description": "We are seeking a motivated Support Engineer to join Sablewood Digital and make a meaningful impact.",
+    "responsibilities": [
+      "Manage project timelines and deliverables",
+      "Analyze data to identify trends",
+      "Design and implement scalable solutions",
+      "Mentor junior team members"
+    ],
+    "skills": [
+      "JavaScript",
+      "SQL",
+      "React",
+      "Adobe XD",
+      "Java"
+    ],
+    "benefits": [
+      "Paid Time Off",
+      "Wellness Programs",
+      "Health Insurance"
+    ],
+    "aboutCompany": "Sablewood Digital is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP159",
+    "company": "Snowfield Systems",
+    "position": "Data Scientist",
+    "employmentType": "Full-time",
+    "experience": "2-4 Years",
+    "salary": "₹20 - ₹25 LPA",
+    "posted": "30 days ago",
+    "deadline": "2026-09-02",
+    "description": "Snowfield Systems seeks a talented Data Scientist to help us build world-class products.",
+    "responsibilities": [
+      "Monitor system health and reliability",
+      "Design and implement scalable solutions",
+      "Define product roadmap and strategy",
+      "Collaborate with cross-functional teams"
+    ],
+    "skills": [
+      "Prototyping",
+      "GraphQL",
+      "Node.js",
+      "Agile",
+      "AWS"
+    ],
+    "benefits": [
+      "Learning Budget",
+      "Annual Bonus",
+      "Retirement Plan"
+    ],
+    "aboutCompany": "Snowfield Systems specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP160",
+    "company": "BlueHarbor Software",
+    "position": "Sales Executive",
+    "employmentType": "Remote",
+    "experience": "5-7 Years",
+    "salary": "₹10 - ₹20 LPA",
+    "posted": "6 days ago",
+    "deadline": "2026-12-18",
+    "description": "Join BlueHarbor Software as a Sales Executive and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Maintain documentation and reports",
+      "Conduct user research and testing",
+      "Design and implement scalable solutions",
+      "Optimize application performance"
+    ],
+    "skills": [
+      "CI/CD",
+      "Linux",
+      "Kubernetes",
+      "JIRA",
+      "Python"
+    ],
+    "benefits": [
+      "Free Meals",
+      "Performance Bonus",
+      "Relocation Assistance"
+    ],
+    "aboutCompany": "BlueHarbor Software is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP161",
+    "company": "PixelForge Studios",
+    "position": "Data Analyst",
+    "employmentType": "Internship",
+    "experience": "2-4 Years",
+    "salary": "₹15 - ₹21 LPA",
+    "posted": "21 days ago",
+    "deadline": "2026-11-04",
+    "description": "PixelForge Studios is hiring an experienced Data Analyst to support our expanding operations.",
+    "responsibilities": [
+      "Monitor system health and reliability",
+      "Collaborate with cross-functional teams",
+      "Participate in code reviews",
+      "Build and maintain dashboards"
+    ],
+    "skills": [
+      "TypeScript",
+      "Selenium",
+      "SQL",
+      "MongoDB",
+      "TensorFlow"
+    ],
+    "benefits": [
+      "Health Insurance",
+      "Annual Bonus",
+      "Stock Options"
+    ],
+    "aboutCompany": "PixelForge Studios specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP162",
+    "company": "Bayview Analytics",
+    "position": "Frontend Developer",
+    "employmentType": "Internship",
+    "experience": "2-4 Years",
+    "salary": "₹4 - ₹7 LPA",
+    "posted": "2 days ago",
+    "deadline": "2026-10-15",
+    "description": "We are seeking a motivated Frontend Developer to join Bayview Analytics and make a meaningful impact.",
+    "responsibilities": [
+      "Mentor junior team members",
+      "Optimize application performance",
+      "Build and maintain dashboards",
+      "Manage project timelines and deliverables"
+    ],
+    "skills": [
+      "REST APIs",
+      "AWS",
+      "Leadership",
+      "Adobe XD",
+      "Selenium"
+    ],
+    "benefits": [
+      "Wellness Programs",
+      "Flexible Hours",
+      "Health Insurance"
+    ],
+    "aboutCompany": "Bayview Analytics is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP163",
+    "company": "NimbusCloud",
+    "position": "Business Analyst",
+    "employmentType": "Full-time",
+    "experience": "1-2 Years",
+    "salary": "₹4 - ₹14 LPA",
+    "posted": "6 days ago",
+    "deadline": "2026-10-06",
+    "description": "NimbusCloud is hiring an experienced Business Analyst to support our expanding operations.",
+    "responsibilities": [
+      "Conduct user research and testing",
+      "Troubleshoot and resolve technical issues",
+      "Mentor junior team members",
+      "Monitor system health and reliability"
+    ],
+    "skills": [
+      "Java",
+      "Machine Learning",
+      "Selenium",
+      "React",
+      "AWS"
+    ],
+    "benefits": [
+      "Learning Budget",
+      "Stock Options",
+      "Childcare Support"
+    ],
+    "aboutCompany": "NimbusCloud helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP164",
+    "company": "Bayview Analytics",
+    "position": "Scrum Master",
+    "employmentType": "Part-time",
+    "experience": "1-2 Years",
+    "salary": "₹12 - ₹20 LPA",
+    "posted": "22 days ago",
+    "deadline": "2026-09-10",
+    "description": "Bayview Analytics is looking for a skilled Scrum Master to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Optimize application performance",
+      "Conduct user research and testing",
+      "Manage project timelines and deliverables",
+      "Mentor junior team members"
+    ],
+    "skills": [
+      "Git",
+      "React",
+      "GraphQL",
+      "Python",
+      "Machine Learning"
+    ],
+    "benefits": [
+      "Flexible Hours",
+      "Annual Bonus",
+      "Gym Membership"
+    ],
+    "aboutCompany": "Bayview Analytics is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP165",
+    "company": "Marbletech",
+    "position": "Data Scientist",
+    "employmentType": "Internship",
+    "experience": "1-2 Years",
+    "salary": "₹6 - ₹11 LPA",
+    "posted": "21 days ago",
+    "deadline": "2026-09-03",
+    "description": "Marbletech is hiring an experienced Data Scientist to support our expanding operations.",
+    "responsibilities": [
+      "Define product roadmap and strategy",
+      "Optimize application performance",
+      "Mentor junior team members",
+      "Troubleshoot and resolve technical issues"
+    ],
+    "skills": [
+      "Excel",
+      "SQL",
+      "User Research",
+      "REST APIs",
+      "JIRA"
+    ],
+    "benefits": [
+      "Learning Budget",
+      "Relocation Assistance",
+      "Retirement Plan"
+    ],
+    "aboutCompany": "Marbletech specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP166",
+    "company": "Ravenhurst Solutions",
+    "position": "Backend Developer",
+    "employmentType": "Full-time",
+    "experience": "2-4 Years",
+    "salary": "₹10 - ₹18 LPA",
+    "posted": "8 days ago",
+    "deadline": "2026-09-19",
+    "description": "Ravenhurst Solutions is looking for a skilled Backend Developer to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Collaborate with cross-functional teams",
+      "Maintain documentation and reports",
+      "Build and maintain dashboards",
+      "Manage project timelines and deliverables"
+    ],
+    "skills": [
+      "Scrum",
+      "Adobe XD",
+      "React",
+      "REST APIs",
+      "Prototyping"
+    ],
+    "benefits": [
+      "Relocation Assistance",
+      "Paid Time Off",
+      "Gym Membership"
+    ],
+    "aboutCompany": "Ravenhurst Solutions helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP167",
+    "company": "Ironwood Digital",
+    "position": "Financial Analyst",
+    "employmentType": "Remote",
+    "experience": "2-4 Years",
+    "salary": "₹7 - ₹11 LPA",
+    "posted": "13 days ago",
+    "deadline": "2026-12-02",
+    "description": "Ironwood Digital is looking for a skilled Financial Analyst to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Define product roadmap and strategy",
+      "Mentor junior team members",
+      "Design and implement scalable solutions",
+      "Troubleshoot and resolve technical issues"
+    ],
+    "skills": [
+      "Figma",
+      "Postman",
+      "Kubernetes",
+      "JavaScript",
+      "Machine Learning"
+    ],
+    "benefits": [
+      "Flexible Hours",
+      "Gym Membership",
+      "Relocation Assistance"
+    ],
+    "aboutCompany": "Ironwood Digital specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP168",
+    "company": "Palm Grove Digital",
+    "position": "UI/UX Designer",
+    "employmentType": "Internship",
+    "experience": "5-7 Years",
+    "salary": "₹8 - ₹12 LPA",
+    "posted": "3 days ago",
+    "deadline": "2026-10-18",
+    "description": "Palm Grove Digital is hiring an experienced UI/UX Designer to support our expanding operations.",
+    "responsibilities": [
+      "Manage project timelines and deliverables",
+      "Mentor junior team members",
+      "Write and execute test cases",
+      "Monitor system health and reliability"
+    ],
+    "skills": [
+      "Prototyping",
+      "Scrum",
+      "Docker",
+      "Git",
+      "AWS"
+    ],
+    "benefits": [
+      "Flexible Hours",
+      "Performance Bonus",
+      "Retirement Plan"
+    ],
+    "aboutCompany": "Palm Grove Digital is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP169",
+    "company": "Zephyr Networks",
+    "position": "Financial Analyst",
+    "employmentType": "Remote",
+    "experience": "7-10 Years",
+    "salary": "₹7 - ₹22 LPA",
+    "posted": "21 days ago",
+    "deadline": "2026-10-19",
+    "description": "Zephyr Networks is looking for a skilled Financial Analyst to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Design and implement scalable solutions",
+      "Analyze data to identify trends",
+      "Optimize application performance",
+      "Troubleshoot and resolve technical issues"
+    ],
+    "skills": [
+      "Agile",
+      "JavaScript",
+      "MongoDB",
+      "Power BI",
+      "React"
+    ],
+    "benefits": [
+      "Free Meals",
+      "Wellness Programs",
+      "Annual Bonus"
+    ],
+    "aboutCompany": "Zephyr Networks is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP170",
+    "company": "NimbusCloud",
+    "position": "Business Analyst",
+    "employmentType": "Full-time",
+    "experience": "3-5 Years",
+    "salary": "₹7 - ₹25 LPA",
+    "posted": "28 days ago",
+    "deadline": "2026-12-22",
+    "description": "Join NimbusCloud as a Business Analyst and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Analyze data to identify trends",
+      "Monitor system health and reliability",
+      "Mentor junior team members",
+      "Build and maintain dashboards"
+    ],
+    "skills": [
+      "Terraform",
+      "Scrum",
+      "SQL",
+      "Postman",
+      "TensorFlow"
+    ],
+    "benefits": [
+      "Stock Options",
+      "Relocation Assistance",
+      "Free Meals"
+    ],
+    "aboutCompany": "NimbusCloud helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP171",
+    "company": "Steelcrest Solutions",
+    "position": "Technical Writer",
+    "employmentType": "Remote",
+    "experience": "5-6 Years",
+    "salary": "₹12 - ₹17 LPA",
+    "posted": "3 days ago",
+    "deadline": "2026-09-23",
+    "description": "Join Steelcrest Solutions as a Technical Writer and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Define product roadmap and strategy",
+      "Coordinate with stakeholders on requirements",
+      "Manage project timelines and deliverables",
+      "Conduct user research and testing"
+    ],
+    "skills": [
+      "Java",
+      "JIRA",
+      "Postman",
+      "React",
+      "Power BI"
+    ],
+    "benefits": [
+      "Health Insurance",
+      "Wellness Programs",
+      "Retirement Plan"
+    ],
+    "aboutCompany": "Steelcrest Solutions is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP172",
+    "company": "Clearwater Systems",
+    "position": "Data Scientist",
+    "employmentType": "Full-time",
+    "experience": "3-5 Years",
+    "salary": "₹10 - ₹25 LPA",
+    "posted": "21 days ago",
+    "deadline": "2026-07-22",
+    "description": "Clearwater Systems is hiring an experienced Data Scientist to support our expanding operations.",
+    "responsibilities": [
+      "Mentor junior team members",
+      "Conduct user research and testing",
+      "Troubleshoot and resolve technical issues",
+      "Design and implement scalable solutions"
+    ],
+    "skills": [
+      "Leadership",
+      "PostgreSQL",
+      "Selenium",
+      "Excel",
+      "SQL"
+    ],
+    "benefits": [
+      "Annual Bonus",
+      "Health Insurance",
+      "Relocation Assistance"
+    ],
+    "aboutCompany": "Clearwater Systems is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP173",
+    "company": "BlueHarbor Software",
+    "position": "Graphic Designer",
+    "employmentType": "Part-time",
+    "experience": "4-6 Years",
+    "salary": "₹6 - ₹12 LPA",
+    "posted": "21 days ago",
+    "deadline": "2026-08-22",
+    "description": "We are seeking a motivated Graphic Designer to join BlueHarbor Software and make a meaningful impact.",
+    "responsibilities": [
+      "Manage project timelines and deliverables",
+      "Write and execute test cases",
+      "Define product roadmap and strategy",
+      "Maintain documentation and reports"
+    ],
+    "skills": [
+      "Python",
+      "Leadership",
+      "Kubernetes",
+      "JIRA",
+      "Adobe XD"
+    ],
+    "benefits": [
+      "Annual Bonus",
+      "Performance Bonus",
+      "Retirement Plan"
+    ],
+    "aboutCompany": "BlueHarbor Software is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP174",
+    "company": "Willowbrook Digital",
+    "position": "Financial Analyst",
+    "employmentType": "Remote",
+    "experience": "5-6 Years",
+    "salary": "₹10 - ₹18 LPA",
+    "posted": "7 days ago",
+    "deadline": "2026-10-10",
+    "description": "Willowbrook Digital seeks a talented Financial Analyst to help us build world-class products.",
+    "responsibilities": [
+      "Collaborate with cross-functional teams",
+      "Write and execute test cases",
+      "Manage project timelines and deliverables",
+      "Maintain documentation and reports"
+    ],
+    "skills": [
+      "GraphQL",
+      "Linux",
+      "CI/CD",
+      "AWS",
+      "Leadership"
+    ],
+    "benefits": [
+      "Flexible Hours",
+      "Learning Budget",
+      "Annual Bonus"
+    ],
+    "aboutCompany": "Willowbrook Digital is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP175",
+    "company": "Lumen Softworks",
+    "position": "Product Manager",
+    "employmentType": "Part-time",
+    "experience": "0-1 Years",
+    "salary": "₹18 - ₹26 LPA",
+    "posted": "7 days ago",
+    "deadline": "2026-08-17",
+    "description": "Lumen Softworks seeks a talented Product Manager to help us build world-class products.",
+    "responsibilities": [
+      "Optimize application performance",
+      "Maintain documentation and reports",
+      "Build and maintain dashboards",
+      "Coordinate with stakeholders on requirements"
+    ],
+    "skills": [
+      "Kubernetes",
+      "Java",
+      "Statistics",
+      "Linux",
+      "Excel"
+    ],
+    "benefits": [
+      "Relocation Assistance",
+      "Retirement Plan",
+      "Childcare Support"
+    ],
+    "aboutCompany": "Lumen Softworks is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP176",
+    "company": "Meridian Softworks",
+    "position": "Support Engineer",
+    "employmentType": "Internship",
+    "experience": "5-7 Years",
+    "salary": "₹8 - ₹14 LPA",
+    "posted": "22 days ago",
+    "deadline": "2026-11-21",
+    "description": "Meridian Softworks seeks a talented Support Engineer to help us build world-class products.",
+    "responsibilities": [
+      "Analyze data to identify trends",
+      "Coordinate with stakeholders on requirements",
+      "Design and implement scalable solutions",
+      "Maintain documentation and reports"
+    ],
+    "skills": [
+      "JIRA",
+      "Linux",
+      "AWS",
+      "Leadership",
+      "Kubernetes"
+    ],
+    "benefits": [
+      "Free Meals",
+      "Annual Bonus",
+      "Retirement Plan"
+    ],
+    "aboutCompany": "Meridian Softworks is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP177",
+    "company": "Steelcrest Solutions",
+    "position": "Operations Manager",
+    "employmentType": "Contract",
+    "experience": "5-6 Years",
+    "salary": "₹8 - ₹12 LPA",
+    "posted": "8 days ago",
+    "deadline": "2026-09-08",
+    "description": "Steelcrest Solutions is hiring an experienced Operations Manager to support our expanding operations.",
+    "responsibilities": [
+      "Build and maintain dashboards",
+      "Analyze data to identify trends",
+      "Conduct user research and testing",
+      "Coordinate with stakeholders on requirements"
+    ],
+    "skills": [
+      "Communication",
+      "Docker",
+      "Leadership",
+      "React",
+      "Node.js"
+    ],
+    "benefits": [
+      "Wellness Programs",
+      "Stock Options",
+      "Paid Time Off"
+    ],
+    "aboutCompany": "Steelcrest Solutions is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP178",
+    "company": "Thornfield Tech",
+    "position": "Cloud Architect",
+    "employmentType": "Part-time",
+    "experience": "5-7 Years",
+    "salary": "₹9 - ₹12 LPA",
+    "posted": "28 days ago",
+    "deadline": "2026-08-05",
+    "description": "We are seeking a motivated Cloud Architect to join Thornfield Tech and make a meaningful impact.",
+    "responsibilities": [
+      "Conduct user research and testing",
+      "Mentor junior team members",
+      "Design and implement scalable solutions",
+      "Build and maintain dashboards"
+    ],
+    "skills": [
+      "JIRA",
+      "SQL",
+      "Statistics",
+      "MongoDB",
+      "TypeScript"
+    ],
+    "benefits": [
+      "Gym Membership",
+      "Health Insurance",
+      "Childcare Support"
+    ],
+    "aboutCompany": "Thornfield Tech helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP179",
+    "company": "Lumen Softworks",
+    "position": "Data Scientist",
+    "employmentType": "Remote",
+    "experience": "5-6 Years",
+    "salary": "₹5 - ₹23 LPA",
+    "posted": "26 days ago",
+    "deadline": "2026-07-05",
+    "description": "We are seeking a motivated Data Scientist to join Lumen Softworks and make a meaningful impact.",
+    "responsibilities": [
+      "Optimize application performance",
+      "Troubleshoot and resolve technical issues",
+      "Mentor junior team members",
+      "Coordinate with stakeholders on requirements"
+    ],
+    "skills": [
+      "Python",
+      "JavaScript",
+      "User Research",
+      "Postman",
+      "GraphQL"
+    ],
+    "benefits": [
+      "Health Insurance",
+      "Learning Budget",
+      "Paid Time Off"
+    ],
+    "aboutCompany": "Lumen Softworks specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP180",
+    "company": "NimbusCloud",
+    "position": "Network Engineer",
+    "employmentType": "Contract",
+    "experience": "2-4 Years",
+    "salary": "₹20 - ₹26 LPA",
+    "posted": "8 days ago",
+    "deadline": "2026-12-12",
+    "description": "NimbusCloud is looking for a skilled Network Engineer to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Optimize application performance",
+      "Manage project timelines and deliverables",
+      "Conduct user research and testing",
+      "Analyze data to identify trends"
+    ],
+    "skills": [
+      "Selenium",
+      "Node.js",
+      "JavaScript",
+      "CI/CD",
+      "Linux"
+    ],
+    "benefits": [
+      "Wellness Programs",
+      "Free Meals",
+      "Paid Time Off"
+    ],
+    "aboutCompany": "NimbusCloud is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP181",
+    "company": "Brightpath Analytics",
+    "position": "Business Analyst",
+    "employmentType": "Part-time",
+    "experience": "2-4 Years",
+    "salary": "₹5 - ₹15 LPA",
+    "posted": "29 days ago",
+    "deadline": "2026-10-12",
+    "description": "We are seeking a motivated Business Analyst to join Brightpath Analytics and make a meaningful impact.",
+    "responsibilities": [
+      "Write and execute test cases",
+      "Participate in code reviews",
+      "Coordinate with stakeholders on requirements",
+      "Monitor system health and reliability"
+    ],
+    "skills": [
+      "Kubernetes",
+      "Figma",
+      "Java",
+      "Data Visualization",
+      "Selenium"
+    ],
+    "benefits": [
+      "Flexible Hours",
+      "Learning Budget",
+      "Free Meals"
+    ],
+    "aboutCompany": "Brightpath Analytics is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP182",
+    "company": "Pinecrest Systems",
+    "position": "Financial Analyst",
+    "employmentType": "Full-time",
+    "experience": "0-1 Years",
+    "salary": "₹12 - ₹15 LPA",
+    "posted": "20 days ago",
+    "deadline": "2026-07-22",
+    "description": "Pinecrest Systems is looking for a skilled Financial Analyst to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Monitor system health and reliability",
+      "Collaborate with cross-functional teams",
+      "Optimize application performance",
+      "Mentor junior team members"
+    ],
+    "skills": [
+      "REST APIs",
+      "Docker",
+      "Excel",
+      "Leadership",
+      "Git"
+    ],
+    "benefits": [
+      "Stock Options",
+      "Free Meals",
+      "Gym Membership"
+    ],
+    "aboutCompany": "Pinecrest Systems is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP183",
+    "company": "Solstice Innovations",
+    "position": "Machine Learning Engineer",
+    "employmentType": "Part-time",
+    "experience": "5-6 Years",
+    "salary": "₹18 - ₹26 LPA",
+    "posted": "20 days ago",
+    "deadline": "2026-11-23",
+    "description": "Solstice Innovations is looking for a skilled Machine Learning Engineer to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Manage project timelines and deliverables",
+      "Monitor system health and reliability",
+      "Conduct user research and testing",
+      "Collaborate with cross-functional teams"
+    ],
+    "skills": [
+      "Linux",
+      "Docker",
+      "AWS",
+      "Statistics",
+      "Postman"
+    ],
+    "benefits": [
+      "Performance Bonus",
+      "Stock Options",
+      "Annual Bonus"
+    ],
+    "aboutCompany": "Solstice Innovations is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP184",
+    "company": "Skyline Analytics",
+    "position": "Mobile App Developer",
+    "employmentType": "Part-time",
+    "experience": "7-10 Years",
+    "salary": "₹7 - ₹12 LPA",
+    "posted": "2 days ago",
+    "deadline": "2026-11-16",
+    "description": "Skyline Analytics is hiring an experienced Mobile App Developer to support our expanding operations.",
+    "responsibilities": [
+      "Participate in code reviews",
+      "Write and execute test cases",
+      "Coordinate with stakeholders on requirements",
+      "Maintain documentation and reports"
+    ],
+    "skills": [
+      "SQL",
+      "Docker",
+      "Statistics",
+      "Git",
+      "Data Visualization"
+    ],
+    "benefits": [
+      "Flexible Hours",
+      "Free Meals",
+      "Childcare Support"
+    ],
+    "aboutCompany": "Skyline Analytics is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP185",
+    "company": "Frostline Networks",
+    "position": "Database Administrator",
+    "employmentType": "Part-time",
+    "experience": "0-1 Years",
+    "salary": "₹7 - ₹15 LPA",
+    "posted": "15 days ago",
+    "deadline": "2026-07-04",
+    "description": "Frostline Networks is hiring an experienced Database Administrator to support our expanding operations.",
+    "responsibilities": [
+      "Build and maintain dashboards",
+      "Define product roadmap and strategy",
+      "Maintain documentation and reports",
+      "Troubleshoot and resolve technical issues"
+    ],
+    "skills": [
+      "Machine Learning",
+      "Docker",
+      "AWS",
+      "JavaScript",
+      "Python"
+    ],
+    "benefits": [
+      "Retirement Plan",
+      "Remote Work Option",
+      "Gym Membership"
+    ],
+    "aboutCompany": "Frostline Networks specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP186",
+    "company": "Emberlight Studios",
+    "position": "Mobile App Developer",
+    "employmentType": "Full-time",
+    "experience": "5-6 Years",
+    "salary": "₹7 - ₹11 LPA",
+    "posted": "12 days ago",
+    "deadline": "2026-09-06",
+    "description": "We are seeking a motivated Mobile App Developer to join Emberlight Studios and make a meaningful impact.",
+    "responsibilities": [
+      "Mentor junior team members",
+      "Analyze data to identify trends",
+      "Optimize application performance",
+      "Monitor system health and reliability"
+    ],
+    "skills": [
+      "Leadership",
+      "Scrum",
+      "Selenium",
+      "Docker",
+      "Kubernetes"
+    ],
+    "benefits": [
+      "Free Meals",
+      "Retirement Plan",
+      "Health Insurance"
+    ],
+    "aboutCompany": "Emberlight Studios specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP187",
+    "company": "Quantum Byte",
+    "position": "Machine Learning Engineer",
+    "employmentType": "Contract",
+    "experience": "0-1 Years",
+    "salary": "₹15 - ₹33 LPA",
+    "posted": "6 days ago",
+    "deadline": "2026-11-13",
+    "description": "Join Quantum Byte as a Machine Learning Engineer and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Mentor junior team members",
+      "Troubleshoot and resolve technical issues",
+      "Collaborate with cross-functional teams",
+      "Optimize application performance"
+    ],
+    "skills": [
+      "TensorFlow",
+      "JavaScript",
+      "Node.js",
+      "Excel",
+      "TypeScript"
+    ],
+    "benefits": [
+      "Health Insurance",
+      "Free Meals",
+      "Gym Membership"
+    ],
+    "aboutCompany": "Quantum Byte is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP188",
+    "company": "Wavelength Tech",
+    "position": "Sales Executive",
+    "employmentType": "Remote",
+    "experience": "1-2 Years",
+    "salary": "₹15 - ₹21 LPA",
+    "posted": "22 days ago",
+    "deadline": "2026-09-17",
+    "description": "We are seeking a motivated Sales Executive to join Wavelength Tech and make a meaningful impact.",
+    "responsibilities": [
+      "Maintain documentation and reports",
+      "Monitor system health and reliability",
+      "Participate in code reviews",
+      "Mentor junior team members"
+    ],
+    "skills": [
+      "PostgreSQL",
+      "REST APIs",
+      "Git",
+      "React",
+      "Python"
+    ],
+    "benefits": [
+      "Gym Membership",
+      "Remote Work Option",
+      "Paid Time Off"
+    ],
+    "aboutCompany": "Wavelength Tech helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP189",
+    "company": "Oakridge Systems",
+    "position": "Graphic Designer",
+    "employmentType": "Full-time",
+    "experience": "3-5 Years",
+    "salary": "₹10 - ₹20 LPA",
+    "posted": "8 days ago",
+    "deadline": "2026-09-09",
+    "description": "Oakridge Systems seeks a talented Graphic Designer to help us build world-class products.",
+    "responsibilities": [
+      "Maintain documentation and reports",
+      "Optimize application performance",
+      "Coordinate with stakeholders on requirements",
+      "Participate in code reviews"
+    ],
+    "skills": [
+      "SQL",
+      "Communication",
+      "TensorFlow",
+      "Statistics",
+      "TypeScript"
+    ],
+    "benefits": [
+      "Flexible Hours",
+      "Wellness Programs",
+      "Free Meals"
+    ],
+    "aboutCompany": "Oakridge Systems is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP190",
+    "company": "Quantum Byte",
+    "position": "Cloud Architect",
+    "employmentType": "Remote",
+    "experience": "4-6 Years",
+    "salary": "₹12 - ₹15 LPA",
+    "posted": "27 days ago",
+    "deadline": "2026-07-26",
+    "description": "Quantum Byte seeks a talented Cloud Architect to help us build world-class products.",
+    "responsibilities": [
+      "Manage project timelines and deliverables",
+      "Participate in code reviews",
+      "Maintain documentation and reports",
+      "Define product roadmap and strategy"
+    ],
+    "skills": [
+      "Communication",
+      "MongoDB",
+      "GraphQL",
+      "React",
+      "Adobe XD"
+    ],
+    "benefits": [
+      "Retirement Plan",
+      "Wellness Programs",
+      "Learning Budget"
+    ],
+    "aboutCompany": "Quantum Byte is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP191",
+    "company": "Wavelength Tech",
+    "position": "Security Analyst",
+    "employmentType": "Full-time",
+    "experience": "3-5 Years",
+    "salary": "₹20 - ₹30 LPA",
+    "posted": "23 days ago",
+    "deadline": "2026-10-04",
+    "description": "Wavelength Tech is looking for a skilled Security Analyst to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Build and maintain dashboards",
+      "Troubleshoot and resolve technical issues",
+      "Maintain documentation and reports",
+      "Analyze data to identify trends"
+    ],
+    "skills": [
+      "Prototyping",
+      "GraphQL",
+      "AWS",
+      "JavaScript",
+      "Selenium"
+    ],
+    "benefits": [
+      "Wellness Programs",
+      "Remote Work Option",
+      "Free Meals"
+    ],
+    "aboutCompany": "Wavelength Tech helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP192",
+    "company": "Quantum Byte",
+    "position": "Product Manager",
+    "employmentType": "Internship",
+    "experience": "3-5 Years",
+    "salary": "₹6 - ₹10 LPA",
+    "posted": "30 days ago",
+    "deadline": "2026-10-07",
+    "description": "Quantum Byte is hiring an experienced Product Manager to support our expanding operations.",
+    "responsibilities": [
+      "Collaborate with cross-functional teams",
+      "Define product roadmap and strategy",
+      "Optimize application performance",
+      "Write and execute test cases"
+    ],
+    "skills": [
+      "Docker",
+      "TensorFlow",
+      "Communication",
+      "Data Visualization",
+      "Kubernetes"
+    ],
+    "benefits": [
+      "Wellness Programs",
+      "Health Insurance",
+      "Paid Time Off"
+    ],
+    "aboutCompany": "Quantum Byte is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP193",
+    "company": "Cascade Cloud",
+    "position": "Operations Manager",
+    "employmentType": "Part-time",
+    "experience": "1-2 Years",
+    "salary": "₹10 - ₹15 LPA",
+    "posted": "23 days ago",
+    "deadline": "2026-11-06",
+    "description": "We are seeking a motivated Operations Manager to join Cascade Cloud and make a meaningful impact.",
+    "responsibilities": [
+      "Maintain documentation and reports",
+      "Conduct user research and testing",
+      "Coordinate with stakeholders on requirements",
+      "Build and maintain dashboards"
+    ],
+    "skills": [
+      "Data Visualization",
+      "REST APIs",
+      "Scrum",
+      "Power BI",
+      "Terraform"
+    ],
+    "benefits": [
+      "Relocation Assistance",
+      "Learning Budget",
+      "Annual Bonus"
+    ],
+    "aboutCompany": "Cascade Cloud helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP194",
+    "company": "Crestwave Labs",
+    "position": "UI/UX Designer",
+    "employmentType": "Contract",
+    "experience": "3-5 Years",
+    "salary": "₹20 - ₹28 LPA",
+    "posted": "27 days ago",
+    "deadline": "2026-12-18",
+    "description": "Join Crestwave Labs as a UI/UX Designer and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Participate in code reviews",
+      "Conduct user research and testing",
+      "Monitor system health and reliability",
+      "Analyze data to identify trends"
+    ],
+    "skills": [
+      "PostgreSQL",
+      "Kubernetes",
+      "JIRA",
+      "Data Visualization",
+      "User Research"
+    ],
+    "benefits": [
+      "Free Meals",
+      "Gym Membership",
+      "Learning Budget"
+    ],
+    "aboutCompany": "Crestwave Labs is a growing technology company delivering innovative solutions across industries."
+  },
+  {
+    "applicationId": "APP195",
+    "company": "Steelcrest Solutions",
+    "position": "Mobile App Developer",
+    "employmentType": "Remote",
+    "experience": "4-6 Years",
+    "salary": "₹15 - ₹30 LPA",
+    "posted": "22 days ago",
+    "deadline": "2026-12-27",
+    "description": "We are seeking a motivated Mobile App Developer to join Steelcrest Solutions and make a meaningful impact.",
+    "responsibilities": [
+      "Define product roadmap and strategy",
+      "Write and execute test cases",
+      "Manage project timelines and deliverables",
+      "Collaborate with cross-functional teams"
+    ],
+    "skills": [
+      "Java",
+      "REST APIs",
+      "Git",
+      "React",
+      "Postman"
+    ],
+    "benefits": [
+      "Annual Bonus",
+      "Childcare Support",
+      "Remote Work Option"
+    ],
+    "aboutCompany": "Steelcrest Solutions is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP196",
+    "company": "Thornfield Tech",
+    "position": "Product Manager",
+    "employmentType": "Contract",
+    "experience": "7-10 Years",
+    "salary": "₹20 - ₹28 LPA",
+    "posted": "7 days ago",
+    "deadline": "2026-11-02",
+    "description": "Thornfield Tech is looking for a skilled Product Manager to join our growing team and help drive impactful results.",
+    "responsibilities": [
+      "Conduct user research and testing",
+      "Coordinate with stakeholders on requirements",
+      "Maintain documentation and reports",
+      "Monitor system health and reliability"
+    ],
+    "skills": [
+      "Adobe XD",
+      "REST APIs",
+      "Power BI",
+      "Data Visualization",
+      "Linux"
+    ],
+    "benefits": [
+      "Free Meals",
+      "Gym Membership",
+      "Health Insurance"
+    ],
+    "aboutCompany": "Thornfield Tech helps businesses transform through cutting-edge technology solutions."
+  },
+  {
+    "applicationId": "APP197",
+    "company": "Pinecrest Systems",
+    "position": "Machine Learning Engineer",
+    "employmentType": "Part-time",
+    "experience": "7-10 Years",
+    "salary": "₹12 - ₹15 LPA",
+    "posted": "1 days ago",
+    "deadline": "2026-12-09",
+    "description": "Join Pinecrest Systems as a Machine Learning Engineer and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Troubleshoot and resolve technical issues",
+      "Maintain documentation and reports",
+      "Monitor system health and reliability",
+      "Define product roadmap and strategy"
+    ],
+    "skills": [
+      "GraphQL",
+      "User Research",
+      "Postman",
+      "Linux",
+      "TensorFlow"
+    ],
+    "benefits": [
+      "Remote Work Option",
+      "Gym Membership",
+      "Flexible Hours"
+    ],
+    "aboutCompany": "Pinecrest Systems specializes in building scalable software products for global clients."
+  },
+  {
+    "applicationId": "APP198",
+    "company": "Ironclad Systems",
+    "position": "Sales Executive",
+    "employmentType": "Contract",
+    "experience": "2-4 Years",
+    "salary": "₹9 - ₹12 LPA",
+    "posted": "14 days ago",
+    "deadline": "2026-09-18",
+    "description": "Join Ironclad Systems as a Sales Executive and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Conduct user research and testing",
+      "Coordinate with stakeholders on requirements",
+      "Analyze data to identify trends",
+      "Write and execute test cases"
+    ],
+    "skills": [
+      "MongoDB",
+      "Communication",
+      "Git",
+      "JavaScript",
+      "TypeScript"
+    ],
+    "benefits": [
+      "Performance Bonus",
+      "Health Insurance",
+      "Gym Membership"
+    ],
+    "aboutCompany": "Ironclad Systems is known for its collaborative culture and commitment to excellence."
+  },
+  {
+    "applicationId": "APP199",
+    "company": "Highland Software",
+    "position": "Project Manager",
+    "employmentType": "Remote",
+    "experience": "3-5 Years",
+    "salary": "₹12 - ₹22 LPA",
+    "posted": "3 days ago",
+    "deadline": "2026-12-11",
+    "description": "Join Highland Software as a Project Manager and contribute to innovative projects that shape our industry.",
+    "responsibilities": [
+      "Manage project timelines and deliverables",
+      "Collaborate with cross-functional teams",
+      "Define product roadmap and strategy",
+      "Troubleshoot and resolve technical issues"
+    ],
+    "skills": [
+      "Selenium",
+      "Scrum",
+      "User Research",
+      "Agile",
+      "SQL"
+    ],
+    "benefits": [
+      "Learning Budget",
+      "Stock Options",
+      "Childcare Support"
+    ],
+    "aboutCompany": "Highland Software is a fast-paced organization focused on innovation and customer success."
+  },
+  {
+    "applicationId": "APP200",
+    "company": "Emberlight Studios",
+    "position": "Mobile App Developer",
+    "employmentType": "Full-time",
+    "experience": "5-7 Years",
+    "salary": "₹15 - ₹33 LPA",
+    "posted": "18 days ago",
+    "deadline": "2026-12-01",
+    "description": "We are seeking a motivated Mobile App Developer to join Emberlight Studios and make a meaningful impact.",
+    "responsibilities": [
+      "Participate in code reviews",
+      "Maintain documentation and reports",
+      "Conduct user research and testing",
+      "Define product roadmap and strategy"
+    ],
+    "skills": [
+      "Power BI",
+      "JavaScript",
+      "TypeScript",
+      "REST APIs",
+      "Docker"
+    ],
+    "benefits": [
+      "Relocation Assistance",
+      "Annual Bonus",
+      "Paid Time Off"
+    ],
+    "aboutCompany": "Emberlight Studios is a fast-paced organization focused on innovation and customer success."
+  }
+]

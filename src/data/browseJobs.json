@@ -1,0 +1,3402 @@
+[
+  {
+    "jobId": "JOB001",
+    "title": "Backend Developer",
+    "company": "DevNest",
+    "location": "Surat, Gujarat",
+    "salary": "₹9 - ₹38 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "Docker", 
+      "CSS",
+      "Git"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB002",
+    "title": "UI/UX Developer",
+    "company": "DevNest",
+    "location": "Surat, Gujarat",
+    "salary": "₹11 - ₹26 LPA",
+    "type": "Internship",
+    "category": "UI/UX",
+    "tags": [
+      "Python",
+      "CSS",
+      "AWS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB003",
+    "title": "AI/ML Engineer",
+    "company": "DataWave",
+    "location": "Bengaluru, India",
+    "salary": "₹5 - ₹21 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "TensorFlow",
+      "Git",
+      "Python"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB004",
+    "title": "React Developer",
+    "company": "BrightSoft",
+    "location": "Hyderabad, India",
+    "salary": "₹8 - ₹24 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Git",
+      "CSS",
+      "Docker"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "B"
+  },
+  {
+    "jobId": "JOB005",
+    "title": "QA Engineer",
+    "company": "BrightSoft",
+    "location": "Pune, India",
+    "salary": "₹8 - ₹16 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "CSS",
+      "Git",
+      "SQL"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "B"
+  },
+  {
+    "jobId": "JOB006",
+    "title": "Java Developer",
+    "company": "LogicLoop",
+    "location": "Bengaluru, India",
+    "salary": "₹9 - ₹32 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "SQL",
+      "Java",
+      "TensorFlow"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "L"
+  },
+  {
+    "jobId": "JOB007",
+    "title": "DevOps Engineer",
+    "company": "InnoTech",
+    "location": "Bengaluru, India",
+    "salary": "₹15 - ₹28 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "JavaScript",
+      "CSS",
+      "Java"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "I"
+  },
+  {
+    "jobId": "JOB008",
+    "title": "Backend Developer",
+    "company": "DataWave",
+    "location": "Pune, India",
+    "salary": "₹9 - ₹31 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "AWS",
+      "CSS",
+      "Node.js"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB009",
+    "title": "UI/UX Developer",
+    "company": "LogicLoop",
+    "location": "Surat, Gujarat",
+    "salary": "₹12 - ₹29 LPA",
+    "type": "Internship",
+    "category": "UI/UX",
+    "tags": [
+      "TensorFlow",
+      "React",
+      "HTML"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "L"
+  },
+  {
+    "jobId": "JOB010",
+    "title": "Java Developer",
+    "company": "BrightSoft",
+    "location": "Remote",
+    "salary": "₹7 - ₹25 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "Java",
+      "Tailwind CSS",
+      "Docker"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "B"
+  },
+  {
+    "jobId": "JOB011",
+    "title": "Java Developer",
+    "company": "PixelCraft",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹15 - ₹16 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "REST API",
+      "HTML",
+      "Git"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "P"
+  },
+  {
+    "jobId": "JOB012",
+    "title": "Full Stack Developer",
+    "company": "CloudAxis",
+    "location": "Hyderabad, India",
+    "salary": "₹11 - ₹27 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Node.js",
+      "Git",
+      "HTML"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB013",
+    "title": "React Developer",
+    "company": "DevNest",
+    "location": "Surat, Gujarat",
+    "salary": "₹13 - ₹33 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "Python",
+      "Java",
+      "AWS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB014",
+    "title": "QA Engineer",
+    "company": "PixelCraft",
+    "location": "Remote",
+    "salary": "₹6 - ₹33 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Tailwind CSS",
+      "SQL",
+      "Java"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "P"
+  },
+  {
+    "jobId": "JOB015",
+    "title": "Full Stack Developer",
+    "company": "CodeSphere",
+    "location": "Surat, Gujarat",
+    "salary": "₹14 - ₹40 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "Python",
+      "SQL",
+      "HTML"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB016",
+    "title": "Frontend Developer",
+    "company": "DevNest",
+    "location": "Bengaluru, India",
+    "salary": "₹8 - ₹16 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "JavaScript",
+      "Git",
+      "SQL"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB017",
+    "title": "Java Developer",
+    "company": "PixelCraft",
+    "location": "Surat, Gujarat",
+    "salary": "₹8 - ₹30 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "JavaScript",
+      "Node.js",
+      "Git"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "P"
+  },
+  {
+    "jobId": "JOB018",
+    "title": "AI/ML Engineer",
+    "company": "InnoTech",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹15 - ₹22 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Docker",
+      "Git",
+      "AWS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "I"
+  },
+  {
+    "jobId": "JOB019",
+    "title": "Frontend Developer",
+    "company": "DevNest",
+    "location": "Surat, Gujarat",
+    "salary": "₹10 - ₹26 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "CSS",
+      "Git",
+      "SQL"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB020",
+    "title": "React Developer",
+    "company": "DataWave",
+    "location": "Remote",
+    "salary": "₹10 - ₹34 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "React",
+      "Git",
+      "SQL"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB021",
+    "title": "Java Developer",
+    "company": "DevNest",
+    "location": "Pune, India",
+    "salary": "₹9 - ₹30 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "SQL",
+      "Tailwind CSS",
+      "CSS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB022",
+    "title": "UI/UX Developer",
+    "company": "DataWave",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹7 - ₹32 LPA",
+    "type": "Full Time",
+    "category": "UI/UX",
+    "tags": [
+      "Tailwind CSS",
+      "HTML",
+      "Java"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB023",
+    "title": "React Developer",
+    "company": "CloudAxis",
+    "location": "Bengaluru, India",
+    "salary": "₹10 - ₹21 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "Docker",
+      "Tailwind CSS",
+      "React"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB024",
+    "title": "Full Stack Developer",
+    "company": "DataWave",
+    "location": "Surat, Gujarat",
+    "salary": "₹5 - ₹16 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "HTML",
+      "Git",
+      "JavaScript"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB025",
+    "title": "Full Stack Developer",
+    "company": "PixelCraft",
+    "location": "Bengaluru, India",
+    "salary": "₹6 - ₹37 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "Docker",
+      "Git",
+      "CSS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "P"
+  },
+  {
+    "jobId": "JOB026",
+    "title": "Python Developer",
+    "company": "DataWave",
+    "location": "Surat, Gujarat",
+    "salary": "₹14 - ₹19 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "REST API",
+      "JavaScript",
+      "Python"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB027",
+    "title": "Full Stack Developer",
+    "company": "NextGen",
+    "location": "Bengaluru, India",
+    "salary": "₹9 - ₹35 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "JavaScript",
+      "Java",
+      "Docker"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "N"
+  },
+  {
+    "jobId": "JOB028",
+    "title": "UI/UX Developer",
+    "company": "PixelCraft",
+    "location": "Pune, India",
+    "salary": "₹14 - ₹38 LPA",
+    "type": "Full Time",
+    "category": "UI/UX",
+    "tags": [
+      "Python",
+      "Java",
+      "Docker"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "P"
+  },
+  {
+    "jobId": "JOB029",
+    "title": "QA Engineer",
+    "company": "InnoTech",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹5 - ₹16 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Git",
+      "HTML",
+      "JavaScript"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "I"
+  },
+  {
+    "jobId": "JOB030",
+    "title": "DevOps Engineer",
+    "company": "NextGen",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹10 - ₹31 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "Python",
+      "TensorFlow",
+      "React"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "N"
+  },
+  {
+    "jobId": "JOB031",
+    "title": "QA Engineer",
+    "company": "TechNova",
+    "location": "Hyderabad, India",
+    "salary": "₹7 - ₹22 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Python",
+      "AWS",
+      "Tailwind CSS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "T"
+  },
+  {
+    "jobId": "JOB032",
+    "title": "UI/UX Developer",
+    "company": "TechNova",
+    "location": "Remote",
+    "salary": "₹11 - ₹20 LPA",
+    "type": "Internship",
+    "category": "UI/UX",
+    "tags": [
+      "CSS",
+      "Java",
+      "HTML"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "T"
+  },
+  {
+    "jobId": "JOB033",
+    "title": "Frontend Developer",
+    "company": "BrightSoft",
+    "location": "Bengaluru, India",
+    "salary": "₹10 - ₹36 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "JavaScript",
+      "AWS",
+      "REST API"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "B"
+  },
+  {
+    "jobId": "JOB034",
+    "title": "AI/ML Engineer",
+    "company": "InnoTech",
+    "location": "Surat, Gujarat",
+    "salary": "₹12 - ₹19 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "SQL",
+      "Git",
+      "Tailwind CSS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "I"
+  },
+  {
+    "jobId": "JOB035",
+    "title": "DevOps Engineer",
+    "company": "InnoTech",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹9 - ₹24 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Node.js",
+      "JavaScript",
+      "SQL"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "I"
+  },
+  {
+    "jobId": "JOB036",
+    "title": "Python Developer",
+    "company": "LogicLoop",
+    "location": "Remote",
+    "salary": "₹15 - ₹18 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Java",
+      "Python",
+      "JavaScript"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "L"
+  },
+  {
+    "jobId": "JOB037",
+    "title": "AI/ML Engineer",
+    "company": "PixelCraft",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹5 - ₹19 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "TensorFlow",
+      "React",
+      "SQL"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "P"
+  },
+  {
+    "jobId": "JOB038",
+    "title": "Python Developer",
+    "company": "InnoTech",
+    "location": "Remote",
+    "salary": "₹4 - ₹17 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "React",
+      "Java",
+      "TensorFlow"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "I"
+  },
+  {
+    "jobId": "JOB039",
+    "title": "Full Stack Developer",
+    "company": "InnoTech",
+    "location": "Pune, India",
+    "salary": "₹12 - ₹27 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "REST API",
+      "Docker",
+      "AWS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "I"
+  },
+  {
+    "jobId": "JOB040",
+    "title": "UI/UX Developer",
+    "company": "DataWave",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹7 - ₹34 LPA",
+    "type": "Contract",
+    "category": "UI/UX",
+    "tags": [
+      "JavaScript",
+      "Python",
+      "CSS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB041",
+    "title": "DevOps Engineer",
+    "company": "TechNova",
+    "location": "Surat, Gujarat",
+    "salary": "₹4 - ₹33 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "Tailwind CSS",
+      "HTML",
+      "Python"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "T"
+  },
+  {
+    "jobId": "JOB042",
+    "title": "AI/ML Engineer",
+    "company": "LogicLoop",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹6 - ₹40 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "SQL",
+      "Python",
+      "REST API"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "L"
+  },
+  {
+    "jobId": "JOB043",
+    "title": "UI/UX Developer",
+    "company": "DevNest",
+    "location": "Hyderabad, India",
+    "salary": "₹5 - ₹29 LPA",
+    "type": "Full Time",
+    "category": "UI/UX",
+    "tags": [
+      "Git",
+      "AWS",
+      "Java"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB044",
+    "title": "Python Developer",
+    "company": "PixelCraft",
+    "location": "Hyderabad, India",
+    "salary": "₹8 - ₹38 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Node.js",
+      "AWS",
+      "JavaScript"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "P"
+  },
+  {
+    "jobId": "JOB045",
+    "title": "Full Stack Developer",
+    "company": "PixelCraft",
+    "location": "Surat, Gujarat",
+    "salary": "₹9 - ₹30 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "TensorFlow",
+      "Tailwind CSS",
+      "Git"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "P"
+  },
+  {
+    "jobId": "JOB046",
+    "title": "React Developer",
+    "company": "TechNova",
+    "location": "Surat, Gujarat",
+    "salary": "₹7 - ₹40 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "Java",
+      "CSS",
+      "SQL"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "T"
+  },
+  {
+    "jobId": "JOB047",
+    "title": "UI/UX Developer",
+    "company": "LogicLoop",
+    "location": "Bengaluru, India",
+    "salary": "₹12 - ₹39 LPA",
+    "type": "Full Time",
+    "category": "UI/UX",
+    "tags": [
+      "REST API",
+      "AWS",
+      "Java"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "L"
+  },
+  {
+    "jobId": "JOB048",
+    "title": "QA Engineer",
+    "company": "DataWave",
+    "location": "Remote",
+    "salary": "₹8 - ₹31 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "TensorFlow",
+      "REST API",
+      "React"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB049",
+    "title": "Python Developer",
+    "company": "DataWave",
+    "location": "Hyderabad, India",
+    "salary": "₹14 - ₹34 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "REST API",
+      "HTML",
+      "SQL"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB050",
+    "title": "Java Developer",
+    "company": "CodeSphere",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹6 - ₹19 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "Java",
+      "React",
+      "HTML"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB051",
+    "title": "DevOps Engineer",
+    "company": "PixelCraft",
+    "location": "Hyderabad, India",
+    "salary": "₹15 - ₹24 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "SQL",
+      "Java",
+      "AWS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "P"
+  },
+  {
+    "jobId": "JOB052",
+    "title": "Full Stack Developer",
+    "company": "InnoTech",
+    "location": "Pune, India",
+    "salary": "₹12 - ₹19 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "React",
+      "JavaScript",
+      "Git"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "I"
+  },
+  {
+    "jobId": "JOB053",
+    "title": "Python Developer",
+    "company": "BrightSoft",
+    "location": "Pune, India",
+    "salary": "₹14 - ₹19 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "Python",
+      "HTML",
+      "React"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "B"
+  },
+  {
+    "jobId": "JOB054",
+    "title": "Backend Developer",
+    "company": "InnoTech",
+    "location": "Hyderabad, India",
+    "salary": "₹8 - ₹20 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "Java",
+      "AWS",
+      "CSS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "I"
+  },
+  {
+    "jobId": "JOB055",
+    "title": "Python Developer",
+    "company": "CloudAxis",
+    "location": "Remote",
+    "salary": "₹13 - ₹31 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "Python",
+      "SQL",
+      "JavaScript"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB056",
+    "title": "Backend Developer",
+    "company": "NextGen",
+    "location": "Hyderabad, India",
+    "salary": "₹10 - ₹20 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "CSS",
+      "React",
+      "AWS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "N"
+  },
+  {
+    "jobId": "JOB057",
+    "title": "Python Developer",
+    "company": "InnoTech",
+    "location": "Surat, Gujarat",
+    "salary": "₹14 - ₹34 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "SQL",
+      "Node.js",
+      "Python"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "I"
+  },
+  {
+    "jobId": "JOB058",
+    "title": "Full Stack Developer",
+    "company": "DevNest",
+    "location": "Surat, Gujarat",
+    "salary": "₹7 - ₹37 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "TensorFlow",
+      "CSS",
+      "Docker"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB059",
+    "title": "React Developer",
+    "company": "PixelCraft",
+    "location": "Bengaluru, India",
+    "salary": "₹13 - ₹16 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Python",
+      "Tailwind CSS",
+      "AWS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "P"
+  },
+  {
+    "jobId": "JOB060",
+    "title": "Java Developer",
+    "company": "BrightSoft",
+    "location": "Hyderabad, India",
+    "salary": "₹7 - ₹21 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "SQL",
+      "Java",
+      "Node.js"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "B"
+  },
+  {
+    "jobId": "JOB061",
+    "title": "QA Engineer",
+    "company": "CloudAxis",
+    "location": "Surat, Gujarat",
+    "salary": "₹9 - ₹29 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "Java",
+      "SQL",
+      "AWS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB062",
+    "title": "DevOps Engineer",
+    "company": "LogicLoop",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹14 - ₹23 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Node.js",
+      "Python",
+      "SQL"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "L"
+  },
+  {
+    "jobId": "JOB063",
+    "title": "DevOps Engineer",
+    "company": "InnoTech",
+    "location": "Pune, India",
+    "salary": "₹6 - ₹27 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "CSS",
+      "REST API",
+      "Python"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "I"
+  },
+  {
+    "jobId": "JOB064",
+    "title": "UI/UX Developer",
+    "company": "CloudAxis",
+    "location": "Hyderabad, India",
+    "salary": "₹11 - ₹17 LPA",
+    "type": "Internship",
+    "category": "UI/UX",
+    "tags": [
+      "Python",
+      "Docker",
+      "REST API"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB065",
+    "title": "Java Developer",
+    "company": "LogicLoop",
+    "location": "Bengaluru, India",
+    "salary": "₹4 - ₹35 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Java",
+      "HTML",
+      "Docker"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "L"
+  },
+  {
+    "jobId": "JOB066",
+    "title": "UI/UX Developer",
+    "company": "LogicLoop",
+    "location": "Hyderabad, India",
+    "salary": "₹13 - ₹27 LPA",
+    "type": "Internship",
+    "category": "UI/UX",
+    "tags": [
+      "HTML",
+      "Tailwind CSS",
+      "JavaScript"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "L"
+  },
+  {
+    "jobId": "JOB067",
+    "title": "Backend Developer",
+    "company": "LogicLoop",
+    "location": "Surat, Gujarat",
+    "salary": "₹11 - ₹16 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "HTML",
+      "React",
+      "TensorFlow"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "L"
+  },
+  {
+    "jobId": "JOB068",
+    "title": "DevOps Engineer",
+    "company": "BrightSoft",
+    "location": "Surat, Gujarat",
+    "salary": "₹14 - ₹36 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "AWS",
+      "Node.js",
+      "TensorFlow"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "B"
+  },
+  {
+    "jobId": "JOB069",
+    "title": "DevOps Engineer",
+    "company": "TechNova",
+    "location": "Pune, India",
+    "salary": "₹4 - ₹24 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "Git",
+      "React",
+      "Python"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "T"
+  },
+  {
+    "jobId": "JOB070",
+    "title": "React Developer",
+    "company": "CloudAxis",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹9 - ₹17 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "CSS",
+      "Tailwind CSS",
+      "AWS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB071",
+    "title": "Full Stack Developer",
+    "company": "NextGen",
+    "location": "Surat, Gujarat",
+    "salary": "₹13 - ₹24 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "AWS",
+      "Tailwind CSS",
+      "React"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "N"
+  },
+  {
+    "jobId": "JOB072",
+    "title": "React Developer",
+    "company": "CloudAxis",
+    "location": "Hyderabad, India",
+    "salary": "₹7 - ₹19 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "HTML",
+      "REST API",
+      "Node.js"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB073",
+    "title": "Java Developer",
+    "company": "CodeSphere",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹10 - ₹17 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "SQL",
+      "JavaScript",
+      "React"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB074",
+    "title": "Python Developer",
+    "company": "TechNova",
+    "location": "Remote",
+    "salary": "₹7 - ₹26 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "React",
+      "Tailwind CSS",
+      "Python"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "T"
+  },
+  {
+    "jobId": "JOB075",
+    "title": "Full Stack Developer",
+    "company": "TechNova",
+    "location": "Remote",
+    "salary": "₹15 - ₹20 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "JavaScript",
+      "Docker",
+      "AWS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "T"
+  },
+  {
+    "jobId": "JOB076",
+    "title": "React Developer",
+    "company": "CodeSphere",
+    "location": "Remote",
+    "salary": "₹8 - ₹20 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "Java",
+      "SQL",
+      "React"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB077",
+    "title": "AI/ML Engineer",
+    "company": "CloudAxis",
+    "location": "Surat, Gujarat",
+    "salary": "₹15 - ₹30 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "SQL",
+      "Python",
+      "CSS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB078",
+    "title": "Backend Developer",
+    "company": "LogicLoop",
+    "location": "Surat, Gujarat",
+    "salary": "₹7 - ₹38 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "TensorFlow",
+      "REST API",
+      "Docker"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "L"
+  },
+  {
+    "jobId": "JOB079",
+    "title": "Java Developer",
+    "company": "BrightSoft",
+    "location": "Hyderabad, India",
+    "salary": "₹11 - ₹20 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "REST API",
+      "AWS",
+      "Python"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "B"
+  },
+  {
+    "jobId": "JOB080",
+    "title": "React Developer",
+    "company": "PixelCraft",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹11 - ₹23 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "AWS",
+      "Java",
+      "TensorFlow"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "P"
+  },
+  {
+    "jobId": "JOB081",
+    "title": "Java Developer",
+    "company": "CloudAxis",
+    "location": "Bengaluru, India",
+    "salary": "₹8 - ₹34 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "Tailwind CSS",
+      "React",
+      "REST API"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB082",
+    "title": "Java Developer",
+    "company": "BrightSoft",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹9 - ₹26 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "React",
+      "SQL",
+      "Java"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "B"
+  },
+  {
+    "jobId": "JOB083",
+    "title": "DevOps Engineer",
+    "company": "NextGen",
+    "location": "Surat, Gujarat",
+    "salary": "₹7 - ₹19 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Tailwind CSS",
+      "AWS",
+      "SQL"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "N"
+  },
+  {
+    "jobId": "JOB084",
+    "title": "DevOps Engineer",
+    "company": "DevNest",
+    "location": "Pune, India",
+    "salary": "₹12 - ₹38 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Git",
+      "HTML",
+      "Tailwind CSS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB085",
+    "title": "Backend Developer",
+    "company": "PixelCraft",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹7 - ₹19 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "Tailwind CSS",
+      "Docker",
+      "REST API"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "P"
+  },
+  {
+    "jobId": "JOB086",
+    "title": "Frontend Developer",
+    "company": "CodeSphere",
+    "location": "Hyderabad, India",
+    "salary": "₹5 - ₹24 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "TensorFlow",
+      "Git",
+      "SQL"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB087",
+    "title": "Java Developer",
+    "company": "PixelCraft",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹15 - ₹39 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "Java",
+      "TensorFlow",
+      "Python"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "P"
+  },
+  {
+    "jobId": "JOB088",
+    "title": "Java Developer",
+    "company": "NextGen",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹9 - ₹25 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "AWS",
+      "Python",
+      "CSS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "N"
+  },
+  {
+    "jobId": "JOB089",
+    "title": "Full Stack Developer",
+    "company": "LogicLoop",
+    "location": "Remote",
+    "salary": "₹5 - ₹38 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "SQL",
+      "HTML",
+      "Git"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "L"
+  },
+  {
+    "jobId": "JOB090",
+    "title": "Backend Developer",
+    "company": "NextGen",
+    "location": "Pune, India",
+    "salary": "₹14 - ₹16 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Docker",
+      "Python",
+      "TensorFlow"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "N"
+  },
+  {
+    "jobId": "JOB091",
+    "title": "UI/UX Developer",
+    "company": "CodeSphere",
+    "location": "Surat, Gujarat",
+    "salary": "₹11 - ₹40 LPA",
+    "type": "Contract",
+    "category": "UI/UX",
+    "tags": [
+      "Git",
+      "AWS",
+      "Java"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB092",
+    "title": "Backend Developer",
+    "company": "DataWave",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹5 - ₹33 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "AWS",
+      "Python",
+      "JavaScript"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB093",
+    "title": "React Developer",
+    "company": "CodeSphere",
+    "location": "Surat, Gujarat",
+    "salary": "₹13 - ₹18 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "React",
+      "Python",
+      "TensorFlow"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB094",
+    "title": "DevOps Engineer",
+    "company": "CodeSphere",
+    "location": "Remote",
+    "salary": "₹14 - ₹37 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "JavaScript",
+      "Python",
+      "CSS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB095",
+    "title": "Backend Developer",
+    "company": "DataWave",
+    "location": "Pune, India",
+    "salary": "₹13 - ₹25 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "AWS",
+      "Node.js",
+      "SQL"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB096",
+    "title": "AI/ML Engineer",
+    "company": "DataWave",
+    "location": "Pune, India",
+    "salary": "₹12 - ₹34 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "React",
+      "Tailwind CSS",
+      "Git"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB097",
+    "title": "QA Engineer",
+    "company": "CloudAxis",
+    "location": "Bengaluru, India",
+    "salary": "₹12 - ₹38 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "HTML",
+      "Node.js",
+      "SQL"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB098",
+    "title": "React Developer",
+    "company": "NextGen",
+    "location": "Surat, Gujarat",
+    "salary": "₹8 - ₹34 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "Python",
+      "React",
+      "CSS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "N"
+  },
+  {
+    "jobId": "JOB099",
+    "title": "Java Developer",
+    "company": "CodeSphere",
+    "location": "Bengaluru, India",
+    "salary": "₹11 - ₹38 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Java",
+      "HTML",
+      "SQL"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB100",
+    "title": "UI/UX Developer",
+    "company": "LogicLoop",
+    "location": "Pune, India",
+    "salary": "₹9 - ₹27 LPA",
+    "type": "Contract",
+    "category": "UI/UX",
+    "tags": [
+      "JavaScript",
+      "HTML",
+      "REST API"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "L"
+  },
+  {
+    "jobId": "JOB101",
+    "title": "Java Developer",
+    "company": "CodeSphere",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹9 - ₹20 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "SQL",
+      "Docker",
+      "HTML"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB102",
+    "title": "React Developer",
+    "company": "CodeSphere",
+    "location": "Bengaluru, India",
+    "salary": "₹5 - ₹21 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "REST API",
+      "HTML",
+      "JavaScript"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB103",
+    "title": "UI/UX Developer",
+    "company": "InnoTech",
+    "location": "Pune, India",
+    "salary": "₹12 - ₹35 LPA",
+    "type": "Internship",
+    "category": "UI/UX",
+    "tags": [
+      "Node.js",
+      "Python",
+      "JavaScript"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "I"
+  },
+  {
+    "jobId": "JOB104",
+    "title": "Java Developer",
+    "company": "PixelCraft",
+    "location": "Remote",
+    "salary": "₹11 - ₹30 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "Node.js",
+      "React",
+      "TensorFlow"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "P"
+  },
+  {
+    "jobId": "JOB105",
+    "title": "React Developer",
+    "company": "DataWave",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹8 - ₹16 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "HTML",
+      "Python",
+      "AWS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB106",
+    "title": "DevOps Engineer",
+    "company": "NextGen",
+    "location": "Surat, Gujarat",
+    "salary": "₹6 - ₹29 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "React",
+      "Java",
+      "AWS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "N"
+  },
+  {
+    "jobId": "JOB107",
+    "title": "UI/UX Developer",
+    "company": "DataWave",
+    "location": "Pune, India",
+    "salary": "₹4 - ₹34 LPA",
+    "type": "Full Time",
+    "category": "UI/UX",
+    "tags": [
+      "JavaScript",
+      "CSS",
+      "Git"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB108",
+    "title": "Java Developer",
+    "company": "CodeSphere",
+    "location": "Bengaluru, India",
+    "salary": "₹9 - ₹38 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Docker",
+      "REST API",
+      "Python"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB109",
+    "title": "Full Stack Developer",
+    "company": "TechNova",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹6 - ₹26 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "AWS",
+      "CSS",
+      "REST API"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "T"
+  },
+  {
+    "jobId": "JOB110",
+    "title": "AI/ML Engineer",
+    "company": "BrightSoft",
+    "location": "Pune, India",
+    "salary": "₹14 - ₹22 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "REST API",
+      "HTML",
+      "AWS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "B"
+  },
+  {
+    "jobId": "JOB111",
+    "title": "QA Engineer",
+    "company": "TechNova",
+    "location": "Remote",
+    "salary": "₹4 - ₹37 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "HTML",
+      "Tailwind CSS",
+      "Java"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "T"
+  },
+  {
+    "jobId": "JOB112",
+    "title": "React Developer",
+    "company": "LogicLoop",
+    "location": "Surat, Gujarat",
+    "salary": "₹13 - ₹18 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "AWS",
+      "SQL",
+      "JavaScript"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "L"
+  },
+  {
+    "jobId": "JOB113",
+    "title": "QA Engineer",
+    "company": "DevNest",
+    "location": "Surat, Gujarat",
+    "salary": "₹14 - ₹33 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "AWS",
+      "SQL",
+      "Java"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB114",
+    "title": "DevOps Engineer",
+    "company": "LogicLoop",
+    "location": "Surat, Gujarat",
+    "salary": "₹14 - ₹18 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "TensorFlow",
+      "Tailwind CSS",
+      "Java"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "L"
+  },
+  {
+    "jobId": "JOB115",
+    "title": "DevOps Engineer",
+    "company": "LogicLoop",
+    "location": "Bengaluru, India",
+    "salary": "₹13 - ₹38 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "React",
+      "TensorFlow",
+      "REST API"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "L"
+  },
+  {
+    "jobId": "JOB116",
+    "title": "UI/UX Developer",
+    "company": "DataWave",
+    "location": "Pune, India",
+    "salary": "₹11 - ₹36 LPA",
+    "type": "Internship",
+    "category": "UI/UX",
+    "tags": [
+      "Docker",
+      "HTML",
+      "REST API"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB117",
+    "title": "Java Developer",
+    "company": "LogicLoop",
+    "location": "Hyderabad, India",
+    "salary": "₹14 - ₹33 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "JavaScript",
+      "CSS",
+      "Python"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "L"
+  },
+  {
+    "jobId": "JOB118",
+    "title": "Java Developer",
+    "company": "NextGen",
+    "location": "Pune, India",
+    "salary": "₹5 - ₹37 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "JavaScript",
+      "Java",
+      "SQL"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "N"
+  },
+  {
+    "jobId": "JOB119",
+    "title": "React Developer",
+    "company": "DataWave",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹5 - ₹24 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "Docker",
+      "Tailwind CSS",
+      "REST API"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB120",
+    "title": "Backend Developer",
+    "company": "NextGen",
+    "location": "Surat, Gujarat",
+    "salary": "₹4 - ₹23 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Docker",
+      "Node.js",
+      "Java"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "N"
+  },
+  {
+    "jobId": "JOB121",
+    "title": "Frontend Developer",
+    "company": "CloudAxis",
+    "location": "Pune, India",
+    "salary": "₹13 - ₹33 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "CSS",
+      "Tailwind CSS",
+      "Python"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB122",
+    "title": "DevOps Engineer",
+    "company": "DataWave",
+    "location": "Remote",
+    "salary": "₹12 - ₹23 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "Node.js",
+      "Docker",
+      "CSS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB123",
+    "title": "QA Engineer",
+    "company": "InnoTech",
+    "location": "Surat, Gujarat",
+    "salary": "₹5 - ₹23 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "Python",
+      "JavaScript",
+      "CSS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "I"
+  },
+  {
+    "jobId": "JOB124",
+    "title": "Full Stack Developer",
+    "company": "LogicLoop",
+    "location": "Remote",
+    "salary": "₹15 - ₹35 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Python",
+      "HTML",
+      "React"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "L"
+  },
+  {
+    "jobId": "JOB125",
+    "title": "Python Developer",
+    "company": "LogicLoop",
+    "location": "Surat, Gujarat",
+    "salary": "₹8 - ₹32 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "JavaScript",
+      "TensorFlow",
+      "REST API"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "L"
+  },
+  {
+    "jobId": "JOB126",
+    "title": "DevOps Engineer",
+    "company": "DataWave",
+    "location": "Surat, Gujarat",
+    "salary": "₹7 - ₹30 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Git",
+      "JavaScript",
+      "Docker"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB127",
+    "title": "Full Stack Developer",
+    "company": "TechNova",
+    "location": "Bengaluru, India",
+    "salary": "₹12 - ₹38 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "Git",
+      "Node.js",
+      "Python"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "T"
+  },
+  {
+    "jobId": "JOB128",
+    "title": "UI/UX Developer",
+    "company": "CloudAxis",
+    "location": "Surat, Gujarat",
+    "salary": "₹11 - ₹17 LPA",
+    "type": "Contract",
+    "category": "UI/UX",
+    "tags": [
+      "Tailwind CSS",
+      "Python",
+      "Node.js"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB129",
+    "title": "React Developer",
+    "company": "InnoTech",
+    "location": "Bengaluru, India",
+    "salary": "₹9 - ₹16 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "JavaScript",
+      "AWS",
+      "HTML"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "I"
+  },
+  {
+    "jobId": "JOB130",
+    "title": "QA Engineer",
+    "company": "PixelCraft",
+    "location": "Remote",
+    "salary": "₹9 - ₹36 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "AWS",
+      "Python",
+      "React"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "P"
+  },
+  {
+    "jobId": "JOB131",
+    "title": "Python Developer",
+    "company": "DataWave",
+    "location": "Remote",
+    "salary": "₹11 - ₹22 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "HTML",
+      "TensorFlow",
+      "React"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB132",
+    "title": "UI/UX Developer",
+    "company": "DevNest",
+    "location": "Bengaluru, India",
+    "salary": "₹15 - ₹38 LPA",
+    "type": "Internship",
+    "category": "UI/UX",
+    "tags": [
+      "Node.js",
+      "HTML",
+      "Java"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB133",
+    "title": "UI/UX Developer",
+    "company": "InnoTech",
+    "location": "Surat, Gujarat",
+    "salary": "₹4 - ₹22 LPA",
+    "type": "Contract",
+    "category": "UI/UX",
+    "tags": [
+      "Tailwind CSS",
+      "SQL",
+      "TensorFlow"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "I"
+  },
+  {
+    "jobId": "JOB134",
+    "title": "Full Stack Developer",
+    "company": "NextGen",
+    "location": "Surat, Gujarat",
+    "salary": "₹4 - ₹40 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "HTML",
+      "Node.js",
+      "Tailwind CSS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "N"
+  },
+  {
+    "jobId": "JOB135",
+    "title": "UI/UX Developer",
+    "company": "BrightSoft",
+    "location": "Pune, India",
+    "salary": "₹9 - ₹39 LPA",
+    "type": "Internship",
+    "category": "UI/UX",
+    "tags": [
+      "AWS",
+      "REST API",
+      "Python"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "B"
+  },
+  {
+    "jobId": "JOB136",
+    "title": "Backend Developer",
+    "company": "TechNova",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹9 - ₹40 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "Java",
+      "AWS",
+      "Python"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "T"
+  },
+  {
+    "jobId": "JOB137",
+    "title": "AI/ML Engineer",
+    "company": "InnoTech",
+    "location": "Surat, Gujarat",
+    "salary": "₹13 - ₹30 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Python",
+      "React",
+      "JavaScript"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "I"
+  },
+  {
+    "jobId": "JOB138",
+    "title": "AI/ML Engineer",
+    "company": "NextGen",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹15 - ₹40 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "REST API",
+      "Java",
+      "CSS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "N"
+  },
+  {
+    "jobId": "JOB139",
+    "title": "Full Stack Developer",
+    "company": "PixelCraft",
+    "location": "Surat, Gujarat",
+    "salary": "₹9 - ₹24 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "Git",
+      "Python",
+      "AWS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "P"
+  },
+  {
+    "jobId": "JOB140",
+    "title": "React Developer",
+    "company": "LogicLoop",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹11 - ₹35 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "AWS",
+      "React",
+      "REST API"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "L"
+  },
+  {
+    "jobId": "JOB141",
+    "title": "UI/UX Developer",
+    "company": "DevNest",
+    "location": "Pune, India",
+    "salary": "₹5 - ₹17 LPA",
+    "type": "Full Time",
+    "category": "UI/UX",
+    "tags": [
+      "Node.js",
+      "CSS",
+      "React"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB142",
+    "title": "AI/ML Engineer",
+    "company": "InnoTech",
+    "location": "Surat, Gujarat",
+    "salary": "₹6 - ₹29 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "SQL",
+      "JavaScript",
+      "Docker"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "I"
+  },
+  {
+    "jobId": "JOB143",
+    "title": "QA Engineer",
+    "company": "CodeSphere",
+    "location": "Bengaluru, India",
+    "salary": "₹8 - ₹34 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Git",
+      "Java",
+      "AWS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB144",
+    "title": "Java Developer",
+    "company": "InnoTech",
+    "location": "Bengaluru, India",
+    "salary": "₹8 - ₹24 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "JavaScript",
+      "HTML",
+      "Git"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "I"
+  },
+  {
+    "jobId": "JOB145",
+    "title": "Java Developer",
+    "company": "CodeSphere",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹15 - ₹30 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "AWS",
+      "React",
+      "REST API"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB146",
+    "title": "Java Developer",
+    "company": "LogicLoop",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹8 - ₹36 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "REST API",
+      "HTML",
+      "SQL"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "L"
+  },
+  {
+    "jobId": "JOB147",
+    "title": "QA Engineer",
+    "company": "DataWave",
+    "location": "Surat, Gujarat",
+    "salary": "₹11 - ₹39 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "Node.js",
+      "JavaScript",
+      "TensorFlow"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB148",
+    "title": "UI/UX Developer",
+    "company": "LogicLoop",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹13 - ₹37 LPA",
+    "type": "Full Time",
+    "category": "UI/UX",
+    "tags": [
+      "AWS",
+      "Tailwind CSS",
+      "React"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "L"
+  },
+  {
+    "jobId": "JOB149",
+    "title": "Full Stack Developer",
+    "company": "DataWave",
+    "location": "Pune, India",
+    "salary": "₹9 - ₹34 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "Python",
+      "CSS",
+      "SQL"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB150",
+    "title": "Full Stack Developer",
+    "company": "CodeSphere",
+    "location": "Bengaluru, India",
+    "salary": "₹8 - ₹28 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Git",
+      "Java",
+      "React"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB151",
+    "title": "Python Developer",
+    "company": "NextGen",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹9 - ₹31 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "CSS",
+      "Python",
+      "Node.js"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "N"
+  },
+  {
+    "jobId": "JOB152",
+    "title": "AI/ML Engineer",
+    "company": "BrightSoft",
+    "location": "Pune, India",
+    "salary": "₹13 - ₹40 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "HTML",
+      "Java",
+      "Git"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "B"
+  },
+  {
+    "jobId": "JOB153",
+    "title": "React Developer",
+    "company": "CloudAxis",
+    "location": "Surat, Gujarat",
+    "salary": "₹9 - ₹16 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "Node.js",
+      "SQL",
+      "Git"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB154",
+    "title": "DevOps Engineer",
+    "company": "BrightSoft",
+    "location": "Pune, India",
+    "salary": "₹12 - ₹36 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "TensorFlow",
+      "Tailwind CSS",
+      "REST API"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "B"
+  },
+  {
+    "jobId": "JOB155",
+    "title": "Java Developer",
+    "company": "CodeSphere",
+    "location": "Remote",
+    "salary": "₹12 - ₹25 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "CSS",
+      "TensorFlow",
+      "Tailwind CSS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB156",
+    "title": "UI/UX Developer",
+    "company": "DevNest",
+    "location": "Surat, Gujarat",
+    "salary": "₹7 - ₹26 LPA",
+    "type": "Contract",
+    "category": "UI/UX",
+    "tags": [
+      "REST API",
+      "React",
+      "HTML"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB157",
+    "title": "DevOps Engineer",
+    "company": "DataWave",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹14 - ₹37 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "Node.js",
+      "JavaScript",
+      "React"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB158",
+    "title": "Full Stack Developer",
+    "company": "NextGen",
+    "location": "Remote",
+    "salary": "₹11 - ₹38 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "HTML",
+      "REST API",
+      "Docker"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "N"
+  },
+  {
+    "jobId": "JOB159",
+    "title": "AI/ML Engineer",
+    "company": "DataWave",
+    "location": "Pune, India",
+    "salary": "₹9 - ₹27 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "Tailwind CSS",
+      "TensorFlow",
+      "Docker"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB160",
+    "title": "Full Stack Developer",
+    "company": "DevNest",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹8 - ₹20 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "HTML",
+      "Git",
+      "Node.js"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB161",
+    "title": "Full Stack Developer",
+    "company": "DataWave",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹7 - ₹17 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "HTML",
+      "Docker",
+      "Python"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB162",
+    "title": "Backend Developer",
+    "company": "NextGen",
+    "location": "Bengaluru, India",
+    "salary": "₹12 - ₹32 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "AWS",
+      "SQL",
+      "CSS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "N"
+  },
+  {
+    "jobId": "JOB163",
+    "title": "Frontend Developer",
+    "company": "TechNova",
+    "location": "Remote",
+    "salary": "₹8 - ₹34 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "Python",
+      "CSS",
+      "Docker"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "T"
+  },
+  {
+    "jobId": "JOB164",
+    "title": "Java Developer",
+    "company": "DataWave",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹11 - ₹23 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "SQL",
+      "REST API",
+      "React"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB165",
+    "title": "QA Engineer",
+    "company": "LogicLoop",
+    "location": "Hyderabad, India",
+    "salary": "₹11 - ₹27 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Git",
+      "REST API",
+      "HTML"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "L"
+  },
+  {
+    "jobId": "JOB166",
+    "title": "AI/ML Engineer",
+    "company": "DevNest",
+    "location": "Hyderabad, India",
+    "salary": "₹9 - ₹20 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Tailwind CSS",
+      "REST API",
+      "Git"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB167",
+    "title": "Python Developer",
+    "company": "BrightSoft",
+    "location": "Bengaluru, India",
+    "salary": "₹10 - ₹17 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "Node.js",
+      "Git",
+      "React"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "B"
+  },
+  {
+    "jobId": "JOB168",
+    "title": "Frontend Developer",
+    "company": "BrightSoft",
+    "location": "Hyderabad, India",
+    "salary": "₹4 - ₹33 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "TensorFlow",
+      "Git",
+      "Tailwind CSS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "B"
+  },
+  {
+    "jobId": "JOB169",
+    "title": "QA Engineer",
+    "company": "PixelCraft",
+    "location": "Pune, India",
+    "salary": "₹8 - ₹31 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "Docker",
+      "REST API",
+      "JavaScript"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "P"
+  },
+  {
+    "jobId": "JOB170",
+    "title": "Backend Developer",
+    "company": "LogicLoop",
+    "location": "Pune, India",
+    "salary": "₹5 - ₹21 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "Python",
+      "TensorFlow",
+      "Node.js"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "L"
+  },
+  {
+    "jobId": "JOB171",
+    "title": "UI/UX Developer",
+    "company": "PixelCraft",
+    "location": "Surat, Gujarat",
+    "salary": "₹7 - ₹16 LPA",
+    "type": "Internship",
+    "category": "UI/UX",
+    "tags": [
+      "React",
+      "Docker",
+      "Java"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "P"
+  },
+  {
+    "jobId": "JOB172",
+    "title": "UI/UX Developer",
+    "company": "InnoTech",
+    "location": "Remote",
+    "salary": "₹12 - ₹19 LPA",
+    "type": "Internship",
+    "category": "UI/UX",
+    "tags": [
+      "Java",
+      "REST API",
+      "Node.js"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "I"
+  },
+  {
+    "jobId": "JOB173",
+    "title": "Full Stack Developer",
+    "company": "DevNest",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹10 - ₹32 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "Tailwind CSS",
+      "Node.js",
+      "JavaScript"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB174",
+    "title": "Backend Developer",
+    "company": "CodeSphere",
+    "location": "Pune, India",
+    "salary": "₹7 - ₹20 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "HTML",
+      "Node.js",
+      "React"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB175",
+    "title": "Java Developer",
+    "company": "BrightSoft",
+    "location": "Surat, Gujarat",
+    "salary": "₹6 - ₹39 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "TensorFlow",
+      "REST API",
+      "Node.js"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "B"
+  },
+  {
+    "jobId": "JOB176",
+    "title": "Frontend Developer",
+    "company": "CodeSphere",
+    "location": "Surat, Gujarat",
+    "salary": "₹11 - ₹27 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Python",
+      "React",
+      "Java"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB177",
+    "title": "React Developer",
+    "company": "LogicLoop",
+    "location": "Pune, India",
+    "salary": "₹12 - ₹29 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "Node.js",
+      "SQL",
+      "REST API"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "L"
+  },
+  {
+    "jobId": "JOB178",
+    "title": "Frontend Developer",
+    "company": "InnoTech",
+    "location": "Bengaluru, India",
+    "salary": "₹11 - ₹29 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "Git",
+      "React",
+      "REST API"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "I"
+  },
+  {
+    "jobId": "JOB179",
+    "title": "QA Engineer",
+    "company": "PixelCraft",
+    "location": "Surat, Gujarat",
+    "salary": "₹6 - ₹40 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "Docker",
+      "SQL",
+      "Tailwind CSS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "P"
+  },
+  {
+    "jobId": "JOB180",
+    "title": "DevOps Engineer",
+    "company": "BrightSoft",
+    "location": "Hyderabad, India",
+    "salary": "₹15 - ₹29 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "CSS",
+      "HTML",
+      "TensorFlow"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "B"
+  },
+  {
+    "jobId": "JOB181",
+    "title": "Full Stack Developer",
+    "company": "TechNova",
+    "location": "Remote",
+    "salary": "₹8 - ₹37 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Docker",
+      "React",
+      "HTML"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "T"
+  },
+  {
+    "jobId": "JOB182",
+    "title": "Frontend Developer",
+    "company": "CodeSphere",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹13 - ₹40 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "HTML",
+      "TensorFlow",
+      "SQL"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB183",
+    "title": "Java Developer",
+    "company": "DataWave",
+    "location": "Bengaluru, India",
+    "salary": "₹15 - ₹24 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "AWS",
+      "CSS",
+      "TensorFlow"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB184",
+    "title": "Java Developer",
+    "company": "BrightSoft",
+    "location": "Remote",
+    "salary": "₹4 - ₹25 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Docker",
+      "Git",
+      "AWS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "B"
+  },
+  {
+    "jobId": "JOB185",
+    "title": "Full Stack Developer",
+    "company": "TechNova",
+    "location": "Remote",
+    "salary": "₹14 - ₹29 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "Docker",
+      "SQL",
+      "CSS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "T"
+  },
+  {
+    "jobId": "JOB186",
+    "title": "Python Developer",
+    "company": "NextGen",
+    "location": "Bengaluru, India",
+    "salary": "₹10 - ₹33 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "TensorFlow",
+      "Node.js",
+      "HTML"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "N"
+  },
+  {
+    "jobId": "JOB187",
+    "title": "Java Developer",
+    "company": "InnoTech",
+    "location": "Pune, India",
+    "salary": "₹8 - ₹31 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "TensorFlow",
+      "CSS",
+      "Java"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "I"
+  },
+  {
+    "jobId": "JOB188",
+    "title": "Java Developer",
+    "company": "DevNest",
+    "location": "Pune, India",
+    "salary": "₹11 - ₹25 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Docker",
+      "Tailwind CSS",
+      "React"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB189",
+    "title": "DevOps Engineer",
+    "company": "CloudAxis",
+    "location": "Remote",
+    "salary": "₹7 - ₹24 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "TensorFlow",
+      "HTML",
+      "REST API"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB190",
+    "title": "Java Developer",
+    "company": "CloudAxis",
+    "location": "Remote",
+    "salary": "₹13 - ₹17 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "TensorFlow",
+      "CSS",
+      "REST API"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "C"
+  },
+  {
+    "jobId": "JOB191",
+    "title": "Full Stack Developer",
+    "company": "PixelCraft",
+    "location": "Remote",
+    "salary": "₹5 - ₹29 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "Docker",
+      "AWS",
+      "React"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "P"
+  },
+  {
+    "jobId": "JOB192",
+    "title": "React Developer",
+    "company": "DevNest",
+    "location": "Hyderabad, India",
+    "salary": "₹4 - ₹27 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "HTML",
+      "TensorFlow",
+      "React"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB193",
+    "title": "Python Developer",
+    "company": "DataWave",
+    "location": "Ahmedabad, Gujarat",
+    "salary": "₹4 - ₹33 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "JavaScript",
+      "CSS",
+      "HTML"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB194",
+    "title": "Python Developer",
+    "company": "TechNova",
+    "location": "Hyderabad, India",
+    "salary": "₹8 - ₹32 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "Java",
+      "TensorFlow",
+      "Tailwind CSS"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "T"
+  },
+  {
+    "jobId": "JOB195",
+    "title": "DevOps Engineer",
+    "company": "NextGen",
+    "location": "Pune, India",
+    "salary": "₹10 - ₹27 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "Git",
+      "Node.js",
+      "Docker"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "N"
+  },
+  {
+    "jobId": "JOB196",
+    "title": "UI/UX Developer",
+    "company": "DevNest",
+    "location": "Remote",
+    "salary": "₹7 - ₹34 LPA",
+    "type": "Full Time",
+    "category": "UI/UX",
+    "tags": [
+      "TensorFlow",
+      "HTML",
+      "Python"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB197",
+    "title": "React Developer",
+    "company": "TechNova",
+    "location": "Pune, India",
+    "salary": "₹6 - ₹18 LPA",
+    "type": "Full Time",
+    "category": "Engineering",
+    "tags": [
+      "TensorFlow",
+      "HTML",
+      "Python"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "T"
+  },
+  {
+    "jobId": "JOB198",
+    "title": "Full Stack Developer",
+    "company": "DevNest",
+    "location": "Hyderabad, India",
+    "salary": "₹12 - ₹22 LPA",
+    "type": "Contract",
+    "category": "Engineering",
+    "tags": [
+      "Node.js",
+      "React",
+      "Git"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "D"
+  },
+  {
+    "jobId": "JOB199",
+    "title": "Python Developer",
+    "company": "NextGen",
+    "location": "Hyderabad, India",
+    "salary": "₹11 - ₹35 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "Docker",
+      "AWS",
+      "TensorFlow"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "N"
+  },
+  {
+    "jobId": "JOB200",
+    "title": "React Developer",
+    "company": "PixelCraft",
+    "location": "Pune, India",
+    "salary": "₹12 - ₹28 LPA",
+    "type": "Internship",
+    "category": "Engineering",
+    "tags": [
+      "REST API",
+      "Tailwind CSS",
+      "Java"
+    ],
+    "logoBg": "#eff6ff",
+    "logoColor": "#10b981",
+    "logoLetter": "P"
+  }
+]

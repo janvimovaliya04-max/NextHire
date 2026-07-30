@@ -1,0 +1,632 @@
+[
+  {
+    "id": 1,
+    "title": "Interview Scheduled",
+    "message": "Your interview has been scheduled.",
+    "category": "Schedule",
+    "time": "2 mins ago",
+    "isRead": false,
+    "icon": "schedule"
+  },
+  {
+    "id": 2,
+    "title": "HR Meeting",
+    "message": "HR has scheduled a discussion.",
+    "category": "Schedule",
+    "time": "10 mins ago",
+    "isRead": false,
+    "icon": "schedule"
+  },
+  {
+    "id": 3,
+    "title": "Offer Reminder",
+    "message": "Please respond to your offer.",
+    "category": "Offers",
+    "time": "30 mins ago",
+    "isRead": true,
+    "icon": "offers"
+  },
+  {
+    "id": 4,
+    "title": "Assessment Result",
+    "message": "Your assessment result is available.",
+    "category": "Tests",
+    "time": "1 hour ago",
+    "isRead": false,
+    "icon": "tests"
+  },
+  {
+    "id": 5,
+    "title": "Interview Rescheduled",
+    "message": "Your interview timing has changed.",
+    "category": "Schedule",
+    "time": "2 hours ago",
+    "isRead": false,
+    "icon": "schedule"
+  },
+  {
+    "id": 6,
+    "title": "Assessment Result",
+    "message": "Your assessment result is available.",
+    "category": "Tests",
+    "time": "5 hours ago",
+    "isRead": true,
+    "icon": "tests"
+  },
+  {
+    "id": 7,
+    "title": "Background Check",
+    "message": "Background verification is in progress.",
+    "category": "Offers",
+    "time": "Yesterday",
+    "isRead": false,
+    "icon": "offers"
+  },
+  {
+    "id": 8,
+    "title": "Documents Verified",
+    "message": "Your documents have been verified.",
+    "category": "Profile",
+    "time": "2 days ago",
+    "isRead": false,
+    "icon": "profile"
+  },
+  {
+    "id": 9,
+    "title": "Login Alert",
+    "message": "A new login to your account was detected.",
+    "category": "Messages",
+    "time": "3 days ago",
+    "isRead": true,
+    "icon": "messages"
+  },
+  {
+    "id": 10,
+    "title": "Assessment Result",
+    "message": "Your assessment result is available.",
+    "category": "Tests",
+    "time": "1 week ago",
+    "isRead": false,
+    "icon": "tests"
+  },
+  {
+    "id": 11,
+    "title": "Interview Completed",
+    "message": "Your interview has been completed.",
+    "category": "Schedule",
+    "time": "2 mins ago",
+    "isRead": false,
+    "icon": "schedule"
+  },
+  {
+    "id": 12,
+    "title": "Resume Viewed",
+    "message": "A recruiter viewed your resume.",
+    "category": "Profile",
+    "time": "10 mins ago",
+    "isRead": true,
+    "icon": "profile"
+  },
+  {
+    "id": 13,
+    "title": "Interview Completed",
+    "message": "Your interview has been completed.",
+    "category": "Schedule",
+    "time": "30 mins ago",
+    "isRead": false,
+    "icon": "schedule"
+  },
+  {
+    "id": 14,
+    "title": "Application Viewed",
+    "message": "A recruiter viewed your application.",
+    "category": "Applications",
+    "time": "1 hour ago",
+    "isRead": false,
+    "icon": "applications"
+  },
+  {
+    "id": 15,
+    "title": "Joining Reminder",
+    "message": "Your joining date is approaching.",
+    "category": "Offers",
+    "time": "2 hours ago",
+    "isRead": true,
+    "icon": "offers"
+  },
+  {
+    "id": 16,
+    "title": "Offer Released",
+    "message": "Congratulations! An offer has been released.",
+    "category": "Offers",
+    "time": "5 hours ago",
+    "isRead": false,
+    "icon": "offers"
+  },
+  {
+    "id": 17,
+    "title": "New Job Match",
+    "message": "A new job matches your profile.",
+    "category": "Messages",
+    "time": "Yesterday",
+    "isRead": false,
+    "icon": "messages"
+  },
+  {
+    "id": 18,
+    "title": "Profile Updated",
+    "message": "Your profile was updated successfully.",
+    "category": "Profile",
+    "time": "2 days ago",
+    "isRead": true,
+    "icon": "profile"
+  },
+  {
+    "id": 19,
+    "title": "Profile Updated",
+    "message": "Your profile was updated successfully.",
+    "category": "Profile",
+    "time": "3 days ago",
+    "isRead": false,
+    "icon": "profile"
+  },
+  {
+    "id": 20,
+    "title": "Email Verified",
+    "message": "Your email has been verified.",
+    "category": "Profile",
+    "time": "1 week ago",
+    "isRead": false,
+    "icon": "profile"
+  },
+  {
+    "id": 21,
+    "title": "Interview Scheduled",
+    "message": "Your interview has been scheduled.",
+    "category": "Schedule",
+    "time": "2 mins ago",
+    "isRead": true,
+    "icon": "schedule"
+  },
+  {
+    "id": 22,
+    "title": "Background Check",
+    "message": "Background verification is in progress.",
+    "category": "Offers",
+    "time": "10 mins ago",
+    "isRead": false,
+    "icon": "offers"
+  },
+  {
+    "id": 23,
+    "title": "Application Under Review",
+    "message": "Your application is under review by the recruiter.",
+    "category": "Applications",
+    "time": "30 mins ago",
+    "isRead": false,
+    "icon": "applications"
+  },
+  {
+    "id": 24,
+    "title": "Login Alert",
+    "message": "A new login to your account was detected.",
+    "category": "Messages",
+    "time": "1 hour ago",
+    "isRead": true,
+    "icon": "messages"
+  },
+  {
+    "id": 25,
+    "title": "New Job Match",
+    "message": "A new job matches your profile.",
+    "category": "Messages",
+    "time": "2 hours ago",
+    "isRead": false,
+    "icon": "messages"
+  },
+  {
+    "id": 26,
+    "title": "Coding Test Available",
+    "message": "A coding test is now available.",
+    "category": "Tests",
+    "time": "5 hours ago",
+    "isRead": false,
+    "icon": "tests"
+  },
+  {
+    "id": 27,
+    "title": "Background Check",
+    "message": "Background verification is in progress.",
+    "category": "Offers",
+    "time": "Yesterday",
+    "isRead": true,
+    "icon": "offers"
+  },
+  {
+    "id": 28,
+    "title": "Application Under Review",
+    "message": "Your application is under review by the recruiter.",
+    "category": "Applications",
+    "time": "2 days ago",
+    "isRead": false,
+    "icon": "applications"
+  },
+  {
+    "id": 29,
+    "title": "Background Check",
+    "message": "Background verification is in progress.",
+    "category": "Offers",
+    "time": "3 days ago",
+    "isRead": false,
+    "icon": "offers"
+  },
+  {
+    "id": 30,
+    "title": "Background Check",
+    "message": "Background verification is in progress.",
+    "category": "Offers",
+    "time": "1 week ago",
+    "isRead": true,
+    "icon": "offers"
+  },
+  {
+    "id": 31,
+    "title": "Interview Scheduled",
+    "message": "Your interview has been scheduled.",
+    "category": "Schedule",
+    "time": "2 mins ago",
+    "isRead": false,
+    "icon": "schedule"
+  },
+  {
+    "id": 32,
+    "title": "Interview Completed",
+    "message": "Your interview has been completed.",
+    "category": "Schedule",
+    "time": "10 mins ago",
+    "isRead": false,
+    "icon": "schedule"
+  },
+  {
+    "id": 33,
+    "title": "Interview Reminder",
+    "message": "Your interview starts soon.",
+    "category": "Schedule",
+    "time": "30 mins ago",
+    "isRead": true,
+    "icon": "schedule"
+  },
+  {
+    "id": 34,
+    "title": "Offer Reminder",
+    "message": "Please respond to your offer.",
+    "category": "Offers",
+    "time": "1 hour ago",
+    "isRead": false,
+    "icon": "offers"
+  },
+  {
+    "id": 35,
+    "title": "Background Check",
+    "message": "Background verification is in progress.",
+    "category": "Offers",
+    "time": "2 hours ago",
+    "isRead": false,
+    "icon": "offers"
+  },
+  {
+    "id": 36,
+    "title": "Login Alert",
+    "message": "A new login to your account was detected.",
+    "category": "Messages",
+    "time": "5 hours ago",
+    "isRead": true,
+    "icon": "messages"
+  },
+  {
+    "id": 37,
+    "title": "Resume Viewed",
+    "message": "A recruiter viewed your resume.",
+    "category": "Profile",
+    "time": "Yesterday",
+    "isRead": false,
+    "icon": "profile"
+  },
+  {
+    "id": 38,
+    "title": "Application Viewed",
+    "message": "A recruiter viewed your application.",
+    "category": "Applications",
+    "time": "2 days ago",
+    "isRead": false,
+    "icon": "applications"
+  },
+  {
+    "id": 39,
+    "title": "Interview Completed",
+    "message": "Your interview has been completed.",
+    "category": "Schedule",
+    "time": "3 days ago",
+    "isRead": true,
+    "icon": "schedule"
+  },
+  {
+    "id": 40,
+    "title": "Interview Reminder",
+    "message": "Your interview starts soon.",
+    "category": "Schedule",
+    "time": "1 week ago",
+    "isRead": false,
+    "icon": "schedule"
+  },
+  {
+    "id": 41,
+    "title": "Login Alert",
+    "message": "A new login to your account was detected.",
+    "category": "Messages",
+    "time": "2 mins ago",
+    "isRead": false,
+    "icon": "messages"
+  },
+  {
+    "id": 42,
+    "title": "Application Received",
+    "message": "Your application has been submitted successfully.",
+    "category": "Applications",
+    "time": "10 mins ago",
+    "isRead": true,
+    "icon": "applications"
+  },
+  {
+    "id": 43,
+    "title": "Saved Job Reminder",
+    "message": "A saved job is closing soon.",
+    "category": "Messages",
+    "time": "30 mins ago",
+    "isRead": false,
+    "icon": "messages"
+  },
+  {
+    "id": 44,
+    "title": "Saved Job Reminder",
+    "message": "A saved job is closing soon.",
+    "category": "Messages",
+    "time": "1 hour ago",
+    "isRead": false,
+    "icon": "messages"
+  },
+  {
+    "id": 45,
+    "title": "Login Alert",
+    "message": "A new login to your account was detected.",
+    "category": "Messages",
+    "time": "2 hours ago",
+    "isRead": true,
+    "icon": "messages"
+  },
+  {
+    "id": 46,
+    "title": "Password Changed",
+    "message": "Your password was changed successfully.",
+    "category": "Messages",
+    "time": "5 hours ago",
+    "isRead": false,
+    "icon": "messages"
+  },
+  {
+    "id": 47,
+    "title": "Joining Reminder",
+    "message": "Your joining date is approaching.",
+    "category": "Offers",
+    "time": "Yesterday",
+    "isRead": false,
+    "icon": "offers"
+  },
+  {
+    "id": 48,
+    "title": "Password Changed",
+    "message": "Your password was changed successfully.",
+    "category": "Messages",
+    "time": "2 days ago",
+    "isRead": true,
+    "icon": "messages"
+  },
+  {
+    "id": 49,
+    "title": "Background Check",
+    "message": "Background verification is in progress.",
+    "category": "Offers",
+    "time": "3 days ago",
+    "isRead": false,
+    "icon": "offers"
+  },
+  {
+    "id": 50,
+    "title": "Application Rejected",
+    "message": "The employer has decided not to proceed.",
+    "category": "Applications",
+    "time": "1 week ago",
+    "isRead": false,
+    "icon": "applications"
+  },
+  {
+    "id": 51,
+    "title": "Offer Accepted",
+    "message": "Your offer acceptance has been recorded.",
+    "category": "Offers",
+    "time": "2 mins ago",
+    "isRead": true,
+    "icon": "offers"
+  },
+  {
+    "id": 52,
+    "title": "Assessment Completed",
+    "message": "Your assessment has been submitted.",
+    "category": "Tests",
+    "time": "10 mins ago",
+    "isRead": false,
+    "icon": "tests"
+  },
+  {
+    "id": 53,
+    "title": "Joining Reminder",
+    "message": "Your joining date is approaching.",
+    "category": "Offers",
+    "time": "30 mins ago",
+    "isRead": false,
+    "icon": "offers"
+  },
+  {
+    "id": 54,
+    "title": "Assessment Completed",
+    "message": "Your assessment has been submitted.",
+    "category": "Tests",
+    "time": "1 hour ago",
+    "isRead": true,
+    "icon": "tests"
+  },
+  {
+    "id": 55,
+    "title": "Offer Reminder",
+    "message": "Please respond to your offer.",
+    "category": "Offers",
+    "time": "2 hours ago",
+    "isRead": false,
+    "icon": "offers"
+  },
+  {
+    "id": 56,
+    "title": "Interview Reminder",
+    "message": "Your interview starts soon.",
+    "category": "Schedule",
+    "time": "5 hours ago",
+    "isRead": false,
+    "icon": "schedule"
+  },
+  {
+    "id": 57,
+    "title": "Assessment Completed",
+    "message": "Your assessment has been submitted.",
+    "category": "Tests",
+    "time": "Yesterday",
+    "isRead": true,
+    "icon": "tests"
+  },
+  {
+    "id": 58,
+    "title": "Profile Incomplete",
+    "message": "Complete your profile to improve visibility.",
+    "category": "Profile",
+    "time": "2 days ago",
+    "isRead": false,
+    "icon": "profile"
+  },
+  {
+    "id": 59,
+    "title": "Interview Scheduled",
+    "message": "Your interview has been scheduled.",
+    "category": "Schedule",
+    "time": "3 days ago",
+    "isRead": false,
+    "icon": "schedule"
+  },
+  {
+    "id": 60,
+    "title": "Assessment Result",
+    "message": "Your assessment result is available.",
+    "category": "Tests",
+    "time": "1 week ago",
+    "isRead": true,
+    "icon": "tests"
+  },
+  {
+    "id": 61,
+    "title": "Offer Released",
+    "message": "Congratulations! An offer has been released.",
+    "category": "Offers",
+    "time": "2 mins ago",
+    "isRead": false,
+    "icon": "offers"
+  },
+  {
+    "id": 62,
+    "title": "Assessment Invitation",
+    "message": "You have been invited to complete an assessment.",
+    "category": "Tests",
+    "time": "10 mins ago",
+    "isRead": false,
+    "icon": "tests"
+  },
+  {
+    "id": 63,
+    "title": "Joining Reminder",
+    "message": "Your joining date is approaching.",
+    "category": "Offers",
+    "time": "30 mins ago",
+    "isRead": true,
+    "icon": "offers"
+  },
+  {
+    "id": 64,
+    "title": "Application Under Review",
+    "message": "Your application is under review by the recruiter.",
+    "category": "Applications",
+    "time": "1 hour ago",
+    "isRead": false,
+    "icon": "applications"
+  },
+  {
+    "id": 65,
+    "title": "Assessment Invitation",
+    "message": "You have been invited to complete an assessment.",
+    "category": "Tests",
+    "time": "2 hours ago",
+    "isRead": false,
+    "icon": "tests"
+  },
+  {
+    "id": 66,
+    "title": "Coding Test Available",
+    "message": "A coding test is now available.",
+    "category": "Tests",
+    "time": "5 hours ago",
+    "isRead": true,
+    "icon": "tests"
+  },
+  {
+    "id": 67,
+    "title": "Offer Released",
+    "message": "Congratulations! An offer has been released.",
+    "category": "Offers",
+    "time": "Yesterday",
+    "isRead": false,
+    "icon": "offers"
+  },
+  {
+    "id": 68,
+    "title": "HR Meeting",
+    "message": "HR has scheduled a discussion.",
+    "category": "Schedule",
+    "time": "2 days ago",
+    "isRead": false,
+    "icon": "schedule"
+  },
+  {
+    "id": 69,
+    "title": "Interview Reminder",
+    "message": "Your interview starts soon.",
+    "category": "Schedule",
+    "time": "3 days ago",
+    "isRead": true,
+    "icon": "schedule"
+  },
+  {
+    "id": 70,
+    "title": "Profile Incomplete",
+    "message": "Complete your profile to improve visibility.",
+    "category": "Profile",
+    "time": "1 week ago",
+    "isRead": false,
+    "icon": "profile"
+  }
+]

@@ -1,0 +1,702 @@
+[
+  {
+    "id": 1,
+    "type": "assigned",
+    "title": "New Interview Assigned",
+    "message": "New interview assigned for Full Stack Developer.",
+    "time": "2 days ago"
+  },
+  {
+    "id": 2,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview with Sneha Reddy scheduled on 30 June 2026.",
+    "time": "6 hours ago"
+  },
+  {
+    "id": 3,
+    "type": "submitted",
+    "title": "Evaluation Submitted",
+    "message": "Evaluation for Vivaan Malhotra has been submitted.",
+    "time": "2 days ago"
+  },
+  {
+    "id": 4,
+    "type": "submitted",
+    "title": "Evaluation Submitted",
+    "message": "Evaluation for Simran Chawla has been submitted.",
+    "time": "Just now"
+  },
+  {
+    "id": 5,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview with Arjun Pillai scheduled on 12 June 2026.",
+    "time": "5 days ago"
+  },
+  {
+    "id": 6,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview scheduled on 22 June 2026.",
+    "time": "6 hours ago"
+  },
+  {
+    "id": 7,
+    "type": "submitted",
+    "title": "Evaluation Submitted",
+    "message": "Evaluation for Aarav Singh has been submitted.",
+    "time": "5 mins ago"
+  },
+  {
+    "id": 8,
+    "type": "pending",
+    "title": "Feedback Pending",
+    "message": "Feedback pending for candidate Aditya Rao.",
+    "time": "5 days ago"
+  },
+  {
+    "id": 9,
+    "type": "submitted",
+    "title": "Evaluation Submitted",
+    "message": "Evaluation successfully submitted.",
+    "time": "15 mins ago"
+  },
+  {
+    "id": 10,
+    "type": "submitted",
+    "title": "Evaluation Submitted",
+    "message": "Evaluation successfully submitted.",
+    "time": "30 mins ago"
+  },
+  {
+    "id": 11,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview scheduled on 25 June 2026.",
+    "time": "5 days ago"
+  },
+  {
+    "id": 12,
+    "type": "submitted",
+    "title": "Evaluation Submitted",
+    "message": "Evaluation successfully submitted.",
+    "time": "2 hours ago"
+  },
+  {
+    "id": 13,
+    "type": "assigned",
+    "title": "New Interview Assigned",
+    "message": "You have been assigned to interview a candidate for Frontend Developer.",
+    "time": "1 hour ago"
+  },
+  {
+    "id": 14,
+    "type": "pending",
+    "title": "Feedback Pending",
+    "message": "Please submit feedback for Rahul Mehta's interview.",
+    "time": "3 days ago"
+  },
+  {
+    "id": 15,
+    "type": "submitted",
+    "title": "Evaluation Submitted",
+    "message": "Evaluation for Kavya Nair has been submitted.",
+    "time": "30 mins ago"
+  },
+  {
+    "id": 16,
+    "type": "pending",
+    "title": "Feedback Pending",
+    "message": "Please submit feedback for Nisha Patel's interview.",
+    "time": "6 hours ago"
+  },
+  {
+    "id": 17,
+    "type": "submitted",
+    "title": "Evaluation Submitted",
+    "message": "Evaluation for Kavya Nair has been submitted.",
+    "time": "Just now"
+  },
+  {
+    "id": 18,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview with Ishita Joshi scheduled on 03 July 2026.",
+    "time": "2 days ago"
+  },
+  {
+    "id": 19,
+    "type": "pending",
+    "title": "Feedback Pending",
+    "message": "Feedback pending for candidate Simran Chawla.",
+    "time": "1 hour ago"
+  },
+  {
+    "id": 20,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview with Kavya Nair scheduled on 07 July 2026.",
+    "time": "6 hours ago"
+  },
+  {
+    "id": 21,
+    "type": "submitted",
+    "title": "Evaluation Submitted",
+    "message": "Evaluation successfully submitted.",
+    "time": "1 day ago"
+  },
+  {
+    "id": 22,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview with Priya Sharma scheduled on 22 June 2026.",
+    "time": "4 hours ago"
+  },
+  {
+    "id": 23,
+    "type": "submitted",
+    "title": "Evaluation Submitted",
+    "message": "Evaluation successfully submitted.",
+    "time": "8 hours ago"
+  },
+  {
+    "id": 24,
+    "type": "pending",
+    "title": "Feedback Pending",
+    "message": "Please submit feedback for Priya Sharma's interview.",
+    "time": "2 mins ago"
+  },
+  {
+    "id": 25,
+    "type": "submitted",
+    "title": "Evaluation Submitted",
+    "message": "Evaluation successfully submitted.",
+    "time": "2 days ago"
+  },
+  {
+    "id": 26,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview with Kavya Nair scheduled on 14 July 2026.",
+    "time": "8 hours ago"
+  },
+  {
+    "id": 27,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview with Ananya Iyer scheduled on 30 June 2026.",
+    "time": "30 mins ago"
+  },
+  {
+    "id": 28,
+    "type": "assigned",
+    "title": "New Interview Assigned",
+    "message": "You have been assigned to interview a candidate for DevOps Engineer.",
+    "time": "5 days ago"
+  },
+  {
+    "id": 29,
+    "type": "pending",
+    "title": "Feedback Pending",
+    "message": "Please submit feedback for Meet Shah's interview.",
+    "time": "5 mins ago"
+  },
+  {
+    "id": 30,
+    "type": "assigned",
+    "title": "New Interview Assigned",
+    "message": "New interview assigned for Machine Learning Engineer.",
+    "time": "1 day ago"
+  },
+  {
+    "id": 31,
+    "type": "pending",
+    "title": "Feedback Pending",
+    "message": "Feedback pending for candidate Ishita Joshi.",
+    "time": "2 hours ago"
+  },
+  {
+    "id": 32,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview scheduled on 07 July 2026.",
+    "time": "Just now"
+  },
+  {
+    "id": 33,
+    "type": "pending",
+    "title": "Feedback Pending",
+    "message": "Please submit feedback for Ananya Iyer's interview.",
+    "time": "6 hours ago"
+  },
+  {
+    "id": 34,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview with Kunal Verma scheduled on 18 June 2026.",
+    "time": "6 hours ago"
+  },
+  {
+    "id": 35,
+    "type": "pending",
+    "title": "Feedback Pending",
+    "message": "Please submit feedback for Simran Chawla's interview.",
+    "time": "4 hours ago"
+  },
+  {
+    "id": 36,
+    "type": "assigned",
+    "title": "New Interview Assigned",
+    "message": "New interview assigned for Backend Developer.",
+    "time": "1 day ago"
+  },
+  {
+    "id": 37,
+    "type": "assigned",
+    "title": "New Interview Assigned",
+    "message": "New interview assigned for Backend Developer.",
+    "time": "5 days ago"
+  },
+  {
+    "id": 38,
+    "type": "assigned",
+    "title": "New Interview Assigned",
+    "message": "You have been assigned to interview a candidate for React Native Dev.",
+    "time": "Just now"
+  },
+  {
+    "id": 39,
+    "type": "assigned",
+    "title": "New Interview Assigned",
+    "message": "New interview assigned for Backend Developer.",
+    "time": "3 days ago"
+  },
+  {
+    "id": 40,
+    "type": "submitted",
+    "title": "Evaluation Submitted",
+    "message": "Evaluation for Vivaan Malhotra has been submitted.",
+    "time": "2 days ago"
+  },
+  {
+    "id": 41,
+    "type": "assigned",
+    "title": "New Interview Assigned",
+    "message": "New interview assigned for Frontend Developer.",
+    "time": "4 hours ago"
+  },
+  {
+    "id": 42,
+    "type": "pending",
+    "title": "Feedback Pending",
+    "message": "Please submit feedback for Sneha Reddy's interview.",
+    "time": "2 days ago"
+  },
+  {
+    "id": 43,
+    "type": "assigned",
+    "title": "New Interview Assigned",
+    "message": "You have been assigned to interview a candidate for Full Stack Developer.",
+    "time": "2 days ago"
+  },
+  {
+    "id": 44,
+    "type": "pending",
+    "title": "Feedback Pending",
+    "message": "Please submit feedback for Kavya Nair's interview.",
+    "time": "2 days ago"
+  },
+  {
+    "id": 45,
+    "type": "submitted",
+    "title": "Evaluation Submitted",
+    "message": "Evaluation successfully submitted.",
+    "time": "1 day ago"
+  },
+  {
+    "id": 46,
+    "type": "assigned",
+    "title": "New Interview Assigned",
+    "message": "You have been assigned to interview a candidate for Machine Learning Engineer.",
+    "time": "1 day ago"
+  },
+  {
+    "id": 47,
+    "type": "submitted",
+    "title": "Evaluation Submitted",
+    "message": "Evaluation for Sneha Reddy has been submitted.",
+    "time": "2 days ago"
+  },
+  {
+    "id": 48,
+    "type": "submitted",
+    "title": "Evaluation Submitted",
+    "message": "Evaluation successfully submitted.",
+    "time": "2 mins ago"
+  },
+  {
+    "id": 49,
+    "type": "assigned",
+    "title": "New Interview Assigned",
+    "message": "You have been assigned to interview a candidate for DevOps Engineer.",
+    "time": "2 hours ago"
+  },
+  {
+    "id": 50,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview scheduled on 25 June 2026.",
+    "time": "6 hours ago"
+  },
+  {
+    "id": 51,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview scheduled on 30 June 2026.",
+    "time": "2 hours ago"
+  },
+  {
+    "id": 52,
+    "type": "submitted",
+    "title": "Evaluation Submitted",
+    "message": "Evaluation successfully submitted.",
+    "time": "15 mins ago"
+  },
+  {
+    "id": 53,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview with Ishita Joshi scheduled on 10 July 2026.",
+    "time": "6 hours ago"
+  },
+  {
+    "id": 54,
+    "type": "assigned",
+    "title": "New Interview Assigned",
+    "message": "You have been assigned to interview a candidate for Frontend Developer.",
+    "time": "6 hours ago"
+  },
+  {
+    "id": 55,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview with Janvi scheduled on 25 June 2026.",
+    "time": "30 mins ago"
+  },
+  {
+    "id": 56,
+    "type": "assigned",
+    "title": "New Interview Assigned",
+    "message": "New interview assigned for QA Engineer.",
+    "time": "30 mins ago"
+  },
+  {
+    "id": 57,
+    "type": "pending",
+    "title": "Feedback Pending",
+    "message": "Feedback pending for candidate Sneha Reddy.",
+    "time": "30 mins ago"
+  },
+  {
+    "id": 58,
+    "type": "assigned",
+    "title": "New Interview Assigned",
+    "message": "New interview assigned for Data Scientist.",
+    "time": "2 hours ago"
+  },
+  {
+    "id": 59,
+    "type": "pending",
+    "title": "Feedback Pending",
+    "message": "Please submit feedback for Rahul Mehta's interview.",
+    "time": "30 mins ago"
+  },
+  {
+    "id": 60,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview with Ananya Iyer scheduled on 03 July 2026.",
+    "time": "30 mins ago"
+  },
+  {
+    "id": 61,
+    "type": "submitted",
+    "title": "Evaluation Submitted",
+    "message": "Evaluation for Ananya Iyer has been submitted.",
+    "time": "2 mins ago"
+  },
+  {
+    "id": 62,
+    "type": "pending",
+    "title": "Feedback Pending",
+    "message": "Please submit feedback for Kunal Verma's interview.",
+    "time": "6 hours ago"
+  },
+  {
+    "id": 63,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview with Ishita Joshi scheduled on 18 June 2026.",
+    "time": "30 mins ago"
+  },
+  {
+    "id": 64,
+    "type": "pending",
+    "title": "Feedback Pending",
+    "message": "Please submit feedback for Diya Kapoor's interview.",
+    "time": "6 hours ago"
+  },
+  {
+    "id": 65,
+    "type": "assigned",
+    "title": "New Interview Assigned",
+    "message": "New interview assigned for Machine Learning Engineer.",
+    "time": "2 hours ago"
+  },
+  {
+    "id": 66,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview with Kunal Verma scheduled on 14 July 2026.",
+    "time": "1 hour ago"
+  },
+  {
+    "id": 67,
+    "type": "submitted",
+    "title": "Evaluation Submitted",
+    "message": "Evaluation for Rohan Desai has been submitted.",
+    "time": "8 hours ago"
+  },
+  {
+    "id": 68,
+    "type": "pending",
+    "title": "Feedback Pending",
+    "message": "Please submit feedback for Vivaan Malhotra's interview.",
+    "time": "2 mins ago"
+  },
+  {
+    "id": 69,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview with Ananya Iyer scheduled on 12 June 2026.",
+    "time": "5 days ago"
+  },
+  {
+    "id": 70,
+    "type": "pending",
+    "title": "Feedback Pending",
+    "message": "Feedback pending for candidate Rohan Desai.",
+    "time": "8 hours ago"
+  },
+  {
+    "id": 71,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview scheduled on 22 June 2026.",
+    "time": "8 hours ago"
+  },
+  {
+    "id": 72,
+    "type": "assigned",
+    "title": "New Interview Assigned",
+    "message": "You have been assigned to interview a candidate for QA Engineer.",
+    "time": "6 hours ago"
+  },
+  {
+    "id": 73,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview with Yash Trivedi scheduled on 10 July 2026.",
+    "time": "1 day ago"
+  },
+  {
+    "id": 74,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview scheduled on 25 June 2026.",
+    "time": "30 mins ago"
+  },
+  {
+    "id": 75,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview with Diya Kapoor scheduled on 30 June 2026.",
+    "time": "3 days ago"
+  },
+  {
+    "id": 76,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview scheduled on 18 June 2026.",
+    "time": "1 day ago"
+  },
+  {
+    "id": 77,
+    "type": "submitted",
+    "title": "Evaluation Submitted",
+    "message": "Evaluation for Simran Chawla has been submitted.",
+    "time": "1 day ago"
+  },
+  {
+    "id": 78,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview with Ananya Iyer scheduled on 03 July 2026.",
+    "time": "30 mins ago"
+  },
+  {
+    "id": 79,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview scheduled on 18 June 2026.",
+    "time": "1 hour ago"
+  },
+  {
+    "id": 80,
+    "type": "pending",
+    "title": "Feedback Pending",
+    "message": "Feedback pending for candidate Pooja Bhatt.",
+    "time": "5 mins ago"
+  },
+  {
+    "id": 81,
+    "type": "pending",
+    "title": "Feedback Pending",
+    "message": "Feedback pending for candidate Rohan Desai.",
+    "time": "2 mins ago"
+  },
+  {
+    "id": 82,
+    "type": "submitted",
+    "title": "Evaluation Submitted",
+    "message": "Evaluation for Aarav Singh has been submitted.",
+    "time": "5 days ago"
+  },
+  {
+    "id": 83,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview scheduled on 18 June 2026.",
+    "time": "5 mins ago"
+  },
+  {
+    "id": 84,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview scheduled on 18 June 2026.",
+    "time": "5 days ago"
+  },
+  {
+    "id": 85,
+    "type": "submitted",
+    "title": "Evaluation Submitted",
+    "message": "Evaluation successfully submitted.",
+    "time": "4 hours ago"
+  },
+  {
+    "id": 86,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview scheduled on 12 June 2026.",
+    "time": "30 mins ago"
+  },
+  {
+    "id": 87,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview with Yash Trivedi scheduled on 14 July 2026.",
+    "time": "4 hours ago"
+  },
+  {
+    "id": 88,
+    "type": "submitted",
+    "title": "Evaluation Submitted",
+    "message": "Evaluation successfully submitted.",
+    "time": "5 mins ago"
+  },
+  {
+    "id": 89,
+    "type": "submitted",
+    "title": "Evaluation Submitted",
+    "message": "Evaluation for Meet Shah has been submitted.",
+    "time": "1 hour ago"
+  },
+  {
+    "id": 90,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview scheduled on 22 June 2026.",
+    "time": "Just now"
+  },
+  {
+    "id": 91,
+    "type": "assigned",
+    "title": "New Interview Assigned",
+    "message": "New interview assigned for React Native Dev.",
+    "time": "2 days ago"
+  },
+  {
+    "id": 92,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview scheduled on 25 June 2026.",
+    "time": "6 hours ago"
+  },
+  {
+    "id": 93,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview scheduled on 30 June 2026.",
+    "time": "4 hours ago"
+  },
+  {
+    "id": 94,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview scheduled on 03 July 2026.",
+    "time": "4 hours ago"
+  },
+  {
+    "id": 95,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview scheduled on 07 July 2026.",
+    "time": "Just now"
+  },
+  {
+    "id": 96,
+    "type": "pending",
+    "title": "Feedback Pending",
+    "message": "Feedback pending for candidate Diya Kapoor.",
+    "time": "5 days ago"
+  },
+  {
+    "id": 97,
+    "type": "scheduled",
+    "title": "Interview Scheduled",
+    "message": "Interview with Kunal Verma scheduled on 15 June 2026.",
+    "time": "1 hour ago"
+  },
+  {
+    "id": 98,
+    "type": "assigned",
+    "title": "New Interview Assigned",
+    "message": "You have been assigned to interview a candidate for Data Scientist.",
+    "time": "4 hours ago"
+  },
+  {
+    "id": 99,
+    "type": "pending",
+    "title": "Feedback Pending",
+    "message": "Please submit feedback for Nisha Patel's interview.",
+    "time": "2 mins ago"
+  },
+  {
+    "id": 100,
+    "type": "submitted",
+    "title": "Evaluation Submitted",
+    "message": "Evaluation for Sneha Reddy has been submitted.",
+    "time": "5 mins ago"
+  }
+]

@@ -1,0 +1,342 @@
+[
+  {
+    "recruiterId": "REC001",
+    "fullName": "Rohit Sharma",
+    "email": "rohit.sharma@company.com",
+    "phone": "9100000001",
+    "designation": "Technical Recruiter",
+    "department": "Human Resources",
+    "experience": "3 Years",
+    "assignedJobs": [
+      "JOB001",
+      "JOB002"
+    ],
+    "city": "Ahmedabad",
+    "status": "Active",
+    "joiningDate": "2022-02-15",
+    "profileImage": "/images/recruiters/REC001.png"
+  },
+  {
+    "recruiterId": "REC002",
+    "fullName": "Priya Patel",
+    "email": "priya.patel@company.com",
+    "phone": "9100000002",
+    "designation": "Senior Recruiter",
+    "department": "Human Resources",
+    "experience": "4 Years",
+    "assignedJobs": [
+      "JOB002",
+      "JOB003"
+    ],
+    "city": "Surat",
+    "status": "Active",
+    "joiningDate": "2023-03-15",
+    "profileImage": "/images/recruiters/REC002.png"
+  },
+  {
+    "recruiterId": "REC003",
+    "fullName": "Amit Verma",
+    "email": "amit.verma@company.com",
+    "phone": "9100000003",
+    "designation": "Technical Recruiter",
+    "department": "Human Resources",
+    "experience": "5 Years",
+    "assignedJobs": [
+      "JOB003",
+      "JOB004"
+    ],
+    "city": "Vadodara",
+    "status": "Active",
+    "joiningDate": "2024-04-15",
+    "profileImage": "/images/recruiters/REC003.png"
+  },
+  {
+    "recruiterId": "REC004",
+    "fullName": "Neha Joshi",
+    "email": "neha.joshi@company.com",
+    "phone": "9100000004",
+    "designation": "Senior Recruiter",
+    "department": "Human Resources",
+    "experience": "6 Years",
+    "assignedJobs": [
+      "JOB004",
+      "JOB005"
+    ],
+    "city": "Rajkot",
+    "status": "Active",
+    "joiningDate": "2025-05-15",
+    "profileImage": "/images/recruiters/REC004.png"
+  },
+  {
+    "recruiterId": "REC005",
+    "fullName": "Karan Mehta",
+    "email": "karan.mehta@company.com",
+    "phone": "9100000005",
+    "designation": "Technical Recruiter",
+    "department": "Human Resources",
+    "experience": "7 Years",
+    "assignedJobs": [
+      "JOB005",
+      "JOB006"
+    ],
+    "city": "Mumbai",
+    "status": "On Leave",
+    "joiningDate": "2021-06-15",
+    "profileImage": "/images/recruiters/REC005.png"
+  },
+  {
+    "recruiterId": "REC006",
+    "fullName": "Sneha Gupta",
+    "email": "sneha.gupta@company.com",
+    "phone": "9100000006",
+    "designation": "Senior Recruiter",
+    "department": "Human Resources",
+    "experience": "2 Years",
+    "assignedJobs": [
+      "JOB006",
+      "JOB007"
+    ],
+    "city": "Pune",
+    "status": "Active",
+    "joiningDate": "2022-07-15",
+    "profileImage": "/images/recruiters/REC006.png"
+  },
+  {
+    "recruiterId": "REC007",
+    "fullName": "Vivek Singh",
+    "email": "vivek.singh@company.com",
+    "phone": "9100000007",
+    "designation": "Technical Recruiter",
+    "department": "Human Resources",
+    "experience": "3 Years",
+    "assignedJobs": [
+      "JOB007",
+      "JOB008"
+    ],
+    "city": "Bengaluru",
+    "status": "Active",
+    "joiningDate": "2023-08-15",
+    "profileImage": "/images/recruiters/REC007.png"
+  },
+  {
+    "recruiterId": "REC008",
+    "fullName": "Pooja Reddy",
+    "email": "pooja.reddy@company.com",
+    "phone": "9100000008",
+    "designation": "Senior Recruiter",
+    "department": "Human Resources",
+    "experience": "4 Years",
+    "assignedJobs": [
+      "JOB008",
+      "JOB009"
+    ],
+    "city": "Hyderabad",
+    "status": "Active",
+    "joiningDate": "2024-09-15",
+    "profileImage": "/images/recruiters/REC008.png"
+  },
+  {
+    "recruiterId": "REC009",
+    "fullName": "Rahul Desai",
+    "email": "rahul.desai@company.com",
+    "phone": "9100000009",
+    "designation": "Technical Recruiter",
+    "department": "Human Resources",
+    "experience": "5 Years",
+    "assignedJobs": [
+      "JOB009",
+      "JOB010"
+    ],
+    "city": "Delhi",
+    "status": "Active",
+    "joiningDate": "2025-01-15",
+    "profileImage": "/images/recruiters/REC009.png"
+  },
+  {
+    "recruiterId": "REC010",
+    "fullName": "Anjali Kapoor",
+    "email": "anjali.kapoor@company.com",
+    "phone": "9100000010",
+    "designation": "Senior Recruiter",
+    "department": "Human Resources",
+    "experience": "6 Years",
+    "assignedJobs": [
+      "JOB010",
+      "JOB011"
+    ],
+    "city": "Chennai",
+    "status": "On Leave",
+    "joiningDate": "2021-02-15",
+    "profileImage": "/images/recruiters/REC010.png"
+  },
+  {
+    "recruiterId": "REC011",
+    "fullName": "Nitin Shah",
+    "email": "nitin.shah@company.com",
+    "phone": "9100000011",
+    "designation": "Technical Recruiter",
+    "department": "Human Resources",
+    "experience": "7 Years",
+    "assignedJobs": [
+      "JOB011",
+      "JOB012"
+    ],
+    "city": "Ahmedabad",
+    "status": "Active",
+    "joiningDate": "2022-03-15",
+    "profileImage": "/images/recruiters/REC011.png"
+  },
+  {
+    "recruiterId": "REC012",
+    "fullName": "Kavita Nair",
+    "email": "kavita.nair@company.com",
+    "phone": "9100000012",
+    "designation": "Senior Recruiter",
+    "department": "Human Resources",
+    "experience": "2 Years",
+    "assignedJobs": [
+      "JOB012",
+      "JOB013"
+    ],
+    "city": "Surat",
+    "status": "Active",
+    "joiningDate": "2023-04-15",
+    "profileImage": "/images/recruiters/REC012.png"
+  },
+  {
+    "recruiterId": "REC013",
+    "fullName": "Saurabh Jain",
+    "email": "saurabh.jain@company.com",
+    "phone": "9100000013",
+    "designation": "Technical Recruiter",
+    "department": "Human Resources",
+    "experience": "3 Years",
+    "assignedJobs": [
+      "JOB013",
+      "JOB014"
+    ],
+    "city": "Vadodara",
+    "status": "Active",
+    "joiningDate": "2024-05-15",
+    "profileImage": "/images/recruiters/REC013.png"
+  },
+  {
+    "recruiterId": "REC014",
+    "fullName": "Divya Menon",
+    "email": "divya.menon@company.com",
+    "phone": "9100000014",
+    "designation": "Senior Recruiter",
+    "department": "Human Resources",
+    "experience": "4 Years",
+    "assignedJobs": [
+      "JOB014",
+      "JOB015"
+    ],
+    "city": "Rajkot",
+    "status": "Active",
+    "joiningDate": "2025-06-15",
+    "profileImage": "/images/recruiters/REC014.png"
+  },
+  {
+    "recruiterId": "REC015",
+    "fullName": "Yash Agarwal",
+    "email": "yash.agarwal@company.com",
+    "phone": "9100000015",
+    "designation": "Technical Recruiter",
+    "department": "Human Resources",
+    "experience": "5 Years",
+    "assignedJobs": [
+      "JOB015",
+      "JOB016"
+    ],
+    "city": "Mumbai",
+    "status": "On Leave",
+    "joiningDate": "2021-07-15",
+    "profileImage": "/images/recruiters/REC015.png"
+  },
+  {
+    "recruiterId": "REC016",
+    "fullName": "Meera Iyer",
+    "email": "meera.iyer@company.com",
+    "phone": "9100000016",
+    "designation": "Senior Recruiter",
+    "department": "Human Resources",
+    "experience": "6 Years",
+    "assignedJobs": [
+      "JOB016",
+      "JOB017"
+    ],
+    "city": "Pune",
+    "status": "Active",
+    "joiningDate": "2022-08-15",
+    "profileImage": "/images/recruiters/REC016.png"
+  },
+  {
+    "recruiterId": "REC017",
+    "fullName": "Harsh Pandya",
+    "email": "harsh.pandya@company.com",
+    "phone": "9100000017",
+    "designation": "Technical Recruiter",
+    "department": "Human Resources",
+    "experience": "7 Years",
+    "assignedJobs": [
+      "JOB017",
+      "JOB018"
+    ],
+    "city": "Bengaluru",
+    "status": "Active",
+    "joiningDate": "2023-09-15",
+    "profileImage": "/images/recruiters/REC017.png"
+  },
+  {
+    "recruiterId": "REC018",
+    "fullName": "Riya Malhotra",
+    "email": "riya.malhotra@company.com",
+    "phone": "9100000018",
+    "designation": "Senior Recruiter",
+    "department": "Human Resources",
+    "experience": "2 Years",
+    "assignedJobs": [
+      "JOB018",
+      "JOB019"
+    ],
+    "city": "Hyderabad",
+    "status": "Active",
+    "joiningDate": "2024-01-15",
+    "profileImage": "/images/recruiters/REC018.png"
+  },
+  {
+    "recruiterId": "REC019",
+    "fullName": "Arjun Kulkarni",
+    "email": "arjun.kulkarni@company.com",
+    "phone": "9100000019",
+    "designation": "Technical Recruiter",
+    "department": "Human Resources",
+    "experience": "3 Years",
+    "assignedJobs": [
+      "JOB019",
+      "JOB020"
+    ],
+    "city": "Delhi",
+    "status": "Active",
+    "joiningDate": "2025-02-15",
+    "profileImage": "/images/recruiters/REC019.png"
+  },
+  {
+    "recruiterId": "REC020",
+    "fullName": "Sakshi Roy",
+    "email": "sakshi.roy@company.com",
+    "phone": "9100000020",
+    "designation": "Senior Recruiter",
+    "department": "Human Resources",
+    "experience": "4 Years",
+    "assignedJobs": [
+      "JOB020",
+      "JOB021"
+    ],
+    "city": "Chennai",
+    "status": "On Leave",
+    "joiningDate": "2021-03-15",
+    "profileImage": "/images/recruiters/REC020.png"
+  }
+]

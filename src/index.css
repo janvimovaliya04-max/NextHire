@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+/* ============================
+   GLOBAL SCROLLBAR
+============================ */
+
+* {
+  scrollbar-width: thin;
+}
+
+/* Chrome / Edge / Brave */
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  transition: background 0.25s ease;
+}
+
+/* ============================
+   LIGHT MODE
+============================ */
+
+body:not(.dark) *::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
+body:not(.dark) *::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Firefox */
+
+body:not(.dark) * {
+  scrollbar-color: #94a3b8 transparent;
+}
+
+/* ============================
+   DARK MODE
+============================ */
+
+body.dark *::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+body.dark *::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Firefox */
+
+body.dark * {
+  scrollbar-color: #475569 transparent;
+}

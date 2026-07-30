@@ -1,0 +1,561 @@
+import jobsData from "../../data/jobs.json"
+import InfiniteScroll from "react-infinite-scroll-component";
+import { CircularProgress } from "@mui/material";
+import { FaSearch } from "react-icons/fa";
+import { useState } from "react";
+import { useTheme } from "../../context/ThemeContext";
+import { Link } from "react-router-dom";
+import HRLayout from "../../Layouts/HRLayout";
+import {
+  Button,
+  Paper,
+  Typography,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Avatar,
+  Chip,
+  Box,
+} from "@mui/material";
+
+import {
+  FaPlus,
+  FaBriefcase,
+  FaMapMarkerAlt,
+  FaUsers,
+} from "react-icons/fa";
+
+export default function JobManagement() {
+  const { darkMode } = useTheme();
+  const [activeFilter, setActiveFilter] = useState("All");
+  const [search, setSearch] = useState("");
+  const jobs = jobsData
+  const JOBS_PER_LOAD = 10;
+
+  const [visibleJobs, setVisibleJobs] = useState(
+    jobs.slice(0, JOBS_PER_LOAD)
+  );
+
+  const subText = darkMode ? "#94a3b8" : "#475569";
+  const borderStyle = darkMode ? "rgba(255, 255, 255, 0.09)" : "rgba(0, 0, 0, 0.08)";
+
+  // Filtering Logic
+  const filteredJobs = visibleJobs.filter((job) => {
+    const matchesStatus =
+      activeFilter === "All" || job.status === activeFilter;
+
+    const matchesSearch =
+      job.title.toLowerCase().includes(search.toLowerCase()) ||
+      job.department.toLowerCase().includes(search.toLowerCase()) ||
+      job.location.toLowerCase().includes(search.toLowerCase());
+
+    return matchesStatus && matchesSearch;
+  });
+  const loadMoreJobs = () => {
+    setTimeout(() => {
+      setVisibleJobs((prev) => [
+        ...prev,
+        ...jobs.slice(prev.length, prev.length + JOBS_PER_LOAD),
+      ]);
+    }, 1000);
+  };
+
+  // Dynamic Status Chip styling
+  const getStatusChip = (status) => {
+    switch (status) {
+      case "Open":
+        return (
+          <Chip
+            label="Open"
+            size="small"
+            sx={{
+              fontWeight: 800,
+              ffontSize: {
+                xs: ".68rem",
+                md: ".72rem"
+              },
+              bgcolor: "rgba(16, 185, 129, 0.12)",
+              color: "#10b981",
+              border: "1px solid rgba(16, 185, 129, 0.2)"
+            }}
+          />
+        );
+      case "Closed":
+        return (
+          <Chip
+            label="Closed"
+            size="small"
+            sx={{
+              fontWeight: 800,
+              fontSize: "0.72rem",
+              bgcolor: "rgba(239, 68, 68, 0.12)",
+              color: "#ef4444",
+              border: "1px solid rgba(239, 68, 68, 0.2)"
+            }}
+          />
+        );
+      case "Draft":
+        return (
+          <Chip
+            label="Draft"
+            size="small"
+            sx={{
+              fontWeight: 800,
+              fontSize: "0.72rem",
+              bgcolor: "rgba(245, 158, 11, 0.12)",
+              color: "#f59e0b",
+              border: "1px solid rgba(245, 158, 11, 0.2)"
+            }}
+          />
+        );
+      default:
+        return <Chip label={status} size="small" />;
+    }
+  };
+
+  return (
+    <HRLayout>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 2,
+          mb: 2,
+          flexShrink: 0,
+        }}
+      >
+        {/* Title & Banner Header */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: 2,
+          }}
+        >
+          {/* Title */}
+          <Typography
+            sx={{
+              flex: 1,
+              minWidth: 0,
+              wordBreak: "break-word",
+              fontSize: {
+                xs: "1.35rem",
+                sm: "1.7rem",
+                md: "2rem",
+                lg: "2.2rem",
+              },
+              fontWeight: 850,
+              letterSpacing: "-0.03em",
+            }}
+          >
+            Job Management
+          </Typography>
+
+          {/* Search + Button */}
+
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              width: {
+                xs: "100%",
+                md: 330,
+              },
+              bgcolor: darkMode ? "#1e293b" : "#fff",
+              border: `1px solid ${borderStyle}`,
+              borderRadius: "10px",
+              px: 2,
+            }}
+          >
+            <FaSearch
+              color={darkMode ? "#94a3b8" : "#64748b"}
+            />
+
+            <input
+              type="text"
+              placeholder="Search jobs..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              style={{
+                width: "100%",
+                padding: "12px",
+                border: "none",
+                outline: "none",
+                background: "transparent",
+                color: darkMode ? "#fff" : "#111827",
+                fontSize: "0.9rem",
+              }}
+            />
+          </Box>
+
+          <Button
+            component={Link}
+            to="/create-job"
+            variant="contained"
+            startIcon={<FaPlus size={11} />}
+            sx={{
+              flexShrink: 0,
+              whiteSpace: "nowrap",
+              whiteSpace: "nowrap",
+              py: 1.3,
+              px: 3,
+              fontSize: ".9rem",
+              fontWeight: 700,
+              textTransform: "none",
+              borderRadius: "10px",
+              background: "linear-gradient(90deg,#2563eb,#1d4ed8)",
+              boxShadow: "0 4px 12px rgba(37,99,235,.2)",
+              "&:hover": {
+                background: "linear-gradient(90deg,#1d4ed8,#1e40af)",
+              },
+            }}
+          >
+            Create New Job
+          </Button>
+        </Box>
+
+        {/* Filter panel */}
+         <Box
+          sx={{
+            display: "flex",
+            gap: 1,
+            overflowX: "auto",
+            pb: 1,
+            flexShrink: 0,
+
+            "&::-webkit-scrollbar": {
+              display: "none",
+            },
+          }}
+        >
+            {["All", "Open", "Closed", "Draft"].map((filter) => (
+              <Button
+                key={filter}
+                variant="outlined"
+                size="small"
+                onClick={() => setActiveFilter(filter)}
+                sx={{
+                  borderRadius: "20px",
+                  textTransform: "none",
+                  fontWeight: 700,
+                  fontSize: {
+                    xs: ".75rem",
+                    md: ".82rem"
+                  },
+
+                  px: {
+                    xs: 1.6,
+                    md: 2.2
+                  },
+
+                  py: {
+                    xs: .55,
+                    md: .7
+                  },
+                  color:
+                    activeFilter ===
+                      filter ? "#fff" : darkMode ? "#cbd5e1" : "#475569",
+                  borderColor:
+                    activeFilter ===
+                      filter ? "#2563eb" : borderStyle,
+                  bgcolor:
+                    activeFilter ===
+                      filter ? "#2563eb" : "transparent",
+                  boxShadow:
+                    activeFilter ===
+                      filter ? "0 4px 10px rgba(37,99,235,0.2)" : "none",
+                  "&:hover": {
+                    borderColor: "#2563eb",
+                    bgcolor: activeFilter === filter ? "#1d4ed8" : darkMode ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)",
+                  }
+                }}
+              >
+                {filter}
+              </Button>
+            ))}
+          </Box>
+        </Box>
+
+      {/* Premium Glassmorphic Table Card */}
+      <Paper
+        elevation={0}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          height: "75vh",
+          width: "100%",
+          maxWidth: "100%",
+          overflow: "hidden",
+          p: { xs: 2.5, md: 4 },
+          borderRadius: "22px",
+          bgcolor: darkMode
+            ? "rgba(30,41,59,.72)"
+            : "#ffffff",
+          backdropFilter: "blur(16px)",
+          border: `1px solid ${borderStyle}`,
+          boxShadow: darkMode
+            ? `
+              0 18px 45px rgba(0,0,0,.35),
+              inset 0 1px 0 rgba(255,255,255,.04)
+            `
+            : `
+              0 18px 40px rgba(15,23,42,.08),
+              0 4px 12px rgba(15,23,42,.05)
+            `,
+          transition: ".3s",
+          "&:hover": {
+            transform: "translateY(-4px)",
+            boxShadow: darkMode
+              ? `
+                0 24px 55px rgba(0,0,0,.42)
+              `
+              : `
+                0 26px 55px rgba(15,23,42,.12)
+              `,
+          },
+        }}
+      >
+        
+        <TableContainer
+          sx={{
+            width: "100%",
+            overflowX: "auto",
+            flex: 1,
+            overflowY: "auto",
+            "&::-webkit-scrollbar": {
+              height: 8,
+            },
+            "&::-webkit-scrollbar-thumb": {
+              background: "#94a3b8",
+              borderRadius: 10,
+            },
+          }}
+        >
+
+          <Table
+            stickyHeader
+            size="small"
+            sx={{
+              "& .MuiTableCell-root": {
+                py: 0.75,
+                px: 1.5,
+                fontSize: "0.78rem",
+                lineHeight: 1.2,
+              },
+              minWidth: {
+                xs: 850,
+                md: 1000,
+              },
+            }}
+          >
+            <TableHead sx={{
+              "& .MuiTableCell-root": {
+                fontSize: {
+                  xs: ".9rem",
+                  md: "0.88rem",
+                },
+                fontWeight: 700,
+                bgcolor: darkMode
+                  ? "#1e293b"
+                  : "#f8fafc",
+              },
+            }}
+            >
+              <TableRow
+                sx={{
+                  height: {
+                    xs: 60,
+                    md: 82
+                  },
+                  bgcolor: darkMode ? "rgba(15, 23, 42, 0.5)" : "rgba(248, 250, 252, 0.7)",
+                  borderBottom: `1px solid ${borderStyle}`,
+                }}
+              >
+                <TableCell align="center" sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: { xs: ".8rem", md: ".95rem" }, borderBottom: `1px solid ${borderStyle}` }}>
+                  Job Role
+                </TableCell>
+                <TableCell align="center" sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: { xs: ".8rem", md: ".95rem" }, borderBottom: `1px solid ${borderStyle}` }}>
+                  Salary Package
+                </TableCell>
+                <TableCell sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: { xs: ".8rem", md: ".95rem" }, borderBottom: `1px solid ${borderStyle}` }}>
+                  Department
+                </TableCell>
+                <TableCell sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: { xs: ".8rem", md: ".95rem" }, borderBottom: `1px solid ${borderStyle}` }}>
+                  Listing Status
+                </TableCell>
+                <TableCell align="center" sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: { xs: ".8rem", md: ".95rem" }, borderBottom: `1px solid ${borderStyle}`, pr: 4 }}>
+                  Action Panel
+                </TableCell>
+              </TableRow>
+            </TableHead>
+
+            <TableBody>
+              {filteredJobs.length > 0 ? (
+                filteredJobs.map((job) => (
+                  <TableRow
+                    key={job.jobId}
+                    sx={{
+                      borderBottom: `1px solid ${borderStyle}`,
+                      transition: "all 0.2s ease",
+                      "&:hover": {
+                        bgcolor: darkMode ? "rgba(255,255,255,0.02)" : "rgba(0,0,0,0.01)",
+                      },
+                    }}
+                  >
+                    {/* Job Title and Location Info */}
+                    <TableCell sx={{ borderBottom: `1px solid ${borderStyle}` }}>
+                      <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+                        <Avatar sx={{ bgcolor: darkMode ? "rgba(255,255,255,0.04)" : "#eff6ff", color: "#2563eb", width: { xs: 36, md: 44 }, height: { xs: 36, md: 44 }, }}>
+                          <FaBriefcase size={window.innerWidth < 600 ? 13 : 16} />
+                        </Avatar>
+                        <Box>
+                          <Typography sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontWeight: 700, fontSize: { xs: ".8rem", md: ".95rem" }, }}>
+                            {job.title}
+                          </Typography>
+                          <Box sx={{ display: "flex", alignItems: "center", gap: 0.5, color: subText }}>
+                            <FaMapMarkerAlt size={10} style={{ opacity: 0.7 }} />
+                            <Typography sx={{ fontSize: { xs: ".72rem", md: ".78rem" } }}>
+                              {job.location}
+                            </Typography>
+                          </Box>
+                        </Box>
+                      </Box>
+                    </TableCell>
+
+                    {/* Salary Package */}
+                    <TableCell sx={{ borderBottom: `1px solid ${borderStyle}`, fontWeight: 500, fontSize: { xs: ".8rem", md: ".88rem" }, color: darkMode ? "#ffffff" : "#0f172a" }}>
+                      {job.salaryRange}
+                    </TableCell>
+
+                    {/* Applicants count indicator */}
+                    <TableCell sx={{ alignItems: "center", borderBottom: `1px solid ${borderStyle}` }}>
+                      <Box sx={{
+                        display: "flex", alignItems: "center", gap: {
+                          xs: .8,
+                          md: 1
+                        }
+                      }}>
+                        <Typography sx={{ alignItems: "center", color: darkMode ? "#ffffff" : "#0f172a", fontSize: { xs: ".8rem", md: ".88rem" }, fontWeight: 700 }}>
+                          {job.department}
+                        </Typography>
+                      </Box>
+                    </TableCell>
+
+                    {/* Status Pill */}
+                    <TableCell sx={{ borderBottom: `1px solid ${borderStyle}` }}>
+                      {getStatusChip(job.status)}
+                    </TableCell>
+
+                    {/* Action buttons */}
+                    <TableCell
+                      align="right"
+                      sx={{
+                        borderBottom: `1px solid ${borderStyle}`,
+                        pr: 4
+                      }}
+                    >
+                      <Box
+                        sx={{
+                          display: "flex",
+                          gap: {
+                            xs: .8,
+                            md: 1
+                          },
+                          justifyContent: "flex-end",
+                          flexWrap: "wrap",
+                        }}
+                      >
+                        <Button
+                          component={Link}
+                          to="/applicants"
+                          variant="outlined"
+                          size="small"
+                          sx={{
+                            textTransform: "none",
+                            fontWeight: 700,
+                            borderRadius: {
+                              xs: "7px",
+                              md: "8px"
+                            },
+                            px: {
+                              xs: 1.2,
+                              md: 2
+                            },
+                            fontSize: {
+                              xs: ".7rem",
+                              sm: ".75rem",
+                              md: ".8rem"
+                            },
+                            width: { xs: "100%", sm: "auto" },
+                            color: darkMode ? "#cbd5e1" : "#475569",
+                            borderColor: darkMode ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.12)",
+                            "&:hover": {
+                              borderColor: "#2563eb",
+                              color: "#2563eb",
+                              bgcolor: "rgba(37,99,235,0.03)",
+                            }
+                          }}
+                        >
+                          View Applicants
+                        </Button>
+
+                        <Button
+                          component={Link}
+                          to="/create-assessment"
+                          variant="contained"
+                          size="small"
+                          sx={{
+                            textTransform: "none",
+                            fontWeight: 700,
+                            borderRadius: {
+                              xs: "7px",
+                              md: "8px"
+                            },
+                            px: {
+                              xs: 1.2,
+                              md: 2
+                            },
+                            fontSize: {
+                              xs: ".7rem",
+                              sm: ".75rem",
+                              md: ".8rem"
+                            },
+                            width: { xs: "100%", sm: "auto" },
+                            background: "linear-gradient(90deg, #2563eb, #1d4ed8)",
+                            boxShadow: "0 4px 12px rgba(37,99,235,0.2)",
+                            "&:hover": {
+                              background: "linear-gradient(90deg, #1d4ed8, #1e40af)",
+                              boxShadow: "0 6px 16px rgba(37,99,235,0.3)",
+                            }
+                          }}
+                        >
+                          Create Assessment
+                        </Button>
+                      </Box>
+                    </TableCell>
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell colSpan={5} align="center" sx={{
+                    py: { xs: 4, md: 6 }, color: subText, fontSize: {
+                      xs: ".85rem",
+                      md: "1rem"
+                    }
+                  }}>
+                    No job postings found matching this category filter.
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Paper>
+    </HRLayout>
+  );
+}

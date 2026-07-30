@@ -1,0 +1,512 @@
+[
+  {
+    "jobId": "JOB001",
+    "title": "Frontend Developer",
+    "department": "IT",
+    "location": "Ahmedabad",
+    "employmentType": "Full Time",
+    "experienceRequired": "0 - 2 Years",
+    "salaryRange": "\u20b95 LPA - \u20b99 LPA",
+    "vacancies": 2,
+    "status": "Open",
+    "postedDate": "2026-07-02",
+    "skillsRequired": [
+      "Frontend",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB002",
+    "title": "Backend Developer",
+    "department": "IT",
+    "location": "Surat",
+    "employmentType": "Full Time",
+    "experienceRequired": "1 - 3 Years",
+    "salaryRange": "\u20b96 LPA - \u20b910 LPA",
+    "vacancies": 3,
+    "status": "Open",
+    "postedDate": "2026-07-03",
+    "skillsRequired": [
+      "Backend",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB003",
+    "title": "Full Stack Developer",
+    "department": "IT",
+    "location": "Vadodara",
+    "employmentType": "Full Time",
+    "experienceRequired": "2 - 4 Years",
+    "salaryRange": "\u20b97 LPA - \u20b911 LPA",
+    "vacancies": 4,
+    "status": "Open",
+    "postedDate": "2026-07-04",
+    "skillsRequired": [
+      "Full",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB004",
+    "title": "React Developer",
+    "department": "IT",
+    "location": "Rajkot",
+    "employmentType": "Full Time",
+    "experienceRequired": "3 - 5 Years",
+    "salaryRange": "\u20b98 LPA - \u20b912 LPA",
+    "vacancies": 5,
+    "status": "Closed",
+    "postedDate": "2026-07-05",
+    "skillsRequired": [
+      "React",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB005",
+    "title": "Angular Developer",
+    "department": "IT",
+    "location": "Mumbai",
+    "employmentType": "Full Time",
+    "experienceRequired": "4 - 6 Years",
+    "salaryRange": "\u20b99 LPA - \u20b913 LPA",
+    "vacancies": 1,
+    "status": "Open",
+    "postedDate": "2026-07-06",
+    "skillsRequired": [
+      "Angular",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB006",
+    "title": "Java Developer",
+    "department": "IT",
+    "location": "Pune",
+    "employmentType": "Full Time",
+    "experienceRequired": "5 - 7 Years",
+    "salaryRange": "\u20b910 LPA - \u20b914 LPA",
+    "vacancies": 2,
+    "status": "Open",
+    "postedDate": "2026-07-07",
+    "skillsRequired": [
+      "Java",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB007",
+    "title": "Python Developer",
+    "department": "IT",
+    "location": "Bengaluru",
+    "employmentType": "Full Time",
+    "experienceRequired": "0 - 2 Years",
+    "salaryRange": "\u20b911 LPA - \u20b915 LPA",
+    "vacancies": 3,
+    "status": "Open",
+    "postedDate": "2026-07-08",
+    "skillsRequired": [
+      "Python",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB008",
+    "title": "QA Engineer",
+    "department": "IT",
+    "location": "Hyderabad",
+    "employmentType": "Full Time",
+    "experienceRequired": "1 - 3 Years",
+    "salaryRange": "\u20b94 LPA - \u20b916 LPA",
+    "vacancies": 4,
+    "status": "Closed",
+    "postedDate": "2026-07-09",
+    "skillsRequired": [
+      "QA",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB009",
+    "title": "UI/UX Designer",
+    "department": "IT",
+    "location": "Delhi",
+    "employmentType": "Full Time",
+    "experienceRequired": "2 - 4 Years",
+    "salaryRange": "\u20b95 LPA - \u20b917 LPA",
+    "vacancies": 5,
+    "status": "Open",
+    "postedDate": "2026-07-10",
+    "skillsRequired": [
+      "UI/UX",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB010",
+    "title": "DevOps Engineer",
+    "department": "IT",
+    "location": "Chennai",
+    "employmentType": "Full Time",
+    "experienceRequired": "3 - 5 Years",
+    "salaryRange": "\u20b96 LPA - \u20b98 LPA",
+    "vacancies": 1,
+    "status": "Open",
+    "postedDate": "2026-07-11",
+    "skillsRequired": [
+      "DevOps",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB011",
+    "title": "Business Analyst",
+    "department": "IT",
+    "location": "Ahmedabad",
+    "employmentType": "Full Time",
+    "experienceRequired": "4 - 6 Years",
+    "salaryRange": "\u20b97 LPA - \u20b99 LPA",
+    "vacancies": 2,
+    "status": "Open",
+    "postedDate": "2026-07-12",
+    "skillsRequired": [
+      "Business",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB012",
+    "title": "Data Analyst",
+    "department": "IT",
+    "location": "Surat",
+    "employmentType": "Full Time",
+    "experienceRequired": "5 - 7 Years",
+    "salaryRange": "\u20b98 LPA - \u20b910 LPA",
+    "vacancies": 3,
+    "status": "Closed",
+    "postedDate": "2026-07-13",
+    "skillsRequired": [
+      "Data",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB013",
+    "title": "Android Developer",
+    "department": "IT",
+    "location": "Vadodara",
+    "employmentType": "Full Time",
+    "experienceRequired": "0 - 2 Years",
+    "salaryRange": "\u20b99 LPA - \u20b911 LPA",
+    "vacancies": 4,
+    "status": "Open",
+    "postedDate": "2026-07-14",
+    "skillsRequired": [
+      "Android",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB014",
+    "title": "iOS Developer",
+    "department": "IT",
+    "location": "Rajkot",
+    "employmentType": "Full Time",
+    "experienceRequired": "1 - 3 Years",
+    "salaryRange": "\u20b910 LPA - \u20b912 LPA",
+    "vacancies": 5,
+    "status": "Open",
+    "postedDate": "2026-07-15",
+    "skillsRequired": [
+      "iOS",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB015",
+    "title": "Cloud Engineer",
+    "department": "IT",
+    "location": "Mumbai",
+    "employmentType": "Full Time",
+    "experienceRequired": "2 - 4 Years",
+    "salaryRange": "\u20b911 LPA - \u20b913 LPA",
+    "vacancies": 1,
+    "status": "Open",
+    "postedDate": "2026-07-16",
+    "skillsRequired": [
+      "Cloud",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB016",
+    "title": "Machine Learning Engineer",
+    "department": "IT",
+    "location": "Pune",
+    "employmentType": "Full Time",
+    "experienceRequired": "3 - 5 Years",
+    "salaryRange": "\u20b94 LPA - \u20b914 LPA",
+    "vacancies": 2,
+    "status": "Closed",
+    "postedDate": "2026-07-17",
+    "skillsRequired": [
+      "Machine",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB017",
+    "title": "PHP Developer",
+    "department": "IT",
+    "location": "Bengaluru",
+    "employmentType": "Full Time",
+    "experienceRequired": "4 - 6 Years",
+    "salaryRange": "\u20b95 LPA - \u20b915 LPA",
+    "vacancies": 3,
+    "status": "Open",
+    "postedDate": "2026-07-18",
+    "skillsRequired": [
+      "PHP",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB018",
+    "title": ".NET Developer",
+    "department": "IT",
+    "location": "Hyderabad",
+    "employmentType": "Full Time",
+    "experienceRequired": "5 - 7 Years",
+    "salaryRange": "\u20b96 LPA - \u20b916 LPA",
+    "vacancies": 4,
+    "status": "Open",
+    "postedDate": "2026-07-19",
+    "skillsRequired": [
+      ".NET",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB019",
+    "title": "Technical Recruiter",
+    "department": "HR",
+    "location": "Delhi",
+    "employmentType": "Full Time",
+    "experienceRequired": "0 - 2 Years",
+    "salaryRange": "\u20b97 LPA - \u20b917 LPA",
+    "vacancies": 5,
+    "status": "Open",
+    "postedDate": "2026-07-20",
+    "skillsRequired": [
+      "Technical",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB020",
+    "title": "HR Executive",
+    "department": "HR",
+    "location": "Chennai",
+    "employmentType": "Full Time",
+    "experienceRequired": "1 - 3 Years",
+    "salaryRange": "\u20b98 LPA - \u20b98 LPA",
+    "vacancies": 1,
+    "status": "Closed",
+    "postedDate": "2026-07-21",
+    "skillsRequired": [
+      "HR",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB021",
+    "title": "Project Manager",
+    "department": "IT",
+    "location": "Ahmedabad",
+    "employmentType": "Full Time",
+    "experienceRequired": "2 - 4 Years",
+    "salaryRange": "\u20b99 LPA - \u20b99 LPA",
+    "vacancies": 2,
+    "status": "Open",
+    "postedDate": "2026-07-22",
+    "skillsRequired": [
+      "Project",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB022",
+    "title": "Product Manager",
+    "department": "IT",
+    "location": "Surat",
+    "employmentType": "Full Time",
+    "experienceRequired": "3 - 5 Years",
+    "salaryRange": "\u20b910 LPA - \u20b910 LPA",
+    "vacancies": 3,
+    "status": "Open",
+    "postedDate": "2026-07-23",
+    "skillsRequired": [
+      "Product",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB023",
+    "title": "Graphic Designer",
+    "department": "IT",
+    "location": "Vadodara",
+    "employmentType": "Full Time",
+    "experienceRequired": "4 - 6 Years",
+    "salaryRange": "\u20b911 LPA - \u20b911 LPA",
+    "vacancies": 4,
+    "status": "Open",
+    "postedDate": "2026-07-24",
+    "skillsRequired": [
+      "Graphic",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB024",
+    "title": "Automation Test Engineer",
+    "department": "IT",
+    "location": "Rajkot",
+    "employmentType": "Full Time",
+    "experienceRequired": "5 - 7 Years",
+    "salaryRange": "\u20b94 LPA - \u20b912 LPA",
+    "vacancies": 5,
+    "status": "Closed",
+    "postedDate": "2026-07-25",
+    "skillsRequired": [
+      "Automation",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB025",
+    "title": "Node.js Developer",
+    "department": "IT",
+    "location": "Mumbai",
+    "employmentType": "Full Time",
+    "experienceRequired": "0 - 2 Years",
+    "salaryRange": "\u20b95 LPA - \u20b913 LPA",
+    "vacancies": 1,
+    "status": "Open",
+    "postedDate": "2026-07-26",
+    "skillsRequired": [
+      "Node.js",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB026",
+    "title": "Software Engineer",
+    "department": "IT",
+    "location": "Pune",
+    "employmentType": "Full Time",
+    "experienceRequired": "1 - 3 Years",
+    "salaryRange": "\u20b96 LPA - \u20b914 LPA",
+    "vacancies": 2,
+    "status": "Open",
+    "postedDate": "2026-07-27",
+    "skillsRequired": [
+      "Software",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB027",
+    "title": "Database Administrator",
+    "department": "IT",
+    "location": "Bengaluru",
+    "employmentType": "Full Time",
+    "experienceRequired": "2 - 4 Years",
+    "salaryRange": "\u20b97 LPA - \u20b915 LPA",
+    "vacancies": 3,
+    "status": "Open",
+    "postedDate": "2026-07-28",
+    "skillsRequired": [
+      "Database",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB028",
+    "title": "Cyber Security Analyst",
+    "department": "IT",
+    "location": "Hyderabad",
+    "employmentType": "Full Time",
+    "experienceRequired": "3 - 5 Years",
+    "salaryRange": "\u20b98 LPA - \u20b916 LPA",
+    "vacancies": 4,
+    "status": "Closed",
+    "postedDate": "2026-07-01",
+    "skillsRequired": [
+      "Cyber",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB029",
+    "title": "System Administrator",
+    "department": "IT",
+    "location": "Delhi",
+    "employmentType": "Full Time",
+    "experienceRequired": "4 - 6 Years",
+    "salaryRange": "\u20b99 LPA - \u20b917 LPA",
+    "vacancies": 5,
+    "status": "Open",
+    "postedDate": "2026-07-02",
+    "skillsRequired": [
+      "System",
+      "Communication",
+      "Problem Solving"
+    ]
+  },
+  {
+    "jobId": "JOB030",
+    "title": "AI Engineer",
+    "department": "IT",
+    "location": "Chennai",
+    "employmentType": "Full Time",
+    "experienceRequired": "5 - 7 Years",
+    "salaryRange": "\u20b910 LPA - \u20b98 LPA",
+    "vacancies": 1,
+    "status": "Open",
+    "postedDate": "2026-07-03",
+    "skillsRequired": [
+      "AI",
+      "Communication",
+      "Problem Solving"
+    ]
+  }
+]

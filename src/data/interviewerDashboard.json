@@ -1,0 +1,57 @@
+{
+  "welcomeName": "Rahul",
+  "cards": [
+    {
+      "title": "Interviews Assigned",
+      "value": "200",
+      "subtext": "56 upcoming this week",
+      "color": "#14b8a6"
+    },
+    {
+      "title": "Feedback Pending",
+      "value": "47",
+      "subtext": "Action required soon",
+      "color": "#f59e0b"
+    },
+    {
+      "title": "Completed Evaluations",
+      "value": "200",
+      "subtext": "127 positive outcomes",
+      "color": "#10b981"
+    }
+  ],
+  "recentInterviews": [
+    {
+      "id": 12,
+      "candidate": "Pooja Bhatt",
+      "role": "DevOps Engineer",
+      "date": "28 August 2026",
+      "time": "10:00 AM - 11:00 AM",
+      "status": "Scheduled"
+    },
+    {
+      "id": 16,
+      "candidate": "Pooja Bhatt",
+      "role": "Mobile App Developer",
+      "date": "19 July 2026",
+      "time": "09:00 AM - 10:00 AM",
+      "status": "Scheduled"
+    }
+  ],
+  "recentEvaluations": [
+    {
+      "id": 1,
+      "candidate": "Zara Ahmed",
+      "role": "Data Analyst",
+      "score": "4/10",
+      "result": "On Hold"
+    },
+    {
+      "id": 2,
+      "candidate": "Ananya Iyer",
+      "role": "Security Analyst",
+      "score": "9/10",
+      "result": "Good Fit"
+    }
+  ]
+}

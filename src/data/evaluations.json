@@ -1,0 +1,1402 @@
+[
+  {
+    "id": 1,
+    "candidate": "Zara Ahmed",
+    "position": "Data Analyst",
+    "score": "4/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 2,
+    "candidate": "Ananya Iyer",
+    "position": "Security Analyst",
+    "score": "9/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 3,
+    "candidate": "Neha Kulkarni",
+    "position": "System Administrator",
+    "score": "5/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 4,
+    "candidate": "Nikhil Bansal",
+    "position": "Python Developer",
+    "score": "10/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 5,
+    "candidate": "Kavya Nair",
+    "position": "Machine Learning Engineer",
+    "score": "7/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 6,
+    "candidate": "Pooja Bhatt",
+    "position": "Data Analyst",
+    "score": "7/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 7,
+    "candidate": "Rohan Desai",
+    "position": "Software Engineer",
+    "score": "4/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 8,
+    "candidate": "Ananya Iyer",
+    "position": "Python Developer",
+    "score": "6/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 9,
+    "candidate": "Janvi",
+    "position": "UI/UX Designer",
+    "score": "7/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 10,
+    "candidate": "Simran Chawla",
+    "position": "Full Stack Developer",
+    "score": "9/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 11,
+    "candidate": "Ritika Malviya",
+    "position": "Business Analyst",
+    "score": "10/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 12,
+    "candidate": "Pooja Bhatt",
+    "position": "DevOps Engineer",
+    "score": "4/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 13,
+    "candidate": "Om Prakash",
+    "position": "Cloud Architect",
+    "score": "9/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 14,
+    "candidate": "Bhavna Rathi",
+    "position": "Security Analyst",
+    "score": "9/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 15,
+    "candidate": "Tanmay Bhatia",
+    "position": "Data Analyst",
+    "score": "4/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 16,
+    "candidate": "Pooja Bhatt",
+    "position": "Mobile App Developer",
+    "score": "8/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 17,
+    "candidate": "Vikram Solanki",
+    "position": "Cloud Architect",
+    "score": "6/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 18,
+    "candidate": "Priya Sharma",
+    "position": "UI/UX Designer",
+    "score": "7/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 19,
+    "candidate": "Aisha Khan",
+    "position": "Java Developer",
+    "score": "4/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 20,
+    "candidate": "Ritika Malviya",
+    "position": "DevOps Engineer",
+    "score": "10/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 21,
+    "candidate": "Shreya Gupta",
+    "position": "Business Analyst",
+    "score": "10/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 22,
+    "candidate": "Harsh Vardhan",
+    "position": "Data Analyst",
+    "score": "4/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 23,
+    "candidate": "Yash Trivedi",
+    "position": "Cloud Architect",
+    "score": "7/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 24,
+    "candidate": "Isha Vyas",
+    "position": "Data Scientist",
+    "score": "5/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 25,
+    "candidate": "Sneha Reddy",
+    "position": "Mobile App Developer",
+    "score": "7/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 26,
+    "candidate": "Swati Rane",
+    "position": "Cloud Architect",
+    "score": "7/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 27,
+    "candidate": "Kritika Sethi",
+    "position": "Mobile App Developer",
+    "score": "5/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 28,
+    "candidate": "Ananya Iyer",
+    "position": "System Administrator",
+    "score": "4/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 29,
+    "candidate": "Neha Kulkarni",
+    "position": "System Administrator",
+    "score": "8/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 30,
+    "candidate": "Meet Shah",
+    "position": "System Administrator",
+    "score": "7/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 31,
+    "candidate": "Gaurav Nanda",
+    "position": "UI/UX Designer",
+    "score": "9/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 32,
+    "candidate": "Meet Shah",
+    "position": "UI/UX Designer",
+    "score": "8/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 33,
+    "candidate": "Neha Kulkarni",
+    "position": "Node.js Developer",
+    "score": "7/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 34,
+    "candidate": "Aarav Singh",
+    "position": "UI/UX Designer",
+    "score": "5/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 35,
+    "candidate": "Aarav Singh",
+    "position": "Data Scientist",
+    "score": "5/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 36,
+    "candidate": "Tanmay Bhatia",
+    "position": "Data Analyst",
+    "score": "5/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 37,
+    "candidate": "Pallavi Kher",
+    "position": "Node.js Developer",
+    "score": "8/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 38,
+    "candidate": "Janvi",
+    "position": "Mobile App Developer",
+    "score": "5/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 39,
+    "candidate": "Diya Kapoor",
+    "position": "Backend Developer",
+    "score": "7/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 40,
+    "candidate": "Vikram Solanki",
+    "position": "Backend Developer",
+    "score": "4/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 41,
+    "candidate": "Yash Trivedi",
+    "position": "Data Scientist",
+    "score": "5/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 42,
+    "candidate": "Vikram Solanki",
+    "position": "Backend Developer",
+    "score": "5/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 43,
+    "candidate": "Kavya Nair",
+    "position": "Data Analyst",
+    "score": "7/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 44,
+    "candidate": "Meera Pillai",
+    "position": "Data Analyst",
+    "score": "10/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 45,
+    "candidate": "Neha Kulkarni",
+    "position": "Backend Developer",
+    "score": "4/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 46,
+    "candidate": "Kunal Verma",
+    "position": "UI/UX Designer",
+    "score": "8/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 47,
+    "candidate": "Nisha Patel",
+    "position": "System Administrator",
+    "score": "5/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 48,
+    "candidate": "Riya Saxena",
+    "position": "React Native Dev",
+    "score": "4/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 49,
+    "candidate": "Nisha Patel",
+    "position": "Data Scientist",
+    "score": "7/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 50,
+    "candidate": "Aarav Singh",
+    "position": "DevOps Engineer",
+    "score": "6/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 51,
+    "candidate": "Swati Rane",
+    "position": "Security Analyst",
+    "score": "10/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 52,
+    "candidate": "Divya Ramesh",
+    "position": "React Native Dev",
+    "score": "10/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 53,
+    "candidate": "Meet Shah",
+    "position": "Backend Developer",
+    "score": "10/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 54,
+    "candidate": "Yash Trivedi",
+    "position": "System Administrator",
+    "score": "5/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 55,
+    "candidate": "Harsh Vardhan",
+    "position": "Data Scientist",
+    "score": "9/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 56,
+    "candidate": "Manav Chopra",
+    "position": "Java Developer",
+    "score": "8/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 57,
+    "candidate": "Swati Rane",
+    "position": "System Administrator",
+    "score": "5/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 58,
+    "candidate": "Kritika Sethi",
+    "position": "Data Scientist",
+    "score": "10/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 59,
+    "candidate": "Vikram Solanki",
+    "position": "Backend Developer",
+    "score": "5/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 60,
+    "candidate": "Pallavi Kher",
+    "position": "DevOps Engineer",
+    "score": "8/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 61,
+    "candidate": "Zara Ahmed",
+    "position": "Data Scientist",
+    "score": "5/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 62,
+    "candidate": "Kritika Sethi",
+    "position": "Data Analyst",
+    "score": "8/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 63,
+    "candidate": "Harsh Vardhan",
+    "position": "React Native Dev",
+    "score": "5/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 64,
+    "candidate": "Meera Pillai",
+    "position": "Software Engineer",
+    "score": "6/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 65,
+    "candidate": "Om Prakash",
+    "position": "UI/UX Designer",
+    "score": "6/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 66,
+    "candidate": "Sneha Reddy",
+    "position": "UI/UX Designer",
+    "score": "5/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 67,
+    "candidate": "Karan Oberoi",
+    "position": "QA Engineer",
+    "score": "10/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 68,
+    "candidate": "Karan Oberoi",
+    "position": "Data Scientist",
+    "score": "6/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 69,
+    "candidate": "Aisha Khan",
+    "position": "DevOps Engineer",
+    "score": "7/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 70,
+    "candidate": "Divya Ramesh",
+    "position": "Software Engineer",
+    "score": "5/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 71,
+    "candidate": "Meera Pillai",
+    "position": "Business Analyst",
+    "score": "4/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 72,
+    "candidate": "Swati Rane",
+    "position": "Machine Learning Engineer",
+    "score": "5/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 73,
+    "candidate": "Kunal Verma",
+    "position": "Node.js Developer",
+    "score": "9/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 74,
+    "candidate": "Siddharth Menon",
+    "position": "Security Analyst",
+    "score": "10/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 75,
+    "candidate": "Swati Rane",
+    "position": "Product Manager",
+    "score": "4/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 76,
+    "candidate": "Riya Saxena",
+    "position": "Node.js Developer",
+    "score": "5/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 77,
+    "candidate": "Ishita Joshi",
+    "position": "Frontend Developer",
+    "score": "6/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 78,
+    "candidate": "Karan Oberoi",
+    "position": "Full Stack Developer",
+    "score": "9/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 79,
+    "candidate": "Vikram Solanki",
+    "position": "Cloud Architect",
+    "score": "6/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 80,
+    "candidate": "Om Prakash",
+    "position": "Mobile App Developer",
+    "score": "10/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 81,
+    "candidate": "Manav Chopra",
+    "position": "Product Manager",
+    "score": "5/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 82,
+    "candidate": "Vivaan Malhotra",
+    "position": "QA Engineer",
+    "score": "10/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 83,
+    "candidate": "Aarav Singh",
+    "position": "QA Engineer",
+    "score": "8/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 84,
+    "candidate": "Gaurav Nanda",
+    "position": "Mobile App Developer",
+    "score": "8/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 85,
+    "candidate": "Isha Vyas",
+    "position": "QA Engineer",
+    "score": "4/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 86,
+    "candidate": "Pooja Bhatt",
+    "position": "Cloud Architect",
+    "score": "10/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 87,
+    "candidate": "Tanmay Bhatia",
+    "position": "DevOps Engineer",
+    "score": "6/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 88,
+    "candidate": "Simran Chawla",
+    "position": "QA Engineer",
+    "score": "5/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 89,
+    "candidate": "Divya Ramesh",
+    "position": "Frontend Developer",
+    "score": "7/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 90,
+    "candidate": "Naman Chandra",
+    "position": "Java Developer",
+    "score": "9/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 91,
+    "candidate": "Rajat Bhalla",
+    "position": "Software Engineer",
+    "score": "6/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 92,
+    "candidate": "Harsh Vardhan",
+    "position": "Full Stack Developer",
+    "score": "4/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 93,
+    "candidate": "Meera Pillai",
+    "position": "DevOps Engineer",
+    "score": "8/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 94,
+    "candidate": "Yash Trivedi",
+    "position": "Data Analyst",
+    "score": "4/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 95,
+    "candidate": "Yash Trivedi",
+    "position": "Mobile App Developer",
+    "score": "10/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 96,
+    "candidate": "Swati Rane",
+    "position": "Security Analyst",
+    "score": "10/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 97,
+    "candidate": "Siddharth Menon",
+    "position": "Security Analyst",
+    "score": "4/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 98,
+    "candidate": "Devansh Agarwal",
+    "position": "Node.js Developer",
+    "score": "5/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 99,
+    "candidate": "Harsh Vardhan",
+    "position": "Full Stack Developer",
+    "score": "7/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 100,
+    "candidate": "Manav Chopra",
+    "position": "Node.js Developer",
+    "score": "10/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 101,
+    "candidate": "Aryan Kohli",
+    "position": "Frontend Developer",
+    "score": "9/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 102,
+    "candidate": "Swati Rane",
+    "position": "UI/UX Designer",
+    "score": "5/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 103,
+    "candidate": "Gaurav Nanda",
+    "position": "System Administrator",
+    "score": "4/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 104,
+    "candidate": "Rajat Bhalla",
+    "position": "Security Analyst",
+    "score": "6/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 105,
+    "candidate": "Neha Kulkarni",
+    "position": "Data Scientist",
+    "score": "4/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 106,
+    "candidate": "Anjali Dubey",
+    "position": "Data Scientist",
+    "score": "10/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 107,
+    "candidate": "Bhavna Rathi",
+    "position": "Full Stack Developer",
+    "score": "5/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 108,
+    "candidate": "Yuvraj Thakur",
+    "position": "System Administrator",
+    "score": "8/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 109,
+    "candidate": "Janvi",
+    "position": "Backend Developer",
+    "score": "5/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 110,
+    "candidate": "Tanmay Bhatia",
+    "position": "Machine Learning Engineer",
+    "score": "9/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 111,
+    "candidate": "Pallavi Kher",
+    "position": "QA Engineer",
+    "score": "7/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 112,
+    "candidate": "Bhavna Rathi",
+    "position": "Java Developer",
+    "score": "10/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 113,
+    "candidate": "Pallavi Kher",
+    "position": "Mobile App Developer",
+    "score": "6/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 114,
+    "candidate": "Sneha Reddy",
+    "position": "DevOps Engineer",
+    "score": "9/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 115,
+    "candidate": "Gaurav Nanda",
+    "position": "Backend Developer",
+    "score": "10/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 116,
+    "candidate": "Ishita Joshi",
+    "position": "System Administrator",
+    "score": "4/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 117,
+    "candidate": "Simran Chawla",
+    "position": "Cloud Architect",
+    "score": "5/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 118,
+    "candidate": "Neha Kulkarni",
+    "position": "Data Analyst",
+    "score": "8/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 119,
+    "candidate": "Karan Oberoi",
+    "position": "Data Scientist",
+    "score": "5/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 120,
+    "candidate": "Arjun Pillai",
+    "position": "Data Scientist",
+    "score": "10/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 121,
+    "candidate": "Ananya Iyer",
+    "position": "Software Engineer",
+    "score": "10/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 122,
+    "candidate": "Shreya Gupta",
+    "position": "Frontend Developer",
+    "score": "9/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 123,
+    "candidate": "Tanya Bose",
+    "position": "Business Analyst",
+    "score": "8/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 124,
+    "candidate": "Yash Trivedi",
+    "position": "QA Engineer",
+    "score": "7/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 125,
+    "candidate": "Kavya Nair",
+    "position": "Frontend Developer",
+    "score": "10/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 126,
+    "candidate": "Rahul Mehta",
+    "position": "Data Scientist",
+    "score": "5/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 127,
+    "candidate": "Simran Chawla",
+    "position": "Python Developer",
+    "score": "9/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 128,
+    "candidate": "Devansh Agarwal",
+    "position": "React Native Dev",
+    "score": "6/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 129,
+    "candidate": "Aryan Kohli",
+    "position": "System Administrator",
+    "score": "6/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 130,
+    "candidate": "Harsh Vardhan",
+    "position": "Mobile App Developer",
+    "score": "9/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 131,
+    "candidate": "Tanmay Bhatia",
+    "position": "Mobile App Developer",
+    "score": "5/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 132,
+    "candidate": "Kritika Sethi",
+    "position": "Python Developer",
+    "score": "6/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 133,
+    "candidate": "Divya Ramesh",
+    "position": "Java Developer",
+    "score": "4/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 134,
+    "candidate": "Riya Saxena",
+    "position": "Mobile App Developer",
+    "score": "6/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 135,
+    "candidate": "Karan Oberoi",
+    "position": "System Administrator",
+    "score": "8/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 136,
+    "candidate": "Sahil Anand",
+    "position": "Business Analyst",
+    "score": "6/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 137,
+    "candidate": "Aditya Rao",
+    "position": "Business Analyst",
+    "score": "6/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 138,
+    "candidate": "Aryan Kohli",
+    "position": "Security Analyst",
+    "score": "9/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 139,
+    "candidate": "Janvi",
+    "position": "Full Stack Developer",
+    "score": "7/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 140,
+    "candidate": "Karan Oberoi",
+    "position": "Data Analyst",
+    "score": "4/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 141,
+    "candidate": "Farhan Sheikh",
+    "position": "UI/UX Designer",
+    "score": "10/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 142,
+    "candidate": "Rahul Mehta",
+    "position": "Cloud Architect",
+    "score": "7/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 143,
+    "candidate": "Farhan Sheikh",
+    "position": "Full Stack Developer",
+    "score": "7/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 144,
+    "candidate": "Anjali Dubey",
+    "position": "Node.js Developer",
+    "score": "4/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 145,
+    "candidate": "Sahil Anand",
+    "position": "Product Manager",
+    "score": "7/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 146,
+    "candidate": "Ishita Joshi",
+    "position": "Full Stack Developer",
+    "score": "8/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 147,
+    "candidate": "Harsh Vardhan",
+    "position": "System Administrator",
+    "score": "10/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 148,
+    "candidate": "Kritika Sethi",
+    "position": "DevOps Engineer",
+    "score": "6/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 149,
+    "candidate": "Divya Ramesh",
+    "position": "UI/UX Designer",
+    "score": "5/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 150,
+    "candidate": "Nisha Patel",
+    "position": "Software Engineer",
+    "score": "4/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 151,
+    "candidate": "Riya Saxena",
+    "position": "System Administrator",
+    "score": "6/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 152,
+    "candidate": "Yash Trivedi",
+    "position": "Data Scientist",
+    "score": "5/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 153,
+    "candidate": "Yuvraj Thakur",
+    "position": "Business Analyst",
+    "score": "6/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 154,
+    "candidate": "Siddharth Menon",
+    "position": "React Native Dev",
+    "score": "5/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 155,
+    "candidate": "Nisha Patel",
+    "position": "Cloud Architect",
+    "score": "6/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 156,
+    "candidate": "Aarav Singh",
+    "position": "QA Engineer",
+    "score": "8/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 157,
+    "candidate": "Devansh Agarwal",
+    "position": "Software Engineer",
+    "score": "4/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 158,
+    "candidate": "Siddharth Menon",
+    "position": "Machine Learning Engineer",
+    "score": "5/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 159,
+    "candidate": "Vikram Solanki",
+    "position": "System Administrator",
+    "score": "8/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 160,
+    "candidate": "Nikhil Bansal",
+    "position": "Cloud Architect",
+    "score": "8/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 161,
+    "candidate": "Aarav Singh",
+    "position": "System Administrator",
+    "score": "9/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 162,
+    "candidate": "Tushti",
+    "position": "Full Stack Developer",
+    "score": "10/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 163,
+    "candidate": "Rajat Bhalla",
+    "position": "Full Stack Developer",
+    "score": "6/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 164,
+    "candidate": "Devansh Agarwal",
+    "position": "Security Analyst",
+    "score": "6/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 165,
+    "candidate": "Pallavi Kher",
+    "position": "Mobile App Developer",
+    "score": "4/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 166,
+    "candidate": "Bhavna Rathi",
+    "position": "Backend Developer",
+    "score": "10/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 167,
+    "candidate": "Ritika Malviya",
+    "position": "Frontend Developer",
+    "score": "6/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 168,
+    "candidate": "Isha Vyas",
+    "position": "Java Developer",
+    "score": "8/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 169,
+    "candidate": "Manav Chopra",
+    "position": "Frontend Developer",
+    "score": "5/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 170,
+    "candidate": "Priya Sharma",
+    "position": "Python Developer",
+    "score": "8/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 171,
+    "candidate": "Gaurav Nanda",
+    "position": "Python Developer",
+    "score": "9/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 172,
+    "candidate": "Gaurav Nanda",
+    "position": "Full Stack Developer",
+    "score": "7/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 173,
+    "candidate": "Yuvraj Thakur",
+    "position": "Machine Learning Engineer",
+    "score": "9/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 174,
+    "candidate": "Naman Chandra",
+    "position": "React Native Dev",
+    "score": "7/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 175,
+    "candidate": "Kavya Nair",
+    "position": "Frontend Developer",
+    "score": "8/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 176,
+    "candidate": "Rohan Desai",
+    "position": "Cloud Architect",
+    "score": "8/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 177,
+    "candidate": "Karan Oberoi",
+    "position": "Mobile App Developer",
+    "score": "9/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 178,
+    "candidate": "Aisha Khan",
+    "position": "Data Scientist",
+    "score": "6/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 179,
+    "candidate": "Shreya Gupta",
+    "position": "QA Engineer",
+    "score": "8/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 180,
+    "candidate": "Yash Trivedi",
+    "position": "Python Developer",
+    "score": "7/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 181,
+    "candidate": "Harsh Vardhan",
+    "position": "Java Developer",
+    "score": "4/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 182,
+    "candidate": "Riya Saxena",
+    "position": "Cloud Architect",
+    "score": "5/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 183,
+    "candidate": "Divya Ramesh",
+    "position": "Java Developer",
+    "score": "7/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 184,
+    "candidate": "Bhavna Rathi",
+    "position": "Java Developer",
+    "score": "6/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 185,
+    "candidate": "Diya Kapoor",
+    "position": "Data Scientist",
+    "score": "8/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 186,
+    "candidate": "Devansh Agarwal",
+    "position": "Full Stack Developer",
+    "score": "6/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 187,
+    "candidate": "Neha Kulkarni",
+    "position": "Machine Learning Engineer",
+    "score": "10/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 188,
+    "candidate": "Neha Kulkarni",
+    "position": "Node.js Developer",
+    "score": "8/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 189,
+    "candidate": "Diya Kapoor",
+    "position": "Mobile App Developer",
+    "score": "5/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 190,
+    "candidate": "Yash Trivedi",
+    "position": "React Native Dev",
+    "score": "9/10",
+    "result": "Not Selected"
+  },
+  {
+    "id": 191,
+    "candidate": "Naman Chandra",
+    "position": "UI/UX Designer",
+    "score": "9/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 192,
+    "candidate": "Vikram Solanki",
+    "position": "Machine Learning Engineer",
+    "score": "10/10",
+    "result": "Good Fit"
+  },
+  {
+    "id": 193,
+    "candidate": "Ishita Joshi",
+    "position": "Mobile App Developer",
+    "score": "6/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 194,
+    "candidate": "Rahul Mehta",
+    "position": "Software Engineer",
+    "score": "9/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 195,
+    "candidate": "Tanya Bose",
+    "position": "Backend Developer",
+    "score": "5/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 196,
+    "candidate": "Vivaan Malhotra",
+    "position": "React Native Dev",
+    "score": "9/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 197,
+    "candidate": "Meera Pillai",
+    "position": "Python Developer",
+    "score": "6/10",
+    "result": "Strong Match"
+  },
+  {
+    "id": 198,
+    "candidate": "Aryan Kohli",
+    "position": "Node.js Developer",
+    "score": "7/10",
+    "result": "On Hold"
+  },
+  {
+    "id": 199,
+    "candidate": "Rahul Mehta",
+    "position": "React Native Dev",
+    "score": "5/10",
+    "result": "Recommended"
+  },
+  {
+    "id": 200,
+    "candidate": "Tanya Bose",
+    "position": "Frontend Developer",
+    "score": "5/10",
+    "result": "On Hold"
+  }
+]

@@ -1,0 +1,81 @@
+{
+    "cards": [
+        {
+            "title": "Active Jobs",
+            "value": "12",
+            "color": "#2563eb",
+            "bgLight": "rgba(37,99,235,0.06)",
+            "bgDark": "rgba(37,99,235,0.15)",
+            "trend": "+2 new this week",
+            "link": "/job-management",
+            "icon": "briefcase"
+        },
+        {
+            "title": "Recruiters",
+            "value": "12",
+            "color": "#3B82F6",
+            "bgLight": "rgba(59,130,246,0.06)",
+            "bgDark": "rgba(59,130,246,0.15)",
+            "trend": "+1 added this week",
+            "link": "/recruiters",
+            "icon": "usertie"
+        },
+        {
+            "title": "Scheduled Interviews",
+            "value": "24",
+            "color": "#60A5FA",
+            "bgLight": "rgba(96,165,250,0.08)",
+            "bgDark": "rgba(96,165,250,0.15)",
+            "trend": "8 scheduled today",
+            "link": "/interview-management",
+            "icon": "calendar"
+        },
+        {
+            "title": "Hired Candidates",
+            "value": "8",
+            "color": "#1D4ED8",
+            "bgLight": "rgba(29,78,216,0.08)",
+            "bgDark": "rgba(29,78,216,0.15)",
+            "trend": "+1 since yesterday",
+            "link": "/candidates",
+            "icon": "usercheck"
+        }
+    ],
+    "recentCandidates": [
+        {
+            "name": "Sarah Connor",
+            "role": "Senior React Engineer",
+            "date": "Applied 2 hrs ago",
+            "status": "Screening",
+            "initials": "SC"
+        },
+        {
+            "name": "John Miller",
+            "role": "Node Developer",
+            "date": "Applied 5 hrs ago",
+            "status": "Applied",
+            "initials": "JM"
+        },
+        {
+            "name": "Clara Oswald",
+            "role": "UI/UX Specialist",
+            "date": "Applied Yesterday",
+            "status": "Shortlisted",
+            "initials": "CO"
+        }
+    ],
+    "upcomingInterviews": [
+        {
+            "candidate": "Mark Ruffalo",
+            "interviewer": "Int. David",
+            "time": "03:30 PM",
+            "type": "Technical Live Coding"
+        },
+        {
+            "candidate": "Emma Watson",
+            "interviewer": "Int. Sophia",
+            "time": "05:00 PM",
+            "type": "System Design"
+        }
+    ]
+}

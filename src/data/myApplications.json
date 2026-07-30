@@ -1,0 +1,1802 @@
+[
+  {
+    "applicationId": "APP001",
+    "company": "Palm Grove Digital",
+    "position": "Full Stack Developer",
+    "date": "09 July 2026",
+    "status": "Applied",
+    "logoBg": "#ecfdf5",
+    "logoColor": "#10b981"
+  },
+  {
+    "applicationId": "APP002",
+    "company": "Starforge Tech",
+    "position": "DevOps Engineer",
+    "date": "31 May 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP003",
+    "company": "Zephyr Networks",
+    "position": "Full Stack Developer",
+    "date": "21 January 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP004",
+    "company": "Redshift Cloud",
+    "position": "Mobile App Developer",
+    "date": "21 June 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP005",
+    "company": "Clearwater Systems",
+    "position": "Business Analyst",
+    "date": "17 June 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP006",
+    "company": "Steelcrest Solutions",
+    "position": "Backend Developer",
+    "date": "09 February 2026",
+    "status": "Applied",
+    "logoBg": "#ecfdf5",
+    "logoColor": "#10b981"
+  },
+  {
+    "applicationId": "APP007",
+    "company": "Granite Peak IT",
+    "position": "Machine Learning Engineer",
+    "date": "27 April 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP008",
+    "company": "Solstice Innovations",
+    "position": "DevOps Engineer",
+    "date": "03 March 2026",
+    "status": "Applied",
+    "logoBg": "#ecfdf5",
+    "logoColor": "#10b981"
+  },
+  {
+    "applicationId": "APP009",
+    "company": "Clearwater Systems",
+    "position": "Project Manager",
+    "date": "21 June 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP010",
+    "company": "Amberstone Technologies",
+    "position": "Product Manager",
+    "date": "05 May 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP011",
+    "company": "DataVantage",
+    "position": "Cloud Architect",
+    "date": "28 March 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP012",
+    "company": "BlueHarbor Software",
+    "position": "Machine Learning Engineer",
+    "date": "04 May 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP013",
+    "company": "Sablewood Digital",
+    "position": "Scrum Master",
+    "date": "11 July 2026",
+    "status": "Applied",
+    "logoBg": "#ecfdf5",
+    "logoColor": "#10b981"
+  },
+  {
+    "applicationId": "APP014",
+    "company": "Ironwood Digital",
+    "position": "Technical Writer",
+    "date": "08 March 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP015",
+    "company": "OrbitLogic",
+    "position": "Financial Analyst",
+    "date": "05 April 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP016",
+    "company": "Vertex Dynamics",
+    "position": "Network Engineer",
+    "date": "09 March 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP017",
+    "company": "Zephyr Networks",
+    "position": "Backend Developer",
+    "date": "30 May 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP018",
+    "company": "NimbusCloud",
+    "position": "Data Analyst",
+    "date": "27 March 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP019",
+    "company": "Lumen Softworks",
+    "position": "Graphic Designer",
+    "date": "17 July 2026",
+    "status": "Applied",
+    "logoBg": "#ecfdf5",
+    "logoColor": "#10b981"
+  },
+  {
+    "applicationId": "APP020",
+    "company": "Copperline Tech",
+    "position": "Technical Writer",
+    "date": "09 April 2026",
+    "status": "Applied",
+    "logoBg": "#ecfdf5",
+    "logoColor": "#10b981"
+  },
+  {
+    "applicationId": "APP021",
+    "company": "Moonridge Labs",
+    "position": "Financial Analyst",
+    "date": "10 May 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP022",
+    "company": "Duskwave Studios",
+    "position": "Business Analyst",
+    "date": "24 April 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP023",
+    "company": "PixelForge Studios",
+    "position": "DevOps Engineer",
+    "date": "06 June 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP024",
+    "company": "DataVantage",
+    "position": "Scrum Master",
+    "date": "01 February 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP025",
+    "company": "Wavelength Tech",
+    "position": "Marketing Manager",
+    "date": "05 May 2026",
+    "status": "Shortlisted",
+    "logoBg": "#fdf4ff",
+    "logoColor": "#a855f7"
+  },
+  {
+    "applicationId": "APP026",
+    "company": "Zephyr Networks",
+    "position": "Software Engineer",
+    "date": "16 January 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP027",
+    "company": "Emberlight Studios",
+    "position": "Network Engineer",
+    "date": "14 April 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP028",
+    "company": "Vertex Dynamics",
+    "position": "Software Engineer",
+    "date": "28 March 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP029",
+    "company": "Amberstone Technologies",
+    "position": "UI/UX Designer",
+    "date": "21 June 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP030",
+    "company": "Meridian Softworks",
+    "position": "Support Engineer",
+    "date": "04 March 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP031",
+    "company": "Redshift Cloud",
+    "position": "Database Administrator",
+    "date": "01 July 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP032",
+    "company": "Snowfield Systems",
+    "position": "Network Engineer",
+    "date": "28 March 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP033",
+    "company": "Cascade Cloud",
+    "position": "Marketing Manager",
+    "date": "26 June 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP034",
+    "company": "Bayview Analytics",
+    "position": "Software Engineer",
+    "date": "20 March 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP035",
+    "company": "Redshift Cloud",
+    "position": "Data Analyst",
+    "date": "04 January 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP036",
+    "company": "Marbletech",
+    "position": "Full Stack Developer",
+    "date": "13 April 2026",
+    "status": "Applied",
+    "logoBg": "#ecfdf5",
+    "logoColor": "#10b981"
+  },
+  {
+    "applicationId": "APP037",
+    "company": "Meridian Softworks",
+    "position": "Machine Learning Engineer",
+    "date": "26 May 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP038",
+    "company": "Granite Peak IT",
+    "position": "Backend Developer",
+    "date": "15 March 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP039",
+    "company": "BlueHarbor Software",
+    "position": "HR Executive",
+    "date": "02 June 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP040",
+    "company": "Meridian Softworks",
+    "position": "QA Engineer",
+    "date": "10 March 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP041",
+    "company": "BlueHarbor Software",
+    "position": "Business Analyst",
+    "date": "27 June 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP042",
+    "company": "Brightpath Analytics",
+    "position": "Mobile App Developer",
+    "date": "13 July 2026",
+    "status": "Shortlisted",
+    "logoBg": "#fdf4ff",
+    "logoColor": "#a855f7"
+  },
+  {
+    "applicationId": "APP043",
+    "company": "Silverline Tech",
+    "position": "Software Engineer",
+    "date": "15 June 2026",
+    "status": "Applied",
+    "logoBg": "#ecfdf5",
+    "logoColor": "#10b981"
+  },
+  {
+    "applicationId": "APP044",
+    "company": "Wavelength Tech",
+    "position": "HR Executive",
+    "date": "29 March 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP045",
+    "company": "Ironwood Digital",
+    "position": "Cloud Architect",
+    "date": "18 July 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP046",
+    "company": "Duskwave Studios",
+    "position": "UI/UX Designer",
+    "date": "01 May 2026",
+    "status": "Applied",
+    "logoBg": "#ecfdf5",
+    "logoColor": "#10b981"
+  },
+  {
+    "applicationId": "APP047",
+    "company": "Sablewood Digital",
+    "position": "Frontend Developer",
+    "date": "26 January 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP048",
+    "company": "BlueHarbor Software",
+    "position": "Data Analyst",
+    "date": "06 June 2026",
+    "status": "Applied",
+    "logoBg": "#ecfdf5",
+    "logoColor": "#10b981"
+  },
+  {
+    "applicationId": "APP049",
+    "company": "Palm Grove Digital",
+    "position": "Machine Learning Engineer",
+    "date": "06 March 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP050",
+    "company": "Copperline Tech",
+    "position": "Sales Executive",
+    "date": "15 March 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP051",
+    "company": "Ironclad Systems",
+    "position": "Data Scientist",
+    "date": "19 May 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP052",
+    "company": "Zephyr Networks",
+    "position": "Full Stack Developer",
+    "date": "05 April 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP053",
+    "company": "PixelForge Studios",
+    "position": "Backend Developer",
+    "date": "07 May 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP054",
+    "company": "Ravenhurst Solutions",
+    "position": "Software Engineer",
+    "date": "03 April 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP055",
+    "company": "OrbitLogic",
+    "position": "Content Strategist",
+    "date": "23 February 2026",
+    "status": "Shortlisted",
+    "logoBg": "#fdf4ff",
+    "logoColor": "#a855f7"
+  },
+  {
+    "applicationId": "APP056",
+    "company": "Cobalt Interactive",
+    "position": "QA Engineer",
+    "date": "09 March 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP057",
+    "company": "Solstice Innovations",
+    "position": "Software Engineer",
+    "date": "08 January 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP058",
+    "company": "Cinderwood Labs",
+    "position": "Technical Writer",
+    "date": "21 April 2026",
+    "status": "Shortlisted",
+    "logoBg": "#fdf4ff",
+    "logoColor": "#a855f7"
+  },
+  {
+    "applicationId": "APP059",
+    "company": "Redshift Cloud",
+    "position": "UI/UX Designer",
+    "date": "02 May 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP060",
+    "company": "Copperline Tech",
+    "position": "Project Manager",
+    "date": "27 January 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP061",
+    "company": "Northwind Data",
+    "position": "QA Engineer",
+    "date": "06 February 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP062",
+    "company": "DataVantage",
+    "position": "UI/UX Designer",
+    "date": "13 July 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP063",
+    "company": "Oakridge Systems",
+    "position": "Technical Writer",
+    "date": "20 March 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP064",
+    "company": "Pinecrest Systems",
+    "position": "Scrum Master",
+    "date": "28 February 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP065",
+    "company": "Snowfield Systems",
+    "position": "Software Engineer",
+    "date": "03 April 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP066",
+    "company": "Skyline Analytics",
+    "position": "Financial Analyst",
+    "date": "31 March 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP067",
+    "company": "Cobalt Interactive",
+    "position": "Graphic Designer",
+    "date": "22 March 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP068",
+    "company": "Snowfield Systems",
+    "position": "Security Analyst",
+    "date": "09 April 2026",
+    "status": "Shortlisted",
+    "logoBg": "#fdf4ff",
+    "logoColor": "#a855f7"
+  },
+  {
+    "applicationId": "APP069",
+    "company": "Clearwater Systems",
+    "position": "Software Engineer",
+    "date": "15 May 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP070",
+    "company": "Nexora Solutions",
+    "position": "Business Analyst",
+    "date": "30 May 2026",
+    "status": "Applied",
+    "logoBg": "#ecfdf5",
+    "logoColor": "#10b981"
+  },
+  {
+    "applicationId": "APP071",
+    "company": "Redshift Cloud",
+    "position": "QA Engineer",
+    "date": "21 March 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP072",
+    "company": "Pinecrest Systems",
+    "position": "UI/UX Designer",
+    "date": "16 February 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP073",
+    "company": "Redshift Cloud",
+    "position": "Network Engineer",
+    "date": "23 April 2026",
+    "status": "Shortlisted",
+    "logoBg": "#fdf4ff",
+    "logoColor": "#a855f7"
+  },
+  {
+    "applicationId": "APP074",
+    "company": "Silverline Tech",
+    "position": "Project Manager",
+    "date": "15 July 2026",
+    "status": "Applied",
+    "logoBg": "#ecfdf5",
+    "logoColor": "#10b981"
+  },
+  {
+    "applicationId": "APP075",
+    "company": "Coral Reef Digital",
+    "position": "QA Engineer",
+    "date": "26 January 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP076",
+    "company": "Moonridge Labs",
+    "position": "Security Analyst",
+    "date": "19 April 2026",
+    "status": "Shortlisted",
+    "logoBg": "#fdf4ff",
+    "logoColor": "#a855f7"
+  },
+  {
+    "applicationId": "APP077",
+    "company": "Clearwater Systems",
+    "position": "UI/UX Designer",
+    "date": "20 April 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP078",
+    "company": "Sablewood Digital",
+    "position": "QA Engineer",
+    "date": "18 January 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP079",
+    "company": "Granite Peak IT",
+    "position": "Data Scientist",
+    "date": "21 February 2026",
+    "status": "Applied",
+    "logoBg": "#ecfdf5",
+    "logoColor": "#10b981"
+  },
+  {
+    "applicationId": "APP080",
+    "company": "Havenware",
+    "position": "Sales Executive",
+    "date": "09 April 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP081",
+    "company": "Solstice Innovations",
+    "position": "Software Engineer",
+    "date": "03 July 2026",
+    "status": "Shortlisted",
+    "logoBg": "#fdf4ff",
+    "logoColor": "#a855f7"
+  },
+  {
+    "applicationId": "APP082",
+    "company": "NimbusCloud",
+    "position": "UI/UX Designer",
+    "date": "23 June 2026",
+    "status": "Shortlisted",
+    "logoBg": "#fdf4ff",
+    "logoColor": "#a855f7"
+  },
+  {
+    "applicationId": "APP083",
+    "company": "Amberstone Technologies",
+    "position": "Full Stack Developer",
+    "date": "08 July 2026",
+    "status": "Applied",
+    "logoBg": "#ecfdf5",
+    "logoColor": "#10b981"
+  },
+  {
+    "applicationId": "APP084",
+    "company": "Clearwater Systems",
+    "position": "Software Engineer",
+    "date": "24 June 2026",
+    "status": "Applied",
+    "logoBg": "#ecfdf5",
+    "logoColor": "#10b981"
+  },
+  {
+    "applicationId": "APP085",
+    "company": "Oakridge Systems",
+    "position": "QA Engineer",
+    "date": "22 May 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP086",
+    "company": "Cinderwood Labs",
+    "position": "Network Engineer",
+    "date": "30 March 2026",
+    "status": "Shortlisted",
+    "logoBg": "#fdf4ff",
+    "logoColor": "#a855f7"
+  },
+  {
+    "applicationId": "APP087",
+    "company": "Palm Grove Digital",
+    "position": "Scrum Master",
+    "date": "02 February 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP088",
+    "company": "Snowfield Systems",
+    "position": "Database Administrator",
+    "date": "08 May 2026",
+    "status": "Applied",
+    "logoBg": "#ecfdf5",
+    "logoColor": "#10b981"
+  },
+  {
+    "applicationId": "APP089",
+    "company": "Cobalt Interactive",
+    "position": "Graphic Designer",
+    "date": "23 March 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP090",
+    "company": "Amberstone Technologies",
+    "position": "Graphic Designer",
+    "date": "25 March 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP091",
+    "company": "DataVantage",
+    "position": "Project Manager",
+    "date": "02 June 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP092",
+    "company": "Pinecrest Systems",
+    "position": "Technical Writer",
+    "date": "15 July 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP093",
+    "company": "Crestwave Labs",
+    "position": "Support Engineer",
+    "date": "02 May 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP094",
+    "company": "NimbusCloud",
+    "position": "Mobile App Developer",
+    "date": "22 June 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP095",
+    "company": "Nexora Solutions",
+    "position": "Content Strategist",
+    "date": "04 March 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP096",
+    "company": "Brightpath Analytics",
+    "position": "Cloud Architect",
+    "date": "14 February 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP097",
+    "company": "Moonridge Labs",
+    "position": "Product Manager",
+    "date": "01 February 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP098",
+    "company": "Bayview Analytics",
+    "position": "Product Manager",
+    "date": "28 January 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP099",
+    "company": "Duskwave Studios",
+    "position": "Data Scientist",
+    "date": "24 March 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP100",
+    "company": "BrightSoft",
+    "position": "Project Manager",
+    "date": "04 June 2026",
+    "status": "Shortlisted",
+    "logoBg": "#fdf4ff",
+    "logoColor": "#a855f7"
+  },
+  {
+    "applicationId": "APP101",
+    "company": "BrightSoft",
+    "position": "Sales Executive",
+    "date": "17 March 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP102",
+    "company": "Amberstone Technologies",
+    "position": "Software Engineer",
+    "date": "26 March 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP103",
+    "company": "Marbletech",
+    "position": "UI/UX Designer",
+    "date": "11 July 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP104",
+    "company": "Ironwood Digital",
+    "position": "Scrum Master",
+    "date": "12 February 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP105",
+    "company": "Moonridge Labs",
+    "position": "QA Engineer",
+    "date": "07 March 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP106",
+    "company": "Redshift Cloud",
+    "position": "Financial Analyst",
+    "date": "25 April 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP107",
+    "company": "Willowbrook Digital",
+    "position": "Scrum Master",
+    "date": "28 February 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP108",
+    "company": "Thornfield Tech",
+    "position": "Support Engineer",
+    "date": "04 March 2026",
+    "status": "Applied",
+    "logoBg": "#ecfdf5",
+    "logoColor": "#10b981"
+  },
+  {
+    "applicationId": "APP109",
+    "company": "DataVantage",
+    "position": "Scrum Master",
+    "date": "08 July 2026",
+    "status": "Shortlisted",
+    "logoBg": "#fdf4ff",
+    "logoColor": "#a855f7"
+  },
+  {
+    "applicationId": "APP110",
+    "company": "Clearwater Systems",
+    "position": "UI/UX Designer",
+    "date": "15 January 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP111",
+    "company": "Copperline Tech",
+    "position": "Backend Developer",
+    "date": "18 February 2026",
+    "status": "Applied",
+    "logoBg": "#ecfdf5",
+    "logoColor": "#10b981"
+  },
+  {
+    "applicationId": "APP112",
+    "company": "Zephyr Networks",
+    "position": "Database Administrator",
+    "date": "20 March 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP113",
+    "company": "Moonridge Labs",
+    "position": "Machine Learning Engineer",
+    "date": "09 February 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP114",
+    "company": "Zephyr Networks",
+    "position": "Database Administrator",
+    "date": "15 May 2026",
+    "status": "Applied",
+    "logoBg": "#ecfdf5",
+    "logoColor": "#10b981"
+  },
+  {
+    "applicationId": "APP115",
+    "company": "Marbletech",
+    "position": "Network Engineer",
+    "date": "05 January 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP116",
+    "company": "Frostline Networks",
+    "position": "Content Strategist",
+    "date": "10 March 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP117",
+    "company": "Verdant Systems",
+    "position": "System Administrator",
+    "date": "15 June 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP118",
+    "company": "Steelcrest Solutions",
+    "position": "Content Strategist",
+    "date": "12 April 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP119",
+    "company": "Emberlight Studios",
+    "position": "Security Analyst",
+    "date": "02 June 2026",
+    "status": "Shortlisted",
+    "logoBg": "#fdf4ff",
+    "logoColor": "#a855f7"
+  },
+  {
+    "applicationId": "APP120",
+    "company": "Nexora Solutions",
+    "position": "Cloud Architect",
+    "date": "20 July 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP121",
+    "company": "Falconview Software",
+    "position": "Machine Learning Engineer",
+    "date": "07 January 2026",
+    "status": "Applied",
+    "logoBg": "#ecfdf5",
+    "logoColor": "#10b981"
+  },
+  {
+    "applicationId": "APP122",
+    "company": "Lumen Softworks",
+    "position": "System Administrator",
+    "date": "17 January 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP123",
+    "company": "Snowfield Systems",
+    "position": "Cloud Architect",
+    "date": "23 April 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP124",
+    "company": "Pinecrest Systems",
+    "position": "Product Manager",
+    "date": "04 April 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP125",
+    "company": "Clearwater Systems",
+    "position": "Machine Learning Engineer",
+    "date": "19 January 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP126",
+    "company": "Ironwood Digital",
+    "position": "Database Administrator",
+    "date": "15 June 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP127",
+    "company": "Nexora Solutions",
+    "position": "Mobile App Developer",
+    "date": "04 May 2026",
+    "status": "Applied",
+    "logoBg": "#ecfdf5",
+    "logoColor": "#10b981"
+  },
+  {
+    "applicationId": "APP128",
+    "company": "OrbitLogic",
+    "position": "Project Manager",
+    "date": "01 July 2026",
+    "status": "Applied",
+    "logoBg": "#ecfdf5",
+    "logoColor": "#10b981"
+  },
+  {
+    "applicationId": "APP129",
+    "company": "Havenware",
+    "position": "QA Engineer",
+    "date": "07 June 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP130",
+    "company": "Highland Software",
+    "position": "Graphic Designer",
+    "date": "16 May 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP131",
+    "company": "Ironclad Systems",
+    "position": "Mobile App Developer",
+    "date": "06 February 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP132",
+    "company": "DataVantage",
+    "position": "Graphic Designer",
+    "date": "03 January 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP133",
+    "company": "PixelForge Studios",
+    "position": "Product Manager",
+    "date": "18 May 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP134",
+    "company": "Solstice Innovations",
+    "position": "Graphic Designer",
+    "date": "26 April 2026",
+    "status": "Applied",
+    "logoBg": "#ecfdf5",
+    "logoColor": "#10b981"
+  },
+  {
+    "applicationId": "APP135",
+    "company": "Northwind Data",
+    "position": "Scrum Master",
+    "date": "02 June 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP136",
+    "company": "Steelcrest Solutions",
+    "position": "Content Strategist",
+    "date": "11 April 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP137",
+    "company": "Wavelength Tech",
+    "position": "Graphic Designer",
+    "date": "24 January 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP138",
+    "company": "Oakridge Systems",
+    "position": "HR Executive",
+    "date": "24 June 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP139",
+    "company": "Verdant Systems",
+    "position": "Database Administrator",
+    "date": "06 March 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP140",
+    "company": "Coral Reef Digital",
+    "position": "Technical Writer",
+    "date": "24 April 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP141",
+    "company": "OrbitLogic",
+    "position": "Technical Writer",
+    "date": "03 January 2026",
+    "status": "Shortlisted",
+    "logoBg": "#fdf4ff",
+    "logoColor": "#a855f7"
+  },
+  {
+    "applicationId": "APP142",
+    "company": "Amberstone Technologies",
+    "position": "Product Manager",
+    "date": "22 January 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP143",
+    "company": "Palm Grove Digital",
+    "position": "Security Analyst",
+    "date": "16 May 2026",
+    "status": "Applied",
+    "logoBg": "#ecfdf5",
+    "logoColor": "#10b981"
+  },
+  {
+    "applicationId": "APP144",
+    "company": "Granite Peak IT",
+    "position": "Database Administrator",
+    "date": "09 May 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP145",
+    "company": "Solstice Innovations",
+    "position": "Support Engineer",
+    "date": "06 July 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP146",
+    "company": "Moonridge Labs",
+    "position": "Product Manager",
+    "date": "06 April 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP147",
+    "company": "Redshift Cloud",
+    "position": "Data Analyst",
+    "date": "17 July 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP148",
+    "company": "Moonridge Labs",
+    "position": "Business Analyst",
+    "date": "20 January 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP149",
+    "company": "Redshift Cloud",
+    "position": "Data Scientist",
+    "date": "25 May 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP150",
+    "company": "Emberlight Studios",
+    "position": "QA Engineer",
+    "date": "07 April 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP151",
+    "company": "Meridian Softworks",
+    "position": "Full Stack Developer",
+    "date": "04 February 2026",
+    "status": "Shortlisted",
+    "logoBg": "#fdf4ff",
+    "logoColor": "#a855f7"
+  },
+  {
+    "applicationId": "APP152",
+    "company": "Quantum Byte",
+    "position": "UI/UX Designer",
+    "date": "12 February 2026",
+    "status": "Applied",
+    "logoBg": "#ecfdf5",
+    "logoColor": "#10b981"
+  },
+  {
+    "applicationId": "APP153",
+    "company": "Clearwater Systems",
+    "position": "DevOps Engineer",
+    "date": "12 April 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP154",
+    "company": "Skyline Analytics",
+    "position": "Content Strategist",
+    "date": "06 April 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP155",
+    "company": "Moonridge Labs",
+    "position": "Cloud Architect",
+    "date": "08 January 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP156",
+    "company": "Crestwave Labs",
+    "position": "Machine Learning Engineer",
+    "date": "14 June 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP157",
+    "company": "Coral Reef Digital",
+    "position": "QA Engineer",
+    "date": "15 January 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP158",
+    "company": "Sablewood Digital",
+    "position": "Support Engineer",
+    "date": "01 June 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP159",
+    "company": "Snowfield Systems",
+    "position": "Data Scientist",
+    "date": "29 March 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP160",
+    "company": "BlueHarbor Software",
+    "position": "Sales Executive",
+    "date": "13 June 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP161",
+    "company": "PixelForge Studios",
+    "position": "Data Analyst",
+    "date": "23 March 2026",
+    "status": "Shortlisted",
+    "logoBg": "#fdf4ff",
+    "logoColor": "#a855f7"
+  },
+  {
+    "applicationId": "APP162",
+    "company": "Bayview Analytics",
+    "position": "Frontend Developer",
+    "date": "07 March 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP163",
+    "company": "NimbusCloud",
+    "position": "Business Analyst",
+    "date": "27 January 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP164",
+    "company": "Bayview Analytics",
+    "position": "Scrum Master",
+    "date": "06 July 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP165",
+    "company": "Marbletech",
+    "position": "Data Scientist",
+    "date": "07 January 2026",
+    "status": "Applied",
+    "logoBg": "#ecfdf5",
+    "logoColor": "#10b981"
+  },
+  {
+    "applicationId": "APP166",
+    "company": "Ravenhurst Solutions",
+    "position": "Backend Developer",
+    "date": "23 April 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP167",
+    "company": "Ironwood Digital",
+    "position": "Financial Analyst",
+    "date": "02 May 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP168",
+    "company": "Palm Grove Digital",
+    "position": "UI/UX Designer",
+    "date": "08 March 2026",
+    "status": "Shortlisted",
+    "logoBg": "#fdf4ff",
+    "logoColor": "#a855f7"
+  },
+  {
+    "applicationId": "APP169",
+    "company": "Zephyr Networks",
+    "position": "Financial Analyst",
+    "date": "16 April 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP170",
+    "company": "NimbusCloud",
+    "position": "Business Analyst",
+    "date": "21 March 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP171",
+    "company": "Steelcrest Solutions",
+    "position": "Technical Writer",
+    "date": "15 January 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP172",
+    "company": "Clearwater Systems",
+    "position": "Data Scientist",
+    "date": "05 April 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  },
+  {
+    "applicationId": "APP173",
+    "company": "BlueHarbor Software",
+    "position": "Graphic Designer",
+    "date": "19 July 2026",
+    "status": "Shortlisted",
+    "logoBg": "#fdf4ff",
+    "logoColor": "#a855f7"
+  },
+  {
+    "applicationId": "APP174",
+    "company": "Willowbrook Digital",
+    "position": "Financial Analyst",
+    "date": "31 March 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP175",
+    "company": "Lumen Softworks",
+    "position": "Product Manager",
+    "date": "02 July 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP176",
+    "company": "Meridian Softworks",
+    "position": "Support Engineer",
+    "date": "18 February 2026",
+    "status": "Shortlisted",
+    "logoBg": "#fdf4ff",
+    "logoColor": "#a855f7"
+  },
+  {
+    "applicationId": "APP177",
+    "company": "Steelcrest Solutions",
+    "position": "Operations Manager",
+    "date": "24 June 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP178",
+    "company": "Thornfield Tech",
+    "position": "Cloud Architect",
+    "date": "18 March 2026",
+    "status": "Shortlisted",
+    "logoBg": "#fdf4ff",
+    "logoColor": "#a855f7"
+  },
+  {
+    "applicationId": "APP179",
+    "company": "Lumen Softworks",
+    "position": "Data Scientist",
+    "date": "28 May 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP180",
+    "company": "NimbusCloud",
+    "position": "Network Engineer",
+    "date": "10 June 2026",
+    "status": "Applied",
+    "logoBg": "#ecfdf5",
+    "logoColor": "#10b981"
+  },
+  {
+    "applicationId": "APP181",
+    "company": "Brightpath Analytics",
+    "position": "Business Analyst",
+    "date": "25 June 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP182",
+    "company": "Pinecrest Systems",
+    "position": "Financial Analyst",
+    "date": "07 March 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP183",
+    "company": "Solstice Innovations",
+    "position": "Machine Learning Engineer",
+    "date": "26 January 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP184",
+    "company": "Skyline Analytics",
+    "position": "Mobile App Developer",
+    "date": "15 April 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP185",
+    "company": "Frostline Networks",
+    "position": "Database Administrator",
+    "date": "27 April 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP186",
+    "company": "Emberlight Studios",
+    "position": "Mobile App Developer",
+    "date": "09 June 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP187",
+    "company": "Quantum Byte",
+    "position": "Machine Learning Engineer",
+    "date": "04 May 2026",
+    "status": "Shortlisted",
+    "logoBg": "#fdf4ff",
+    "logoColor": "#a855f7"
+  },
+  {
+    "applicationId": "APP188",
+    "company": "Wavelength Tech",
+    "position": "Sales Executive",
+    "date": "05 July 2026",
+    "status": "Shortlisted",
+    "logoBg": "#fdf4ff",
+    "logoColor": "#a855f7"
+  },
+  {
+    "applicationId": "APP189",
+    "company": "Oakridge Systems",
+    "position": "Graphic Designer",
+    "date": "20 January 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP190",
+    "company": "Quantum Byte",
+    "position": "Cloud Architect",
+    "date": "10 January 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP191",
+    "company": "Wavelength Tech",
+    "position": "Security Analyst",
+    "date": "02 May 2026",
+    "status": "Shortlisted",
+    "logoBg": "#fdf4ff",
+    "logoColor": "#a855f7"
+  },
+  {
+    "applicationId": "APP192",
+    "company": "Quantum Byte",
+    "position": "Product Manager",
+    "date": "20 February 2026",
+    "status": "Shortlisted",
+    "logoBg": "#fdf4ff",
+    "logoColor": "#a855f7"
+  },
+  {
+    "applicationId": "APP193",
+    "company": "Cascade Cloud",
+    "position": "Operations Manager",
+    "date": "30 May 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP194",
+    "company": "Crestwave Labs",
+    "position": "UI/UX Designer",
+    "date": "04 June 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP195",
+    "company": "Steelcrest Solutions",
+    "position": "Mobile App Developer",
+    "date": "03 May 2026",
+    "status": "Shortlisted",
+    "logoBg": "#fdf4ff",
+    "logoColor": "#a855f7"
+  },
+  {
+    "applicationId": "APP196",
+    "company": "Thornfield Tech",
+    "position": "Product Manager",
+    "date": "16 January 2026",
+    "status": "Interviewing",
+    "logoBg": "#eff6ff",
+    "logoColor": "#3b82f6"
+  },
+  {
+    "applicationId": "APP197",
+    "company": "Pinecrest Systems",
+    "position": "Machine Learning Engineer",
+    "date": "22 March 2026",
+    "status": "Withdrawn",
+    "logoBg": "#f3f4f6",
+    "logoColor": "#6b7280"
+  },
+  {
+    "applicationId": "APP198",
+    "company": "Ironclad Systems",
+    "position": "Sales Executive",
+    "date": "31 January 2026",
+    "status": "Shortlisted",
+    "logoBg": "#fdf4ff",
+    "logoColor": "#a855f7"
+  },
+  {
+    "applicationId": "APP199",
+    "company": "Highland Software",
+    "position": "Project Manager",
+    "date": "27 May 2026",
+    "status": "Offer",
+    "logoBg": "#fefce8",
+    "logoColor": "#eab308"
+  },
+  {
+    "applicationId": "APP200",
+    "company": "Emberlight Studios",
+    "position": "Mobile App Developer",
+    "date": "25 February 2026",
+    "status": "Rejected",
+    "logoBg": "#fef2f2",
+    "logoColor": "#ef4444"
+  }
+]

@@ -1,0 +1,5802 @@
+[
+  {
+    "id": 1,
+    "candidateId": "CAND001",
+    "fullName": "Rohan Patel",
+    "email": "rohan.patel1@example.com",
+    "phone": "9000000001",
+    "gender": "Male",
+    "dateOfBirth": "1999-08-05",
+    "position": "React Developer",
+    "experience": 4,
+    "skills": [
+      "React",
+      "Redux",
+      "JavaScript",
+      "MUI",
+      "REST API"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Computer Science",
+      "college": "VIT Vellore",
+      "graduationYear": 2021
+    },
+    "location": "Surat",
+    "appliedDate": "2026-07-09",
+    "status": "Rejected",
+    "resume": "CAND001_Rohan_Patel.pdf",
+    "profileImage": "/images/candidates/CAND001.png"
+  },
+  {
+    "id": 2,
+    "candidateId": "CAND002",
+    "fullName": "Pallavi Kulkarni",
+    "email": "pallavi.kulkarni2@example.com",
+    "phone": "9000000002",
+    "gender": "Female",
+    "dateOfBirth": "1996-03-20",
+    "position": "Angular Developer",
+    "experience": 8,
+    "skills": [
+      "Angular",
+      "TypeScript",
+      "RxJS",
+      "HTML5",
+      "CSS3"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Software Engineering",
+      "college": "VIT Vellore",
+      "graduationYear": 2024
+    },
+    "location": "Bengaluru",
+    "appliedDate": "2026-07-20",
+    "status": "Shortlisted",
+    "resume": "CAND002_Pallavi_Kulkarni.pdf",
+    "profileImage": "/images/candidates/CAND002.png"
+  },
+  {
+    "id": 3,
+    "candidateId": "CAND003",
+    "fullName": "Sneha Menon",
+    "email": "sneha.menon3@example.com",
+    "phone": "9000000003",
+    "gender": "Female",
+    "dateOfBirth": "2003-11-08",
+    "position": "UI/UX Designer",
+    "experience": 5,
+    "skills": [
+      "Figma",
+      "Adobe XD",
+      "Wireframing",
+      "Prototyping",
+      "Photoshop"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Computer Science",
+      "college": "MIT-WPU",
+      "graduationYear": 2021
+    },
+    "location": "Indore",
+    "appliedDate": "2026-07-02",
+    "status": "Shortlisted",
+    "resume": "CAND003_Sneha_Menon.pdf",
+    "profileImage": "/images/candidates/CAND003.png"
+  },
+  {
+    "id": 4,
+    "candidateId": "CAND004",
+    "fullName": "Rohan Mishra",
+    "email": "rohan.mishra4@example.com",
+    "phone": "9000000004",
+    "gender": "Male",
+    "dateOfBirth": "2001-10-07",
+    "position": "Android Developer",
+    "experience": 7,
+    "skills": [
+      "Kotlin",
+      "Android Studio",
+      "Firebase",
+      "REST API",
+      "Git"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Computer Science",
+      "college": "PDEU",
+      "graduationYear": 2023
+    },
+    "location": "Indore",
+    "appliedDate": "2026-07-14",
+    "status": "Applied",
+    "resume": "CAND004_Rohan_Mishra.pdf",
+    "profileImage": "/images/candidates/CAND004.png"
+  },
+  {
+    "id": 5,
+    "candidateId": "CAND005",
+    "fullName": "Aditi Kapoor",
+    "email": "aditi.kapoor5@example.com",
+    "phone": "9000000005",
+    "gender": "Female",
+    "dateOfBirth": "2003-02-20",
+    "position": "iOS Developer",
+    "experience": 0,
+    "skills": [
+      "Swift",
+      "Xcode",
+      "UIKit",
+      "Firebase",
+      "REST API"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Computer Science",
+      "college": "L.D. College of Engineering",
+      "graduationYear": 2020
+    },
+    "location": "Chennai",
+    "appliedDate": "2026-07-16",
+    "status": "Selected",
+    "resume": "CAND005_Aditi_Kapoor.pdf",
+    "profileImage": "/images/candidates/CAND005.png"
+  },
+  {
+    "id": 6,
+    "candidateId": "CAND006",
+    "fullName": "Aditya Roy",
+    "email": "aditya.roy6@example.com",
+    "phone": "9000000006",
+    "gender": "Male",
+    "dateOfBirth": "1996-08-18",
+    "position": "QA Engineer",
+    "experience": 3,
+    "skills": [
+      "Manual Testing",
+      "Selenium",
+      "Postman",
+      "JIRA",
+      "Test Cases"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Software Engineering",
+      "college": "Christ University",
+      "graduationYear": 2020
+    },
+    "location": "Jaipur",
+    "appliedDate": "2026-07-13",
+    "status": "Applied",
+    "resume": "CAND006_Aditya_Roy.pdf",
+    "profileImage": "/images/candidates/CAND006.png"
+  },
+  {
+    "id": 7,
+    "candidateId": "CAND007",
+    "fullName": "Pallavi Verma",
+    "email": "pallavi.verma7@example.com",
+    "phone": "9000000007",
+    "gender": "Female",
+    "dateOfBirth": "1996-04-24",
+    "position": "QA Engineer",
+    "experience": 0,
+    "skills": [
+      "Manual Testing",
+      "Selenium",
+      "Postman",
+      "JIRA",
+      "Test Cases"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Computer Science",
+      "college": "PDEU",
+      "graduationYear": 2021
+    },
+    "location": "Ahmedabad",
+    "appliedDate": "2026-07-08",
+    "status": "Shortlisted",
+    "resume": "CAND007_Pallavi_Verma.pdf",
+    "profileImage": "/images/candidates/CAND007.png"
+  },
+  {
+    "id": 8,
+    "candidateId": "CAND008",
+    "fullName": "Priya Verma",
+    "email": "priya.verma8@example.com",
+    "phone": "9000000008",
+    "gender": "Female",
+    "dateOfBirth": "2000-03-17",
+    "position": "UI/UX Designer",
+    "experience": 2,
+    "skills": [
+      "Figma",
+      "Adobe XD",
+      "Wireframing",
+      "Prototyping",
+      "Photoshop"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Information Technology",
+      "college": "Nirma University",
+      "graduationYear": 2023
+    },
+    "location": "Lucknow",
+    "appliedDate": "2026-07-04",
+    "status": "Interview Scheduled",
+    "resume": "CAND008_Priya_Verma.pdf",
+    "profileImage": "/images/candidates/CAND008.png"
+  },
+  {
+    "id": 9,
+    "candidateId": "CAND009",
+    "fullName": "Karan Menon",
+    "email": "karan.menon9@example.com",
+    "phone": "9000000009",
+    "gender": "Male",
+    "dateOfBirth": "2003-08-14",
+    "position": "Business Analyst",
+    "experience": 7,
+    "skills": [
+      "SQL",
+      "Excel",
+      "Power BI",
+      "Agile",
+      "Requirements Analysis"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Software Engineering",
+      "college": "Silver Oak University",
+      "graduationYear": 2023
+    },
+    "location": "Delhi",
+    "appliedDate": "2026-07-21",
+    "status": "Under Review",
+    "resume": "CAND009_Karan_Menon.pdf",
+    "profileImage": "/images/candidates/CAND009.png"
+  },
+  {
+    "id": 10,
+    "candidateId": "CAND010",
+    "fullName": "Anjali Joshi",
+    "email": "anjali.joshi10@example.com",
+    "phone": "9000000010",
+    "gender": "Female",
+    "dateOfBirth": "1999-02-03",
+    "position": "Cloud Engineer",
+    "experience": 7,
+    "skills": [
+      "AWS",
+      "Terraform",
+      "Docker",
+      "Linux",
+      "CI/CD"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Computer Science",
+      "college": "PDEU",
+      "graduationYear": 2025
+    },
+    "location": "Mumbai",
+    "appliedDate": "2026-07-27",
+    "status": "Shortlisted",
+    "resume": "CAND010_Anjali_Joshi.pdf",
+    "profileImage": "/images/candidates/CAND010.png"
+  },
+  {
+    "id": 11,
+    "candidateId": "CAND011",
+    "fullName": "Priya Kapoor",
+    "email": "priya.kapoor11@example.com",
+    "phone": "9000000011",
+    "gender": "Female",
+    "dateOfBirth": "2002-04-05",
+    "position": "React Developer",
+    "experience": 5,
+    "skills": [
+      "React",
+      "Redux",
+      "JavaScript",
+      "MUI",
+      "REST API"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Information Technology",
+      "college": "DAIICT",
+      "graduationYear": 2019
+    },
+    "location": "Surat",
+    "appliedDate": "2026-07-07",
+    "status": "Interview Completed",
+    "resume": "CAND011_Priya_Kapoor.pdf",
+    "profileImage": "/images/candidates/CAND011.png"
+  },
+  {
+    "id": 12,
+    "candidateId": "CAND012",
+    "fullName": "Priya Patel",
+    "email": "priya.patel12@example.com",
+    "phone": "9000000012",
+    "gender": "Female",
+    "dateOfBirth": "2003-01-04",
+    "position": "Cloud Engineer",
+    "experience": 4,
+    "skills": [
+      "AWS",
+      "Terraform",
+      "Docker",
+      "Linux",
+      "CI/CD"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Computer Engineering",
+      "college": "Nirma University",
+      "graduationYear": 2025
+    },
+    "location": "Hyderabad",
+    "appliedDate": "2026-07-16",
+    "status": "Interview Completed",
+    "resume": "CAND012_Priya_Patel.pdf",
+    "profileImage": "/images/candidates/CAND012.png"
+  },
+  {
+    "id": 13,
+    "candidateId": "CAND013",
+    "fullName": "Aarav Rao",
+    "email": "aarav.rao13@example.com",
+    "phone": "9000000013",
+    "gender": "Male",
+    "dateOfBirth": "2000-09-03",
+    "position": "React Developer",
+    "experience": 4,
+    "skills": [
+      "React",
+      "Redux",
+      "JavaScript",
+      "MUI",
+      "REST API"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Software Engineering",
+      "college": "PDEU",
+      "graduationYear": 2018
+    },
+    "location": "Chennai",
+    "appliedDate": "2026-07-05",
+    "status": "Interview Completed",
+    "resume": "CAND013_Aarav_Rao.pdf",
+    "profileImage": "/images/candidates/CAND013.png"
+  },
+  {
+    "id": 14,
+    "candidateId": "CAND014",
+    "fullName": "Anjali Kapoor",
+    "email": "anjali.kapoor14@example.com",
+    "phone": "9000000014",
+    "gender": "Female",
+    "dateOfBirth": "2002-06-13",
+    "position": "Java Developer",
+    "experience": 4,
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "Hibernate",
+      "MySQL",
+      "Git"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Software Engineering",
+      "college": "MIT-WPU",
+      "graduationYear": 2018
+    },
+    "location": "Vadodara",
+    "appliedDate": "2026-07-11",
+    "status": "Interview Scheduled",
+    "resume": "CAND014_Anjali_Kapoor.pdf",
+    "profileImage": "/images/candidates/CAND014.png"
+  },
+  {
+    "id": 15,
+    "candidateId": "CAND015",
+    "fullName": "Harsh Patel",
+    "email": "harsh.patel15@example.com",
+    "phone": "9000000015",
+    "gender": "Male",
+    "dateOfBirth": "1996-03-07",
+    "position": "iOS Developer",
+    "experience": 8,
+    "skills": [
+      "Swift",
+      "Xcode",
+      "UIKit",
+      "Firebase",
+      "REST API"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Computer Engineering",
+      "college": "PDEU",
+      "graduationYear": 2019
+    },
+    "location": "Chennai",
+    "appliedDate": "2026-07-03",
+    "status": "Rejected",
+    "resume": "CAND015_Harsh_Patel.pdf",
+    "profileImage": "/images/candidates/CAND015.png"
+  },
+  {
+    "id": 16,
+    "candidateId": "CAND016",
+    "fullName": "Sakshi Roy",
+    "email": "sakshi.roy16@example.com",
+    "phone": "9000000016",
+    "gender": "Female",
+    "dateOfBirth": "2002-09-19",
+    "position": "Cloud Engineer",
+    "experience": 4,
+    "skills": [
+      "AWS",
+      "Terraform",
+      "Docker",
+      "Linux",
+      "CI/CD"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Information Technology",
+      "college": "Christ University",
+      "graduationYear": 2021
+    },
+    "location": "Chennai",
+    "appliedDate": "2026-07-09",
+    "status": "Interview Scheduled",
+    "resume": "CAND016_Sakshi_Roy.pdf",
+    "profileImage": "/images/candidates/CAND016.png"
+  },
+  {
+    "id": 17,
+    "candidateId": "CAND017",
+    "fullName": "Deepak Desai",
+    "email": "deepak.desai17@example.com",
+    "phone": "9000000017",
+    "gender": "Male",
+    "dateOfBirth": "2002-11-14",
+    "position": "Frontend Developer",
+    "experience": 0,
+    "skills": [
+      "React",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Computer Engineering",
+      "college": "PDEU",
+      "graduationYear": 2018
+    },
+    "location": "Nagpur",
+    "appliedDate": "2026-07-19",
+    "status": "Rejected",
+    "resume": "CAND017_Deepak_Desai.pdf",
+    "profileImage": "/images/candidates/CAND017.png"
+  },
+  {
+    "id": 18,
+    "candidateId": "CAND018",
+    "fullName": "Priya Menon",
+    "email": "priya.menon18@example.com",
+    "phone": "9000000018",
+    "gender": "Female",
+    "dateOfBirth": "1999-12-26",
+    "position": "Cloud Engineer",
+    "experience": 2,
+    "skills": [
+      "AWS",
+      "Terraform",
+      "Docker",
+      "Linux",
+      "CI/CD"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Information Technology",
+      "college": "PDEU",
+      "graduationYear": 2018
+    },
+    "location": "Kolkata",
+    "appliedDate": "2026-07-07",
+    "status": "Applied",
+    "resume": "CAND018_Priya_Menon.pdf",
+    "profileImage": "/images/candidates/CAND018.png"
+  },
+  {
+    "id": 19,
+    "candidateId": "CAND019",
+    "fullName": "Aditya Kulkarni",
+    "email": "aditya.kulkarni19@example.com",
+    "phone": "9000000019",
+    "gender": "Male",
+    "dateOfBirth": "1996-02-26",
+    "position": "QA Engineer",
+    "experience": 4,
+    "skills": [
+      "Manual Testing",
+      "Selenium",
+      "Postman",
+      "JIRA",
+      "Test Cases"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Computer Engineering",
+      "college": "PDEU",
+      "graduationYear": 2018
+    },
+    "location": "Chennai",
+    "appliedDate": "2026-07-22",
+    "status": "Rejected",
+    "resume": "CAND019_Aditya_Kulkarni.pdf",
+    "profileImage": "/images/candidates/CAND019.png"
+  },
+  {
+    "id": 20,
+    "candidateId": "CAND020",
+    "fullName": "Deepak Kapoor",
+    "email": "deepak.kapoor20@example.com",
+    "phone": "9000000020",
+    "gender": "Male",
+    "dateOfBirth": "1996-11-08",
+    "position": "Python Developer",
+    "experience": 7,
+    "skills": [
+      "Python",
+      "Django",
+      "PostgreSQL",
+      "REST API",
+      "Git"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Computer Science",
+      "college": "VIT Vellore",
+      "graduationYear": 2025
+    },
+    "location": "Delhi",
+    "appliedDate": "2026-07-18",
+    "status": "Interview Scheduled",
+    "resume": "CAND020_Deepak_Kapoor.pdf",
+    "profileImage": "/images/candidates/CAND020.png"
+  },
+  {
+    "id": 21,
+    "candidateId": "CAND021",
+    "fullName": "Anjali Mishra",
+    "email": "anjali.mishra21@example.com",
+    "phone": "9000000021",
+    "gender": "Female",
+    "dateOfBirth": "1997-12-12",
+    "position": "Android Developer",
+    "experience": 5,
+    "skills": [
+      "Kotlin",
+      "Android Studio",
+      "Firebase",
+      "REST API",
+      "Git"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Information Technology",
+      "college": "MIT-WPU",
+      "graduationYear": 2021
+    },
+    "location": "Nagpur",
+    "appliedDate": "2026-07-06",
+    "status": "Interview Scheduled",
+    "resume": "CAND021_Anjali_Mishra.pdf",
+    "profileImage": "/images/candidates/CAND021.png"
+  },
+  {
+    "id": 22,
+    "candidateId": "CAND022",
+    "fullName": "Harsh Reddy",
+    "email": "harsh.reddy22@example.com",
+    "phone": "9000000022",
+    "gender": "Male",
+    "dateOfBirth": "2002-04-10",
+    "position": "UI/UX Designer",
+    "experience": 2,
+    "skills": [
+      "Figma",
+      "Adobe XD",
+      "Wireframing",
+      "Prototyping",
+      "Photoshop"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Software Engineering",
+      "college": "Christ University",
+      "graduationYear": 2020
+    },
+    "location": "Bengaluru",
+    "appliedDate": "2026-07-26",
+    "status": "Under Review",
+    "resume": "CAND022_Harsh_Reddy.pdf",
+    "profileImage": "/images/candidates/CAND022.png"
+  },
+  {
+    "id": 23,
+    "candidateId": "CAND023",
+    "fullName": "Sneha Rao",
+    "email": "sneha.rao23@example.com",
+    "phone": "9000000023",
+    "gender": "Female",
+    "dateOfBirth": "2000-03-27",
+    "position": "Backend Developer",
+    "experience": 2,
+    "skills": [
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "REST API",
+      "JWT"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Computer Science",
+      "college": "VIT Vellore",
+      "graduationYear": 2021
+    },
+    "location": "Kolkata",
+    "appliedDate": "2026-07-01",
+    "status": "Interview Completed",
+    "resume": "CAND023_Sneha_Rao.pdf",
+    "profileImage": "/images/candidates/CAND023.png"
+  },
+  {
+    "id": 24,
+    "candidateId": "CAND024",
+    "fullName": "Manish Shah",
+    "email": "manish.shah24@example.com",
+    "phone": "9000000024",
+    "gender": "Male",
+    "dateOfBirth": "2003-11-01",
+    "position": "iOS Developer",
+    "experience": 7,
+    "skills": [
+      "Swift",
+      "Xcode",
+      "UIKit",
+      "Firebase",
+      "REST API"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Software Engineering",
+      "college": "Christ University",
+      "graduationYear": 2025
+    },
+    "location": "Surat",
+    "appliedDate": "2026-07-28",
+    "status": "Applied",
+    "resume": "CAND024_Manish_Shah.pdf",
+    "profileImage": "/images/candidates/CAND024.png"
+  },
+  {
+    "id": 25,
+    "candidateId": "CAND025",
+    "fullName": "Divya Mehta",
+    "email": "divya.mehta25@example.com",
+    "phone": "9000000025",
+    "gender": "Female",
+    "dateOfBirth": "2001-02-09",
+    "position": "Cloud Engineer",
+    "experience": 8,
+    "skills": [
+      "AWS",
+      "Terraform",
+      "Docker",
+      "Linux",
+      "CI/CD"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Software Engineering",
+      "college": "MIT-WPU",
+      "graduationYear": 2018
+    },
+    "location": "Bengaluru",
+    "appliedDate": "2026-07-01",
+    "status": "Interview Scheduled",
+    "resume": "CAND025_Divya_Mehta.pdf",
+    "profileImage": "/images/candidates/CAND025.png"
+  },
+  {
+    "id": 26,
+    "candidateId": "CAND026",
+    "fullName": "Rohan Singh",
+    "email": "rohan.singh26@example.com",
+    "phone": "9000000026",
+    "gender": "Male",
+    "dateOfBirth": "1996-11-13",
+    "position": "Python Developer",
+    "experience": 2,
+    "skills": [
+      "Python",
+      "Django",
+      "PostgreSQL",
+      "REST API",
+      "Git"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Software Engineering",
+      "college": "MIT-WPU",
+      "graduationYear": 2023
+    },
+    "location": "Bhopal",
+    "appliedDate": "2026-07-16",
+    "status": "Under Review",
+    "resume": "CAND026_Rohan_Singh.pdf",
+    "profileImage": "/images/candidates/CAND026.png"
+  },
+  {
+    "id": 27,
+    "candidateId": "CAND027",
+    "fullName": "Harsh Gupta",
+    "email": "harsh.gupta27@example.com",
+    "phone": "9000000027",
+    "gender": "Male",
+    "dateOfBirth": "1996-07-28",
+    "position": "Angular Developer",
+    "experience": 3,
+    "skills": [
+      "Angular",
+      "TypeScript",
+      "RxJS",
+      "HTML5",
+      "CSS3"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Information Technology",
+      "college": "L.D. College of Engineering",
+      "graduationYear": 2024
+    },
+    "location": "Ahmedabad",
+    "appliedDate": "2026-07-02",
+    "status": "Selected",
+    "resume": "CAND027_Harsh_Gupta.pdf",
+    "profileImage": "/images/candidates/CAND027.png"
+  },
+  {
+    "id": 28,
+    "candidateId": "CAND028",
+    "fullName": "Vikram Patel",
+    "email": "vikram.patel28@example.com",
+    "phone": "9000000028",
+    "gender": "Male",
+    "dateOfBirth": "1998-08-05",
+    "position": "Data Analyst",
+    "experience": 1,
+    "skills": [
+      "Python",
+      "SQL",
+      "Excel",
+      "Power BI",
+      "Tableau"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Information Technology",
+      "college": "VIT Vellore",
+      "graduationYear": 2019
+    },
+    "location": "Kochi",
+    "appliedDate": "2026-07-02",
+    "status": "Interview Scheduled",
+    "resume": "CAND028_Vikram_Patel.pdf",
+    "profileImage": "/images/candidates/CAND028.png"
+  },
+  {
+    "id": 29,
+    "candidateId": "CAND029",
+    "fullName": "Rahul Verma",
+    "email": "rahul.verma29@example.com",
+    "phone": "9000000029",
+    "gender": "Male",
+    "dateOfBirth": "1999-03-28",
+    "position": "iOS Developer",
+    "experience": 5,
+    "skills": [
+      "Swift",
+      "Xcode",
+      "UIKit",
+      "Firebase",
+      "REST API"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Computer Science",
+      "college": "PDEU",
+      "graduationYear": 2025
+    },
+    "location": "Bhopal",
+    "appliedDate": "2026-07-02",
+    "status": "Under Review",
+    "resume": "CAND029_Rahul_Verma.pdf",
+    "profileImage": "/images/candidates/CAND029.png"
+  },
+  {
+    "id": 30,
+    "candidateId": "CAND030",
+    "fullName": "Neha Mehta",
+    "email": "neha.mehta30@example.com",
+    "phone": "9000000030",
+    "gender": "Female",
+    "dateOfBirth": "2002-02-25",
+    "position": "React Developer",
+    "experience": 1,
+    "skills": [
+      "React",
+      "Redux",
+      "JavaScript",
+      "MUI",
+      "REST API"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Computer Engineering",
+      "college": "Nirma University",
+      "graduationYear": 2024
+    },
+    "location": "Kochi",
+    "appliedDate": "2026-07-26",
+    "status": "Selected",
+    "resume": "CAND030_Neha_Mehta.pdf",
+    "profileImage": "/images/candidates/CAND030.png"
+  },
+  {
+    "id": 31,
+    "candidateId": "CAND031",
+    "fullName": "Vikram Shah",
+    "email": "vikram.shah31@example.com",
+    "phone": "9000000031",
+    "gender": "Male",
+    "dateOfBirth": "2000-03-23",
+    "position": "Frontend Developer",
+    "experience": 6,
+    "skills": [
+      "React",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Software Engineering",
+      "college": "L.D. College of Engineering",
+      "graduationYear": 2021
+    },
+    "location": "Noida",
+    "appliedDate": "2026-07-21",
+    "status": "Rejected",
+    "resume": "CAND031_Vikram_Shah.pdf",
+    "profileImage": "/images/candidates/CAND031.png"
+  },
+  {
+    "id": 32,
+    "candidateId": "CAND032",
+    "fullName": "Rahul Reddy",
+    "email": "rahul.reddy32@example.com",
+    "phone": "9000000032",
+    "gender": "Male",
+    "dateOfBirth": "1996-08-10",
+    "position": "Frontend Developer",
+    "experience": 3,
+    "skills": [
+      "React",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Computer Engineering",
+      "college": "Christ University",
+      "graduationYear": 2018
+    },
+    "location": "Ahmedabad",
+    "appliedDate": "2026-07-01",
+    "status": "Shortlisted",
+    "resume": "CAND032_Rahul_Reddy.pdf",
+    "profileImage": "/images/candidates/CAND032.png"
+  },
+  {
+    "id": 33,
+    "candidateId": "CAND033",
+    "fullName": "Sneha Mehta",
+    "email": "sneha.mehta33@example.com",
+    "phone": "9000000033",
+    "gender": "Female",
+    "dateOfBirth": "2002-12-12",
+    "position": "Java Developer",
+    "experience": 1,
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "Hibernate",
+      "MySQL",
+      "Git"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Software Engineering",
+      "college": "Silver Oak University",
+      "graduationYear": 2023
+    },
+    "location": "Bengaluru",
+    "appliedDate": "2026-07-04",
+    "status": "Applied",
+    "resume": "CAND033_Sneha_Mehta.pdf",
+    "profileImage": "/images/candidates/CAND033.png"
+  },
+  {
+    "id": 34,
+    "candidateId": "CAND034",
+    "fullName": "Yash Choudhary",
+    "email": "yash.choudhary34@example.com",
+    "phone": "9000000034",
+    "gender": "Male",
+    "dateOfBirth": "1997-11-25",
+    "position": "Full Stack Developer",
+    "experience": 8,
+    "skills": [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Express.js",
+      "Git"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Information Technology",
+      "college": "Silver Oak University",
+      "graduationYear": 2025
+    },
+    "location": "Jaipur",
+    "appliedDate": "2026-07-16",
+    "status": "Interview Scheduled",
+    "resume": "CAND034_Yash_Choudhary.pdf",
+    "profileImage": "/images/candidates/CAND034.png"
+  },
+  {
+    "id": 35,
+    "candidateId": "CAND035",
+    "fullName": "Deepak Reddy",
+    "email": "deepak.reddy35@example.com",
+    "phone": "9000000035",
+    "gender": "Male",
+    "dateOfBirth": "1998-04-13",
+    "position": "Frontend Developer",
+    "experience": 7,
+    "skills": [
+      "React",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Software Engineering",
+      "college": "PDEU",
+      "graduationYear": 2022
+    },
+    "location": "Jaipur",
+    "appliedDate": "2026-07-10",
+    "status": "Interview Scheduled",
+    "resume": "CAND035_Deepak_Reddy.pdf",
+    "profileImage": "/images/candidates/CAND035.png"
+  },
+  {
+    "id": 36,
+    "candidateId": "CAND036",
+    "fullName": "Yash Mehta",
+    "email": "yash.mehta36@example.com",
+    "phone": "9000000036",
+    "gender": "Male",
+    "dateOfBirth": "1997-01-16",
+    "position": "Data Analyst",
+    "experience": 8,
+    "skills": [
+      "Python",
+      "SQL",
+      "Excel",
+      "Power BI",
+      "Tableau"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Computer Science",
+      "college": "Christ University",
+      "graduationYear": 2020
+    },
+    "location": "Pune",
+    "appliedDate": "2026-07-26",
+    "status": "Interview Scheduled",
+    "resume": "CAND036_Yash_Mehta.pdf",
+    "profileImage": "/images/candidates/CAND036.png"
+  },
+  {
+    "id": 37,
+    "candidateId": "CAND037",
+    "fullName": "Sakshi Mishra",
+    "email": "sakshi.mishra37@example.com",
+    "phone": "9000000037",
+    "gender": "Female",
+    "dateOfBirth": "1998-08-10",
+    "position": "Python Developer",
+    "experience": 1,
+    "skills": [
+      "Python",
+      "Django",
+      "PostgreSQL",
+      "REST API",
+      "Git"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Computer Engineering",
+      "college": "Christ University",
+      "graduationYear": 2024
+    },
+    "location": "Rajkot",
+    "appliedDate": "2026-07-02",
+    "status": "Interview Scheduled",
+    "resume": "CAND037_Sakshi_Mishra.pdf",
+    "profileImage": "/images/candidates/CAND037.png"
+  },
+  {
+    "id": 38,
+    "candidateId": "CAND038",
+    "fullName": "Aarav Gupta",
+    "email": "aarav.gupta38@example.com",
+    "phone": "9000000038",
+    "gender": "Male",
+    "dateOfBirth": "1997-04-26",
+    "position": "Backend Developer",
+    "experience": 2,
+    "skills": [
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "REST API",
+      "JWT"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Information Technology",
+      "college": "MIT-WPU",
+      "graduationYear": 2018
+    },
+    "location": "Ahmedabad",
+    "appliedDate": "2026-07-06",
+    "status": "Selected",
+    "resume": "CAND038_Aarav_Gupta.pdf",
+    "profileImage": "/images/candidates/CAND038.png"
+  },
+  {
+    "id": 39,
+    "candidateId": "CAND039",
+    "fullName": "Harsh Joshi",
+    "email": "harsh.joshi39@example.com",
+    "phone": "9000000039",
+    "gender": "Male",
+    "dateOfBirth": "2001-01-12",
+    "position": "Java Developer",
+    "experience": 7,
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "Hibernate",
+      "MySQL",
+      "Git"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Software Engineering",
+      "college": "MIT-WPU",
+      "graduationYear": 2025
+    },
+    "location": "Bengaluru",
+    "appliedDate": "2026-07-27",
+    "status": "Interview Scheduled",
+    "resume": "CAND039_Harsh_Joshi.pdf",
+    "profileImage": "/images/candidates/CAND039.png"
+  },
+  {
+    "id": 40,
+    "candidateId": "CAND040",
+    "fullName": "Meera Jain",
+    "email": "meera.jain40@example.com",
+    "phone": "9000000040",
+    "gender": "Female",
+    "dateOfBirth": "1998-01-27",
+    "position": "QA Engineer",
+    "experience": 4,
+    "skills": [
+      "Manual Testing",
+      "Selenium",
+      "Postman",
+      "JIRA",
+      "Test Cases"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Computer Engineering",
+      "college": "VIT Vellore",
+      "graduationYear": 2020
+    },
+    "location": "Jaipur",
+    "appliedDate": "2026-07-28",
+    "status": "Interview Completed",
+    "resume": "CAND040_Meera_Jain.pdf",
+    "profileImage": "/images/candidates/CAND040.png"
+  },
+  {
+    "id": 41,
+    "candidateId": "CAND041",
+    "fullName": "Aditya Desai",
+    "email": "aditya.desai41@example.com",
+    "phone": "9000000041",
+    "gender": "Male",
+    "dateOfBirth": "1998-11-10",
+    "position": "Data Analyst",
+    "experience": 2,
+    "skills": [
+      "Python",
+      "SQL",
+      "Excel",
+      "Power BI",
+      "Tableau"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Software Engineering",
+      "college": "Christ University",
+      "graduationYear": 2025
+    },
+    "location": "Delhi",
+    "appliedDate": "2026-07-11",
+    "status": "Shortlisted",
+    "resume": "CAND041_Aditya_Desai.pdf",
+    "profileImage": "/images/candidates/CAND041.png"
+  },
+  {
+    "id": 42,
+    "candidateId": "CAND042",
+    "fullName": "Arjun Nair",
+    "email": "arjun.nair42@example.com",
+    "phone": "9000000042",
+    "gender": "Male",
+    "dateOfBirth": "1999-02-12",
+    "position": "Frontend Developer",
+    "experience": 0,
+    "skills": [
+      "React",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Computer Engineering",
+      "college": "L.D. College of Engineering",
+      "graduationYear": 2025
+    },
+    "location": "Rajkot",
+    "appliedDate": "2026-07-18",
+    "status": "Rejected",
+    "resume": "CAND042_Arjun_Nair.pdf",
+    "profileImage": "/images/candidates/CAND042.png"
+  },
+  {
+    "id": 43,
+    "candidateId": "CAND043",
+    "fullName": "Sneha Patel",
+    "email": "sneha.patel43@example.com",
+    "phone": "9000000043",
+    "gender": "Female",
+    "dateOfBirth": "2000-02-21",
+    "position": "DevOps Engineer",
+    "experience": 8,
+    "skills": [
+      "AWS",
+      "Docker",
+      "Kubernetes",
+      "Linux",
+      "CI/CD"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Information Technology",
+      "college": "Christ University",
+      "graduationYear": 2021
+    },
+    "location": "Indore",
+    "appliedDate": "2026-07-09",
+    "status": "Shortlisted",
+    "resume": "CAND043_Sneha_Patel.pdf",
+    "profileImage": "/images/candidates/CAND043.png"
+  },
+  {
+    "id": 44,
+    "candidateId": "CAND044",
+    "fullName": "Rahul Nair",
+    "email": "rahul.nair44@example.com",
+    "phone": "9000000044",
+    "gender": "Male",
+    "dateOfBirth": "1997-11-11",
+    "position": "iOS Developer",
+    "experience": 3,
+    "skills": [
+      "Swift",
+      "Xcode",
+      "UIKit",
+      "Firebase",
+      "REST API"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Computer Engineering",
+      "college": "MIT-WPU",
+      "graduationYear": 2022
+    },
+    "location": "Rajkot",
+    "appliedDate": "2026-07-05",
+    "status": "Selected",
+    "resume": "CAND044_Rahul_Nair.pdf",
+    "profileImage": "/images/candidates/CAND044.png"
+  },
+  {
+    "id": 45,
+    "candidateId": "CAND045",
+    "fullName": "Pallavi Desai",
+    "email": "pallavi.desai45@example.com",
+    "phone": "9000000045",
+    "gender": "Female",
+    "dateOfBirth": "1997-09-16",
+    "position": "iOS Developer",
+    "experience": 8,
+    "skills": [
+      "Swift",
+      "Xcode",
+      "UIKit",
+      "Firebase",
+      "REST API"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Information Technology",
+      "college": "DAIICT",
+      "graduationYear": 2021
+    },
+    "location": "Rajkot",
+    "appliedDate": "2026-07-04",
+    "status": "Rejected",
+    "resume": "CAND045_Pallavi_Desai.pdf",
+    "profileImage": "/images/candidates/CAND045.png"
+  },
+  {
+    "id": 46,
+    "candidateId": "CAND046",
+    "fullName": "Ananya Jain",
+    "email": "ananya.jain46@example.com",
+    "phone": "9000000046",
+    "gender": "Female",
+    "dateOfBirth": "1997-07-21",
+    "position": "iOS Developer",
+    "experience": 7,
+    "skills": [
+      "Swift",
+      "Xcode",
+      "UIKit",
+      "Firebase",
+      "REST API"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Information Technology",
+      "college": "MIT-WPU",
+      "graduationYear": 2019
+    },
+    "location": "Mumbai",
+    "appliedDate": "2026-07-03",
+    "status": "Under Review",
+    "resume": "CAND046_Ananya_Jain.pdf",
+    "profileImage": "/images/candidates/CAND046.png"
+  },
+  {
+    "id": 47,
+    "candidateId": "CAND047",
+    "fullName": "Priya Rao",
+    "email": "priya.rao47@example.com",
+    "phone": "9000000047",
+    "gender": "Female",
+    "dateOfBirth": "1997-11-12",
+    "position": "Java Developer",
+    "experience": 4,
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "Hibernate",
+      "MySQL",
+      "Git"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Information Technology",
+      "college": "DAIICT",
+      "graduationYear": 2019
+    },
+    "location": "Delhi",
+    "appliedDate": "2026-07-16",
+    "status": "Interview Completed",
+    "resume": "CAND047_Priya_Rao.pdf",
+    "profileImage": "/images/candidates/CAND047.png"
+  },
+  {
+    "id": 48,
+    "candidateId": "CAND048",
+    "fullName": "Mohit Shah",
+    "email": "mohit.shah48@example.com",
+    "phone": "9000000048",
+    "gender": "Male",
+    "dateOfBirth": "1999-07-16",
+    "position": "Cloud Engineer",
+    "experience": 6,
+    "skills": [
+      "AWS",
+      "Terraform",
+      "Docker",
+      "Linux",
+      "CI/CD"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Computer Science",
+      "college": "Christ University",
+      "graduationYear": 2018
+    },
+    "location": "Rajkot",
+    "appliedDate": "2026-07-11",
+    "status": "Interview Scheduled",
+    "resume": "CAND048_Mohit_Shah.pdf",
+    "profileImage": "/images/candidates/CAND048.png"
+  },
+  {
+    "id": 49,
+    "candidateId": "CAND049",
+    "fullName": "Meera Yadav",
+    "email": "meera.yadav49@example.com",
+    "phone": "9000000049",
+    "gender": "Female",
+    "dateOfBirth": "2000-02-08",
+    "position": "Frontend Developer",
+    "experience": 6,
+    "skills": [
+      "React",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Software Engineering",
+      "college": "MIT-WPU",
+      "graduationYear": 2024
+    },
+    "location": "Mumbai",
+    "appliedDate": "2026-07-17",
+    "status": "Under Review",
+    "resume": "CAND049_Meera_Yadav.pdf",
+    "profileImage": "/images/candidates/CAND049.png"
+  },
+  {
+    "id": 50,
+    "candidateId": "CAND050",
+    "fullName": "Priya Shah",
+    "email": "priya.shah50@example.com",
+    "phone": "9000000050",
+    "gender": "Female",
+    "dateOfBirth": "2002-03-09",
+    "position": "Full Stack Developer",
+    "experience": 5,
+    "skills": [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Express.js",
+      "Git"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Information Technology",
+      "college": "Nirma University",
+      "graduationYear": 2019
+    },
+    "location": "Ahmedabad",
+    "appliedDate": "2026-07-21",
+    "status": "Selected",
+    "resume": "CAND050_Priya_Shah.pdf",
+    "profileImage": "/images/candidates/CAND050.png"
+  },
+  {
+    "id": 51,
+    "candidateId": "CAND051",
+    "fullName": "Pooja Joshi",
+    "email": "pooja.joshi51@example.com",
+    "phone": "9000000051",
+    "gender": "Female",
+    "dateOfBirth": "2002-05-16",
+    "position": "iOS Developer",
+    "experience": 5,
+    "skills": [
+      "Swift",
+      "Xcode",
+      "UIKit",
+      "Firebase",
+      "REST API"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Computer Engineering",
+      "college": "DAIICT",
+      "graduationYear": 2021
+    },
+    "location": "Mumbai",
+    "appliedDate": "2026-07-11",
+    "status": "Interview Completed",
+    "resume": "CAND051_Pooja_Joshi.pdf",
+    "profileImage": "/images/candidates/CAND051.png"
+  },
+  {
+    "id": 52,
+    "candidateId": "CAND052",
+    "fullName": "Mohit Joshi",
+    "email": "mohit.joshi52@example.com",
+    "phone": "9000000052",
+    "gender": "Male",
+    "dateOfBirth": "2002-04-05",
+    "position": "Android Developer",
+    "experience": 6,
+    "skills": [
+      "Kotlin",
+      "Android Studio",
+      "Firebase",
+      "REST API",
+      "Git"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Computer Engineering",
+      "college": "DAIICT",
+      "graduationYear": 2020
+    },
+    "location": "Surat",
+    "appliedDate": "2026-07-05",
+    "status": "Interview Scheduled",
+    "resume": "CAND052_Mohit_Joshi.pdf",
+    "profileImage": "/images/candidates/CAND052.png"
+  },
+  {
+    "id": 53,
+    "candidateId": "CAND053",
+    "fullName": "Sneha Jain",
+    "email": "sneha.jain53@example.com",
+    "phone": "9000000053",
+    "gender": "Female",
+    "dateOfBirth": "1998-05-02",
+    "position": "Cloud Engineer",
+    "experience": 6,
+    "skills": [
+      "AWS",
+      "Terraform",
+      "Docker",
+      "Linux",
+      "CI/CD"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Computer Science",
+      "college": "VIT Vellore",
+      "graduationYear": 2021
+    },
+    "location": "Jaipur",
+    "appliedDate": "2026-07-09",
+    "status": "Under Review",
+    "resume": "CAND053_Sneha_Jain.pdf",
+    "profileImage": "/images/candidates/CAND053.png"
+  },
+  {
+    "id": 54,
+    "candidateId": "CAND054",
+    "fullName": "Sneha Shah",
+    "email": "sneha.shah54@example.com",
+    "phone": "9000000054",
+    "gender": "Female",
+    "dateOfBirth": "1998-04-26",
+    "position": "Full Stack Developer",
+    "experience": 6,
+    "skills": [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Express.js",
+      "Git"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Information Technology",
+      "college": "VIT Vellore",
+      "graduationYear": 2024
+    },
+    "location": "Noida",
+    "appliedDate": "2026-07-23",
+    "status": "Interview Completed",
+    "resume": "CAND054_Sneha_Shah.pdf",
+    "profileImage": "/images/candidates/CAND054.png"
+  },
+  {
+    "id": 55,
+    "candidateId": "CAND055",
+    "fullName": "Yash Reddy",
+    "email": "yash.reddy55@example.com",
+    "phone": "9000000055",
+    "gender": "Male",
+    "dateOfBirth": "2000-11-01",
+    "position": "Data Analyst",
+    "experience": 1,
+    "skills": [
+      "Python",
+      "SQL",
+      "Excel",
+      "Power BI",
+      "Tableau"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Information Technology",
+      "college": "MIT-WPU",
+      "graduationYear": 2022
+    },
+    "location": "Pune",
+    "appliedDate": "2026-07-11",
+    "status": "Rejected",
+    "resume": "CAND055_Yash_Reddy.pdf",
+    "profileImage": "/images/candidates/CAND055.png"
+  },
+  {
+    "id": 56,
+    "candidateId": "CAND056",
+    "fullName": "Priya Shah",
+    "email": "priya.shah56@example.com",
+    "phone": "9000000056",
+    "gender": "Female",
+    "dateOfBirth": "2002-05-11",
+    "position": "Python Developer",
+    "experience": 8,
+    "skills": [
+      "Python",
+      "Django",
+      "PostgreSQL",
+      "REST API",
+      "Git"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Information Technology",
+      "college": "Silver Oak University",
+      "graduationYear": 2019
+    },
+    "location": "Bengaluru",
+    "appliedDate": "2026-07-08",
+    "status": "Selected",
+    "resume": "CAND056_Priya_Shah.pdf",
+    "profileImage": "/images/candidates/CAND056.png"
+  },
+  {
+    "id": 57,
+    "candidateId": "CAND057",
+    "fullName": "Ishita Roy",
+    "email": "ishita.roy57@example.com",
+    "phone": "9000000057",
+    "gender": "Female",
+    "dateOfBirth": "2001-08-09",
+    "position": "Python Developer",
+    "experience": 0,
+    "skills": [
+      "Python",
+      "Django",
+      "PostgreSQL",
+      "REST API",
+      "Git"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Computer Science",
+      "college": "PDEU",
+      "graduationYear": 2023
+    },
+    "location": "Hyderabad",
+    "appliedDate": "2026-07-02",
+    "status": "Selected",
+    "resume": "CAND057_Ishita_Roy.pdf",
+    "profileImage": "/images/candidates/CAND057.png"
+  },
+  {
+    "id": 58,
+    "candidateId": "CAND058",
+    "fullName": "Vikram Shah",
+    "email": "vikram.shah58@example.com",
+    "phone": "9000000058",
+    "gender": "Male",
+    "dateOfBirth": "2000-09-07",
+    "position": "Data Analyst",
+    "experience": 3,
+    "skills": [
+      "Python",
+      "SQL",
+      "Excel",
+      "Power BI",
+      "Tableau"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Software Engineering",
+      "college": "Silver Oak University",
+      "graduationYear": 2019
+    },
+    "location": "Bengaluru",
+    "appliedDate": "2026-07-21",
+    "status": "Rejected",
+    "resume": "CAND058_Vikram_Shah.pdf",
+    "profileImage": "/images/candidates/CAND058.png"
+  },
+  {
+    "id": 59,
+    "candidateId": "CAND059",
+    "fullName": "Aditya Singh",
+    "email": "aditya.singh59@example.com",
+    "phone": "9000000059",
+    "gender": "Male",
+    "dateOfBirth": "1997-08-27",
+    "position": "React Developer",
+    "experience": 2,
+    "skills": [
+      "React",
+      "Redux",
+      "JavaScript",
+      "MUI",
+      "REST API"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Software Engineering",
+      "college": "MIT-WPU",
+      "graduationYear": 2019
+    },
+    "location": "Surat",
+    "appliedDate": "2026-07-09",
+    "status": "Selected",
+    "resume": "CAND059_Aditya_Singh.pdf",
+    "profileImage": "/images/candidates/CAND059.png"
+  },
+  {
+    "id": 60,
+    "candidateId": "CAND060",
+    "fullName": "Mohit Joshi",
+    "email": "mohit.joshi60@example.com",
+    "phone": "9000000060",
+    "gender": "Male",
+    "dateOfBirth": "2001-01-01",
+    "position": "Java Developer",
+    "experience": 7,
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "Hibernate",
+      "MySQL",
+      "Git"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Software Engineering",
+      "college": "Nirma University",
+      "graduationYear": 2023
+    },
+    "location": "Bengaluru",
+    "appliedDate": "2026-07-02",
+    "status": "Interview Completed",
+    "resume": "CAND060_Mohit_Joshi.pdf",
+    "profileImage": "/images/candidates/CAND060.png"
+  },
+  {
+    "id": 61,
+    "candidateId": "CAND061",
+    "fullName": "Rahul Nair",
+    "email": "rahul.nair61@example.com",
+    "phone": "9000000061",
+    "gender": "Male",
+    "dateOfBirth": "1999-05-26",
+    "position": "Java Developer",
+    "experience": 5,
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "Hibernate",
+      "MySQL",
+      "Git"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Computer Science",
+      "college": "Christ University",
+      "graduationYear": 2019
+    },
+    "location": "Surat",
+    "appliedDate": "2026-07-16",
+    "status": "Rejected",
+    "resume": "CAND061_Rahul_Nair.pdf",
+    "profileImage": "/images/candidates/CAND061.png"
+  },
+  {
+    "id": 62,
+    "candidateId": "CAND062",
+    "fullName": "Sakshi Rao",
+    "email": "sakshi.rao62@example.com",
+    "phone": "9000000062",
+    "gender": "Female",
+    "dateOfBirth": "2000-01-05",
+    "position": "Full Stack Developer",
+    "experience": 6,
+    "skills": [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Express.js",
+      "Git"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Software Engineering",
+      "college": "Silver Oak University",
+      "graduationYear": 2023
+    },
+    "location": "Bhopal",
+    "appliedDate": "2026-07-15",
+    "status": "Applied",
+    "resume": "CAND062_Sakshi_Rao.pdf",
+    "profileImage": "/images/candidates/CAND062.png"
+  },
+  {
+    "id": 63,
+    "candidateId": "CAND063",
+    "fullName": "Aarav Kulkarni",
+    "email": "aarav.kulkarni63@example.com",
+    "phone": "9000000063",
+    "gender": "Male",
+    "dateOfBirth": "1997-05-24",
+    "position": "Angular Developer",
+    "experience": 3,
+    "skills": [
+      "Angular",
+      "TypeScript",
+      "RxJS",
+      "HTML5",
+      "CSS3"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Computer Engineering",
+      "college": "VIT Vellore",
+      "graduationYear": 2019
+    },
+    "location": "Bhopal",
+    "appliedDate": "2026-07-14",
+    "status": "Interview Completed",
+    "resume": "CAND063_Aarav_Kulkarni.pdf",
+    "profileImage": "/images/candidates/CAND063.png"
+  },
+  {
+    "id": 64,
+    "candidateId": "CAND064",
+    "fullName": "Rahul Roy",
+    "email": "rahul.roy64@example.com",
+    "phone": "9000000064",
+    "gender": "Male",
+    "dateOfBirth": "1997-03-10",
+    "position": "Java Developer",
+    "experience": 1,
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "Hibernate",
+      "MySQL",
+      "Git"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Software Engineering",
+      "college": "Nirma University",
+      "graduationYear": 2025
+    },
+    "location": "Chennai",
+    "appliedDate": "2026-07-10",
+    "status": "Interview Scheduled",
+    "resume": "CAND064_Rahul_Roy.pdf",
+    "profileImage": "/images/candidates/CAND064.png"
+  },
+  {
+    "id": 65,
+    "candidateId": "CAND065",
+    "fullName": "Manish Choudhary",
+    "email": "manish.choudhary65@example.com",
+    "phone": "9000000065",
+    "gender": "Male",
+    "dateOfBirth": "1996-02-26",
+    "position": "iOS Developer",
+    "experience": 8,
+    "skills": [
+      "Swift",
+      "Xcode",
+      "UIKit",
+      "Firebase",
+      "REST API"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Software Engineering",
+      "college": "DAIICT",
+      "graduationYear": 2019
+    },
+    "location": "Jaipur",
+    "appliedDate": "2026-07-23",
+    "status": "Interview Completed",
+    "resume": "CAND065_Manish_Choudhary.pdf",
+    "profileImage": "/images/candidates/CAND065.png"
+  },
+  {
+    "id": 66,
+    "candidateId": "CAND066",
+    "fullName": "Karan Shah",
+    "email": "karan.shah66@example.com",
+    "phone": "9000000066",
+    "gender": "Male",
+    "dateOfBirth": "2003-06-02",
+    "position": "iOS Developer",
+    "experience": 0,
+    "skills": [
+      "Swift",
+      "Xcode",
+      "UIKit",
+      "Firebase",
+      "REST API"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Software Engineering",
+      "college": "VIT Vellore",
+      "graduationYear": 2020
+    },
+    "location": "Vadodara",
+    "appliedDate": "2026-07-26",
+    "status": "Shortlisted",
+    "resume": "CAND066_Karan_Shah.pdf",
+    "profileImage": "/images/candidates/CAND066.png"
+  },
+  {
+    "id": 67,
+    "candidateId": "CAND067",
+    "fullName": "Aditya Menon",
+    "email": "aditya.menon67@example.com",
+    "phone": "9000000067",
+    "gender": "Male",
+    "dateOfBirth": "2003-09-08",
+    "position": "Cloud Engineer",
+    "experience": 1,
+    "skills": [
+      "AWS",
+      "Terraform",
+      "Docker",
+      "Linux",
+      "CI/CD"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Information Technology",
+      "college": "VIT Vellore",
+      "graduationYear": 2024
+    },
+    "location": "Lucknow",
+    "appliedDate": "2026-07-11",
+    "status": "Interview Scheduled",
+    "resume": "CAND067_Aditya_Menon.pdf",
+    "profileImage": "/images/candidates/CAND067.png"
+  },
+  {
+    "id": 68,
+    "candidateId": "CAND068",
+    "fullName": "Mohit Shah",
+    "email": "mohit.shah68@example.com",
+    "phone": "9000000068",
+    "gender": "Male",
+    "dateOfBirth": "2002-03-08",
+    "position": "Data Analyst",
+    "experience": 5,
+    "skills": [
+      "Python",
+      "SQL",
+      "Excel",
+      "Power BI",
+      "Tableau"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Computer Engineering",
+      "college": "Christ University",
+      "graduationYear": 2018
+    },
+    "location": "Bhopal",
+    "appliedDate": "2026-07-20",
+    "status": "Rejected",
+    "resume": "CAND068_Mohit_Shah.pdf",
+    "profileImage": "/images/candidates/CAND068.png"
+  },
+  {
+    "id": 69,
+    "candidateId": "CAND069",
+    "fullName": "Meera Rao",
+    "email": "meera.rao69@example.com",
+    "phone": "9000000069",
+    "gender": "Female",
+    "dateOfBirth": "1997-06-27",
+    "position": "Data Analyst",
+    "experience": 6,
+    "skills": [
+      "Python",
+      "SQL",
+      "Excel",
+      "Power BI",
+      "Tableau"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Computer Science",
+      "college": "Nirma University",
+      "graduationYear": 2022
+    },
+    "location": "Pune",
+    "appliedDate": "2026-07-11",
+    "status": "Interview Scheduled",
+    "resume": "CAND069_Meera_Rao.pdf",
+    "profileImage": "/images/candidates/CAND069.png"
+  },
+  {
+    "id": 70,
+    "candidateId": "CAND070",
+    "fullName": "Yash Choudhary",
+    "email": "yash.choudhary70@example.com",
+    "phone": "9000000070",
+    "gender": "Male",
+    "dateOfBirth": "1999-02-18",
+    "position": "QA Engineer",
+    "experience": 4,
+    "skills": [
+      "Manual Testing",
+      "Selenium",
+      "Postman",
+      "JIRA",
+      "Test Cases"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Computer Engineering",
+      "college": "Christ University",
+      "graduationYear": 2022
+    },
+    "location": "Bhopal",
+    "appliedDate": "2026-07-22",
+    "status": "Selected",
+    "resume": "CAND070_Yash_Choudhary.pdf",
+    "profileImage": "/images/candidates/CAND070.png"
+  },
+  {
+    "id": 71,
+    "candidateId": "CAND071",
+    "fullName": "Rohan Kulkarni",
+    "email": "rohan.kulkarni71@example.com",
+    "phone": "9000000071",
+    "gender": "Male",
+    "dateOfBirth": "2000-04-09",
+    "position": "Frontend Developer",
+    "experience": 2,
+    "skills": [
+      "React",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Computer Engineering",
+      "college": "Christ University",
+      "graduationYear": 2019
+    },
+    "location": "Mumbai",
+    "appliedDate": "2026-07-22",
+    "status": "Rejected",
+    "resume": "CAND071_Rohan_Kulkarni.pdf",
+    "profileImage": "/images/candidates/CAND071.png"
+  },
+  {
+    "id": 72,
+    "candidateId": "CAND072",
+    "fullName": "Meera Gupta",
+    "email": "meera.gupta72@example.com",
+    "phone": "9000000072",
+    "gender": "Female",
+    "dateOfBirth": "1996-06-17",
+    "position": "Frontend Developer",
+    "experience": 5,
+    "skills": [
+      "React",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Computer Science",
+      "college": "DAIICT",
+      "graduationYear": 2024
+    },
+    "location": "Nagpur",
+    "appliedDate": "2026-07-26",
+    "status": "Interview Completed",
+    "resume": "CAND072_Meera_Gupta.pdf",
+    "profileImage": "/images/candidates/CAND072.png"
+  },
+  {
+    "id": 73,
+    "candidateId": "CAND073",
+    "fullName": "Pooja Yadav",
+    "email": "pooja.yadav73@example.com",
+    "phone": "9000000073",
+    "gender": "Female",
+    "dateOfBirth": "1998-01-13",
+    "position": "UI/UX Designer",
+    "experience": 6,
+    "skills": [
+      "Figma",
+      "Adobe XD",
+      "Wireframing",
+      "Prototyping",
+      "Photoshop"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Software Engineering",
+      "college": "L.D. College of Engineering",
+      "graduationYear": 2023
+    },
+    "location": "Noida",
+    "appliedDate": "2026-07-11",
+    "status": "Shortlisted",
+    "resume": "CAND073_Pooja_Yadav.pdf",
+    "profileImage": "/images/candidates/CAND073.png"
+  },
+  {
+    "id": 74,
+    "candidateId": "CAND074",
+    "fullName": "Divya Desai",
+    "email": "divya.desai74@example.com",
+    "phone": "9000000074",
+    "gender": "Female",
+    "dateOfBirth": "2002-06-13",
+    "position": "Java Developer",
+    "experience": 5,
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "Hibernate",
+      "MySQL",
+      "Git"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Computer Science",
+      "college": "MIT-WPU",
+      "graduationYear": 2019
+    },
+    "location": "Hyderabad",
+    "appliedDate": "2026-07-18",
+    "status": "Interview Completed",
+    "resume": "CAND074_Divya_Desai.pdf",
+    "profileImage": "/images/candidates/CAND074.png"
+  },
+  {
+    "id": 75,
+    "candidateId": "CAND075",
+    "fullName": "Sakshi Gupta",
+    "email": "sakshi.gupta75@example.com",
+    "phone": "9000000075",
+    "gender": "Female",
+    "dateOfBirth": "2001-07-26",
+    "position": "UI/UX Designer",
+    "experience": 8,
+    "skills": [
+      "Figma",
+      "Adobe XD",
+      "Wireframing",
+      "Prototyping",
+      "Photoshop"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Information Technology",
+      "college": "MIT-WPU",
+      "graduationYear": 2022
+    },
+    "location": "Bhopal",
+    "appliedDate": "2026-07-14",
+    "status": "Under Review",
+    "resume": "CAND075_Sakshi_Gupta.pdf",
+    "profileImage": "/images/candidates/CAND075.png"
+  },
+  {
+    "id": 76,
+    "candidateId": "CAND076",
+    "fullName": "Nikhil Nair",
+    "email": "nikhil.nair76@example.com",
+    "phone": "9000000076",
+    "gender": "Male",
+    "dateOfBirth": "1999-07-07",
+    "position": "Backend Developer",
+    "experience": 3,
+    "skills": [
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "REST API",
+      "JWT"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Information Technology",
+      "college": "Nirma University",
+      "graduationYear": 2022
+    },
+    "location": "Vadodara",
+    "appliedDate": "2026-07-23",
+    "status": "Shortlisted",
+    "resume": "CAND076_Nikhil_Nair.pdf",
+    "profileImage": "/images/candidates/CAND076.png"
+  },
+  {
+    "id": 77,
+    "candidateId": "CAND077",
+    "fullName": "Manish Desai",
+    "email": "manish.desai77@example.com",
+    "phone": "9000000077",
+    "gender": "Male",
+    "dateOfBirth": "2002-08-21",
+    "position": "React Developer",
+    "experience": 8,
+    "skills": [
+      "React",
+      "Redux",
+      "JavaScript",
+      "MUI",
+      "REST API"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Computer Science",
+      "college": "PDEU",
+      "graduationYear": 2020
+    },
+    "location": "Bengaluru",
+    "appliedDate": "2026-07-02",
+    "status": "Rejected",
+    "resume": "CAND077_Manish_Desai.pdf",
+    "profileImage": "/images/candidates/CAND077.png"
+  },
+  {
+    "id": 78,
+    "candidateId": "CAND078",
+    "fullName": "Meera Yadav",
+    "email": "meera.yadav78@example.com",
+    "phone": "9000000078",
+    "gender": "Female",
+    "dateOfBirth": "2000-10-24",
+    "position": "React Developer",
+    "experience": 6,
+    "skills": [
+      "React",
+      "Redux",
+      "JavaScript",
+      "MUI",
+      "REST API"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Computer Science",
+      "college": "MIT-WPU",
+      "graduationYear": 2023
+    },
+    "location": "Bhopal",
+    "appliedDate": "2026-07-04",
+    "status": "Interview Completed",
+    "resume": "CAND078_Meera_Yadav.pdf",
+    "profileImage": "/images/candidates/CAND078.png"
+  },
+  {
+    "id": 79,
+    "candidateId": "CAND079",
+    "fullName": "Pallavi Reddy",
+    "email": "pallavi.reddy79@example.com",
+    "phone": "9000000079",
+    "gender": "Female",
+    "dateOfBirth": "1997-04-05",
+    "position": "Angular Developer",
+    "experience": 7,
+    "skills": [
+      "Angular",
+      "TypeScript",
+      "RxJS",
+      "HTML5",
+      "CSS3"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Computer Engineering",
+      "college": "VIT Vellore",
+      "graduationYear": 2020
+    },
+    "location": "Indore",
+    "appliedDate": "2026-07-05",
+    "status": "Interview Scheduled",
+    "resume": "CAND079_Pallavi_Reddy.pdf",
+    "profileImage": "/images/candidates/CAND079.png"
+  },
+  {
+    "id": 80,
+    "candidateId": "CAND080",
+    "fullName": "Meera Nair",
+    "email": "meera.nair80@example.com",
+    "phone": "9000000080",
+    "gender": "Female",
+    "dateOfBirth": "1996-04-13",
+    "position": "React Developer",
+    "experience": 8,
+    "skills": [
+      "React",
+      "Redux",
+      "JavaScript",
+      "MUI",
+      "REST API"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Computer Engineering",
+      "college": "PDEU",
+      "graduationYear": 2023
+    },
+    "location": "Jaipur",
+    "appliedDate": "2026-07-11",
+    "status": "Shortlisted",
+    "resume": "CAND080_Meera_Nair.pdf",
+    "profileImage": "/images/candidates/CAND080.png"
+  },
+  {
+    "id": 81,
+    "candidateId": "CAND081",
+    "fullName": "Kavya Jain",
+    "email": "kavya.jain81@example.com",
+    "phone": "9000000081",
+    "gender": "Female",
+    "dateOfBirth": "2000-12-23",
+    "position": "DevOps Engineer",
+    "experience": 0,
+    "skills": [
+      "AWS",
+      "Docker",
+      "Kubernetes",
+      "Linux",
+      "CI/CD"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Computer Science",
+      "college": "MIT-WPU",
+      "graduationYear": 2019
+    },
+    "location": "Rajkot",
+    "appliedDate": "2026-07-16",
+    "status": "Under Review",
+    "resume": "CAND081_Kavya_Jain.pdf",
+    "profileImage": "/images/candidates/CAND081.png"
+  },
+  {
+    "id": 82,
+    "candidateId": "CAND082",
+    "fullName": "Rahul Roy",
+    "email": "rahul.roy82@example.com",
+    "phone": "9000000082",
+    "gender": "Male",
+    "dateOfBirth": "2000-08-20",
+    "position": "Full Stack Developer",
+    "experience": 7,
+    "skills": [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Express.js",
+      "Git"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Information Technology",
+      "college": "DAIICT",
+      "graduationYear": 2018
+    },
+    "location": "Nagpur",
+    "appliedDate": "2026-07-14",
+    "status": "Under Review",
+    "resume": "CAND082_Rahul_Roy.pdf",
+    "profileImage": "/images/candidates/CAND082.png"
+  },
+  {
+    "id": 83,
+    "candidateId": "CAND083",
+    "fullName": "Arjun Jain",
+    "email": "arjun.jain83@example.com",
+    "phone": "9000000083",
+    "gender": "Male",
+    "dateOfBirth": "1998-10-08",
+    "position": "React Developer",
+    "experience": 7,
+    "skills": [
+      "React",
+      "Redux",
+      "JavaScript",
+      "MUI",
+      "REST API"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Computer Engineering",
+      "college": "VIT Vellore",
+      "graduationYear": 2024
+    },
+    "location": "Vadodara",
+    "appliedDate": "2026-07-21",
+    "status": "Selected",
+    "resume": "CAND083_Arjun_Jain.pdf",
+    "profileImage": "/images/candidates/CAND083.png"
+  },
+  {
+    "id": 84,
+    "candidateId": "CAND084",
+    "fullName": "Ishita Verma",
+    "email": "ishita.verma84@example.com",
+    "phone": "9000000084",
+    "gender": "Female",
+    "dateOfBirth": "2002-02-12",
+    "position": "Angular Developer",
+    "experience": 4,
+    "skills": [
+      "Angular",
+      "TypeScript",
+      "RxJS",
+      "HTML5",
+      "CSS3"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Information Technology",
+      "college": "MIT-WPU",
+      "graduationYear": 2020
+    },
+    "location": "Ahmedabad",
+    "appliedDate": "2026-07-15",
+    "status": "Rejected",
+    "resume": "CAND084_Ishita_Verma.pdf",
+    "profileImage": "/images/candidates/CAND084.png"
+  },
+  {
+    "id": 85,
+    "candidateId": "CAND085",
+    "fullName": "Manish Shah",
+    "email": "manish.shah85@example.com",
+    "phone": "9000000085",
+    "gender": "Male",
+    "dateOfBirth": "1998-11-22",
+    "position": "Data Analyst",
+    "experience": 2,
+    "skills": [
+      "Python",
+      "SQL",
+      "Excel",
+      "Power BI",
+      "Tableau"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Computer Science",
+      "college": "VIT Vellore",
+      "graduationYear": 2018
+    },
+    "location": "Indore",
+    "appliedDate": "2026-07-04",
+    "status": "Interview Scheduled",
+    "resume": "CAND085_Manish_Shah.pdf",
+    "profileImage": "/images/candidates/CAND085.png"
+  },
+  {
+    "id": 86,
+    "candidateId": "CAND086",
+    "fullName": "Mohit Kapoor",
+    "email": "mohit.kapoor86@example.com",
+    "phone": "9000000086",
+    "gender": "Male",
+    "dateOfBirth": "2002-08-19",
+    "position": "Data Analyst",
+    "experience": 2,
+    "skills": [
+      "Python",
+      "SQL",
+      "Excel",
+      "Power BI",
+      "Tableau"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Information Technology",
+      "college": "Christ University",
+      "graduationYear": 2025
+    },
+    "location": "Surat",
+    "appliedDate": "2026-07-21",
+    "status": "Rejected",
+    "resume": "CAND086_Mohit_Kapoor.pdf",
+    "profileImage": "/images/candidates/CAND086.png"
+  },
+  {
+    "id": 87,
+    "candidateId": "CAND087",
+    "fullName": "Yash Rao",
+    "email": "yash.rao87@example.com",
+    "phone": "9000000087",
+    "gender": "Male",
+    "dateOfBirth": "1999-10-19",
+    "position": "Android Developer",
+    "experience": 8,
+    "skills": [
+      "Kotlin",
+      "Android Studio",
+      "Firebase",
+      "REST API",
+      "Git"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Software Engineering",
+      "college": "L.D. College of Engineering",
+      "graduationYear": 2021
+    },
+    "location": "Bengaluru",
+    "appliedDate": "2026-07-16",
+    "status": "Selected",
+    "resume": "CAND087_Yash_Rao.pdf",
+    "profileImage": "/images/candidates/CAND087.png"
+  },
+  {
+    "id": 88,
+    "candidateId": "CAND088",
+    "fullName": "Pallavi Kapoor",
+    "email": "pallavi.kapoor88@example.com",
+    "phone": "9000000088",
+    "gender": "Female",
+    "dateOfBirth": "1999-10-02",
+    "position": "Angular Developer",
+    "experience": 1,
+    "skills": [
+      "Angular",
+      "TypeScript",
+      "RxJS",
+      "HTML5",
+      "CSS3"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Computer Engineering",
+      "college": "Silver Oak University",
+      "graduationYear": 2022
+    },
+    "location": "Kochi",
+    "appliedDate": "2026-07-24",
+    "status": "Shortlisted",
+    "resume": "CAND088_Pallavi_Kapoor.pdf",
+    "profileImage": "/images/candidates/CAND088.png"
+  },
+  {
+    "id": 89,
+    "candidateId": "CAND089",
+    "fullName": "Priya Choudhary",
+    "email": "priya.choudhary89@example.com",
+    "phone": "9000000089",
+    "gender": "Female",
+    "dateOfBirth": "2001-08-10",
+    "position": "Frontend Developer",
+    "experience": 3,
+    "skills": [
+      "React",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Information Technology",
+      "college": "MIT-WPU",
+      "graduationYear": 2019
+    },
+    "location": "Delhi",
+    "appliedDate": "2026-07-01",
+    "status": "Interview Completed",
+    "resume": "CAND089_Priya_Choudhary.pdf",
+    "profileImage": "/images/candidates/CAND089.png"
+  },
+  {
+    "id": 90,
+    "candidateId": "CAND090",
+    "fullName": "Karan Jain",
+    "email": "karan.jain90@example.com",
+    "phone": "9000000090",
+    "gender": "Male",
+    "dateOfBirth": "2000-07-03",
+    "position": "DevOps Engineer",
+    "experience": 1,
+    "skills": [
+      "AWS",
+      "Docker",
+      "Kubernetes",
+      "Linux",
+      "CI/CD"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Information Technology",
+      "college": "Christ University",
+      "graduationYear": 2018
+    },
+    "location": "Bhopal",
+    "appliedDate": "2026-07-10",
+    "status": "Under Review",
+    "resume": "CAND090_Karan_Jain.pdf",
+    "profileImage": "/images/candidates/CAND090.png"
+  },
+  {
+    "id": 91,
+    "candidateId": "CAND091",
+    "fullName": "Sneha Menon",
+    "email": "sneha.menon91@example.com",
+    "phone": "9000000091",
+    "gender": "Female",
+    "dateOfBirth": "2002-12-27",
+    "position": "React Developer",
+    "experience": 1,
+    "skills": [
+      "React",
+      "Redux",
+      "JavaScript",
+      "MUI",
+      "REST API"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Computer Engineering",
+      "college": "VIT Vellore",
+      "graduationYear": 2020
+    },
+    "location": "Hyderabad",
+    "appliedDate": "2026-07-03",
+    "status": "Applied",
+    "resume": "CAND091_Sneha_Menon.pdf",
+    "profileImage": "/images/candidates/CAND091.png"
+  },
+  {
+    "id": 92,
+    "candidateId": "CAND092",
+    "fullName": "Rahul Joshi",
+    "email": "rahul.joshi92@example.com",
+    "phone": "9000000092",
+    "gender": "Male",
+    "dateOfBirth": "1998-12-19",
+    "position": "Angular Developer",
+    "experience": 7,
+    "skills": [
+      "Angular",
+      "TypeScript",
+      "RxJS",
+      "HTML5",
+      "CSS3"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Information Technology",
+      "college": "MIT-WPU",
+      "graduationYear": 2019
+    },
+    "location": "Lucknow",
+    "appliedDate": "2026-07-03",
+    "status": "Rejected",
+    "resume": "CAND092_Rahul_Joshi.pdf",
+    "profileImage": "/images/candidates/CAND092.png"
+  },
+  {
+    "id": 93,
+    "candidateId": "CAND093",
+    "fullName": "Meera Verma",
+    "email": "meera.verma93@example.com",
+    "phone": "9000000093",
+    "gender": "Female",
+    "dateOfBirth": "1999-10-22",
+    "position": "Python Developer",
+    "experience": 8,
+    "skills": [
+      "Python",
+      "Django",
+      "PostgreSQL",
+      "REST API",
+      "Git"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Computer Science",
+      "college": "Christ University",
+      "graduationYear": 2021
+    },
+    "location": "Chennai",
+    "appliedDate": "2026-07-02",
+    "status": "Shortlisted",
+    "resume": "CAND093_Meera_Verma.pdf",
+    "profileImage": "/images/candidates/CAND093.png"
+  },
+  {
+    "id": 94,
+    "candidateId": "CAND094",
+    "fullName": "Mohit Mishra",
+    "email": "mohit.mishra94@example.com",
+    "phone": "9000000094",
+    "gender": "Male",
+    "dateOfBirth": "1999-06-20",
+    "position": "Business Analyst",
+    "experience": 6,
+    "skills": [
+      "SQL",
+      "Excel",
+      "Power BI",
+      "Agile",
+      "Requirements Analysis"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Software Engineering",
+      "college": "DAIICT",
+      "graduationYear": 2024
+    },
+    "location": "Vadodara",
+    "appliedDate": "2026-07-16",
+    "status": "Applied",
+    "resume": "CAND094_Mohit_Mishra.pdf",
+    "profileImage": "/images/candidates/CAND094.png"
+  },
+  {
+    "id": 95,
+    "candidateId": "CAND095",
+    "fullName": "Arjun Roy",
+    "email": "arjun.roy95@example.com",
+    "phone": "9000000095",
+    "gender": "Male",
+    "dateOfBirth": "2002-11-15",
+    "position": "Python Developer",
+    "experience": 3,
+    "skills": [
+      "Python",
+      "Django",
+      "PostgreSQL",
+      "REST API",
+      "Git"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Information Technology",
+      "college": "Nirma University",
+      "graduationYear": 2018
+    },
+    "location": "Chennai",
+    "appliedDate": "2026-07-14",
+    "status": "Under Review",
+    "resume": "CAND095_Arjun_Roy.pdf",
+    "profileImage": "/images/candidates/CAND095.png"
+  },
+  {
+    "id": 96,
+    "candidateId": "CAND096",
+    "fullName": "Rohan Roy",
+    "email": "rohan.roy96@example.com",
+    "phone": "9000000096",
+    "gender": "Male",
+    "dateOfBirth": "2000-06-23",
+    "position": "Business Analyst",
+    "experience": 4,
+    "skills": [
+      "SQL",
+      "Excel",
+      "Power BI",
+      "Agile",
+      "Requirements Analysis"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Computer Science",
+      "college": "L.D. College of Engineering",
+      "graduationYear": 2023
+    },
+    "location": "Chennai",
+    "appliedDate": "2026-07-28",
+    "status": "Interview Completed",
+    "resume": "CAND096_Rohan_Roy.pdf",
+    "profileImage": "/images/candidates/CAND096.png"
+  },
+  {
+    "id": 97,
+    "candidateId": "CAND097",
+    "fullName": "Pallavi Shah",
+    "email": "pallavi.shah97@example.com",
+    "phone": "9000000097",
+    "gender": "Female",
+    "dateOfBirth": "1997-06-27",
+    "position": "Android Developer",
+    "experience": 7,
+    "skills": [
+      "Kotlin",
+      "Android Studio",
+      "Firebase",
+      "REST API",
+      "Git"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Software Engineering",
+      "college": "VIT Vellore",
+      "graduationYear": 2024
+    },
+    "location": "Kochi",
+    "appliedDate": "2026-07-09",
+    "status": "Selected",
+    "resume": "CAND097_Pallavi_Shah.pdf",
+    "profileImage": "/images/candidates/CAND097.png"
+  },
+  {
+    "id": 98,
+    "candidateId": "CAND098",
+    "fullName": "Rahul Mehta",
+    "email": "rahul.mehta98@example.com",
+    "phone": "9000000098",
+    "gender": "Male",
+    "dateOfBirth": "2003-02-16",
+    "position": "Data Analyst",
+    "experience": 0,
+    "skills": [
+      "Python",
+      "SQL",
+      "Excel",
+      "Power BI",
+      "Tableau"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Information Technology",
+      "college": "L.D. College of Engineering",
+      "graduationYear": 2019
+    },
+    "location": "Vadodara",
+    "appliedDate": "2026-07-28",
+    "status": "Shortlisted",
+    "resume": "CAND098_Rahul_Mehta.pdf",
+    "profileImage": "/images/candidates/CAND098.png"
+  },
+  {
+    "id": 99,
+    "candidateId": "CAND099",
+    "fullName": "Aarav Mehta",
+    "email": "aarav.mehta99@example.com",
+    "phone": "9000000099",
+    "gender": "Male",
+    "dateOfBirth": "2000-05-11",
+    "position": "Data Analyst",
+    "experience": 6,
+    "skills": [
+      "Python",
+      "SQL",
+      "Excel",
+      "Power BI",
+      "Tableau"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Computer Science",
+      "college": "DAIICT",
+      "graduationYear": 2020
+    },
+    "location": "Jaipur",
+    "appliedDate": "2026-07-05",
+    "status": "Interview Completed",
+    "resume": "CAND099_Aarav_Mehta.pdf",
+    "profileImage": "/images/candidates/CAND099.png"
+  },
+  {
+    "id": 100,
+    "candidateId": "CAND100",
+    "fullName": "Nikhil Choudhary",
+    "email": "nikhil.choudhary100@example.com",
+    "phone": "9000000100",
+    "gender": "Male",
+    "dateOfBirth": "2000-11-07",
+    "position": "Full Stack Developer",
+    "experience": 7,
+    "skills": [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Express.js",
+      "Git"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Software Engineering",
+      "college": "Christ University",
+      "graduationYear": 2021
+    },
+    "location": "Bhopal",
+    "appliedDate": "2026-07-27",
+    "status": "Under Review",
+    "resume": "CAND100_Nikhil_Choudhary.pdf",
+    "profileImage": "/images/candidates/CAND100.png"
+  },
+  {
+    "id": 101,
+    "candidateId": "CAND101",
+    "fullName": "Nikhil Rao",
+    "email": "nikhil.rao101@example.com",
+    "phone": "9000000101",
+    "gender": "Male",
+    "dateOfBirth": "1999-10-10",
+    "position": "Data Analyst",
+    "experience": 7,
+    "skills": [
+      "Python",
+      "SQL",
+      "Excel",
+      "Power BI",
+      "Tableau"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Information Technology",
+      "college": "VIT Vellore",
+      "graduationYear": 2025
+    },
+    "location": "Kochi",
+    "appliedDate": "2026-07-18",
+    "status": "Shortlisted",
+    "resume": "CAND101_Nikhil_Rao.pdf",
+    "profileImage": "/images/candidates/CAND101.png"
+  },
+  {
+    "id": 102,
+    "candidateId": "CAND102",
+    "fullName": "Sakshi Mishra",
+    "email": "sakshi.mishra102@example.com",
+    "phone": "9000000102",
+    "gender": "Female",
+    "dateOfBirth": "1996-07-15",
+    "position": "React Developer",
+    "experience": 3,
+    "skills": [
+      "React",
+      "Redux",
+      "JavaScript",
+      "MUI",
+      "REST API"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Information Technology",
+      "college": "Silver Oak University",
+      "graduationYear": 2023
+    },
+    "location": "Hyderabad",
+    "appliedDate": "2026-07-15",
+    "status": "Applied",
+    "resume": "CAND102_Sakshi_Mishra.pdf",
+    "profileImage": "/images/candidates/CAND102.png"
+  },
+  {
+    "id": 103,
+    "candidateId": "CAND103",
+    "fullName": "Divya Menon",
+    "email": "divya.menon103@example.com",
+    "phone": "9000000103",
+    "gender": "Female",
+    "dateOfBirth": "2003-12-26",
+    "position": "Full Stack Developer",
+    "experience": 1,
+    "skills": [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Express.js",
+      "Git"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Computer Science",
+      "college": "VIT Vellore",
+      "graduationYear": 2018
+    },
+    "location": "Pune",
+    "appliedDate": "2026-07-15",
+    "status": "Shortlisted",
+    "resume": "CAND103_Divya_Menon.pdf",
+    "profileImage": "/images/candidates/CAND103.png"
+  },
+  {
+    "id": 104,
+    "candidateId": "CAND104",
+    "fullName": "Aditya Patel",
+    "email": "aditya.patel104@example.com",
+    "phone": "9000000104",
+    "gender": "Male",
+    "dateOfBirth": "2001-02-06",
+    "position": "Angular Developer",
+    "experience": 6,
+    "skills": [
+      "Angular",
+      "TypeScript",
+      "RxJS",
+      "HTML5",
+      "CSS3"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Computer Science",
+      "college": "VIT Vellore",
+      "graduationYear": 2023
+    },
+    "location": "Rajkot",
+    "appliedDate": "2026-07-23",
+    "status": "Interview Scheduled",
+    "resume": "CAND104_Aditya_Patel.pdf",
+    "profileImage": "/images/candidates/CAND104.png"
+  },
+  {
+    "id": 105,
+    "candidateId": "CAND105",
+    "fullName": "Arjun Menon",
+    "email": "arjun.menon105@example.com",
+    "phone": "9000000105",
+    "gender": "Male",
+    "dateOfBirth": "2000-11-18",
+    "position": "Python Developer",
+    "experience": 2,
+    "skills": [
+      "Python",
+      "Django",
+      "PostgreSQL",
+      "REST API",
+      "Git"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Software Engineering",
+      "college": "PDEU",
+      "graduationYear": 2021
+    },
+    "location": "Jaipur",
+    "appliedDate": "2026-07-01",
+    "status": "Selected",
+    "resume": "CAND105_Arjun_Menon.pdf",
+    "profileImage": "/images/candidates/CAND105.png"
+  },
+  {
+    "id": 106,
+    "candidateId": "CAND106",
+    "fullName": "Riya Nair",
+    "email": "riya.nair106@example.com",
+    "phone": "9000000106",
+    "gender": "Female",
+    "dateOfBirth": "2000-02-22",
+    "position": "Java Developer",
+    "experience": 0,
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "Hibernate",
+      "MySQL",
+      "Git"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Computer Science",
+      "college": "Christ University",
+      "graduationYear": 2025
+    },
+    "location": "Hyderabad",
+    "appliedDate": "2026-07-02",
+    "status": "Interview Scheduled",
+    "resume": "CAND106_Riya_Nair.pdf",
+    "profileImage": "/images/candidates/CAND106.png"
+  },
+  {
+    "id": 107,
+    "candidateId": "CAND107",
+    "fullName": "Sneha Sharma",
+    "email": "sneha.sharma107@example.com",
+    "phone": "9000000107",
+    "gender": "Female",
+    "dateOfBirth": "1999-05-14",
+    "position": "Frontend Developer",
+    "experience": 6,
+    "skills": [
+      "React",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Information Technology",
+      "college": "PDEU",
+      "graduationYear": 2022
+    },
+    "location": "Delhi",
+    "appliedDate": "2026-07-27",
+    "status": "Under Review",
+    "resume": "CAND107_Sneha_Sharma.pdf",
+    "profileImage": "/images/candidates/CAND107.png"
+  },
+  {
+    "id": 108,
+    "candidateId": "CAND108",
+    "fullName": "Aarav Reddy",
+    "email": "aarav.reddy108@example.com",
+    "phone": "9000000108",
+    "gender": "Male",
+    "dateOfBirth": "1999-02-06",
+    "position": "Java Developer",
+    "experience": 0,
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "Hibernate",
+      "MySQL",
+      "Git"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Software Engineering",
+      "college": "VIT Vellore",
+      "graduationYear": 2020
+    },
+    "location": "Bengaluru",
+    "appliedDate": "2026-07-12",
+    "status": "Shortlisted",
+    "resume": "CAND108_Aarav_Reddy.pdf",
+    "profileImage": "/images/candidates/CAND108.png"
+  },
+  {
+    "id": 109,
+    "candidateId": "CAND109",
+    "fullName": "Mohit Shah",
+    "email": "mohit.shah109@example.com",
+    "phone": "9000000109",
+    "gender": "Male",
+    "dateOfBirth": "2003-08-23",
+    "position": "QA Engineer",
+    "experience": 8,
+    "skills": [
+      "Manual Testing",
+      "Selenium",
+      "Postman",
+      "JIRA",
+      "Test Cases"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Computer Science",
+      "college": "VIT Vellore",
+      "graduationYear": 2023
+    },
+    "location": "Delhi",
+    "appliedDate": "2026-07-17",
+    "status": "Interview Scheduled",
+    "resume": "CAND109_Mohit_Shah.pdf",
+    "profileImage": "/images/candidates/CAND109.png"
+  },
+  {
+    "id": 110,
+    "candidateId": "CAND110",
+    "fullName": "Mohit Nair",
+    "email": "mohit.nair110@example.com",
+    "phone": "9000000110",
+    "gender": "Male",
+    "dateOfBirth": "2002-11-27",
+    "position": "Angular Developer",
+    "experience": 0,
+    "skills": [
+      "Angular",
+      "TypeScript",
+      "RxJS",
+      "HTML5",
+      "CSS3"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Information Technology",
+      "college": "Christ University",
+      "graduationYear": 2023
+    },
+    "location": "Kolkata",
+    "appliedDate": "2026-07-23",
+    "status": "Applied",
+    "resume": "CAND110_Mohit_Nair.pdf",
+    "profileImage": "/images/candidates/CAND110.png"
+  },
+  {
+    "id": 111,
+    "candidateId": "CAND111",
+    "fullName": "Aarav Singh",
+    "email": "aarav.singh111@example.com",
+    "phone": "9000000111",
+    "gender": "Male",
+    "dateOfBirth": "1999-01-21",
+    "position": "Frontend Developer",
+    "experience": 2,
+    "skills": [
+      "React",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Information Technology",
+      "college": "VIT Vellore",
+      "graduationYear": 2020
+    },
+    "location": "Bhopal",
+    "appliedDate": "2026-07-16",
+    "status": "Under Review",
+    "resume": "CAND111_Aarav_Singh.pdf",
+    "profileImage": "/images/candidates/CAND111.png"
+  },
+  {
+    "id": 112,
+    "candidateId": "CAND112",
+    "fullName": "Divya Menon",
+    "email": "divya.menon112@example.com",
+    "phone": "9000000112",
+    "gender": "Female",
+    "dateOfBirth": "1996-04-02",
+    "position": "Python Developer",
+    "experience": 2,
+    "skills": [
+      "Python",
+      "Django",
+      "PostgreSQL",
+      "REST API",
+      "Git"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Computer Engineering",
+      "college": "Silver Oak University",
+      "graduationYear": 2020
+    },
+    "location": "Nagpur",
+    "appliedDate": "2026-07-04",
+    "status": "Interview Scheduled",
+    "resume": "CAND112_Divya_Menon.pdf",
+    "profileImage": "/images/candidates/CAND112.png"
+  },
+  {
+    "id": 113,
+    "candidateId": "CAND113",
+    "fullName": "Priya Yadav",
+    "email": "priya.yadav113@example.com",
+    "phone": "9000000113",
+    "gender": "Female",
+    "dateOfBirth": "2000-09-20",
+    "position": "Python Developer",
+    "experience": 3,
+    "skills": [
+      "Python",
+      "Django",
+      "PostgreSQL",
+      "REST API",
+      "Git"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Computer Science",
+      "college": "DAIICT",
+      "graduationYear": 2023
+    },
+    "location": "Kolkata",
+    "appliedDate": "2026-07-08",
+    "status": "Interview Scheduled",
+    "resume": "CAND113_Priya_Yadav.pdf",
+    "profileImage": "/images/candidates/CAND113.png"
+  },
+  {
+    "id": 114,
+    "candidateId": "CAND114",
+    "fullName": "Harsh Kulkarni",
+    "email": "harsh.kulkarni114@example.com",
+    "phone": "9000000114",
+    "gender": "Male",
+    "dateOfBirth": "1997-02-12",
+    "position": "React Developer",
+    "experience": 2,
+    "skills": [
+      "React",
+      "Redux",
+      "JavaScript",
+      "MUI",
+      "REST API"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Software Engineering",
+      "college": "PDEU",
+      "graduationYear": 2024
+    },
+    "location": "Delhi",
+    "appliedDate": "2026-07-14",
+    "status": "Rejected",
+    "resume": "CAND114_Harsh_Kulkarni.pdf",
+    "profileImage": "/images/candidates/CAND114.png"
+  },
+  {
+    "id": 115,
+    "candidateId": "CAND115",
+    "fullName": "Pooja Choudhary",
+    "email": "pooja.choudhary115@example.com",
+    "phone": "9000000115",
+    "gender": "Female",
+    "dateOfBirth": "2003-08-11",
+    "position": "Frontend Developer",
+    "experience": 7,
+    "skills": [
+      "React",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Computer Science",
+      "college": "MIT-WPU",
+      "graduationYear": 2024
+    },
+    "location": "Mumbai",
+    "appliedDate": "2026-07-22",
+    "status": "Selected",
+    "resume": "CAND115_Pooja_Choudhary.pdf",
+    "profileImage": "/images/candidates/CAND115.png"
+  },
+  {
+    "id": 116,
+    "candidateId": "CAND116",
+    "fullName": "Pallavi Shah",
+    "email": "pallavi.shah116@example.com",
+    "phone": "9000000116",
+    "gender": "Female",
+    "dateOfBirth": "1998-05-18",
+    "position": "Java Developer",
+    "experience": 8,
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "Hibernate",
+      "MySQL",
+      "Git"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Computer Engineering",
+      "college": "PDEU",
+      "graduationYear": 2023
+    },
+    "location": "Kochi",
+    "appliedDate": "2026-07-04",
+    "status": "Interview Scheduled",
+    "resume": "CAND116_Pallavi_Shah.pdf",
+    "profileImage": "/images/candidates/CAND116.png"
+  },
+  {
+    "id": 117,
+    "candidateId": "CAND117",
+    "fullName": "Sakshi Yadav",
+    "email": "sakshi.yadav117@example.com",
+    "phone": "9000000117",
+    "gender": "Female",
+    "dateOfBirth": "2001-03-27",
+    "position": "QA Engineer",
+    "experience": 1,
+    "skills": [
+      "Manual Testing",
+      "Selenium",
+      "Postman",
+      "JIRA",
+      "Test Cases"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Computer Science",
+      "college": "Nirma University",
+      "graduationYear": 2025
+    },
+    "location": "Nagpur",
+    "appliedDate": "2026-07-24",
+    "status": "Under Review",
+    "resume": "CAND117_Sakshi_Yadav.pdf",
+    "profileImage": "/images/candidates/CAND117.png"
+  },
+  {
+    "id": 118,
+    "candidateId": "CAND118",
+    "fullName": "Vikram Nair",
+    "email": "vikram.nair118@example.com",
+    "phone": "9000000118",
+    "gender": "Male",
+    "dateOfBirth": "1999-04-15",
+    "position": "QA Engineer",
+    "experience": 4,
+    "skills": [
+      "Manual Testing",
+      "Selenium",
+      "Postman",
+      "JIRA",
+      "Test Cases"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Software Engineering",
+      "college": "VIT Vellore",
+      "graduationYear": 2020
+    },
+    "location": "Lucknow",
+    "appliedDate": "2026-07-10",
+    "status": "Applied",
+    "resume": "CAND118_Vikram_Nair.pdf",
+    "profileImage": "/images/candidates/CAND118.png"
+  },
+  {
+    "id": 119,
+    "candidateId": "CAND119",
+    "fullName": "Priya Singh",
+    "email": "priya.singh119@example.com",
+    "phone": "9000000119",
+    "gender": "Female",
+    "dateOfBirth": "1997-05-28",
+    "position": "QA Engineer",
+    "experience": 0,
+    "skills": [
+      "Manual Testing",
+      "Selenium",
+      "Postman",
+      "JIRA",
+      "Test Cases"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Software Engineering",
+      "college": "L.D. College of Engineering",
+      "graduationYear": 2021
+    },
+    "location": "Ahmedabad",
+    "appliedDate": "2026-07-10",
+    "status": "Interview Completed",
+    "resume": "CAND119_Priya_Singh.pdf",
+    "profileImage": "/images/candidates/CAND119.png"
+  },
+  {
+    "id": 120,
+    "candidateId": "CAND120",
+    "fullName": "Rohan Yadav",
+    "email": "rohan.yadav120@example.com",
+    "phone": "9000000120",
+    "gender": "Male",
+    "dateOfBirth": "1999-02-06",
+    "position": "QA Engineer",
+    "experience": 5,
+    "skills": [
+      "Manual Testing",
+      "Selenium",
+      "Postman",
+      "JIRA",
+      "Test Cases"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Computer Science",
+      "college": "MIT-WPU",
+      "graduationYear": 2020
+    },
+    "location": "Ahmedabad",
+    "appliedDate": "2026-07-02",
+    "status": "Applied",
+    "resume": "CAND120_Rohan_Yadav.pdf",
+    "profileImage": "/images/candidates/CAND120.png"
+  },
+  {
+    "id": 121,
+    "candidateId": "CAND121",
+    "fullName": "Aditya Jain",
+    "email": "aditya.jain121@example.com",
+    "phone": "9000000121",
+    "gender": "Male",
+    "dateOfBirth": "2000-08-01",
+    "position": "React Developer",
+    "experience": 1,
+    "skills": [
+      "React",
+      "Redux",
+      "JavaScript",
+      "MUI",
+      "REST API"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Information Technology",
+      "college": "PDEU",
+      "graduationYear": 2024
+    },
+    "location": "Indore",
+    "appliedDate": "2026-07-08",
+    "status": "Interview Scheduled",
+    "resume": "CAND121_Aditya_Jain.pdf",
+    "profileImage": "/images/candidates/CAND121.png"
+  },
+  {
+    "id": 122,
+    "candidateId": "CAND122",
+    "fullName": "Meera Mehta",
+    "email": "meera.mehta122@example.com",
+    "phone": "9000000122",
+    "gender": "Female",
+    "dateOfBirth": "2001-02-03",
+    "position": "Full Stack Developer",
+    "experience": 7,
+    "skills": [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Express.js",
+      "Git"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Information Technology",
+      "college": "Nirma University",
+      "graduationYear": 2021
+    },
+    "location": "Lucknow",
+    "appliedDate": "2026-07-19",
+    "status": "Interview Completed",
+    "resume": "CAND122_Meera_Mehta.pdf",
+    "profileImage": "/images/candidates/CAND122.png"
+  },
+  {
+    "id": 123,
+    "candidateId": "CAND123",
+    "fullName": "Ishita Jain",
+    "email": "ishita.jain123@example.com",
+    "phone": "9000000123",
+    "gender": "Female",
+    "dateOfBirth": "2003-07-13",
+    "position": "Python Developer",
+    "experience": 3,
+    "skills": [
+      "Python",
+      "Django",
+      "PostgreSQL",
+      "REST API",
+      "Git"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Computer Science",
+      "college": "DAIICT",
+      "graduationYear": 2023
+    },
+    "location": "Hyderabad",
+    "appliedDate": "2026-07-17",
+    "status": "Interview Scheduled",
+    "resume": "CAND123_Ishita_Jain.pdf",
+    "profileImage": "/images/candidates/CAND123.png"
+  },
+  {
+    "id": 124,
+    "candidateId": "CAND124",
+    "fullName": "Anjali Yadav",
+    "email": "anjali.yadav124@example.com",
+    "phone": "9000000124",
+    "gender": "Female",
+    "dateOfBirth": "1998-09-16",
+    "position": "Android Developer",
+    "experience": 8,
+    "skills": [
+      "Kotlin",
+      "Android Studio",
+      "Firebase",
+      "REST API",
+      "Git"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Computer Science",
+      "college": "Nirma University",
+      "graduationYear": 2019
+    },
+    "location": "Bengaluru",
+    "appliedDate": "2026-07-18",
+    "status": "Applied",
+    "resume": "CAND124_Anjali_Yadav.pdf",
+    "profileImage": "/images/candidates/CAND124.png"
+  },
+  {
+    "id": 125,
+    "candidateId": "CAND125",
+    "fullName": "Karan Mehta",
+    "email": "karan.mehta125@example.com",
+    "phone": "9000000125",
+    "gender": "Male",
+    "dateOfBirth": "2001-01-09",
+    "position": "QA Engineer",
+    "experience": 3,
+    "skills": [
+      "Manual Testing",
+      "Selenium",
+      "Postman",
+      "JIRA",
+      "Test Cases"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Information Technology",
+      "college": "VIT Vellore",
+      "graduationYear": 2020
+    },
+    "location": "Ahmedabad",
+    "appliedDate": "2026-07-01",
+    "status": "Interview Scheduled",
+    "resume": "CAND125_Karan_Mehta.pdf",
+    "profileImage": "/images/candidates/CAND125.png"
+  },
+  {
+    "id": 126,
+    "candidateId": "CAND126",
+    "fullName": "Priya Mishra",
+    "email": "priya.mishra126@example.com",
+    "phone": "9000000126",
+    "gender": "Female",
+    "dateOfBirth": "2003-02-07",
+    "position": "iOS Developer",
+    "experience": 3,
+    "skills": [
+      "Swift",
+      "Xcode",
+      "UIKit",
+      "Firebase",
+      "REST API"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Computer Science",
+      "college": "VIT Vellore",
+      "graduationYear": 2019
+    },
+    "location": "Surat",
+    "appliedDate": "2026-07-02",
+    "status": "Under Review",
+    "resume": "CAND126_Priya_Mishra.pdf",
+    "profileImage": "/images/candidates/CAND126.png"
+  },
+  {
+    "id": 127,
+    "candidateId": "CAND127",
+    "fullName": "Ananya Mishra",
+    "email": "ananya.mishra127@example.com",
+    "phone": "9000000127",
+    "gender": "Female",
+    "dateOfBirth": "1997-03-01",
+    "position": "Business Analyst",
+    "experience": 2,
+    "skills": [
+      "SQL",
+      "Excel",
+      "Power BI",
+      "Agile",
+      "Requirements Analysis"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Computer Engineering",
+      "college": "MIT-WPU",
+      "graduationYear": 2022
+    },
+    "location": "Pune",
+    "appliedDate": "2026-07-09",
+    "status": "Interview Completed",
+    "resume": "CAND127_Ananya_Mishra.pdf",
+    "profileImage": "/images/candidates/CAND127.png"
+  },
+  {
+    "id": 128,
+    "candidateId": "CAND128",
+    "fullName": "Divya Patel",
+    "email": "divya.patel128@example.com",
+    "phone": "9000000128",
+    "gender": "Female",
+    "dateOfBirth": "1996-10-11",
+    "position": "iOS Developer",
+    "experience": 4,
+    "skills": [
+      "Swift",
+      "Xcode",
+      "UIKit",
+      "Firebase",
+      "REST API"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Software Engineering",
+      "college": "MIT-WPU",
+      "graduationYear": 2020
+    },
+    "location": "Vadodara",
+    "appliedDate": "2026-07-11",
+    "status": "Applied",
+    "resume": "CAND128_Divya_Patel.pdf",
+    "profileImage": "/images/candidates/CAND128.png"
+  },
+  {
+    "id": 129,
+    "candidateId": "CAND129",
+    "fullName": "Rohan Rao",
+    "email": "rohan.rao129@example.com",
+    "phone": "9000000129",
+    "gender": "Male",
+    "dateOfBirth": "1998-05-25",
+    "position": "Backend Developer",
+    "experience": 3,
+    "skills": [
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "REST API",
+      "JWT"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Computer Engineering",
+      "college": "VIT Vellore",
+      "graduationYear": 2020
+    },
+    "location": "Rajkot",
+    "appliedDate": "2026-07-02",
+    "status": "Interview Scheduled",
+    "resume": "CAND129_Rohan_Rao.pdf",
+    "profileImage": "/images/candidates/CAND129.png"
+  },
+  {
+    "id": 130,
+    "candidateId": "CAND130",
+    "fullName": "Rohan Gupta",
+    "email": "rohan.gupta130@example.com",
+    "phone": "9000000130",
+    "gender": "Male",
+    "dateOfBirth": "2003-12-05",
+    "position": "Data Analyst",
+    "experience": 3,
+    "skills": [
+      "Python",
+      "SQL",
+      "Excel",
+      "Power BI",
+      "Tableau"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Software Engineering",
+      "college": "VIT Vellore",
+      "graduationYear": 2021
+    },
+    "location": "Surat",
+    "appliedDate": "2026-07-11",
+    "status": "Shortlisted",
+    "resume": "CAND130_Rohan_Gupta.pdf",
+    "profileImage": "/images/candidates/CAND130.png"
+  },
+  {
+    "id": 131,
+    "candidateId": "CAND131",
+    "fullName": "Vikram Shah",
+    "email": "vikram.shah131@example.com",
+    "phone": "9000000131",
+    "gender": "Male",
+    "dateOfBirth": "1996-01-22",
+    "position": "Cloud Engineer",
+    "experience": 7,
+    "skills": [
+      "AWS",
+      "Terraform",
+      "Docker",
+      "Linux",
+      "CI/CD"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Computer Engineering",
+      "college": "PDEU",
+      "graduationYear": 2021
+    },
+    "location": "Kolkata",
+    "appliedDate": "2026-07-25",
+    "status": "Selected",
+    "resume": "CAND131_Vikram_Shah.pdf",
+    "profileImage": "/images/candidates/CAND131.png"
+  },
+  {
+    "id": 132,
+    "candidateId": "CAND132",
+    "fullName": "Riya Jain",
+    "email": "riya.jain132@example.com",
+    "phone": "9000000132",
+    "gender": "Female",
+    "dateOfBirth": "1998-12-06",
+    "position": "Frontend Developer",
+    "experience": 1,
+    "skills": [
+      "React",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Software Engineering",
+      "college": "MIT-WPU",
+      "graduationYear": 2025
+    },
+    "location": "Lucknow",
+    "appliedDate": "2026-07-02",
+    "status": "Under Review",
+    "resume": "CAND132_Riya_Jain.pdf",
+    "profileImage": "/images/candidates/CAND132.png"
+  },
+  {
+    "id": 133,
+    "candidateId": "CAND133",
+    "fullName": "Rahul Sharma",
+    "email": "rahul.sharma133@example.com",
+    "phone": "9000000133",
+    "gender": "Male",
+    "dateOfBirth": "2003-09-27",
+    "position": "Android Developer",
+    "experience": 2,
+    "skills": [
+      "Kotlin",
+      "Android Studio",
+      "Firebase",
+      "REST API",
+      "Git"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Information Technology",
+      "college": "Christ University",
+      "graduationYear": 2019
+    },
+    "location": "Hyderabad",
+    "appliedDate": "2026-07-06",
+    "status": "Interview Scheduled",
+    "resume": "CAND133_Rahul_Sharma.pdf",
+    "profileImage": "/images/candidates/CAND133.png"
+  },
+  {
+    "id": 134,
+    "candidateId": "CAND134",
+    "fullName": "Ishita Nair",
+    "email": "ishita.nair134@example.com",
+    "phone": "9000000134",
+    "gender": "Female",
+    "dateOfBirth": "2003-10-27",
+    "position": "QA Engineer",
+    "experience": 3,
+    "skills": [
+      "Manual Testing",
+      "Selenium",
+      "Postman",
+      "JIRA",
+      "Test Cases"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Software Engineering",
+      "college": "Silver Oak University",
+      "graduationYear": 2025
+    },
+    "location": "Vadodara",
+    "appliedDate": "2026-07-28",
+    "status": "Selected",
+    "resume": "CAND134_Ishita_Nair.pdf",
+    "profileImage": "/images/candidates/CAND134.png"
+  },
+  {
+    "id": 135,
+    "candidateId": "CAND135",
+    "fullName": "Aditi Kulkarni",
+    "email": "aditi.kulkarni135@example.com",
+    "phone": "9000000135",
+    "gender": "Female",
+    "dateOfBirth": "1999-10-25",
+    "position": "QA Engineer",
+    "experience": 3,
+    "skills": [
+      "Manual Testing",
+      "Selenium",
+      "Postman",
+      "JIRA",
+      "Test Cases"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Information Technology",
+      "college": "MIT-WPU",
+      "graduationYear": 2022
+    },
+    "location": "Mumbai",
+    "appliedDate": "2026-07-28",
+    "status": "Interview Scheduled",
+    "resume": "CAND135_Aditi_Kulkarni.pdf",
+    "profileImage": "/images/candidates/CAND135.png"
+  },
+  {
+    "id": 136,
+    "candidateId": "CAND136",
+    "fullName": "Sneha Jain",
+    "email": "sneha.jain136@example.com",
+    "phone": "9000000136",
+    "gender": "Female",
+    "dateOfBirth": "2003-05-09",
+    "position": "Full Stack Developer",
+    "experience": 6,
+    "skills": [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Express.js",
+      "Git"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Information Technology",
+      "college": "PDEU",
+      "graduationYear": 2018
+    },
+    "location": "Bhopal",
+    "appliedDate": "2026-07-05",
+    "status": "Interview Completed",
+    "resume": "CAND136_Sneha_Jain.pdf",
+    "profileImage": "/images/candidates/CAND136.png"
+  },
+  {
+    "id": 137,
+    "candidateId": "CAND137",
+    "fullName": "Neha Kapoor",
+    "email": "neha.kapoor137@example.com",
+    "phone": "9000000137",
+    "gender": "Female",
+    "dateOfBirth": "1998-04-04",
+    "position": "Data Analyst",
+    "experience": 0,
+    "skills": [
+      "Python",
+      "SQL",
+      "Excel",
+      "Power BI",
+      "Tableau"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Software Engineering",
+      "college": "MIT-WPU",
+      "graduationYear": 2023
+    },
+    "location": "Chennai",
+    "appliedDate": "2026-07-19",
+    "status": "Interview Scheduled",
+    "resume": "CAND137_Neha_Kapoor.pdf",
+    "profileImage": "/images/candidates/CAND137.png"
+  },
+  {
+    "id": 138,
+    "candidateId": "CAND138",
+    "fullName": "Riya Shah",
+    "email": "riya.shah138@example.com",
+    "phone": "9000000138",
+    "gender": "Female",
+    "dateOfBirth": "1996-11-17",
+    "position": "Full Stack Developer",
+    "experience": 3,
+    "skills": [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Express.js",
+      "Git"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Information Technology",
+      "college": "VIT Vellore",
+      "graduationYear": 2019
+    },
+    "location": "Delhi",
+    "appliedDate": "2026-07-18",
+    "status": "Applied",
+    "resume": "CAND138_Riya_Shah.pdf",
+    "profileImage": "/images/candidates/CAND138.png"
+  },
+  {
+    "id": 139,
+    "candidateId": "CAND139",
+    "fullName": "Yash Singh",
+    "email": "yash.singh139@example.com",
+    "phone": "9000000139",
+    "gender": "Male",
+    "dateOfBirth": "1999-01-08",
+    "position": "Backend Developer",
+    "experience": 7,
+    "skills": [
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "REST API",
+      "JWT"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Software Engineering",
+      "college": "MIT-WPU",
+      "graduationYear": 2023
+    },
+    "location": "Delhi",
+    "appliedDate": "2026-07-28",
+    "status": "Interview Completed",
+    "resume": "CAND139_Yash_Singh.pdf",
+    "profileImage": "/images/candidates/CAND139.png"
+  },
+  {
+    "id": 140,
+    "candidateId": "CAND140",
+    "fullName": "Sakshi Choudhary",
+    "email": "sakshi.choudhary140@example.com",
+    "phone": "9000000140",
+    "gender": "Female",
+    "dateOfBirth": "1997-11-18",
+    "position": "DevOps Engineer",
+    "experience": 2,
+    "skills": [
+      "AWS",
+      "Docker",
+      "Kubernetes",
+      "Linux",
+      "CI/CD"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Computer Science",
+      "college": "PDEU",
+      "graduationYear": 2018
+    },
+    "location": "Surat",
+    "appliedDate": "2026-07-16",
+    "status": "Rejected",
+    "resume": "CAND140_Sakshi_Choudhary.pdf",
+    "profileImage": "/images/candidates/CAND140.png"
+  },
+  {
+    "id": 141,
+    "candidateId": "CAND141",
+    "fullName": "Ishita Verma",
+    "email": "ishita.verma141@example.com",
+    "phone": "9000000141",
+    "gender": "Female",
+    "dateOfBirth": "1996-10-17",
+    "position": "Frontend Developer",
+    "experience": 3,
+    "skills": [
+      "React",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Software Engineering",
+      "college": "MIT-WPU",
+      "graduationYear": 2021
+    },
+    "location": "Delhi",
+    "appliedDate": "2026-07-25",
+    "status": "Interview Scheduled",
+    "resume": "CAND141_Ishita_Verma.pdf",
+    "profileImage": "/images/candidates/CAND141.png"
+  },
+  {
+    "id": 142,
+    "candidateId": "CAND142",
+    "fullName": "Sakshi Mehta",
+    "email": "sakshi.mehta142@example.com",
+    "phone": "9000000142",
+    "gender": "Female",
+    "dateOfBirth": "2001-10-03",
+    "position": "QA Engineer",
+    "experience": 7,
+    "skills": [
+      "Manual Testing",
+      "Selenium",
+      "Postman",
+      "JIRA",
+      "Test Cases"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Computer Science",
+      "college": "PDEU",
+      "graduationYear": 2020
+    },
+    "location": "Ahmedabad",
+    "appliedDate": "2026-07-05",
+    "status": "Selected",
+    "resume": "CAND142_Sakshi_Mehta.pdf",
+    "profileImage": "/images/candidates/CAND142.png"
+  },
+  {
+    "id": 143,
+    "candidateId": "CAND143",
+    "fullName": "Sakshi Nair",
+    "email": "sakshi.nair143@example.com",
+    "phone": "9000000143",
+    "gender": "Female",
+    "dateOfBirth": "1998-10-26",
+    "position": "React Developer",
+    "experience": 3,
+    "skills": [
+      "React",
+      "Redux",
+      "JavaScript",
+      "MUI",
+      "REST API"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Software Engineering",
+      "college": "L.D. College of Engineering",
+      "graduationYear": 2025
+    },
+    "location": "Jaipur",
+    "appliedDate": "2026-07-20",
+    "status": "Interview Scheduled",
+    "resume": "CAND143_Sakshi_Nair.pdf",
+    "profileImage": "/images/candidates/CAND143.png"
+  },
+  {
+    "id": 144,
+    "candidateId": "CAND144",
+    "fullName": "Sneha Sharma",
+    "email": "sneha.sharma144@example.com",
+    "phone": "9000000144",
+    "gender": "Female",
+    "dateOfBirth": "1997-05-19",
+    "position": "Android Developer",
+    "experience": 0,
+    "skills": [
+      "Kotlin",
+      "Android Studio",
+      "Firebase",
+      "REST API",
+      "Git"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Computer Science",
+      "college": "Silver Oak University",
+      "graduationYear": 2018
+    },
+    "location": "Pune",
+    "appliedDate": "2026-07-22",
+    "status": "Applied",
+    "resume": "CAND144_Sneha_Sharma.pdf",
+    "profileImage": "/images/candidates/CAND144.png"
+  },
+  {
+    "id": 145,
+    "candidateId": "CAND145",
+    "fullName": "Yash Mishra",
+    "email": "yash.mishra145@example.com",
+    "phone": "9000000145",
+    "gender": "Male",
+    "dateOfBirth": "2002-02-26",
+    "position": "Backend Developer",
+    "experience": 2,
+    "skills": [
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "REST API",
+      "JWT"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Information Technology",
+      "college": "Silver Oak University",
+      "graduationYear": 2023
+    },
+    "location": "Mumbai",
+    "appliedDate": "2026-07-14",
+    "status": "Applied",
+    "resume": "CAND145_Yash_Mishra.pdf",
+    "profileImage": "/images/candidates/CAND145.png"
+  },
+  {
+    "id": 146,
+    "candidateId": "CAND146",
+    "fullName": "Mohit Roy",
+    "email": "mohit.roy146@example.com",
+    "phone": "9000000146",
+    "gender": "Male",
+    "dateOfBirth": "1996-02-14",
+    "position": "Android Developer",
+    "experience": 2,
+    "skills": [
+      "Kotlin",
+      "Android Studio",
+      "Firebase",
+      "REST API",
+      "Git"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Computer Science",
+      "college": "Nirma University",
+      "graduationYear": 2023
+    },
+    "location": "Kolkata",
+    "appliedDate": "2026-07-25",
+    "status": "Shortlisted",
+    "resume": "CAND146_Mohit_Roy.pdf",
+    "profileImage": "/images/candidates/CAND146.png"
+  },
+  {
+    "id": 147,
+    "candidateId": "CAND147",
+    "fullName": "Riya Jain",
+    "email": "riya.jain147@example.com",
+    "phone": "9000000147",
+    "gender": "Female",
+    "dateOfBirth": "2003-09-10",
+    "position": "iOS Developer",
+    "experience": 6,
+    "skills": [
+      "Swift",
+      "Xcode",
+      "UIKit",
+      "Firebase",
+      "REST API"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Computer Engineering",
+      "college": "Silver Oak University",
+      "graduationYear": 2024
+    },
+    "location": "Nagpur",
+    "appliedDate": "2026-07-11",
+    "status": "Selected",
+    "resume": "CAND147_Riya_Jain.pdf",
+    "profileImage": "/images/candidates/CAND147.png"
+  },
+  {
+    "id": 148,
+    "candidateId": "CAND148",
+    "fullName": "Manish Patel",
+    "email": "manish.patel148@example.com",
+    "phone": "9000000148",
+    "gender": "Male",
+    "dateOfBirth": "2001-12-24",
+    "position": "Data Analyst",
+    "experience": 1,
+    "skills": [
+      "Python",
+      "SQL",
+      "Excel",
+      "Power BI",
+      "Tableau"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Computer Science",
+      "college": "VIT Vellore",
+      "graduationYear": 2024
+    },
+    "location": "Chennai",
+    "appliedDate": "2026-07-20",
+    "status": "Selected",
+    "resume": "CAND148_Manish_Patel.pdf",
+    "profileImage": "/images/candidates/CAND148.png"
+  },
+  {
+    "id": 149,
+    "candidateId": "CAND149",
+    "fullName": "Mohit Desai",
+    "email": "mohit.desai149@example.com",
+    "phone": "9000000149",
+    "gender": "Male",
+    "dateOfBirth": "1998-10-17",
+    "position": "Business Analyst",
+    "experience": 0,
+    "skills": [
+      "SQL",
+      "Excel",
+      "Power BI",
+      "Agile",
+      "Requirements Analysis"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Information Technology",
+      "college": "Nirma University",
+      "graduationYear": 2023
+    },
+    "location": "Pune",
+    "appliedDate": "2026-07-12",
+    "status": "Rejected",
+    "resume": "CAND149_Mohit_Desai.pdf",
+    "profileImage": "/images/candidates/CAND149.png"
+  },
+  {
+    "id": 150,
+    "candidateId": "CAND150",
+    "fullName": "Kavya Mishra",
+    "email": "kavya.mishra150@example.com",
+    "phone": "9000000150",
+    "gender": "Female",
+    "dateOfBirth": "1999-11-11",
+    "position": "Business Analyst",
+    "experience": 4,
+    "skills": [
+      "SQL",
+      "Excel",
+      "Power BI",
+      "Agile",
+      "Requirements Analysis"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Information Technology",
+      "college": "MIT-WPU",
+      "graduationYear": 2022
+    },
+    "location": "Pune",
+    "appliedDate": "2026-07-01",
+    "status": "Interview Completed",
+    "resume": "CAND150_Kavya_Mishra.pdf",
+    "profileImage": "/images/candidates/CAND150.png"
+  },
+  {
+    "id": 151,
+    "candidateId": "CAND151",
+    "fullName": "Aditi Choudhary",
+    "email": "aditi.choudhary151@example.com",
+    "phone": "9000000151",
+    "gender": "Female",
+    "dateOfBirth": "2002-02-14",
+    "position": "Backend Developer",
+    "experience": 6,
+    "skills": [
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "REST API",
+      "JWT"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Software Engineering",
+      "college": "Nirma University",
+      "graduationYear": 2021
+    },
+    "location": "Nagpur",
+    "appliedDate": "2026-07-13",
+    "status": "Rejected",
+    "resume": "CAND151_Aditi_Choudhary.pdf",
+    "profileImage": "/images/candidates/CAND151.png"
+  },
+  {
+    "id": 152,
+    "candidateId": "CAND152",
+    "fullName": "Ishita Shah",
+    "email": "ishita.shah152@example.com",
+    "phone": "9000000152",
+    "gender": "Female",
+    "dateOfBirth": "1998-02-19",
+    "position": "Full Stack Developer",
+    "experience": 4,
+    "skills": [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Express.js",
+      "Git"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Computer Engineering",
+      "college": "PDEU",
+      "graduationYear": 2020
+    },
+    "location": "Bengaluru",
+    "appliedDate": "2026-07-10",
+    "status": "Rejected",
+    "resume": "CAND152_Ishita_Shah.pdf",
+    "profileImage": "/images/candidates/CAND152.png"
+  },
+  {
+    "id": 153,
+    "candidateId": "CAND153",
+    "fullName": "Nikhil Desai",
+    "email": "nikhil.desai153@example.com",
+    "phone": "9000000153",
+    "gender": "Male",
+    "dateOfBirth": "2000-02-11",
+    "position": "UI/UX Designer",
+    "experience": 6,
+    "skills": [
+      "Figma",
+      "Adobe XD",
+      "Wireframing",
+      "Prototyping",
+      "Photoshop"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Software Engineering",
+      "college": "VIT Vellore",
+      "graduationYear": 2021
+    },
+    "location": "Kochi",
+    "appliedDate": "2026-07-07",
+    "status": "Shortlisted",
+    "resume": "CAND153_Nikhil_Desai.pdf",
+    "profileImage": "/images/candidates/CAND153.png"
+  },
+  {
+    "id": 154,
+    "candidateId": "CAND154",
+    "fullName": "Vikram Patel",
+    "email": "vikram.patel154@example.com",
+    "phone": "9000000154",
+    "gender": "Male",
+    "dateOfBirth": "1996-04-18",
+    "position": "Android Developer",
+    "experience": 4,
+    "skills": [
+      "Kotlin",
+      "Android Studio",
+      "Firebase",
+      "REST API",
+      "Git"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Computer Science",
+      "college": "Christ University",
+      "graduationYear": 2025
+    },
+    "location": "Delhi",
+    "appliedDate": "2026-07-04",
+    "status": "Applied",
+    "resume": "CAND154_Vikram_Patel.pdf",
+    "profileImage": "/images/candidates/CAND154.png"
+  },
+  {
+    "id": 155,
+    "candidateId": "CAND155",
+    "fullName": "Pallavi Gupta",
+    "email": "pallavi.gupta155@example.com",
+    "phone": "9000000155",
+    "gender": "Female",
+    "dateOfBirth": "2003-11-13",
+    "position": "Data Analyst",
+    "experience": 5,
+    "skills": [
+      "Python",
+      "SQL",
+      "Excel",
+      "Power BI",
+      "Tableau"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Software Engineering",
+      "college": "MIT-WPU",
+      "graduationYear": 2024
+    },
+    "location": "Mumbai",
+    "appliedDate": "2026-07-22",
+    "status": "Applied",
+    "resume": "CAND155_Pallavi_Gupta.pdf",
+    "profileImage": "/images/candidates/CAND155.png"
+  },
+  {
+    "id": 156,
+    "candidateId": "CAND156",
+    "fullName": "Divya Yadav",
+    "email": "divya.yadav156@example.com",
+    "phone": "9000000156",
+    "gender": "Female",
+    "dateOfBirth": "2003-09-20",
+    "position": "Backend Developer",
+    "experience": 7,
+    "skills": [
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "REST API",
+      "JWT"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Software Engineering",
+      "college": "Silver Oak University",
+      "graduationYear": 2018
+    },
+    "location": "Kolkata",
+    "appliedDate": "2026-07-03",
+    "status": "Interview Scheduled",
+    "resume": "CAND156_Divya_Yadav.pdf",
+    "profileImage": "/images/candidates/CAND156.png"
+  },
+  {
+    "id": 157,
+    "candidateId": "CAND157",
+    "fullName": "Karan Gupta",
+    "email": "karan.gupta157@example.com",
+    "phone": "9000000157",
+    "gender": "Male",
+    "dateOfBirth": "2000-08-10",
+    "position": "Data Analyst",
+    "experience": 5,
+    "skills": [
+      "Python",
+      "SQL",
+      "Excel",
+      "Power BI",
+      "Tableau"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Software Engineering",
+      "college": "Nirma University",
+      "graduationYear": 2019
+    },
+    "location": "Hyderabad",
+    "appliedDate": "2026-07-05",
+    "status": "Selected",
+    "resume": "CAND157_Karan_Gupta.pdf",
+    "profileImage": "/images/candidates/CAND157.png"
+  },
+  {
+    "id": 158,
+    "candidateId": "CAND158",
+    "fullName": "Meera Reddy",
+    "email": "meera.reddy158@example.com",
+    "phone": "9000000158",
+    "gender": "Female",
+    "dateOfBirth": "1999-10-08",
+    "position": "Java Developer",
+    "experience": 0,
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "Hibernate",
+      "MySQL",
+      "Git"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Computer Engineering",
+      "college": "Christ University",
+      "graduationYear": 2025
+    },
+    "location": "Delhi",
+    "appliedDate": "2026-07-13",
+    "status": "Applied",
+    "resume": "CAND158_Meera_Reddy.pdf",
+    "profileImage": "/images/candidates/CAND158.png"
+  },
+  {
+    "id": 159,
+    "candidateId": "CAND159",
+    "fullName": "Nikhil Menon",
+    "email": "nikhil.menon159@example.com",
+    "phone": "9000000159",
+    "gender": "Male",
+    "dateOfBirth": "1997-03-27",
+    "position": "Cloud Engineer",
+    "experience": 2,
+    "skills": [
+      "AWS",
+      "Terraform",
+      "Docker",
+      "Linux",
+      "CI/CD"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Software Engineering",
+      "college": "Silver Oak University",
+      "graduationYear": 2024
+    },
+    "location": "Lucknow",
+    "appliedDate": "2026-07-01",
+    "status": "Interview Scheduled",
+    "resume": "CAND159_Nikhil_Menon.pdf",
+    "profileImage": "/images/candidates/CAND159.png"
+  },
+  {
+    "id": 160,
+    "candidateId": "CAND160",
+    "fullName": "Karan Sharma",
+    "email": "karan.sharma160@example.com",
+    "phone": "9000000160",
+    "gender": "Male",
+    "dateOfBirth": "2001-11-15",
+    "position": "UI/UX Designer",
+    "experience": 0,
+    "skills": [
+      "Figma",
+      "Adobe XD",
+      "Wireframing",
+      "Prototyping",
+      "Photoshop"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Information Technology",
+      "college": "MIT-WPU",
+      "graduationYear": 2023
+    },
+    "location": "Ahmedabad",
+    "appliedDate": "2026-07-10",
+    "status": "Interview Completed",
+    "resume": "CAND160_Karan_Sharma.pdf",
+    "profileImage": "/images/candidates/CAND160.png"
+  },
+  {
+    "id": 161,
+    "candidateId": "CAND161",
+    "fullName": "Rahul Sharma",
+    "email": "rahul.sharma161@example.com",
+    "phone": "9000000161",
+    "gender": "Male",
+    "dateOfBirth": "1997-07-02",
+    "position": "Java Developer",
+    "experience": 3,
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "Hibernate",
+      "MySQL",
+      "Git"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Information Technology",
+      "college": "Silver Oak University",
+      "graduationYear": 2022
+    },
+    "location": "Pune",
+    "appliedDate": "2026-07-10",
+    "status": "Shortlisted",
+    "resume": "CAND161_Rahul_Sharma.pdf",
+    "profileImage": "/images/candidates/CAND161.png"
+  },
+  {
+    "id": 162,
+    "candidateId": "CAND162",
+    "fullName": "Harsh Patel",
+    "email": "harsh.patel162@example.com",
+    "phone": "9000000162",
+    "gender": "Male",
+    "dateOfBirth": "1997-12-14",
+    "position": "Cloud Engineer",
+    "experience": 7,
+    "skills": [
+      "AWS",
+      "Terraform",
+      "Docker",
+      "Linux",
+      "CI/CD"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Information Technology",
+      "college": "Nirma University",
+      "graduationYear": 2021
+    },
+    "location": "Lucknow",
+    "appliedDate": "2026-07-17",
+    "status": "Interview Completed",
+    "resume": "CAND162_Harsh_Patel.pdf",
+    "profileImage": "/images/candidates/CAND162.png"
+  },
+  {
+    "id": 163,
+    "candidateId": "CAND163",
+    "fullName": "Harsh Singh",
+    "email": "harsh.singh163@example.com",
+    "phone": "9000000163",
+    "gender": "Male",
+    "dateOfBirth": "2000-07-28",
+    "position": "React Developer",
+    "experience": 7,
+    "skills": [
+      "React",
+      "Redux",
+      "JavaScript",
+      "MUI",
+      "REST API"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Information Technology",
+      "college": "Christ University",
+      "graduationYear": 2021
+    },
+    "location": "Surat",
+    "appliedDate": "2026-07-23",
+    "status": "Interview Completed",
+    "resume": "CAND163_Harsh_Singh.pdf",
+    "profileImage": "/images/candidates/CAND163.png"
+  },
+  {
+    "id": 164,
+    "candidateId": "CAND164",
+    "fullName": "Arjun Joshi",
+    "email": "arjun.joshi164@example.com",
+    "phone": "9000000164",
+    "gender": "Male",
+    "dateOfBirth": "2001-02-22",
+    "position": "Angular Developer",
+    "experience": 3,
+    "skills": [
+      "Angular",
+      "TypeScript",
+      "RxJS",
+      "HTML5",
+      "CSS3"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Computer Science",
+      "college": "Nirma University",
+      "graduationYear": 2021
+    },
+    "location": "Nagpur",
+    "appliedDate": "2026-07-13",
+    "status": "Rejected",
+    "resume": "CAND164_Arjun_Joshi.pdf",
+    "profileImage": "/images/candidates/CAND164.png"
+  },
+  {
+    "id": 165,
+    "candidateId": "CAND165",
+    "fullName": "Aditi Verma",
+    "email": "aditi.verma165@example.com",
+    "phone": "9000000165",
+    "gender": "Female",
+    "dateOfBirth": "1998-07-09",
+    "position": "QA Engineer",
+    "experience": 4,
+    "skills": [
+      "Manual Testing",
+      "Selenium",
+      "Postman",
+      "JIRA",
+      "Test Cases"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Computer Engineering",
+      "college": "DAIICT",
+      "graduationYear": 2024
+    },
+    "location": "Bhopal",
+    "appliedDate": "2026-07-19",
+    "status": "Interview Scheduled",
+    "resume": "CAND165_Aditi_Verma.pdf",
+    "profileImage": "/images/candidates/CAND165.png"
+  },
+  {
+    "id": 166,
+    "candidateId": "CAND166",
+    "fullName": "Divya Desai",
+    "email": "divya.desai166@example.com",
+    "phone": "9000000166",
+    "gender": "Female",
+    "dateOfBirth": "2000-08-23",
+    "position": "React Developer",
+    "experience": 7,
+    "skills": [
+      "React",
+      "Redux",
+      "JavaScript",
+      "MUI",
+      "REST API"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Information Technology",
+      "college": "MIT-WPU",
+      "graduationYear": 2020
+    },
+    "location": "Hyderabad",
+    "appliedDate": "2026-07-18",
+    "status": "Selected",
+    "resume": "CAND166_Divya_Desai.pdf",
+    "profileImage": "/images/candidates/CAND166.png"
+  },
+  {
+    "id": 167,
+    "candidateId": "CAND167",
+    "fullName": "Kavya Gupta",
+    "email": "kavya.gupta167@example.com",
+    "phone": "9000000167",
+    "gender": "Female",
+    "dateOfBirth": "2000-11-17",
+    "position": "Python Developer",
+    "experience": 4,
+    "skills": [
+      "Python",
+      "Django",
+      "PostgreSQL",
+      "REST API",
+      "Git"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Software Engineering",
+      "college": "VIT Vellore",
+      "graduationYear": 2018
+    },
+    "location": "Indore",
+    "appliedDate": "2026-07-22",
+    "status": "Interview Completed",
+    "resume": "CAND167_Kavya_Gupta.pdf",
+    "profileImage": "/images/candidates/CAND167.png"
+  },
+  {
+    "id": 168,
+    "candidateId": "CAND168",
+    "fullName": "Karan Reddy",
+    "email": "karan.reddy168@example.com",
+    "phone": "9000000168",
+    "gender": "Male",
+    "dateOfBirth": "1998-06-08",
+    "position": "UI/UX Designer",
+    "experience": 1,
+    "skills": [
+      "Figma",
+      "Adobe XD",
+      "Wireframing",
+      "Prototyping",
+      "Photoshop"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Computer Science",
+      "college": "PDEU",
+      "graduationYear": 2023
+    },
+    "location": "Noida",
+    "appliedDate": "2026-07-08",
+    "status": "Selected",
+    "resume": "CAND168_Karan_Reddy.pdf",
+    "profileImage": "/images/candidates/CAND168.png"
+  },
+  {
+    "id": 169,
+    "candidateId": "CAND169",
+    "fullName": "Mohit Mehta",
+    "email": "mohit.mehta169@example.com",
+    "phone": "9000000169",
+    "gender": "Male",
+    "dateOfBirth": "2003-06-20",
+    "position": "iOS Developer",
+    "experience": 0,
+    "skills": [
+      "Swift",
+      "Xcode",
+      "UIKit",
+      "Firebase",
+      "REST API"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Information Technology",
+      "college": "Nirma University",
+      "graduationYear": 2020
+    },
+    "location": "Bhopal",
+    "appliedDate": "2026-07-01",
+    "status": "Applied",
+    "resume": "CAND169_Mohit_Mehta.pdf",
+    "profileImage": "/images/candidates/CAND169.png"
+  },
+  {
+    "id": 170,
+    "candidateId": "CAND170",
+    "fullName": "Aarav Verma",
+    "email": "aarav.verma170@example.com",
+    "phone": "9000000170",
+    "gender": "Male",
+    "dateOfBirth": "2000-06-04",
+    "position": "Cloud Engineer",
+    "experience": 8,
+    "skills": [
+      "AWS",
+      "Terraform",
+      "Docker",
+      "Linux",
+      "CI/CD"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Software Engineering",
+      "college": "MIT-WPU",
+      "graduationYear": 2019
+    },
+    "location": "Mumbai",
+    "appliedDate": "2026-07-23",
+    "status": "Applied",
+    "resume": "CAND170_Aarav_Verma.pdf",
+    "profileImage": "/images/candidates/CAND170.png"
+  },
+  {
+    "id": 171,
+    "candidateId": "CAND171",
+    "fullName": "Priya Gupta",
+    "email": "priya.gupta171@example.com",
+    "phone": "9000000171",
+    "gender": "Female",
+    "dateOfBirth": "2001-06-14",
+    "position": "Frontend Developer",
+    "experience": 7,
+    "skills": [
+      "React",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Information Technology",
+      "college": "Nirma University",
+      "graduationYear": 2020
+    },
+    "location": "Kolkata",
+    "appliedDate": "2026-07-27",
+    "status": "Shortlisted",
+    "resume": "CAND171_Priya_Gupta.pdf",
+    "profileImage": "/images/candidates/CAND171.png"
+  },
+  {
+    "id": 172,
+    "candidateId": "CAND172",
+    "fullName": "Aditi Shah",
+    "email": "aditi.shah172@example.com",
+    "phone": "9000000172",
+    "gender": "Female",
+    "dateOfBirth": "1999-04-12",
+    "position": "Backend Developer",
+    "experience": 8,
+    "skills": [
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "REST API",
+      "JWT"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Computer Engineering",
+      "college": "VIT Vellore",
+      "graduationYear": 2023
+    },
+    "location": "Surat",
+    "appliedDate": "2026-07-19",
+    "status": "Interview Scheduled",
+    "resume": "CAND172_Aditi_Shah.pdf",
+    "profileImage": "/images/candidates/CAND172.png"
+  },
+  {
+    "id": 173,
+    "candidateId": "CAND173",
+    "fullName": "Rahul Patel",
+    "email": "rahul.patel173@example.com",
+    "phone": "9000000173",
+    "gender": "Male",
+    "dateOfBirth": "2001-01-01",
+    "position": "iOS Developer",
+    "experience": 2,
+    "skills": [
+      "Swift",
+      "Xcode",
+      "UIKit",
+      "Firebase",
+      "REST API"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Computer Science",
+      "college": "DAIICT",
+      "graduationYear": 2025
+    },
+    "location": "Rajkot",
+    "appliedDate": "2026-07-19",
+    "status": "Shortlisted",
+    "resume": "CAND173_Rahul_Patel.pdf",
+    "profileImage": "/images/candidates/CAND173.png"
+  },
+  {
+    "id": 174,
+    "candidateId": "CAND174",
+    "fullName": "Pallavi Kulkarni",
+    "email": "pallavi.kulkarni174@example.com",
+    "phone": "9000000174",
+    "gender": "Female",
+    "dateOfBirth": "1998-04-18",
+    "position": "Business Analyst",
+    "experience": 0,
+    "skills": [
+      "SQL",
+      "Excel",
+      "Power BI",
+      "Agile",
+      "Requirements Analysis"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Computer Engineering",
+      "college": "Nirma University",
+      "graduationYear": 2021
+    },
+    "location": "Surat",
+    "appliedDate": "2026-07-14",
+    "status": "Selected",
+    "resume": "CAND174_Pallavi_Kulkarni.pdf",
+    "profileImage": "/images/candidates/CAND174.png"
+  },
+  {
+    "id": 175,
+    "candidateId": "CAND175",
+    "fullName": "Neha Sharma",
+    "email": "neha.sharma175@example.com",
+    "phone": "9000000175",
+    "gender": "Female",
+    "dateOfBirth": "2001-06-26",
+    "position": "Java Developer",
+    "experience": 8,
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "Hibernate",
+      "MySQL",
+      "Git"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Information Technology",
+      "college": "Christ University",
+      "graduationYear": 2021
+    },
+    "location": "Kochi",
+    "appliedDate": "2026-07-20",
+    "status": "Interview Completed",
+    "resume": "CAND175_Neha_Sharma.pdf",
+    "profileImage": "/images/candidates/CAND175.png"
+  },
+  {
+    "id": 176,
+    "candidateId": "CAND176",
+    "fullName": "Anjali Patel",
+    "email": "anjali.patel176@example.com",
+    "phone": "9000000176",
+    "gender": "Female",
+    "dateOfBirth": "1996-03-01",
+    "position": "UI/UX Designer",
+    "experience": 2,
+    "skills": [
+      "Figma",
+      "Adobe XD",
+      "Wireframing",
+      "Prototyping",
+      "Photoshop"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Information Technology",
+      "college": "VIT Vellore",
+      "graduationYear": 2019
+    },
+    "location": "Delhi",
+    "appliedDate": "2026-07-11",
+    "status": "Applied",
+    "resume": "CAND176_Anjali_Patel.pdf",
+    "profileImage": "/images/candidates/CAND176.png"
+  },
+  {
+    "id": 177,
+    "candidateId": "CAND177",
+    "fullName": "Pooja Menon",
+    "email": "pooja.menon177@example.com",
+    "phone": "9000000177",
+    "gender": "Female",
+    "dateOfBirth": "1997-10-20",
+    "position": "React Developer",
+    "experience": 3,
+    "skills": [
+      "React",
+      "Redux",
+      "JavaScript",
+      "MUI",
+      "REST API"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Computer Science",
+      "college": "L.D. College of Engineering",
+      "graduationYear": 2020
+    },
+    "location": "Surat",
+    "appliedDate": "2026-07-20",
+    "status": "Interview Scheduled",
+    "resume": "CAND177_Pooja_Menon.pdf",
+    "profileImage": "/images/candidates/CAND177.png"
+  },
+  {
+    "id": 178,
+    "candidateId": "CAND178",
+    "fullName": "Priya Mehta",
+    "email": "priya.mehta178@example.com",
+    "phone": "9000000178",
+    "gender": "Female",
+    "dateOfBirth": "2000-06-24",
+    "position": "QA Engineer",
+    "experience": 7,
+    "skills": [
+      "Manual Testing",
+      "Selenium",
+      "Postman",
+      "JIRA",
+      "Test Cases"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Computer Science",
+      "college": "MIT-WPU",
+      "graduationYear": 2022
+    },
+    "location": "Delhi",
+    "appliedDate": "2026-07-17",
+    "status": "Interview Completed",
+    "resume": "CAND178_Priya_Mehta.pdf",
+    "profileImage": "/images/candidates/CAND178.png"
+  },
+  {
+    "id": 179,
+    "candidateId": "CAND179",
+    "fullName": "Karan Choudhary",
+    "email": "karan.choudhary179@example.com",
+    "phone": "9000000179",
+    "gender": "Male",
+    "dateOfBirth": "2002-11-07",
+    "position": "Android Developer",
+    "experience": 7,
+    "skills": [
+      "Kotlin",
+      "Android Studio",
+      "Firebase",
+      "REST API",
+      "Git"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Software Engineering",
+      "college": "MIT-WPU",
+      "graduationYear": 2021
+    },
+    "location": "Vadodara",
+    "appliedDate": "2026-07-09",
+    "status": "Shortlisted",
+    "resume": "CAND179_Karan_Choudhary.pdf",
+    "profileImage": "/images/candidates/CAND179.png"
+  },
+  {
+    "id": 180,
+    "candidateId": "CAND180",
+    "fullName": "Vikram Desai",
+    "email": "vikram.desai180@example.com",
+    "phone": "9000000180",
+    "gender": "Male",
+    "dateOfBirth": "2001-04-01",
+    "position": "React Developer",
+    "experience": 1,
+    "skills": [
+      "React",
+      "Redux",
+      "JavaScript",
+      "MUI",
+      "REST API"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Information Technology",
+      "college": "VIT Vellore",
+      "graduationYear": 2021
+    },
+    "location": "Pune",
+    "appliedDate": "2026-07-01",
+    "status": "Applied",
+    "resume": "CAND180_Vikram_Desai.pdf",
+    "profileImage": "/images/candidates/CAND180.png"
+  },
+  {
+    "id": 181,
+    "candidateId": "CAND181",
+    "fullName": "Anjali Shah",
+    "email": "anjali.shah181@example.com",
+    "phone": "9000000181",
+    "gender": "Female",
+    "dateOfBirth": "2000-01-22",
+    "position": "Frontend Developer",
+    "experience": 7,
+    "skills": [
+      "React",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Information Technology",
+      "college": "Nirma University",
+      "graduationYear": 2021
+    },
+    "location": "Noida",
+    "appliedDate": "2026-07-16",
+    "status": "Interview Scheduled",
+    "resume": "CAND181_Anjali_Shah.pdf",
+    "profileImage": "/images/candidates/CAND181.png"
+  },
+  {
+    "id": 182,
+    "candidateId": "CAND182",
+    "fullName": "Sneha Menon",
+    "email": "sneha.menon182@example.com",
+    "phone": "9000000182",
+    "gender": "Female",
+    "dateOfBirth": "2003-01-13",
+    "position": "Full Stack Developer",
+    "experience": 8,
+    "skills": [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Express.js",
+      "Git"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Information Technology",
+      "college": "VIT Vellore",
+      "graduationYear": 2019
+    },
+    "location": "Kochi",
+    "appliedDate": "2026-07-28",
+    "status": "Under Review",
+    "resume": "CAND182_Sneha_Menon.pdf",
+    "profileImage": "/images/candidates/CAND182.png"
+  },
+  {
+    "id": 183,
+    "candidateId": "CAND183",
+    "fullName": "Vikram Mishra",
+    "email": "vikram.mishra183@example.com",
+    "phone": "9000000183",
+    "gender": "Male",
+    "dateOfBirth": "1996-02-01",
+    "position": "UI/UX Designer",
+    "experience": 7,
+    "skills": [
+      "Figma",
+      "Adobe XD",
+      "Wireframing",
+      "Prototyping",
+      "Photoshop"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Software Engineering",
+      "college": "L.D. College of Engineering",
+      "graduationYear": 2025
+    },
+    "location": "Noida",
+    "appliedDate": "2026-07-03",
+    "status": "Applied",
+    "resume": "CAND183_Vikram_Mishra.pdf",
+    "profileImage": "/images/candidates/CAND183.png"
+  },
+  {
+    "id": 184,
+    "candidateId": "CAND184",
+    "fullName": "Aarav Patel",
+    "email": "aarav.patel184@example.com",
+    "phone": "9000000184",
+    "gender": "Male",
+    "dateOfBirth": "2001-09-16",
+    "position": "QA Engineer",
+    "experience": 8,
+    "skills": [
+      "Manual Testing",
+      "Selenium",
+      "Postman",
+      "JIRA",
+      "Test Cases"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Computer Engineering",
+      "college": "Christ University",
+      "graduationYear": 2024
+    },
+    "location": "Pune",
+    "appliedDate": "2026-07-13",
+    "status": "Shortlisted",
+    "resume": "CAND184_Aarav_Patel.pdf",
+    "profileImage": "/images/candidates/CAND184.png"
+  },
+  {
+    "id": 185,
+    "candidateId": "CAND185",
+    "fullName": "Arjun Sharma",
+    "email": "arjun.sharma185@example.com",
+    "phone": "9000000185",
+    "gender": "Male",
+    "dateOfBirth": "2000-09-06",
+    "position": "QA Engineer",
+    "experience": 2,
+    "skills": [
+      "Manual Testing",
+      "Selenium",
+      "Postman",
+      "JIRA",
+      "Test Cases"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Software Engineering",
+      "college": "VIT Vellore",
+      "graduationYear": 2022
+    },
+    "location": "Nagpur",
+    "appliedDate": "2026-07-26",
+    "status": "Shortlisted",
+    "resume": "CAND185_Arjun_Sharma.pdf",
+    "profileImage": "/images/candidates/CAND185.png"
+  },
+  {
+    "id": 186,
+    "candidateId": "CAND186",
+    "fullName": "Pooja Choudhary",
+    "email": "pooja.choudhary186@example.com",
+    "phone": "9000000186",
+    "gender": "Female",
+    "dateOfBirth": "2000-05-22",
+    "position": "React Developer",
+    "experience": 2,
+    "skills": [
+      "React",
+      "Redux",
+      "JavaScript",
+      "MUI",
+      "REST API"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Computer Science",
+      "college": "Christ University",
+      "graduationYear": 2021
+    },
+    "location": "Pune",
+    "appliedDate": "2026-07-21",
+    "status": "Interview Completed",
+    "resume": "CAND186_Pooja_Choudhary.pdf",
+    "profileImage": "/images/candidates/CAND186.png"
+  },
+  {
+    "id": 187,
+    "candidateId": "CAND187",
+    "fullName": "Sakshi Kulkarni",
+    "email": "sakshi.kulkarni187@example.com",
+    "phone": "9000000187",
+    "gender": "Female",
+    "dateOfBirth": "1997-04-28",
+    "position": "Python Developer",
+    "experience": 2,
+    "skills": [
+      "Python",
+      "Django",
+      "PostgreSQL",
+      "REST API",
+      "Git"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Information Technology",
+      "college": "Nirma University",
+      "graduationYear": 2020
+    },
+    "location": "Hyderabad",
+    "appliedDate": "2026-07-25",
+    "status": "Under Review",
+    "resume": "CAND187_Sakshi_Kulkarni.pdf",
+    "profileImage": "/images/candidates/CAND187.png"
+  },
+  {
+    "id": 188,
+    "candidateId": "CAND188",
+    "fullName": "Kavya Kulkarni",
+    "email": "kavya.kulkarni188@example.com",
+    "phone": "9000000188",
+    "gender": "Female",
+    "dateOfBirth": "1999-05-17",
+    "position": "React Developer",
+    "experience": 2,
+    "skills": [
+      "React",
+      "Redux",
+      "JavaScript",
+      "MUI",
+      "REST API"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Computer Engineering",
+      "college": "Silver Oak University",
+      "graduationYear": 2025
+    },
+    "location": "Bengaluru",
+    "appliedDate": "2026-07-13",
+    "status": "Under Review",
+    "resume": "CAND188_Kavya_Kulkarni.pdf",
+    "profileImage": "/images/candidates/CAND188.png"
+  },
+  {
+    "id": 189,
+    "candidateId": "CAND189",
+    "fullName": "Deepak Reddy",
+    "email": "deepak.reddy189@example.com",
+    "phone": "9000000189",
+    "gender": "Male",
+    "dateOfBirth": "1997-04-08",
+    "position": "Data Analyst",
+    "experience": 3,
+    "skills": [
+      "Python",
+      "SQL",
+      "Excel",
+      "Power BI",
+      "Tableau"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Computer Science",
+      "college": "PDEU",
+      "graduationYear": 2022
+    },
+    "location": "Kolkata",
+    "appliedDate": "2026-07-25",
+    "status": "Interview Scheduled",
+    "resume": "CAND189_Deepak_Reddy.pdf",
+    "profileImage": "/images/candidates/CAND189.png"
+  },
+  {
+    "id": 190,
+    "candidateId": "CAND190",
+    "fullName": "Rahul Mishra",
+    "email": "rahul.mishra190@example.com",
+    "phone": "9000000190",
+    "gender": "Male",
+    "dateOfBirth": "1999-10-22",
+    "position": "iOS Developer",
+    "experience": 0,
+    "skills": [
+      "Swift",
+      "Xcode",
+      "UIKit",
+      "Firebase",
+      "REST API"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Computer Science",
+      "college": "L.D. College of Engineering",
+      "graduationYear": 2020
+    },
+    "location": "Ahmedabad",
+    "appliedDate": "2026-07-23",
+    "status": "Shortlisted",
+    "resume": "CAND190_Rahul_Mishra.pdf",
+    "profileImage": "/images/candidates/CAND190.png"
+  },
+  {
+    "id": 191,
+    "candidateId": "CAND191",
+    "fullName": "Aditya Rao",
+    "email": "aditya.rao191@example.com",
+    "phone": "9000000191",
+    "gender": "Male",
+    "dateOfBirth": "2000-07-17",
+    "position": "React Developer",
+    "experience": 4,
+    "skills": [
+      "React",
+      "Redux",
+      "JavaScript",
+      "MUI",
+      "REST API"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Information Technology",
+      "college": "L.D. College of Engineering",
+      "graduationYear": 2021
+    },
+    "location": "Delhi",
+    "appliedDate": "2026-07-11",
+    "status": "Rejected",
+    "resume": "CAND191_Aditya_Rao.pdf",
+    "profileImage": "/images/candidates/CAND191.png"
+  },
+  {
+    "id": 192,
+    "candidateId": "CAND192",
+    "fullName": "Sakshi Joshi",
+    "email": "sakshi.joshi192@example.com",
+    "phone": "9000000192",
+    "gender": "Female",
+    "dateOfBirth": "1997-07-17",
+    "position": "Backend Developer",
+    "experience": 0,
+    "skills": [
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "REST API",
+      "JWT"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Computer Engineering",
+      "college": "Christ University",
+      "graduationYear": 2023
+    },
+    "location": "Rajkot",
+    "appliedDate": "2026-07-07",
+    "status": "Interview Scheduled",
+    "resume": "CAND192_Sakshi_Joshi.pdf",
+    "profileImage": "/images/candidates/CAND192.png"
+  },
+  {
+    "id": 193,
+    "candidateId": "CAND193",
+    "fullName": "Rohan Desai",
+    "email": "rohan.desai193@example.com",
+    "phone": "9000000193",
+    "gender": "Male",
+    "dateOfBirth": "1997-06-21",
+    "position": "QA Engineer",
+    "experience": 5,
+    "skills": [
+      "Manual Testing",
+      "Selenium",
+      "Postman",
+      "JIRA",
+      "Test Cases"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Computer Engineering",
+      "college": "Christ University",
+      "graduationYear": 2025
+    },
+    "location": "Delhi",
+    "appliedDate": "2026-07-01",
+    "status": "Under Review",
+    "resume": "CAND193_Rohan_Desai.pdf",
+    "profileImage": "/images/candidates/CAND193.png"
+  },
+  {
+    "id": 194,
+    "candidateId": "CAND194",
+    "fullName": "Sakshi Rao",
+    "email": "sakshi.rao194@example.com",
+    "phone": "9000000194",
+    "gender": "Female",
+    "dateOfBirth": "2000-10-01",
+    "position": "React Developer",
+    "experience": 8,
+    "skills": [
+      "React",
+      "Redux",
+      "JavaScript",
+      "MUI",
+      "REST API"
+    ],
+    "education": {
+      "degree": "MBA",
+      "specialization": "Software Engineering",
+      "college": "L.D. College of Engineering",
+      "graduationYear": 2023
+    },
+    "location": "Noida",
+    "appliedDate": "2026-07-25",
+    "status": "Rejected",
+    "resume": "CAND194_Sakshi_Rao.pdf",
+    "profileImage": "/images/candidates/CAND194.png"
+  },
+  {
+    "id": 195,
+    "candidateId": "CAND195",
+    "fullName": "Rohan Gupta",
+    "email": "rohan.gupta195@example.com",
+    "phone": "9000000195",
+    "gender": "Male",
+    "dateOfBirth": "2002-01-03",
+    "position": "Angular Developer",
+    "experience": 6,
+    "skills": [
+      "Angular",
+      "TypeScript",
+      "RxJS",
+      "HTML5",
+      "CSS3"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Software Engineering",
+      "college": "DAIICT",
+      "graduationYear": 2021
+    },
+    "location": "Pune",
+    "appliedDate": "2026-07-09",
+    "status": "Selected",
+    "resume": "CAND195_Rohan_Gupta.pdf",
+    "profileImage": "/images/candidates/CAND195.png"
+  },
+  {
+    "id": 196,
+    "candidateId": "CAND196",
+    "fullName": "Mohit Nair",
+    "email": "mohit.nair196@example.com",
+    "phone": "9000000196",
+    "gender": "Male",
+    "dateOfBirth": "2003-11-07",
+    "position": "DevOps Engineer",
+    "experience": 1,
+    "skills": [
+      "AWS",
+      "Docker",
+      "Kubernetes",
+      "Linux",
+      "CI/CD"
+    ],
+    "education": {
+      "degree": "B.E.",
+      "specialization": "Information Technology",
+      "college": "VIT Vellore",
+      "graduationYear": 2021
+    },
+    "location": "Pune",
+    "appliedDate": "2026-07-23",
+    "status": "Interview Completed",
+    "resume": "CAND196_Mohit_Nair.pdf",
+    "profileImage": "/images/candidates/CAND196.png"
+  },
+  {
+    "id": 197,
+    "candidateId": "CAND197",
+    "fullName": "Aarav Verma",
+    "email": "aarav.verma197@example.com",
+    "phone": "9000000197",
+    "gender": "Male",
+    "dateOfBirth": "1998-03-24",
+    "position": "Data Analyst",
+    "experience": 2,
+    "skills": [
+      "Python",
+      "SQL",
+      "Excel",
+      "Power BI",
+      "Tableau"
+    ],
+    "education": {
+      "degree": "BCA",
+      "specialization": "Computer Science",
+      "college": "Silver Oak University",
+      "graduationYear": 2021
+    },
+    "location": "Hyderabad",
+    "appliedDate": "2026-07-01",
+    "status": "Applied",
+    "resume": "CAND197_Aarav_Verma.pdf",
+    "profileImage": "/images/candidates/CAND197.png"
+  },
+  {
+    "id": 198,
+    "candidateId": "CAND198",
+    "fullName": "Rahul Yadav",
+    "email": "rahul.yadav198@example.com",
+    "phone": "9000000198",
+    "gender": "Male",
+    "dateOfBirth": "2001-12-07",
+    "position": "Full Stack Developer",
+    "experience": 8,
+    "skills": [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Express.js",
+      "Git"
+    ],
+    "education": {
+      "degree": "B.Tech",
+      "specialization": "Information Technology",
+      "college": "Silver Oak University",
+      "graduationYear": 2023
+    },
+    "location": "Rajkot",
+    "appliedDate": "2026-07-19",
+    "status": "Rejected",
+    "resume": "CAND198_Rahul_Yadav.pdf",
+    "profileImage": "/images/candidates/CAND198.png"
+  },
+  {
+    "id": 199,
+    "candidateId": "CAND199",
+    "fullName": "Mohit Mishra",
+    "email": "mohit.mishra199@example.com",
+    "phone": "9000000199",
+    "gender": "Male",
+    "dateOfBirth": "2001-04-07",
+    "position": "Backend Developer",
+    "experience": 5,
+    "skills": [
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "REST API",
+      "JWT"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Information Technology",
+      "college": "VIT Vellore",
+      "graduationYear": 2018
+    },
+    "location": "Surat",
+    "appliedDate": "2026-07-08",
+    "status": "Rejected",
+    "resume": "CAND199_Mohit_Mishra.pdf",
+    "profileImage": "/images/candidates/CAND199.png"
+  },
+  {
+    "id": 200,
+    "candidateId": "CAND200",
+    "fullName": "Aarav Mishra",
+    "email": "aarav.mishra200@example.com",
+    "phone": "9000000200",
+    "gender": "Male",
+    "dateOfBirth": "1999-12-24",
+    "position": "DevOps Engineer",
+    "experience": 6,
+    "skills": [
+      "AWS",
+      "Docker",
+      "Kubernetes",
+      "Linux",
+      "CI/CD"
+    ],
+    "education": {
+      "degree": "MCA",
+      "specialization": "Computer Science",
+      "college": "PDEU",
+      "graduationYear": 2019
+    },
+    "location": "Pune",
+    "appliedDate": "2026-07-03",
+    "status": "Applied",
+    "resume": "CAND200_Aarav_Mishra.pdf",
+    "profileImage": "/images/candidates/CAND200.png"
+  }
+]

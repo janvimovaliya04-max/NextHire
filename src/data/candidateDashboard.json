@@ -1,0 +1,74 @@
+{
+  "candidateName": "Alex",
+  "stats": {
+    "appliedJobs": 3,
+    "assessments": 1,
+    "interviews": 2,
+    "offers": 1
+  },
+  "trends": {
+    "appliedJobs": "2 active pipelines",
+    "assessments": "1 pending test",
+    "interviews": "1 scheduled today",
+    "offers": "1 letter received"
+  },
+  "quickActions": [
+  {
+    "title": "Explore Open Jobs",
+    "desc": "Browse current job listings, check technical skill stacks, and apply.",
+    "btnText": "Find Openings",
+    "link": "/browse-jobs",
+    "color": "#10b981",
+    "icon": "briefcase"
+  },
+  {
+    "title": "Track Applications",
+    "desc": "Check recruitment stages, test feedback, and review offers.",
+    "btnText": "View Progress",
+    "link": "/my-applications",
+    "color": "#10b981",
+    "icon": "clipboard"
+  },
+  {
+    "title": "Prepare Interviews",
+    "desc": "Check scheduled slots and interview details.",
+    "btnText": "Check Schedule",
+    "link": "/my-interviews",
+    "color": "#10b981",
+    "icon": "calendar"
+  }
+],
+  "activeApplications": [
+    {
+      "company": "PixelCraft Solutions",
+      "role": "Frontend Developer",
+      "date": "Applied 2 days ago",
+      "stage": "Interview Scheduled",
+      "progress": 66,
+      "badgeColor": "#10b981"
+    },
+    {
+      "company": "CloudCore Tech",
+      "role": "Java Developer",
+      "date": "Applied 5 days ago",
+      "stage": "Resume Screening",
+      "progress": 33,
+      "badgeColor": "#10b981"
+    },
+    {
+      "company": "BrightWave Systems",
+      "role": "Backend Developer",
+      "date": "Applied 1 week ago",
+      "stage": "Assessment Pending",
+      "progress": 20,
+      "badgeColor": "#10b981"
+    }
+  ],
+  "nextInterview": {
+    "title": "Technical Coding Round",
+    "company": "PixelCraft Solutions",
+    "time": "Today, 03:30 PM",
+    "interviewer": "David (Lead UI)",
+    "link": "/candidate-assessment"
+  }
+}

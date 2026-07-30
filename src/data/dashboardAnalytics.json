@@ -1,0 +1,31 @@
+{
+  "applications":[
+    {
+      "month":"Jan",
+      "applications":220
+    },
+    {
+      "month":"Feb",
+      "applications":280
+    },
+    {
+      "month":"Mar",
+      "applications":350
+    }
+  ],
+
+  "candidateStatus":[
+    {
+      "name":"Applied",
+      "value":540
+    },
+    {
+      "name":"Shortlisted",
+      "value":220
+    },
+    {
+      "name":"Rejected",
+      "value":150
+    }
+  ]
+}
