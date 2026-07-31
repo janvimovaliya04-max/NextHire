@@ -1,0 +1,38 @@
+const purpleTheme = {
+
+    name: "Royal Purple",
+
+    colors: {
+
+        primary: "#9333EA",
+        secondary: "#7E22CE",
+
+        background: "#FAF5FF",
+        card: "#FFFFFF",
+
+        navbar: "#FFFFFF",
+        sidebar: "#3B0764",
+        
+        text: "#581C87",
+        subText: "#6B7280",
+
+        border: "#E9D5FF",
+
+        success: "#22C55E",
+        warning: "#F59E0B",
+        error: "#EF4444",
+
+        tableHeader: "#F3E8FF",
+        tableHover: "#E9D5FF",
+
+        input: "#FFFFFF",
+
+        button: "#9333EA",
+        buttonHover: "#7E22CE",
+
+        shadow:
+        "0 10px 25px rgba(147,51,234,0.18)"
+    }
+};
+
+export default purpleTheme;
