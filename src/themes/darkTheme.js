@@ -30,6 +30,18 @@ const darkTheme = {
         button: "#3B82F6",
         buttonHover: "#2563EB",
 
+        hover: "#273244",
+        activeMenu: "#1E40AF",
+        activeText: "#FFFFFF",
+
+        divider: "#374151",
+
+        chip: "#1D4ED8",
+        chipText: "#FFFFFF",
+
+        badge: "#14532D",
+        badgeText: "#BBF7D0",
+
         shadow:
         "0 10px 25px rgba(0,0,0,0.4)"
     }

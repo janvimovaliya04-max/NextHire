@@ -30,6 +30,18 @@ const purpleTheme = {
         button: "#9333EA",
         buttonHover: "#7E22CE",
 
+        hover: "#F3E8FF",
+        activeMenu: "#9333EA",
+        activeText: "#FFFFFF",
+
+        divider: "#E9D5FF",
+
+        chip: "#E9D5FF",
+        chipText: "#6B21A8",
+
+        badge: "#F3E8FF",
+        badgeText: "#581C87",
+
         shadow:
         "0 10px 25px rgba(147,51,234,0.18)"
     }

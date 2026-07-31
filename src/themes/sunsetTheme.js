@@ -30,6 +30,18 @@ const sunsetTheme = {
         button: "#F97316",
         buttonHover: "#EA580C",
 
+        hover: "#FFF7ED",
+        activeMenu: "#F97316",
+        activeText: "#FFFFFF",
+
+        divider: "#FED7AA",
+
+        chip: "#FED7AA",
+        chipText: "#9A3412",
+
+        badge: "#FFEDD5",
+        badgeText: "#7C2D12",
+
         shadow:
         "0 10px 25px rgba(249,115,22,0.18)"
     }

@@ -30,6 +30,18 @@ const midnightTheme = {
         button: "#06B6D4",
         buttonHover: "#0891B2",
 
+        hover: "#083344",
+        activeMenu: "#06B6D4",
+        activeText: "#FFFFFF",
+
+        divider: "#164E63",
+
+        chip: "#164E63",
+        chipText: "#A5F3FC",
+
+        badge: "#155E75",
+        badgeText: "#CFFAFE",
+
         shadow:
         "0 10px 25px rgba(6,182,212,0.2)"
     }

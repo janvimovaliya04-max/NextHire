@@ -30,6 +30,18 @@ const goldTheme = {
         button: "#D4AF37",
         buttonHover: "#B8860B",
 
+        hover: "#FEF3C7",
+        activeMenu: "#D4AF37",
+        activeText: "#3F2A00",
+
+        divider: "#FDE68A",
+
+        chip: "#FDE68A",
+        chipText: "#78350F",
+
+        badge: "#FEF3C7",
+        badgeText: "#92400E",
+
         shadow:
         "0 10px 25px rgba(212,175,55,0.2)"
     }

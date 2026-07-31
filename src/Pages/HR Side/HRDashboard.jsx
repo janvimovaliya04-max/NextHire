@@ -29,7 +29,6 @@ import {
 
 export default function HRDashboard() {
   const { darkMode } = useTheme();
-
   const subText = darkMode ? "#94a3b8" : "#475569";
   const borderStyle =
     darkMode

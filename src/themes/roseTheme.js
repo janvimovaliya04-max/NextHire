@@ -30,6 +30,18 @@ const roseTheme = {
         button: "#E11D48",
         buttonHover: "#BE123C",
 
+        hover: "#FFE4E6",
+        activeMenu: "#E11D48",
+        activeText: "#FFFFFF",
+
+        divider: "#FECDD3",
+
+        chip: "#FECDD3",
+        chipText: "#9F1239",
+
+        badge: "#9F1239",
+        badgeText: "#881337",
+
         shadow:
         "0 10px 25px rgba(225,29,72,0.15)"
     }

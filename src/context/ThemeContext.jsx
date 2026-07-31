@@ -1,43 +1,95 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState
+} from "react";
+import themes from "../themes";
+import {
+  getStoredTheme,
+  saveTheme
+} from "../utils/themeStorage";
 
 const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
 
-  const [darkMode, setDarkMode] = useState(() => {
-    const savedTheme = localStorage.getItem("darkMode");
+  // Load saved theme
+  const [themeName, setThemeName] = useState(() => 
+    getStoredTheme()
+);
 
-    return savedTheme
-      ? JSON.parse(savedTheme)
-      : false;
-  });
+  // Current Theme Object
+  const theme = useMemo(() => {
+    return themes[themeName] || themes.light;
+  }, [themeName]);
 
-useEffect(() => {
-  if (darkMode) {
-    document.body.classList.add("dark");
-  } else {
-    document.body.classList.remove("dark");
-  }
-}, [darkMode]);
+  // Backward Compatibility
+  const darkMode = themeName === "dark";
 
+  // Apply dark class to body 
   useEffect(() => {
-    localStorage.setItem(
-      "darkMode",
-      JSON.stringify(darkMode)
-    );
+    if (darkMode){
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
   }, [darkMode]);
+
+  // Save theme
+  useEffect(() => {
+  saveTheme(themeName);
+}, [themeName]);
+
+  // Change theme
+ const setTheme = (name) => {
+  console.log("Changing theme to:", name);
+
+  if (themes[name]) {
+    setThemeName(name);
+  } else {
+    console.log("Theme not found");
+  }
+};
+
+  // Existing dark mode toggle
+  const setDarkMode = (value) => {
+    if (typeof value === "function") {
+      const next = value(darkMode);
+      setThemeName(next ? "dark" : "light");
+    } else {
+      setThemeName(value ? "dark" : "light");
+    }
+  };
+
+  // Optional helpbar
+  const toggleDarkMode = () => {
+    setThemeName((prev) =>
+    prev === "dark" ? "light" : "dark"
+  );
+  };
 
   return (
     <ThemeContext.Provider
-      value={{
-        darkMode,
-        setDarkMode,
-      }}
+    value={{
+      // old API (still woks)/
+      darkMode,
+      setDarkMode,
+
+      // New API
+      themeName,
+      theme,
+      colors: theme.colors,
+      themes,
+      setTheme,
+      toggleDarkMode,
+      isDark: darkMode
+    }}
     >
-      {children}
+    {children}
     </ThemeContext.Provider>
   );
 }
 
-export const useTheme = () =>
-  useContext(ThemeContext);
+export const useTheme = () => useContext(ThemeContext);

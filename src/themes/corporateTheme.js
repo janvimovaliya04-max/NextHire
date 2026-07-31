@@ -30,6 +30,18 @@ const corporateTheme = {
         button: "#1E3A8A",
         buttonHover: "#1E40AF",
 
+        hover: "#F1F5F9",
+        activeMenu: "#1E3A8A",
+        activeText: "#FFFFFF",
+
+        divider: "#CBD5E1",
+
+        chip: "#DBEAFE",
+        chipText: "#1E3A8A",
+
+        badge: "#E2E8F0",
+        badgeText: "#334155",
+
         shadow:
         "0 10px 25px rgba(30,58,138,0.15)"
     }

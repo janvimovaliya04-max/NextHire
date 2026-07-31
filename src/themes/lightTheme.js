@@ -1,3 +1,5 @@
+import { Divider } from "@mui/material";
+
 const lightTheme ={
     name: "Light",
 
@@ -27,6 +29,18 @@ const lightTheme ={
 
         button: "#2563EB",
         buttonHover: "#1D4ED8",
+
+        hover: "#EFF6FF",
+        activeMenu: "#DBEAFE",
+        activeText: "#2563EB",
+
+        divider: "#E5E7EB",
+
+        chip: "#DBEAFE",
+        chipText: "#1D4ED8",
+
+        badge: "#DCFCE7",
+        badgeText: "#166534",
 
         shadow:
         "0 10px 25px rgba(0,0,0,.08)"

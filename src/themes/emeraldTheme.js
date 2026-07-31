@@ -30,6 +30,18 @@ const emeraldTheme = {
         button: "#10B981",
         buttonHover: "#059669",
 
+        hover: "#ECFDF5",
+        activeMenu: "#10B981",
+        activeText: "#FFFFFF",
+
+        divider: "#A7F3D0",
+
+        chip: "#D1FAE5",
+        chipText: "#047857",
+
+        badge: "#DCFCE7",
+        badgeText: "#166534",
+
         shadow:
         "0 10px 25px rgba(16,185,129,0.15)"
     }
