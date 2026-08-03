@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ThemeSelector from "./components/ThemeSelector";
 
 /* Common Pages */
 import Landing from "./Pages/Landing";
@@ -54,7 +53,6 @@ import InterviewerSettings from "./Pages/Interviewer Side/InterviewerSettings";
 function App() {
   return (
     <BrowserRouter>
-    <ThemeSelector />
       <Routes>
 
         {/* Landing */}

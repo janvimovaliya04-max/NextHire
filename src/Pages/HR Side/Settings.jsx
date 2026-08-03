@@ -18,7 +18,6 @@ import {
 import Grid from "@mui/material/Grid";
 
 import {
-  FaPalette,
   FaBuilding,
   FaSun,
   FaClock,
@@ -37,7 +36,7 @@ import {
 
 export default function Settings() {
 
-  const { themeName, setTheme } = useTheme();
+  const { darkMode, setDarkMode } = useTheme();
   const [twoFactor, setTwoFactor] = useState(() => {
     const saved = localStorage.getItem("twoFactor");
     return saved ? JSON.parse(saved) : false;
@@ -457,66 +456,7 @@ export default function Settings() {
             </Grid>
           </Grid>
         </Paper>
-
-        {/* ================= Appearance ================= */}
-        <Paper
-          elevation={0}
-          sx={{
-            p: { xs: 2, sm: 2.5, mb: 4 },
-            borderRadius: { xs: 3, md: "22px" },
-            bgcolor: darkMode
-              ? "rgba(30,41,59,.72)"
-              : "#ffffff",
-            backdropFilter: "blur(16px)",
-            border: `1px solid ${borderStyle}`,
-            boxShadow: darkMode
-              ? `0 18px 45px rgba(0,0,0,.35)`
-              : `0 18px 40px rgba(15,23,42,.08)`,
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 2,
-              }}
-            >
-              <Avatar
-                sx={{
-                  bgcolor: "#F59E0B20",
-                  color: "#F59E0B",
-                }}
-              >
-                <FaPalette />
-              </Avatar>
-              <Box>
-                <Typography fontWeight={700}>
-                  Appearance
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                >
-                  Customize your NextHire Theme.
-                </Typography>
-              </Box>
-            </Box>
-            <Button
-              variant="contained"
-              startIcon={<FaPalette />}
-            >
-              Change Theme
-            </Button>
-          </Box>
-        </Paper>
-
+        
         {/* ================= Account Settings ================= */}
         <Paper
           elevation={0}
