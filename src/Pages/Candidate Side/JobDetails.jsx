@@ -1,6 +1,5 @@
-import api from "../../api/axios";
-import { useParams } from "react-router-dom";
-import { Link, useNavigate } from "react-router-dom";
+import browseJobsData from "../../data/BrowseJobDetails.json";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useTheme } from "../../context/ThemeContext";
 import CandidateLayout from "../../Layouts/CandidateLayout";
@@ -34,26 +33,13 @@ export default function JobDetails() {
   const { id } = useParams();
 
   const [job, setJob] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
 
   useEffect(() => {
-    const fetchJob = async () => {
-      try {
-        setLoading(true);
-        setError("");
+    const selectedJob = browseJobsData.find(
+      (item) => item.jobId === id
+    );
 
-        const response = await api.get(`/jobdetails?jobId=${id}`);
-
-        setJob(response.data[0]);
-      } catch (err) {
-        setError("Failed to fetch job details.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchJob();
+    setJob(selectedJob);
   }, [id]);
 
   if (!job) {
