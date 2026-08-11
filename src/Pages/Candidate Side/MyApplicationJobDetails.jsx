@@ -13,7 +13,7 @@ import {
   Divider,
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import { FaCheck } from "react-icons/fa";
+import { Check } from "lucide-react";
 
 export default function MyApplicationJobDetails() {
   const { darkMode } = useTheme();
@@ -297,7 +297,7 @@ export default function MyApplicationJobDetails() {
                         mb: 1.5
                       }}
                     >
-                      <FaCheck color={primary} />
+                      <Check color={primary} />
                       <Typography sx={{ color: subText }}>
                         {item}
                       </Typography>

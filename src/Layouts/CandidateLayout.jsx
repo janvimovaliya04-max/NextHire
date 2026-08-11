@@ -6,20 +6,20 @@ import { useCandidate } from "../context/CandidateContext";
 import useThemeColors from "../hooks/useThemeColors";
 
 import {
-  FaUser,
-  FaBars,
-  FaTachometerAlt,
-  FaSearch,
-  FaFileAlt,
-  FaClipboardCheck,
-  FaCalendarAlt,
-  FaBell,
-  FaCog,
-  FaPaperPlane,
-  FaSun,
-  FaMoon,
-  FaSignOutAlt,
-} from "react-icons/fa";
+  User,
+  Menu,
+  LayoutDashboard,
+  Search,
+  FileText,
+  ClipboardCheck,
+  Calendar,
+  Bell,
+  Settings,
+  Send,
+  Sun,
+  Moon,
+  LogOut,
+} from "lucide-react";
 
 export default function CandidateLayout({ children }) {
   const location = useLocation();
@@ -84,28 +84,28 @@ export default function CandidateLayout({ children }) {
     {
       title: "Overview",
       items: [
-        { path: "/candidate", label: "Dashboard", icon: <FaTachometerAlt /> },
-        { path: "/apply-job/:id", label: "Apply For Job", icon: <FaPaperPlane /> },
+        { path: "/candidate", label: "Dashboard", icon: <LayoutDashboard /> },
+        { path: "/apply-job/:id", label: "Apply For Job", icon: <Send /> },
       ],
     },
     {
       title: "Jobs & Applications",
       items: [
-        { path: "/browse-jobs", label: "Browse Jobs", icon: <FaSearch /> },
-        { path: "/my-applications", label: "My Applications", icon: <FaFileAlt /> },
+        { path: "/browse-jobs", label: "Browse Jobs", icon: <Search /> },
+        { path: "/my-applications", label: "My Applications", icon: <FileText /> },
       ],
     },
     {
       title: "Assessments & Interviews",
       items: [
-        { path: "/candidate-assessment", label: "Assessments", icon: <FaClipboardCheck /> },
-        { path: "/my-interviews", label: "My Interviews", icon: <FaCalendarAlt /> },
+        { path: "/candidate-assessment", label: "Assessments", icon: <ClipboardCheck /> },
+        { path: "/my-interviews", label: "My Interviews", icon: <Calendar /> },
       ],
     },
     {
       title: "Settings & System",
       items: [
-        { path: "/candidate-settings", label: "Settings", icon: <FaCog /> },
+        { path: "/candidate-settings", label: "Settings", icon: <Settings /> },
       ],
     },
   ];
@@ -256,7 +256,7 @@ export default function CandidateLayout({ children }) {
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = `${primary}14`)}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
             >
-              {darkMode ? <FaSun /> : <FaMoon />}
+              {darkMode ? <Sun /> : <Moon />}
               <span>Theme</span>
             </button>
 
@@ -268,7 +268,7 @@ export default function CandidateLayout({ children }) {
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = `${primary}14`)}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
             >
-              <FaUser />
+              <User />
               <span>Profile</span>
             </Link>
 
@@ -301,7 +301,7 @@ export default function CandidateLayout({ children }) {
             onClick={handleLogout}
             className="md:hidden flex items-center gap-2 text-red-500 py-2 px-1 rounded-lg hover:bg-red-50"
           >
-            <FaSignOutAlt />
+            <LogOut />
             Logout
           </button>
         </div>
@@ -347,7 +347,7 @@ export default function CandidateLayout({ children }) {
                 color: textColor,
               }}
             >
-              <FaBars />
+              <Menu />
             </button>
 
             <Link
@@ -359,7 +359,7 @@ export default function CandidateLayout({ children }) {
                 color: textColor,
               }}
             >
-              <FaBell />
+              <Bell />
 
               <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-red-500"></span>
 
@@ -396,7 +396,7 @@ export default function CandidateLayout({ children }) {
                 borderColor: borderStyle,
               }}
             >
-              {darkMode ? <FaSun size={15} /> : <FaMoon size={15} />}
+              {darkMode ? <Sun size={15} /> : <Moon size={15} />}
             </button>
 
             {/* Notifications Alert */}
@@ -409,7 +409,7 @@ export default function CandidateLayout({ children }) {
                 borderColor: borderStyle,
               }}
             >
-              <FaBell size={15} />
+              <Bell size={15} />
               <span
                 className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full"
                 style={{ backgroundColor: primary }}
@@ -444,7 +444,7 @@ export default function CandidateLayout({ children }) {
               onClick={handleLogout}
               className="p-2.5 rounded-xl border flex items-center justify-center gap-2 font-semibold text-sm text-red-500 border-red-500/20 bg-red-500/5 hover:bg-red-500/10 hover:border-red-500/40 transition-all duration-300"
             >
-              <FaSignOutAlt size={14} />
+              <LogOut size={14} />
               <span className="hidden sm:inline">Logout</span>
             </button>
           </div>

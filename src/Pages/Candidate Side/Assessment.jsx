@@ -5,7 +5,7 @@ import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
 import { Typography, Paper, Box, TextField, Button, LinearProgress } from "@mui/material";
 
-import { FaClock, FaInfoCircle, FaPaperPlane } from "react-icons/fa";
+import { Clock, Info, Send } from "lucide-react";
 
 export default function Assessment() {
   const { darkMode } = useTheme();
@@ -196,7 +196,7 @@ export default function Assessment() {
                 border: "1px solid rgba(239,68,68,.30)",
               }}
             >
-              <FaClock size={window.innerWidth < 600 ? 9 : 13} />
+              <Clock size={window.innerWidth < 600 ? 9 : 13} />
               <Typography
                 sx={{
                   fontWeight: 800,
@@ -258,7 +258,7 @@ export default function Assessment() {
           }}
         >
           <Box sx={{ color: primary, mt: 0.2 }}>
-            <FaInfoCircle size={window.innerWidth < 600 ? 13 : 16} />
+            <Info size={window.innerWidth < 600 ? 13 : 16} />
           </Box>
           <Box>
             <Typography
@@ -437,7 +437,7 @@ export default function Assessment() {
           <Button
             variant="contained"
             onClick={handleSubmit}
-            startIcon={<FaPaperPlane size={11} />}
+            startIcon={<Send size={11} />}
             sx={{
               width: {
                 xs: "100%",

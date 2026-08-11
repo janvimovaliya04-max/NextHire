@@ -11,7 +11,7 @@ import {
 
 import Grid from "@mui/material/Grid";
 
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { ArrowRight } from "lucide-react";
 
 export default function PortalSection({
   roles,
@@ -291,7 +291,7 @@ export default function PortalSection({
                     >
                       CONTINUE TO PORTAL
 
-                      <ArrowForwardIcon
+                      <ArrowRight
                         className="arrow-icon"
                         sx={{
                           fontSize: 18,

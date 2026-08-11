@@ -16,10 +16,10 @@ import {
 import Grid from "@mui/material/Grid";
 
 import {
-  FaUserEdit,
-  FaKey,
-  FaArrowRight,
-} from "react-icons/fa";
+  UserRoundPen,
+  KeyRound,
+  ArrowRight,
+} from "lucide-react";
 
 export default function CandidateProfileR() {
   const { darkMode } = useTheme();
@@ -250,7 +250,7 @@ export default function CandidateProfileR() {
                 component={Link}
                 to="/edit-candidate-profile-r"
                 variant="contained"
-                startIcon={<FaUserEdit size={13} />}
+                startIcon={<UserRoundPen size={13} />}
                 sx={{
                   width: {
                     xs: "100%",
@@ -285,7 +285,7 @@ export default function CandidateProfileR() {
 
               <Button
                 variant="outlined"
-                startIcon={<FaKey size={12} />}
+                startIcon={<KeyRound size={12} />}
                 sx={{
                   width: {
                     xs: "100%",
@@ -573,7 +573,7 @@ export default function CandidateProfileR() {
             component={Link}
             to="/candidate-settings"
             variant="contained"
-            endIcon={<FaArrowRight size={12} />}
+            endIcon={<ArrowRight size={12} />}
             sx={{
               width: {
                 xs: "100%",

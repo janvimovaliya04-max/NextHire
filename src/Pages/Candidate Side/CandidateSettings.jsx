@@ -16,7 +16,14 @@ import {
   Avatar,
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import { FaUserCog, FaPalette, FaSlidersH, FaShieldAlt, FaSave, FaArrowLeft } from "react-icons/fa";
+import {
+  UserCog,
+  Palette,
+  SlidersHorizontal,
+  Shield,
+  Save,
+  ArrowLeft,
+} from "lucide-react";
 
 export default function CandidateSettings() {
   const { darkMode } = useTheme();
@@ -178,7 +185,7 @@ export default function CandidateSettings() {
             },
           }}>
             <Box sx={{ color: primary, display: "flex" }}>
-              <FaUserCog size={18} />
+              <UserCog size={18} />
             </Box>
             <Typography variant="h6" sx={{ color: textColor, fontWeight: 800 }}>
               Account Information
@@ -326,7 +333,7 @@ export default function CandidateSettings() {
             },
           }}>
             <Box sx={{ color: primary, display: "flex" }}>
-              <FaSlidersH size={18} />
+              <SlidersHorizontal size={18} />
             </Box>
             <Typography variant="h6" sx={{ color: textColor, fontWeight: 800 }}>
               Alert Preferences
@@ -491,7 +498,7 @@ export default function CandidateSettings() {
                 color: primary,
               }}
             >
-              <FaPalette />
+              <Palette />
             </Avatar>
 
             <Box>
@@ -555,7 +562,7 @@ export default function CandidateSettings() {
               </Typography>
             </Box>
 
-            <FaPalette
+            <Palette
               style={{
                 color: primary,
                 fontSize: "18px"
@@ -600,7 +607,7 @@ export default function CandidateSettings() {
             }, mb: 3.5
           }}>
             <Box sx={{ color: primary, display: "flex" }}>
-              <FaShieldAlt size={18} />
+              <Shield size={18} />
             </Box>
             <Typography variant="h6" sx={{ color: textColor, fontWeight: 800 }}>
               Security Parameters
@@ -700,7 +707,7 @@ export default function CandidateSettings() {
             component={Link}
             to="/candidate-profile-r"
             variant="outlined"
-            startIcon={<FaArrowLeft size={11} />}
+            startIcon={<ArrowLeft size={11} />}
             sx={{
               width: {
                 xs: "100%",
@@ -737,7 +744,7 @@ export default function CandidateSettings() {
           <Button
             variant="contained"
             onClick={() => alert("Changes saved successfully.")}
-            startIcon={<FaSave size={12} />}
+            startIcon={<Save size={12} />}
             sx={{
               width: {
                 xs: "100%",

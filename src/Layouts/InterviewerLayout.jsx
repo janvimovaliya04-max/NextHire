@@ -5,19 +5,19 @@ import { useRef, useEffect, useState } from "react";
 import { Typography, Divider, Box } from "@mui/material";
 
 import {
-  FaHome,
-  FaVideo,
-  FaLaptopCode,
-  FaClipboardCheck,
-  FaChartBar,
-  FaBell,
-  FaBars,
-  FaCog,
-  FaSun,
-  FaMoon,
-  FaSignOutAlt,
-  FaUser,
-} from "react-icons/fa";
+  House,
+  Video,
+  Laptop,
+  ClipboardCheck,
+  ChartBar,
+  Bell,
+  Menu,
+  Settings,
+  Sun,
+  Moon,
+  LogOut,
+  User,
+} from "lucide-react";
 
 export default function InterviewerLayout({ children }) {
   const location = useLocation();
@@ -67,27 +67,27 @@ export default function InterviewerLayout({ children }) {
     {
       title: "Overview",
       items: [
-        { path: "/interviewer", label: "Dashboard", icon: <FaHome /> },
+        { path: "/interviewer", label: "Dashboard", icon: <House /> },
       ],
     },
     {
       title: "Interviews",
       items: [
-        { path: "/assigned-interviews", label: "Assigned Interviews", icon: <FaVideo /> },
-        { path: "/join-interview", label: "Join Interview", icon: <FaLaptopCode /> },
+        { path: "/assigned-interviews", label: "Assigned Interviews", icon: <Video /> },
+        { path: "/join-interview", label: "Join Interview", icon: <Laptop /> },
       ],
     },
     {
       title: "Assessments",
       items: [
-        { path: "/feedback", label: "Feedback", icon: <FaClipboardCheck /> },
-        { path: "/evaluations", label: "Evaluations", icon: <FaChartBar /> },
+        { path: "/feedback", label: "Feedback", icon: <ClipboardCheck /> },
+        { path: "/evaluations", label: "Evaluations", icon: <ChartBar /> },
       ],
     },
     {
       title: "Account & System",
       items: [
-        { path: "/interviewer-settings", label: "Settings", icon: <FaCog /> },
+        { path: "/interviewer-settings", label: "Settings", icon: <Settings /> },
       ],
     },
 
@@ -226,7 +226,7 @@ export default function InterviewerLayout({ children }) {
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = `${primary}10`)}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
             >
-              {darkMode ? <FaSun /> : <FaMoon />}
+              {darkMode ? <Sun /> : <Moon />}
               <span>Theme</span>
             </button>
 
@@ -238,7 +238,7 @@ export default function InterviewerLayout({ children }) {
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = `${primary}10`)}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
             >
-              <FaUser />
+              <User />
               <span>Profile</span>
             </Link>
           </div>
@@ -273,7 +273,7 @@ export default function InterviewerLayout({ children }) {
             onClick={handleLogout}
             className="md:hidden w-full flex items-center gap-2 px-2 py-2 mt-1 rounded-lg text-red-500 hover:bg-red-500/10"
           >
-            <FaSignOutAlt />
+            <LogOut />
             <span>Logout</span>
           </button>
         </div>
@@ -315,7 +315,7 @@ export default function InterviewerLayout({ children }) {
               className="p-2 rounded-lg border"
               style={{ borderColor: borderColor, backgroundColor: bgColor }}
             >
-              <FaBars />
+              <Menu />
             </button>
 
             <Link
@@ -323,7 +323,7 @@ export default function InterviewerLayout({ children }) {
               className="relative p-2 rounded-lg border"
               style={{ borderColor: borderColor, backgroundColor: bgColor, color: textColor }}
             >
-              <FaBell />
+              <Bell />
 
               <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-red-500"></span>
 
@@ -362,7 +362,7 @@ export default function InterviewerLayout({ children }) {
                 borderColor: borderColor,
               }}
             >
-              {darkMode ? <FaSun size={15} /> : <FaMoon size={15} />}
+              {darkMode ? <Sun size={15} /> : <Moon size={15} />}
             </button>
 
             {/* Notifications Button */}
@@ -375,7 +375,7 @@ export default function InterviewerLayout({ children }) {
                 borderColor: borderColor,
               }}
             >
-              <FaBell size={15} />
+              <Bell size={15} />
               <span
                 className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full"
                 style={{ backgroundColor: primary }}
@@ -398,7 +398,7 @@ export default function InterviewerLayout({ children }) {
                 Profile
               </span>
 
-              <FaUser className="sm:hidden" />
+              <User className="sm:hidden" />
             </Link>
 
             {/* Logout Action Button */}
@@ -406,7 +406,7 @@ export default function InterviewerLayout({ children }) {
               onClick={handleLogout}
               className="p-2.5 rounded-xl border flex items-center justify-center gap-2 font-semibold text-sm text-red-500 border-red-500/25 bg-red-500/5 hover:bg-red-500/15 transition"
             >
-              <FaSignOutAlt size={14} />
+              <LogOut size={14} />
               <span className="hidden sm:inline">
                 Logout
               </span>

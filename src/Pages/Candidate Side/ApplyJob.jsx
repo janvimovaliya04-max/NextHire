@@ -13,12 +13,12 @@ import {
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import {
-  FaArrowLeft,
-  FaCloudUploadAlt,
-  FaFilePdf,
-  FaPaperPlane,
-  FaTimes,
-} from "react-icons/fa";
+  ArrowLeft,
+  CloudUpload,
+  FileText,
+  Send,
+  X,
+} from "lucide-react";
 
 export default function ApplyJob() {
   const { darkMode } = useTheme();
@@ -122,7 +122,7 @@ export default function ApplyJob() {
       >
         <Button
           onClick={() => navigate(-1)}
-          startIcon={<FaArrowLeft size={12} />}
+          startIcon={<ArrowLeft size={12} />}
           sx={{
             textTransform: "none",
             fontWeight: 700,
@@ -300,7 +300,7 @@ export default function ApplyJob() {
                   mb: 1.5
                 }}
               >
-                <FaCloudUploadAlt size={window.innerWidth < 600 ? 26 : 32} style={{ color: resume ? primary : subText, marginBottom: 12 }} />
+                <CloudUpload size={window.innerWidth < 600 ? 26 : 32} style={{ color: resume ? primary : subText, marginBottom: 12 }} />
               </Box>
               <Typography
                 sx={{
@@ -346,7 +346,7 @@ export default function ApplyJob() {
                   mt: 2,
                 }}
               >
-                <FaFilePdf size={22} style={{ color: "#ef4444" }} />
+                <FileText size={22} style={{ color: "#ef4444" }} />
                 <Box>
                   <Typography
                     sx={{
@@ -432,7 +432,7 @@ export default function ApplyJob() {
           <Button
             onClick={() => navigate(-1)}
             variant="outlined"
-            startIcon={<FaTimes size={12} />}
+            startIcon={<X size={12} />}
             sx={{
               width: { xs: "100%", sm: "auto" },
               py: {
@@ -468,7 +468,7 @@ export default function ApplyJob() {
           <Button
             variant="contained"
             onClick={handleSubmit}
-            startIcon={<FaPaperPlane size={12} />}
+            startIcon={<Send size={12} />}
             sx={{
               width: { xs: "100%", sm: "auto" },
               py: {

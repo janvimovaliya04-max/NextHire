@@ -7,7 +7,12 @@ import { Typography, TextField, Paper, Button, Avatar, Box, Divider } from "@mui
 
 import Grid from "@mui/material/Grid";
 
-import { FaArrowLeft, FaSave, FaTimes, FaUserEdit } from "react-icons/fa";
+import {
+  ArrowLeft,
+  Save,
+  X,
+  UserRoundPen,
+} from "lucide-react";
 
 export default function EditCandidateProfileR() {
   const { darkMode } = useTheme();
@@ -177,7 +182,7 @@ export default function EditCandidateProfileR() {
         <Button
           component={Link}
           to="/candidate-profile-r"
-          startIcon={<FaArrowLeft size={12} />}
+          startIcon={<ArrowLeft size={12} />}
           sx={{
             textTransform: "none",
             fontWeight: 700,
@@ -252,7 +257,7 @@ export default function EditCandidateProfileR() {
           }}
         >
           <Box sx={{ color: primary, display: "flex" }}>
-            <FaUserEdit size={18} />
+            <UserRoundPen size={18} />
           </Box>
           <Typography
             sx={{
@@ -367,7 +372,7 @@ export default function EditCandidateProfileR() {
             component={Link}
             to="/candidate-profile-r"
             variant="outlined"
-            startIcon={<FaTimes size={12} />}
+            startIcon={<X size={12} />}
             sx={{
               width: { xs: "100%", sm: "auto" },
               py: {
@@ -401,7 +406,7 @@ export default function EditCandidateProfileR() {
           <Button
             variant="contained"
             onClick={handleSave}
-            startIcon={<FaSave size={12} />}
+            startIcon={<Save size={12} />}
             sx={{
               width: { xs: "100%", sm: "auto" },
               py: {

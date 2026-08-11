@@ -15,13 +15,13 @@ import {
   Avatar,
   Chip,
 } from "@mui/material";
-import { FaSearch } from "react-icons/fa";
 import Grid from "@mui/material/Grid";
 import {
-  FaMapMarkerAlt,
-  FaMoneyBillWave,
-  FaClock,
-} from "react-icons/fa";
+  Search,
+  MapPin,
+  Banknote,
+  Clock,
+} from "lucide-react";
 
 export default function BrowseJobs() {
   const { darkMode } = useTheme();
@@ -193,7 +193,7 @@ export default function BrowseJobs() {
               },
             }}
           >
-            <FaSearch
+            <Search
               color={subText}
             />
 
@@ -499,7 +499,7 @@ export default function BrowseJobs() {
                               sm: 1.5,
                             },
                           }}>
-                            <FaMapMarkerAlt style={{ color: primary, fontSize: 13 }} />
+                            <MapPin style={{ color: primary, fontSize: 13 }} />
                             <Typography sx={{
                               fontSize: {
                                 xs: ".76rem",
@@ -515,7 +515,7 @@ export default function BrowseJobs() {
                           </Box>
 
                           <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-                            <FaMoneyBillWave style={{ color: primary, fontSize: 13 }} />
+                            <Banknote style={{ color: primary, fontSize: 13 }} />
                             <Typography
                               sx={{
                                 fontSize: {
@@ -532,7 +532,7 @@ export default function BrowseJobs() {
                           </Box>
 
                           <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-                            <FaClock style={{ color: primary, fontSize: 13 }} />
+                            <Clock style={{ color: primary, fontSize: 13 }} />
                             <Typography
                               sx={{
                                 fontSize: {

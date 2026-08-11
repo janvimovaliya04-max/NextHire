@@ -5,8 +5,12 @@ import CandidateLayout from "../../Layouts/CandidateLayout";
 import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
 import { Typography, Paper, Box, Avatar, Chip, Button } from "@mui/material";
-import { FaBriefcase, FaCalendarAlt, FaChevronRight } from "react-icons/fa";
-import { FaSearch } from "react-icons/fa";
+import {
+  Briefcase,
+  Calendar,
+  ChevronRight,
+  Search,
+} from "lucide-react";
 
 export default function MyApplications() {
   const { darkMode } = useTheme();
@@ -228,7 +232,7 @@ export default function MyApplications() {
                   },
                 }}
               >
-                <FaSearch
+                <Search
                   color={subText}
                 />
 
@@ -514,7 +518,7 @@ export default function MyApplications() {
                         </Typography>
 
                         <Box sx={{ display: "flex", alignItems: "center", gap: 1, color: subText }}>
-                          <FaBriefcase size={12} style={{ opacity: 0.8 }} />
+                          <Briefcase size={12} style={{ opacity: 0.8 }} />
                           <Typography sx={{
                             fontSize: {
                               xs: ".82rem",
@@ -525,7 +529,7 @@ export default function MyApplications() {
                           </Typography>
                         </Box>
                         <Box sx={{ display: "flex", alignItems: "center", gap: 1, mt: 1, color: subText }}>
-                          <FaCalendarAlt size={11} style={{ opacity: 0.8 }} />
+                          <Calendar size={11} style={{ opacity: 0.8 }} />
                           <Typography sx={{
                             fontSize: {
                               xs: ".75rem",
@@ -574,7 +578,7 @@ export default function MyApplications() {
                         component={Link}
                         to={`/my-application-job/${job.applicationId}`}
                         variant="contained"
-                        endIcon={<FaChevronRight size={10} />}
+                        endIcon={<ChevronRight size={10} />}
                         sx={{
                           width: {
                             xs: "100%",

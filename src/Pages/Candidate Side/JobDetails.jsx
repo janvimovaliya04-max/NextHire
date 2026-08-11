@@ -17,12 +17,12 @@ import {
 import Grid from "@mui/material/Grid";
 
 import {
-  FaMapMarkerAlt,
-  FaMoneyBillWave,
-  FaClock,
-  FaLayerGroup,
-  FaCheck,
-} from "react-icons/fa";
+  MapPin,
+  Banknote,
+  Clock,
+  Layers,
+  Check,
+} from "lucide-react";
 
 export default function JobDetails() {
   const { darkMode } = useTheme();
@@ -341,7 +341,7 @@ export default function JobDetails() {
                     }, alignItems: "flex-start"
                   }}>
                     <Box sx={{ color: primary, mt: 0.4 }}>
-                      <FaCheck size={11} />
+                      <Check size={11} />
                     </Box>
                     <Typography sx={{
                       color: subText, fontSize: {
@@ -375,7 +375,7 @@ export default function JobDetails() {
                     }, alignItems: "flex-start"
                   }}>
                     <Box sx={{ color: primary, mt: 0.4 }}>
-                      <FaCheck size={11} />
+                      <Check size={11} />
                     </Box>
                     <Typography sx={{
                       color: subText, fontSize: {
@@ -447,7 +447,7 @@ export default function JobDetails() {
                     md: 2,
                   }
                 }}>
-                  <FaMapMarkerAlt style={{ color: primary, fontSize: 14 }} />
+                  <MapPin style={{ color: primary, fontSize: 14 }} />
                   <Box>
                     <Typography sx={{
                       fontSize: {
@@ -474,7 +474,7 @@ export default function JobDetails() {
                     md: 2,
                   }
                 }}>
-                  <FaMoneyBillWave style={{ color: primary, fontSize: 14 }} />
+                  <Banknote style={{ color: primary, fontSize: 14 }} />
                   <Box>
                     <Typography sx={{
                       fontSize: {
@@ -501,7 +501,7 @@ export default function JobDetails() {
                     md: 2,
                   }
                 }}>
-                  <FaClock style={{ color: primary, fontSize: 14 }} />
+                  <Clock style={{ color: primary, fontSize: 14 }} />
                   <Box>
                     <Typography sx={{
                       fontSize: {
@@ -528,7 +528,7 @@ export default function JobDetails() {
                     md: 2,
                   }
                 }}>
-                  <FaLayerGroup style={{ color: primary, fontSize: 14 }} />
+                  <Layers style={{ color: primary, fontSize: 14 }} />
                   <Box>
                     <Typography sx={{
                       fontSize: {

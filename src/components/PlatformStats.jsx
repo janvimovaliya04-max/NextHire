@@ -5,10 +5,12 @@ import {
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
 
-import WorkIcon from "@mui/icons-material/Work";
-import PeopleIcon from "@mui/icons-material/People";
-import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
-import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
+import {
+  Briefcase,
+  Users,
+  ClipboardCheck,
+  Trophy,
+} from "lucide-react";
 
 export default function PlatformStats({
   darkMode,
@@ -18,22 +20,22 @@ export default function PlatformStats({
 }) {
   const stats = [
     {
-      icon: <WorkIcon sx={{ fontSize: 36 }} />,
+      icon: <Briefcase sx={{ fontSize: 36 }} />,
       value: "500+",
       label: "Jobs Posted",
     },
     {
-      icon: <PeopleIcon sx={{ fontSize: 36 }} />,
+      icon: <Users sx={{ fontSize: 36 }} />,
       value: "2000+",
       label: "Candidates Logged",
     },
     {
-      icon: <AssignmentTurnedInIcon sx={{ fontSize: 36 }} />,
+      icon: <ClipboardCheck sx={{ fontSize: 36 }} />,
       value: "1500+",
       label: "Interviews Executed",
     },
     {
-      icon: <EmojiEventsIcon sx={{ fontSize: 36 }} />,
+      icon: <Trophy sx={{ fontSize: 36 }} />,
       value: "800+",
       label: "Successful Offers",
     },

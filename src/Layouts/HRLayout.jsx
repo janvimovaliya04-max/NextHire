@@ -5,24 +5,24 @@ import { Typography, Divider, Box } from "@mui/material";
 import useThemeColors from "../hooks/useThemeColors";
 
 import {
-  FaBars,
-  FaTachometerAlt,
-  FaPlusCircle,
-  FaBriefcase,
-  FaUsers,
-  FaUser,
-  FaFileAlt,
-  FaStar,
-  FaClipboardCheck,
-  FaMicrophone,
-  FaCalendarAlt,
-  FaChartLine,
-  FaBell,
-  FaCog,
-  FaSun,
-  FaMoon,
-  FaSignOutAlt,
-} from "react-icons/fa";
+  Menu,
+  LayoutDashboard,
+  CirclePlus,
+  Briefcase,
+  Users,
+  User,
+  FileText,
+  Star,
+  ClipboardCheck,
+  Mic,
+  Calendar,
+  ChartLine,
+  Bell,
+  Settings,
+  Sun,
+  Moon,
+  LogOut,
+} from "lucide-react";
 
 export default function HRLayout({ children }) {
   const location = useLocation();
@@ -61,38 +61,38 @@ export default function HRLayout({ children }) {
     {
       title: "Overview",
       items: [
-        { path: "/hr", label: "Dashboard", icon: <FaTachometerAlt /> },
-        { path: "/analytics", label: "Analytics", icon: <FaChartLine /> },
+        { path: "/hr", label: "Dashboard", icon: <LayoutDashboard /> },
+        { path: "/analytics", label: "Analytics", icon: <ChartLine /> },
       ],
     },
     {
       title: "Job Openings",
       items: [
-        { path: "/create-job", label: "Create Job", icon: <FaPlusCircle /> },
-        { path: "/job-management", label: "Job Management", icon: <FaBriefcase /> },
+        { path: "/create-job", label: "Create Job", icon: <CirclePlus /> },
+        { path: "/job-management", label: "Job Management", icon: <Briefcase /> },
       ],
     },
     {
       title: "Candidates",
       items: [
-        { path: "/candidates", label: "Candidates", icon: <FaUsers /> },
-        { path: "/candidate-feedback", label: "Feedback", icon: <FaClipboardCheck /> },
+        { path: "/candidates", label: "Candidates", icon: <Users /> },
+        { path: "/candidate-feedback", label: "Feedback", icon: <ClipboardCheck /> },
         // <-- REMOVED candidate profile route from here!
       ],
     },
     {
       title: "Assessments & Interviews",
       items: [
-        { path: "/create-assessment", label: "Create Assessment", icon: <FaClipboardCheck /> },
-        { path: "/interview-management", label: "Interview Management", icon: <FaMicrophone /> },
-        { path: "/interview-schedule", label: "Interview Scheduling", icon: <FaCalendarAlt /> },
-        { path: "/recruiters", label: "Recruiters", icon: <FaUsers /> },
+        { path: "/create-assessment", label: "Create Assessment", icon: <ClipboardCheck /> },
+        { path: "/interview-management", label: "Interview Management", icon: <Mic /> },
+        { path: "/interview-schedule", label: "Interview Scheduling", icon: <Calendar /> },
+        { path: "/recruiters", label: "Recruiters", icon: <Users /> },
       ],
     },
     {
       title: "Account",
       items: [
-        { path: "/settings", label: "Settings", icon: <FaCog /> },
+        { path: "/settings", label: "Settings", icon: <Settings /> },
       ],
     },
   ];
@@ -247,7 +247,7 @@ export default function HRLayout({ children }) {
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = `${primary}14`)}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
             >
-              {darkMode ? <FaSun /> : <FaMoon />}
+              {darkMode ? <Sun /> : <Moon />}
               <span>Theme</span>
             </button>
 
@@ -259,7 +259,7 @@ export default function HRLayout({ children }) {
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = `${primary}14`)}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
             >
-              <FaUser />
+              <User />
               <span>Profile</span>
             </Link>
 
@@ -296,7 +296,7 @@ export default function HRLayout({ children }) {
             onClick={handleLogout}
             className="md:hidden flex items-center gap-2 text-red-500 py-2 px-1 rounded-lg hover:bg-red-50"
           >
-            <FaSignOutAlt />
+            <LogOut />
             Logout
           </button>
 
@@ -345,7 +345,7 @@ export default function HRLayout({ children }) {
                 color: textColor,
               }}
             >
-              <FaBars />
+              <Menu />
             </button>
 
             <Link
@@ -357,7 +357,7 @@ export default function HRLayout({ children }) {
                 color: textColor,
               }}
             >
-              <FaBell />
+              <Bell />
 
               {/* Notification Badge */}
               <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-red-500"></span>
@@ -395,7 +395,7 @@ export default function HRLayout({ children }) {
                 borderColor: borderStyle,
               }}
             >
-              {darkMode ? <FaSun size={15} /> : <FaMoon size={15} />}
+              {darkMode ? <Sun size={15} /> : <Moon size={15} />}
             </button>
 
             {/* Notifications Button */}
@@ -408,7 +408,7 @@ export default function HRLayout({ children }) {
                 borderColor: borderStyle,
               }}
             >
-              <FaBell size={15} />
+              <Bell size={15} />
 
             </Link>
 
@@ -423,7 +423,7 @@ export default function HRLayout({ children }) {
               <span className="hidden sm:block">
                 Profile
               </span>
-              <FaUser className="sm:hidden" />
+              <User className="sm:hidden" />
             </Link>
 
             {/* Logout Action */}
@@ -431,7 +431,7 @@ export default function HRLayout({ children }) {
               onClick={handleLogout}
               className="p-2.5 rounded-xl border flex items-center justify-center gap-2 font-semibold text-sm text-red-500 border-red-500/25 bg-red-500/5 hover:bg-red-500/10 transition"
             >
-              <FaSignOutAlt size={14} />
+              <LogOut size={14} />
               <span className="hidden sm:inline">
                 Logout
               </span>

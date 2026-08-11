@@ -16,11 +16,11 @@ import {
   CircularProgress,
 } from "@mui/material";
 import {
-  FaCalendarAlt,
-  FaUserTie,
-  FaClock,
-  FaLaptop,
-} from "react-icons/fa";
+  Calendar,
+  UserRound,
+  Clock,
+  Laptop,
+} from "lucide-react";
 
 export default function MyInterviews() {
   const { darkMode } = useTheme();
@@ -379,7 +379,7 @@ export default function MyInterviews() {
                               color: subText,
                             }}
                           >
-                            <FaCalendarAlt size={14} color={primary} />
+                            <Calendar size={14} color={primary} />
                             <Typography variant="body2">
                               {interview.date}
                               <br />
@@ -396,7 +396,7 @@ export default function MyInterviews() {
                               color: subText,
                             }}
                           >
-                            <FaUserTie size={14} color={secondary || primary} />
+                            <UserRound size={14} color={secondary || primary} />
                             <Typography variant="body2">
                               {interview.interviewer}
                             </Typography>
@@ -411,7 +411,7 @@ export default function MyInterviews() {
                               color: subText,
                             }}
                           >
-                            <FaClock size={14} color="#f59e0b" />
+                            <Clock size={14} color="#f59e0b" />
                             <Typography variant="body2">
                               {interview.duration}
                             </Typography>
@@ -426,7 +426,7 @@ export default function MyInterviews() {
                               color: subText,
                             }}
                           >
-                            <FaLaptop size={14} color={secondary || primary} />
+                            <Laptop size={14} color={secondary || primary} />
                             <Typography variant="body2">
                               {interview.mode}
                             </Typography>

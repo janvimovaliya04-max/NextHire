@@ -5,8 +5,7 @@ import {
   IconButton,
 } from "@mui/material";
 
-import DarkModeIcon from "@mui/icons-material/DarkMode";
-import LightModeIcon from "@mui/icons-material/LightMode";
+import { Moon, Sun } from "lucide-react";
 
 export default function Header({
   darkMode,
@@ -86,9 +85,9 @@ export default function Header({
             }}
           >
             {darkMode ? (
-              <LightModeIcon sx={{ color: "#facc15" }} />
+              <Sun sx={{ color: "#facc15" }} />
             ) : (
-              <DarkModeIcon sx={{ color: "#1e293b" }} />
+              <Moon sx={{ color: "#1e293b" }} />
             )}
           </IconButton>
         </Toolbar>

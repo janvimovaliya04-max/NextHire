@@ -13,12 +13,12 @@ import {
   CircularProgress
 } from "@mui/material";
 import {
-  FaUserPlus,
-  FaCalendarAlt,
-  FaClipboardCheck,
-  FaAward,
-  FaCheckDouble,
-} from "react-icons/fa";
+  UserPlus,
+  Calendar,
+  ClipboardCheck,
+  Award,
+  ListChecks,
+} from "lucide-react";
 
 export default function CandidateNotifications() {
   const { darkMode } = useTheme();
@@ -86,15 +86,15 @@ export default function CandidateNotifications() {
   const getIcon = (iconName) => {
     switch (iconName) {
       case "user":
-        return <FaUserPlus size={16} />;
+        return <UserPlus size={16} />;
       case "assessment":
-        return <FaClipboardCheck size={16} />;
+        return <ClipboardCheck size={16} />;
       case "calendar":
-        return <FaCalendarAlt size={16} />;
+        return <Calendar size={16} />;
       case "award":
-        return <FaAward size={16} />;
+        return <Award size={16} />;
       default:
-        return <FaUserPlus size={16} />;
+        return <UserPlus size={16} />;
     }
   };
 
@@ -189,7 +189,7 @@ export default function CandidateNotifications() {
             variant="outlined"
             disabled={!notifications.some((item) => item.unread)}
             onClick={handleMarkAllRead}
-            startIcon={<FaCheckDouble size={11} />}
+            startIcon={<ListChecks size={11} />}
             sx={{
               width: {
                 xs: "100%",
@@ -550,7 +550,7 @@ export default function CandidateNotifications() {
                 }
               }}
             >
-              <FaCheckDouble
+              <ListChecks
                 size={32}
                 color={primary}
               />

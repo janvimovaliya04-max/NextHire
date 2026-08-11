@@ -15,15 +15,15 @@ import {
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import {
-  FaBriefcase,
-  FaClipboardList,
-  FaCalendarAlt,
-  FaAward,
-  FaArrowRight,
-  FaVideo,
-  FaCheckCircle,
-  FaClock,
-} from "react-icons/fa";
+  Briefcase,
+  ClipboardList,
+  Calendar,
+  Award,
+  ArrowRight,
+  Video,
+  CircleCheck,
+  Clock,
+} from "lucide-react";
 
 export default function CandidateDashboard() {
   const { darkMode } = useTheme();
@@ -48,7 +48,7 @@ export default function CandidateDashboard() {
     {
       title: "Applied Jobs",
       value: appliedCount,
-      icon: <FaBriefcase size={20} />,
+      icon: <Briefcase size={20} />,
       color: primary,
       bgLight: `${primary}14`,
       bgDark: `${primary}2e`,
@@ -58,7 +58,7 @@ export default function CandidateDashboard() {
     {
       title: "Assessments",
       value: assessmentCount,
-      icon: <FaClipboardList size={20} />,
+      icon: <ClipboardList size={20} />,
       color: secondary || primary,
       bgLight: `${secondary || primary}14`,
       bgDark: `${secondary || primary}2e`,
@@ -68,7 +68,7 @@ export default function CandidateDashboard() {
     {
       title: "Interviews",
       value: interviewCount,
-      icon: <FaCalendarAlt size={20} />,
+      icon: <Calendar size={20} />,
       color: primary,
       bgLight: `${primary}14`,
       bgDark: `${primary}2e`,
@@ -78,7 +78,7 @@ export default function CandidateDashboard() {
     {
       title: "Job Offers",
       value: offerCount,
-      icon: <FaAward size={20} />,
+      icon: <Award size={20} />,
       color: secondary || primary,
       bgLight: `${secondary || primary}14`,
       bgDark: `${secondary || primary}2e`,
@@ -286,11 +286,11 @@ export default function CandidateDashboard() {
                     }}
                   >
                     {action.icon === "briefcase" ? (
-                      <FaBriefcase size={18} />
+                      <Briefcase size={18} />
                     ) : action.icon === "clipboard" ? (
-                      <FaClipboardList size={18} />
+                      <ClipboardList size={18} />
                     ) : (
-                      <FaCalendarAlt size={18} />
+                      <Calendar size={18} />
                     )}
                   </Avatar>
                   <Typography
@@ -325,7 +325,7 @@ export default function CandidateDashboard() {
                 <Button
                   fullWidth
                   variant="outlined"
-                  endIcon={<FaArrowRight size={12} />}
+                  endIcon={<ArrowRight size={12} />}
                   sx={{
                     py: 1.2,
                     borderRadius: "10px",
@@ -499,7 +499,7 @@ export default function CandidateDashboard() {
                     },
                   }}
                 >
-                  <FaCalendarAlt size={16} />
+                  <Calendar size={16} />
                 </Avatar>
                 <Box
                   sx={{
@@ -527,7 +527,7 @@ export default function CandidateDashboard() {
                       width: "100%",
                     }}
                   >
-                    <FaClock size={12} />
+                    <Clock size={12} />
                     <Typography sx={{ fontWeight: 800, fontSize: "0.82rem" }}>{nextInterview.time}</Typography>
                   </Box>
                   <Typography sx={{ color: subText, fontSize: "0.82rem", mt: 0.5 }}>
@@ -541,7 +541,7 @@ export default function CandidateDashboard() {
               <Button
                 fullWidth
                 variant="contained"
-                startIcon={<FaVideo size={12} />}
+                startIcon={<Video size={12} />}
                 sx={{
                   py: {
                     xs: 1.2,
