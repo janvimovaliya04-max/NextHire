@@ -882,7 +882,7 @@ export default function Settings() {
                     fontSize: { xs: ".9rem", md: "1rem" },
                   }}
                 >
-                  <Briefcase />
+                  <BriefcaseBusiness />
                 </Avatar>
 
                 <Box>
