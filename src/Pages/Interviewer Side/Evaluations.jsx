@@ -1,6 +1,5 @@
 import evaluationsData from "../../data/evaluations.json";
 import { useSearchParams } from "react-router-dom";
-import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
 import InterviewerLayout from "../../Layouts/InterviewerLayout";
 import { useTheme } from "../../context/ThemeContext";
@@ -23,7 +22,7 @@ import {
   MenuItem,
 } from "@mui/material";
 
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { ChevronLeft, ChevronRight, Search } from "lucide-react";
 
 const RESULT_FILTERS = ["All", "Recommended", "Good Fit", "Strong Match", "Not Selected", "On Hold"];
 const ROWS_PER_PAGE_OPTIONS = [5, 10, 20, 50];
@@ -197,7 +196,7 @@ export default function Evaluations() {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <FaSearch color={primary} />
+                  <Search color={primary} />
                 </InputAdornment>
               ),
             }}
@@ -599,7 +598,7 @@ export default function Evaluations() {
               }
               sx={{ color: textColor }}
             >
-              <FaChevronLeft />
+              <ChevronLeft />
             </Button>
 
             {getVisiblePages().map((page, index) =>
@@ -673,7 +672,7 @@ export default function Evaluations() {
               }
               sx={{ color: textColor }}
             >
-              <FaChevronRight />
+              <ChevronRight />
             </Button>
 
           </Box>

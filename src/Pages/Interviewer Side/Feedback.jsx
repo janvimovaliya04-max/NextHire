@@ -4,7 +4,7 @@ import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { FaClipboardCheck } from "react-icons/fa";
+import { ClipboardCheck } from "lucide-react";
 import {
   Paper,
   Typography,
@@ -187,7 +187,7 @@ export default function Feedback() {
               display: "flex",
             }}
           >
-            <FaClipboardCheck size={18} />
+            <ClipboardCheck size={18} />
           </Box>
 
           <Typography

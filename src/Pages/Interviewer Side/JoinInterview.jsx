@@ -17,18 +17,21 @@ import {
   Chip,
   Tooltip,
 } from "@mui/material";
-import MicIcon from "@mui/icons-material/Mic";
-import MicOffIcon from "@mui/icons-material/MicOff";
-import VideocamIcon from "@mui/icons-material/Videocam";
-import VideocamOffIcon from "@mui/icons-material/VideocamOff";
-import ScreenShareIcon from "@mui/icons-material/ScreenShare";
-import CallEndIcon from "@mui/icons-material/CallEnd";
-import RateReviewIcon from "@mui/icons-material/RateReview";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import PersonIcon from "@mui/icons-material/Person";
-import SendIcon from "@mui/icons-material/Send";
-import FullscreenIcon from "@mui/icons-material/Fullscreen";
-import FullscreenExitIcon from "@mui/icons-material/FullscreenExit";
+
+import {
+  Mic,
+  MicOff,
+  Video,
+  VideoOff,
+  MonitorUp,
+  PhoneOff,
+  MessageSquareText,
+  Play,
+  User,
+  Send,
+  Maximize,
+  Minimize,
+} from "lucide-react";
 
 // Language options for the editor's language selector
 const LANGUAGE_OPTIONS = [
@@ -410,9 +413,9 @@ export default function JoinInterview() {
             }}
           >
             {isEditorFullscreen ? (
-              <FullscreenExitIcon fontSize="small" />
+              <Minimize fontSize="small" />
             ) : (
-              <FullscreenIcon fontSize="small" />
+              <Maximize fontSize="small" />
             )}
           </IconButton>
         </Tooltip>
@@ -426,7 +429,7 @@ export default function JoinInterview() {
         onClick={handleRunCode}
         disabled={isRunning}
         variant="contained"
-        startIcon={<PlayArrowIcon />}
+        startIcon={<Play />}
         sx={{
           background: `linear-gradient(90deg, ${primaryColor}, ${secondaryColor})`,
           "&:hover": { background: `linear-gradient(90deg, ${primaryColor}, ${primaryColor})` },
@@ -530,7 +533,7 @@ export default function JoinInterview() {
             component={Link}
             to="/candidate-profile-v"
             state={{ applicant: interviewData }}
-            startIcon={<PersonIcon sx={{ fontSize: 16 }} />}
+            startIcon={<User sx={{ fontSize: 16 }} />}
             size="small"
             sx={{
               mt: 1.5,
@@ -765,7 +768,7 @@ export default function JoinInterview() {
               </Avatar>
             ) : (
               <Box sx={{ textAlign: "center", color: subText }}>
-                <VideocamOffIcon sx={{ fontSize: 36, mb: 1, opacity: 0.7 }} />
+                <VideoOff sx={{ fontSize: 36, mb: 1, opacity: 0.7 }} />
                 <Typography variant="body2" fontWeight="bold">
                   Camera Off
                 </Typography>
@@ -791,7 +794,7 @@ export default function JoinInterview() {
               <Typography variant="caption" fontWeight="bold">
                 Rahul Sharma (Interviewer)
               </Typography>
-              {!micActive && <MicOffIcon sx={{ fontSize: 14, color: "#f43f5e" }} />}
+              {!micActive && <MicOff sx={{ fontSize: 14, color: "#f43f5e" }} />}
             </Box>
           </Paper>
 
@@ -919,7 +922,7 @@ export default function JoinInterview() {
               "&:hover": { bgcolor: `${primaryColor}40` },
             }}
           >
-            <SendIcon fontSize="small" />
+            <Send fontSize="small" />
           </IconButton>
         </Box>
       </Paper>
@@ -958,7 +961,7 @@ export default function JoinInterview() {
               p: 1.5,
             }}
           >
-            {micActive ? <MicIcon /> : <MicOffIcon />}
+            {micActive ? <Mic /> : <MicOff />}
           </IconButton>
           <IconButton
             onClick={() => setCameraActive(!cameraActive)}
@@ -970,7 +973,7 @@ export default function JoinInterview() {
               p: 1.5,
             }}
           >
-            {cameraActive ? <VideocamIcon /> : <VideocamOffIcon />}
+            {cameraActive ? <Video /> : <VideoOff />}
           </IconButton>
           <IconButton
             sx={{
@@ -981,7 +984,7 @@ export default function JoinInterview() {
               p: 1.5,
             }}
           >
-            <ScreenShareIcon />
+            <MonitorUp />
           </IconButton>
         </Box>
 
@@ -992,7 +995,7 @@ export default function JoinInterview() {
             to="/feedback"
             state={{ candidateName: interviewData.candidate }}
             variant="contained"
-            startIcon={<RateReviewIcon sx={{ fontSize: 16 }} />}
+            startIcon={<MessageSquareText sx={{ fontSize: 16 }} />}
             sx={{
               width: { xs: "100%", sm: "auto" },
               background: `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`,
@@ -1011,7 +1014,7 @@ export default function JoinInterview() {
             component={Link}
             to="/assigned-interviews"
             variant="contained"
-            startIcon={<CallEndIcon />}
+            startIcon={<PhoneOff />}
             sx={{
               width: { xs: "100%", sm: "auto" },
               background: "linear-gradient(135deg,#ef4444,#dc2626)",
@@ -1061,7 +1064,7 @@ export default function JoinInterview() {
                   "&:hover": { borderColor: primaryColor, color: primaryColor },
                 }}
               >
-                <FullscreenExitIcon />
+                <Minimize />
               </IconButton>
             </Tooltip>
           </Box>

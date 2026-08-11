@@ -1,6 +1,5 @@
 import interviewsData from "../../data/assignedInterviews.json";
 import { TextField, InputAdornment } from "@mui/material";
-import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -24,7 +23,7 @@ import {
   MenuItem,
 } from "@mui/material";
 
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { ChevronLeft, ChevronRight, Search } from "lucide-react";
 
 const STATUS_FILTERS = ["All", "Scheduled", "Completed", "Cancelled", "Rescheduled"];
 const ROWS_PER_PAGE_OPTIONS = [5, 10, 20, 50];
@@ -204,7 +203,7 @@ export default function AssignedInterviews() {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <FaSearch color={primary} />
+                  <Search color={primary} />
                 </InputAdornment>
               )
             }}
@@ -635,7 +634,7 @@ export default function AssignedInterviews() {
               }
               sx={{ color: textColor }}
             >
-              <FaChevronLeft />
+              <ChevronLeft />
             </Button>
 
             {getVisiblePages().map((page, index) =>
@@ -709,7 +708,7 @@ export default function AssignedInterviews() {
               }
               sx={{ color: textColor }}
             >
-              <FaChevronRight />
+              <ChevronRight />
             </Button>
 
           </Box>

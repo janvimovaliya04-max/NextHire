@@ -14,7 +14,15 @@ import {
   Avatar,
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import { FaUserCog, FaSlidersH, FaShieldAlt, FaSave, FaArrowLeft, FaPalette } from "react-icons/fa";
+
+import {
+  UserCog,
+  SlidersHorizontal,
+  Shield,
+  Save,
+  ArrowLeft,
+  Palette,
+} from "lucide-react";
 
 export default function InterviewerSettings() {
   const { darkMode } = useTheme();
@@ -190,7 +198,7 @@ export default function InterviewerSettings() {
             },
           }}>
             <Box sx={{ color: primary, display: "flex" }}>
-              <FaUserCog size={18} />
+              <UserCog size={18} />
             </Box>
             <Typography variant="h6" sx={{ color: textColor, fontWeight: 800 }}>
               Account Settings
@@ -247,7 +255,7 @@ export default function InterviewerSettings() {
             },
           }}>
             <Box sx={{ color: primary, display: "flex" }}>
-              <FaSlidersH size={18} />
+              <SlidersHorizontal size={18} />
             </Box>
             <Typography variant="h6" sx={{ color: textColor, fontWeight: 800 }}>
               Notification Settings
@@ -353,7 +361,7 @@ export default function InterviewerSettings() {
                 color: primary,
               }}
             >
-              <FaPalette />
+              <Palette />
             </Avatar>
 
             <Box>
@@ -417,7 +425,7 @@ export default function InterviewerSettings() {
               </Typography>
             </Box>
 
-            <FaPalette
+            <Palette
               style={{
                 color: primary,
                 fontSize: "18px"
@@ -439,7 +447,7 @@ export default function InterviewerSettings() {
             }, mb: 3.5
           }}>
             <Box sx={{ color: primary, display: "flex" }}>
-              <FaShieldAlt size={18} />
+              <Shield size={18} />
             </Box>
             <Typography variant="h6" sx={{ color: textColor, fontWeight: 800 }}>
               Security Settings
@@ -537,7 +545,7 @@ export default function InterviewerSettings() {
             component={Link}
             to="/interviewer-profile"
             variant="outlined"
-            startIcon={<FaArrowLeft size={11} />}
+            startIcon={<ArrowLeft size={11} />}
             sx={{
               width: {
                 xs: "100%",
@@ -573,7 +581,7 @@ export default function InterviewerSettings() {
           <Button
             variant="contained"
             onClick={() => alert("Settings Saved")}
-            startIcon={<FaSave size={12} />}
+            startIcon={<Save size={12} />}
             sx={{
               width: {
                 xs: "100%",

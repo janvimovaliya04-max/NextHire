@@ -3,7 +3,7 @@ import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
 import { Link } from "react-router-dom";
 import InterviewerLayout from "../../Layouts/InterviewerLayout";
-import { FaUserTie } from "react-icons/fa";
+import { UserRound } from "lucide-react";
 import {
   Paper,
   Typography,
@@ -204,7 +204,7 @@ export default function EditInterviewerProfile() {
               display: "flex"
             }}
           >
-            <FaUserTie size={18} />
+            <UserRound size={18} />
           </Box>
 
           <Typography

@@ -15,12 +15,12 @@ import {
 } from "@mui/material";
 
 import {
-  FaCalendarAlt,
-  FaClipboardCheck,
-  FaChartBar,
-  FaArrowRight,
-  FaVideo,
-} from "react-icons/fa";
+  Calendar,
+  ClipboardCheck,
+  ChartBar,
+  ArrowRight,
+  Video,
+} from "lucide-react";
 
 // Adjust this path to match where you place the JSON file
 import dashboardData from "../../data/interviewerDashboard.json";
@@ -40,21 +40,21 @@ export default function InterviewerDashboard() {
   // "Feedback Pending" keeps a semantic red since it signals something outstanding
   const cardMeta = {
     "Interviews Assigned": {
-      icon: <FaCalendarAlt size={20} />,
+      icon: <Calendar size={20} />,
       link: "/assigned-interviews",
       color: primary,
       bgLight: `${primary}14`,
       bgDark: `${primary}26`,
     },
     "Feedback Pending": {
-      icon: <FaClipboardCheck size={20} />,
+      icon: <ClipboardCheck size={20} />,
       link: "/feedback",
       color: "#ef4444",
       bgLight: "rgba(239,68,68,.08)",
       bgDark: "rgba(239,68,68,.15)",
     },
     "Completed Evaluations": {
-      icon: <FaChartBar size={20} />,
+      icon: <ChartBar size={20} />,
       link: "/evaluations",
       color: secondary || primary,
       bgLight: `${secondary || primary}14`,
@@ -417,7 +417,7 @@ export default function InterviewerDashboard() {
 
                   }}
                 >
-                  <FaVideo size={12} style={{ marginRight: "6px" }} />
+                  <Video size={12} style={{ marginRight: "6px" }} />
                   Join
                 </Button>
               </Box>
@@ -427,7 +427,7 @@ export default function InterviewerDashboard() {
           <Button
             component={Link}
             to="/assigned-interviews"
-            endIcon={<FaArrowRight size={12} />}
+            endIcon={<ArrowRight size={12} />}
             sx={{
               textTransform: "none",
               color: primary,
@@ -651,7 +651,7 @@ export default function InterviewerDashboard() {
           <Button
             component={Link}
             to="/evaluations"
-            endIcon={<FaArrowRight size={12} />}
+            endIcon={<ArrowRight size={12} />}
             sx={{
               textTransform: "none",
               color: primary,

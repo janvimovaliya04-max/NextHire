@@ -9,11 +9,14 @@ import {
   Button,
   CircularProgress,
 } from "@mui/material";
-import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
-import EventIcon from "@mui/icons-material/Event";
-import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
-import HourglassEmptyIcon from "@mui/icons-material/HourglassEmpty";
-import DoneAllIcon from "@mui/icons-material/DoneAll";
+
+import {
+  UserPlus,
+  CalendarDays,
+  ClipboardCheck,
+  Hourglass,
+  ListChecks,
+} from "lucide-react";
 
 // Adjust this path to match where you place the JSON file
 import allNotifications from "../../data/interviewerNotifications.json";
@@ -102,19 +105,19 @@ export default function InterviewerNotifications() {
 
     switch (type) {
       case "assigned":
-        return <PersonAddAlt1Icon sx={iconStyle} />;
+        return <UserPlus sx={iconStyle} />;
 
       case "scheduled":
-        return <EventIcon sx={iconStyle} />;
+        return <CalendarDays sx={iconStyle} />;
 
       case "pending":
-        return <HourglassEmptyIcon sx={iconStyle} />;
+        return <Hourglass sx={iconStyle} />;
 
       case "submitted":
-        return <AssignmentTurnedInIcon sx={iconStyle} />;
+        return <ClipboardCheck sx={iconStyle} />;
 
       default:
-        return <EventIcon sx={iconStyle} />;
+        return <CalendarDays sx={iconStyle} />;
     }
   };
 
@@ -171,7 +174,7 @@ export default function InterviewerNotifications() {
         <Button
           onClick={markAllAsRead}
           disabled={unreadCount === 0}
-          startIcon={<DoneAllIcon sx={{ fontSize: 18 }} />}
+          startIcon={<ListChecks sx={{ fontSize: 18 }} />}
           sx={{
             textTransform: "none",
             fontWeight: 700,
