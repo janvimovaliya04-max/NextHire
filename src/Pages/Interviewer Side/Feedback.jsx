@@ -414,7 +414,7 @@ export default function Feedback() {
               variant="contained"
               onClick={handleSubmit}
               sx={{
-                background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+                background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
 
                 boxShadow: `0 4px 12px ${primary}33`,
 

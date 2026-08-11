@@ -430,8 +430,8 @@ export default function JoinInterview() {
         variant="contained"
         startIcon={<Play />}
         sx={{
-          background: `linear-gradient(90deg, ${primaryColor}, ${secondaryColor})`,
-          "&:hover": { background: `linear-gradient(90deg, ${primaryColor}, ${primaryColor})` },
+          background: `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`,
+          "&:hover": { background: `linear-gradient(135deg, ${primaryColor}, ${primaryColor})` },
           "&.Mui-disabled": {
             background: darkMode ? "rgba(255,255,255,.08)" : "rgba(0,0,0,.08)",
             color: darkMode ? "#64748b" : "#94a3b8",
@@ -872,12 +872,12 @@ export default function JoinInterview() {
                       borderRadius: 3,
                       fontSize: ".82rem",
                       wordBreak: "break-word",
-                      background: msg.self ? `linear-gradient(90deg, ${primaryColor}, ${secondaryColor})` : undefined,
+                      background: msg.self ? `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})` : undefined,
                       bgcolor: msg.self ? undefined : darkMode ? "rgba(255,255,255,.06)" : "#f1f5f9",
                       color: msg.self ? "#fff" : textColor,
                     }}
                   >
-                    {msg.text}
+                    {msg.text}  
                   </Box>
                 </Box>
               ))}

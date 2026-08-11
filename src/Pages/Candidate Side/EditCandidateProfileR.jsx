@@ -430,7 +430,7 @@ export default function EditCandidateProfileR() {
               boxShadow: `0 4px 12px ${primary}33`,
               transition: "all 0.3s ease",
               "&:hover": {
-                background: `linear-gradient(90deg, ${primary}, ${primary})`,
+                background: `linear-gradient(135deg, ${primary}, ${primary})`,
                 transform: {
                   xs: "translateY(-1px)",
                   md: "translateY(-2px) scale(1.02)",

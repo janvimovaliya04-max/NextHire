@@ -284,7 +284,7 @@ export default function CandidateLayout({ children }) {
           <div className="flex items-center gap-3">
             <div
               className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm"
-              style={{ background: `linear-gradient(90deg,${primary},${secondary || primary})` }}
+              style={{ background: `linear-gradient(135deg,${primary},${secondary || primary})` }}
             >
               {candidate.fullName?.charAt(0) || "C"}
             </div>
@@ -432,7 +432,7 @@ export default function CandidateLayout({ children }) {
               <Link
                 to="/candidate-profile-r"
                 className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 border-2 border-white shadow-md hover:scale-105 text-white"
-                style={{ background: `linear-gradient(90deg,${primary},${secondary || primary})` }}
+                style={{ background: `linear-gradient(135deg,${primary},${secondary || primary})` }}
               >
                 {candidate.fullName?.charAt(0)?.toUpperCase() || "C"}
               </Link>

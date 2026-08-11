@@ -667,10 +667,10 @@ export default function CandidateSettings() {
                   xs: "0.85rem",
                   sm: "0.9rem",
                 },
-                background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+                background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
                 boxShadow: `0 4px 12px ${primary}33`,
                 "&:hover": {
-                  background: `linear-gradient(90deg, ${primary}, ${primary})`,
+                  background: `linear-gradient(135deg, ${primary}, ${primary})`,
                   transform: "translateY(-1px)",
                 }
               }}
@@ -766,10 +766,10 @@ export default function CandidateSettings() {
                 xs: "0.85rem",
                 sm: "0.9rem",
               },
-              background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+              background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
               boxShadow: `0 4px 12px ${primary}33`,
               "&:hover": {
-                background: `linear-gradient(90deg, ${primary}, ${primary})`,
+                background: `linear-gradient(135deg, ${primary}, ${primary})`,
                 transform: "translateY(-1.5px)",
                 boxShadow: `0 6px 16px ${primary}4d`,
               }

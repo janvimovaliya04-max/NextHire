@@ -61,7 +61,7 @@ export default function HeroSection({
         >
           <span
             style={{
-              background: "linear-gradient(90deg,#2563eb,#8b5cf6)",
+              background: "linear-gradient(135deg,#2563eb,#8b5cf6)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}
@@ -77,7 +77,7 @@ export default function HeroSection({
 
           <span
             style={{
-              background: "linear-gradient(90deg,#2563eb,#8b5cf6)",
+              background: "linear-gradient(135deg,#2563eb,#8b5cf6)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}
@@ -119,7 +119,7 @@ export default function HeroSection({
             textTransform: "none",
 
             background:
-              "linear-gradient(90deg,#2563eb,#7c3aed)",
+              "linear-gradient(135deg,#2563eb,#7c3aed)",
 
             boxShadow:
               "0 10px 30px rgba(37,99,235,.30)",
@@ -129,7 +129,7 @@ export default function HeroSection({
 
             "&:hover": {
               background:
-                "linear-gradient(90deg,#1d4ed8,#6d28d9)",
+                "linear-gradient(135deg,#1d4ed8,#6d28d9)",
 
               transform: "translateY(-2px)",
 

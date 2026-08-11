@@ -486,9 +486,9 @@ export default function MyApplicationJobDetails() {
                   borderRadius: "12px",
                   fontWeight: 700,
                   textTransform: "none",
-                  background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+                  background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
                   "&:hover": {
-                    background: `linear-gradient(90deg, ${primary}, ${primary})`,
+                    background: `linear-gradient(135deg, ${primary}, ${primary})`,
                     transform: "translateY(-2px)",
                     boxShadow: `0 8px 20px ${primary}40`,
                   }

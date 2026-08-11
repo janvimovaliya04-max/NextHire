@@ -619,7 +619,7 @@ export default function JobDetails() {
                       background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
                       boxShadow: `0 10px 24px ${primary}40`,
                       "&:hover": {
-                        background: `linear-gradient(90deg, ${primary}, ${primary})`,
+                        background: `linear-gradient(135deg, ${primary}, ${primary})`,
                         boxShadow: `0 6px 16px ${primary}4d`,
                         transform: "translateY(-1px)",
                       }

@@ -1,9 +1,15 @@
 import feedbackData from "../../data/feedback.json";
-import { useSearchParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import {
+  useReactTable,
+  getCoreRowModel,
+  getSortedRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  flexRender,
+} from "@tanstack/react-table";
 import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
-import { Link } from "react-router-dom";
 import HRLayout from "../../Layouts/HRLayout";
 import {
   Button,
@@ -17,130 +23,160 @@ import {
   TableRow,
   Chip,
   Box,
+  IconButton,
+  Tooltip,
 } from "@mui/material";
 
-import { ChevronLeft, ChevronRight, Search  } from "lucide-react";
-
+import FirstPageIcon from "@mui/icons-material/FirstPage";
+import LastPageIcon from "@mui/icons-material/LastPage";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { Search } from "lucide-react";
 
 export default function Candidatefeedback() {
 
   const { darkMode } = useTheme();
   const colors = useThemeColors();
   const primary = colors.primary;
+  const textColor = colors.text;
+  const subText = colors.subText;
   const borderStyle = colors.border;
 
   const [activeFilter, setActiveFilter] = useState("All");
-  const [search, setSearch] = useState("");
+  const [globalFilter, setGlobalFilter] = useState("");
+  const [sorting, setSorting] = useState([]);
+  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 20 });
+  const feedbackData_ = feedbackData;
 
-  const feedbackPerPage = 20;
-
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const currentPage = Number(searchParams.get("page")) || 1;
-
-  const textColor = colors.text;
-
-  const subText = colors.subText;
-
-
-  // filter //
-  const filteredFeedback = feedbackData.filter((feedback) => {
-    const matchesFilter =
-      activeFilter === "All"
-        ? true
-        : activeFilter === "Hire"
-          ? feedback.recommendation === "Hire"
-          : activeFilter === "Hold"
-            ? feedback.recommendation === "Hold"
-            : feedback.recommendation === "Reject";
-
-    const matchesSearch =
-      feedback.candidateId
-        .toLowerCase()
-        .includes(search.toLowerCase());
-
-    return matchesFilter && matchesSearch;
-  });
-
-  //  Pagination  //
-
-  const totalPages = Math.ceil(
-    filteredFeedback.length / feedbackPerPage
+  const filteredByRecommendation = useMemo(() =>
+    feedbackData_.filter((f) => {
+      if (activeFilter === "All") return true;
+      if (activeFilter === "Hire") return f.recommendation === "Hire";
+      if (activeFilter === "Hold") return f.recommendation === "Hold";
+      return f.recommendation === "Reject";
+    }),
+    [feedbackData_, activeFilter]
   );
 
-  const indexOfLastFeedback =
-    currentPage * feedbackPerPage;
+  const columns = useMemo(() => [
+    {
+      accessorKey: "candidateId",
+      header: "Candidate Id",
+      cell: ({ getValue }) => (
+        <Typography sx={{ whiteSpace: "nowrap", color: textColor, fontWeight: 700, fontSize: { xs: ".8rem", md: ".95rem" } }}>
+          {getValue()}
+        </Typography>
+      ),
+    },
+    {
+      accessorKey: "technicalRating",
+      header: "Technical",
+      cell: ({ getValue }) => (
+        <Typography sx={{ whiteSpace: "nowrap", color: subText }}>{getValue()}/5</Typography>
+      ),
+    },
+    {
+      accessorKey: "communicationRating",
+      header: "Communication",
+      cell: ({ getValue }) => (
+        <Typography sx={{ whiteSpace: "nowrap", color: subText }}>{getValue()}/5</Typography>
+      ),
+    },
+    {
+      accessorKey: "problemSolvingRating",
+      header: "Problem solving",
+      cell: ({ getValue }) => (
+        <Typography sx={{ whiteSpace: "nowrap", color: subText }}>{getValue()}/5</Typography>
+      ),
+    },
+    {
+      accessorKey: "overallRating",
+      header: "Overall",
+      cell: ({ getValue }) => (
+        <Typography sx={{ whiteSpace: "nowrap", color: primary, fontWeight: 800 }}>{getValue()}/5</Typography>
+      ),
+    },
+    {
+      accessorKey: "recommendation",
+      header: "Recommendation",
+      cell: ({ getValue }) => (
+        <Chip
+          size="small"
+          label={getValue()}
+          sx={{
+            fontWeight: 700,
+            fontSize: { xs: ".7rem", md: ".8rem" },
+            bgcolor:
+              getValue() === "Select"
+                ? "rgba(16,185,129,.12)"
+                : getValue() === "Reject"
+                  ? "rgba(239,68,68,.12)"
+                  : "rgba(245,158,11,.12)",
+            color:
+              getValue() === "Select"
+                ? "#10b981"
+                : getValue() === "Reject"
+                  ? "#ef4444"
+                  : "#f59e0b",
+          }}
+        />
+      ),
+    },
+    {
+      accessorKey: "submittedDate",
+      header: "Date",
+      cell: ({ getValue }) => (
+        <Typography sx={{ whiteSpace: "nowrap", color: subText }}>{getValue()}</Typography>
+      ),
+    },
+  ], [primary, textColor, subText]);
 
-  const indexOfFirstFeedback =
-    indexOfLastFeedback - feedbackPerPage;
-
-  const currentFeedback =
-    filteredFeedback.slice(
-      indexOfFirstFeedback,
-      indexOfLastFeedback
-    );
-
-  const getVisiblePages = () => {
-    const pages = [];
-
-    if (totalPages <= 3) {
-      for (let i = 1; i <= totalPages; i++) {
-        pages.push(i);
-      }
-      return pages;
-    }
-
-    pages.push(1);
-    if (currentPage > 3) {
-      pages.push("...");
-    }
-
-    const start = Math.max(2, currentPage - 1);
-    const end = Math.min(totalPages - 1, currentPage + 1);
-
-    for (let i = start; i <= end; i++) {
-      pages.push(i);
-    }
-
-    if (currentPage < totalPages - 2) {
-      pages.push("...");
-    }
-
-    pages.push(totalPages);
-
-    return pages;
-  };
+  const table = useReactTable({
+    data: filteredByRecommendation,
+    columns,
+    state: { sorting, globalFilter, pagination },
+    onSortingChange: setSorting,
+    onGlobalFilterChange: setGlobalFilter,
+    onPaginationChange: setPagination,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    globalFilterFn: (row, columnId, filterValue) =>
+      row.original.candidateId.toLowerCase().includes(filterValue.toLowerCase()),
+  });
 
   return (
     <HRLayout>
-      <Box
+      <Paper
+        elevation={0}
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 2,
-          mb: 2,
-          flexShrink: 0,
+          position: "relative",
+          top: 0,
+          zIndex: 20,
+          p: { xs: 2, md: 3 },
+          mb: 1,
+          borderRadius: "20px",
+          bgcolor: colors.card,
+          border: `1px solid ${borderStyle}`,
+          boxShadow: colors.shadow,
         }}
       >
-        {/* Title + Search */}
         <Box
           sx={{
             display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            alignItems: { xs: "stretch", md: "center" },
             justifyContent: "space-between",
-            alignItems: "center",
-            flexWrap: "wrap",
             gap: 2,
+            mb: 3
           }}
         >
           <Typography
             sx={{
               fontWeight: 850,
               letterSpacing: "-0.03em",
-              fontSize: {
-                xs: "1.35rem",
-                sm: "1.7rem",
-                md: "2.1rem",
-              },
+              fontSize: { xs: "1.35rem", sm: "1.7rem", md: "2.1rem" },
             }}
           >
             Candidate Feedback
@@ -150,10 +186,7 @@ export default function Candidatefeedback() {
             sx={{
               display: "flex",
               alignItems: "center",
-              width: {
-                xs: "100%",
-                md: 330,
-              },
+              width: { xs: "100%", md: 330 },
               bgcolor: colors.card,
               border: `1px solid ${borderStyle}`,
               borderRadius: "10px",
@@ -165,11 +198,8 @@ export default function Candidatefeedback() {
             <input
               type="text"
               placeholder="Search Candidate ID..."
-              value={search}
-              onChange={(e) => {
-                setSearch(e.target.value);
-                setSearchParams({ page: 1 });
-              }}
+              value={globalFilter}
+              onChange={(e) => setGlobalFilter(e.target.value)}
               style={{
                 width: "100%",
                 padding: "12px",
@@ -191,19 +221,13 @@ export default function Candidatefeedback() {
             overflowX: "auto",
             pb: 1,
             flexShrink: 0,
-
-            "&::-webkit-scrollbar": {
-              display: "none",
-            },
+            "&::-webkit-scrollbar": { display: "none" },
           }}
         >
           {["All", "Hire", "Hold", "Rejected"].map((filter) => (
             <Button
               key={filter}
-              onClick={() => {
-                setActiveFilter(filter);
-                setSearchParams({ page: 1 });
-              }}
+              onClick={() => setActiveFilter(filter)}
               variant="outlined"
               size="small"
               sx={{
@@ -211,28 +235,16 @@ export default function Candidatefeedback() {
                 borderRadius: "20px",
                 textTransform: "none",
                 fontWeight: 700,
-
-                color:
-                  activeFilter === filter
-                    ? "#fff"
-                    : colors.subText,
-
-                bgcolor:
-                  activeFilter === filter
-                    ? primary
-                    : "transparent",
-
-                borderColor:
-                  activeFilter === filter
-                    ? primary
-                    : colors.border,
+                color: activeFilter === filter ? "#fff" : colors.subText,
+                bgcolor: activeFilter === filter ? primary : "transparent",
+                borderColor: activeFilter === filter ? primary : colors.border,
               }}
             >
               {filter}
             </Button>
           ))}
         </Box>
-      </Box>
+      </Paper>
 
       {/* MAIN PAPER */}
       <Paper
@@ -240,11 +252,7 @@ export default function Candidatefeedback() {
         sx={{
           display: "flex",
           flexDirection: "column",
-          height: {
-            xs: "68vh",
-            sm: "72vh",
-            md: "75vh",
-          },
+          height: { xs: "68vh", sm: "72vh", md: "75vh" },
           width: "100%",
           maxWidth: "100%",
           overflow: "hidden",
@@ -258,12 +266,8 @@ export default function Candidatefeedback() {
           "&:hover": {
             transform: "translateY(-4px)",
             boxShadow: darkMode
-              ? `
-                0 24px 55px rgba(0,0,0,.42)
-              `
-              : `
-                0 26px 55px rgba(15,23,42,.12)
-              `,
+              ? `0 24px 55px rgba(0,0,0,.42)`
+              : `0 26px 55px rgba(15,23,42,.12)`,
           },
         }}
       >
@@ -273,150 +277,71 @@ export default function Candidatefeedback() {
             overflowX: "auto",
             flex: 1,
             overflowY: "auto",
-            "&::-webkit-scrollbar": {
-              height: 8,
-              width: 8,
-            },
-            "&::-webkit-scrollbar-thumb": {
-              background: "#94a3b8",
-              borderRadius: 10,
-            },
+            "&::-webkit-scrollbar": { height: 8, width: 8 },
+            "&::-webkit-scrollbar-thumb": { background: "#94a3b8", borderRadius: 10 },
           }}
         >
           <Table stickyHeader>
             <TableHead>
-              <TableRow
-                sx={{
-                  bgcolor: darkMode
-                    ? "rgba(59,130,246,.08)"
-                    : "#F8FAFC",
-                  borderBottom: `1px solid ${borderStyle}`,
-                }}
-              >
-                <TableCell align="center" sx={{ py: { xs: 1, md: 2 }, px: { xs: 1, md: 2 }, whiteSpace: "nowrap", color: textColor, fontWeight: 700, fontSize: { xs: "0.82rem", md: "1rem" }, borderBottom: `1px solid ${borderStyle}`, bgcolor: colors.background }}>
-                  Candidate Id
-                </TableCell>
-                <TableCell sx={{ py: { xs: 1, md: 2 }, px: { xs: 1, md: 2 }, whiteSpace: "nowrap", color: textColor, fontWeight: 700, fontSize: { xs: "0.82rem", md: "1rem" }, borderBottom: `1px solid ${borderStyle}`, bgcolor: colors.background }}>
-                  Technical
-                </TableCell>
-                <TableCell sx={{ py: { xs: 1, md: 2 }, px: { xs: 1, md: 2 }, whiteSpace: "nowrap", color: textColor, fontWeight: 700, fontSize: { xs: "0.82rem", md: "1rem" }, borderBottom: `1px solid ${borderStyle}`, bgcolor: colors.background }}>
-                  Communication
-                </TableCell>
-                <TableCell sx={{ py: { xs: 1, md: 2 }, px: { xs: 1, md: 2 }, whiteSpace: "nowrap", color: textColor, fontWeight: 700, fontSize: { xs: "0.82rem", md: "1rem" }, borderBottom: `1px solid ${borderStyle}`, bgcolor: colors.background }}>
-                  Problem solving
-                </TableCell>
-                <TableCell align="center" sx={{ py: { xs: 1, md: 2 }, px: { xs: 1, md: 2 }, whiteSpace: "nowrap", color: textColor, fontWeight: 700, fontSize: { xs: "0.82rem", md: "1rem" }, borderBottom: `1px solid ${borderStyle}`, pr: 4, bgcolor: colors.background }}>
-                  Overall
-                </TableCell>
-                <TableCell align="center" sx={{ py: { xs: 1, md: 2 }, px: { xs: 1, md: 2 }, whiteSpace: "nowrap", color: textColor, fontWeight: 700, fontSize: { xs: "0.82rem", md: "1rem" }, borderBottom: `1px solid ${borderStyle}`, pr: 4, bgcolor: colors.background }}>
-                  Recommendation
-                </TableCell>
-                <TableCell align="center" sx={{ py: { xs: 1, md: 2 }, px: { xs: 1, md: 2 }, whiteSpace: "nowrap", color: textColor, fontWeight: 700, fontSize: { xs: "0.82rem", md: "1rem" }, borderBottom: `1px solid ${borderStyle}`, pr: 4, bgcolor: colors.background }}>
-                  Date
-                </TableCell>
-              </TableRow>
-            </TableHead>
-
-            <TableBody>
-
-              {currentFeedback.length > 0 ? (
-                currentFeedback.map((feedback) => (
-                  <TableRow
-                    key={feedback.feedbackId}
-                    hover
-                    sx={{
-                      borderBottom: `1px solid ${borderStyle}`,
-                    }}
-                  >
-
+              {table.getHeaderGroups().map((headerGroup) => (
+                <TableRow
+                  key={headerGroup.id}
+                  sx={{
+                    bgcolor: darkMode ? "rgba(59,130,246,.08)" : "#F8FAFC",
+                    borderBottom: `1px solid ${borderStyle}`,
+                  }}
+                >
+                  {headerGroup.headers.map((header) => (
                     <TableCell
+                      key={header.id}
+                      align="center"
+                      onClick={header.column.getToggleSortingHandler()}
                       sx={{
                         py: { xs: 1, md: 2 },
                         px: { xs: 1, md: 2 },
                         whiteSpace: "nowrap",
                         color: textColor,
                         fontWeight: 700,
-                        fontSize: {
-                          xs: ".8rem",
-                          md: ".95rem",
-                        },
+                        fontSize: { xs: "0.82rem", md: "1rem" },
+                        borderBottom: `1px solid ${borderStyle}`,
+                        bgcolor: colors.background,
+                        cursor: header.column.getCanSort() ? "pointer" : "default",
+                        userSelect: "none",
                       }}
                     >
-                      {feedback.candidateId}
+                      {flexRender(header.column.columnDef.header, header.getContext())}
                     </TableCell>
+                  ))}
+                </TableRow>
+              ))}
+            </TableHead>
 
-
-                    <TableCell sx={{ py: { xs: 1, md: 2 }, px: { xs: 1, md: 2 }, whiteSpace: "nowrap", color: subText }}>
-                      {feedback.technicalRating}/5
-                    </TableCell>
-
-
-                    <TableCell sx={{ py: { xs: 1, md: 2 }, px: { xs: 1, md: 2 }, whiteSpace: "nowrap", color: subText }}>
-                      {feedback.communicationRating}/5
-                    </TableCell>
-
-
-                    <TableCell sx={{ py: { xs: 1, md: 2 }, px: { xs: 1, md: 2 }, whiteSpace: "nowrap", color: subText }}>
-                      {feedback.problemSolvingRating}/5
-                    </TableCell>
-
-
-                    <TableCell
-                      sx={{
-                        py: { xs: 1, md: 2 },
-                        px: { xs: 1, md: 2 },
-                        whiteSpace: "nowrap",
-                        color: primary,
-                        fontWeight: 800
-                      }}
-                    >
-                      {feedback.overallRating}/5
-                    </TableCell>
-
-
-                    <TableCell>
-
-                      <Chip
-                        size="small"
-                        label={feedback.recommendation}
-                        sx={{
-                          fontWeight: 700,
-                          fontSize: { xs: ".7rem", md: ".8rem" },
-                          bgcolor:
-                            feedback.recommendation === "Select"
-                              ? "rgba(16,185,129,.12)"
-                              : feedback.recommendation === "Reject"
-                                ? "rgba(239,68,68,.12)"
-                                : "rgba(245,158,11,.12)",
-                          color:
-                            feedback.recommendation === "Select"
-                              ? "#10b981"
-                              : feedback.recommendation === "Reject"
-                                ? "#ef4444"
-                                : "#f59e0b",
-                        }}
-                      />
-
-                    </TableCell>
-
-
-                    <TableCell sx={{ py: { xs: 1, md: 2 }, px: { xs: 1, md: 2 }, whiteSpace: "nowrap", color: subText }}>
-                      {feedback.submittedDate}
-                    </TableCell>
-
-
+            <TableBody>
+              {table.getRowModel().rows.length > 0 ? (
+                table.getRowModel().rows.map((row) => (
+                  <TableRow
+                    key={row.id}
+                    hover
+                    sx={{ borderBottom: `1px solid ${borderStyle}` }}
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <TableCell
+                        key={cell.id}
+                        sx={{ py: { xs: 1, md: 2 }, px: { xs: 1, md: 2 } }}
+                      >
+                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      </TableCell>
+                    ))}
                   </TableRow>
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={7} align="center" sx={{ py: 6, color: subText }}>
+                  <TableCell colSpan={columns.length} align="center" sx={{ py: 6, color: subText }}>
                     No feedback records found matching this filter or search.
                   </TableCell>
                 </TableRow>
               )}
-
             </TableBody>
-
           </Table>
         </TableContainer>
 
@@ -424,154 +349,112 @@ export default function Candidatefeedback() {
         <Box
           sx={{
             flexShrink: 0,
-            p: {
-              xs: 1,
-              sm: 1.5,
-              md: 2.5,
-            },
+            p: { xs: 1, sm: 1.5, md: 2.5 },
             display: "flex",
-            flexDirection: {
-              xs: "column",
-              md: "row",
-            },
-            gap: {
-              xs: 1.5,
-              md: 2
-            },
-            justifyContent: {
-              xs: "center",
-              md: "space-between",
-            },
-            alignItems: {
-              xs: "center",
-              md: "center",
-            },
+            flexDirection: { xs: "column", md: "row" },
+            gap: { xs: 1.5, md: 2 },
+            justifyContent: { xs: "center", md: "space-between" },
+            alignItems: "center",
             borderTop: `1px solid ${borderStyle}`,
             bgcolor: colors.background,
           }}
         >
           <Typography sx={{ color: subText, fontSize: { xs: "0.72rem", md: "0.82rem" } }}>
-            Page {currentPage} of {totalPages || 1} • Showing{" "}
-            <strong>
-              {filteredFeedback.length === 0 ? 0 : indexOfFirstFeedback + 1}-
-              {Math.min(indexOfLastFeedback, filteredFeedback.length)}
-            </strong>{" "}
-            of{" "}
-            <strong>{filteredFeedback.length}</strong>{" "}
-            Feedback Records
+            Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount() || 1} • Total{" "}
+            <strong>{table.getFilteredRowModel().rows.length}</strong> Feedback Records
           </Typography>
 
-          <Box
-            sx={{
-              display: "flex",
-              gap: .1,
-              alignItems: "center",
-              flexWrap: "nowrap",
-              overflowX: "auto",
-              "&::-webkit-scrollbar": {
-                display: "none",
-              },
-              justifyContent: {
-                xs: "center",
-                md: "flex-end",
-              },
-              width: {
-                xs: "100%",
-                md: "auto",
-              },
-            }}
-          >
-
-            <Button
-              size="small"
-              disabled={currentPage === 1}
-              onClick={() =>
-                setSearchParams({
-                  page: String(currentPage - 1),
-                })
-              }
-            >
-              <ChevronLeft />
-            </Button>
-
-            {getVisiblePages().map((page, index) =>
-              page === "..." ? (
-                <Typography
-                  key={index}
-                  sx={{
-                    px: 1,
-                    color: textColor,
-                    fontWeight: 700,
-                  }}
-                >
-                  ...
-                </Typography>
-              ) : (
-                <Button
-                  key={`${page}-${index}`}
+          <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+            <Tooltip title="First page">
+              <span>
+                <IconButton
                   size="small"
-                  onClick={() => {
-                    if (page !== "...") {
-                      setSearchParams({
-                        page: String(page),
-                      });
-                    }
-                  }}
-                  variant={Number(currentPage) === Number(page) ? "contained" : "text"}
-                  sx={{
-                    minWidth: {
-                      xs: 26,
-                      sm: 30,
-                      md: 35,
-                    },
-
-                    height: {
-                      xs: 26,
-                      sm: 30,
-                      md: 35,
-                    },
-
-                    px: {
-                      xs: 0,
-                      sm: 1,
-                    },
-
-                    fontSize: {
-                      xs: ".75rem",
-                      md: ".9rem"
-                    },
-                    bgcolor: Number(currentPage) === Number(page) ? primary : "transparent",
-                    color:
-                      Number(currentPage) === Number(page)
-                        ? "#fff"
-                        : textColor,
-                    "&:hover": {
-                      bgcolor:
-                        Number(currentPage) === Number(page)
-                          ? `${primary}dd`
-                          : `${primary}15`,
-                    },
-                  }}
+                  onClick={() => table.setPageIndex(0)}
+                  disabled={!table.getCanPreviousPage()}
+                  sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
                 >
-                  {page}
-                </Button>
+                  <FirstPageIcon fontSize="small" />
+                </IconButton>
+              </span>
+            </Tooltip>
+
+            <Tooltip title="Previous page">
+              <span>
+                <IconButton
+                  size="small"
+                  onClick={() => table.previousPage()}
+                  disabled={!table.getCanPreviousPage()}
+                  sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
+                >
+                  <ChevronLeftIcon fontSize="small" />
+                </IconButton>
+              </span>
+            </Tooltip>
+
+            {Array.from({ length: table.getPageCount() }, (_, i) => i)
+              .filter((i) =>
+                i === 0 ||
+                i === table.getPageCount() - 1 ||
+                Math.abs(i - table.getState().pagination.pageIndex) <= 1
               )
-            )}
+              .reduce((acc, i, idx, arr) => {
+                if (idx > 0 && i - arr[idx - 1] > 1) acc.push("...");
+                acc.push(i);
+                return acc;
+              }, [])
+              .map((item, idx) =>
+                item === "..." ? (
+                  <Typography key={`dots-${idx}`} sx={{ px: 1, color: subText }}>...</Typography>
+                ) : (
+                  <IconButton
+                    key={item}
+                    size="small"
+                    onClick={() => table.setPageIndex(item)}
+                    sx={{
+                      minWidth: 32,
+                      height: 32,
+                      borderRadius: 1.5,
+                      fontSize: ".82rem",
+                      fontWeight: 700,
+                      bgcolor: table.getState().pagination.pageIndex === item ? primary : "transparent",
+                      color: table.getState().pagination.pageIndex === item ? "#fff" : textColor,
+                      border: `1px solid ${table.getState().pagination.pageIndex === item ? primary : borderStyle}`,
+                      "&:hover": {
+                        bgcolor: table.getState().pagination.pageIndex === item ? `${primary}dd` : `${primary}15`,
+                      },
+                    }}
+                  >
+                    {item + 1}
+                  </IconButton>
+                )
+              )}
 
-            <Button
-              size="small"
-              disabled={currentPage === totalPages}
-              onClick={() =>
-                setSearchParams({
-                  page: String(currentPage + 1),
-                })
-              }
-            >
-              <ChevronRight />
-            </Button>
+            <Tooltip title="Next page">
+              <span>
+                <IconButton
+                  size="small"
+                  onClick={() => table.nextPage()}
+                  disabled={!table.getCanNextPage()}
+                  sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
+                >
+                  <ChevronRightIcon fontSize="small" />
+                </IconButton>
+              </span>
+            </Tooltip>
 
+            <Tooltip title="Last page">
+              <span>
+                <IconButton
+                  size="small"
+                  onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+                  disabled={!table.getCanNextPage()}
+                  sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
+                >
+                  <LastPageIcon fontSize="small" />
+                </IconButton>
+              </span>
+            </Tooltip>
           </Box>
-
         </Box>
       </Paper>
     </HRLayout>

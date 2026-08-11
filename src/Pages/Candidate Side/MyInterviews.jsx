@@ -1,11 +1,16 @@
 import myinterviews from "../../data/myinterviews.json";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import CandidateLayout from "../../Layouts/CandidateLayout";
 import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
 import { TextField } from "@mui/material";
+import {
+  useReactTable,
+  getCoreRowModel,
+  getFilteredRowModel,
+} from "@tanstack/react-table";
 import {
   Typography,
   Paper,
@@ -26,28 +31,46 @@ export default function MyInterviews() {
   const { darkMode } = useTheme();
   const colors = useThemeColors();
 
-  // Colors — fully theme-driven (matches Dashboard / Assessment / BrowseJobs)
   const primary = colors.primary;
   const secondary = colors.secondary;
   const textColor = colors.text;
   const subText = colors.subText;
   const borderStyle = colors.border;
 
-  const [search, setSearch] = useState("");
+  const [globalFilter, setGlobalFilter] = useState("");
 
   const PER_LOAD = 4;
 
-  const filteredInterviews = myinterviews.filter((item) => {
-    const keyword = search.toLowerCase();
+  // Headless columns — no visual cells needed, cards render manually below
+  const columns = useMemo(() => [
+    { accessorKey: "company" },
+    { accessorKey: "position" },
+    { accessorKey: "interviewer" },
+    { accessorKey: "status" },
+    { accessorKey: "mode" },
+  ], []);
 
-    return (
-      item.company.toLowerCase().includes(keyword) ||
-      item.position.toLowerCase().includes(keyword) ||
-      item.interviewer.toLowerCase().includes(keyword) ||
-      item.status.toLowerCase().includes(keyword) ||
-      item.mode.toLowerCase().includes(keyword)
-    );
+  const table = useReactTable({
+    data: myinterviews,
+    columns,
+    state: { globalFilter },
+    onGlobalFilterChange: setGlobalFilter,
+    getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    globalFilterFn: (row, columnId, filterValue) => {
+      const v = filterValue.toLowerCase();
+      const item = row.original;
+      return (
+        item.company.toLowerCase().includes(v) ||
+        item.position.toLowerCase().includes(v) ||
+        item.interviewer.toLowerCase().includes(v) ||
+        item.status.toLowerCase().includes(v) ||
+        item.mode.toLowerCase().includes(v)
+      );
+    },
   });
+
+  const filteredInterviews = table.getFilteredRowModel().rows.map((row) => row.original);
 
   const [visibleInterviews, setVisibleInterviews] = useState(
     filteredInterviews.slice(0, PER_LOAD)
@@ -58,7 +81,7 @@ export default function MyInterviews() {
   useEffect(() => {
     setVisibleInterviews(filteredInterviews.slice(0, PER_LOAD));
     setHasMore(filteredInterviews.length > PER_LOAD);
-  }, [search]);
+  }, [globalFilter]);
 
   const loadMore = () => {
     setTimeout(() => {
@@ -91,11 +114,6 @@ export default function MyInterviews() {
     };
   }, []);
 
-  const handleSearchChange = (value) => {
-    setSearch(value);
-  };
-
-  // Status accents — semantic (not brand), kept distinct from theme primary/secondary
   const statusColor = (status) =>
     status === "Upcoming"
       ? "#3b82f6"
@@ -109,95 +127,66 @@ export default function MyInterviews() {
     <CandidateLayout>
 
       {/* STICKY HEADER */}
-      <Box
+      <Paper
+        elevation={0}
         sx={{
-          position: "sticky",
+          position: "sticky", 
           top: 0,
-          zIndex: 100,
-
-          bgcolor: colors.background || (darkMode ? "#0f172a" : "#f8fafc"),
-          px: { xs: 2, md: 4 },
-          py: 2,
-          mb: 3,
-
-          borderBottom: `1px solid ${borderStyle}`,
-
-          display: "flex",
-          flexDirection: {
-            xs: "column",
-            md: "row",
-          },
-
-          justifyContent: "space-between",
-          alignItems: {
-            xs: "stretch",
-            md: "center",
-          },
-
-          gap: 2,
+          zIndex: 20,
+          p: { xs: 2, md: 3 },
+          mb: 1,
+          borderRadius: "20px",
+          bgcolor: colors.card,
+          border: `1px solid ${borderStyle}`,
+          boxShadow: colors.shadow,
         }}
       >
-        <Typography
+        <Box
           sx={{
-            fontWeight: 850,
-            letterSpacing: "-0.03em",
-            color: textColor,
-
-            mb: -1,
-            fontSize: {
-              xs: "1.45rem",
-              sm: "1.75rem",
-              md: "2rem",
-              lg: "2.2rem",
-            },
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            alignItems: { xs: "stretch", md: "center" },
+            justifyContent: "space-between",
+            gap: 2,
+            mb: 3
           }}
         >
-          My Interviews
-        </Typography>
-
-        <TextField
-
-          placeholder="Search interviews..."
-          value={search}
-          onChange={(e) => handleSearchChange(e.target.value)}
-          sx={{
-            width: {
-              xs: "100%",
-              md: 350
-            },
-            mb: { xs: 1, md: 2, },
-            "& .MuiOutlinedInput-root": {
-              fontSize: { xs: ".85rem", md: ".95rem" },
-              "& input": {
-                py: { xs: 1.3, md: 1.7 }
-              },
-              borderRadius: "14px",
-              bgcolor: colors.card,
+          <Typography
+            sx={{
+              fontWeight: 850,
+              letterSpacing: "-0.03em",
               color: textColor,
-              "& fieldset": {
-                borderColor: borderStyle,
-              },
-              "&:hover fieldset": {
-                borderColor: primary,
-              },
-              "&.Mui-focused fieldset": {
-                borderColor: primary,
-              },
-            },
-            "& input::placeholder": {
-              color: subText,
-              opacity: 1,
-            },
-          }}
-        />
-      </Box>
+              mb: -1,
+              fontSize: { xs: "1.45rem", sm: "1.75rem", md: "2rem", lg: "2.2rem" },
+            }}
+          >
+            My Interviews
+          </Typography>
 
-      <Box
-        sx={{
-          px: { xs: 2, md: 4 },
-          py: 3
-        }}
-      >
+          <TextField
+            placeholder="Search interviews..."
+            value={globalFilter}
+            onChange={(e) => setGlobalFilter(e.target.value)}
+            sx={{
+              width: { xs: "100%", md: 350 },
+              mb: { xs: 1, md: 2 },
+              "& .MuiOutlinedInput-root": {
+                fontSize: { xs: ".85rem", md: ".95rem" },
+                "& input": { py: { xs: 1.3, md: 1.7 } },
+                borderRadius: "14px",
+                bgcolor: colors.card,
+                color: textColor,
+                "& fieldset": { borderColor: borderStyle },
+                "&:hover fieldset": { borderColor: primary },
+                "&.Mui-focused fieldset": { borderColor: primary },
+              },
+              "& input::placeholder": { color: subText, opacity: 1 },
+            }}
+          />
+        </Box>
+      </Paper>
+
+      <Box sx={{ px: { xs: 2, md: 4 }, py: 3 }}>
         <InfiniteScroll
           dataLength={visibleInterviews.length}
           next={loadMore}
@@ -206,16 +195,8 @@ export default function MyInterviews() {
             <Box
               sx={{
                 display: "flex",
-
-                flexDirection: {
-                  xs: "column",
-                  sm: "row",
-                },
-
-                alignItems: {
-                  xs: "center",
-                  sm: "center",
-                },
+                flexDirection: { xs: "column", sm: "row" },
+                alignItems: { xs: "center", sm: "center" },
                 bgcolor: colors.background || (darkMode ? "#0f172a" : "#f8fafc"),
                 gap: 2,
                 justifyContent: "center",
@@ -225,24 +206,13 @@ export default function MyInterviews() {
               <CircularProgress sx={{ color: primary }} />
             </Box>
           }
-          endMessage={
-            <Typography
-              align="center"
-              sx={{ py: 3, color: subText }}
-            >
-              All interviews loaded.
-            </Typography>
-          }
         >
-
           {/* MAIN CARDS */}
+          
           <Box
             sx={{
               display: "grid",
-              gridTemplateColumns: {
-                xs: "1fr",
-                md: "repeat(2,1fr)",
-              },
+              gridTemplateColumns: { xs: "1fr", md: "repeat(2,1fr)" },
               gap: 3,
             }}
           >
@@ -252,11 +222,7 @@ export default function MyInterviews() {
                   key={interview.interviewId}
                   elevation={6}
                   sx={{
-                    p: {
-                      xs: 2,
-                      sm: 2.5,
-                      md: 3,
-                    },
+                    p: { xs: 2, sm: 2.5, md: 3 },
                     display: "flex",
                     flexDirection: "column",
                     borderRadius: 5,
@@ -276,10 +242,7 @@ export default function MyInterviews() {
                   <Box
                     sx={{
                       display: "flex",
-                      flexDirection: {
-                        xs: "column",
-                        sm: "row",
-                      },
+                      flexDirection: { xs: "column", sm: "row" },
                       gap: 2,
                     }}
                   >
@@ -296,23 +259,9 @@ export default function MyInterviews() {
                       <Avatar
                         sx={{
                           background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
-                          width: {
-                            xs: 44,
-                            sm: 52,
-                            md: 56,
-                          },
-
-                          height: {
-                            xs: 44,
-                            sm: 52,
-                            md: 56,
-                          },
-
-                          fontSize: {
-                            xs: "1rem",
-                            sm: "1.2rem",
-                            md: "1.35rem",
-                          },
+                          width: { xs: 44, sm: 52, md: 56 },
+                          height: { xs: 44, sm: 52, md: 56 },
+                          fontSize: { xs: "1rem", sm: "1.2rem", md: "1.35rem" },
                           fontWeight: "bold",
                           boxShadow: 2,
                         }}
@@ -322,11 +271,7 @@ export default function MyInterviews() {
                       <Box>
                         <Typography
                           sx={{
-                            fontSize: {
-                              xs: "1rem",
-                              sm: "1.15rem",
-                              md: "1.25rem",
-                            },
+                            fontSize: { xs: "1rem", sm: "1.15rem", md: "1.25rem" },
                             fontWeight: 800,
                             letterSpacing: "-0.01em",
                             color: textColor,
@@ -339,10 +284,7 @@ export default function MyInterviews() {
                           sx={{
                             color: subText,
                             fontWeight: 600,
-                            fontSize: {
-                              xs: "0.82rem",
-                              sm: "0.9rem"
-                            }
+                            fontSize: { xs: "0.82rem", sm: "0.9rem" }
                           }}
                         >
                           {interview.position}
@@ -363,22 +305,14 @@ export default function MyInterviews() {
                           sx={{
                             display: "grid",
                             gridTemplateColumns: {
-                              xs: "repeat(2, 1fr)", // mobile: 2 columns
-                              sm: "1fr",            // tablet+: single column
+                              xs: "repeat(2, 1fr)",
+                              sm: "1fr",
                             },
                             gap: 1.2,
                             mt: 1,
                           }}
                         >
-                          {/* Date & Time */}
-                          <Box
-                            sx={{
-                              display: "flex",
-                              alignItems: "flex-start",
-                              gap: 1,
-                              color: subText,
-                            }}
-                          >
+                          <Box sx={{ display: "flex", alignItems: "flex-start", gap: 1, color: subText }}>
                             <Calendar size={14} color={primary} />
                             <Typography variant="body2">
                               {interview.date}
@@ -387,45 +321,21 @@ export default function MyInterviews() {
                             </Typography>
                           </Box>
 
-                          {/* Interviewer */}
-                          <Box
-                            sx={{
-                              display: "flex",
-                              alignItems: "flex-start",
-                              gap: 1,
-                              color: subText,
-                            }}
-                          >
+                          <Box sx={{ display: "flex", alignItems: "flex-start", gap: 1, color: subText }}>
                             <UserRound size={14} color={secondary || primary} />
                             <Typography variant="body2">
                               {interview.interviewer}
                             </Typography>
                           </Box>
 
-                          {/* Duration */}
-                          <Box
-                            sx={{
-                              display: "flex",
-                              alignItems: "center",
-                              gap: 1,
-                              color: subText,
-                            }}
-                          >
+                          <Box sx={{ display: "flex", alignItems: "center", gap: 1, color: subText }}>
                             <Clock size={14} color="#f59e0b" />
                             <Typography variant="body2">
                               {interview.duration}
                             </Typography>
                           </Box>
 
-                          {/* Mode */}
-                          <Box
-                            sx={{
-                              display: "flex",
-                              alignItems: "center",
-                              gap: 1,
-                              color: subText,
-                            }}
-                          >
+                          <Box sx={{ display: "flex", alignItems: "center", gap: 1, color: subText }}>
                             <Laptop size={14} color={secondary || primary} />
                             <Typography variant="body2">
                               {interview.mode}
@@ -438,22 +348,10 @@ export default function MyInterviews() {
                     <Box
                       sx={{
                         display: "flex",
-                        flexDirection: {
-                          xs: "row",
-                          sm: "column",
-                        },
-                        justifyContent: {
-                          xs: "space-between",
-                          sm: "space-between",
-                        },
-                        width: {
-                          xs: "100%",
-                          sm: "auto",
-                        },
-                        alignItems: {
-                          xs: "center",
-                          sm: "flex-end",
-                        },
+                        flexDirection: { xs: "row", sm: "column" },
+                        justifyContent: { xs: "space-between", sm: "space-between" },
+                        width: { xs: "100%", sm: "auto" },
+                        alignItems: { xs: "center", sm: "flex-end" },
                         gap: 2,
                       }}
                     >
@@ -478,35 +376,21 @@ export default function MyInterviews() {
                             borderRadius: 3,
                             textTransform: "none",
                             fontWeight: 700,
-
                             width: {
-                              xs: "calc(100% - 120px)", // remaining space beside chip
+                              xs: "calc(100% - 120px)",
                               sm: 170,
                               md: 180,
                             },
-
                             minWidth: 0,
-                            maxWidth: {
-                              xs: "220px",
-                              sm: "none",
-                            },
-
+                            maxWidth: { xs: "220px", sm: "none" },
                             height: 44,
-
                             px: 2,
-
-                            fontSize: {
-                              xs: "0.82rem",
-                              sm: "0.9rem",
-                            },
-
+                            fontSize: { xs: "0.82rem", sm: "0.9rem" },
                             whiteSpace: "nowrap",
                             overflow: "hidden",
                             textOverflow: "ellipsis",
-
-                            background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+                            background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
                             boxShadow: `0 4px 12px ${primary}33`,
-
                             "&:hover": {
                               background: `linear-gradient(135deg, ${primary}, ${primary})`,
                               transform: "translateY(-1px)",
@@ -517,7 +401,6 @@ export default function MyInterviews() {
                           Join Interview
                         </Button>
                       )}
-
                     </Box>
                   </Box>
                 </Paper>
@@ -526,11 +409,7 @@ export default function MyInterviews() {
               <Paper
                 elevation={6}
                 sx={{
-                  p: {
-                    xs: 3,
-                    sm: 5,
-                    md: 6,
-                  },
+                  p: { xs: 3, sm: 5, md: 6 },
                   borderRadius: 5,
                   bgcolor: colors.card,
                   border: `1px solid ${borderStyle}`,
@@ -565,9 +444,9 @@ export default function MyInterviews() {
                   sx={{
                     textTransform: "none",
                     fontWeight: 700,
-                    background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+                    background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
                     "&:hover": {
-                      background: `linear-gradient(90deg, ${primary}, ${primary})`,
+                      background: `linear-gradient(135deg, ${primary}, ${primary})`,
                     },
                   }}
                 >
@@ -580,4 +459,4 @@ export default function MyInterviews() {
       </Box>
     </CandidateLayout>
   );
-} 
+}

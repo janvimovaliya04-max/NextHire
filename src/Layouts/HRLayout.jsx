@@ -183,12 +183,12 @@ export default function HRLayout({ children }) {
         >
           <div className="flex items-center gap-3">
 
-            <Typography
+           <Typography
               sx={{
-                fontSize: { xs: "1.35rem", sm: "1.7rem", md: "1.56rem", lg: "1.56rem" },
-                mb: { xs: 0, md: 0.5 },
                 fontWeight: 800,
-                letterSpacing: "-0.03em",
+                fontSize: "1.5rem",
+                lineHeight: 1.1,
+                color: textColor,
               }}
             >
               HR Admin Space
@@ -276,7 +276,7 @@ export default function HRLayout({ children }) {
           <div className="flex items-center gap-2 mb-2">
             <div
               className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm"
-              style={{ background: `linear-gradient(90deg,${primary},${secondary || primary})` }}
+              style={{ background: `linear-gradient(135deg,${primary},${secondary || primary})` }}
             >
               HR
             </div>
@@ -418,7 +418,7 @@ export default function HRLayout({ children }) {
             <Link
               to="/hr-profile"
               className="text-white px-4 py-2 text-sm font-semibold rounded-xl"
-              style={{ background: `linear-gradient(90deg,${primary},${secondary || primary})` }}
+              style={{ background: `linear-gradient(135deg,${primary},${secondary || primary})` }}
             >
               <span className="hidden sm:block">
                 Profile

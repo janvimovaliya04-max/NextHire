@@ -297,14 +297,14 @@ export default function CandidateNotifications() {
                 borderColor: activeFilter === filter ? primary : borderStyle,
                 background:
                   activeFilter === filter
-                    ? `linear-gradient(90deg, ${primary}, ${secondary || primary})`
+                    ? `linear-gradient(135deg, ${primary}, ${secondary || primary})`
                     : "transparent",
                 boxShadow: activeFilter === filter ? `0 4px 10px ${primary}33` : "none",
                 "&:hover": {
                   borderColor: primary,
                   background:
                     activeFilter === filter
-                      ? `linear-gradient(90deg, ${primary}, ${primary})`
+                      ? `linear-gradient(135deg, ${primary}, ${primary})`
                       : undefined,
                 }
               }}

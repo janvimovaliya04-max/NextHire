@@ -95,123 +95,110 @@ export default function Notifications() {
   return (
     <HRLayout>
       {/* Title & Banner Header */}
-      <Box
+      <Paper
+        elevation={0}
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          flexWrap: "wrap",
-          gap: 2,
-          mb: {
-            xs: 3,
-            md: 5
-          }
+          position: "relative",
+          top: 0,
+          zIndex: 20,
+          p: { xs: 2, md: 3 },
+          mb: 1,
+          borderRadius: "20px",
+          bgcolor: colors.card,
+          border: `1px solid ${borderStyle}`,
+          boxShadow: colors.shadow,
         }}
       >
-        <Box>
-          <Typography
-            sx={{
-              fontSize: {
-                xs: "1.35rem",
-                sm: "1.7rem",
-                md: "2rem",
-                lg: "2.2rem",
-              },
-              mb: {
-                xs: 0,
-                md: 0.5,
-              },
-              fontWeight: 850,
-              letterSpacing: "-0.03em",
-              color: textColor,
-            }}
-          >
-            Notifications Center
-          </Typography>
-        </Box>
-
-        <Button
-          fullWidth={{ xs: true, sm: false }}
-          variant="outlined"
-          onClick={handleMarkAllRead}
-          startIcon={<ListChecks size={11} />}
+        <Box
           sx={{
-            width: { xs: "100%", sm: "auto" },
-            py: {
-              xs: 1,
-              md: 1.2
-            },
-
-            px: {
-              xs: 2,
-              md: 2.5
-            },
-
-            fontSize: {
-              xs: ".78rem",
-              md: ".85rem"
-            },
-            fontWeight: 700,
-            textTransform: "none",
-            borderRadius: "10px",
-            color: subText,
-            borderColor: borderStyle,
-            "&:hover": {
-              borderColor: primary,
-              color: primary,
-              bgcolor: `${primary}08`,
-            },
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: 2,
+            mb: {
+              xs: 3,
+              md: 5
+            }
           }}
         >
-          Mark all as read
-        </Button>
-      </Box>
+          <Box>
+            <Typography
+              sx={{
+                fontSize: {
+                  xs: "1.35rem",
+                  sm: "1.7rem",
+                  md: "2rem",
+                  lg: "2.2rem",
+                },
+                mb: -2.5,
+                fontWeight: 850,
+                letterSpacing: "-0.03em",
+                color: textColor,
+              }}
+            >
+              Notifications Center
+            </Typography>
+          </Box>
 
-      {/* Filter panel options */}
-      <Box sx={{ display: "flex", gap: 1.2, flexWrap: "wrap", mb: 4 }}>
-        {["All", "Hiring", "Interviews"].map((filter) => (
           <Button
-            key={filter}
+            fullWidth={{ xs: true, sm: false }}
             variant="outlined"
-            size="small"
-            onClick={() => setActiveFilter(filter)}
+            onClick={handleMarkAllRead}
+            startIcon={<ListChecks size={11} />}
             sx={{
-              borderRadius: "12px",
-              textTransform: "none",
+              width: { xs: "100%", sm: "auto" },
+              py: {xs: 1, md: 1.2 },
+              px: { xs: 2, md: 2.5},
+              fontSize: { xs: ".78rem", md: ".85rem" },
               fontWeight: 700,
-              minWidth: {
-                xs: 80,
-                md: 95
-              },
-
-              fontSize: {
-                xs: ".74rem",
-                md: ".82rem"
-              },
-
-              px: {
-                xs: 1.5,
-                md: 2.2
-              },
-
-              py: {
-                xs: .55,
-                md: .7,
-              },
-              color: activeFilter === filter ? "#fff" : subText,
-              borderColor: activeFilter === filter ? primary : borderStyle,
-              bgcolor: activeFilter === filter ? primary : "transparent",
-              boxShadow: activeFilter === filter ? `0 4px 10px ${primary}33` : "none",
+              textTransform: "none",
+              borderRadius: "10px",
+              color: subText,
+              borderColor: borderStyle,
               "&:hover": {
                 borderColor: primary,
-                bgcolor: activeFilter === filter ? primary : `${primary}08`,
-              }
+                color: primary,
+                bgcolor: `${primary}08`,
+              },
             }}
           >
-            {filter}
+            Mark all as read
           </Button>
-        ))}
-      </Box>
+        </Box>
+
+        {/* Filter panel options */}
+        <Box sx={{ display: "flex", gap: 1.2, flexWrap: "wrap", mb: 4 }}>
+          {["All", "Hiring", "Interviews"].map((filter) => (
+            <Button
+              key={filter}
+              variant="outlined"
+              size="small"
+              onClick={() => setActiveFilter(filter)}
+              sx={{
+                mb: -3,
+                borderRadius: "12px",
+                textTransform: "none",
+                fontWeight: 700,
+                minWidth: { xs: 80, md: 95 },
+                fontSize: { xs: ".74rem", md: ".82rem" },
+                px: { xs: 1.5, md: 2.2 },
+                py: { xs: .55, md: .7 },
+                color: activeFilter === filter ? "#fff" : subText,
+                borderColor: activeFilter === filter ? primary : borderStyle,
+                bgcolor: activeFilter === filter ? primary : "transparent",
+                boxShadow: activeFilter === filter ? `0 4px 10px ${primary}33` : "none",
+                "&:hover": {
+                  borderColor: primary,
+                  bgcolor: activeFilter === filter ? primary : `${primary}08`,
+                }
+              }}
+            >
+              {filter}
+            </Button>
+          ))}
+        </Box>
+      </Paper>
 
       {/* Stacked Cards Feed */}
       <Box

@@ -552,10 +552,10 @@ export default function CandidateDashboard() {
                   fontWeight: 700,
                   textTransform: "none",
                   fontSize: "0.88rem",
-                  background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+                  background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
                   boxShadow: `0 4px 12px ${primary}33`,
                   "&:hover": {
-                    background: `linear-gradient(90deg, ${primary}, ${primary})`,
+                    background: `linear-gradient(135deg, ${primary}, ${primary})`,
                     boxShadow: `0 10px 22px ${primary}59`,
                     transform: "translateY(-1px)",
                   }

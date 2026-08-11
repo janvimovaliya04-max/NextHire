@@ -49,9 +49,9 @@ export default function InterviewerDashboard() {
     "Feedback Pending": {
       icon: <ClipboardCheck size={20} />,
       link: "/feedback",
-      color: "#ef4444",
-      bgLight: "rgba(239,68,68,.08)",
-      bgDark: "rgba(239,68,68,.15)",
+      color: primary,
+      bgLight: `${secondary || primary}14`,
+      bgDark: `${secondary || primary}26`,
     },
     "Completed Evaluations": {
       icon: <ChartBar size={20} />,
@@ -72,7 +72,7 @@ export default function InterviewerDashboard() {
     {
       title: "Submit Feedback",
       link: "/feedback",
-      color: secondary || primary,
+      color: primary,
     },
 
     {
@@ -404,7 +404,7 @@ export default function InterviewerDashboard() {
                     textTransform: "none",
                     fontWeight: "bold",
                     px: 2.5,
-                    background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+                    background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
 
                     transition: "all .25s ease",
 
@@ -412,7 +412,7 @@ export default function InterviewerDashboard() {
                       transform: "translateY(-2px)",
 
                       filter: "brightness(1.03)",
-                      background: `linear-gradient(90deg, ${primary}, ${primary})`
+                      background: `linear-gradient(135deg, ${primary}, ${primary})`
                     },
 
                   }}

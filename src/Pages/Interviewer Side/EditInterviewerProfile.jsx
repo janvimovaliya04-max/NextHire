@@ -346,7 +346,7 @@ export default function EditInterviewerProfile() {
 
               "&:hover": {
 
-                background: `linear-gradient(90deg, ${primary}, ${primary})`,
+                background: `linear-gradient(135deg, ${primary}, ${primary})`,
 
                 transform: "translateY(-1px)",
 

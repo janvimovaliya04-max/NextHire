@@ -166,9 +166,9 @@ export default function InterviewerLayout({ children }) {
             <Typography
               sx={{
                 fontWeight: 800,
-                fontSize: "1.40rem",
+                fontSize: "1.41rem",
                 lineHeight: 1.1,
-                color: primary,
+                color: textColor,
               }}
             >
               Interviewer Space
@@ -391,7 +391,7 @@ export default function InterviewerLayout({ children }) {
               to="/interviewer-profile"
               className="text-white px-4 py-2 text-sm font-semibold rounded-xl transition shadow-md"
               style={{
-                background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+                background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
               }}
             >
               <span className="hidden sm:block">

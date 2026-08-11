@@ -375,10 +375,10 @@ export default function AddRecruiter() {
                                     fontWeight: 700,
                                     textTransform: "none",
                                     fontSize: ".9rem",
-                                    background: `linear-gradient(90deg, ${primary}, ${primary}cc)`,
+                                    background: `linear-gradient(135deg, ${primary}, ${primary}cc)`,
                                     boxShadow: "0 4px 12px rgba(37,99,235,.2)",
                                     "&:hover": {
-                                        background: `linear-gradient(90deg, ${primary}cc, ${primary}aa)`,
+                                        background: `linear-gradient(135deg, ${primary}cc, ${primary}aa)`,
                                         boxShadow: "0 6px 16px rgba(37,99,235,.3)",
                                     },
                                 }}

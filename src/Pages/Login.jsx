@@ -29,8 +29,8 @@ export default function Login() {
       case "hr":
         return {
           accent: "#2563eb",
-          gradient: "linear-gradient(90deg, #2563eb, #3b82f6)",
-          hoverGradient: "linear-gradient(90deg, #1d4ed8, #2563eb)",
+          gradient: "linear-gradient(135deg, #2563eb, #3b82f6)",
+          hoverGradient: "linear-gradient(135deg, #1d4ed8, #2563eb)",
           glow: "radial-gradient(circle, rgba(37,99,235,0.12) 0%, rgba(37,99,235,0) 70%)",
           chipBg: darkMode ? "rgba(37, 99, 235, 0.15)" : "#eff6ff",
           chipText: "#2563eb",
@@ -38,8 +38,8 @@ export default function Login() {
       case "candidate":
         return {
           accent: "#10b981",
-          gradient: "linear-gradient(90deg, #10b981, #34d399)",
-          hoverGradient: "linear-gradient(90deg, #059669, #10b981)",
+          gradient: "linear-gradient(135deg, #10b981, #34d399)",
+          hoverGradient: "linear-gradient(135deg, #059669, #10b981)",
           glow: "radial-gradient(circle, rgba(16,185,129,0.12) 0%, rgba(16,185,129,0) 70%)",
           chipBg: darkMode ? "rgba(16, 185, 129, 0.15)" : "#ecfdf5",
           chipText: "#10b981",
@@ -47,8 +47,8 @@ export default function Login() {
       case "interviewer":
         return {
           accent: "#8b5cf6",
-          gradient: "linear-gradient(90deg, #8b5cf6, #c084fc)",
-          hoverGradient: "linear-gradient(90deg, #7c3aed, #8b5cf6)",
+          gradient: "linear-gradient(135deg, #8b5cf6, #c084fc)",
+          hoverGradient: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
           glow: "radial-gradient(circle, rgba(139,92,246,0.12) 0%, rgba(139,92,246,0) 70%)",
           chipBg: darkMode ? "rgba(139, 92, 246, 0.15)" : "#f5f3ff",
           chipText: "#8b5cf6",
@@ -56,8 +56,8 @@ export default function Login() {
       default:
         return {
           accent: "#2563eb",
-          gradient: "linear-gradient(90deg, #2563eb, #7c3aed)",
-          hoverGradient: "linear-gradient(90deg, #1d4ed8, #6d28d9)",
+          gradient: "linear-gradient(135deg, #2563eb, #7c3aed)",
+          hoverGradient: "linear-gradient(135deg, #1d4ed8, #6d28d9)",
           glow: "radial-gradient(circle, rgba(37,99,235,0.12) 0%, rgba(37,99,235,0) 70%)",
           chipBg: darkMode ? "rgba(37, 99, 235, 0.15)" : "#eff6ff",
           chipText: "#2563eb",

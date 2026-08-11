@@ -208,7 +208,7 @@ export default function InterviewerProfile() {
               to="/edit-interviewer-profile"
               variant="contained"
               sx={{
-                background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+                background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
                 borderRadius: 3,
                 textTransform: "none",
                 fontWeight: "bold",
@@ -217,7 +217,7 @@ export default function InterviewerProfile() {
                 boxShadow: `0 4px 12px ${primary}33`,
 
                 "&:hover": {
-                  background: `linear-gradient(90deg, ${primary}, ${primary})`,
+                  background: `linear-gradient(135deg, ${primary}, ${primary})`,
 
                   transform: "translateY(-2px)",
 

@@ -461,10 +461,10 @@ export default function Assessment() {
                 sm: ".86rem",
                 md: ".92rem",
               },
-              background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+              background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
               boxShadow: `0 4px 12px ${primary}33`,
               "&:hover": {
-                background: `linear-gradient(90deg, ${primary}, ${primary})`,
+                background: `linear-gradient(135deg, ${primary}, ${primary})`,
                 boxShadow: `0 10px 22px ${primary}59`,
                 transform: "translateY(-2px)",
               }

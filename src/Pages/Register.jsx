@@ -40,28 +40,28 @@ export default function Register() {
         return {
           accent: "#2563eb",
           gradient: "linear-gradient(135deg, #2563eb, #3b82f6)",
-          hoverGradient: "linear-gradient(90deg, #1d4ed8, #2563eb)",
+          hoverGradient: "linear-gradient(135deg, #1d4ed8, #2563eb)",
           glow: "radial-gradient(circle, rgba(37,99,235,0.12) 0%, rgba(37,99,235,0) 70%)",
         };
       case "candidate":
         return {
           accent: "#10b981",
           gradient: "linear-gradient(135deg, #10b981, #34d399)",
-          hoverGradient: "linear-gradient(90deg, #059669, #10b981)",
+          hoverGradient: "linear-gradient(135deg, #059669, #10b981)",
           glow: "radial-gradient(circle, rgba(16,185,129,0.12) 0%, rgba(16,185,129,0) 70%)",
         };
       case "interviewer":
         return {
           accent: "#8b5cf6",
           gradient: "linear-gradient(135deg, #8b5cf6, #c084fc)",
-          hoverGradient: "linear-gradient(90deg, #7c3aed, #8b5cf6)",
+          hoverGradient: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
           glow: "radial-gradient(circle, rgba(139,92,246,0.12) 0%, rgba(139,92,246,0) 70%)",
         };
       default:
         return {
           accent: "#2563eb",
           gradient: "linear-gradient(135deg, #2563eb, #7c3aed)",
-          hoverGradient: "linear-gradient(90deg, #1d4ed8, #6d28d9)",
+          hoverGradient: "linear-gradient(135deg, #1d4ed8, #6d28d9)",
           glow: "radial-gradient(circle, rgba(37,99,235,0.12) 0%, rgba(37,99,235,0) 70%)",
         };
     }

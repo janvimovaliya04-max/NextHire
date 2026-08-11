@@ -1,6 +1,13 @@
 import candidatesData from "../../data/candidates.json";
-import { useSearchParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import {
+  useReactTable,
+  getCoreRowModel,
+  getSortedRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  flexRender,
+} from "@tanstack/react-table";
 import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
 import { Link } from "react-router-dom";
@@ -18,7 +25,18 @@ import {
   Chip,
   Avatar,
   Box,
+  IconButton,
+  Checkbox,
+  Tooltip,
 } from "@mui/material";
+
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
+import FirstPageIcon from "@mui/icons-material/FirstPage";
+import LastPageIcon from "@mui/icons-material/LastPage";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 import {
   Search,
@@ -35,83 +53,124 @@ export default function Candidates() {
   const subText = colors.subText;
   const borderStyle = colors.border;
 
-  const [search, setSearch] = useState("");
-
   // Filtering Logic
   const [activeFilter, setActiveFilter] = useState("All");
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [globalFilter, setGlobalFilter] = useState("");
+  const [sorting, setSorting] = useState([]);
+  const [rowSelection, setRowSelection] = useState({});
+  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 20 });
+  const candidates = candidatesData;
 
-  const pageFromUrl =
-    Number(searchParams.get("page")) || 1;
-  const [candidates, setCandidates] = useState(candidatesData);
+  const filteredByStatus = useMemo(() =>
+    candidates.filter((c) => activeFilter === "All" || c.status === activeFilter),
+    [candidates, activeFilter]
+  );
 
-  const candidatesPerPage = 20;
+  const columns = useMemo(() => [
+    {
+      id: "select",
+      header: ({ table }) => (
+        <Checkbox
+          size="small"
+          checked={table.getIsAllPageRowsSelected()}
+          indeterminate={table.getIsSomePageRowsSelected()}
+          onChange={table.getToggleAllPageRowsSelectedHandler()}
+          sx={{ color: subText, "&.Mui-checked": { color: primary } }}
+        />
+      ),
+      cell: ({ row }) => (
+        <Checkbox
+          size="small"
+          checked={row.getIsSelected()}
+          onChange={row.getToggleSelectedHandler()}
+          sx={{ color: subText, "&.Mui-checked": { color: primary } }}
+        />
+      ),
+      enableSorting: false,
+      size: 40,
+    },
+    {
+      accessorKey: "fullName",
+      header: "Candidate",
+      cell: ({ row }) => (
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2.5 }}>
+          <Avatar sx={{ bgcolor: row.original.avatarBg, color: "#fff", fontWeight: 700, fontSize: "0.9rem", width: 40, height: 40, boxShadow: `0 10px 22px ${row.original.avatarBg}40` }}>
+            {row.original.fullName.split(" ").map((n) => n[0]).join("").slice(0, 2)}
+          </Avatar>
+          <Box>
+            <Typography sx={{ color: textColor, fontWeight: 700, fontSize: "0.95rem" }}>
+              {row.original.fullName}
+            </Typography>
+            <Typography sx={{ color: subText, fontSize: "0.8rem" }}>
+              {row.original.candidateId} • {row.original.experience} Years
+            </Typography>
+          </Box>
+        </Box>
+      ),
+    },
+    {
+      accessorKey: "email",
+      header: "Email Address",
+      cell: ({ getValue }) => (
+        <Typography sx={{ fontSize: "0.88rem", color: textColor }}>{getValue()}</Typography>
+      ),
+    },
+    {
+      accessorKey: "position",
+      header: "Applied Role",
+      cell: ({ getValue }) => (
+        <Typography sx={{ color: textColor, fontWeight: 600, fontSize: "0.9rem" }}>{getValue()}</Typography>
+      ),
+    },
+    {
+      accessorKey: "status",
+      header: "Availability Status",
+      cell: ({ getValue }) => getStatusChip(getValue()),
+    },
+    {
+      id: "actions",
+      header: "Action Panel",
+      enableSorting: false,
+      cell: ({ row }) => (
+        <Button
+          component={Link}
+          to="/candidate-profile-v"
+          state={{ applicant: row.original }}
+          fullWidth
+          variant="contained"
+          sx={{
+            py: { xs: 0.8, sm: 1.1 },
+            px: { xs: 1.2, sm: 2 },
+            minHeight: 42,
+            fontSize: { xs: ".75rem", sm: ".85rem" },
+            fontWeight: 700,
+            whiteSpace: "nowrap",
+            borderRadius: "10px",
+            textTransform: "none",
+            background: `linear-gradient(135deg,${primary},${primary})`,
+            boxShadow: `0 10px 20px ${primary}20`,
+            "&:hover": { transform: "translateY(-2px)" },
+          }}
+        >
+          View Details
+        </Button>
+      ),
+    },
+  ], [primary, textColor, subText]);
 
-  const filteredCandidates = candidates.filter((candidate) => {
-    const matchesStatus =
-      activeFilter === "All" || candidate.status === activeFilter;
-
-    const matchesSearch =
-      candidate.fullName.toLowerCase().includes(search.toLowerCase()) ||
-      candidate.email.toLowerCase().includes(search.toLowerCase()) ||
-      candidate.position.toLowerCase().includes(search.toLowerCase());
-
-    return matchesStatus && matchesSearch;
+  const table = useReactTable({
+    data: filteredByStatus,
+    columns,
+    state: { sorting, globalFilter, rowSelection, pagination },
+    onSortingChange: setSorting,
+    onGlobalFilterChange: setGlobalFilter,
+    onRowSelectionChange: setRowSelection,
+    onPaginationChange: setPagination,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
   });
-
-  // Pagination Logic //
-  const totalPages = Math.ceil(
-    filteredCandidates.length / candidatesPerPage
-  );
-
-  const currentPage = Math.min(
-    Math.max(1, pageFromUrl),
-    Math.max(totalPages, 1)
-  );
-
-  const indexOfLastCandidate =
-    currentPage * candidatesPerPage;
-
-  const indexOfFirstCandidate =
-    indexOfLastCandidate - candidatesPerPage;
-
-  const currentCandidates = filteredCandidates.slice(
-    indexOfFirstCandidate,
-    indexOfLastCandidate
-  );
-
-  const getVisiblePages = () => {
-    const pages = [];
-
-    if (totalPages <= 5) {
-      for (let i = 1; i <= totalPages; i++) {
-        pages.push(i);
-      }
-      return pages;
-    }
-
-    pages.push(1);
-
-    if (currentPage > 3) {
-      pages.push("...");
-    }
-
-    const start = Math.max(2, currentPage - 1);
-    const end = Math.min(totalPages - 1, currentPage + 1);
-
-    for (let i = start; i <= end; i++) {
-      pages.push(i);
-    }
-
-    if (currentPage < totalPages - 2) {
-      pages.push("...");
-    }
-
-    pages.push(totalPages);
-
-    return pages;
-  };
-
 
   // Dynamic Status Chip styling
   const getStatusChip = (status) => {
@@ -228,32 +287,38 @@ export default function Candidates() {
 
   return (
     <HRLayout>
-      <Box
+      {/* Title + Search */}
+      <Paper
+        elevation={0}
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 2,
-          mb: 2,
-          flexShrink: 0,
+          position: "relative",
+          top: 0,
+          zIndex: 20,
+          p: { xs: 2, md: 3 },
+          mb: 1,
+          borderRadius: "20px",
+          bgcolor: colors.card,
+          border: `1px solid ${borderStyle}`,
+          boxShadow: colors.shadow,
         }}
       >
-        {/* Title + Search */}
         <Box
           sx={{
             display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            alignItems: { xs: "stretch", md: "center" },
             justifyContent: "space-between",
-            alignItems: "center",
-            flexWrap: "wrap",
             gap: 2,
+            mb: 3
           }}
         >
           <Typography
             sx={{
-                fontSize: { xs: "1.35rem", sm: "1.7rem", md: "2rem", lg: "2.2rem" },
-                mb: { xs: 0, md: 0.5 },
-                fontWeight: 850,
-                letterSpacing: "-0.03em",
-              }}
+              fontSize: { xs: "1.35rem", sm: "1.7rem", md: "2rem", lg: "2.2rem" },
+              mb: { xs: 0, md: 0.5 },
+              fontWeight: 850,
+              letterSpacing: "-0.03em",
+            }}
           >
             Talent Pool Directory
           </Typography>
@@ -284,11 +349,8 @@ export default function Candidates() {
             <input
               type="text"
               placeholder="Search candidates..."
-              value={search}
-              onChange={(e) => {
-                setSearch(e.target.value);
-                setSearchParams({ page: 1 });
-              }}
+              value={globalFilter}
+              onChange={(e) => setGlobalFilter(e.target.value)}
               style={{
                 width: "100%",
                 padding: "12px",
@@ -328,10 +390,7 @@ export default function Candidates() {
           ].map((filter) => (
             <Button
               key={filter}
-              onClick={() => {
-                setActiveFilter(filter);
-                setSearchParams({ page: 1 });
-              }}
+              onClick={() => setActiveFilter(filter)}
               variant="outlined"
               size="small"
               sx={{
@@ -368,7 +427,7 @@ export default function Candidates() {
             </Button>
           ))}
         </Box>
-      </Box>
+      </Paper>
 
       {/* Premium Glassmorphic Table Card */}
       <Paper
@@ -432,349 +491,226 @@ export default function Candidates() {
           >
             <TableHead sx={{
               "& .MuiTableCell-root": {
-                fontSize: {
-                  xs: ".9rem",
-                  md: "0.88rem",
-                },
+                fontSize: { xs: ".9rem", md: "0.88rem" },
                 fontWeight: 700,
                 bgcolor: colors.background,
               },
-            }}
-            >
-              <TableRow
-                sx={{
-                  bgcolor: colors.background,
-                  borderBottom: `1px solid ${borderStyle}`,
-                }}
-              >
-                <TableCell align="center" sx={{ color: textColor, fontWeight: 700, fontSize: "1rem", borderBottom: `1px solid ${borderStyle}` }}>
-                  Candidate
-                </TableCell>
-                <TableCell sx={{ color: textColor, fontWeight: 700, fontSize: "1rem", borderBottom: `1px solid ${borderStyle}` }}>
-                  Email Address
-                </TableCell>
-                <TableCell sx={{ color: textColor, fontWeight: 700, fontSize: "1rem", borderBottom: `1px solid ${borderStyle}` }}>
-                  Applied Role
-                </TableCell>
-                <TableCell sx={{ color: textColor, fontWeight: 700, fontSize: "1rem", borderBottom: `1px solid ${borderStyle}` }}>
-                  Availability Status
-                </TableCell>
-                <TableCell align="center" sx={{ color: textColor, fontWeight: 700, fontSize: "1rem", borderBottom: `1px solid ${borderStyle}`, pr: 4 }}>
-                  Action Panel
-                </TableCell>
-              </TableRow>
+            }}>
+              {table.getHeaderGroups().map((headerGroup) => (
+                <TableRow
+                  key={headerGroup.id}
+                  sx={{
+                    height: { xs: 60, md: 82 },
+                    bgcolor: colors.background,
+                    borderBottom: `1px solid ${borderStyle}`,
+                  }}
+                >
+                  {headerGroup.headers.map((header) => (
+                    <TableCell
+                      key={header.id}
+                      align="center"
+                      sx={{
+                        color: textColor,
+                        fontWeight: 700,
+                        fontSize: { xs: ".8rem", md: ".95rem" },
+                        borderBottom: `1px solid ${borderStyle}`,
+                        cursor: header.column.getCanSort() ? "pointer" : "default",
+                        userSelect: "none",
+                        whiteSpace: "nowrap",
+                      }}
+                      onClick={header.column.getToggleSortingHandler()}
+                    >
+                      <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 0.5 }}>
+                        {flexRender(header.column.columnDef.header, header.getContext())}
+
+                      </Box>
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))}
             </TableHead>
 
-            <TableBody
-              sx={{
-                "& .MuiTableCell-root": {
-                  fontSize: {
-                    xs: "0.74rem",
-                    md: "0.82rem",
-                  },
-                  py: 1,
-                },
-              }}
-            >
-              {currentCandidates.length > 0 ? (
-                currentCandidates.map((candidate) => (
+            <TableBody>
+              {table.getRowModel().rows.length > 0 ? (
+                table.getRowModel().rows.map((row) => (
                   <TableRow
-                    key={candidate.candidateId}
+                    key={row.id}
+                    selected={row.getIsSelected()}
                     sx={{
                       borderBottom: `1px solid ${borderStyle}`,
                       transition: "all 0.2s ease",
+                      bgcolor: row.getIsSelected() ? `${primary}10` : "transparent",
                       "&:hover": {
                         bgcolor: `${primary}08`,
-                        cursor: "pointer",
                       },
                     }}
                   >
-                    {/* Candidate Name & Avatar */}
-                    <TableCell sx={{ borderBottom: `1px solid ${borderStyle}` }}>
-                      <Box sx={{ display: "flex", alignItems: "center", gap: 2.5 }}>
-                        <Avatar sx={{ bgcolor: candidate.avatarBg, color: "#fff", fontWeight: 700, fontSize: "0.9rem", width: 40, height: 40, boxShadow: `0 10px 22px ${candidate.avatarBg}40` }}>
-                          {candidate.fullName
-                            .split(" ")
-                            .map((name) => name[0])
-                            .join("")
-                            .slice(0, 2)}
-                        </Avatar>
-                        <Box>
-                          <Typography sx={{ color: textColor, fontWeight: 700, fontSize: "0.95rem" }}>
-                            {candidate.fullName}
-                          </Typography>
-                          <Typography
-                            sx={{
-                              color: subText,
-                              fontSize: "0.8rem",
-                            }}
-                          >
-                            {candidate.candidateId} • {candidate.experience} Years
-                          </Typography>
-                        </Box>
-                      </Box>
-                    </TableCell>
-
-                    {/* Email */}
-                    <TableCell sx={{ borderBottom: `1px solid ${borderStyle}`, fontSize: "0.88rem", color: textColor }}>
-                      {candidate.email}
-                    </TableCell>
-
-                    {/* Role */}
-                    <TableCell sx={{ color: textColor, borderBottom: `1px solid ${borderStyle}`, fontWeight: 600, fontSize: "0.9rem" }}>
-                      {candidate.position}
-                    </TableCell>
-
-                    {/* Status Chip */}
-                    <TableCell sx={{ borderBottom: `1px solid ${borderStyle}` }}>
-                      {getStatusChip(candidate.status)}
-                    </TableCell>
-
-                    {/* Profile View Trigger - Passing State */}
-                    <TableCell align="right" sx={{ borderBottom: `1px solid ${borderStyle}`, pr: 4 }}>
-                      <Button
-                        component={Link}
-                        to="/candidate-profile-v"
-                        state={{ applicant: candidate }} // <-- Passes candidate state to Profile
-                        fullWidth
-                        variant="contained"
-                        sx={{
-                          py: {
-                            xs: 0.8,
-                            sm: 1.1,
-                          },
-                          px: {
-                            xs: 1.2,
-                            sm: 2,
-                          },
-                          minHeight: 42,
-                          fontSize: {
-                            xs: ".75rem",
-                            sm: ".85rem",
-                          },
-                          fontWeight: 700,
-                          whiteSpace: "nowrap",     // Prevents wrapping
-                          borderRadius: "10px",
-                          textTransform: "none",
-                          background: `linear-gradient(90deg,${primary},${primary})`,
-                          boxShadow: `0 10px 20px ${primary}20`,
-                          "&:hover": {
-                            transform: "translateY(-2px)",
-                          },
-                        }}
+                    {row.getVisibleCells().map((cell) => (
+                      <TableCell
+                        key={cell.id}
+                        align="center"
+                        sx={{ borderBottom: `1px solid ${borderStyle}` }}
                       >
-                        View Details
-                      </Button>
-                    </TableCell>
+                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      </TableCell>
+                    ))}
                   </TableRow>
                 ))
-
               ) : (
                 <TableRow>
-                  <TableCell colSpan={5} align="center" sx={{ py: 6, color: subText }}>
+                  <TableCell
+                    colSpan={columns.length}
+                    align="center"
+                    sx={{ py: { xs: 4, md: 6 }, color: subText, fontSize: { xs: ".85rem", md: "1rem" } }}
+                  >
                     No candidates found matching the selected availability filter.
                   </TableCell>
                 </TableRow>
               )}
+
             </TableBody>
           </Table>
         </TableContainer>
 
-        {/* Footer info & Pagination */}
+        {/* TanStack Pagination */}
         <Box
           sx={{
-            p: {
-              xs: 1.5,
-              md: 2.5
-            },
             display: "flex",
-            flexDirection: {
-              xs: "column",
-              md: "row",
-            },
-            gap: {
-              xs: 1.5,
-              md: 2
-            },
+            alignItems: "center",
             justifyContent: "space-between",
-            alignItems: {
-              xs: "flex-start",
-              md: "center",
-            },
+            flexWrap: "wrap",
+            gap: 1,
+            pt: 2,
             borderTop: `1px solid ${borderStyle}`,
-            bgcolor: colors.background,
           }}
         >
-          <Typography
-            sx={{
-              color: subText,
-              fontSize: "0.82rem",
-            }}
-          >
-            Page {currentPage} of {totalPages || 1} • Showing{" "}
-            <strong>
-              {filteredCandidates.length === 0
-                ? 0
-                : indexOfFirstCandidate + 1}
-              -
-              {Math.min(indexOfLastCandidate, filteredCandidates.length)}
-            </strong>{" "}
-            of{" "}
-            <strong>{filteredCandidates.length}</strong>{" "}
-            candidates
+          {/* Row selection info */}
+          <Typography sx={{ fontSize: ".82rem", color: subText }}>
+            {Object.keys(rowSelection).length > 0
+              ? `${Object.keys(rowSelection).length} of ${table.getFilteredRowModel().rows.length} row(s) selected`
+              : `Total: ${table.getFilteredRowModel().rows.length} jobs`}
           </Typography>
 
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: {
-                xs: "center",
-                md: "flex-end",
-              },
-              flexWrap: {
-                xs: "nowrap",
-                md: "wrap",
-              },
-              overflowX: {
-                xs: "auto",
-                md: "visible",
-              },
-              width: {
-                xs: "100%",
-                md: "auto",
-              },
-              gap: 0.5,
-              pb: {
-                xs: 0.5,
-                md: 0,
-              },
-
-              "&::-webkit-scrollbar": {
-                display: "none",
-              },
-              scrollbarWidth: "none",
-            }}
-          >
-
-            <Button
-              size="small"
-              sx={{
-                minWidth: {
-                  xs: 30,
-                  md: 35,
-                },
-                height: {
-                  xs: 30,
-                  md: 35,
-                },
-                fontSize: {
-                  xs: ".75rem",
-                  md: ".9rem",
-                },
-                color: textColor,
-              }}
-              disabled={currentPage === 1}
-              onClick={() =>
-                setSearchParams({
-                  page: String(Math.max(1, currentPage - 1)),
-                })
-              }
-            >
-              <ChevronLeft />
-            </Button>
-
-
-            {getVisiblePages().map((page, index) =>
-              page === "..." ? (
-                <Typography
-                  key={index}
-                  sx={{
-                    px: 1,
-                    color: textColor,
-                    fontWeight: 700,
-                  }}
-                >
-                  ...
-                </Typography>
-              ) : (
-                <Button
-                  key={`${page}-${index}`}
+          {/* Pagination controls */}
+          <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+            <Tooltip title="First page">
+              <span>
+                <IconButton
                   size="small"
-                  onClick={() => {
-                    if (page !== "...") {
-                      setSearchParams({
-                        page: String(page),
-                      });
-                    }
-                  }}
-                  variant={Number(currentPage) === Number(page) ? "contained" : "text"}
-                  sx={{
-                    minWidth: {
-                      xs: "30px",
-                      md: "35px"
-                    },
-
-                    height: {
-                      xs: 30,
-                      md: 35
-                    },
-
-                    fontSize: {
-                      xs: ".75rem",
-                      md: ".9rem"
-                    },
-                    bgcolor: Number(currentPage) === Number(page) ? primary : "transparent",
-                    color:
-                      Number(currentPage) === Number(page)
-                        ? "#fff"
-                        : textColor,
-                    "&:hover": {
-                      bgcolor:
-                        Number(currentPage) === Number(page)
-                          ? primary
-                          : `${primary}08`,
-                    },
-                  }}
+                  onClick={() => table.setPageIndex(0)}
+                  disabled={!table.getCanPreviousPage()}
+                  sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
                 >
-                  {page}
-                </Button>
+                  <FirstPageIcon fontSize="small" />
+                </IconButton>
+              </span>
+            </Tooltip>
+
+            <Tooltip title="Previous page">
+              <span>
+                <IconButton
+                  size="small"
+                  onClick={() => table.previousPage()}
+                  disabled={!table.getCanPreviousPage()}
+                  sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
+                >
+                  <ChevronLeftIcon fontSize="small" />
+                </IconButton>
+              </span>
+            </Tooltip>
+
+            {/* Page number buttons */}
+            {Array.from({ length: table.getPageCount() }, (_, i) => i)
+              .filter((i) =>
+                i === 0 ||
+                i === table.getPageCount() - 1 ||
+                Math.abs(i - table.getState().pagination.pageIndex) <= 1
               )
-            )}
+              .reduce((acc, i, idx, arr) => {
+                if (idx > 0 && i - arr[idx - 1] > 1) {
+                  acc.push("...");
+                }
+                acc.push(i);
+                return acc;
+              }, [])
+              .map((item, idx) =>
+                item === "..." ? (
+                  <Typography key={`dots-${idx}`} sx={{ px: 1, color: subText }}>...</Typography>
+                ) : (
+                  <IconButton
+                    key={item}
+                    size="small"
+                    onClick={() => table.setPageIndex(item)}
+                    sx={{
+                      minWidth: 32,
+                      height: 32,
+                      borderRadius: 1.5,
+                      fontSize: ".82rem",
+                      fontWeight: 700,
+                      bgcolor: table.getState().pagination.pageIndex === item ? primary : "transparent",
+                      color: table.getState().pagination.pageIndex === item ? "#fff" : textColor,
+                      border: `1px solid ${table.getState().pagination.pageIndex === item ? primary : borderStyle}`,
+                      "&:hover": {
+                        bgcolor: table.getState().pagination.pageIndex === item ? `${primary}dd` : `${primary}15`,
+                      },
+                    }}
+                  >
+                    {item + 1}
+                  </IconButton>
+                )
+              )}
 
+            <Tooltip title="Next page">
+              <span>
+                <IconButton
+                  size="small"
+                  onClick={() => table.nextPage()}
+                  disabled={!table.getCanNextPage()}
+                  sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
+                >
+                  <ChevronRightIcon fontSize="small" />
+                </IconButton>
+              </span>
+            </Tooltip>
 
-            <Button
-              size="small"
-              sx={{
-                minWidth: {
-                  xs: 30,
-                  md: 35,
-                },
-                height: {
-                  xs: 30,
-                  md: 35,
-                },
-                fontSize: {
-                  xs: ".75rem",
-                  md: ".9rem",
-                },
-                color: textColor,
-              }}
-              disabled={currentPage === totalPages}
-              onClick={() =>
-                setSearchParams({
-                  page: String(
-                    Math.min(currentPage + 1, totalPages)
-                  ),
-                })
-              }
-            >
-              <ChevronRight />
-            </Button>
-
+            <Tooltip title="Last page">
+              <span>
+                <IconButton
+                  size="small"
+                  onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+                  disabled={!table.getCanNextPage()}
+                  sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
+                >
+                  <LastPageIcon fontSize="small" />
+                </IconButton>
+              </span>
+            </Tooltip>
           </Box>
 
+          {/* Page size selector */}
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <Typography sx={{ fontSize: ".82rem", color: subText }}>Rows per page:</Typography>
+            <select
+              value={pagination.pageSize}
+              onChange={(e) => table.setPageSize(Number(e.target.value))}
+              style={{
+                background: colors.input,
+                color: textColor,
+                border: `1px solid ${borderStyle}`,
+                borderRadius: 6,
+                padding: "4px 8px",
+                fontSize: ".82rem",
+                cursor: "pointer",
+                outline: "none",
+              }}
+            >
+              {[5, 10, 20, 50].map((size) => (
+                <option key={size} value={size}>{size}</option>
+              ))}
+            </select>
+          </Box>
         </Box>
+
       </Paper>
     </HRLayout>
   );

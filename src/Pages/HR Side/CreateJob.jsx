@@ -488,10 +488,10 @@ export default function CreateJob() {
                 borderRadius: "10px",
                 fontWeight: 700,
                 textTransform: "none",
-                background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+                background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
                 boxShadow: `0 4px 12px ${primary}33`,
                 "&:hover": {
-                  background: `linear-gradient(90deg, ${primary}, ${primary})`,
+                  background: `linear-gradient(135deg, ${primary}, ${primary})`,
                   boxShadow: `0 6px 16px ${primary}4d`,
                 }
               }}

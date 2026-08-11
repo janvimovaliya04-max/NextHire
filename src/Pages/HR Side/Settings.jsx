@@ -177,12 +177,12 @@ export default function Settings() {
     textTransform: "none",
     fontWeight: 700,
     background:
-      "linear-gradient(90deg,#2563EB,#3B82F6)",
+      "linear-gradient(135deg,#2563EB,#3B82F6)",
     boxShadow:
       "0 10px 20px rgba(37,99,235,.20)",
     "&:hover": {
       background:
-        "linear-gradient(90deg,#1D4ED8,#2563EB)",
+        "linear-gradient(135deg,#1D4ED8,#2563EB)",
       transform: "translateY(-2px)",
     },
   };
