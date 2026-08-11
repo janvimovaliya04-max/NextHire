@@ -14,10 +14,10 @@ import {
 import Grid from "@mui/material/Grid";
 
 import {
-  FaUserEdit,
-  FaKey,
-  FaArrowRight,
-} from "react-icons/fa";
+  UserRoundPen,
+  KeyRound,
+  ArrowRight,
+} from "lucide-react";
 
 export default function HRProfile() {
   const { darkMode } = useTheme();
@@ -222,7 +222,7 @@ export default function HRProfile() {
                 component={Link}
                 to="/edit-hr-profile"
                 variant="contained"
-                startIcon={<FaUserEdit size={13} />}
+                startIcon={<UserRoundPen size={13} />}
                 sx={{
                   py: {
                     xs: 1,
@@ -255,7 +255,7 @@ export default function HRProfile() {
 
               <Button
                 variant="outlined"
-                startIcon={<FaKey size={12} />}
+                startIcon={<KeyRound size={12} />}
                 sx={{
                   py: 1.3,
                   px: 3,
@@ -409,7 +409,7 @@ export default function HRProfile() {
             component={Link}
             to="/settings"
             variant="contained"
-            endIcon={<FaArrowRight size={12} />}
+            endIcon={<ArrowRight size={12} />}
             sx={{
               py: {
                 xs: 1.2,

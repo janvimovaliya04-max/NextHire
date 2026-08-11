@@ -1,6 +1,5 @@
 import candidatesData from "../../data/candidates.json";
 import { useSearchParams } from "react-router-dom";
-import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
 import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
@@ -21,7 +20,11 @@ import {
   Box,
 } from "@mui/material";
 
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import {
+  Search,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 
 export default function Candidates() {
 
@@ -276,7 +279,7 @@ export default function Candidates() {
               },
             }}
           >
-            <FaSearch color={subText} />
+            <Search color={subText} />
 
             <input
               type="text"
@@ -678,7 +681,7 @@ export default function Candidates() {
                 })
               }
             >
-              <FaChevronLeft />
+              <ChevronLeft />
             </Button>
 
 
@@ -766,7 +769,7 @@ export default function Candidates() {
                 })
               }
             >
-              <FaChevronRight />
+              <ChevronRight />
             </Button>
 
           </Box>

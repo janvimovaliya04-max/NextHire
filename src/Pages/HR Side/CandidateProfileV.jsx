@@ -17,17 +17,17 @@ import {
 import Grid from "@mui/material/Grid";
 
 import {
-  FaArrowLeft,
-  FaEnvelope,
-  FaPhone,
-  FaMapMarkerAlt,
-  FaBriefcase,
-  FaGraduationCap,
-  FaCheck,
-  FaCalendarAlt,
-  FaFilePdf,
-  FaTimes,
-} from "react-icons/fa";
+  ArrowLeft,
+  Mail,
+  Phone,
+  MapPin,
+  Briefcase,
+  GraduationCap,
+  Check,
+  Calendar,
+  FileText,
+  X,
+} from "lucide-react";
 
 export default function CandidateProfileV() {
   const { darkMode } = useTheme();
@@ -91,7 +91,7 @@ export default function CandidateProfileV() {
       <Box sx={{ mb: { xs: 2, md: 4 }, }}>
         <Button
           onClick={() => navigate(-1)}
-          startIcon={<FaArrowLeft size={12} />}
+          startIcon={<ArrowLeft size={12} />}
           sx={{
             textTransform: "none",
             fontWeight: 700,
@@ -242,7 +242,7 @@ export default function CandidateProfileV() {
                     color: primary,
                   }}
                 >
-                  <FaEnvelope size={14} />
+                  <Mail size={14} />
                 </Box>
 
                 <Typography
@@ -279,7 +279,7 @@ export default function CandidateProfileV() {
                     color: "#34D399",
                   }}
                 >
-                  <FaPhone size={13} />
+                  <Phone size={13} />
                 </Box>
 
                 <Typography
@@ -315,7 +315,7 @@ export default function CandidateProfileV() {
                     color: "#A78BFA",
                   }}
                 >
-                  <FaMapMarkerAlt size={14} />
+                  <MapPin size={14} />
                 </Box>
 
                 <Typography
@@ -340,7 +340,7 @@ export default function CandidateProfileV() {
                   fullWidth
                   variant="contained"
                   onClick={() => toast.success(`${candidate.fullName} shortlisted successfully`)}
-                  startIcon={<FaCheck size={12} />}
+                  startIcon={<Check size={12} />}
                   sx={{
                     py: { xs: 1.2, md: 2 },
                     borderRadius: { xs: "8px", md: "10px" },
@@ -365,7 +365,7 @@ export default function CandidateProfileV() {
                   component={Link}
                   to="/interview-schedule"
                   state={{ candidate }}
-                  startIcon={<FaCalendarAlt size={12} />}
+                  startIcon={<Calendar size={12} />}
                   sx={{
                     py: { xs: 1.2, md: 2 },
                     borderRadius: { xs: "8px", md: "10px" },
@@ -388,7 +388,7 @@ export default function CandidateProfileV() {
                 fullWidth
                 variant="text"
                 onClick={() => toast.success(`${candidate.fullName} rejected`)}
-                startIcon={<FaTimes size={12} />}
+                startIcon={<X size={12} />}
                 sx={{
                   py: { xs: 1.2, md: 2 },
                   borderRadius: "10px",
@@ -442,7 +442,7 @@ export default function CandidateProfileV() {
                   gap: 1.5,
                 }}
               >
-                <FaGraduationCap style={{ color: primary }} size={20} />
+                <GraduationCap style={{ color: primary }} size={20} />
                 Skills & Education
               </Typography>
 
@@ -597,7 +597,7 @@ export default function CandidateProfileV() {
                 }}
               >
                 <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                  <FaFilePdf size={30} style={{ color: "#DC2626" }} />
+                  <FileText size={30} style={{ color: "#DC2626" }} />
                   <Box>
                     <Typography sx={{ color: textColor, fontWeight: 600, fontSize: "0.8rem" }}>
                       {candidate.resume}
@@ -612,7 +612,7 @@ export default function CandidateProfileV() {
                   fullWidth={false}
                   variant="contained"
                   size="small"
-                  startIcon={<FaFilePdf size={12} />}
+                  startIcon={<FileText size={12} />}
                   sx={{
                     width: {
                       xs: "100%",

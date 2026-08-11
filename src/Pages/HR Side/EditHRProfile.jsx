@@ -17,11 +17,11 @@ import {
 import Grid from "@mui/material/Grid";
 
 import {
-  FaArrowLeft,
-  FaUserTie,
-  FaSave,
-  FaTimes,
-} from "react-icons/fa";
+  ArrowLeft,
+  UserRound,
+  Save,
+  X,
+} from "lucide-react";
 
 export default function EditHRProfile() {
   const { darkMode } = useTheme();
@@ -130,7 +130,7 @@ export default function EditHRProfile() {
       >
         <Button
           onClick={() => navigate(-1)}
-          startIcon={<FaArrowLeft size={12} />}
+          startIcon={<ArrowLeft size={12} />}
           sx={{
             textTransform: "none",
             fontWeight: 700,
@@ -288,7 +288,7 @@ export default function EditHRProfile() {
               color: primary,
             }}
           >
-            <FaUserTie size={22} />
+            <UserRound size={22} />
           </Box>
           <Typography
             sx={{
@@ -391,7 +391,7 @@ export default function EditHRProfile() {
             component={Link}
             to="/hr-profile"
             variant="outlined"
-            startIcon={<FaTimes size={12} />}
+            startIcon={<X size={12} />}
             sx={{
               py: {
                 xs: 1.1,
@@ -429,7 +429,7 @@ export default function EditHRProfile() {
           <Button
             variant="contained"
             onClick={handleSave}
-            startIcon={<FaSave size={12} />}
+            startIcon={<Save size={12} />}
             sx={{
               py: {
                 xs: 1.1,

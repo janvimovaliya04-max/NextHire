@@ -19,11 +19,10 @@ import {
 import Grid from "@mui/material/Grid";
 
 import {
-    FaUserTie,
-    FaSave,
-    FaTimes,
-} from "react-icons/fa";
-
+  UserRound,
+  Save,
+  X,
+} from "lucide-react";
 
 export default function AddRecruiter() {
     const { darkMode } = useTheme();
@@ -179,7 +178,7 @@ export default function AddRecruiter() {
                                     color: primary,
                                 }}
                             >
-                                <FaUserTie size={22} />
+                                <UserRound size={22} />
                             </Box>
 
                             <Typography
@@ -348,7 +347,7 @@ export default function AddRecruiter() {
                                 fullWidth={window.innerWidth < 600}
                                 to="/recruiters"
                                 variant="outlined"
-                                startIcon={<FaTimes size={12} />}
+                                startIcon={<X size={12} />}
                                 sx={{
                                     width: { xs: "100%", sm: "auto" },
                                     py: 1.4,
@@ -367,7 +366,7 @@ export default function AddRecruiter() {
                             <Button
                                 type="submit"
                                 variant="contained"
-                                startIcon={<FaSave size={12} />}
+                                startIcon={<Save size={12} />}
                                 sx={{
                                     width: { xs: "100%", sm: "auto" },
                                     py: 1.4,

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-
 import interviewsData from "../../data/interviews.json";
 import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
@@ -22,12 +21,12 @@ import {
 } from "@mui/material";
 
 import {
-  FaPlus,
-  FaUser,
-  FaSearch,
-  FaChevronLeft,
-  FaChevronRight,
-} from "react-icons/fa";
+  Plus,
+  User,
+  Search,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 
 export default function InterviewManagement() {
 
@@ -233,7 +232,7 @@ export default function InterviewManagement() {
                 },
               }}
             >
-              <FaSearch color={subText} />
+              <Search color={subText} />
 
               <input
                 type="text"
@@ -259,7 +258,7 @@ export default function InterviewManagement() {
               component={Link}
               to="/interview-schedule"
               variant="contained"
-              startIcon={<FaPlus size={11} />}
+              startIcon={<Plus size={11} />}
               sx={{
                 px: {
                   xs: 2,
@@ -575,7 +574,7 @@ export default function InterviewManagement() {
                             boxShadow: `0 6px 14px ${primary}40`,
                           }}
                         >
-                          <FaUser size={16} />
+                          <User size={16} />
                         </Avatar>
 
                         <Typography
@@ -727,7 +726,7 @@ export default function InterviewManagement() {
                 })
               }
             >
-              <FaChevronLeft />
+              <ChevronLeft />
             </Button>
 
             {getVisiblePages().map((page, index) =>
@@ -802,7 +801,7 @@ export default function InterviewManagement() {
                 })
               }
             >
-              <FaChevronRight />
+              <ChevronRight />
             </Button>
           </Box>
         </Box>

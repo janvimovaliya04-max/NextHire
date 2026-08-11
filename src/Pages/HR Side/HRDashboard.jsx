@@ -1,6 +1,4 @@
 import dashboardData from "../../data/dashboard.json";
-
-
 import HRLayout from "../../Layouts/HRLayout";
 import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
@@ -19,14 +17,14 @@ import {
 import Grid from "@mui/material/Grid";
 
 import {
-  FaBriefcase,
-  FaCalendarAlt,
-  FaUserCheck,
-  FaUsers,
-  FaUserTie,
-  FaArrowRight,
-  FaClock,
-} from "react-icons/fa";
+  Briefcase,
+  Calendar,
+  UserCheck,
+  Users,
+  UserRound,
+  ArrowRight,
+  Clock,
+} from "lucide-react";
 
 export default function HRDashboard() {
   const { darkMode } = useTheme();
@@ -40,10 +38,10 @@ export default function HRDashboard() {
   const { cards, recentCandidates, upcomingInterviews } = dashboardData;
 
   const iconMap = {
-    briefcase: <FaBriefcase size={20} />,
-    usertie: <FaUserTie size={20} />,
-    calendar: <FaCalendarAlt size={20} />,
-    usercheck: <FaUsers size={20} />,
+    briefcase: <Briefcase size={20} />,
+    usertie: <UserRound size={20} />,
+    calendar: <Calendar size={20} />,
+    usercheck: <Users size={20} />,
   };
 
   const quickActions = [
@@ -53,7 +51,7 @@ export default function HRDashboard() {
       btnText: "New Position",
       link: "/create-job",
       color: primary,
-      icon: <FaBriefcase size={18} />,
+      icon: <Briefcase size={18} />,
     },
     {
       title: "Manage Candidates",
@@ -61,7 +59,7 @@ export default function HRDashboard() {
       btnText: "View Candidates",
       link: "/candidates",
       color: secondary || primary,
-      icon: <FaUserCheck size={18} />,
+      icon: <UserCheck size={18} />,
     },
     {
       title: "Book Interviews",
@@ -69,7 +67,7 @@ export default function HRDashboard() {
       btnText: "Schedule Round",
       link: "/interview-management",
       color: primary,
-      icon: <FaCalendarAlt size={18} />,
+      icon: <Calendar size={18} />,
     },
   ];
 
@@ -305,7 +303,7 @@ export default function HRDashboard() {
                 <Button
                   fullWidth
                   variant="contained"
-                  endIcon={<FaArrowRight size={12} />}
+                  endIcon={<ArrowRight size={12} />}
                   sx={{
                     py: {
                       xs: 1,
@@ -538,7 +536,7 @@ export default function HRDashboard() {
                   }}
                 >
                   <Avatar sx={{ bgcolor: `${primary}15`, color: primary, width: 38, height: 38 }}>
-                    <FaCalendarAlt size={16} />
+                    <Calendar size={16} />
                   </Avatar>
                   <Box sx={{ flexGrow: 1 }}>
                     <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 0.5 }}>
@@ -551,7 +549,7 @@ export default function HRDashboard() {
                       >
                         {interview.candidate}</Typography>
                       <Box sx={{ display: "flex", alignItems: "center", gap: 0.5, color: primary }}>
-                        <FaClock size={11} />
+                        <Clock size={11} />
                         <Typography sx={{ fontWeight: 800, fontSize: "0.8rem" }}>{interview.time}</Typography>
                       </Box>
                     </Box>

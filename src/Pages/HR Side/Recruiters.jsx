@@ -5,15 +5,18 @@ import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
 import HRLayout from "../../Layouts/HRLayout";
 import { Box, Paper, Typography, Button, Avatar, Chip, TextField } from "@mui/material";
-import { FaPlus, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+
 import {
-    FaUserTie,
-    FaEnvelope,
-    FaPhoneAlt,
-    FaMapMarkerAlt,
-    FaBriefcase,
-    FaBuilding,
-} from "react-icons/fa";
+  Plus,
+  ChevronLeft,
+  ChevronRight,
+  UserRound,
+  Mail,
+  Phone,
+  MapPin,
+  Briefcase,
+  Building2,
+} from "lucide-react";
 
 const RECRUITERS_PER_PAGE = 8;
 
@@ -120,7 +123,7 @@ export default function Recruiters() {
                     component={Link}
                     to="/add-recruiter"
                     variant="contained"
-                    startIcon={<FaPlus size={11} />}
+                    startIcon={<Plus size={11} />}
                     sx={{
                         width: { xs: "100%", sm: "auto" },
                         py: { xs: 1, md: 1 },
@@ -422,7 +425,7 @@ export default function Recruiters() {
                                                     {r.fullName}
                                                 </Typography>
                                                 <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 0.7 }}>
-                                                    <FaUserTie size={13} color={primary} />
+                                                    <UserRound size={13} color={primary} />
                                                     <Typography
                                                         sx={{
                                                             color: primary,
@@ -438,7 +441,7 @@ export default function Recruiters() {
                                                 </Box>
 
                                                 <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 0.5 }}>
-                                                    <FaBuilding size={12} color={subText} />
+                                                    <Building2 size={12} color={subText} />
                                                     <Typography
                                                         sx={{
                                                             color: subText,
@@ -452,7 +455,7 @@ export default function Recruiters() {
                                                     </Typography>
                                                 </Box>
                                                 <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 0.5 }}>
-                                                    <FaEnvelope size={12} color={subText} />
+                                                    <Mail size={12} color={subText} />
                                                     <Typography
                                                         sx={{
                                                             color: subText,
@@ -468,7 +471,7 @@ export default function Recruiters() {
                                                 </Box>
                                                 <Box sx={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 2, mb: 0.5 }}>
                                                     <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                                                        <FaPhoneAlt size={11} color={subText} />
+                                                        <Phone size={11} color={subText} />
                                                         <Typography
                                                             sx={{
                                                                 color: subText,
@@ -483,7 +486,7 @@ export default function Recruiters() {
                                                     </Box>
 
                                                     <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                                                        <FaMapMarkerAlt size={11} color={subText} />
+                                                        <MapPin size={11} color={subText} />
                                                         <Typography
                                                             sx={{
                                                                 color: subText,
@@ -498,7 +501,7 @@ export default function Recruiters() {
                                                     </Box>
                                                 </Box>
                                                 <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 0.5 }}>
-                                                    <FaBriefcase size={12} color={subText} />
+                                                    <Briefcase size={12} color={subText} />
                                                     <Typography
                                                         sx={{
                                                             color: subText,
@@ -640,7 +643,7 @@ export default function Recruiters() {
                             }
                             sx={{ color: textColor }}
                         >
-                            <FaChevronLeft />
+                            <ChevronLeft />
                         </Button>
 
                         {getVisiblePages().map((page, index) =>
@@ -710,7 +713,7 @@ export default function Recruiters() {
                             }
                             sx={{ color: textColor }}
                         >
-                            <FaChevronRight />
+                            <ChevronRight />
                         </Button>
                     </Box>
                 </Box>

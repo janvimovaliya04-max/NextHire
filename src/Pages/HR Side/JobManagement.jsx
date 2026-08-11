@@ -1,7 +1,6 @@
 import jobsData from "../../data/jobs.json"
 import InfiniteScroll from "react-infinite-scroll-component";
 import { CircularProgress } from "@mui/material";
-import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
 import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
@@ -23,11 +22,12 @@ import {
 } from "@mui/material";
 
 import {
-  FaPlus,
-  FaBriefcase,
-  FaMapMarkerAlt,
-  FaUsers,
-} from "react-icons/fa";
+  Plus,
+  Search,
+  Briefcase,
+  MapPin,
+  Users,
+} from "lucide-react";
 
 export default function JobManagement() {
   const { darkMode } = useTheme();
@@ -177,7 +177,7 @@ export default function JobManagement() {
               },
             }}
           >
-            <FaSearch
+            <Search
               color={subText}
             />
 
@@ -202,7 +202,7 @@ export default function JobManagement() {
             component={Link}
             to="/create-job"
             variant="contained"
-            startIcon={<FaPlus size={11} />}
+            startIcon={<Plus size={11} />}
             sx={{
               flexShrink: 0,
               whiteSpace: "nowrap",
@@ -403,14 +403,14 @@ export default function JobManagement() {
                     <TableCell sx={{ borderBottom: `1px solid ${borderStyle}` }}>
                       <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
                         <Avatar sx={{ bgcolor: `${primary}15`, color: primary, width: { xs: 36, md: 44 }, height: { xs: 36, md: 44 }, }}>
-                          <FaBriefcase size={window.innerWidth < 600 ? 13 : 16} />
+                          <Briefcase size={window.innerWidth < 600 ? 13 : 16} />
                         </Avatar>
                         <Box>
                           <Typography sx={{ color: textColor, fontWeight: 700, fontSize: { xs: ".8rem", md: ".95rem" }, }}>
                             {job.title}
                           </Typography>
                           <Box sx={{ display: "flex", alignItems: "center", gap: 0.5, color: subText }}>
-                            <FaMapMarkerAlt size={10} style={{ opacity: 0.7 }} />
+                            <MapPin size={10} style={{ opacity: 0.7 }} />
                             <Typography sx={{ fontSize: { xs: ".72rem", md: ".78rem" } }}>
                               {job.location}
                             </Typography>

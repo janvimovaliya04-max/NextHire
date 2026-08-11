@@ -1,8 +1,6 @@
 import notificationsData from "../../data//notifications.json";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { CircularProgress } from "@mui/material";
-import { FaBell, FaUserPlus, FaCalendarAlt, FaClipboardCheck, FaCheckDouble } from "react-icons/fa";
-
 import { useState, useEffect } from "react";
 import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
@@ -15,6 +13,14 @@ import {
   Chip,
   Avatar,
 } from "@mui/material";
+
+import {
+  Bell,
+  UserPlus,
+  Calendar,
+  ClipboardCheck,
+  ListChecks,
+} from "lucide-react";
 
 export default function Notifications() {
 
@@ -128,7 +134,7 @@ export default function Notifications() {
           fullWidth={{ xs: true, sm: false }}
           variant="outlined"
           onClick={handleMarkAllRead}
-          startIcon={<FaCheckDouble size={11} />}
+          startIcon={<ListChecks size={11} />}
           sx={{
             width: { xs: "100%", sm: "auto" },
             py: {
@@ -361,11 +367,11 @@ export default function Notifications() {
                           }}
                         >
                           {item.category === "Hiring" ? (
-                            <FaUserPlus size={window.innerWidth < 600 ? 13 : 16} />
+                            <UserPlus size={window.innerWidth < 600 ? 13 : 16} />
                           ) : item.category === "Interviews" ? (
-                            <FaCalendarAlt size={window.innerWidth < 600 ? 13 : 16} />
+                            <Calendar size={window.innerWidth < 600 ? 13 : 16} />
                           ) : (
-                            <FaClipboardCheck size={window.innerWidth < 600 ? 13 : 16} />
+                            <ClipboardCheck size={window.innerWidth < 600 ? 13 : 16} />
                           )}
                         </Avatar>
 
@@ -495,7 +501,7 @@ export default function Notifications() {
                   color: primary,
                 }}
               >
-                <FaBell size={window.innerWidth < 600 ? 22 : 26} />
+                <Bell size={window.innerWidth < 600 ? 22 : 26} />
               </Avatar>
 
               <Typography

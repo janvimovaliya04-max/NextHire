@@ -1,6 +1,5 @@
 import feedbackData from "../../data/feedback.json";
 import { useSearchParams } from "react-router-dom";
-import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
 import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
@@ -20,7 +19,7 @@ import {
   Box,
 } from "@mui/material";
 
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { ChevronLeft, ChevronRight, Search  } from "lucide-react";
 
 
 export default function Candidatefeedback() {
@@ -161,7 +160,7 @@ export default function Candidatefeedback() {
               px: 2,
             }}
           >
-            <FaSearch color={darkMode ? "#94a3b8" : "#64748b"} />
+            <Search color={darkMode ? "#94a3b8" : "#64748b"} />
 
             <input
               type="text"
@@ -492,7 +491,7 @@ export default function Candidatefeedback() {
                 })
               }
             >
-              <FaChevronLeft />
+              <ChevronLeft />
             </Button>
 
             {getVisiblePages().map((page, index) =>
@@ -568,7 +567,7 @@ export default function Candidatefeedback() {
                 })
               }
             >
-              <FaChevronRight />
+              <ChevronRight />
             </Button>
 
           </Box>

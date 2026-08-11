@@ -15,7 +15,11 @@ import {
 } from "@mui/material";
 
 import Grid from "@mui/material/Grid";
-import { FaCalendarPlus, FaSave, FaTimes } from "react-icons/fa";
+import {
+  CalendarPlus,
+  Save,
+  X,
+} from "lucide-react";
 
 export default function InterviewSchedule() {
   const { darkMode } = useTheme();
@@ -208,7 +212,7 @@ export default function InterviewSchedule() {
               display: "flex",
             }}
           >
-            <FaCalendarPlus size={window.innerWidth < 600 ? 13 : 16} />
+            <CalendarPlus size={window.innerWidth < 600 ? 13 : 16} />
           </Box>
 
           <Typography
@@ -458,7 +462,7 @@ export default function InterviewSchedule() {
             component={Link}
             to="/interview-management"
             variant="outlined"
-            startIcon={<FaTimes size={12} />}
+            startIcon={<X size={12} />}
             sx={{
               width: {
                 xs: "100%",
@@ -496,7 +500,7 @@ export default function InterviewSchedule() {
           <Button
             variant="contained"
             onClick={handleSchedule}
-            startIcon={<FaSave size={12} />}
+            startIcon={<Save size={12} />}
             sx={{
               width: {
                 xs: "100%",

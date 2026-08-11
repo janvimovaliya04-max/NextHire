@@ -20,22 +20,22 @@ import {
 import Grid from "@mui/material/Grid";
 
 import {
-  FaBuilding,
-  FaSun,
-  FaClock,
-  FaUserCog,
-  FaSlidersH,
-  FaShieldAlt,
-  FaSave,
-  FaArrowLeft,
-  FaMoon,
-  FaBell,
-  FaEnvelope,
-  FaLock,
-  FaUserShield,
-  FaBriefcase,
-  FaPalette,
-} from "react-icons/fa";
+  Building2,
+  Sun,
+  Clock,
+  UserCog,
+  SlidersHorizontal,
+  Shield,
+  Save,
+  ArrowLeft,
+  Moon,
+  Bell,
+  Mail,
+  Lock,
+  UserRoundCheck,
+  BriefcaseBusiness,
+  Palette,
+} from "lucide-react";
 
 export default function Settings() {
 
@@ -68,25 +68,25 @@ export default function Settings() {
     {
       title: "Department",
       value: "Human Resources",
-      icon: <FaBuilding />,
+      icon: <Building2 />,
       color: colors.primary,
     },
     {
       title: "Role",
       value: "Administrator",
-      icon: <FaUserShield />,
+      icon: <UserRoundCheck />,
       color: colors.primary,
     },
     {
       title: "Theme",
       value: darkMode ? "Dark" : "Light",
-      icon: darkMode ? <FaMoon /> : <FaSun />,
+      icon: darkMode ? <Moon /> : <Sun />,
       color: colors.primary,
     },
     {
       title: "Last Login",
       value: "Today",
-      icon: <FaClock />,
+      icon: <Clock />,
       color: colors.primary,
     },
   ];
@@ -491,7 +491,7 @@ export default function Settings() {
                 fontSize: { xs: ".9rem", md: "1rem" },
               }}
             >
-              <FaUserCog />
+              <UserCog />
             </Avatar>
             <Box>
               <Typography
@@ -589,7 +589,7 @@ export default function Settings() {
                 color: primary,
               }}
             >
-              <FaPalette />
+              <Palette />
             </Avatar>
 
 
@@ -655,7 +655,7 @@ export default function Settings() {
               </Typography>
             </Box>
 
-            <FaPalette
+            <Palette
               style={{
                 color: primary,
                 fontsize: "18px"
@@ -708,7 +708,7 @@ export default function Settings() {
                 fontSize: { xs: ".9rem", md: "1rem" },
               }}
             >
-              <FaBell />
+              <Bell />
             </Avatar>
             <Box>
               <Typography
@@ -757,7 +757,7 @@ export default function Settings() {
                     fontSize: { xs: ".9rem", md: "1rem" },
                   }}
                 >
-                  <FaEnvelope />
+                  <Mail />
                 </Avatar>
 
                 <Box>
@@ -819,7 +819,7 @@ export default function Settings() {
                     fontSize: { xs: ".9rem", md: "1rem" },
                   }}
                 >
-                  <FaUserCog />
+                  <UserCog />
                 </Avatar>
 
                 <Box>
@@ -882,7 +882,7 @@ export default function Settings() {
                     fontSize: { xs: ".9rem", md: "1rem" },
                   }}
                 >
-                  <FaBriefcase />
+                  <Briefcase />
                 </Avatar>
 
                 <Box>
@@ -945,7 +945,7 @@ export default function Settings() {
                     fontSize: { xs: ".9rem", md: "1rem" },
                   }}
                 >
-                  <FaSlidersH />
+                  <SlidersHorizontal />
                 </Avatar>
 
                 <Box>
@@ -1028,7 +1028,7 @@ export default function Settings() {
                 color: primary,
               }}
             >
-              <FaShieldAlt />
+              <Shield />
             </Avatar>
             <Box>
               <Typography
@@ -1084,7 +1084,7 @@ export default function Settings() {
                       color: primary
                     }}
                   >
-                    <FaLock />
+                    <Lock />
                   </Avatar>
 
                   <Box
@@ -1158,7 +1158,7 @@ export default function Settings() {
                       color: primary
                     }}
                   >
-                    <FaUserShield />
+                    <UserRoundCheck />
                   </Avatar>
 
                   <Box
@@ -1270,7 +1270,7 @@ export default function Settings() {
             component={Link}
             to="/hr-profile"
             variant="outlined"
-            startIcon={<FaArrowLeft />}
+            startIcon={<ArrowLeft />}
             sx={{
               ...outlineBtn,
               width: { xs: "100%", sm: "auto" },
@@ -1282,7 +1282,7 @@ export default function Settings() {
 
           <Button
             variant="contained"
-            startIcon={<FaSave />}
+            startIcon={<Save />}
             sx={{
               ...primaryBtn,
               width: { xs: "100%", sm: "auto" },

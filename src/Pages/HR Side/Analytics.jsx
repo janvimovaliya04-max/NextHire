@@ -31,12 +31,12 @@ import {
 import Grid from "@mui/material/Grid";
 
 import {
-  FaUsers,
-  FaUserCheck,
-  FaCalendarAlt,
-  FaBriefcase,
-  FaArrowUp,
-} from "react-icons/fa";
+  Users,
+  UserCheck,
+  Calendar,
+  Briefcase,
+  ArrowUp,
+} from "lucide-react";
 
 export default function Analytics() {
   const { darkMode } = useTheme();
@@ -52,28 +52,28 @@ export default function Analytics() {
     {
       title: "Applications Received",
       value: "420",
-      icon: <FaUsers size={20} />,
+      icon: <Users size={20} />,
       color: primary,
       growth: "+14.2%",
     },
     {
       title: "Hires Confirmed",
       value: "85",
-      icon: <FaUserCheck size={20} />,
+      icon: <UserCheck size={20} />,
       color: `${primary}cc`,
       growth: "+8.4%",
     },
     {
       title: "Interviews Conducted",
       value: "128",
-      icon: <FaCalendarAlt size={20} />,
+      icon: <Calendar size={20} />,
       color: `${primary}99`,
       growth: "+22.1%",
     },
     {
       title: "Active Job Listings",
       value: "15",
-      icon: <FaBriefcase size={20} />,
+      icon: <Briefcase size={20} />,
       color: primary,
       growth: "+4.0%",
     },
@@ -299,7 +299,7 @@ export default function Analytics() {
                     {currentData.stats[index].value}
                   </Typography>
                   <Box sx={{ display: "flex", alignItems: "center", color: item.color, gap: 0.2 }}>
-                    <FaArrowUp size={8} />
+                    <ArrowUp size={8} />
                     <Typography sx={{ fontSize: "0.78rem", fontWeight: 700 }}>
                       {item.growth}
                     </Typography>

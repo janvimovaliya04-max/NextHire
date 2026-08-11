@@ -18,7 +18,12 @@ import {
 
 import Grid from "@mui/material/Grid";
 
-import { FaBriefcase, FaArrowLeft, FaSave, FaTimes } from "react-icons/fa";
+import {
+  Briefcase,
+  ArrowLeft,
+  Save,
+  X,
+} from "lucide-react";
 
 export default function CreateJob() {
   const { darkMode } = useTheme();
@@ -142,7 +147,7 @@ export default function CreateJob() {
         <Button
           component={Link}
           to="/job-management"
-          startIcon={<FaArrowLeft size={12} />}
+          startIcon={<ArrowLeft size={12} />}
           sx={{
             textTransform: "none",
             fontWeight: 700,
@@ -254,7 +259,7 @@ export default function CreateJob() {
                 color: primary,
               }}
             >
-              <FaBriefcase
+              <Briefcase
                 size={
                   window.innerWidth < 600
                     ? 18
@@ -412,7 +417,7 @@ export default function CreateJob() {
               component={Link}
               to="/hr"
               variant="outlined"
-              startIcon={<FaTimes size={12} />}
+              startIcon={<X size={12} />}
               sx={{
                 py: {
                   xs: 1.1,
@@ -456,7 +461,7 @@ export default function CreateJob() {
                 !description.trim()
               }
               onClick={handleSubmit}
-              startIcon={<FaSave size={12} />}
+              startIcon={<Save size={12} />}
               sx={{
                 "&.Mui-disabled": {
                   color: "#fff",

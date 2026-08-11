@@ -19,11 +19,11 @@ import Grid from "@mui/material/Grid";
 import { toast } from "react-toastify";
 
 import {
-  FaArrowLeft,
-  FaClipboardList,
-  FaSave,
-  FaTimes,
-} from "react-icons/fa";
+  ArrowLeft,
+  ClipboardList,
+  Save,
+  X,
+} from "lucide-react";
 
 export default function CreateAssessment() {
   const { darkMode } = useTheme();
@@ -133,7 +133,7 @@ export default function CreateAssessment() {
         <Button
           component={Link}
           to="/job-management"
-          startIcon={<FaArrowLeft size={12} />}
+          startIcon={<ArrowLeft size={12} />}
           sx={{
             textTransform: "none",
             fontWeight: 700,
@@ -214,7 +214,7 @@ export default function CreateAssessment() {
               color: "#fff",
             }}
           >
-            <FaClipboardList
+            <ClipboardList
               size={
                 window.innerWidth < 600
                   ? 18
@@ -454,7 +454,7 @@ export default function CreateAssessment() {
             component={Link}
             to="/hr"
             variant="outlined"
-            startIcon={<FaTimes size={12} />}
+            startIcon={<X size={12} />}
             sx={{
               minWidth: 150,
               py: 1.25,
@@ -482,7 +482,7 @@ export default function CreateAssessment() {
             }
             onClick={handleSave}
             variant="contained"
-            startIcon={<FaSave size={12} />}
+            startIcon={<Save size={12} />}
             sx={{
               "&.Mui-disabled": {
                 color: "#fff",
