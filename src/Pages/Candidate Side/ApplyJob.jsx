@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import CandidateLayout from "../../Layouts/CandidateLayout";
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import { toast } from "react-toastify"; // <-- Fixed missing import
 import {
   Paper,
@@ -21,6 +22,7 @@ import {
 
 export default function ApplyJob() {
   const { darkMode } = useTheme();
+  const colors = useThemeColors();
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -32,10 +34,12 @@ export default function ApplyJob() {
   const [coverLetter, setCoverLetter] = useState("");
   const [error, setError] = useState("");
 
-  const subText = darkMode ? "#94a3b8" : "#475569";
-  const borderStyle = darkMode
-    ? "rgba(148,163,184,0.22)"
-    : "rgba(15,23,42,0.08)";
+  // Colors — fully theme-driven
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
 
   const handleSubmit = () => {
     if (!fullName.trim()) {
@@ -63,7 +67,7 @@ export default function ApplyJob() {
     navigate("/my-applications");
   };
 
-  // Unified Emerald theme input styling matching candidate portal
+  // Unified theme-driven input styling matching candidate portal
   const textFieldStyle = {
     mb: {
       xs: 2,
@@ -71,7 +75,7 @@ export default function ApplyJob() {
       md: 2.5,
     },
     "& .MuiInputLabel-root": {
-      color: darkMode ? "#94a3b8" : "#64748b",
+      color: subText,
       fontSize: {
         xs: ".85rem",
         sm: ".9rem",
@@ -79,7 +83,7 @@ export default function ApplyJob() {
       },
     },
     "& .MuiInputLabel-root.Mui-focused": {
-      color: "#10b981", // Emerald Green Focus
+      color: primary,
     },
     "& .MuiOutlinedInput-root": {
       fontSize: {
@@ -87,18 +91,18 @@ export default function ApplyJob() {
         sm: ".9rem",
         md: ".95rem",
       },
-      color: darkMode ? "#ffffff" : "#0f172a",
-      backgroundColor: darkMode ? "rgba(15,23,42,0.55)" : "rgba(255,255,255,0.6)",
+      color: textColor,
+      backgroundColor: colors.input,
       "& fieldset": {
-        borderColor: darkMode ? "rgba(148,163,184,0.35)" : "rgba(0,0,0,0.12)",
+        borderColor: borderStyle,
         borderRadius: "10px",
         transition: "border-color 0.2s ease",
       },
       "&:hover fieldset": {
-        borderColor: "#10b981", // Emerald
+        borderColor: primary,
       },
       "&.Mui-focused fieldset": {
-        borderColor: "#10b981", // Emerald
+        borderColor: primary,
         borderWidth: "2px",
       },
     },
@@ -127,9 +131,9 @@ export default function ApplyJob() {
               sm: ".82rem",
               md: ".85rem",
             },
-            color: darkMode ? "#ffffff" : "#0f172a",
+            color: textColor,
             "&:hover": {
-              color: "#10b981",
+              color: primary,
               bgcolor: "transparent",
             }
           }}
@@ -140,7 +144,7 @@ export default function ApplyJob() {
 
       {/* Main Form Paper Card */}
       <Paper
-        elevation={6}
+        elevation={0}
         sx={{
           p: {
             xs: 1.5,
@@ -155,37 +159,21 @@ export default function ApplyJob() {
             sm: 4,
             md: 5,
           },
-          bgcolor: darkMode ? "rgba(30, 41, 59, 0.45)" : "#ffffff",
+          bgcolor: colors.card,
           backdropFilter: "blur(12px)",
           border: `1px solid ${borderStyle}`,
-          boxShadow: darkMode
-            ? `
-                0 10px 20px rgba(0,0,0,.30),
-                0 4px 8px rgba(0,0,0,.20)
-              `
-            : `
-                0 12px 24px rgba(15,23,42,.08),
-                0 2px 6px rgba(15,23,42,.05)
-              `,
+          boxShadow: colors.shadow,
           transition: "transform 0.3s ease, box-shadow 0.3s ease",
           "&:hover": {
             transform: "translateY(-2px)",
-            boxShadow: darkMode
-              ? `
-                  0 18px 36px rgba(0,0,0,.40),
-                  0 8px 12px rgba(0,0,0,.25)
-                `
-              : `
-                  0 20px 40px rgba(15,23,42,.12),
-                  0 6px 12px rgba(15,23,42,.08)
-                `,
+            boxShadow: colors.shadow,
           },
         }}
       >
         <Box sx={{ mb: 3 }}>
           <Typography
             sx={{
-              color: darkMode ? "#ffffff" : "#0f172a",
+              color: textColor,
               fontWeight: 850,
               letterSpacing: "-0.03em",
               mb: {
@@ -285,14 +273,14 @@ export default function ApplyJob() {
                   sm: 3,
                   md: 4,
                 },
-                border: `2px dashed ${resume ? "#10b981" : darkMode ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.12)"}`,
+                border: `2px dashed ${resume ? primary : borderStyle}`,
                 borderRadius: "12px",
                 cursor: "pointer",
-                bgcolor: darkMode ? "rgba(255,255,255,0.02)" : "rgba(0,0,0,0.015)",
+                bgcolor: colors.input,
                 transition: "all 0.2s ease",
                 "&:hover": {
-                  borderColor: "#10b981",
-                  bgcolor: darkMode ? "rgba(16,185,129,.06)" : "rgba(16,185,129,.03)",
+                  borderColor: primary,
+                  bgcolor: `${primary}08`,
                 }
               }}
             >
@@ -308,11 +296,11 @@ export default function ApplyJob() {
                     xs: 26,
                     sm: 32,
                   },
-                  color: resume ? "#10b981" : "#94a3b8",
+                  color: resume ? primary : subText,
                   mb: 1.5
                 }}
               >
-                <FaCloudUploadAlt size={window.innerWidth < 600 ? 26 : 32} style={{ color: resume ? "#10b981" : "#94a3b8", marginBottom: 12 }} />
+                <FaCloudUploadAlt size={window.innerWidth < 600 ? 26 : 32} style={{ color: resume ? primary : subText, marginBottom: 12 }} />
               </Box>
               <Typography
                 sx={{
@@ -353,10 +341,8 @@ export default function ApplyJob() {
                     sm: 2,
                   },
                   borderRadius: "10px",
-                  border: "1px solid rgba(16, 185, 129, 0.2)",
-                  bgcolor: darkMode
-                    ? "rgba(16,185,129,.08)"
-                    : "rgba(16,185,129,.04)",
+                  border: `1px solid ${primary}33`,
+                  bgcolor: `${primary}0a`,
                   mt: 2,
                 }}
               >
@@ -369,7 +355,7 @@ export default function ApplyJob() {
                         xs: ".82rem",
                         sm: ".88rem",
                       },
-                      color: "#10b981"
+                      color: primary
                     }}
                   >
                     {resume}
@@ -467,11 +453,12 @@ export default function ApplyJob() {
                 sm: ".85rem",
                 md: ".9rem",
               },
-              color: darkMode ? "#cbd5e1" : "#475569",
-              borderColor: darkMode ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.12)",
+              color: subText,
+              borderColor: borderStyle,
               "&:hover": {
-                borderColor: darkMode ? "#cbd5e1" : "#475569",
-                bgcolor: darkMode ? "rgba(16,185,129,.08)" : "rgba(16,185,129,.04)",
+                borderColor: primary,
+                color: primary,
+                bgcolor: `${primary}08`,
               }
             }}
           >
@@ -502,12 +489,12 @@ export default function ApplyJob() {
                 sm: ".85rem",
                 md: ".9rem",
               },
-              background: "linear-gradient(135deg,#10b981,#059669)",
-              boxShadow: "0 8px 18px rgba(16,185,129,.28)",
+              background: `linear-gradient(135deg,${primary},${secondary || primary})`,
+              boxShadow: `0 8px 18px ${primary}47`,
               "&:hover": {
-                background: "linear-gradient(135deg,#059669,#047857)",
+                background: `linear-gradient(135deg,${primary},${primary})`,
                 transform: "translateY(-2px)",
-                boxShadow: "0 12px 24px rgba(16,185,129,.35)",
+                boxShadow: `0 12px 24px ${primary}59`,
               }
             }}
           >

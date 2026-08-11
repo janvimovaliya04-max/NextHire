@@ -3,6 +3,7 @@ import dashboardData from "../../data/dashboard.json";
 
 import HRLayout from "../../Layouts/HRLayout";
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import { Link } from "react-router-dom";
 
 import {
@@ -29,11 +30,12 @@ import {
 
 export default function HRDashboard() {
   const { darkMode } = useTheme();
-  const subText = darkMode ? "#94a3b8" : "#475569";
-  const borderStyle =
-    darkMode
-      ? "rgba(255, 255, 255, 0.06)"
-      : "rgba(0, 0, 0, 0.05)";
+  const colors = useThemeColors();
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
 
   const { cards, recentCandidates, upcomingInterviews } = dashboardData;
 
@@ -50,7 +52,7 @@ export default function HRDashboard() {
       desc: "Draft role requirements, configure workflow filters, and publish.",
       btnText: "New Position",
       link: "/create-job",
-      color: "#2563eb",
+      color: primary,
       icon: <FaBriefcase size={18} />,
     },
     {
@@ -58,7 +60,7 @@ export default function HRDashboard() {
       desc: "View candidate profiles, interview progress and hiring status.",
       btnText: "View Candidates",
       link: "/candidates",
-      color: "#3B82F6",
+      color: secondary || primary,
       icon: <FaUserCheck size={18} />,
     },
     {
@@ -66,7 +68,7 @@ export default function HRDashboard() {
       desc: "Coordinate times slots between candidates and technical reviewers.",
       btnText: "Schedule Round",
       link: "/interview-management",
-      color: "#60A5FA",
+      color: primary,
       icon: <FaCalendarAlt size={18} />,
     },
   ];
@@ -85,14 +87,11 @@ export default function HRDashboard() {
       >
         <Typography
           sx={{
+            color: colors.text,
+            fontSize: { xs: "1.35rem", sm: "1.7rem", md: "2rem", lg: "2.2rem" },
+            mb: { xs: 0, md: 0.5 },
             fontWeight: 850,
             letterSpacing: "-0.03em",
-            mb: 0.5,
-            fontSize: {
-              xs: "1.4rem",
-              sm: "1.8rem",
-              md: "2.125rem",
-            },
           }}
         >
           Hello, Admin Manager
@@ -129,19 +128,11 @@ export default function HRDashboard() {
                 elevation={0}
                 sx={{
                   borderRadius: 4,
-                  bgcolor: darkMode
-                    ? "rgba(30,41,59,.72)"
-                    : "#ffffff",
+                  bgcolor: colors.card,
                   backdropFilter: "blur(16px)",
 
-                  boxShadow: darkMode
-                    ? `0 18px 45px rgba(0,0,0,.35),
-                       inset 0 1px 0 rgba(255,255,255,.04)
-                      `
-                    : `0 18px 40px rgba(15,23,42,.08),
-                       0 4px 12px rgba(15,23,42,.05)
-                      `,
-                  color: darkMode ? "#ffffff" : "#0f172a",
+                  boxShadow: colors.shadow,
+                  color: textColor,
                   border: `1px solid ${borderStyle}`,
                   transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                   height: "100%",
@@ -182,6 +173,7 @@ export default function HRDashboard() {
                   </Box>
                   <Typography
                     sx={{
+                      color: textColor,
                       fontWeight: 800,
                       mb: 1,
                       fontSize: {
@@ -215,13 +207,10 @@ export default function HRDashboard() {
       {/* Grid of Dynamic Quick Action Cards */}
       <Typography
         sx={{
-          fontWeight: 800,
-          mb: 3,
-          fontSize: {
-            xs: "1.05rem",
-            sm: "1.2rem",
-            md: "1.35rem"
-          }
+          fontSize: { xs: "1.35rem", sm: "1.7rem", md: "2rem", lg: "2.2rem" },
+          mb: { xs: 0, md: 0.5 },
+          fontWeight: 850,
+          letterSpacing: "-0.03em",
         }}
       >
         Quick Actions Panel
@@ -253,17 +242,11 @@ export default function HRDashboard() {
               elevation={0}
               sx={{
                 width: "100%",
-                color: darkMode ? "#ffffff" : "#0f172a",
+                color: textColor,
                 borderRadius: 4,
-                bgcolor: darkMode ? "rgba(30, 41, 59, 0.3)" : "rgba(255, 255, 255, 0.6)",
+                bgcolor: colors.card,
                 backdropFilter: "blur(16px)",
-                boxShadow: darkMode
-                  ? `0 18px 45px rgba(0,0,0,.35),
-                     inset 0 1px 0 rgba(255,255,255,.04)
-                    `
-                  : `0 18px 40px rgba(15,23,42,.08),
-                     0 4px 12px rgba(15,23,42,.05)
-                    `,
+                boxShadow: colors.shadow,
                 border: `1px solid ${borderStyle}`,
                 transition: "all 0.3s ease",
                 display: "flex",
@@ -297,6 +280,7 @@ export default function HRDashboard() {
                     {action.icon}
                   </Avatar>
                   <Typography sx={{
+                    color: textColor,
                     fontWeight: 800, fontSize: {
                       xs: "0.95rem",
                       sm: "1.05rem",
@@ -372,16 +356,9 @@ export default function HRDashboard() {
             sx={{
               borderRadius: 4,
               backdropFilter: "blur(16px)",
-              boxShadow: darkMode
-                ? `0 18px 45px rgba(0,0,0,.35),
-                 inset 0 1px 0 rgba(255,255,255,.04)
-                `
-                : `0 18px 40px rgba(15,23,42,.08),
-                 0 4px 12px rgba(15,23,42,.05)
-                `,
-              bgcolor: darkMode
-                ? "rgba(30,41,59,.72)"
-                : "#ffffff", border: `1px solid ${borderStyle}`,
+              boxShadow: colors.shadow,
+              bgcolor: colors.card,
+              border: `1px solid ${borderStyle}`,
               p: {
                 xs: 2,
                 sm: 3
@@ -399,6 +376,7 @@ export default function HRDashboard() {
               <Typography
                 variant="h6"
                 sx={{
+                  color: textColor,
                   fontWeight: 800,
                 }}
               >
@@ -413,7 +391,8 @@ export default function HRDashboard() {
                   fontSize: {
                     xs: "0.72rem",
                     sm: "0.82rem"
-                  }
+                  },
+                  color: primary,
                 }}
               >
                 View Candidates
@@ -430,7 +409,7 @@ export default function HRDashboard() {
                 <Box
                   key={candidate.name}
                   sx={{
-                    color: darkMode ? "#ffffff" : "#0f172a",
+                    color: textColor,
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
@@ -445,7 +424,7 @@ export default function HRDashboard() {
                     },
                   }}>
                     <Avatar sx={{
-                      bgcolor: darkMode ? "rgba(255,255,255,0.06)" : "#eff6ff", color: "#2563eb", fontWeight: 700, width: {
+                      bgcolor: `${primary}15`, color: primary, fontWeight: 700, width: {
                         xs: 34,
                         sm: 40
                       },
@@ -464,7 +443,7 @@ export default function HRDashboard() {
                       {candidate.initials}
                     </Avatar>
                     <Box>
-                      <Typography sx={{ fontWeight: 700, fontSize: "0.95rem" }}>{candidate.name}</Typography>
+                      <Typography sx={{ color: textColor, fontWeight: 700, fontSize: "0.95rem" }}>{candidate.name}</Typography>
                       <Typography
                         sx={{
                           color: subText,
@@ -489,14 +468,14 @@ export default function HRDashboard() {
                         candidate.status === "Selected"
                           ? "rgba(34,197,94,.12)"
                           : candidate.status === "Interview Scheduled"
-                            ? "rgba(59,130,246,.10)"
+                            ? `${primary}10`
                             : "rgba(245,158,11,.10)",
 
                       color:
                         candidate.status === "Selected"
                           ? "#22C55E"
                           : candidate.status === "Interview Scheduled"
-                            ? "#2563EB"
+                            ? primary
                             : "#F59E0B",
                     }}
                   />
@@ -512,17 +491,9 @@ export default function HRDashboard() {
             elevation={0}
             sx={{
               borderRadius: 4,
-              bgcolor: darkMode
-                ? "rgba(30, 41, 59, 0.25)"
-                : "#ffffff",
+              bgcolor: colors.card,
               backdropFilter: "blur(16px)",
-              boxShadow: darkMode
-                ? `0 18px 45px rgba(0,0,0,.35),
-                 inset 0 1px 0 rgba(255,255,255,.04)
-                `
-                : `0 18px 40px rgba(15,23,42,.08),
-                 0 4px 12px rgba(15,23,42,.05)
-                `,
+              boxShadow: colors.shadow,
               border: `1px solid ${borderStyle}`, p: 3
             }}>
             <Box
@@ -535,6 +506,7 @@ export default function HRDashboard() {
             >
               <Typography
                 sx={{
+                  color: textColor,
                   fontWeight: 800,
                   fontSize: {
                     xs: "1rem",
@@ -565,20 +537,20 @@ export default function HRDashboard() {
                     borderBottom: idx !== upcomingInterviews.length - 1 ? `1px solid ${borderStyle}` : "none",
                   }}
                 >
-                  <Avatar sx={{ bgcolor: darkMode ? "rgba(37,99,235,0.15)" : "#EFF6FF", color: "#2563EB", width: 38, height: 38 }}>
+                  <Avatar sx={{ bgcolor: `${primary}15`, color: primary, width: 38, height: 38 }}>
                     <FaCalendarAlt size={16} />
                   </Avatar>
                   <Box sx={{ flexGrow: 1 }}>
                     <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 0.5 }}>
                       <Typography sx={{
-                        color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: {
+                        color: textColor, fontWeight: 700, fontSize: {
                           xs: "0.85rem",
                           sm: "0.95rem"
                         },
                       }}
                       >
                         {interview.candidate}</Typography>
-                      <Box sx={{ display: "flex", alignItems: "center", gap: 0.5, color: "#2563EB" }}>
+                      <Box sx={{ display: "flex", alignItems: "center", gap: 0.5, color: primary }}>
                         <FaClock size={11} />
                         <Typography sx={{ fontWeight: 800, fontSize: "0.8rem" }}>{interview.time}</Typography>
                       </Box>
@@ -592,19 +564,25 @@ export default function HRDashboard() {
             </Box>
             <Button
               variant="outlined"
-                component={Link}
-                to="/interview-management"
-                size="small"
-                sx={{
-                  mt: 4,
-                  fontSize: {
-                    xs: "0.7rem",
-                    sm: "0.82rem"
-                  }
-                }}
-              >
-                View Schedule
-              </Button>
+              component={Link}
+              to="/interview-management"
+              size="small"
+              sx={{
+                mt: 4,
+                fontSize: {
+                  xs: "0.7rem",
+                  sm: "0.82rem"
+                },
+                color: primary,
+                borderColor: `${primary}40`,
+                "&:hover": {
+                  borderColor: primary,
+                  bgcolor: `${primary}08`,
+                },
+              }}
+            >
+              View Schedule
+            </Button>
           </Card>
         </Grid>
       </Grid>

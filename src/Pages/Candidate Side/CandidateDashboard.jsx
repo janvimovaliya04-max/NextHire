@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import CandidateLayout from "../../Layouts/CandidateLayout";
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import dashboardData from "../../data/candidateDashboard.json";
 import {
   Card,
@@ -26,8 +27,14 @@ import {
 
 export default function CandidateDashboard() {
   const { darkMode } = useTheme();
-  const subText = darkMode ? "#94a3b8" : "#475569";
-  const borderStyle = darkMode ? "rgba(255, 255, 255, 0.06)" : "rgba(0, 0, 0, 0.05)";
+  const colors = useThemeColors();
+
+  // Colors — fully theme-driven (matches Assessment / BrowseJobs)
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
 
   // Safe fallbacks in case context is loading or empty
   const appliedCount = dashboardData.stats.appliedJobs;
@@ -35,14 +42,16 @@ export default function CandidateDashboard() {
   const interviewCount = dashboardData.stats.interviews;
   const offerCount = dashboardData.stats.offers;
 
+  // Stat card accents now derive from the theme (primary/secondary),
+  // alternating for visual distinction while staying on-brand
   const cards = [
     {
       title: "Applied Jobs",
       value: appliedCount,
       icon: <FaBriefcase size={20} />,
-      color: "#16a34a",              // Green 600
-      bgLight: "rgba(22,163,74,0.08)",
-      bgDark: "rgba(22,163,74,0.18)",
+      color: primary,
+      bgLight: `${primary}14`,
+      bgDark: `${primary}2e`,
       trend: dashboardData.trends.appliedJobs,
       link: "/my-applications",
     },
@@ -50,9 +59,9 @@ export default function CandidateDashboard() {
       title: "Assessments",
       value: assessmentCount,
       icon: <FaClipboardList size={20} />,
-      color: "#10b981",              // Emerald 500
-      bgLight: "rgba(16,185,129,0.08)",
-      bgDark: "rgba(16,185,129,0.18)",
+      color: secondary || primary,
+      bgLight: `${secondary || primary}14`,
+      bgDark: `${secondary || primary}2e`,
       trend: dashboardData.trends.assessments,
       link: "/candidate-assessment",
     },
@@ -60,9 +69,9 @@ export default function CandidateDashboard() {
       title: "Interviews",
       value: interviewCount,
       icon: <FaCalendarAlt size={20} />,
-      color: "#059669",              // Emerald 600
-      bgLight: "rgba(5,150,105,0.08)",
-      bgDark: "rgba(5,150,105,0.18)",
+      color: primary,
+      bgLight: `${primary}14`,
+      bgDark: `${primary}2e`,
       trend: dashboardData.trends.interviews,
       link: "/my-interviews",
     },
@@ -70,9 +79,9 @@ export default function CandidateDashboard() {
       title: "Job Offers",
       value: offerCount,
       icon: <FaAward size={20} />,
-      color: "#15803d",              // Green 700
-      bgLight: "rgba(21,128,61,0.08)",
-      bgDark: "rgba(21,128,61,0.18)",
+      color: secondary || primary,
+      bgLight: `${secondary || primary}14`,
+      bgDark: `${secondary || primary}2e`,
       trend: dashboardData.trends.offers,
       link: "/offers",
     },
@@ -99,7 +108,7 @@ export default function CandidateDashboard() {
             fontWeight: 850,
             letterSpacing: "-0.03em",
             mb: 0.5,
-            color: darkMode ? "#fff" : "#0f172a",
+            color: textColor,
             fontSize: {
               xs: "1.5rem",
               sm: "1.8rem",
@@ -137,9 +146,9 @@ export default function CandidateDashboard() {
                     xs: 3,
                     sm: 4,
                   },
-                  bgcolor: darkMode ? "rgba(30, 41, 59, 0.45)" : "rgba(255, 255, 255, 0.8)",
+                  bgcolor: colors.card,
                   backdropFilter: "blur(8px)",
-                  color: darkMode ? "#ffffff" : "#0f172a",
+                  color: textColor,
                   border: `1px solid ${borderStyle}`,
                   transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                   height: "100%",
@@ -149,9 +158,7 @@ export default function CandidateDashboard() {
                       md: "translateY(-6px)",
                     },
                     borderColor: card.color,
-                    boxShadow: darkMode
-                      ? `0 15px 30px rgba(0, 0, 0, 0.4), 0 0 15px ${card.color}15`
-                      : `0 15px 30px rgba(0, 0, 0, 0.05), 0 0 15px ${card.color}15`,
+                    boxShadow: colors.shadow,
                   },
                 }}
               >
@@ -222,7 +229,7 @@ export default function CandidateDashboard() {
             sm: 2.5,
             md: 3,
           },
-          color: darkMode ? "#fff" : "#0f172a",
+          color: textColor,
           fontSize: {
             xs: "1.2rem",
             md: "1.4rem",
@@ -243,7 +250,7 @@ export default function CandidateDashboard() {
               sx={{
                 width: "100%",
                 borderRadius: 4,
-                bgcolor: darkMode ? "rgba(30, 41, 59, 0.3)" : "rgba(255, 255, 255, 0.6)",
+                bgcolor: colors.card,
                 backdropFilter: "blur(6px)",
                 border: `1px solid ${borderStyle}`,
                 transition: "all 0.3s ease",
@@ -288,7 +295,7 @@ export default function CandidateDashboard() {
                   </Avatar>
                   <Typography
                     sx={{
-                      color: darkMode ? "#ffffff" : "#0f172a",
+                      color: textColor,
                       fontWeight: 800,
                       fontSize: {
                         xs: "1rem",
@@ -361,21 +368,19 @@ export default function CandidateDashboard() {
                 xs: 3,
                 sm: 4,
               },
-              bgcolor: darkMode ? "rgba(30,41,59,.45)" : "#fff",
+              bgcolor: colors.card,
               backdropFilter: "blur(12px)",
               border: `1px solid ${borderStyle}`,
               transition: "all .3s ease",
 
               "&:hover": {
                 transform: "translateY(-2px)",
-                borderColor: "#10b981",
-                boxShadow: darkMode
-                  ? "0 12px 28px rgba(0,0,0,.35)"
-                  : "0 12px 28px rgba(0,0,0,.05)"
+                borderColor: primary,
+                boxShadow: colors.shadow,
               },
             }}
           >
-            <Typography variant="h6" sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 800, mb: 3 }}>
+            <Typography variant="h6" sx={{ color: textColor, fontWeight: 800, mb: 3 }}>
               Active Application Statuses
             </Typography>
 
@@ -384,7 +389,7 @@ export default function CandidateDashboard() {
                 <Box key={app.company}>
                   <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", mb: 1 }}>
                     <Box>
-                      <Typography sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: { xs: ".9rem", sm: ".95rem", } }}>
+                      <Typography sx={{ color: textColor, fontWeight: 700, fontSize: { xs: ".9rem", sm: ".95rem", } }}>
                         {app.role}
                       </Typography>
                       <Typography sx={{ color: subText, fontSize: "0.78rem" }}>
@@ -407,8 +412,8 @@ export default function CandidateDashboard() {
                           sm: .8,
                         },
                         bgcolor: `${app.badgeColor}15`,
-                        color: "#059669",
-                        border: "1px solid rgba(16,185,129,.2)",
+                        color: primary,
+                        border: `1px solid ${primary}33`,
                       }}
                     />
                   </Box>
@@ -421,7 +426,7 @@ export default function CandidateDashboard() {
                       borderRadius: 10,
                       bgcolor: darkMode ? "rgba(255,255,255,0.05)" : "#f1f5f9",
                       "& .MuiLinearProgress-bar": {
-                        bgcolor: app.badgeColor,
+                        bgcolor: primary,
                         borderRadius: 3,
                       }
                     }}
@@ -441,22 +446,20 @@ export default function CandidateDashboard() {
                 md: 3.5,
               },
               borderRadius: 4,
-              bgcolor: darkMode ? "rgba(30,41,59,.45)" : "#fff",
+              bgcolor: colors.card,
               backdropFilter: "blur(12px)",
               border: `1px solid ${borderStyle}`,
               transition: "all .3s ease",
 
               "&:hover": {
                 transform: "translateY(-2px)",
-                borderColor: "#10b981",
-                boxShadow: darkMode
-                  ? "0 12px 28px rgba(0,0,0,.35)"
-                  : "0 12px 28px rgba(0,0,0,.05)"
+                borderColor: primary,
+                boxShadow: colors.shadow,
               },
             }}
           >
             <Box>
-              <Typography variant="h6" sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 800, mb: 3 }}>
+              <Typography variant="h6" sx={{ color: textColor, fontWeight: 800, mb: 3 }}>
                 Next Upcoming Interview
               </Typography>
 
@@ -481,8 +484,8 @@ export default function CandidateDashboard() {
               >
                 <Avatar
                   sx={{
-                    bgcolor: darkMode ? "rgba(16,185,129,0.15)" : "rgba(16,185,129,0.08)",
-                    color: "#10b981",
+                    bgcolor: `${primary}14`,
+                    color: primary,
                     width: {
                       xs: 44,
                       sm: 48,
@@ -504,26 +507,26 @@ export default function CandidateDashboard() {
                     width: "100%",
                   }}
                 >
-                  <Typography sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 800, fontSize: "1rem" }}>
+                  <Typography sx={{ color: textColor, fontWeight: 800, fontSize: "1rem" }}>
                     {nextInterview.title}</Typography>
                   <Typography sx={{ color: subText, fontSize: "0.85rem", mt: 0.5 }}>
                     {nextInterview.company}
                   </Typography>
 
                   <Box
-  sx={{
-    display: "flex",
-    alignItems: "center",
-    justifyContent: {
-      xs: "center",
-      sm: "flex-start",
-    },
-    gap: 0.8,
-    color: "#10b981",
-    mt: 1.5,
-    width: "100%",
-  }}
->
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: {
+                        xs: "center",
+                        sm: "flex-start",
+                      },
+                      gap: 0.8,
+                      color: primary,
+                      mt: 1.5,
+                      width: "100%",
+                    }}
+                  >
                     <FaClock size={12} />
                     <Typography sx={{ fontWeight: 800, fontSize: "0.82rem" }}>{nextInterview.time}</Typography>
                   </Box>
@@ -549,11 +552,11 @@ export default function CandidateDashboard() {
                   fontWeight: 700,
                   textTransform: "none",
                   fontSize: "0.88rem",
-                  background: "linear-gradient(90deg,#10b981,#059669)",
-                  boxShadow: "0 4px 12px rgba(16,185,129,.2)",
+                  background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+                  boxShadow: `0 4px 12px ${primary}33`,
                   "&:hover": {
-                    background: "linear-gradient(90deg,#059669,#047857)",
-                    boxShadow: "0 6px 16px rgba(16,185,129,.3)",
+                    background: `linear-gradient(90deg, ${primary}, ${primary})`,
+                    boxShadow: `0 10px 22px ${primary}59`,
                     transform: "translateY(-1px)",
                   }
                 }}

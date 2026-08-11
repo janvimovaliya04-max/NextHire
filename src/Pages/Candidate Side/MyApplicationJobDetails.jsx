@@ -1,6 +1,7 @@
 import applicationJobs from "../../data/MyApplicationJobDetails.json";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import CandidateLayout from "../../Layouts/CandidateLayout";
 import {
   Paper,
@@ -16,15 +17,19 @@ import { FaCheck } from "react-icons/fa";
 
 export default function MyApplicationJobDetails() {
   const { darkMode } = useTheme();
+  const colors = useThemeColors();
   const navigate = useNavigate();
   const { id } = useParams();
   const job = applicationJobs.find(
     (item) => item.applicationId === id
   );
-  const subText = darkMode ? "#94a3b8" : "#475569";
-  const borderStyle = darkMode
-    ? "rgba(255,255,255,0.06)"
-    : "rgba(0,0,0,0.05)";
+
+  // Colors — fully theme-driven (matches other candidate pages)
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
 
   if (!job) {
     return (
@@ -91,8 +96,12 @@ export default function MyApplicationJobDetails() {
               borderRadius: "10px",
               fontWeight: 700,
               textTransform: "none",
+              color: subText,
+              borderColor: borderStyle,
               "&:hover": {
                 transform: "translateX(-2px)",
+                borderColor: primary,
+                color: primary,
               }
             }}
           >
@@ -119,17 +128,13 @@ export default function MyApplicationJobDetails() {
                   xs: 3,
                   md: 5,
                 },
-                bgcolor: darkMode
-                  ? "rgba(30,41,59,.45)"
-                  : "white",
+                bgcolor: colors.card,
                 border: `1px solid ${borderStyle}`,
                 transition: "all .3s",
                 "&:hover": {
                   transform: "translateY(-3px)",
-                  borderColor: "#10b981",
-                  boxShadow: darkMode
-                    ? "0 15px 35px rgba(0,0,0,.30)"
-                    : "0 15px 35px rgba(0,0,0,.06)",
+                  borderColor: primary,
+                  boxShadow: colors.shadow,
                 },
               }}
             >
@@ -187,7 +192,7 @@ export default function MyApplicationJobDetails() {
                         sm: "1.7rem",
                       },
                       lineHeight: 1.3,
-                      color: darkMode ? "#fff" : "#0f172a",
+                      color: textColor,
                     }}
                   >
                     {job.position}
@@ -195,7 +200,7 @@ export default function MyApplicationJobDetails() {
 
                   <Typography
                     sx={{
-                      color: "#10b981",
+                      color: primary,
                       fontWeight: 700,
                       fontSize: {
                         xs: ".9rem",
@@ -216,8 +221,8 @@ export default function MyApplicationJobDetails() {
                   >
                     <Chip
                       sx={{
-                        bgcolor: "rgba(16,185,129,.12)",
-                        color: "#10b981",
+                        bgcolor: `${primary}1f`,
+                        color: primary,
                         fontWeight: 700
                       }}
                       label={job.employmentType}
@@ -226,8 +231,8 @@ export default function MyApplicationJobDetails() {
 
                     <Chip
                       sx={{
-                        bgcolor: "rgba(16,185,129,.12)",
-                        color: "#10b981",
+                        bgcolor: `${primary}1f`,
+                        color: primary,
                         fontWeight: 700
                       }}
                       label={job.experience}
@@ -246,6 +251,7 @@ export default function MyApplicationJobDetails() {
                 sx={{
                   fontWeight: 800,
                   mb: 2,
+                  color: textColor,
                   fontSize: {
                     xs: "1rem",
                     md: "1.25rem",
@@ -271,6 +277,7 @@ export default function MyApplicationJobDetails() {
                   sx={{
                     fontWeight: 800,
                     mb: 2,
+                    color: textColor,
                     fontSize: {
                       xs: ".88rem",
                       md: ".95rem",
@@ -290,7 +297,7 @@ export default function MyApplicationJobDetails() {
                         mb: 1.5
                       }}
                     >
-                      <FaCheck color="#10b981" />
+                      <FaCheck color={primary} />
                       <Typography sx={{ color: subText }}>
                         {item}
                       </Typography>
@@ -303,6 +310,7 @@ export default function MyApplicationJobDetails() {
                   sx={{
                     fontWeight: 800,
                     mb: 2,
+                    color: textColor,
                     fontSize: {
                       xs: "1rem",
                       md: "1.25rem",
@@ -335,16 +343,12 @@ export default function MyApplicationJobDetails() {
                   lg: "sticky",
                 },
                 top: 24,
-                bgcolor: darkMode
-                  ? "rgba(30,41,59,.45)"
-                  : "#fff",
+                bgcolor: colors.card,
                 transition: "all .3s",
                 "&:hover": {
                   transform: "translateY(-3px)",
-                  borderColor: "#10b981",
-                  boxShadow: darkMode
-                    ? "0 15px 35px rgba(0,0,0,.30)"
-                    : "0 15px 35px rgba(0,0,0,.06)",
+                  borderColor: primary,
+                  boxShadow: colors.shadow,
                 },
               }}
             >
@@ -352,6 +356,7 @@ export default function MyApplicationJobDetails() {
                 sx={{
                   fontWeight: 800,
                   mb: 2,
+                  color: textColor,
                   fontSize: {
                     xs: "1rem",
                     md: "1.25rem",
@@ -377,7 +382,8 @@ export default function MyApplicationJobDetails() {
                       fontSize: {
                         xs: ".9rem",
                         md: "1rem",
-                      }
+                      },
+                      color: textColor,
                     }}
                   >
                     {job.salary}
@@ -399,7 +405,8 @@ export default function MyApplicationJobDetails() {
                       fontSize: {
                         xs: ".9rem",
                         md: "1rem",
-                      }
+                      },
+                      color: textColor,
                     }}
                   >
                     {job.posted}
@@ -421,7 +428,8 @@ export default function MyApplicationJobDetails() {
                       fontSize: {
                         xs: ".9rem",
                         md: "1rem",
-                      }
+                      },
+                      color: textColor,
                     }}
                   >
                     {job.deadline}
@@ -432,7 +440,8 @@ export default function MyApplicationJobDetails() {
               <Typography
                 sx={{
                   fontWeight: 700,
-                  mb: 2
+                  mb: 2,
+                  color: textColor,
                 }}
               >
                 Skills
@@ -450,8 +459,8 @@ export default function MyApplicationJobDetails() {
                       label={skill}
                       size="small"
                       sx={{
-                        bgcolor: "rgba(16,185,129,.12)",
-                        color: "#10b981",
+                        bgcolor: `${primary}1f`,
+                        color: primary,
                         border: `1px solid ${borderStyle}`,
                         fontWeight: 700
                       }}
@@ -477,11 +486,11 @@ export default function MyApplicationJobDetails() {
                   borderRadius: "12px",
                   fontWeight: 700,
                   textTransform: "none",
-                  background: "linear-gradient(90deg,#10b981,#059669)",
+                  background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
                   "&:hover": {
-                    background: "linear-gradient(90deg,#059669,#047857)",
+                    background: `linear-gradient(90deg, ${primary}, ${primary})`,
                     transform: "translateY(-2px)",
-                    boxShadow: "0 8px 20px rgba(16,185,129,.25)",
+                    boxShadow: `0 8px 20px ${primary}40`,
                   }
                 }}
               >

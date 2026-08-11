@@ -1,5 +1,8 @@
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
+import ThemeSelector from "../../components/ThemeSelector";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import InterviewerLayout from "../../Layouts/InterviewerLayout";
 import {
   Paper,
@@ -8,60 +11,102 @@ import {
   Button,
   Switch,
   Box,
+  Avatar,
 } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import { FaUserCog, FaSlidersH, FaShieldAlt, FaSave, FaArrowLeft, FaPalette } from "react-icons/fa";
 
 export default function InterviewerSettings() {
   const { darkMode } = useTheme();
+  const colors = useThemeColors();
 
+  // Colors — fully theme-driven (matches CandidateSettings)
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
+
+  const [showThemes, setShowThemes] = useState(false);
+  const [emailNotification, setEmailNotification] = useState(true);
+  const [interviewReminders, setInterviewReminders] = useState(true);
+  const [assessmentAlerts, setAssessmentAlerts] = useState(true);
+  const [feedbackUpdates, setFeedbackUpdates] = useState(false);
+
+  // Unified clean input styling matching Candidate Portal theme
   const textFieldStyle = {
-    mb: 2.5,
+    mb: 0,
     "& .MuiInputLabel-root": {
-      fontSize: {
-        xs: ".9rem",
-        md: "1rem"
-      },
-      color: darkMode ? "#cbd5e1" : "#64748b",
+      color: subText,
+      fontSize: "0.95rem",
     },
-
     "& .MuiInputLabel-root.Mui-focused": {
-      color: "#14b8a6",
+      color: primary,
     },
-
     "& .MuiOutlinedInput-root": {
       height: {
         xs: 52,
-        md: 56
+        sm: 56,
       },
-      backgroundColor: darkMode
-        ? "rgba(15,23,42,.45)"
-        : "#fff",
-
-      borderRadius: "12px",
-
+      color: textColor,
+      backgroundColor: colors.input,
       "& fieldset": {
-        borderColor: darkMode
-          ? "rgba(148,163,184,.3)"
-          : "#cbd5e1",
+        borderColor: borderStyle,
+        borderRadius: "10px",
+        transition: "border-color 0.2s ease",
       },
-
       "&:hover fieldset": {
-        borderColor: "#14b8a6",
+        borderColor: primary,
       },
-
       "&.Mui-focused fieldset": {
-        borderColor: "#14b8a6",
+        borderColor: primary,
+        borderWidth: "2px",
       },
     },
+  };
 
-    // TEXT COLOR
-    "& .MuiInputBase-input": {
-      color: darkMode ? "#ffffff" : "#0f172a",
-      WebkitTextFillColor: darkMode ? "#ffffff" : "#0f172a",
+  // Common switch row layout styles
+  const switchRowStyle = {
+    display: "flex",
+    flexDirection: {
+      xs: "column",
+      sm: "row",
     },
+    alignItems: {
+      xs: "flex-start",
+      sm: "center",
+    },
+    justifyContent: "space-between",
+    gap: {
+      xs: 1.5,
+      sm: 2,
+    },
+    p: {
+      xs: 1.8,
+      sm: 2.3,
+      md: 2.5,
+    },
+    borderRadius: "10px",
+    border: `1px solid ${borderStyle}`,
+    bgcolor: colors.input,
+    transition: "all .3s cubic-bezier(.4,0,.2,1)",
+    "&:hover": {
+      borderColor: primary,
+      bgcolor: `${primary}08`,
+      transform: "translateX(4px)",
+    },
+  };
 
-    // READONLY TEXT
-    "& .MuiInputBase-input.Mui-disabled": {
-      WebkitTextFillColor: darkMode ? "#ffffff" : "#0f172a",
+  const switchStyle = {
+    alignSelf: {
+      xs: "flex-end",
+      sm: "center",
+    },
+    "& .MuiSwitch-switchBase.Mui-checked": {
+      color: primary,
+    },
+    "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
+      backgroundColor: primary,
     },
   };
 
@@ -69,279 +114,366 @@ export default function InterviewerSettings() {
     p: {
       xs: 2,
       sm: 3,
-      md: 4
+      md: 4,
     },
     borderRadius: 5,
-
-    bgcolor: darkMode
-      ? "rgba(30,41,59,.35)"
-      : "rgba(255,255,255,.85)",
-
-    backdropFilter: "blur(10px)",
-
-    border: `1.5px solid ${darkMode
-      ? "rgba(148,163,184,.22)"
-      : "rgba(0,0,0,.08)"
-      }`,
-
-    transition: "all .3s ease",
-
+    bgcolor: colors.card,
+    backdropFilter: "blur(12px)",
+    border: `1px solid ${borderStyle}`,
+    boxShadow: colors.shadow,
+    transition: ".3s",
     "&:hover": {
-
       transform: "translateY(-4px)",
-
-      boxShadow: darkMode
-        ? "0 18px 35px rgba(0,0,0,.4)"
-        : "0 18px 35px rgba(0,0,0,.08)"
+      borderColor: primary,
+      boxShadow: colors.shadow,
     },
-  };
-
-  const switchStyle = {
-    transform: "scale(1.05)",
-    "& .MuiSwitch-switchBase.Mui-checked": {
-      color: "#14b8a6",
-    },
-
-    "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
-      backgroundColor: "#14b8a6",
-    },
-  };
-
-  const rowStyle = {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    p: {
-      xs: 2,
-      sm: 2.5
-    },
-    borderRadius: 4,
-    bgcolor: darkMode
-      ? "rgba(255,255,255,.03)"
-      : "#f8fafc",
-
-    transition: ".2s",
-
-    "&:hover": {
-
-      transform: "translateX(4px)",
-
-      bgcolor: darkMode
-        ? "rgba(20,184,166,.08)"
-        : "rgba(20,184,166,.04)"
-    },
-    border: darkMode ? "1px solid rgba(255,255,255,0.04)" : "1px solid rgba(0,0,0,0.03)",
   };
 
   return (
     <InterviewerLayout>
-
-      {/* Header Title */}
-
-      <Typography
-        sx={{
-          fontWeight: 900,
-          letterSpacing: "-.03em",
-
-          fontSize: {
-            xs: "1.35rem",
-            sm: "1.8rem",
-            md: "2.3rem"
-          },
-
-          mb: {
-            xs: 1,
-            sm: 2,
-            md: 3,
-          },
-
-          color: darkMode ? "#fff" : "#0f172a"
-        }}
-      >
-        Settings
-      </Typography>
       <Box
         sx={{
-          maxWidth: 900,
-          mx: "auto",
           display: "flex",
           flexDirection: "column",
           gap: {
-            xs: 2,
-            sm: 3,
-            md: 4,
+            xs: 3,
+            sm: 4,
+          },
+          pb: {
+            xs: 3,
+            sm: 4,
           },
         }}
       >
-        {/* Account Settings Section */}
-        <Paper elevation={6} sx={paperStyle}
+
+        {/* Page Header */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: {
+              xs: 1,
+              sm: 2,
+            },
+          }}
         >
           <Typography
             sx={{
-              fontWeight: 800,
-
+              fontWeight: 850,
+              letterSpacing: "-0.03em",
+              color: textColor,
+              mb: 0.5,
               fontSize: {
-                xs: "1.1rem",
-                md: "1.25rem"
+                xs: "1.45rem",
+                sm: "1.8rem",
+                md: "2rem",
+                lg: "2.2rem",
               },
-
-              mb: 3,
-
-              color: darkMode ? "#fff" : "#0f172a"
             }}
           >
-            Account Settings
+            Settings & Preferences
           </Typography>
+        </Box>
 
-          <Box
-            sx={{
-              display: "grid",
+        {/* 1. Account Settings Card */}
+        <Paper elevation={0} sx={paperStyle}>
+          <Box sx={{
+            display: "flex", alignItems: "center", gap: {
+              xs: 1,
+              sm: 1.5,
+            }, mb: {
+              xs: 2.5,
+              sm: 3,
+              md: 4,
+            },
+          }}>
+            <Box sx={{ color: primary, display: "flex" }}>
+              <FaUserCog size={18} />
+            </Box>
+            <Typography variant="h6" sx={{ color: textColor, fontWeight: 800 }}>
+              Account Settings
+            </Typography>
+          </Box>
 
-              gridTemplateColumns: {
-                xs: "1fr",
-                md: "repeat(2,1fr)"
-              },
-
-              gap: 3
+          <Grid
+            container
+            spacing={{
+              xs: 1.5,
+              sm: 2.5,
+              md: 3,
             }}
           >
-            <TextField
-              fullWidth
-              label="Full Name"
-              value="Rahul Sharma"
-              slotProps={{
-                input: {
-                  readOnly: true,
-                },
-              }}
-              sx={textFieldStyle}
-            />
-
-            <TextField
-              fullWidth
-              label="Email"
-              value="rahul@nexthire.com"
-              slotProps={{
-                input: {
-                  readOnly: true,
-                },
-              }}
-              sx={textFieldStyle}
-            />
-          </Box>
+            <Grid size={{ xs: 12, md: 6 }}>
+              <TextField
+                fullWidth
+                label="Full Name"
+                value="Rahul Sharma"
+                slotProps={{
+                  input: {
+                    readOnly: true,
+                  },
+                }}
+                sx={textFieldStyle}
+              />
+            </Grid>
+            <Grid size={{ xs: 12, md: 6 }}>
+              <TextField
+                fullWidth
+                label="Email"
+                value="rahul@nexthire.com"
+                slotProps={{
+                  input: {
+                    readOnly: true,
+                  },
+                }}
+                sx={textFieldStyle}
+              />
+            </Grid>
+          </Grid>
         </Paper>
 
-        {/* Notification Settings Section */}
-        <Paper elevation={6} sx={paperStyle}>
-          <Typography
-            sx={{
-              fontWeight: 800,
+        {/* 2. Notification Settings Card */}
+        <Paper elevation={0} sx={paperStyle}>
+          <Box sx={{
+            display: "flex", alignItems: "center", gap: {
+              xs: 1,
+              sm: 1.5,
+            }, mb: {
+              xs: 2.5,
+              sm: 3,
+              md: 4,
+            },
+          }}>
+            <Box sx={{ color: primary, display: "flex" }}>
+              <FaSlidersH size={18} />
+            </Box>
+            <Typography variant="h6" sx={{ color: textColor, fontWeight: 800 }}>
+              Notification Settings
+            </Typography>
+          </Box>
 
-              fontSize: {
-                xs: "1.1rem",
-                md: "1.25rem"
-              },
-
-              mb: 3,
-
-              color: darkMode ? "#fff" : "#0f172a"
-            }}
-          >
-            Notification Settings
-          </Typography>
-
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-            <Box sx={rowStyle}>
-              <Typography fontWeight="600" sx={{
-                color: darkMode ? "#fff" : "#0f172a", fontSize: {
-                  xs: ".9rem",
-                  md: ".98rem"
-                }
+          <Box sx={{
+            display: "flex", flexDirection: "column", gap: {
+              xs: 1.5,
+              sm: 2,
+            },
+          }}>
+            <Box sx={switchRowStyle}>
+              <Typography sx={{
+                color: textColor, fontWeight: 700, fontSize: {
+                  xs: "0.9rem",
+                  sm: "0.95rem",
+                },
               }}>
                 Email Notifications
               </Typography>
-              <Switch defaultChecked sx={switchStyle} />
+              <Switch
+                checked={emailNotification}
+                onChange={(e) => setEmailNotification(e.target.checked)}
+                sx={switchStyle}
+              />
             </Box>
 
-            <Box sx={rowStyle}>
-              <Typography fontWeight="600" sx={{ color: darkMode ? "#fff" : "#0f172a", fontSize: "0.95rem" }}>
+            <Box sx={switchRowStyle}>
+              <Typography sx={{
+                color: textColor, fontWeight: 700, fontSize: {
+                  xs: "0.9rem",
+                  sm: "0.95rem",
+                },
+              }}>
                 Interview Reminders
               </Typography>
-              <Switch defaultChecked sx={switchStyle} />
+              <Switch
+                checked={interviewReminders}
+                onChange={(e) => setInterviewReminders(e.target.checked)}
+                sx={switchStyle}
+              />
             </Box>
 
-            <Box sx={rowStyle}>
-              <Typography fontWeight="600" sx={{ color: darkMode ? "#fff" : "#0f172a", fontSize: "0.95rem" }}>
+            <Box sx={switchRowStyle}>
+              <Typography sx={{
+                color: textColor, fontWeight: 700, fontSize: {
+                  xs: "0.9rem",
+                  sm: "0.95rem",
+                },
+              }}>
                 Assessment Alerts
               </Typography>
-              <Switch defaultChecked sx={switchStyle} />
+              <Switch
+                checked={assessmentAlerts}
+                onChange={(e) => setAssessmentAlerts(e.target.checked)}
+                sx={switchStyle}
+              />
             </Box>
 
-            <Box sx={rowStyle}>
-              <Typography fontWeight="600" sx={{ color: darkMode ? "#fff" : "#0f172a", fontSize: "0.95rem" }}>
+            <Box sx={switchRowStyle}>
+              <Typography sx={{
+                color: textColor, fontWeight: 700, fontSize: {
+                  xs: "0.9rem",
+                  sm: "0.95rem",
+                },
+              }}>
                 Feedback Updates
               </Typography>
-              <Switch sx={switchStyle} />
+              <Switch
+                checked={feedbackUpdates}
+                onChange={(e) => setFeedbackUpdates(e.target.checked)}
+                sx={switchStyle}
+              />
             </Box>
           </Box>
         </Paper>
 
-        {/* Security Settings Section */}
-        <Paper elevation={6} sx={paperStyle}>
-          <Typography
-            sx={{
-              fontWeight: 800,
-
-              fontSize: {
-                xs: "1.1rem",
-                md: "1.25rem"
-              },
-
-              mb: 3,
-
-              color: darkMode ? "#fff" : "#0f172a"
-            }}
-          >
-            Security Settings
-          </Typography>
-
+        {/* ================= APPEARANCE ================= */}
+        <Paper
+          elevation={0}
+          sx={{
+            p: { xs: 2, sm: 2.5, md: 4 },
+            borderRadius: { xs: 3, md: "22px" },
+            bgcolor: colors.card,
+            backdropFilter: "blur(16px)",
+            border: `1px solid ${borderStyle}`,
+            boxShadow: colors.shadow,
+          }}
+        >
           <Box
             sx={{
               display: "flex",
-              flexDirection: {
-                xs: "column",
-                sm: "row"
-              },
-
-              alignItems: {
-                xs: "flex-start",
-                sm: "center"
-              },
               alignItems: "center",
-              flexWrap: "wrap",
-              gap: 2,
+              gap: 1.5,
+            }}
+          >
+            <Avatar
+              sx={{
+                width: { xs: 40, md: 48 },
+                height: { xs: 40, md: 48 },
+                bgcolor: `${primary}15`,
+                color: primary,
+              }}
+            >
+              <FaPalette />
+            </Avatar>
+
+            <Box>
+              <Typography
+                sx={{
+                  color: textColor,
+                  fontWeight: 800,
+                  fontSize: { xs: ".98rem", md: "1.1rem" },
+                }}
+              >
+                Appearance
+              </Typography>
+
+              <Typography
+                sx={{
+                  color: subText,
+                  fontSize: { xs: ".75rem", md: ".82rem" },
+                }}
+              >
+                Customize the appearance of your NextHire portal.
+              </Typography>
+            </Box>
+          </Box>
+
+          <Box
+            onClick={() => setShowThemes(!showThemes)}
+            sx={{
+              mt: 3,
+              p: 2,
+              borderRadius: 2,
+              border: `1px solid ${borderStyle}`,
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              transition: ".2s",
+              "&:hover": {
+                borderColor: primary,
+                bgcolor: `${primary}08`,
+              },
             }}
           >
             <Box>
               <Typography
                 sx={{
-                  fontWeight: 800,
-
-                  fontSize: {
-                    xs: "1.1rem",
-                    md: "1.25rem"
-                  },
-
-                  mb: 3,
-
-                  color: darkMode ? "#fff" : "#0f172a"
+                  color: textColor,
+                  fontWeight: 700,
                 }}
               >
-                Password
+                Theme
               </Typography>
-              <Typography variant="caption"
-                sx={{ color: darkMode ? "#cbd5e1" : "#475569" }}>
-                Last changed 15 days ago
+
+              <Typography
+                sx={{
+                  color: subText,
+                  fontSize: ".8rem",
+                  mt: 0.3,
+                }}
+              >
+                Choose your preferred theme
+              </Typography>
+            </Box>
+
+            <FaPalette
+              style={{
+                color: primary,
+                fontSize: "18px"
+              }}
+            />
+          </Box>
+
+          {showThemes && (
+            <ThemeSelector />
+          )}
+        </Paper>
+
+        {/* 3. Security Settings Card */}
+        <Paper elevation={0} sx={paperStyle}>
+          <Box sx={{
+            display: "flex", alignItems: "center", gap: {
+              xs: 1,
+              sm: 1.5,
+            }, mb: 3.5
+          }}>
+            <Box sx={{ color: primary, display: "flex" }}>
+              <FaShieldAlt size={18} />
+            </Box>
+            <Typography variant="h6" sx={{ color: textColor, fontWeight: 800 }}>
+              Security Settings
+            </Typography>
+          </Box>
+
+          <Box sx={{
+            display: "flex",
+            flexDirection: {
+              xs: "column",
+              sm: "row",
+            },
+            alignItems: {
+              xs: "flex-start",
+              sm: "center",
+            },
+            justifyContent: "space-between",
+            gap: {
+              xs: 1.5,
+              sm: 2,
+            },
+            flexWrap: "wrap",
+          }}>
+            <Box>
+              <Typography sx={{
+                color: textColor, fontWeight: 700, fontSize: {
+                  xs: "0.9rem",
+                  sm: "0.95rem",
+                }, mb: 0.5
+              }}>
+                Account Password
+              </Typography>
+              <Typography sx={{ color: subText, fontSize: "0.85rem" }}>
+                Password was last updated 15 days ago.
               </Typography>
             </Box>
 
@@ -351,26 +483,26 @@ export default function InterviewerSettings() {
               sx={{
                 width: {
                   xs: "100%",
-                  sm: "auto"
+                  sm: "auto",
                 },
-                background: "linear-gradient(90deg,#14b8a6,#0f766e)",
-                "&:hover": {
-                  background: "linear-gradient(90deg,#0d9488,#115e59)",
-
-                  transform: "translateY(-2px)",
-
-                  boxShadow: "0 8px 20px rgba(20,184,166,.35)"
-                },
-                borderRadius: 3,
-                textTransform: "none",
-                fontWeight: "bold",
+                py: 1.2,
                 px: {
                   xs: 2,
-                  sm: 4
+                  sm: 3,
                 },
-
-                py: 1.3,
-                boxShadow: "0 4px 12px rgba(139, 92, 246, 0.15)",
+                borderRadius: "10px",
+                fontWeight: 700,
+                textTransform: "none",
+                fontSize: {
+                  xs: "0.85rem",
+                  sm: "0.9rem",
+                },
+                background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+                boxShadow: `0 4px 12px ${primary}33`,
+                "&:hover": {
+                  background: `linear-gradient(90deg, ${primary}, ${primary})`,
+                  transform: "translateY(-1px)",
+                },
               }}
             >
               Change Password
@@ -382,35 +514,56 @@ export default function InterviewerSettings() {
         <Box
           sx={{
             display: "flex",
-            justifyContent: {
-              xs: "stretch",
-              sm: "flex-end"
-            },
-
             flexDirection: {
               xs: "column",
-              sm: "row"
+              sm: "row",
             },
-            gap: 2,
-            mt: 1,
+            justifyContent: {
+              xs: "stretch",
+              sm: "flex-end",
+            },
+            alignItems: "center",
+            gap: {
+              xs: 1.5,
+              sm: 2,
+            },
+            mt: {
+              xs: 1,
+              sm: 2,
+            },
           }}
         >
           <Button
             component={Link}
             to="/interviewer-profile"
             variant="outlined"
+            startIcon={<FaArrowLeft size={11} />}
             sx={{
-              borderRadius: 3,
-              textTransform: "none",
+              width: {
+                xs: "100%",
+                sm: "auto",
+              },
+              py: {
+                xs: 1.2,
+                sm: 1.4,
+              },
+              px: {
+                xs: 2.2,
+                sm: 3,
+              },
+              borderRadius: "10px",
               fontWeight: 700,
-              px: { xs: 2, sm: 4 },
-              py: 1.3,
-              color: "#14b8a6",
-              borderColor: "#14b8a6",
+              textTransform: "none",
+              fontSize: {
+                xs: "0.85rem",
+                sm: "0.9rem",
+              },
+              color: subText,
+              borderColor: borderStyle,
               "&:hover": {
-                bgcolor: "rgba(20,184,166,.08)",
-                borderColor: "#0d9488",
-                color: "#0d9488",
+                borderColor: primary,
+                color: primary,
+                bgcolor: `${primary}08`,
               },
             }}
           >
@@ -420,37 +573,41 @@ export default function InterviewerSettings() {
           <Button
             variant="contained"
             onClick={() => alert("Settings Saved")}
+            startIcon={<FaSave size={12} />}
             sx={{
               width: {
                 xs: "100%",
-                sm: "auto"
+                sm: "auto",
               },
-              background: "linear-gradient(90deg,#14b8a6,#0f766e)",
-              "&:hover": {
-                background: "linear-gradient(90deg,#0d9488,#115e59)",
-
-                transform: "translateY(-2px)",
-
-                boxShadow: "0 8px 20px rgba(20,184,166,.35)"
+              py: {
+                xs: 1.2,
+                sm: 1.4,
               },
-              borderRadius: 3,
-              textTransform: "none",
-              fontWeight: "bold",
               px: {
-                xs: 3,
-                sm: 5
+                xs: 2.2,
+                sm: 3,
               },
-
-              py: 1.3,
-              boxShadow: "0 4px 12px rgba(139, 92, 246, 0.15)",
-              transition: "all 0.2s ease",
+              borderRadius: "10px",
+              fontWeight: 700,
+              textTransform: "none",
+              fontSize: {
+                xs: "0.85rem",
+                sm: "0.9rem",
+              },
+              background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+              boxShadow: `0 4px 12px ${primary}33`,
+              "&:hover": {
+                background: `linear-gradient(90deg, ${primary}, ${primary})`,
+                transform: "translateY(-1.5px)",
+                boxShadow: `0 6px 16px ${primary}4d`,
+              },
             }}
           >
             Save Settings
           </Button>
         </Box>
-      </Box>
 
+      </Box>
     </InterviewerLayout>
   );
 }

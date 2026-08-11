@@ -1,23 +1,30 @@
 import { Link } from "react-router-dom";
 import InterviewerLayout from "../../Layouts/InterviewerLayout";
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import {
   Paper,
   Avatar,
   Typography,
   Button,
   TextField,
-  Card,
-  CardContent,
   Box,
 } from "@mui/material";
 
 export default function InterviewerProfile() {
   const { darkMode } = useTheme();
+  const colors = useThemeColors();
+
+  // Colors — fully theme-driven (matches Dashboard / Settings / Evaluations)
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
 
   const textFieldStyle = {
     "& .MuiInputLabel-root": {
-      color: darkMode ? "#cbd5e1" : "#64748b",
+      color: subText,
     },
     "& input": {
       cursor: "default",
@@ -27,7 +34,7 @@ export default function InterviewerProfile() {
         xs: ".9rem",
         md: "1rem"
       },
-      color: "#14b8a6",
+      color: primary,
     },
     "& .MuiOutlinedInput-root": {
       mb: {
@@ -39,46 +46,19 @@ export default function InterviewerProfile() {
         xs: 52,
         md: 56
       },
-      color: darkMode ? "#ffffff" : "#0f172a",
+      color: textColor,
       "& fieldset": {
-        borderColor: darkMode ? "#475569" : "#cbd5e1",
+        borderColor: borderStyle,
         borderRadius: "12px",
       },
       "&:hover fieldset": {
-        borderColor: "#14b8a6",
+        borderColor: primary,
       },
       "&.Mui-focused fieldset": {
-        borderColor: "#14b8a6",
+        borderColor: primary,
       },
-      backgroundColor: darkMode ? "#0f172a" : "#ffffff",
+      backgroundColor: colors.input || colors.card,
     },
-  };
-
-  const statCardStyle = {
-    borderRadius: 5,
-    textAlign: "center",
-    bgcolor: darkMode
-      ? "rgba(30,41,59,.35)"
-      : "rgba(255,255,255,.85)",
-
-    backdropFilter: "blur(10px)",
-
-    border: `1.5px solid ${darkMode
-      ? "rgba(148,163,184,.22)"
-      : "rgba(0,0,0,.08)"
-      }`,
-    color: darkMode ? "#ffffff" : "#0f172a",
-    transition: "transform 0.3s, box-shadow 0.3s",
-    "&:hover": {
-
-      transform: "translateY(-6px)",
-
-      borderColor: "#14b8a6",
-
-      boxShadow: darkMode
-        ? "0 18px 35px rgba(20,184,166,.18)"
-        : "0 18px 35px rgba(20,184,166,.12)"
-    }
   };
 
   return (
@@ -99,7 +79,7 @@ export default function InterviewerProfile() {
             sm: 3,
             md: 5,
           },
-          color: darkMode ? "#fff" : "#0f172a",
+          color: textColor,
         }}
       >
         Profile
@@ -118,25 +98,16 @@ export default function InterviewerProfile() {
           },
 
           borderRadius: 5,
-          bgcolor: darkMode
-            ? "#1e293b"
-            : "#ffffff",
+          bgcolor: colors.card,
 
           backdropFilter: "blur(10px)",
 
-          border: `1px solid ${darkMode
-            ? "#334155"
-            : "#e2e8f0"
-            }`,
-          color: darkMode ? "#ffffff" : "#0f172a",
-          transition: "transform 0.3s, box-shadow 0.3s",
+          border: `1px solid ${borderStyle}`,
+          color: textColor,
           transition: "all .3s ease",
           "&:hover": {
-            boxShadow: darkMode
-              ? "0 16px 35px rgba(0,0,0,.4)"
-              : "0 16px 35px rgba(0,0,0,.08)",
             transform: "translateY(-4px)",
-            boxShadow: 10,
+            boxShadow: colors.shadow,
           },
         }}
       >
@@ -177,9 +148,9 @@ export default function InterviewerProfile() {
                   sm: 90,
                   md: 100,
                 },
-                background: "linear-gradient(135deg,#14b8a6,#0f766e)",
-                boxShadow: "0 10px 25px rgba(20,184,166,.3)",
-                border: `4px solid ${darkMode ? "rgba(30,41,59,0.9)" : "#ffffff"}`,
+                background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
+                boxShadow: `0 10px 25px ${primary}4d`,
+                border: `4px solid ${colors.card}`,
                 fontSize: "2.25rem",
                 fontWeight: 800,
               }}
@@ -192,6 +163,7 @@ export default function InterviewerProfile() {
                 sx={{
                   fontWeight: 800,
                   letterSpacing: "-.03em",
+                  color: textColor,
 
                   fontSize: {
                     xs: "1.5rem",
@@ -204,7 +176,7 @@ export default function InterviewerProfile() {
               </Typography>
               <Typography
                 sx={{
-                  color: "#14b8a6",
+                  color: primary,
                   fontWeight: 600,
                   fontSize: {
                     xs: ".9rem",
@@ -236,20 +208,20 @@ export default function InterviewerProfile() {
               to="/edit-interviewer-profile"
               variant="contained"
               sx={{
-                background: "linear-gradient(90deg,#14b8a6,#0f766e)",
+                background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
                 borderRadius: 3,
                 textTransform: "none",
                 fontWeight: "bold",
                 px: 4,
                 py: 1.2,
-                boxShadow: "0 4px 12px rgba(139, 92, 246, 0.15)",
+                boxShadow: `0 4px 12px ${primary}33`,
 
                 "&:hover": {
-                  background: "linear-gradient(90deg,#0d9488,#115e59)",
+                  background: `linear-gradient(90deg, ${primary}, ${primary})`,
 
                   transform: "translateY(-2px)",
 
-                  boxShadow: "0 8px 20px rgba(20,184,166,.35)"
+                  boxShadow: `0 8px 20px ${primary}59`,
                 },
 
               }}
@@ -262,20 +234,16 @@ export default function InterviewerProfile() {
               to="/interviewer-notifications"
               variant="text"
               sx={{
-                color: "#14b8a6",
+                color: primary,
 
                 fontWeight: 700,
 
                 borderRadius: 3,
 
-                bgcolor: darkMode
-                  ? "rgba(20,184,166,.12)"
-                  : "rgba(20,184,166,.08)",
+                bgcolor: `${primary}14`,
 
                 "&:hover": {
-                  bgcolor: darkMode
-                    ? "rgba(20,184,166,.20)"
-                    : "rgba(20,184,166,.14)"
+                  bgcolor: `${primary}22`,
                 }
               }}
             >
@@ -300,31 +268,25 @@ export default function InterviewerProfile() {
             md: 4
           },
           borderRadius: 5,
-          bgcolor: darkMode
-            ? "#1e293b"
-            : "#ffffff",
+          bgcolor: colors.card,
 
           backdropFilter: "blur(10px)",
 
-          border: `1px solid ${darkMode
-            ? "#334155"
-            : "#e2e8f0"
-            }`,
-          color: darkMode ? "#ffffff" : "#0f172a",
+          border: `1px solid ${borderStyle}`,
+          color: textColor,
           transition: "all .25s ease",
 
           "&:hover": {
             transform: "translateY(-6px)",
 
-            boxShadow: darkMode
-              ? "0 18px 35px rgba(0,0,0,.35)"
-              : "0 18px 35px rgba(0,0,0,.08)",
+            boxShadow: colors.shadow,
 
           },
         }}
       >
         <Typography sx={{
           fontWeight: 800,
+          color: textColor,
 
           fontSize: {
             xs: "1.1rem",

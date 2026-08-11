@@ -1,6 +1,7 @@
 import InterviewerLayout from "../../Layouts/InterviewerLayout";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import {
   Card,
   Grid,
@@ -11,7 +12,6 @@ import {
   Avatar,
   Chip,
   Paper,
-  Divider,
 } from "@mui/material";
 
 import {
@@ -25,49 +25,60 @@ import {
 // Adjust this path to match where you place the JSON file
 import dashboardData from "../../data/interviewerDashboard.json";
 
-const cardMeta = {
-  "Interviews Assigned": {
-    icon: <FaCalendarAlt size={20} />,
-    link: "/assigned-interviews",
-    bgLight: "rgba(20,184,166,.08)",
-    bgDark: "rgba(20,184,166,.15)",
-  },
-  "Feedback Pending": {
-    icon: <FaClipboardCheck size={20} />,
-    link: "/feedback",
-    bgLight: "rgba(239,68,68,.08)",
-    bgDark: "rgba(239,68,68,.15)",
-  },
-  "Completed Evaluations": {
-    icon: <FaChartBar size={20} />,
-    link: "/evaluations",
-    bgLight: "rgba(16,185,129,.08)",
-    bgDark: "rgba(16,185,129,.15)",
-  },
-};
-
 export default function InterviewerDashboard() {
   const { darkMode } = useTheme();
-  const borderStyle = darkMode ? "rgba(255, 255, 255, 0.06)" : "rgba(0, 0, 0, 0.05)";
-  const subText = darkMode ? "#94a3b8" : "#475569";
+  const colors = useThemeColors();
+
+  // Colors — fully theme-driven (matches Candidate Dashboard / Settings / Evaluations)
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
+
+  // Stat card meta — accents alternate between theme primary/secondary,
+  // "Feedback Pending" keeps a semantic red since it signals something outstanding
+  const cardMeta = {
+    "Interviews Assigned": {
+      icon: <FaCalendarAlt size={20} />,
+      link: "/assigned-interviews",
+      color: primary,
+      bgLight: `${primary}14`,
+      bgDark: `${primary}26`,
+    },
+    "Feedback Pending": {
+      icon: <FaClipboardCheck size={20} />,
+      link: "/feedback",
+      color: "#ef4444",
+      bgLight: "rgba(239,68,68,.08)",
+      bgDark: "rgba(239,68,68,.15)",
+    },
+    "Completed Evaluations": {
+      icon: <FaChartBar size={20} />,
+      link: "/evaluations",
+      color: secondary || primary,
+      bgLight: `${secondary || primary}14`,
+      bgDark: `${secondary || primary}26`,
+    },
+  };
 
   const actions = [
     {
       title: "Assigned Interviews",
       link: "/assigned-interviews",
-      color: "#14b8a6",
+      color: primary,
     },
 
     {
       title: "Submit Feedback",
       link: "/feedback",
-      color: "#10b981",
+      color: secondary || primary,
     },
 
     {
       title: "Evaluations Hub",
       link: "/evaluations",
-      color: "#90b981",
+      color: primary,
     },
   ];
 
@@ -75,6 +86,7 @@ export default function InterviewerDashboard() {
     ...card,
     icon: cardMeta[card.title]?.icon,
     link: cardMeta[card.title]?.link,
+    color: cardMeta[card.title]?.color,
     bgLight: cardMeta[card.title]?.bgLight,
     bgDark: cardMeta[card.title]?.bgDark,
   }));
@@ -97,7 +109,7 @@ export default function InterviewerDashboard() {
               md: "2.2rem",
             },
             mb: 1,
-            color: darkMode ? "#fff" : "#0f172a",
+            color: textColor,
           }}
         >
           Welcome Back, {dashboardData.welcomeName}
@@ -113,18 +125,16 @@ export default function InterviewerDashboard() {
                 sx={{
                   mt: -2,
                   borderRadius: 5,
-                  bgcolor: darkMode ? "rgba(30, 41, 59, 0.45)" : "rgba(255, 255, 255, 0.8)",
+                  bgcolor: colors.card,
                   backdropFilter: "blur(8px)",
-                  color: darkMode ? "#ffffff" : "#0f172a",
+                  color: textColor,
                   border: `1px solid ${borderStyle}`,
                   transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                   height: "100%",
                   "&:hover": {
                     transform: "translateY(-6px)",
                     borderColor: card.color,
-                    boxShadow: darkMode
-                      ? `0 15px 30px rgba(0, 0, 0, 0.4), 0 0 15px ${card.color}15`
-                      : `0 15px 30px rgba(0, 0, 0, 0.05), 0 0 15px ${card.color}15`,
+                    boxShadow: colors.shadow,
                   },
                 }}
               >
@@ -191,7 +201,7 @@ export default function InterviewerDashboard() {
 
       {/* Quick Actions Panel */}
       <Box sx={{ mb: 5 }}>
-        <Typography variant="h6" sx={{ mt: -3, mb: 2, fontWeight: 800, color: darkMode ? "#ffffff" : "#0f172a" }}>
+        <Typography variant="h6" sx={{ mt: -3, mb: 2, fontWeight: 800, color: textColor }}>
           Quick Actions
         </Typography>
 
@@ -235,11 +245,11 @@ export default function InterviewerDashboard() {
                   sm: ".9rem"
                 },
 
-                background: `linear-gradient(135deg,${action.color},#0f766e)`,
+                background: `linear-gradient(135deg, ${action.color}, ${secondary || primary})`,
 
                 "&:hover": {
 
-                  background: `linear-gradient(135deg,#0f766e,#115e59)`,
+                  background: `linear-gradient(135deg, ${primary}, ${primary})`,
 
                   transform: "translateY(-2px)",
 
@@ -265,7 +275,7 @@ export default function InterviewerDashboard() {
           display: "grid",
           gridTemplateColumns: { xs: "1fr", md: "1.2fr 1fr" },
           gap: 4,
-          alignItems: "start", // <-- Add this
+          alignItems: "start",
         }}
       >
         {/* Upcoming Rounds list */}
@@ -278,26 +288,19 @@ export default function InterviewerDashboard() {
               md: 3.5
             },
             borderRadius: 5,
-            bgcolor: darkMode
-              ? "#1e293b"
-              : "#ffffff",
+            bgcolor: colors.card,
 
             backdropFilter: "blur(10px)",
 
-            border: `1px solid ${darkMode
-              ? "#334155"
-              : "#e2e8f0"
-              }`,
-            color: darkMode ? "#ffffff" : "#000000",
+            border: `1px solid ${borderStyle}`,
+            color: textColor,
             transition: "all .3s ease",
 
             "&:hover": {
 
               transform: "translateY(-2px)",
 
-              boxShadow: darkMode
-                ? "0 14px 35px rgba(0,0,0,.4)"
-                : "0 14px 35px rgba(0,0,0,.08)"
+              boxShadow: colors.shadow,
             },
 
           }}
@@ -318,7 +321,7 @@ export default function InterviewerDashboard() {
               mb: 1,
             }}
           >
-            <Typography variant="h6" sx={{ fontWeight: 800, color: darkMode ? "#ffffff" : "#0f172a" }}>
+            <Typography variant="h6" sx={{ fontWeight: 800, color: textColor }}>
               Upcoming Rounds
             </Typography>
 
@@ -352,20 +355,15 @@ export default function InterviewerDashboard() {
 
                   borderRadius: 3,
 
-                  bgcolor: darkMode
-                    ? "rgba(20,184,166,.06)"
-                    : "rgba(20,184,166,.03)",
+                  bgcolor: `${primary}08`,
 
-                  border: `1.5px solid ${darkMode
-                    ? "rgba(148,163,184,.45)"
-                    : "rgba(0,0,0,.08)"
-                    }`,
+                  border: `1.5px solid ${borderStyle}`,
                 }}
               >
                 <Box sx={{ display: "flex", alignItems: "center", gap: 2, }}>
                   <Avatar
                     sx={{
-                      background: "linear-gradient(135deg,#14b8a6,#0f766e)",
+                      background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
                       width: {
                         xs: 34,
                         sm: 38
@@ -386,10 +384,10 @@ export default function InterviewerDashboard() {
                     {item.candidate.charAt(0)}
                   </Avatar>
                   <Box>
-                    <Typography fontWeight="bold" sx={{ fontSize: "0.95rem" }}>
+                    <Typography fontWeight="bold" sx={{ fontSize: "0.95rem", color: textColor }}>
                       {item.candidate}
                     </Typography>
-                    <Typography variant="caption" sx={{ color: darkMode ? "#94a3b8" : "#64748b" }}>
+                    <Typography variant="caption" sx={{ color: subText }}>
                       {item.role} • {item.date} at {item.time}
                     </Typography>
                   </Box>
@@ -406,7 +404,7 @@ export default function InterviewerDashboard() {
                     textTransform: "none",
                     fontWeight: "bold",
                     px: 2.5,
-                    background: "linear-gradient(90deg,#14b8a6,#0f766e)",
+                    background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
 
                     transition: "all .25s ease",
 
@@ -414,7 +412,7 @@ export default function InterviewerDashboard() {
                       transform: "translateY(-2px)",
 
                       filter: "brightness(1.03)",
-                      background: "linear-gradient(90deg,#0d9488,#115e59)"
+                      background: `linear-gradient(90deg, ${primary}, ${primary})`
                     },
 
                   }}
@@ -432,7 +430,7 @@ export default function InterviewerDashboard() {
             endIcon={<FaArrowRight size={12} />}
             sx={{
               textTransform: "none",
-              color: "#14b8a6",
+              color: primary,
               fontWeight: 700,
 
               alignSelf: {
@@ -455,7 +453,7 @@ export default function InterviewerDashboard() {
               },
 
               "&:hover": {
-                bgcolor: "rgba(20,184,166,.06)",
+                bgcolor: `${primary}0f`,
               },
             }}
           >
@@ -474,26 +472,19 @@ export default function InterviewerDashboard() {
               md: 3.5
             },
             borderRadius: 5,
-            bgcolor: darkMode
-              ? "#1e293b"
-              : "#ffffff",
+            bgcolor: colors.card,
 
             backdropFilter: "blur(10px)",
 
-            border: `1px solid ${darkMode
-              ? "#334155"
-              : "#e2e8f0"
-              }`,
-            color: darkMode ? "#ffffff" : "#000000",
+            border: `1px solid ${borderStyle}`,
+            color: textColor,
             transition: "all .3s ease",
 
             "&:hover": {
 
               transform: "translateY(-2px)",
 
-              boxShadow: darkMode
-                ? "0 14px 35px rgba(0,0,0,.4)"
-                : "0 14px 35px rgba(0,0,0,.08)"
+              boxShadow: colors.shadow,
             },
 
           }}
@@ -514,14 +505,14 @@ export default function InterviewerDashboard() {
               mb: 1,
             }}
           >
-            <Typography variant="h6" sx={{ fontWeight: 800, color: darkMode ? "#ffffff" : "#0f172a" }}>
+            <Typography variant="h6" sx={{ fontWeight: 800, color: textColor }}>
               Recent Outcomes
             </Typography>
 
           </Box>
 
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-            {recentEvaluations.map((item, index) => (
+            {recentEvaluations.map((item) => (
               <Box
                 key={item.id}
                 sx={{
@@ -552,19 +543,10 @@ export default function InterviewerDashboard() {
                   borderRadius: 5,
 
                   transition: "all .3s ease",
-                  bgcolor:
-                    darkMode
-                      ? "rgba(20,184,166,.06)"
-                      : "rgba(20,184,166,.03)",
-                  border: `1.5px solid ${darkMode
-                    ? "rgba(148,163,184,.45)"
-                    : "rgba(0,0,0,.08)"
-                    }`,
+                  bgcolor: `${primary}08`,
+                  border: `1.5px solid ${borderStyle}`,
                   "&:hover": {
-                    bgcolor:
-                      darkMode
-                        ? "rgba(20,184,166,.10)"
-                        : "rgba(20,184,166,.05)",
+                    bgcolor: `${primary}14`,
 
                     transform: "translateY(-2px)",
 
@@ -593,11 +575,9 @@ export default function InterviewerDashboard() {
 
                       fontWeight: 700,
 
-                      background:
-                        "linear-gradient(135deg,#14b8a6,#0f766e)",
+                      background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
 
-                      boxShadow:
-                        "0 6px 18px rgba(20,184,166,.28)",
+                      boxShadow: `0 6px 18px ${primary}47`,
                     }}
                   >
                     {item.candidate.charAt(0)}
@@ -607,7 +587,7 @@ export default function InterviewerDashboard() {
                     <Typography
                       sx={{
                         fontWeight: 700,
-                        color: darkMode ? "#fff" : "#0f172a",
+                        color: textColor,
                       }}
                     >
                       {item.candidate}
@@ -616,9 +596,7 @@ export default function InterviewerDashboard() {
                     <Typography
                       variant="caption"
                       sx={{
-                        color: darkMode
-                          ? "#94a3b8"
-                          : "#64748b",
+                        color: subText,
                       }}
                     >
                       {item.role}
@@ -627,7 +605,7 @@ export default function InterviewerDashboard() {
                     <Typography
                       sx={{
                         mt: .4,
-                        color: "#0f766e",
+                        color: secondary || primary,
                         fontWeight: 700,
                         fontSize: ".82rem",
                       }}
@@ -651,19 +629,19 @@ export default function InterviewerDashboard() {
 
                     bgcolor:
                       item.result === "Recommended"
-                        ? "rgba(16,185,129,.12)"
+                        ? `${primary}1f`
                         : "rgba(245,158,11,.12)",
 
                     color:
                       item.result === "Recommended"
-                        ? "#10b981"
+                        ? primary
                         : "#f59e0b",
 
                     border: "1px solid",
 
                     borderColor:
                       item.result === "Recommended"
-                        ? "rgba(16,185,129,.30)"
+                        ? `${primary}4d`
                         : "rgba(245,158,11,.30)",
                   }}
                 />
@@ -676,7 +654,7 @@ export default function InterviewerDashboard() {
             endIcon={<FaArrowRight size={12} />}
             sx={{
               textTransform: "none",
-              color: "#14b8a6",
+              color: primary,
               fontWeight: 700,
 
               width: {
@@ -694,7 +672,7 @@ export default function InterviewerDashboard() {
               },
 
               "&:hover": {
-                bgcolor: "rgba(20,184,166,.05)",
+                bgcolor: `${primary}0d`,
               },
             }}
           >

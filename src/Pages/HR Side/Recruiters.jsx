@@ -2,6 +2,7 @@ import recruitersData from "../../data/recruiters.json";
 import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import HRLayout from "../../Layouts/HRLayout";
 import { Box, Paper, Typography, Button, Avatar, Chip, TextField } from "@mui/material";
 import { FaPlus, FaChevronLeft, FaChevronRight } from "react-icons/fa";
@@ -18,6 +19,7 @@ const RECRUITERS_PER_PAGE = 8;
 
 export default function Recruiters() {
     const { darkMode } = useTheme();
+    const colors = useThemeColors();
 
     // Recruiters Data //
     const recruiters = recruitersData;
@@ -29,9 +31,11 @@ export default function Recruiters() {
     const currentPage = Number(searchParams.get("page")) || 1;
 
     // Theme //
-    const borderStyle = darkMode
-        ? "rgba(255,255,255,.06)"
-        : "rgba(0,0,0,.05)";
+    const primary = colors.primary;
+    const secondary = colors.secondary;
+    const textColor = colors.text;
+    const subText = colors.subText;
+    const borderStyle = colors.border;
 
     // Filter Logic //
     const filteredRecruiters = recruiters.filter((item) => {
@@ -107,6 +111,7 @@ export default function Recruiters() {
                         mb: { xs: 0, md: -4 },
                         fontWeight: 850,
                         letterSpacing: "-0.03em",
+                        color: textColor,
                     }}
                 >
                     Recruiter Management
@@ -124,11 +129,11 @@ export default function Recruiters() {
                         fontWeight: 700,
                         textTransform: "none",
                         borderRadius: "10px",
-                        background: "linear-gradient(90deg,#2563eb,#1d4ed8)",
-                        boxShadow: "0 4px 12px rgba(37,99,235,.2)",
+                        background: `linear-gradient(90deg,${primary},${secondary || primary})`,
+                        boxShadow: `0 4px 12px ${primary}33`,
                         transition: "all .2s",
                         "&:hover": {
-                            background: "linear-gradient(90deg,#1d4ed8,#1e40af)",
+                            background: `linear-gradient(90deg,${primary},${primary})`,
                             transform: "scale(1.02)",
                         },
                     }}
@@ -149,22 +154,20 @@ export default function Recruiters() {
                             py: { xs: 1.3, md: 1.7 }
                         },
                         borderRadius: "14px",
-                        bgcolor: darkMode
-                            ? "rgba(30,41,59,.45)"
-                            : "#fff",
-                        color: darkMode ? "#fff" : "#0f172a",
+                        bgcolor: colors.input,
+                        color: textColor,
                         "& fieldset": {
                             borderColor: borderStyle,
                         },
                         "&:hover fieldset": {
-                            borderColor: "#2563eb",
+                            borderColor: primary,
                         },
                         "&.Mui-focused fieldset": {
-                            borderColor: "#2563eb",
+                            borderColor: primary,
                         },
                     },
                     "& input::placeholder": {
-                        color: darkMode ? "#94a3b8" : "#64748b",
+                        color: subText,
                         opacity: 1,
                     },
                 }}
@@ -223,16 +226,16 @@ export default function Recruiters() {
                                     md: 95
                                 },
                                 color:
-                                    activeFilter === f ? "#fff" : darkMode ? "#cbd5e1" : "#475569",
+                                    activeFilter === f ? "#fff" : subText,
                                 borderColor:
-                                    activeFilter === f ? "#2563eb" : borderStyle,
+                                    activeFilter === f ? primary : borderStyle,
                                 bgcolor:
-                                    activeFilter === f ? "#2563eb" : "transparent",
+                                    activeFilter === f ? primary : "transparent",
                                 boxShadow:
-                                    activeFilter === f ? "0 4px 10px rgba(37,99,235,0.2)" : "none",
+                                    activeFilter === f ? `0 4px 10px ${primary}33` : "none",
                                 "&:hover": {
-                                    borderColor: "#2563eb",
-                                    bgcolor: activeFilter === f ? "#1d4ed8" : darkMode ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)",
+                                    borderColor: primary,
+                                    bgcolor: activeFilter === f ? primary : `${primary}08`,
                                 }
                             }}
                         >
@@ -261,19 +264,13 @@ export default function Recruiters() {
 
                     borderRadius: "22px",
 
-                    bgcolor: darkMode
-                        ? "rgba(30,41,59,.72)"
-                        : "#ffffff",
+                    bgcolor: colors.card,
 
                     backdropFilter: "blur(16px)",
 
                     border: `1px solid ${borderStyle}`,
 
-                    boxShadow: darkMode
-                        ? `  0 18px 45px rgba(0,0,0,.35),
-                         inset 0 1px 0 rgba(255,255,255,.04)  `
-                        : `  0 18px 40px rgba(15,23,42,.08),
-                         0 4px 12px rgba(15,23,42,.05) `,
+                    boxShadow: colors.shadow,
 
                     transition: ".3s",
 
@@ -334,7 +331,7 @@ export default function Recruiters() {
                                             xs: 3,
                                             md: 5
                                         },
-                                        bgcolor: darkMode ? "rgba(30, 41, 59, 0.65)" : "#ffffff",
+                                        bgcolor: colors.card,
                                         backdropFilter: "blur(12px)",
                                         border: `1px solid ${borderStyle}`,
                                         // Premium Multi-layer Shadow
@@ -348,10 +345,10 @@ export default function Recruiters() {
                                         transition: "all 0.3s ease",
                                         "&:hover": {
                                             transform: "translateY(-3px)",
-                                            borderColor: darkMode ? "#60a5fa" : "#2563eb",
+                                            borderColor: primary,
                                             boxShadow: darkMode
                                                 ? "0 18px 38px rgba(0,0,0,.45)"
-                                                : "0 18px 40px rgba(37,99,235,.12)",
+                                                : `0 18px 40px ${primary}1f`,
                                         },
                                     }}
                                 >
@@ -400,7 +397,7 @@ export default function Recruiters() {
                                                         xs: 38,
                                                         sm: 44,
                                                     },
-                                                    bgcolor: "#2563eb",
+                                                    bgcolor: primary,
                                                     fontSize: {
                                                         xs: ".95rem",
                                                         sm: "1.1rem",
@@ -418,17 +415,17 @@ export default function Recruiters() {
                                                             sm: ".98rem",
                                                         },
                                                         fontWeight: 800,
-                                                        color: darkMode ? "#fff" : "#0f172a",
+                                                        color: textColor,
                                                         mb: .3,
                                                     }}
                                                 >
                                                     {r.fullName}
                                                 </Typography>
                                                 <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 0.7 }}>
-                                                    <FaUserTie size={13} color="#3b82f6" />
+                                                    <FaUserTie size={13} color={primary} />
                                                     <Typography
                                                         sx={{
-                                                            color: "#3b82f6",
+                                                            color: primary,
                                                             fontWeight: 700,
                                                             fontSize: {
                                                                 xs: ".8rem",
@@ -441,10 +438,10 @@ export default function Recruiters() {
                                                 </Box>
 
                                                 <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 0.5 }}>
-                                                    <FaBuilding size={12} color="#64748b" />
+                                                    <FaBuilding size={12} color={subText} />
                                                     <Typography
                                                         sx={{
-                                                            color: darkMode ? "#cbd5e1" : "#475569",
+                                                            color: subText,
                                                             fontSize: {
                                                                 xs: ".78rem",
                                                                 sm: ".84rem",
@@ -455,10 +452,10 @@ export default function Recruiters() {
                                                     </Typography>
                                                 </Box>
                                                 <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 0.5 }}>
-                                                    <FaEnvelope size={12} color="#64748b" />
+                                                    <FaEnvelope size={12} color={subText} />
                                                     <Typography
                                                         sx={{
-                                                            color: darkMode ? "#cbd5e1" : "#475569",
+                                                            color: subText,
                                                             fontSize: {
                                                                 xs: ".78rem",
                                                                 sm: ".84rem",
@@ -471,10 +468,10 @@ export default function Recruiters() {
                                                 </Box>
                                                 <Box sx={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 2, mb: 0.5 }}>
                                                     <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                                                        <FaPhoneAlt size={11} color="#64748b" />
+                                                        <FaPhoneAlt size={11} color={subText} />
                                                         <Typography
                                                             sx={{
-                                                                color: darkMode ? "#cbd5e1" : "#475569",
+                                                                color: subText,
                                                                 fontSize: {
                                                                     xs: ".78rem",
                                                                     sm: ".84rem",
@@ -486,10 +483,10 @@ export default function Recruiters() {
                                                     </Box>
 
                                                     <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                                                        <FaMapMarkerAlt size={11} color="#64748b" />
+                                                        <FaMapMarkerAlt size={11} color={subText} />
                                                         <Typography
                                                             sx={{
-                                                                color: darkMode ? "#cbd5e1" : "#475569",
+                                                                color: subText,
                                                                 fontSize: {
                                                                     xs: ".78rem",
                                                                     sm: ".84rem",
@@ -501,10 +498,10 @@ export default function Recruiters() {
                                                     </Box>
                                                 </Box>
                                                 <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 0.5 }}>
-                                                    <FaBriefcase size={12} color="#64748b" />
+                                                    <FaBriefcase size={12} color={subText} />
                                                     <Typography
                                                         sx={{
-                                                            color: darkMode ? "#cbd5e1" : "#475569",
+                                                            color: subText,
                                                             fontSize: {
                                                                 xs: ".78rem",
                                                                 sm: ".84rem",
@@ -516,7 +513,7 @@ export default function Recruiters() {
                                                 </Box>
                                                 <Typography
                                                     sx={{
-                                                        color: darkMode ? "#cbd5e1" : "#475569",
+                                                        color: subText,
                                                         fontSize: {
                                                             xs: ".78rem",
                                                             sm: ".84rem",
@@ -571,7 +568,7 @@ export default function Recruiters() {
                         </Box>
                     ) : (
                         <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%" }}>
-                            <Typography sx={{ color: darkMode ? "#94a3b8" : "#64748b" }}>
+                            <Typography sx={{ color: subText }}>
                                 No recruiters found matching this filter or search.
                             </Typography>
                         </Box>
@@ -604,7 +601,7 @@ export default function Recruiters() {
                         borderTop: `1px solid ${borderStyle}`,
                     }}
                 >
-                    <Typography sx={{ color: darkMode ? "#94a3b8" : "#64748b", fontSize: { xs: ".72rem", md: ".82rem" } }}>
+                    <Typography sx={{ color: subText, fontSize: { xs: ".72rem", md: ".82rem" } }}>
                         {filteredRecruiters.length > 0 ? (
                             <>
                                 Page {currentPage} of {totalPages} • Showing{" "}
@@ -641,6 +638,7 @@ export default function Recruiters() {
                                     page: String(Math.max(currentPage - 1, 1)),
                                 })
                             }
+                            sx={{ color: textColor }}
                         >
                             <FaChevronLeft />
                         </Button>
@@ -651,7 +649,7 @@ export default function Recruiters() {
                                     key={index}
                                     sx={{
                                         px: 1,
-                                        color: darkMode ? "#fff" : "#000",
+                                        color: textColor,
                                         fontWeight: 700,
                                     }}
                                 >
@@ -684,18 +682,16 @@ export default function Recruiters() {
                                             xs: ".75rem",
                                             md: ".9rem"
                                         },
-                                        bgcolor: Number(currentPage) === Number(page) ? "#2563eb" : "transparent",
+                                        bgcolor: Number(currentPage) === Number(page) ? primary : "transparent",
                                         color:
                                             Number(currentPage) === Number(page)
                                                 ? "#fff"
-                                                : darkMode
-                                                    ? "#fff"
-                                                    : "#0f172a",
+                                                : textColor,
                                         "&:hover": {
                                             bgcolor:
                                                 Number(currentPage) === Number(page)
-                                                    ? "#1d4ed8"
-                                                    : "rgba(37,99,235,.08)",
+                                                    ? primary
+                                                    : `${primary}14`,
                                         },
                                     }}
                                 >
@@ -712,6 +708,7 @@ export default function Recruiters() {
                                     page: String(Math.min(currentPage + 1, totalPages)),
                                 })
                             }
+                            sx={{ color: textColor }}
                         >
                             <FaChevronRight />
                         </Button>

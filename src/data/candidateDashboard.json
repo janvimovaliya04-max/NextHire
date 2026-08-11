@@ -18,7 +18,6 @@
     "desc": "Browse current job listings, check technical skill stacks, and apply.",
     "btnText": "Find Openings",
     "link": "/browse-jobs",
-    "color": "#10b981",
     "icon": "briefcase"
   },
   {
@@ -26,7 +25,6 @@
     "desc": "Check recruitment stages, test feedback, and review offers.",
     "btnText": "View Progress",
     "link": "/my-applications",
-    "color": "#10b981",
     "icon": "clipboard"
   },
   {
@@ -34,7 +32,6 @@
     "desc": "Check scheduled slots and interview details.",
     "btnText": "Check Schedule",
     "link": "/my-interviews",
-    "color": "#10b981",
     "icon": "calendar"
   }
 ],

@@ -6,6 +6,7 @@ import { useSearchParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import InterviewerLayout from "../../Layouts/InterviewerLayout";
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import {
   Paper,
   Typography,
@@ -28,21 +29,26 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 const STATUS_FILTERS = ["All", "Scheduled", "Completed", "Cancelled", "Rescheduled"];
 const ROWS_PER_PAGE_OPTIONS = [5, 10, 20, 50];
 
-// Central color map for statuses — used by both the chips and the filter buttons
-const STATUS_COLORS = {
-  Scheduled: { main: "#14b8a6", bgLight: "rgba(20,184,166,.06)", bgDark: "rgba(20,184,166,.12)" },
-  Completed: { main: "#0d9488", bgLight: "rgba(13,148,136,.06)", bgDark: "rgba(13,148,136,.12)" },
-  Cancelled: { main: "#ef4444", bgLight: "rgba(239,68,68,.06)", bgDark: "rgba(239,68,68,.12)" },
-  Rescheduled: { main: "#eab308", bgLight: "rgba(234,179,8,.08)", bgDark: "rgba(234,179,8,.15)" },
-};
-
 export default function AssignedInterviews() {
   const { darkMode } = useTheme();
+  const colors = useThemeColors();
+
+  // Colors — fully theme-driven (matches Dashboard / Settings / Interviews)
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
+
+  // Status color map — semantic (not brand), "Completed" ties to theme secondary for variety
+  const STATUS_COLORS = {
+    Scheduled: { main: primary, bgLight: `${primary}0f`, bgDark: `${primary}1f` },
+    Completed: { main: secondary || primary, bgLight: `${secondary || primary}0f`, bgDark: `${secondary || primary}1f` },
+    Cancelled: { main: "#ef4444", bgLight: "rgba(239,68,68,.06)", bgDark: "rgba(239,68,68,.12)" },
+    Rescheduled: { main: "#eab308", bgLight: "rgba(234,179,8,.08)", bgDark: "rgba(234,179,8,.15)" },
+  };
+
   const [search, setSearch] = useState("");
-  const borderStyle = darkMode
-    ? "rgba(255,255,255,.08)"
-    : "rgba(15,23,42,.08)";
-  const subText = darkMode ? "#9CA3AF" : "#6B7280";
 
   // Filtering Logic
   const [searchParams, setSearchParams] = useSearchParams();
@@ -124,7 +130,7 @@ export default function AssignedInterviews() {
 
   const getStatusColors = (status) =>
     STATUS_COLORS[status] || {
-      main: "#64748b",
+      main: subText,
       bgLight: "rgba(100,116,139,.06)",
       bgDark: "rgba(100,116,139,.12)",
     };
@@ -148,15 +154,11 @@ export default function AssignedInterviews() {
 
           borderRadius: "20px",
 
-          bgcolor: darkMode
-            ? "rgba(30,41,59,.72)"
-            : "#fff",
+          bgcolor: colors.card,
 
           border: `1px solid ${borderStyle}`,
 
-          boxShadow: darkMode
-            ? "0 12px 35px rgba(0,0,0,.25)"
-            : "0 10px 30px rgba(0,0,0,.06)"
+          boxShadow: colors.shadow,
         }}
       >
         <Box
@@ -184,6 +186,7 @@ export default function AssignedInterviews() {
           <Typography
             sx={{
               fontWeight: 800,
+              color: textColor,
               fontSize: {
                 xs: "1.5rem",
                 md: "2rem"
@@ -201,7 +204,7 @@ export default function AssignedInterviews() {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <FaSearch color="#14b8a6" />
+                  <FaSearch color={primary} />
                 </InputAdornment>
               )
             }}
@@ -219,9 +222,19 @@ export default function AssignedInterviews() {
 
                 borderRadius: "14px",
 
-                bgcolor: darkMode
-                  ? "#1e293b"
-                  : "#fff"
+                color: textColor,
+
+                bgcolor: colors.input || colors.card,
+
+                "& fieldset": {
+                  borderColor: borderStyle,
+                },
+                "&:hover fieldset": {
+                  borderColor: primary,
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: primary,
+                },
               }
             }}
           />
@@ -266,29 +279,25 @@ export default function AssignedInterviews() {
                 color:
                   activeFilter === status
                     ? "#fff"
-                    : darkMode
-                      ? "#cbd5e1"
-                      : "#475569",
+                    : subText,
                 borderColor:
                   activeFilter === status
-                    ? "#14b8a6"
+                    ? primary
                     : borderStyle,
                 bgcolor:
                   activeFilter === status
-                    ? "#14b8a6"
+                    ? primary
                     : "transparent",
                 boxShadow:
                   activeFilter === status
-                    ? "0 12px 22px rgba(20,184,166,.25)"
+                    ? `0 12px 22px ${primary}40`
                     : "none",
                 "&:hover": {
-                  borderColor: "#14b8a6",
+                  borderColor: primary,
                   bgcolor:
                     activeFilter === status
-                      ? "#0d9488"
-                      : darkMode
-                        ? "rgba(255,255,255,0.05)"
-                        : "rgba(0,0,0,0.04)",
+                      ? primary
+                      : `${primary}0d`,
                 },
               }}
             >
@@ -314,23 +323,11 @@ export default function AssignedInterviews() {
           borderRadius: "22px",
           width: "100%",
           maxWidth: "100%",
-          overflow: "hidden",
           p: 0,
-          borderRadius: "22px",
-          bgcolor: darkMode
-            ? "rgba(30,41,59,.72)"
-            : "#ffffff",
+          bgcolor: colors.card,
           backdropFilter: "blur(16px)",
           border: `1px solid ${borderStyle}`,
-          boxShadow: darkMode
-            ? `
-              0 18px 45px rgba(0,0,0,.35),
-              inset 0 1px 0 rgba(255,255,255,.04)
-            `
-            : `
-              0 18px 40px rgba(15,23,42,.08),
-              0 4px 12px rgba(15,23,42,.05)
-            `,
+          boxShadow: colors.shadow,
           transition: ".3s",
         }}
       >
@@ -376,33 +373,29 @@ export default function AssignedInterviews() {
                   md: "0.88rem",
                 },
                 fontWeight: 700,
-                bgcolor: darkMode
-                  ? "#1e293b"
-                  : "#f1f5f9",
+                bgcolor: colors.input || colors.card,
               },
             }}
             >
               <TableRow
                 sx={{
-                  bgcolor: darkMode
-                    ? "rgba(20,184,166,.08)"
-                    : "#F8FAFC",
+                  bgcolor: `${primary}08`,
                   borderBottom: `1px solid ${borderStyle}`,
                 }}
               >
-                <TableCell sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: "1rem", borderBottom: `1px solid ${borderStyle}` }}>
+                <TableCell sx={{ color: textColor, fontWeight: 700, fontSize: "1rem", borderBottom: `1px solid ${borderStyle}` }}>
                   Candidate
                 </TableCell>
-                <TableCell sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: "1rem", borderBottom: `1px solid ${borderStyle}` }}>
+                <TableCell sx={{ color: textColor, fontWeight: 700, fontSize: "1rem", borderBottom: `1px solid ${borderStyle}` }}>
                   Position
                 </TableCell>
-                <TableCell sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: "1rem", borderBottom: `1px solid ${borderStyle}` }}>
+                <TableCell sx={{ color: textColor, fontWeight: 700, fontSize: "1rem", borderBottom: `1px solid ${borderStyle}` }}>
                   Date & Time
                 </TableCell>
-                <TableCell sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: "1rem", borderBottom: `1px solid ${borderStyle}` }}>
+                <TableCell sx={{ color: textColor, fontWeight: 700, fontSize: "1rem", borderBottom: `1px solid ${borderStyle}` }}>
                   Status
                 </TableCell>
-                <TableCell align="center" sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: "1rem", borderBottom: `1px solid ${borderStyle}`, pr: 4 }}>
+                <TableCell align="center" sx={{ color: textColor, fontWeight: 700, fontSize: "1rem", borderBottom: `1px solid ${borderStyle}`, pr: 4 }}>
                   Action
                 </TableCell>
               </TableRow>
@@ -429,9 +422,7 @@ export default function AssignedInterviews() {
                         borderBottom: `1px solid ${borderStyle}`,
                         transition: "all 0.2s ease",
                         "&:hover": {
-                          bgcolor: darkMode
-                            ? "rgba(20,184,166,.08)"
-                            : "#ECFDF9",
+                          bgcolor: `${primary}0d`,
                           cursor: "pointer",
                         },
                       }}
@@ -441,8 +432,8 @@ export default function AssignedInterviews() {
                         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
                           <Avatar
                             sx={{
-                              bgcolor: "#0d9488",
-                              boxShadow: "0 6px 18px rgba(20,184,166,.30)",
+                              background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
+                              boxShadow: `0 6px 18px ${primary}4d`,
                               color: "#ffffff",
                               fontWeight: "bold",
                               width: 36,
@@ -452,21 +443,21 @@ export default function AssignedInterviews() {
                           >
                             {row.candidate.charAt(0)}
                           </Avatar>
-                          <Typography sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: "0.95rem" }}>
+                          <Typography sx={{ color: textColor, fontWeight: 700, fontSize: "0.95rem" }}>
                             {row.candidate}
                           </Typography>
                         </Box>
                       </TableCell>
 
                       {/* Position */}
-                      <TableCell sx={{ color: darkMode ? "#ffffff" : "#0f172a", borderBottom: `1px solid ${borderStyle}`, fontWeight: 600, fontSize: "0.9rem" }}>
+                      <TableCell sx={{ color: textColor, borderBottom: `1px solid ${borderStyle}`, fontWeight: 600, fontSize: "0.9rem" }}>
                         {row.position}
                       </TableCell>
 
                       {/* Date & Time */}
                       <TableCell sx={{ borderBottom: `1px solid ${borderStyle}` }}>
                         <Box>
-                          <Typography sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 600, fontSize: "0.9rem" }}>
+                          <Typography sx={{ color: textColor, fontWeight: 600, fontSize: "0.9rem" }}>
                             {row.date}
                           </Typography>
                           <Typography variant="caption" sx={{ display: "block", mt: .25, color: subText }}>
@@ -501,11 +492,11 @@ export default function AssignedInterviews() {
                           variant="contained"
                           size="small"
                           sx={{
-                            background: "linear-gradient(90deg,#14b8a6,#0d9488)",
-                            boxShadow: "0 4px 14px rgba(20,184,166,.30)",
+                            background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+                            boxShadow: `0 4px 14px ${primary}4d`,
                             "&:hover": {
-                              background: "linear-gradient(90deg,#0d9488,#115e59)",
-                              boxShadow: "0 8px 20px rgba(20,184,166,.40)",
+                              background: `linear-gradient(90deg, ${primary}, ${primary})`,
+                              boxShadow: `0 8px 20px ${primary}66`,
                             },
                             borderRadius: "10px",
                             textTransform: "none",
@@ -554,7 +545,7 @@ export default function AssignedInterviews() {
               md: "center",
             },
             borderTop: `1px solid ${borderStyle}`,
-            bgcolor: darkMode ? "rgba(20,184,166,.05)" : "#F8FAFC",
+            bgcolor: `${primary}05`,
           }}
         >
           <Box
@@ -592,17 +583,17 @@ export default function AssignedInterviews() {
                 onChange={handleRowsPerPageChange}
                 sx={{
                   fontSize: "0.8rem",
-                  color: darkMode ? "#ffffff" : "#0f172a",
+                  color: textColor,
                   height: { xs: 28, md: 32 },
                   minWidth: { xs: 50, md: 68 },
                   "& .MuiOutlinedInput-notchedOutline": {
                     borderColor: borderStyle,
                   },
                   "&:hover .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "#14b8a6",
+                    borderColor: primary,
                   },
                   "& .MuiSvgIcon-root": {
-                    color: darkMode ? "#ffffff" : "#0f172a",
+                    color: textColor,
                   },
                 }}
               >
@@ -642,6 +633,7 @@ export default function AssignedInterviews() {
                   perPage: interviewsPerPage,
                 })
               }
+              sx={{ color: textColor }}
             >
               <FaChevronLeft />
             </Button>
@@ -652,7 +644,7 @@ export default function AssignedInterviews() {
                   key={index}
                   sx={{
                     px: 1,
-                    color: darkMode ? "#fff" : "#000",
+                    color: textColor,
                     fontWeight: 700,
                   }}
                 >
@@ -687,18 +679,16 @@ export default function AssignedInterviews() {
                       xs: ".75rem",
                       md: ".9rem"
                     },
-                    bgcolor: Number(currentPage) === Number(page) ? "#14b8a6" : "transparent",
+                    bgcolor: Number(currentPage) === Number(page) ? primary : "transparent",
                     color:
                       Number(currentPage) === Number(page)
                         ? "#fff"
-                        : darkMode
-                          ? "#fff"
-                          : "#0f172a",
+                        : textColor,
                     "&:hover": {
                       bgcolor:
                         Number(currentPage) === Number(page)
-                          ? "#0d9488"
-                          : "rgba(20,184,166,.08)",
+                          ? primary
+                          : `${primary}14`,
                     },
                   }}
                 >
@@ -717,6 +707,7 @@ export default function AssignedInterviews() {
                   perPage: interviewsPerPage,
                 })
               }
+              sx={{ color: textColor }}
             >
               <FaChevronRight />
             </Button>

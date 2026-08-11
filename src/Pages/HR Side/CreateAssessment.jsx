@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import { Link, useNavigate } from "react-router-dom";
 import HRLayout from "../../Layouts/HRLayout";
 
@@ -26,6 +27,7 @@ import {
 
 export default function CreateAssessment() {
   const { darkMode } = useTheme();
+  const colors = useThemeColors();
   const navigate = useNavigate();
 
   // ==============================
@@ -43,11 +45,11 @@ export default function CreateAssessment() {
   // Theme Colors
   // ==============================
 
-  const subText = darkMode ? "#94a3b8" : "#64748b";
-
-  const borderStyle = darkMode
-    ? "rgba(148,163,184,0.22)"
-    : "rgba(15,23,42,0.08)";
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
 
   // ==============================
   // Save Assessment
@@ -77,44 +79,40 @@ export default function CreateAssessment() {
     mb: 2.5,
 
     "& .MuiInputLabel-root": {
-      color: darkMode ? "#94a3b8" : "#64748b",
+      color: subText,
       fontSize: "0.95rem",
       fontWeight: 500,
     },
 
     "& .MuiInputLabel-root.Mui-focused": {
-      color: "#2563eb",
+      color: primary,
     },
 
     "& .MuiOutlinedInput-root": {
-      color: darkMode ? "#ffffff" : "#0f172a",
+      color: textColor,
 
-      backgroundColor: darkMode
-        ? "rgba(15,23,42,0.55)"
-        : "rgba(255,255,255,0.65)",
+      backgroundColor: colors.input,
 
       borderRadius: "12px",
 
       transition: "all .25s ease",
 
       "& fieldset": {
-        borderColor: darkMode
-          ? "rgba(148,163,184,.35)"
-          : "rgba(0,0,0,.12)",
+        borderColor: colors.border,
       },
 
       "&:hover fieldset": {
-        borderColor: "#2563eb",
+        borderColor: primary,
       },
 
       "&.Mui-focused fieldset": {
-        borderColor: "#2563eb",
+        borderColor: primary,
         borderWidth: "2px",
       },
     },
 
     "& .MuiSelect-icon": {
-      color: darkMode ? "#cbd5e1" : "#475569",
+      color: subText,
     },
   };
 
@@ -139,10 +137,10 @@ export default function CreateAssessment() {
           sx={{
             textTransform: "none",
             fontWeight: 700,
-            color: darkMode ? "#94a3b8" : "#475569",
+            color: subText,
             "&:hover": {
               bgcolor: "transparent",
-              color: "#2563eb",
+              color: primary,
             },
           }}
         >
@@ -157,15 +155,11 @@ export default function CreateAssessment() {
       <Box sx={{ mb: 4 }}>
         <Typography
           sx={{
-            fontWeight: 850,
-            letterSpacing: "-0.03em",
-            mb: -2,
-            fontSize: {
-              xs: "1.35rem",
-              sm: "1.7rem",
-              md: "2.125rem"
-            }
-          }}
+                fontSize: { xs: "1.35rem", sm: "1.7rem", md: "2rem", lg: "2.2rem" },
+                mb: { xs: 0, md: 0.5 },
+                fontWeight: 850,
+                letterSpacing: "-0.03em",
+              }}
         >
           Create Assessment
         </Typography>
@@ -180,20 +174,10 @@ export default function CreateAssessment() {
         sx={{
           p: { xs: 2.5, md: 4 },
           borderRadius: "22px",
-          bgcolor: darkMode
-            ? "rgba(30,41,59,.72)"
-            : "#ffffff",
+          bgcolor: colors.card,
           backdropFilter: "blur(16px)",
           border: `1px solid ${borderStyle}`,
-          boxShadow: darkMode
-            ? `
-              0 18px 45px rgba(0,0,0,.35),
-              inset 0 1px 0 rgba(255,255,255,.04)
-            `
-            : `
-              0 18px 40px rgba(15,23,42,.08),
-              0 4px 12px rgba(15,23,42,.05)
-            `,
+          boxShadow: colors.shadow,
           transition: ".3s",
           "&:hover": {
             transform: "translateY(-6px)",
@@ -226,8 +210,7 @@ export default function CreateAssessment() {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              background:
-                "linear-gradient(135deg,#2563eb,#1d4ed8)",
+              background: `linear-gradient(135deg,${primary},${secondary || primary})`,
               color: "#fff",
             }}
           >
@@ -245,7 +228,7 @@ export default function CreateAssessment() {
               sx={{
                 fontWeight: 800,
                 fontSize: "1.1rem",
-                color: darkMode ? "#fff" : "#0f172a",
+                color: textColor,
               }}
             >
               Assessment Details
@@ -397,9 +380,7 @@ export default function CreateAssessment() {
             mt: 2,
             p: 3,
             borderRadius: 4,
-            bgcolor: darkMode
-              ? "rgba(15,23,42,.5)"
-              : "#f8fafc",
+            bgcolor: colors.background,
             border: `1px solid ${borderStyle}`,
           }}
         >
@@ -407,7 +388,7 @@ export default function CreateAssessment() {
             sx={{
               fontWeight: 800,
               mb: 3,
-              color: darkMode ? "#fff" : "#0f172a",
+              color: textColor,
             }}
           >
             Assessment Summary
@@ -415,41 +396,41 @@ export default function CreateAssessment() {
 
           <Grid container spacing={2}>
             <Grid size={{ xs: 12, sm: 6 }}>
-              <Typography color={subText} fontSize=".8rem">
+              <Typography sx={{ color: subText, fontSize: ".8rem" }}>
                 Assessment Title:
               </Typography>
 
-              <Typography fontWeight={700}>
+              <Typography sx={{ fontWeight: 700, color: textColor }}>
                 {title || "-"}
               </Typography>
             </Grid>
 
             <Grid size={{ xs: 12, sm: 6 }}>
-              <Typography color={subText} fontSize=".8rem">
+              <Typography sx={{ color: subText, fontSize: ".8rem" }}>
                 Category:
               </Typography>
 
-              <Typography fontWeight={700}>
+              <Typography sx={{ fontWeight: 700, color: textColor }}>
                 {category}
               </Typography>
             </Grid>
 
             <Grid size={{ xs: 12, sm: 6 }}>
-              <Typography color={subText} fontSize=".8rem">
+              <Typography sx={{ color: subText, fontSize: ".8rem" }}>
                 Difficulty:
               </Typography>
 
-              <Typography fontWeight={700}>
+              <Typography sx={{ fontWeight: 700, color: textColor }}>
                 {difficulty}
               </Typography>
             </Grid>
 
             <Grid size={{ xs: 12, sm: 6 }}>
-              <Typography color={subText} fontSize=".8rem">
+              <Typography sx={{ color: subText, fontSize: ".8rem" }}>
                 Duration:
               </Typography>
 
-              <Typography fontWeight={700}>
+              <Typography sx={{ fontWeight: 700, color: textColor }}>
                 {duration} Minutes
               </Typography>
             </Grid>
@@ -482,14 +463,12 @@ export default function CreateAssessment() {
               textTransform: "none",
               fontWeight: 700,
               fontSize: "0.92rem",
-              color: darkMode ? "#cbd5e1" : "#475569",
-              borderColor: darkMode
-                ? "rgba(255,255,255,.15)"
-                : "rgba(0,0,0,.12)",
+              color: subText,
+              borderColor: borderStyle,
               "&:hover": {
-                borderColor: "#2563eb",
-                color: "#2563eb",
-                bgcolor: "rgba(37,99,235,.04)",
+                borderColor: primary,
+                color: primary,
+                bgcolor: `${primary}08`,
               },
             }}
           >
@@ -515,17 +494,13 @@ export default function CreateAssessment() {
               textTransform: "none",
               fontWeight: 700,
               fontSize: "0.92rem",
-              background:
-                "linear-gradient(135deg,#2563eb,#1d4ed8)",
-              boxShadow:
-                "0 8px 20px rgba(37,99,235,.28)",
+              background: `linear-gradient(135deg,${primary},${secondary || primary})`,
+              boxShadow: `0 8px 20px ${primary}48`,
               transition: ".25s",
               "&:hover": {
-                background:
-                  "linear-gradient(135deg,#1d4ed8,#1e40af)",
+                background: `linear-gradient(135deg,${primary},${primary})`,
                 transform: "translateY(-2px)",
-                boxShadow:
-                  "0 12px 24px rgba(37,99,235,.35)",
+                boxShadow: `0 12px 24px ${primary}58`,
               },
             }}
           >

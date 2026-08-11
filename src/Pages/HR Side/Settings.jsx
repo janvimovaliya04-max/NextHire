@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../context/ThemeContext";
 import HRLayout from "../../Layouts/HRLayout";
+import ThemeSelector from "../../components/ThemeSelector";
+import useThemeColors from "../../hooks/useThemeColors";
 
 import {
   Paper,
@@ -32,11 +34,14 @@ import {
   FaLock,
   FaUserShield,
   FaBriefcase,
+  FaPalette,
 } from "react-icons/fa";
 
 export default function Settings() {
 
   const { darkMode, setDarkMode } = useTheme();
+  const colors = useThemeColors();
+  const [showThemes, setShowThemes] = useState(false);
   const [twoFactor, setTwoFactor] = useState(() => {
     const saved = localStorage.getItem("twoFactor");
     return saved ? JSON.parse(saved) : false;
@@ -53,49 +58,44 @@ export default function Settings() {
   }, [twoFactor]);
 
   // Colors //
-  const primary = "#2563EB";
-  const secondary = "#3B82F6";
-  const lightBlue = "#60A5FA";
-  const darkBlue = "#1D4ED8";
-  const textColor = darkMode ? "#FFFFFF" : "#0F172A";
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const lightBlue = colors.primary;
+  const darkBlue = colors.secondary;
+  const textColor = colors.text;
+
   const cards = [
     {
       title: "Department",
       value: "Human Resources",
       icon: <FaBuilding />,
-      color: "#2563EB",
+      color: colors.primary,
     },
     {
       title: "Role",
       value: "Administrator",
       icon: <FaUserShield />,
-      color: "#3B82F6",
+      color: colors.primary,
     },
     {
       title: "Theme",
       value: darkMode ? "Dark" : "Light",
       icon: darkMode ? <FaMoon /> : <FaSun />,
-      color: "#F59E0B",
+      color: colors.primary,
     },
     {
       title: "Last Login",
       value: "Today",
       icon: <FaClock />,
-      color: "#10B981",
+      color: colors.primary,
     },
   ];
 
-  const subText = darkMode
-    ? "#94A3B8"
-    : "#475569";
+  const subText = colors.subText;
 
-  const borderColor = darkMode
-    ? "rgba(255,255,255,.08)"
-    : "rgba(15,23,42,.06)";
+  const borderColor = colors.border;
 
-  const glassBg = darkMode
-    ? "rgba(30,41,59,.45)"
-    : "rgba(255,255,255,.80)";
+  const glassBg = colors.card;
 
   // Common Card Style //
   const cardStyle = {
@@ -122,12 +122,10 @@ export default function Settings() {
     "& .MuiOutlinedInput-root": {
       fontSize: { xs: ".85rem", md: ".95rem" },
       color: textColor,
-      background: darkMode
-        ? "rgba(15,23,42,.55)"
-        : "rgba(255,255,255,.65)",
+      background: colors.input,
       borderRadius: { xs: "10px", md: "12px" },
       "& fieldset": {
-        borderColor: borderColor,
+        borderColor: colors.border,
       },
       "&:hover fieldset": {
         borderColor: primary,
@@ -142,20 +140,31 @@ export default function Settings() {
   // Switch Card //
   const switchCard = {
     display: "flex",
-    flexDirection: { xs: "column", sm: "row", },
+
+    flexDirection: { xs: "column", sm: "row" },
+
     justifyContent: "space-between",
+
     alignItems: { xs: "flex-start", sm: "center" },
+
     gap: 2,
+
     p: { xs: 2, sm: 2.5, md: 3 },
+
     borderRadius: { xs: 2.5, md: 3 },
-    bgcolor: darkMode
-      ? "rgba(15,23,42,.45)"
-      : "rgba(255,255,255,.60)",
+
+    bgcolor: colors.background,
+
     border: `1px solid ${borderColor}`,
-    transition: ".25s",
+
+    transition: "all .25s ease",
+
     "&:hover": {
       borderColor: primary,
       transform: "translateY(-2px)",
+      boxShadow: darkMode
+        ? `0 8px 20px rgba(0,0,0,.25)`
+        : `0 8px 20px rgba(15,23,42,.08)`,
     },
   };
 
@@ -278,20 +287,10 @@ export default function Settings() {
           sx={{
             p: { xs: 2, sm: 2.5, md: 4 },
             borderRadius: { xs: 3, md: "22px" },
-            bgcolor: darkMode
-              ? "rgba(30,41,59,.72)"
-              : "#ffffff",
+            bgcolor: colors.card,
             backdropFilter: "blur(16px)",
             border: `1px solid ${borderStyle}`,
-            boxShadow: darkMode
-              ? `
-              0 18px 45px rgba(0,0,0,.35),
-              inset 0 1px 0 rgba(255,255,255,.04)
-            `
-              : `
-              0 18px 40px rgba(15,23,42,.08),
-              0 4px 12px rgba(15,23,42,.05)
-            `,
+            boxShadow: colors.shadow,
             transition: ".3s",
             "&:hover": {
               transform: "translateY(-4px)",
@@ -387,15 +386,12 @@ export default function Settings() {
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "space-between",
-                        bgcolor: darkMode
-                          ? "rgba(15,23,42,.55)"
-                          : "#fff",
+                        bgcolor: colors.card,
                         border: `1px solid ${darkMode
                           ? "rgba(255,255,255,.08)"
                           : "#E8EEF7"
                           }`,
-                        boxShadow:
-                          "0 8px 22px rgba(15,23,42,.06)",
+                        boxShadow: colors.shadow,
                         transition: ".3s",
                         "&:hover": {
                           transform: "translateY(-5px)",
@@ -456,23 +452,17 @@ export default function Settings() {
             </Grid>
           </Grid>
         </Paper>
-        
+
         {/* ================= Account Settings ================= */}
         <Paper
           elevation={0}
           sx={{
             p: { xs: 2, sm: 2.5, md: 4 },
             borderRadius: { xs: 3, md: "22px" },
-            bgcolor: darkMode
-              ? "rgba(30,41,59,.72)"
-              : "#ffffff",
+            bgcolor: colors.card,
             backdropFilter: "blur(16px)",
             border: `1px solid ${borderStyle}`,
-            boxShadow: darkMode
-              ? ` 0 18px 45px rgba(0,0,0,.35),
-              inset 0 1px 0 rgba(255,255,255,.04) `
-              : ` 0 18px 40px rgba(15,23,42,.08),
-              0 4px 12px rgba(15,23,42,.05) `,
+            boxShadow: colors.shadow,
             transition: ".3s",
             "&:hover": {
               transform: "translateY(-4px)",
@@ -572,22 +562,124 @@ export default function Settings() {
           </Grid>
         </Paper>
 
+        {/* ================= APPEARANCE ================= */}
+        <Paper
+          elevation={0}
+          sx={{
+            p: { xs: 2, sm: 2.5, md: 4 },
+            borderRadius: { xs: 3, md: "22px" },
+            bgcolor: colors.card,
+            backdropFilter: "blur(16px)",
+            border: `1px solid ${borderStyle}`,
+            boxShadow: colors.shadow,
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 1.5,
+            }}
+          >
+            <Avatar
+              sx={{
+                width: { xs: 40, md: 48 },
+                height: { xs: 40, md: 48 },
+                bgcolor: `${primary}15`,
+                color: primary,
+              }}
+            >
+              <FaPalette />
+            </Avatar>
+
+
+
+            <Box>
+              <Typography
+                sx={{
+                  color: textColor,
+                  fontWeight: 800,
+                  fontSize: { xs: ".98rem", md: "1.1rem" },
+                }}
+              >
+                Appearance
+              </Typography>
+
+              <Typography
+                sx={{
+                  color: subText,
+                  fontSize: { xs: ".75rem", md: ".82rem" },
+                }}
+              >
+                Customize the appearance of your NextHire portal.
+              </Typography>
+            </Box>
+          </Box>
+
+          <Box
+            onClick={() => setShowThemes(!showThemes)}
+            sx={{
+              mt: 3,
+              p: 2,
+              borderRadius: 2,
+              border: `1px solid ${borderStyle}`,
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              transition: ".2s",
+              "&:hover": {
+                borderColor: primary,
+                bgcolor: `${primary}08`,
+              },
+            }}
+          >
+            <Box>
+              <Typography
+                sx={{
+                  color: textColor,
+                  fontWeight: 700,
+                }}
+              >
+                Theme
+              </Typography>
+
+              <Typography
+                sx={{
+                  color: subText,
+                  fontSize: ".8rem",
+                  mt: 0.3,
+                }}
+              >
+                Choose your preferred theme
+              </Typography>
+            </Box>
+
+            <FaPalette
+              style={{
+                color: primary,
+                fontsize: "18px"
+              }}
+            />
+
+          </Box>
+
+          {showThemes && (
+            <ThemeSelector />
+          )}
+
+        </Paper>
+
         {/* ================= NOTIFICATION SETTINGS ================= */}
         <Paper
           elevation={0}
           sx={{
             p: { xs: 2, sm: 2.5, md: 4 },
             borderRadius: { xs: 3, md: "22px", },
-            bgcolor: darkMode
-              ? "rgba(30,41,59,.72)"
-              : "#ffffff",
+            bgcolor: colors.card,
             backdropFilter: "blur(16px)",
             border: `1px solid ${borderStyle}`,
-            boxShadow: darkMode
-              ? ` 0 18px 45px rgba(0,0,0,.35),
-              inset 0 1px 0 rgba(255,255,255,.04) `
-              : ` 0 18px 40px rgba(15,23,42,.08),
-              0 4px 12px rgba(15,23,42,.05) `,
+            boxShadow: colors.shadow,
             transition: ".3s",
             "&:hover": {
               transform: "translateY(-4px)",
@@ -905,16 +997,10 @@ export default function Settings() {
           sx={{
             p: { xs: 2, sm: 2.5, md: 4 },
             borderRadius: { xs: 3, sm: 4, md: "22px" },
-            bgcolor: darkMode
-              ? "rgba(30,41,59,.72)"
-              : "#ffffff",
+            bgcolor: colors.card,
             backdropFilter: "blur(16px)",
             border: `1px solid ${borderStyle}`,
-            boxShadow: darkMode
-              ? ` 0 18px 45px rgba(0,0,0,.35),
-              inset 0 1px 0 rgba(255,255,255,.04) `
-              : ` 0 18px 40px rgba(15,23,42,.08),
-              0 4px 12px rgba(15,23,42,.05) `,
+            boxShadow: colors.shadow,
             transition: ".3s",
             "&:hover": {
               transform: "translateY(-4px)",
@@ -976,14 +1062,13 @@ export default function Settings() {
                 sx={{
                   p: { xs: 2, sm: 2.5, md: 3 },
                   borderRadius: { xs: 2.5, md: 3 },
-                  bgcolor: darkMode
-                    ? "rgba(15,23,42,.45)"
-                    : "#F8FAFC",
+                  bgcolor: colors.background,
                   border: `1px solid ${borderColor}`,
                 }}
               >
                 <Box
                   sx={{
+                    bgcolor: colors.background,
                     display: "flex",
                     flexDirection: { xs: "column", sm: "row" },
                     alignItems: { xs: "center", sm: "flex-start" },
@@ -1004,6 +1089,7 @@ export default function Settings() {
 
                   <Box
                     sx={{
+                      bgcolor: colors.background,
                       flexGrow: 1,
                       width: "100%",
                     }}
@@ -1051,9 +1137,7 @@ export default function Settings() {
                 sx={{
                   p: { xs: 2, sm: 2.5, md: 3 },
                   borderRadius: { xs: 2.5, md: 3 },
-                  bgcolor: darkMode
-                    ? "rgba(15,23,42,.45)"
-                    : "#F8FAFC",
+                  bgcolor: colors.background,
                   border: `1px solid ${borderColor}`,
                 }}
               >
@@ -1143,9 +1227,7 @@ export default function Settings() {
             sx={{
               p: { xs: 1.75, sm: 2, md: 2.5 },
               borderRadius: { xs: 2.5, md: 3 },
-              bgcolor: darkMode
-                ? "rgba(15,23,42,.45)"
-                : "#F8FAFC",
+              bgcolor: colors.background,
               border: `1px solid ${borderColor}`,
             }}
           >

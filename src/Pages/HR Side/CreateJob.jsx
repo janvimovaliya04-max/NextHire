@@ -1,4 +1,5 @@
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import { Link } from "react-router-dom";
 import HRLayout from "../../Layouts/HRLayout";
 import { useState } from "react";
@@ -21,18 +22,18 @@ import { FaBriefcase, FaArrowLeft, FaSave, FaTimes } from "react-icons/fa";
 
 export default function CreateJob() {
   const { darkMode } = useTheme();
+  const colors = useThemeColors();
   const [jobTitle, setJobTitle] = useState("");
   const [location, setLocation] = useState("");
   const [salary, setSalary] = useState("");
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
 
-  const subText = darkMode
-    ? "#94a3b8"
-    : "#475569";
-  const borderStyle = darkMode
-    ? "rgba(148, 163, 184, 0.22)"
-    : "rgba(15, 23, 42, 0.08)";
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
 
   const handleSubmit = () => {
     if (!jobTitle.trim()) {
@@ -69,7 +70,7 @@ export default function CreateJob() {
     mb: 2.5,
 
     "& .MuiInputLabel-root": {
-      color: darkMode ? "#94a3b8" : "#64748b",
+      color: subText,
       fontSize: {
         xs: "0.85rem",
         sm: "0.9rem",
@@ -78,15 +79,13 @@ export default function CreateJob() {
     },
 
     "& .MuiInputLabel-root.Mui-focused": {
-      color: "#2563EB",
+      color: primary,
     },
 
     "& .MuiOutlinedInput-root": {
-      color: darkMode ? "#fff" : "#0f172a",
+      color: textColor,
 
-      background: darkMode
-        ? "rgba(15,23,42,.65)"
-        : "#ffffff",
+      background: colors.input,
 
       borderRadius: "12px",
 
@@ -108,23 +107,19 @@ export default function CreateJob() {
       transition: ".3s",
 
       "& fieldset": {
-        borderColor: darkMode
-          ? "rgba(59,130,246,.18)"
-          : "rgba(37,99,235,.10)",
+        borderColor: colors.border,
       },
 
       "&:hover fieldset": {
-        borderColor: "#3B82F6",
+        borderColor: primary,
       },
 
       "&.Mui-focused": {
-        boxShadow: darkMode
-          ? "0 0 0 4px rgba(37,99,235,.18)"
-          : "0 0 0 4px rgba(37,99,235,.12)",
+        boxShadow: `0 0 0 4px ${primary}20`,
       },
 
       "&.Mui-focused fieldset": {
-        borderColor: "#2563EB",
+        borderColor: primary,
         borderWidth: "2px",
       },
     },
@@ -151,10 +146,10 @@ export default function CreateJob() {
           sx={{
             textTransform: "none",
             fontWeight: 700,
-            color: darkMode ? "#94a3b8" : "#475569",
+            color: subText,
             "&:hover": {
               bgcolor: "transparent",
-              color: "#2563eb",
+              color: primary,
             },
           }}
         >
@@ -173,14 +168,11 @@ export default function CreateJob() {
       >
         <Typography
           sx={{
-            fontWeight: 850,
-            letterSpacing: "-0.03em",
-            fontSize: {
-              xs: "1.45rem",
-              sm: "1.8rem",
-              md: "2.125rem",
-            },
-          }}
+                fontSize: { xs: "1.35rem", sm: "1.7rem", md: "2rem", lg: "2.2rem" },
+                mb: { xs: 0, md: 0.5 },
+                fontWeight: 850,
+                letterSpacing: "-0.03em",
+              }}
         >
           Create Job Posting
         </Typography>
@@ -196,20 +188,10 @@ export default function CreateJob() {
             md: 4,
           },
           borderRadius: "22px",
-          bgcolor: darkMode
-            ? "rgba(30,41,59,.72)"
-            : "#ffffff",
+          bgcolor: colors.card,
           backdropFilter: "blur(16px)",
           border: `1px solid ${borderStyle}`,
-          boxShadow: darkMode
-            ? `
-              0 18px 45px rgba(0,0,0,.35),
-              inset 0 1px 0 rgba(255,255,255,.04)
-            `
-            : `
-              0 18px 40px rgba(15,23,42,.08),
-              0 4px 12px rgba(15,23,42,.05)
-            `,
+          boxShadow: colors.shadow,
 
           transition: ".3s",
 
@@ -265,11 +247,11 @@ export default function CreateJob() {
                   xs: 2,
                   md: 3,
                 },
-                bgcolor: "rgba(37,99,235,.12)",
+                bgcolor: `${primary}15`,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                color: "#2563EB",
+                color: primary,
               }}
             >
               <FaBriefcase
@@ -284,7 +266,7 @@ export default function CreateJob() {
             <Typography
               sx={{
                 fontWeight: 800,
-                color: darkMode ? "#fff" : "#0f172a",
+                color: textColor,
                 fontSize: {
                   xs: "1rem",
                   sm: "1.1rem",
@@ -379,9 +361,7 @@ export default function CreateJob() {
                 md: 3,
               },
               borderRadius: 3,
-              bgcolor: darkMode
-                ? "rgba(15,23,42,.5)"
-                : "#F8FAFC",
+              bgcolor: colors.background,
               border: `1px solid ${borderStyle}`,
             }}
           >
@@ -393,22 +373,22 @@ export default function CreateJob() {
                   md: "1rem",
                 },
                 mb: 2,
-                color: darkMode ? "#fff" : "#0f172a",
+                color: textColor,
               }}
             >
               Job Preview
             </Typography>
 
-            <Typography sx={{ fontSize: { xs: "0.9rem", md: "1rem" }, }} color={subText}>
-              <bold>Title:</bold> {jobTitle || "-"}
+            <Typography sx={{ fontSize: { xs: "0.9rem", md: "1rem" }, color: subText }}>
+              <b>Title:</b> {jobTitle || "-"}
             </Typography>
 
-            <Typography sx={{ fontSize: { xs: "0.9rem", md: "1rem" }, }} color={subText}>
-              <bold>Location:</bold> {location || "-"}
+            <Typography sx={{ fontSize: { xs: "0.9rem", md: "1rem" }, color: subText }}>
+              <b>Location:</b> {location || "-"}
             </Typography>
 
-            <Typography sx={{ fontSize: { xs: "0.9rem", md: "1rem" }, }} color={subText}>
-              <bold>Salary:</bold> ₹{salary || "-"}
+            <Typography sx={{ fontSize: { xs: "0.9rem", md: "1rem" }, color: subText }}>
+              <b>Salary:</b> ₹{salary || "-"}
             </Typography>
           </Paper>
 
@@ -456,11 +436,11 @@ export default function CreateJob() {
                 borderRadius: "10px",
                 fontWeight: 700,
                 textTransform: "none",
-                color: darkMode ? "#cbd5e1" : "#475569",
-                borderColor: darkMode ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.12)",
+                color: subText,
+                borderColor: borderStyle,
                 "&:hover": {
-                  borderColor: darkMode ? "#cbd5e1" : "#475569",
-                  bgcolor: darkMode ? "rgba(37,99,235,0.10)" : "rgba(37, 99, 235, 0.08)"
+                  borderColor: primary,
+                  bgcolor: `${primary}08`,
                 }
               }}
             >
@@ -503,11 +483,11 @@ export default function CreateJob() {
                 borderRadius: "10px",
                 fontWeight: 700,
                 textTransform: "none",
-                background: "linear-gradient(90deg, #2563eb, #1d4ed8)",
-                boxShadow: "0 4px 12px rgba(37,99,235,0.2)",
+                background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+                boxShadow: `0 4px 12px ${primary}33`,
                 "&:hover": {
-                  background: "linear-gradient(90deg, #1d4ed8, #1e40af)",
-                  boxShadow: "0 6px 16px rgba(37,99,235,0.3)",
+                  background: `linear-gradient(90deg, ${primary}, ${primary})`,
+                  boxShadow: `0 6px 16px ${primary}4d`,
                 }
               }}
             >

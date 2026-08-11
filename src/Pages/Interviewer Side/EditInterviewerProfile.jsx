@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import { Link } from "react-router-dom";
 import InterviewerLayout from "../../Layouts/InterviewerLayout";
 import { FaUserTie } from "react-icons/fa";
@@ -15,16 +16,14 @@ import {
 
 export default function EditInterviewerProfile() {
   const { darkMode } = useTheme();
+  const colors = useThemeColors();
 
-  const subText = darkMode ? "#94a3b8" : "#475569";
-
-  const textColor = darkMode
-    ? "#ffffff"
-    : "#0f172a";
-
-  const borderStyle = darkMode
-    ? "rgba(148,163,184,0.18)"
-    : "rgba(0,0,0,0.08)";
+  // Colors — fully theme-driven (matches Dashboard / Settings / Interviews)
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
 
   const [formData, setFormData] = useState({
     fullName: "Rahul Patel",
@@ -48,9 +47,7 @@ export default function EditInterviewerProfile() {
     },
 
     "& .MuiInputLabel-root": {
-      color: darkMode
-        ? "#94a3b8"
-        : "#64748b",
+      color: subText,
 
       fontSize: {
         xs: ".9rem",
@@ -59,32 +56,28 @@ export default function EditInterviewerProfile() {
     },
 
     "& .MuiInputLabel-root.Mui-focused": {
-      color: "#14b8a6",
+      color: primary,
     },
 
     "& .MuiOutlinedInput-root": {
 
       color: textColor,
 
-      backgroundColor: darkMode
-        ? "rgba(15,23,42,.30)"
-        : "rgba(255,255,255,.4)",
+      backgroundColor: colors.input || colors.card,
 
       "& fieldset": {
 
-        borderColor: darkMode
-          ? "rgba(255,255,255,.08)"
-          : "rgba(0,0,0,.10)",
+        borderColor: borderStyle,
 
         borderRadius: "10px"
       },
 
       "&:hover fieldset": {
-        borderColor: "#14b8a6"
+        borderColor: primary
       },
 
       "&.Mui-focused fieldset": {
-        borderColor: "#14b8a6",
+        borderColor: primary,
         borderWidth: 2
       }
     }
@@ -120,26 +113,20 @@ export default function EditInterviewerProfile() {
           },
           borderRadius: 5,
 
-          bgcolor: darkMode
-            ? "rgba(30,41,59,.45)"
-            : "#ffffff",
+          bgcolor: colors.card,
 
           backdropFilter: "blur(12px)",
 
           border: `1px solid ${borderStyle}`,
 
-          boxShadow: darkMode
-            ? "0 10px 30px rgba(0,0,0,.30)"
-            : "0 10px 30px rgba(0,0,0,.03)",
+          boxShadow: colors.shadow,
 
           transition: "all .3s ease",
 
           "&:hover": {
             filter: "brightness(1.03)",
             transform: "translateY(-2px)",
-            boxShadow: darkMode
-              ? "0 15px 35px rgba(0,0,0,.4)"
-              : "0 15px 35px rgba(0,0,0,.06)"
+            boxShadow: colors.shadow,
           }
         }}
       >
@@ -167,19 +154,13 @@ export default function EditInterviewerProfile() {
                 sm: "2rem",
               },
 
-              background:
-                "linear-gradient(135deg,#14b8a6,#0f766e)",
-
+              background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
 
               fontWeight: 800,
 
-              boxShadow:
-                "0 8px 24px rgba(20,184,166,.30)",
+              boxShadow: `0 8px 24px ${primary}4d`,
 
-              border: `4px solid ${darkMode
-                ? "rgba(30,41,59,.9)"
-                : "#ffffff"
-                }`
+              border: `4px solid ${colors.card}`
             }}
           >
             {formData.fullName
@@ -190,10 +171,10 @@ export default function EditInterviewerProfile() {
           <Button
             variant="text"
             sx={{
-              color: "#14b8a6",
+              color: primary,
 
               "&:hover": {
-                background: "rgba(20,184,166,.06)"
+                background: `${primary}0f`
               },
               fontWeight: "bold",
               textTransform: "none",
@@ -219,7 +200,7 @@ export default function EditInterviewerProfile() {
 
           <Box
             sx={{
-              color: "#14b8a6",
+              color: primary,
               display: "flex"
             }}
           >
@@ -329,13 +310,12 @@ export default function EditInterviewerProfile() {
                 xs: 1,
                 sm: 1.2,
               },
-              color: darkMode ? "#cbd5e1" : "#475569",
-              borderColor: darkMode
-                ? "rgba(255,255,255,.18)"
-                : "rgba(0,0,0,.10)",
+              color: subText,
+              borderColor: borderStyle,
               "&:hover": {
-                borderColor: darkMode ? "#ffffff" : "#0f172a",
-                bgcolor: darkMode ? "rgba(255,255,255,0.02)" : "rgba(0,0,0,0.02)",
+                borderColor: primary,
+                color: primary,
+                bgcolor: `${primary}08`,
               },
               transition: "all 0.2s ease",
             }}
@@ -360,21 +340,17 @@ export default function EditInterviewerProfile() {
                 xs: 1,
                 sm: 1.2,
               },
-              background:
-                "linear-gradient(90deg,#14b8a6,#0f766e)",
+              background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
 
-              boxShadow:
-                "0 4px 14px rgba(20,184,166,.30)",
+              boxShadow: `0 4px 14px ${primary}4d`,
 
               "&:hover": {
 
-                background:
-                  "linear-gradient(90deg,#0d9488,#115e59)",
+                background: `linear-gradient(90deg, ${primary}, ${primary})`,
 
                 transform: "translateY(-1px)",
 
-                boxShadow:
-                  "0 8px 20px rgba(20,184,166,.40)"
+                boxShadow: `0 8px 20px ${primary}66`,
               },
               borderRadius: 3,
               textTransform: "none",

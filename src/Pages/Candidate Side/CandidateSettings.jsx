@@ -1,4 +1,6 @@
 import { useTheme } from "../../context/ThemeContext";
+import ThemeSelector from "../../components/ThemeSelector";
+import useThemeColors from "../../hooks/useThemeColors";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useCandidate } from "../../context/CandidateContext";
@@ -11,44 +13,52 @@ import {
   Switch,
   Chip,
   Box,
+  Avatar,
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import { FaUserCog, FaSlidersH, FaShieldAlt, FaSave, FaArrowLeft } from "react-icons/fa";
+import { FaUserCog, FaPalette, FaSlidersH, FaShieldAlt, FaSave, FaArrowLeft } from "react-icons/fa";
 
 export default function CandidateSettings() {
   const { darkMode } = useTheme();
+  const colors = useThemeColors();
+  const [showThemes, setShowThemes] = useState(false);
   const { candidate } = useCandidate();
   const [emailNotification, setEmailNotification] = useState(true);
-  const subText = darkMode ? "#94a3b8" : "#475569";
-  const borderStyle = darkMode ? "rgba(255, 255, 255, 0.06)" : "rgba(0, 0, 0, 0.05)";
+
+  // Colors — fully theme-driven
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
 
   // Unified clean input styling matching Candidate Portal theme
   const textFieldStyle = {
     mb: 0,
     "& .MuiInputLabel-root": {
-      color: darkMode ? "#94a3b8" : "#64748b",
+      color: subText,
       fontSize: "0.95rem",
     },
     "& .MuiInputLabel-root.Mui-focused": {
-      color: "#10b981", // Emerald Green Focus
+      color: primary,
     },
     "& .MuiOutlinedInput-root": {
       height: {
         xs: 52,
         sm: 56,
       },
-      color: darkMode ? "#ffffff" : "#0f172a",
-      backgroundColor: darkMode ? "rgba(15,23,42,0.55)" : "rgba(255,255,255,0.6)",
+      color: textColor,
+      backgroundColor: colors.input,
       "& fieldset": {
-        borderColor: darkMode ? "rgba(148,163,184,0.35)" : "rgba(0,0,0,0.12)",
+        borderColor: borderStyle,
         borderRadius: "10px",
         transition: "border-color 0.2s ease",
       },
       "&:hover fieldset": {
-        borderColor: "#10b981", // Emerald
+        borderColor: primary,
       },
       "&.Mui-focused fieldset": {
-        borderColor: "#10b981", // Emerald
+        borderColor: primary,
         borderWidth: "2px",
       },
     },
@@ -76,11 +86,11 @@ export default function CandidateSettings() {
     },
     borderRadius: "10px",
     border: `1px solid ${borderStyle}`,
-    bgcolor: darkMode ? "rgba(15, 23, 42, 0.2)" : "rgba(0, 0, 0, 0.015)",
+    bgcolor: colors.input,
     transition: "all .3s cubic-bezier(.4,0,.2,1)",
     "&:hover": {
-      borderColor: "#10b981", // Emerald
-      bgcolor: darkMode ? "rgba(15, 23, 42, 0.35)" : "rgba(0, 0, 0, 0.025)",
+      borderColor: primary,
+      bgcolor: `${primary}08`,
     }
   };
 
@@ -119,7 +129,7 @@ export default function CandidateSettings() {
               sx={{
                 fontWeight: 850,
                 letterSpacing: "-0.03em",
-                color: darkMode ? "#fff" : "#0f172a",
+                color: textColor,
                 mb: 0.5,
                 fontSize: {
                   xs: "1.45rem",
@@ -136,7 +146,7 @@ export default function CandidateSettings() {
 
         {/* 1. Account Settings Card */}
         <Paper
-          elevation={6}
+          elevation={0}
           sx={{
             p: {
               xs: 2,
@@ -144,18 +154,16 @@ export default function CandidateSettings() {
               md: 4,
             },
             borderRadius: 5,
-            bgcolor: darkMode ? "rgba(30, 41, 59, 0.45)" : "#ffffff",
+            bgcolor: colors.card,
             backdropFilter: "blur(12px)",
             border: `1px solid ${borderStyle}`,
-            boxShadow: darkMode ? "0 10px 30px rgba(0,0,0,0.25)" : "0 10px 30px rgba(0,0,0,0.02)",
+            boxShadow: colors.shadow,
             transition: ".3s",
 
             "&:hover": {
               transform: "translateY(-4px)",
-              borderColor: "#10b981",
-              boxShadow: darkMode
-                ? "0 15px 35px rgba(0,0,0,.3)"
-                : "0 15px 35px rgba(0,0,0,.05)",
+              borderColor: primary,
+              boxShadow: colors.shadow,
             },
           }}
         >
@@ -169,10 +177,10 @@ export default function CandidateSettings() {
               md: 4,
             },
           }}>
-            <Box sx={{ color: "#10b981", display: "flex" }}>
+            <Box sx={{ color: primary, display: "flex" }}>
               <FaUserCog size={18} />
             </Box>
-            <Typography variant="h6" sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 800 }}>
+            <Typography variant="h6" sx={{ color: textColor, fontWeight: 800 }}>
               Account Information
             </Typography>
           </Box>
@@ -261,8 +269,8 @@ export default function CandidateSettings() {
                     xs: "100%",
                     sm: "auto",
                   },
-                  bgcolor: "rgba(16,185,129,.12)",
-                  color: "#10b981",
+                  bgcolor: `${primary}1f`,
+                  color: primary,
                   borderRadius: "20px",
                   textTransform: "none",
                   fontWeight: 700,
@@ -276,38 +284,34 @@ export default function CandidateSettings() {
                 label="Verified"
                 size="small"
                 sx={{
-                  bgcolor: "rgba(37,99,235,.12)",
-                  color: "#2563eb",
+                  bgcolor: `${secondary || primary}1f`,
+                  color: secondary || primary,
                   borderRadius: "20px",
                   textTransform: "none",
                   fontWeight: 700,
                   px: 2,
                 }}
-              >
-                Verified
-              </Chip>
+              />
             </Box>
           </Grid>
         </Paper>
 
         {/* 2. Notification Settings Card */}
         <Paper
-          elevation={6}
+          elevation={0}
           sx={{
             p: 4,
             borderRadius: 5,
-            bgcolor: darkMode ? "rgba(30, 41, 59, 0.45)" : "#ffffff",
+            bgcolor: colors.card,
             backdropFilter: "blur(12px)",
             border: `1px solid ${borderStyle}`,
-            boxShadow: darkMode ? "0 10px 30px rgba(0,0,0,0.25)" : "0 10px 30px rgba(0,0,0,0.02)",
+            boxShadow: colors.shadow,
             transition: ".3s",
 
             "&:hover": {
               transform: "translateY(-4px)",
-              borderColor: "#10b981",
-              boxShadow: darkMode
-                ? "0 15px 35px rgba(0,0,0,.3)"
-                : "0 15px 35px rgba(0,0,0,.05)",
+              borderColor: primary,
+              boxShadow: colors.shadow,
             },
           }}
         >
@@ -321,10 +325,10 @@ export default function CandidateSettings() {
               md: 4,
             },
           }}>
-            <Box sx={{ color: "#10b981", display: "flex" }}>
+            <Box sx={{ color: primary, display: "flex" }}>
               <FaSlidersH size={18} />
             </Box>
-            <Typography variant="h6" sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 800 }}>
+            <Typography variant="h6" sx={{ color: textColor, fontWeight: 800 }}>
               Alert Preferences
             </Typography>
           </Box>
@@ -338,21 +342,15 @@ export default function CandidateSettings() {
             <Box
               sx={{
                 ...switchRowStyle,
-
-                transition: ".3s",
-
                 "&:hover": {
-                  borderColor: "#10b981",
+                  ...switchRowStyle["&:hover"],
                   transform: "translateX(4px)",
-                  bgcolor: darkMode
-                    ? "rgba(16,185,129,.05)"
-                    : "rgba(16,185,129,.02)",
                 },
               }}
             >
               <Box>
                 <Typography sx={{
-                  color: subText, fontWeight: 700, fontSize: {
+                  color: textColor, fontWeight: 700, fontSize: {
                     xs: "0.9rem",
                     sm: "0.95rem",
                   },
@@ -369,7 +367,13 @@ export default function CandidateSettings() {
                   alignSelf: {
                     xs: "flex-end",
                     sm: "center",
-                  }
+                  },
+                  "& .MuiSwitch-switchBase.Mui-checked": {
+                    color: primary,
+                  },
+                  "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
+                    backgroundColor: primary,
+                  },
                 }}
                 checked={emailNotification}
                 onChange={(e) => setEmailNotification(e.target.checked)}
@@ -379,21 +383,15 @@ export default function CandidateSettings() {
             <Box
               sx={{
                 ...switchRowStyle,
-
-                transition: ".3s",
-
                 "&:hover": {
-                  borderColor: "#10b981",
+                  ...switchRowStyle["&:hover"],
                   transform: "translateX(4px)",
-                  bgcolor: darkMode
-                    ? "rgba(16,185,129,.05)"
-                    : "rgba(16,185,129,.02)",
                 },
               }}
             >
               <Box>
                 <Typography sx={{
-                  color: subText, fontWeight: 700, fontSize: {
+                  color: textColor, fontWeight: 700, fontSize: {
                     xs: "0.9rem",
                     sm: "0.95rem",
                   },
@@ -410,7 +408,13 @@ export default function CandidateSettings() {
                   alignSelf: {
                     xs: "flex-end",
                     sm: "center",
-                  }
+                  },
+                  "& .MuiSwitch-switchBase.Mui-checked": {
+                    color: primary,
+                  },
+                  "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
+                    backgroundColor: primary,
+                  },
                 }}
                 checked={emailNotification}
                 onChange={(e) => setEmailNotification(e.target.checked)}
@@ -420,21 +424,15 @@ export default function CandidateSettings() {
             <Box
               sx={{
                 ...switchRowStyle,
-
-                transition: ".3s",
-
                 "&:hover": {
-                  borderColor: "#10b981",
+                  ...switchRowStyle["&:hover"],
                   transform: "translateX(4px)",
-                  bgcolor: darkMode
-                    ? "rgba(16,185,129,.05)"
-                    : "rgba(16,185,129,.02)",
                 },
               }}
             >
               <Box>
                 <Typography sx={{
-                  color: subText, fontWeight: 700, fontSize: {
+                  color: textColor, fontWeight: 700, fontSize: {
                     xs: "0.9rem",
                     sm: "0.95rem",
                   },
@@ -451,7 +449,13 @@ export default function CandidateSettings() {
                   alignSelf: {
                     xs: "flex-end",
                     sm: "center",
-                  }
+                  },
+                  "& .MuiSwitch-switchBase.Mui-checked": {
+                    color: primary,
+                  },
+                  "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
+                    backgroundColor: primary,
+                  },
                 }}
                 checked={emailNotification}
                 onChange={(e) => setEmailNotification(e.target.checked)}
@@ -460,9 +464,115 @@ export default function CandidateSettings() {
           </Box>
         </Paper>
 
+        {/* ================= APPEARANCE ================= */}
+        <Paper
+          elevation={0}
+          sx={{
+            p: { xs: 2, sm: 2.5, md: 4 },
+            borderRadius: { xs: 3, md: "22px" },
+            bgcolor: colors.card,
+            backdropFilter: "blur(16px)",
+            border: `1px solid ${borderStyle}`,
+            boxShadow: colors.shadow,
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 1.5,
+            }}
+          >
+            <Avatar
+              sx={{
+                width: { xs: 40, md: 48 },
+                height: { xs: 40, md: 48 },
+                bgcolor: `${primary}15`,
+                color: primary,
+              }}
+            >
+              <FaPalette />
+            </Avatar>
+
+            <Box>
+              <Typography
+                sx={{
+                  color: textColor,
+                  fontWeight: 800,
+                  fontSize: { xs: ".98rem", md: "1.1rem" },
+                }}
+              >
+                Appearance
+              </Typography>
+
+              <Typography
+                sx={{
+                  color: subText,
+                  fontSize: { xs: ".75rem", md: ".82rem" },
+                }}
+              >
+                Customize the appearance of your NextHire portal.
+              </Typography>
+            </Box>
+          </Box>
+
+          <Box
+            onClick={() => setShowThemes(!showThemes)}
+            sx={{
+              mt: 3,
+              p: 2,
+              borderRadius: 2,
+              border: `1px solid ${borderStyle}`,
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              transition: ".2s",
+              "&:hover": {
+                borderColor: primary,
+                bgcolor: `${primary}08`,
+              },
+            }}
+          >
+            <Box>
+              <Typography
+                sx={{
+                  color: textColor,
+                  fontWeight: 700,
+                }}
+              >
+                Theme
+              </Typography>
+
+              <Typography
+                sx={{
+                  color: subText,
+                  fontSize: ".8rem",
+                  mt: 0.3,
+                }}
+              >
+                Choose your preferred theme
+              </Typography>
+            </Box>
+
+            <FaPalette
+              style={{
+                color: primary,
+                fontSize: "18px"
+              }}
+            />
+
+          </Box>
+
+          {showThemes && (
+            <ThemeSelector />
+          )}
+
+        </Paper>
+
         {/* 3. Security Settings Card */}
         <Paper
-          elevation={6}
+          elevation={0}
           sx={{
             p: {
               xs: 2,
@@ -470,18 +580,16 @@ export default function CandidateSettings() {
               md: 4,
             },
             borderRadius: 5,
-            bgcolor: darkMode ? "rgba(30, 41, 59, 0.45)" : "#ffffff",
+            bgcolor: colors.card,
             backdropFilter: "blur(12px)",
             border: `1px solid ${borderStyle}`,
-            boxShadow: darkMode ? "0 10px 30px rgba(0,0,0,0.25)" : "0 10px 30px rgba(0,0,0,0.02)",
+            boxShadow: colors.shadow,
             transition: ".3s",
 
             "&:hover": {
               transform: "translateY(-3px)",
-              borderColor: "#10b981",
-              boxShadow: darkMode
-                ? "0 15px 35px rgba(0,0,0,.3)"
-                : "0 15px 35px rgba(0,0,0,.05)",
+              borderColor: primary,
+              boxShadow: colors.shadow,
             },
           }}
         >
@@ -491,10 +599,10 @@ export default function CandidateSettings() {
               sm: 1.5,
             }, mb: 3.5
           }}>
-            <Box sx={{ color: "#10b981", display: "flex" }}>
+            <Box sx={{ color: primary, display: "flex" }}>
               <FaShieldAlt size={18} />
             </Box>
-            <Typography variant="h6" sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 800 }}>
+            <Typography variant="h6" sx={{ color: textColor, fontWeight: 800 }}>
               Security Parameters
             </Typography>
           </Box>
@@ -509,14 +617,16 @@ export default function CandidateSettings() {
               xs: "flex-start",
               sm: "center",
             },
+            justifyContent: "space-between",
             gap: {
               xs: 1.5,
               sm: 2,
-            }, flexWrap: "wrap", gap: 3
+            },
+            flexWrap: "wrap",
           }}>
             <Box>
               <Typography sx={{
-                color: subText, fontWeight: 700, fontSize: {
+                color: textColor, fontWeight: 700, fontSize: {
                   xs: "0.9rem",
                   sm: "0.95rem",
                 }, mb: 0.5
@@ -550,11 +660,10 @@ export default function CandidateSettings() {
                   xs: "0.85rem",
                   sm: "0.9rem",
                 },
-                background: "linear-gradient(90deg, #10b981, #059669)",
-                boxShadow: "0 4px 12px rgba(16,185,129,0.2)",
+                background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+                boxShadow: `0 4px 12px ${primary}33`,
                 "&:hover": {
-                  borderColor: "#10b981",
-                  background: "linear-gradient(90deg,#059669,#047857)",
+                  background: `linear-gradient(90deg, ${primary}, ${primary})`,
                   transform: "translateY(-1px)",
                 }
               }}
@@ -613,11 +722,12 @@ export default function CandidateSettings() {
                 xs: "0.85rem",
                 sm: "0.9rem",
               },
-              color: darkMode ? "#cbd5e1" : "#475569",
-              borderColor: darkMode ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.12)",
+              color: subText,
+              borderColor: borderStyle,
               "&:hover": {
-                borderColor: darkMode ? "#cbd5e1" : "#475569",
-                bgcolor: darkMode ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.03)",
+                borderColor: primary,
+                color: primary,
+                bgcolor: `${primary}08`,
               }
             }}
           >
@@ -649,12 +759,12 @@ export default function CandidateSettings() {
                 xs: "0.85rem",
                 sm: "0.9rem",
               },
-              background: "linear-gradient(90deg, #10b981, #059669)",
-              boxShadow: "0 4px 12px rgba(16,185,129,0.2)",
+              background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+              boxShadow: `0 4px 12px ${primary}33`,
               "&:hover": {
-                background: "linear-gradient(90deg, #059669, #047857)",
+                background: `linear-gradient(90deg, ${primary}, ${primary})`,
                 transform: "translateY(-1.5px)",
-                boxShadow: "0 6px 16px rgba(16,185,129,0.3)",
+                boxShadow: `0 6px 16px ${primary}4d`,
               }
             }}
           >

@@ -4,7 +4,8 @@ import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
 import InterviewerLayout from "../../Layouts/InterviewerLayout";
 import { useTheme } from "../../context/ThemeContext";
-import { TextField, InputAdornment, BottomNavigation } from "@mui/material";
+import useThemeColors from "../../hooks/useThemeColors";
+import { TextField, InputAdornment } from "@mui/material";
 import {
   Paper,
   Typography,
@@ -27,24 +28,28 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 const RESULT_FILTERS = ["All", "Recommended", "Good Fit", "Strong Match", "Not Selected", "On Hold"];
 const ROWS_PER_PAGE_OPTIONS = [5, 10, 20, 50];
 
-// Central color map for results — used by both the chips and the filter buttons
-const RESULT_COLORS = {
-  Recommended: { main: "#10b981", bgLight: "rgba(16,185,129,.08)", bgDark: "rgba(16,185,129,.15)" },
-  "Good Fit": { main: "#1b80a6", bgLight: "rgba(59,130,246,.08)", bgDark: "rgba(59,130,246,.15)" },
-  "Strong Match": { main: "#5b5cb6", bgLight: "rgba(139,92,246,.08)", bgDark: "rgba(139,92,246,.15)" },
-  "Not Selected": { main: "#ef4444", bgLight: "rgba(239,68,68,.08)", bgDark: "rgba(239,68,68,.15)" },
-  "On Hold": { main: "#f59e0b", bgLight: "rgba(245,158,11,.08)", bgDark: "rgba(245,158,11,.15)" },
-};
-
 export default function Evaluations() {
   const { darkMode } = useTheme();
-  const [search, setSearch] = useState("");
-  const subText = darkMode ? "#9CA3AF" : "#6B7280";
-  const textColor = darkMode ? "#ffffff" : "#0f172a";
+  const colors = useThemeColors();
 
-  const borderStyle = darkMode
-    ? "rgba(255,255,255,.08)"
-    : "rgba(15,23,42,.08)";
+  // Colors — fully theme-driven (matches Dashboard / Settings / Interviews)
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
+
+  // Central color map for results — used by both the chips and the filter buttons
+  // "Recommended" and "Strong Match" tie to theme primary/secondary; the rest stay semantic
+  const RESULT_COLORS = {
+    Recommended: { main: primary, bgLight: `${primary}14`, bgDark: `${primary}26` },
+    "Good Fit": { main: "#1b80a6", bgLight: "rgba(59,130,246,.08)", bgDark: "rgba(59,130,246,.15)" },
+    "Strong Match": { main: secondary || primary, bgLight: `${secondary || primary}14`, bgDark: `${secondary || primary}26` },
+    "Not Selected": { main: "#ef4444", bgLight: "rgba(239,68,68,.08)", bgDark: "rgba(239,68,68,.15)" },
+    "On Hold": { main: "#f59e0b", bgLight: "rgba(245,158,11,.08)", bgDark: "rgba(245,158,11,.15)" },
+  };
+
+  const [search, setSearch] = useState("");
 
   // Filtering Logic
   const [searchParams, setSearchParams] = useSearchParams();
@@ -129,7 +134,7 @@ export default function Evaluations() {
 
   const getResultColors = (result) =>
     RESULT_COLORS[result] || {
-      main: "#64748b",
+      main: subText,
       bgLight: "rgba(100,116,139,.08)",
       bgDark: "rgba(100,116,139,.15)",
     };
@@ -146,13 +151,9 @@ export default function Evaluations() {
           p: { xs: 2, md: 3 },
           mb: 1,
           borderRadius: "20px",
-          bgcolor: darkMode
-            ? "rgba(30,41,59,.72)"
-            : "#fff",
+          bgcolor: colors.card,
           border: `1px solid ${borderStyle}`,
-          boxShadow: darkMode
-            ? "0 12px 35px rgba(0,0,0,.25)"
-            : "0 10px 30px rgba(0,0,0,.06)"
+          boxShadow: colors.shadow,
         }}
       >
 
@@ -176,6 +177,7 @@ export default function Evaluations() {
           <Typography
             sx={{
               fontWeight: 800,
+              color: textColor,
               fontSize: {
                 xs: "1.5rem",
                 md: "2rem",
@@ -195,12 +197,12 @@ export default function Evaluations() {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <FaSearch color="#14b8a6" />
+                  <FaSearch color={primary} />
                 </InputAdornment>
               ),
             }}
             sx={{
-              widdth: {
+              width: {
                 xs: "100%",
                 sm: "320px",
                 md: "360px"
@@ -209,7 +211,17 @@ export default function Evaluations() {
               "& .MuiOutlinedInput-root": {
                 height: 46,
                 borderRadius: "14px",
-                bgcolor: darkMode ? "#1e293b" : "#fff"
+                color: textColor,
+                bgcolor: colors.input || colors.card,
+                "& fieldset": {
+                  borderColor: borderStyle,
+                },
+                "&:hover fieldset": {
+                  borderColor: primary,
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: primary,
+                },
               },
             }}
           />
@@ -233,9 +245,9 @@ export default function Evaluations() {
         >
           {RESULT_FILTERS.map((result) => {
             const isActive = resultFilter === result;
-            const colors =
+            const resultBtnColors =
               result === "All"
-                ? { main: "#14b8a6" }
+                ? { main: primary }
                 : getResultColors(result);
 
             return (
@@ -260,23 +272,23 @@ export default function Evaluations() {
                     xs: .5,
                     md: .7
                   },
-                  color: isActive ? "#fff" : colors.main,
+                  color: isActive ? "#fff" : resultBtnColors.main,
                   borderColor: isActive
-                    ? colors.main
+                    ? resultBtnColors.main
                     : borderStyle,
                   bgcolor: isActive
-                    ? colors.main
+                    ? resultBtnColors.main
                     : "transparent",
                   boxShadow: isActive
-                    ? `0 12px 22px ${colors.main}40`
+                    ? `0 12px 22px ${resultBtnColors.main}40`
                     : "none",
                   "&:hover": {
-                    borderColor: colors.main,
+                    borderColor: resultBtnColors.main,
                     bgcolor: isActive
-                      ? colors.main
+                      ? resultBtnColors.main
                       : darkMode
-                        ? `${colors.main}22`
-                        : `${colors.main}15`,
+                        ? `${resultBtnColors.main}22`
+                        : `${resultBtnColors.main}15`,
                   },
                 }}
               >
@@ -303,30 +315,14 @@ export default function Evaluations() {
           overflow: "hidden",
           p: 0,
           borderRadius: "22px",
-          bgcolor: darkMode
-            ? "rgba(30,41,59,.72)"
-            : "#ffffff",
+          bgcolor: colors.card,
           backdropFilter: "blur(16px)",
           border: `1px solid ${borderStyle}`,
-          boxShadow: darkMode
-            ? `
-              0 18px 45px rgba(0,0,0,.35),
-              inset 0 1px 0 rgba(255,255,255,.04)
-            `
-            : `
-              0 18px 40px rgba(15,23,42,.08),
-              0 4px 12px rgba(15,23,42,.05)
-            `,
+          boxShadow: colors.shadow,
           transition: ".3s",
           "&:hover": {
             transform: "translateY(-4px)",
-            boxShadow: darkMode
-              ? `
-                0 24px 55px rgba(0,0,0,.42)
-              `
-              : `
-                0 26px 55px rgba(15,23,42,.12)
-              `,
+            boxShadow: colors.shadow,
           },
         }}
       >
@@ -342,13 +338,13 @@ export default function Evaluations() {
               height: 8,
             },
             "&::-webkit-scrollbar-thumb": {
-              background: "#94a3b8",
+              background: subText,
               borderRadius: 10,
             },
           }}
         >
           <Table
-            
+
             size="small"
             sx={{
               "& .MuiTableCell-root": {
@@ -370,17 +366,13 @@ export default function Evaluations() {
                   md: "0.88rem",
                 },
                 fontWeight: 700,
-                bgcolor: darkMode
-                  ? "#1e293b"
-                  : "#f8fafc",
+                bgcolor: colors.input || colors.card,
               },
             }}
             >
               <TableRow
                 sx={{
-                  bgcolor: darkMode
-                    ? "rgba(20,184,166,.08)"
-                    : "#F8FAFC",
+                  bgcolor: `${primary}08`,
                   borderBottom: `1px solid ${borderStyle}`,
                 }}
               >
@@ -420,9 +412,7 @@ export default function Evaluations() {
                         borderBottom: `1px solid ${borderStyle}`,
                         transition: "all 0.2s ease",
                         "&:hover": {
-                          bgcolor: darkMode
-                            ? "rgba(20,184,166,.08)"
-                            : "#ECFDF9",
+                          bgcolor: `${primary}0d`,
                           cursor: "pointer",
                         },
                       }}
@@ -435,9 +425,9 @@ export default function Evaluations() {
                               width: 36,
                               height: 36,
                               fontSize: ".9rem",
-                              background: "linear-gradient(135deg,#14b8a6,#0f766e)",
+                              background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
                               fontWeight: 800,
-                              boxShadow: "0 8px 20px rgba(20,184,166,.30)"
+                              boxShadow: `0 8px 20px ${primary}4d`
                             }}
                           >
                             {row.candidate.charAt(0)}
@@ -460,7 +450,7 @@ export default function Evaluations() {
                         <Typography
                           sx={{
                             fontWeight: 800,
-                            color: darkMode ? "#2dd4bf" : "#0f766e",
+                            color: primary,
                             fontSize: "0.9rem",
                           }}
                         >
@@ -520,7 +510,7 @@ export default function Evaluations() {
               md: "center",
             },
             borderTop: `1px solid ${borderStyle}`,
-            bgcolor: darkMode ? "rgba(20,184,166,.05)" : "#F8FAFC",
+            bgcolor: `${primary}05`,
           }}
         >
           <Box
@@ -564,7 +554,7 @@ export default function Evaluations() {
                     borderColor: borderStyle,
                   },
                   "&:hover .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "#14b8a6",
+                    borderColor: primary,
                   },
                   "& .MuiSvgIcon-root": {
                     color: textColor,
@@ -607,6 +597,7 @@ export default function Evaluations() {
                   perPage: evaluationsPerPage,
                 })
               }
+              sx={{ color: textColor }}
             >
               <FaChevronLeft />
             </Button>
@@ -617,7 +608,7 @@ export default function Evaluations() {
                   key={index}
                   sx={{
                     px: 1,
-                    color: darkMode ? "#fff" : "#000",
+                    color: textColor,
                     fontWeight: 700,
                   }}
                 >
@@ -652,18 +643,16 @@ export default function Evaluations() {
                       xs: ".75rem",
                       md: ".9rem"
                     },
-                    bgcolor: Number(currentPage) === Number(page) ? "#14b8a6" : "transparent",
+                    bgcolor: Number(currentPage) === Number(page) ? primary : "transparent",
                     color:
                       Number(currentPage) === Number(page)
                         ? "#fff"
-                        : darkMode
-                          ? "#fff"
-                          : "#0f172a",
+                        : textColor,
                     "&:hover": {
                       bgcolor:
                         Number(currentPage) === Number(page)
-                          ? "#0d9488"
-                          : "rgba(20,184,166,.08)",
+                          ? primary
+                          : `${primary}14`,
                     },
                   }}
                 >
@@ -682,6 +671,7 @@ export default function Evaluations() {
                   perPage: evaluationsPerPage,
                 })
               }
+              sx={{ color: textColor }}
             >
               <FaChevronRight />
             </Button>

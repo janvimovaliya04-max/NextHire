@@ -2,6 +2,7 @@ import browseJobsData from "../../data/BrowseJobDetails.json";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import CandidateLayout from "../../Layouts/CandidateLayout";
 import {
   Paper,
@@ -25,10 +26,15 @@ import {
 
 export default function JobDetails() {
   const { darkMode } = useTheme();
+  const colors = useThemeColors();
   const navigate = useNavigate();
 
-  const subText = darkMode ? "#94a3b8" : "#475569";
-  const borderStyle = darkMode ? "rgba(255, 255, 255, 0.06)" : "rgba(0, 0, 0, 0.05)";
+  // Colors — fully theme-driven (matches other candidate pages)
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
 
   const { id } = useParams();
 
@@ -97,12 +103,10 @@ export default function JobDetails() {
               xs: "0.84rem",
               md: "0.9rem",
             },
-            color: darkMode ? "#cbd5e1" : "#475569",
-            borderColor: darkMode
-              ? "rgba(255,255,255,0.12)"
-              : "rgba(0,0,0,0.12)",
+            color: subText,
+            borderColor: borderStyle,
             "&:hover": {
-              borderColor: darkMode ? "#cbd5e1" : "#475569",
+              borderColor: subText,
               bgcolor: darkMode
                 ? "rgba(255,255,255,0.03)"
                 : "rgba(0,0,0,0.03)",
@@ -137,18 +141,16 @@ export default function JobDetails() {
                 sm: 4,
                 md: 5,
               },
-              bgcolor: darkMode ? "rgba(30, 41, 59, 0.45)" : "#ffffff",
+              bgcolor: colors.card,
               backdropFilter: "blur(12px)",
               border: `1px solid ${borderStyle}`,
-              boxShadow: darkMode ? "0 10px 30px rgba(0,0,0,0.25)" : "0 10px 30px rgba(0,0,0,0.02)",
+              boxShadow: colors.shadow,
               transition: "all .3s",
 
               "&:hover": {
                 transform: "translateY(-3px)",
-                borderColor: "#10b981",
-                boxShadow: darkMode
-                  ? "0 15px 35px rgba(0,0,0,.3)"
-                  : "0 15px 35px rgba(0,0,0,.05)",
+                borderColor: primary,
+                boxShadow: colors.shadow,
               },
             }}
           >
@@ -192,9 +194,9 @@ export default function JobDetails() {
                       sm: 20,
                       md: 22,
                     },
-                    background: "linear-gradient(135deg,#10b981,#059669)",
+                    background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
                     fontWeight: 800,
-                    boxShadow: "0 6px 18px rgba(16,185,129,.25)",
+                    boxShadow: `0 6px 18px ${primary}40`,
                   }}
                 >
                   {job.logoLetter}
@@ -203,7 +205,7 @@ export default function JobDetails() {
                 <Box>
                   <Typography
                     sx={{
-                      color: darkMode ? "#fff" : "#0f172a",
+                      color: textColor,
                       fontWeight: 900,
                       lineHeight: 1.2,
                       fontSize: {
@@ -211,7 +213,6 @@ export default function JobDetails() {
                         sm: "1.45rem",
                         md: "1.9rem",
                       },
-                      fontWeight: 900,
                     }}
                   >
                     {job.position}
@@ -219,7 +220,7 @@ export default function JobDetails() {
 
                   <Typography
                     sx={{
-                      color: "#10b981",
+                      color: primary,
                       fontWeight: 700,
                     }}
                   >
@@ -243,8 +244,6 @@ export default function JobDetails() {
                         xs: .75,
                         sm: 1,
                       },
-
-                      mt: 1,
                       mt: 1.2,
                       flexWrap: "wrap",
                     }}
@@ -253,12 +252,16 @@ export default function JobDetails() {
                       label={job.position}
                       size="small"
                       sx={{
-                        bgcolor: "rgba(16,185,129,.12)",
-                        color: "#10b981",
+                        bgcolor: `${primary}1f`,
+                        color: primary,
                         fontWeight: 700,
                       }}
                     />
 
+                    {/* Employment type / experience chips: kept as
+                        distinct semantic accents (blue / amber) for
+                        quick visual scanning, same as the red urgency
+                        timer on the Assessment page */}
                     <Chip
                       label={job.employmentType}
                       size="small"
@@ -300,6 +303,7 @@ export default function JobDetails() {
               <Typography sx={{
                 fontWeight: 800,
                 mb: 2,
+                color: textColor,
                 fontSize: {
                   xs: "1rem",
                   sm: "1.1rem",
@@ -320,7 +324,7 @@ export default function JobDetails() {
 
             {/* Responsibilities */}
             <Box sx={{ mb: 4.5 }}>
-              <Typography variant="h6" sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 800, mb: 2 }}>
+              <Typography variant="h6" sx={{ color: textColor, fontWeight: 800, mb: 2 }}>
                 What You'll do
               </Typography>
               <Box sx={{
@@ -336,7 +340,7 @@ export default function JobDetails() {
                       md: 1.5,
                     }, alignItems: "flex-start"
                   }}>
-                    <Box sx={{ color: "#10b981", mt: 0.4 }}>
+                    <Box sx={{ color: primary, mt: 0.4 }}>
                       <FaCheck size={11} />
                     </Box>
                     <Typography sx={{
@@ -354,7 +358,7 @@ export default function JobDetails() {
 
             {/* Requirements */}
             <Box>
-              <Typography variant="h6" sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 800, mb: 2 }}>
+              <Typography variant="h6" sx={{ color: textColor, fontWeight: 800, mb: 2 }}>
                 What We're Looking For
               </Typography>
               <Box sx={{
@@ -370,7 +374,7 @@ export default function JobDetails() {
                       md: 1.5,
                     }, alignItems: "flex-start"
                   }}>
-                    <Box sx={{ color: "#10b981", mt: 0.4 }}>
+                    <Box sx={{ color: primary, mt: 0.4 }}>
                       <FaCheck size={11} />
                     </Box>
                     <Typography sx={{
@@ -414,21 +418,19 @@ export default function JobDetails() {
                   sm: 4,
                   md: 5,
                 },
-                bgcolor: darkMode ? "rgba(30, 41, 59, 0.45)" : "#ffffff",
+                bgcolor: colors.card,
                 border: `1px solid ${borderStyle}`,
-                boxShadow: darkMode ? "0 10px 30px rgba(0,0,0,0.25)" : "0 10px 30px rgba(0,0,0,0.02)",
+                boxShadow: colors.shadow,
                 transition: "all .3s",
 
                 "&:hover": {
                   transform: "translateY(-3px)",
-                  borderColor: "#10b981",
-                  boxShadow: darkMode
-                    ? "0 15px 35px rgba(0,0,0,.3)"
-                    : "0 15px 35px rgba(0,0,0,.05)",
+                  borderColor: primary,
+                  boxShadow: colors.shadow,
                 },
               }}
             >
-              <Typography variant="h6" sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 800, mb: 3 }}>
+              <Typography variant="h6" sx={{ color: textColor, fontWeight: 800, mb: 3 }}>
                 Quick Overview
               </Typography>
 
@@ -445,7 +447,7 @@ export default function JobDetails() {
                     md: 2,
                   }
                 }}>
-                  <FaMapMarkerAlt style={{ color: "#10b981", fontSize: 14 }} />
+                  <FaMapMarkerAlt style={{ color: primary, fontSize: 14 }} />
                   <Box>
                     <Typography sx={{
                       fontSize: {
@@ -472,7 +474,7 @@ export default function JobDetails() {
                     md: 2,
                   }
                 }}>
-                  <FaMoneyBillWave style={{ color: "#10b981", fontSize: 14 }} />
+                  <FaMoneyBillWave style={{ color: primary, fontSize: 14 }} />
                   <Box>
                     <Typography sx={{
                       fontSize: {
@@ -499,7 +501,7 @@ export default function JobDetails() {
                     md: 2,
                   }
                 }}>
-                  <FaClock style={{ color: "#10b981", fontSize: 14 }} />
+                  <FaClock style={{ color: primary, fontSize: 14 }} />
                   <Box>
                     <Typography sx={{
                       fontSize: {
@@ -526,7 +528,7 @@ export default function JobDetails() {
                     md: 2,
                   }
                 }}>
-                  <FaLayerGroup style={{ color: "#10b981", fontSize: 14 }} />
+                  <FaLayerGroup style={{ color: primary, fontSize: 14 }} />
                   <Box>
                     <Typography sx={{
                       fontSize: {
@@ -577,7 +579,7 @@ export default function JobDetails() {
                           xs: "0.65rem",
                           md: "0.72rem",
                         },
-                        bgcolor: "#10b981",
+                        bgcolor: primary,
                         border: `1px solid ${borderStyle}`,
                         color: "#fff",
                       }}
@@ -614,11 +616,11 @@ export default function JobDetails() {
                         xs: "0.84rem",
                         md: "0.9rem",
                       },
-                      background: "linear-gradient(135deg,#10b981,#16a34a)",
-                      boxShadow: "0 10px 24px rgba(16,185,129,0.25)",
+                      background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
+                      boxShadow: `0 10px 24px ${primary}40`,
                       "&:hover": {
-                        background: "linear-gradient(90deg, #059669, #047857)",
-                        boxShadow: "0 6px 16px rgba(16,185,129,0.3)",
+                        background: `linear-gradient(90deg, ${primary}, ${primary})`,
+                        boxShadow: `0 6px 16px ${primary}4d`,
                         transform: "translateY(-1px)",
                       }
                     }}
@@ -642,12 +644,10 @@ export default function JobDetails() {
                       xs: "0.84rem",
                       md: "0.9rem",
                     },
-                    color: darkMode ? "#cbd5e1" : "#475569",
-                    borderColor: darkMode
-                      ? "rgba(255,255,255,0.12)"
-                      : "rgba(0,0,0,0.12)",
+                    color: subText,
+                    borderColor: borderStyle,
                     "&:hover": {
-                      borderColor: darkMode ? "#cbd5e1" : "#475569",
+                      borderColor: subText,
                       bgcolor: darkMode
                         ? "rgba(255,255,255,0.03)"
                         : "rgba(0,0,0,0.03)",

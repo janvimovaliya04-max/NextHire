@@ -4,20 +4,17 @@
     {
       "title": "Interviews Assigned",
       "value": "200",
-      "subtext": "56 upcoming this week",
-      "color": "#14b8a6"
+      "subtext": "56 upcoming this week"
     },
     {
       "title": "Feedback Pending",
       "value": "47",
-      "subtext": "Action required soon",
-      "color": "#f59e0b"
+      "subtext": "Action required soon"
     },
     {
       "title": "Completed Evaluations",
       "value": "200",
-      "subtext": "127 positive outcomes",
-      "color": "#10b981"
+      "subtext": "127 positive outcomes"
     }
   ],
   "recentInterviews": [

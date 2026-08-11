@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import { Link } from "react-router-dom";
 import HRLayout from "../../Layouts/HRLayout";
 import {
@@ -25,9 +26,9 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 export default function Candidatefeedback() {
 
   const { darkMode } = useTheme();
-  const borderStyle = darkMode
-    ? "rgba(255,255,255,.08)"
-    : "rgba(15,23,42,.08)";
+  const colors = useThemeColors();
+  const primary = colors.primary;
+  const borderStyle = colors.border;
 
   const [activeFilter, setActiveFilter] = useState("All");
   const [search, setSearch] = useState("");
@@ -38,13 +39,9 @@ export default function Candidatefeedback() {
 
   const currentPage = Number(searchParams.get("page")) || 1;
 
-  const textColor = darkMode
-    ? "#ffffff"
-    : "#0f172a";
+  const textColor = colors.text;
 
-  const subText = darkMode
-    ? "#94a3b8"
-    : "#475569";
+  const subText = colors.subText;
 
 
   // filter //
@@ -158,7 +155,7 @@ export default function Candidatefeedback() {
                 xs: "100%",
                 md: 330,
               },
-              bgcolor: darkMode ? "#1e293b" : "#fff",
+              bgcolor: colors.card,
               border: `1px solid ${borderStyle}`,
               borderRadius: "10px",
               px: 2,
@@ -180,7 +177,7 @@ export default function Candidatefeedback() {
                 border: "none",
                 outline: "none",
                 background: "transparent",
-                color: darkMode ? "#fff" : "#111827",
+                color: textColor,
                 fontSize: ".9rem",
               }}
             />
@@ -219,19 +216,17 @@ export default function Candidatefeedback() {
                 color:
                   activeFilter === filter
                     ? "#fff"
-                    : darkMode
-                      ? "#cbd5e1"
-                      : "#475569",
+                    : colors.subText,
 
                 bgcolor:
                   activeFilter === filter
-                    ? "#3B82F6"
+                    ? primary
                     : "transparent",
 
                 borderColor:
                   activeFilter === filter
-                    ? "#3B82F6"
-                    : borderStyle,
+                    ? primary
+                    : colors.border,
               }}
             >
               {filter}
@@ -256,20 +251,10 @@ export default function Candidatefeedback() {
           overflow: "hidden",
           p: { xs: 1, sm: 2.5, md: 4 },
           borderRadius: "22px",
-          bgcolor: darkMode
-            ? "rgba(30,41,59,.72)"
-            : "#ffffff",
+          bgcolor: colors.card,
           backdropFilter: "blur(16px)",
           border: `1px solid ${borderStyle}`,
-          boxShadow: darkMode
-            ? `
-              0 18px 45px rgba(0,0,0,.35),
-              inset 0 1px 0 rgba(255,255,255,.04)
-            `
-            : `
-              0 18px 40px rgba(15,23,42,.08),
-              0 4px 12px rgba(15,23,42,.05)
-            `,
+          boxShadow: colors.shadow,
           transition: ".3s",
           "&:hover": {
             transform: "translateY(-4px)",
@@ -309,25 +294,25 @@ export default function Candidatefeedback() {
                   borderBottom: `1px solid ${borderStyle}`,
                 }}
               >
-                <TableCell align="center" sx={{ py: { xs: 1, md: 2 }, px: { xs: 1, md: 2 }, whiteSpace: "nowrap", color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: { xs: "0.82rem", md: "1rem" }, borderBottom: `1px solid ${borderStyle}`, bgcolor: darkMode ? "#1e293b" : "#f8fafc" }}>
+                <TableCell align="center" sx={{ py: { xs: 1, md: 2 }, px: { xs: 1, md: 2 }, whiteSpace: "nowrap", color: textColor, fontWeight: 700, fontSize: { xs: "0.82rem", md: "1rem" }, borderBottom: `1px solid ${borderStyle}`, bgcolor: colors.background }}>
                   Candidate Id
                 </TableCell>
-                <TableCell sx={{ py: { xs: 1, md: 2 }, px: { xs: 1, md: 2 }, whiteSpace: "nowrap", color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: { xs: "0.82rem", md: "1rem" }, borderBottom: `1px solid ${borderStyle}`, bgcolor: darkMode ? "#1e293b" : "#f8fafc" }}>
+                <TableCell sx={{ py: { xs: 1, md: 2 }, px: { xs: 1, md: 2 }, whiteSpace: "nowrap", color: textColor, fontWeight: 700, fontSize: { xs: "0.82rem", md: "1rem" }, borderBottom: `1px solid ${borderStyle}`, bgcolor: colors.background }}>
                   Technical
                 </TableCell>
-                <TableCell sx={{ py: { xs: 1, md: 2 }, px: { xs: 1, md: 2 }, whiteSpace: "nowrap", color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: { xs: "0.82rem", md: "1rem" }, borderBottom: `1px solid ${borderStyle}`, bgcolor: darkMode ? "#1e293b" : "#f8fafc" }}>
+                <TableCell sx={{ py: { xs: 1, md: 2 }, px: { xs: 1, md: 2 }, whiteSpace: "nowrap", color: textColor, fontWeight: 700, fontSize: { xs: "0.82rem", md: "1rem" }, borderBottom: `1px solid ${borderStyle}`, bgcolor: colors.background }}>
                   Communication
                 </TableCell>
-                <TableCell sx={{ py: { xs: 1, md: 2 }, px: { xs: 1, md: 2 }, whiteSpace: "nowrap", color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: { xs: "0.82rem", md: "1rem" }, borderBottom: `1px solid ${borderStyle}`, bgcolor: darkMode ? "#1e293b" : "#f8fafc" }}>
+                <TableCell sx={{ py: { xs: 1, md: 2 }, px: { xs: 1, md: 2 }, whiteSpace: "nowrap", color: textColor, fontWeight: 700, fontSize: { xs: "0.82rem", md: "1rem" }, borderBottom: `1px solid ${borderStyle}`, bgcolor: colors.background }}>
                   Problem solving
                 </TableCell>
-                <TableCell align="center" sx={{ py: { xs: 1, md: 2 }, px: { xs: 1, md: 2 }, whiteSpace: "nowrap", color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: { xs: "0.82rem", md: "1rem" }, borderBottom: `1px solid ${borderStyle}`, pr: 4, bgcolor: darkMode ? "#1e293b" : "#f8fafc" }}>
+                <TableCell align="center" sx={{ py: { xs: 1, md: 2 }, px: { xs: 1, md: 2 }, whiteSpace: "nowrap", color: textColor, fontWeight: 700, fontSize: { xs: "0.82rem", md: "1rem" }, borderBottom: `1px solid ${borderStyle}`, pr: 4, bgcolor: colors.background }}>
                   Overall
                 </TableCell>
-                <TableCell align="center" sx={{ py: { xs: 1, md: 2 }, px: { xs: 1, md: 2 }, whiteSpace: "nowrap", color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: { xs: "0.82rem", md: "1rem" }, borderBottom: `1px solid ${borderStyle}`, pr: 4, bgcolor: darkMode ? "#1e293b" : "#f8fafc" }}>
+                <TableCell align="center" sx={{ py: { xs: 1, md: 2 }, px: { xs: 1, md: 2 }, whiteSpace: "nowrap", color: textColor, fontWeight: 700, fontSize: { xs: "0.82rem", md: "1rem" }, borderBottom: `1px solid ${borderStyle}`, pr: 4, bgcolor: colors.background }}>
                   Recommendation
                 </TableCell>
-                <TableCell align="center" sx={{ py: { xs: 1, md: 2 }, px: { xs: 1, md: 2 }, whiteSpace: "nowrap", color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: { xs: "0.82rem", md: "1rem" }, borderBottom: `1px solid ${borderStyle}`, pr: 4, bgcolor: darkMode ? "#1e293b" : "#f8fafc" }}>
+                <TableCell align="center" sx={{ py: { xs: 1, md: 2 }, px: { xs: 1, md: 2 }, whiteSpace: "nowrap", color: textColor, fontWeight: 700, fontSize: { xs: "0.82rem", md: "1rem" }, borderBottom: `1px solid ${borderStyle}`, pr: 4, bgcolor: colors.background }}>
                   Date
                 </TableCell>
               </TableRow>
@@ -382,7 +367,7 @@ export default function Candidatefeedback() {
                         py: { xs: 1, md: 2 },
                         px: { xs: 1, md: 2 },
                         whiteSpace: "nowrap",
-                        color: "#2563eb",
+                        color: primary,
                         fontWeight: 800
                       }}
                     >
@@ -463,7 +448,7 @@ export default function Candidatefeedback() {
               md: "center",
             },
             borderTop: `1px solid ${borderStyle}`,
-            bgcolor: darkMode ? "rgba(59,130,246,.05)" : "#F8FAFC",
+            bgcolor: colors.background,
           }}
         >
           <Typography sx={{ color: subText, fontSize: { xs: "0.72rem", md: "0.82rem" } }}>
@@ -516,7 +501,7 @@ export default function Candidatefeedback() {
                   key={index}
                   sx={{
                     px: 1,
-                    color: darkMode ? "#fff" : "#000",
+                    color: textColor,
                     fontWeight: 700,
                   }}
                 >
@@ -556,18 +541,16 @@ export default function Candidatefeedback() {
                       xs: ".75rem",
                       md: ".9rem"
                     },
-                    bgcolor: Number(currentPage) === Number(page) ? "#3B82F6" : "transparent",
+                    bgcolor: Number(currentPage) === Number(page) ? primary : "transparent",
                     color:
                       Number(currentPage) === Number(page)
                         ? "#fff"
-                        : darkMode
-                          ? "#fff"
-                          : "#0f172a",
+                        : textColor,
                     "&:hover": {
                       bgcolor:
                         Number(currentPage) === Number(page)
-                          ? "#2563EB"
-                          : "rgba(59,130,246,.08)",
+                          ? `${primary}dd`
+                          : `${primary}15`,
                     },
                   }}
                 >

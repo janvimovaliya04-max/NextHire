@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import InterviewerLayout from "../../Layouts/InterviewerLayout";
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import {
   Paper,
   Typography,
@@ -22,6 +23,13 @@ const READ_STORAGE_KEY = "interviewer_read_notifications";
 
 export default function InterviewerNotifications() {
   const { darkMode } = useTheme();
+  const colors = useThemeColors();
+
+  // Colors — fully theme-driven (matches Dashboard / Settings / Evaluations)
+  const primary = colors.primary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
 
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [loading, setLoading] = useState(false);
@@ -110,24 +118,8 @@ export default function InterviewerNotifications() {
     }
   };
 
-  const getColor = (type) => {
-    switch (type) {
-      case "assigned":
-        return "#2563eb";
-
-      case "scheduled":
-        return "#f59e0b";
-
-      case "pending":
-        return "#ef4444";
-
-      case "submitted":
-        return "#10b981";
-
-      default:
-        return "#8b5cf6";
-    }
-  };
+  // Single consistent accent for every notification card — theme primary
+  const getColor = () => primary;
 
   return (
     <InterviewerLayout>
@@ -152,7 +144,7 @@ export default function InterviewerNotifications() {
                 sm: "2rem",
                 md: "2.2rem",
               },
-              color: darkMode ? "#ffffff" : "#0f172a",
+              color: textColor,
             }}
           >
             Notifications
@@ -187,18 +179,18 @@ export default function InterviewerNotifications() {
             borderRadius: 3,
             px: 2.2,
             py: 0.9,
-            color: unreadCount === 0 ? (darkMode ? "#475569" : "#94a3b8") : "#14b8a6",
+            color: unreadCount === 0 ? subText : primary,
             border: `1px solid ${unreadCount === 0
-              ? darkMode ? "#334155" : "#e2e8f0"
-              : "rgba(20,184,166,.4)"
+              ? borderStyle
+              : `${primary}66`
               }`,
             "&:hover": {
               bgcolor: unreadCount === 0
                 ? "transparent"
-                : darkMode ? "rgba(20,184,166,.1)" : "rgba(20,184,166,.06)",
+                : `${primary}0f`,
               borderColor: unreadCount === 0
-                ? darkMode ? "#334155" : "#e2e8f0"
-                : "#14b8a6",
+                ? borderStyle
+                : primary,
             },
           }}
         >
@@ -225,21 +217,16 @@ export default function InterviewerNotifications() {
                 cursor: "pointer",
 
                 bgcolor: isRead
-                  ? darkMode ? "#1e293b" : "#ffffff"
-                  : darkMode ? "rgba(20,184,166,.05)" : "rgba(20,184,166,.035)",
+                  ? colors.card
+                  : `${primary}08`,
 
                 backdropFilter: "blur(10px)",
 
-                color: darkMode
-                  ? "#ffffff"
-                  : "#0f172a",
+                color: textColor,
 
-                border: `1px solid ${darkMode
-                  ? "#334155"
-                  : "#e2e8f0"
-                  }`,
+                border: `1px solid ${borderStyle}`,
 
-                borderLeft: `5px solid ${getColor(item.type)}`,
+                borderLeft: `5px solid ${getColor()}`,
 
                 opacity: isRead ? 0.72 : 1,
 
@@ -249,9 +236,7 @@ export default function InterviewerNotifications() {
                   transform: "translateY(-4px)",
                   filter: "brightness(1.03)",
                   opacity: 1,
-                  boxShadow: darkMode
-                    ? "0 18px 40px rgba(0,0,0,.45)"
-                    : "0 18px 40px rgba(0,0,0,.08)",
+                  boxShadow: colors.shadow,
                 },
               }}
             >
@@ -280,15 +265,15 @@ export default function InterviewerNotifications() {
 
                     borderRadius: 4,
                     bgcolor: darkMode
-                      ? `${getColor(item.type)}22`
-                      : `${getColor(item.type)}15`,
+                      ? `${getColor()}22`
+                      : `${getColor()}15`,
 
-                    color: getColor(item.type),
+                    color: getColor(),
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     flexShrink: 0,
-                    boxShadow: `0 6px 18px ${getColor(item.type)}30`
+                    boxShadow: `0 6px 18px ${getColor()}30`
                   }}
                 >
                   {getIcon(item.type)}
@@ -303,7 +288,7 @@ export default function InterviewerNotifications() {
                           width: 8,
                           height: 8,
                           borderRadius: "50%",
-                          bgcolor: "#14b8a6",
+                          bgcolor: primary,
                           flexShrink: 0,
                         }}
                       />
@@ -312,7 +297,7 @@ export default function InterviewerNotifications() {
                       fontSize: {
                         xs: ".95rem",
                         sm: "1.08rem"
-                      }, lineHeight: 1.2, mb: 0.5
+                      }, lineHeight: 1.2, mb: 0.5, color: textColor
                     }}>
                       {item.title}
                     </Typography>
@@ -323,16 +308,14 @@ export default function InterviewerNotifications() {
                         xs: ".82rem",
                         sm: ".92rem",
                       },
-                      color: darkMode ? "#94a3b8" : "#64748b",
+                      color: subText,
                       mb: 1,
                     }}
                   >
                     {item.message}
                   </Typography>
                   <Typography variant="caption" sx={{
-                    color: darkMode
-                      ? "rgba(148,163,184,.8)"
-                      : "#94a3b8",
+                    color: subText,
 
                     letterSpacing: ".03em", fontWeight: 700, fontSize: ".75rem"
                   }}>
@@ -354,7 +337,7 @@ export default function InterviewerNotifications() {
               py: 3,
             }}
           >
-            <CircularProgress size={28} sx={{ color: "#14b8a6" }} />
+            <CircularProgress size={28} sx={{ color: primary }} />
           </Box>
         )}
 
@@ -365,7 +348,7 @@ export default function InterviewerNotifications() {
               py: 3,
               fontSize: ".85rem",
               fontWeight: 600,
-              color: darkMode ? "#64748b" : "#94a3b8",
+              color: subText,
             }}
           >
             You're all caught up

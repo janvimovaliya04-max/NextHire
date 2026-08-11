@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CandidateLayout from "../../Layouts/CandidateLayout";
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import {
   Typography,
   Card,
@@ -24,17 +25,23 @@ import {
 
 export default function BrowseJobs() {
   const { darkMode } = useTheme();
+  const colors = useThemeColors();
   const browseJobs = browseJobsData;
   const [restoreDone, setRestoreDone] = useState(false);
 
   const JOBS_PER_LOAD = 10;
   const [visibleJobs, setVisibleJobs] = useState(JOBS_PER_LOAD);
 
+  // Colors — fully theme-driven (matches Assessment page)
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
+
   useEffect(() => {
     const savedScroll = sessionStorage.getItem("browseJobsScroll");
     if (savedScroll && !restoreDone) {
-
-      // load all cards first
       requestAnimationFrame(() => {
         window.scrollTo({
           top: Number(savedScroll),
@@ -45,24 +52,8 @@ export default function BrowseJobs() {
     }
   }, [restoreDone]);
 
-  // useEffect(() => {
-  //   const fetchJobs = async () => {
-  //     try {
-  //      const response = awiat
-  //       console.log(response.data);
-  //       setBrowseJobs(response.data);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-
-  //   fetchJobs();
-  // }, []);
-
   const [activeFilter, setActiveFilter] = useState("All");
   const [search, setSearch] = useState("");
-  const subText = darkMode ? "#94a3b8" : "#475569";
-  const borderStyle = darkMode ? "rgba(255, 255, 255, 0.06)" : "rgba(0, 0, 0, 0.05)";
 
   // Filtering Logic
   const filteredJobs = browseJobs.filter((job) => {
@@ -83,12 +74,6 @@ export default function BrowseJobs() {
 
     return matchesCategory && matchesSearch;
   });
-
-  // const loadMoreJobs = () => {
-  //   setTimeout(() => {
-  //     setVisibleJobs((prev) => prev + JOBS_PER_LOAD);
-  //   }, 1000);
-  // };
 
   const loadMoreJobs = () => {
     setTimeout(() => {
@@ -148,7 +133,7 @@ export default function BrowseJobs() {
             position: "sticky",
             top: 0,
             zIndex: 10,
-            bgcolor: darkMode ? "#0f172a" : "#f8fafc",
+            bgcolor: colors.background,
             pb: 2,
           }}
         >
@@ -156,7 +141,7 @@ export default function BrowseJobs() {
             sx={{
               fontWeight: 850,
               letterSpacing: "-0.03em",
-              color: darkMode ? "#fff" : "#0f172a",
+              color: textColor,
 
               mb: {
                 xs: -1,
@@ -188,7 +173,7 @@ export default function BrowseJobs() {
                 lg: 460,
               },
 
-              bgcolor: darkMode ? "#1e293b" : "#fff",
+              bgcolor: colors.input,
 
               border: `1px solid ${borderStyle}`,
 
@@ -203,13 +188,13 @@ export default function BrowseJobs() {
               flexShrink: 0,
 
               "&:focus-within": {
-                borderColor: "#10b981",
-                boxShadow: "0 0 0 3px rgba(16,185,129,.12)",
+                borderColor: primary,
+                boxShadow: `0 0 0 3px ${primary}1f`,
               },
             }}
           >
             <FaSearch
-              color={darkMode ? "#94a3b8" : "#64748b"}
+              color={subText}
             />
 
             <input
@@ -226,7 +211,7 @@ export default function BrowseJobs() {
                 border: "none",
                 outline: "none",
                 background: "transparent",
-                color: darkMode ? "#fff" : "#111827",
+                color: textColor,
                 fontSize: ".9rem",
               }}
             />
@@ -296,18 +281,16 @@ export default function BrowseJobs() {
                   sm: .65,
                   md: .7,
                 },
-                color: activeFilter === filter ? "#fff" : darkMode ? "#cbd5e1" : "#475569",
-                borderColor: activeFilter === filter ? "#10b981" : borderStyle,
-                bgcolor: activeFilter === filter ? "#10b981" : "transparent",
-                boxShadow: activeFilter === filter ? "0 4px 10px rgba(16,185,129,0.2)" : "none",
+                color: activeFilter === filter ? "#fff" : subText,
+                borderColor: activeFilter === filter ? primary : borderStyle,
+                bgcolor: activeFilter === filter ? primary : "transparent",
+                boxShadow: activeFilter === filter ? `0 4px 10px ${primary}33` : "none",
                 "&:hover": {
-                  borderColor: "#10b981",
+                  borderColor: primary,
                   bgcolor:
                     activeFilter === filter
-                      ? "#059669"
-                      : darkMode
-                        ? "rgba(16,185,129,.08)"
-                        : "rgba(16,185,129,.05)",
+                      ? (secondary || primary)
+                      : `${primary}14`,
                 }
               }}
             >
@@ -333,7 +316,7 @@ export default function BrowseJobs() {
           },
 
           "&::-webkit-scrollbar-thumb": {
-            background: "#94a3b8",
+            background: subText,
             borderRadius: "20px",
           },
         }}
@@ -358,7 +341,7 @@ export default function BrowseJobs() {
                 size={window.innerWidth < 600 ? 30 : 36}
                 thickness={4}
                 sx={{
-                  color: "#10b981",
+                  color: primary,
                 }}
               />
             </Box>
@@ -371,7 +354,7 @@ export default function BrowseJobs() {
                   xs: 2,
                   sm: 3,
                 },
-                color: darkMode ? "#94a3b8" : "#64748b",
+                color: subText,
                 fontWeight: 600,
               }}
             >
@@ -404,12 +387,10 @@ export default function BrowseJobs() {
                         sm: 4,
                         md: 5,
                       },
-                      bgcolor: darkMode ? "rgba(30,41,59,.48)" : "rgba(255,255,255,.92)",
+                      bgcolor: colors.card,
                       backdropFilter: "blur(12px)",
                       border: `1px solid ${borderStyle}`,
-                      boxShadow: darkMode
-                        ? "0 10px 30px rgba(0,0,0,.28)"
-                        : "0 12px 28px rgba(15,23,42,.05)",
+                      boxShadow: colors.shadow,
                       transition: "all 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
                       display: "flex",
                       flexDirection: "column",
@@ -418,10 +399,8 @@ export default function BrowseJobs() {
                           xs: "none",
                           md: "translateY(-6px)",
                         },
-                        borderColor: "#10b981",
-                        boxShadow: darkMode
-                          ? "0 20px 40px rgba(0,0,0,.42),0 0 18px rgba(16,185,129,.14)"
-                          : "0 20px 40px rgba(15,23,42,.08),0 0 18px rgba(16,185,129,.12)",
+                        borderColor: primary,
+                        boxShadow: colors.shadow,
                       }
                     }}
                   >
@@ -470,7 +449,7 @@ export default function BrowseJobs() {
                           <Box>
                             <Typography
                               sx={{
-                                color: darkMode ? "#ffffff" : "#0f172a",
+                                color: textColor,
                                 fontWeight: 800,
                                 letterSpacing: "-0.01em",
                                 lineHeight: 1.2,
@@ -520,7 +499,7 @@ export default function BrowseJobs() {
                               sm: 1.5,
                             },
                           }}>
-                            <FaMapMarkerAlt style={{ color: "#10b981", fontSize: 13 }} />
+                            <FaMapMarkerAlt style={{ color: primary, fontSize: 13 }} />
                             <Typography sx={{
                               fontSize: {
                                 xs: ".76rem",
@@ -528,7 +507,7 @@ export default function BrowseJobs() {
                                 md: ".88rem",
                               },
                               fontWeight: 550,
-                              color: darkMode ? "#cbd5e1" : "#475569"
+                              color: subText
                             }}
                             >
                               {job.location}
@@ -536,7 +515,7 @@ export default function BrowseJobs() {
                           </Box>
 
                           <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-                            <FaMoneyBillWave style={{ color: "#10b981", fontSize: 13 }} />
+                            <FaMoneyBillWave style={{ color: primary, fontSize: 13 }} />
                             <Typography
                               sx={{
                                 fontSize: {
@@ -545,7 +524,7 @@ export default function BrowseJobs() {
                                   md: ".88rem",
                                 },
                                 fontWeight: 550,
-                                color: darkMode ? "#cbd5e1" : "#475569"
+                                color: subText
                               }}
                             >
                               {job.salary}
@@ -553,7 +532,7 @@ export default function BrowseJobs() {
                           </Box>
 
                           <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-                            <FaClock style={{ color: "#10b981", fontSize: 13 }} />
+                            <FaClock style={{ color: primary, fontSize: 13 }} />
                             <Typography
                               sx={{
                                 fontSize: {
@@ -562,7 +541,7 @@ export default function BrowseJobs() {
                                   md: ".88rem",
                                 },
                                 fontWeight: 550,
-                                color: darkMode ? "#cbd5e1" : "#475569"
+                                color: subText
                               }}
                             >
                               {job.type}
@@ -602,12 +581,9 @@ export default function BrowseJobs() {
                                   sm: ".72rem",
                                   md: ".75rem",
                                 },
-                                bgcolor:
-                                  darkMode
-                                    ? "rgba(16,185,129,.08)"
-                                    : "rgba(16,185,129,.05)",
+                                bgcolor: `${primary}14`,
                                 border: `1px solid ${borderStyle}`,
-                                color: darkMode ? "#6ee7b7" : "#047857",
+                                color: primary,
                               }}
                             />
                           ))}
@@ -643,11 +619,11 @@ export default function BrowseJobs() {
                             sm: ".85rem",
                             md: ".9rem",
                           },
-                          background: "linear-gradient(90deg, #10b981, #059669)",
-                          boxShadow: "0 4px 12px rgba(16,185,129,0.2)",
+                          background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+                          boxShadow: `0 4px 12px ${primary}33`,
                           "&:hover": {
-                            background: "linear-gradient(90deg, #059669, #047857)",
-                            boxShadow: "0 10px 22px rgba(16,185,129,.35)",
+                            background: `linear-gradient(90deg, ${primary}, ${primary})`,
+                            boxShadow: `0 10px 22px ${primary}59`,
                             transform: "translateY(-2px)",
                           }
                         }}

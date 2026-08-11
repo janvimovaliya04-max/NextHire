@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import InterviewerLayout from "../../Layouts/InterviewerLayout";
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { FaClipboardCheck } from "react-icons/fa";
@@ -16,6 +17,15 @@ import {
 
 export default function Feedback() {
   const { darkMode } = useTheme();
+  const colors = useThemeColors();
+
+  // Colors — fully theme-driven (matches Dashboard / Settings / Evaluations)
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
+
   const [error, setError] = useState("");
 
   const [feedback, setFeedback] = useState({
@@ -82,35 +92,31 @@ export default function Feedback() {
     mb: 2.5,
 
     "& .MuiInputLabel-root": {
-      color: darkMode ? "#94a3b8" : "#64748b",
+      color: subText,
       fontSize: ".95rem",
     },
 
     "& .MuiInputLabel-root.Mui-focused": {
-      color: "#14b8a6",
+      color: primary,
     },
 
     "& .MuiOutlinedInput-root": {
-      color: darkMode ? "#ffffff" : "#0f172a",
+      color: textColor,
 
-      backgroundColor: darkMode
-        ? "rgba(15,23,42,.55)"
-        : "rgba(255,255,255,.6)",
+      backgroundColor: colors.input || colors.card,
 
       "& fieldset": {
-        borderColor: darkMode
-          ? "rgba(255,255,255,.18)"
-          : "rgba(0,0,0,.12)",
+        borderColor: borderStyle,
 
         borderRadius: "10px",
       },
 
       "&:hover fieldset": {
-        borderColor: "#14b8a6",
+        borderColor: primary,
       },
 
       "&.Mui-focused fieldset": {
-        borderColor: "#14b8a6",
+        borderColor: primary,
         borderWidth: "2px",
       },
     },
@@ -131,7 +137,7 @@ export default function Feedback() {
               md: "2.2rem",
             },
 
-            color: darkMode ? "#fff" : "#0f172a",
+            color: textColor,
           }}
         >
           Interview Feedback
@@ -148,30 +154,21 @@ export default function Feedback() {
           mx: "auto",
           p: { xs: 3, md: 5 },
           borderRadius: 5,
-          bgcolor: darkMode
-            ? "#1e293b"
-            : "#ffffff",
+          bgcolor: colors.card,
 
           backdropFilter: "blur(10px)",
 
-          border: `1px solid ${darkMode
-            ? "#334155"
-            : "#e2e8f0"
-            }`,
+          border: `1px solid ${borderStyle}`,
 
-          boxShadow: darkMode
-            ? "0 8px 25px rgba(0,0,0,.35)"
-            : "0 8px 25px rgba(0,0,0,.04)",
+          boxShadow: colors.shadow,
 
           transition: "all .3s ease",
 
           "&:hover": {
             transform: "translateY(-2px)",
-            boxShadow: darkMode
-              ? "0 12px 30px rgba(0,0,0,.45)"
-              : "0 12px 30px rgba(0,0,0,.08)",
+            boxShadow: colors.shadow,
           },
-          color: darkMode ? "#ffffff" : "#000000",
+          color: textColor,
         }}
       >
 
@@ -186,7 +183,7 @@ export default function Feedback() {
         >
           <Box
             sx={{
-              color: "#14b8a6",
+              color: primary,
               display: "flex",
             }}
           >
@@ -197,7 +194,7 @@ export default function Feedback() {
             variant="h6"
             sx={{
               fontWeight: 800,
-              color: darkMode ? "#ffffff" : "#0f172a",
+              color: textColor,
             }}
           >
             Evaluation Details
@@ -401,19 +398,11 @@ export default function Feedback() {
                   sm: "auto"
                 },
                 py: 1.2,
-                color: darkMode
-                  ? "#5eead4"
-                  : "#0f766e",
-                borderColor:
-                  darkMode
-                    ? "rgba(20,184,166,.30)"
-                    : "rgba(20,184,166,.25)",
+                color: primary,
+                borderColor: `${primary}40`,
                 "&:hover": {
-                  borderColor: darkMode ? "#ffffff" : "#0f172a",
-                  bgcolor:
-                    darkMode
-                      ? "rgba(20,184,166,.08)"
-                      : "rgba(20,184,166,.05)"
+                  borderColor: primary,
+                  bgcolor: `${primary}0d`,
                 },
                 transition: "all 0.2s ease",
               }}
@@ -425,13 +414,13 @@ export default function Feedback() {
               variant="contained"
               onClick={handleSubmit}
               sx={{
-                background: "linear-gradient(90deg,#14b8a6,#0f766e)",
+                background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
 
-                boxShadow: "0 4px 12px rgba(16,185,129,.2)",
+                boxShadow: `0 4px 12px ${primary}33`,
 
                 "&:hover": {
-                  background: "linear-gradient(90deg,#0d9488,#115e59)",
-                  boxShadow: "0 6px 18px rgba(16,185,129,.3)",
+                  background: `linear-gradient(135deg, ${primary}, ${primary})`,
+                  boxShadow: `0 6px 18px ${primary}4d`,
                   transform: "translateY(-1px)"
                 },
                 borderRadius: 5,
@@ -447,7 +436,6 @@ export default function Feedback() {
                   sm: "auto"
                 },
                 py: 1.2,
-                boxShadow: "0 4px 12px rgba(139, 92, 246, 0.15)",
                 transition: "all 0.2s ease",
               }}
             >

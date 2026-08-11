@@ -2,19 +2,25 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import CandidateLayout from "../../Layouts/CandidateLayout";
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import { Typography, Paper, Box, TextField, Button, LinearProgress } from "@mui/material";
 
 import { FaClock, FaInfoCircle, FaPaperPlane } from "react-icons/fa";
 
 export default function Assessment() {
   const { darkMode } = useTheme();
+  const colors = useThemeColors();
 
   // Form State bindings
   const [q1Answer, setQ1Answer] = useState("");
   const [q2Answer, setQ2Answer] = useState("");
 
-  const subText = darkMode ? "#94a3b8" : "#475569";
-  const borderStyle = darkMode ? "rgba(255, 255, 255, 0.06)" : "rgba(0, 0, 0, 0.05)";
+  // Colors — fully theme-driven
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
 
   const handleSubmit = () => {
     if (!q1Answer.trim() || !q2Answer.trim()) {
@@ -25,14 +31,14 @@ export default function Assessment() {
     toast.success("Assessment submitted successfully");
   };
 
-  // Unified Emerald theme input styling matching candidate portal
+  // Unified theme-driven input styling matching candidate portal
   const textFieldStyle = {
     mb: {
       xs: 2,
       sm: 2.5,
     },
     "& .MuiInputLabel-root": {
-      color: darkMode ? "#94a3b8" : "#64748b",
+      color: subText,
       fontSize: {
         xs: ".82rem",
         sm: ".9rem",
@@ -40,7 +46,7 @@ export default function Assessment() {
       },
     },
     "& .MuiInputLabel-root.Mui-focused": {
-      color: "#10b981", // Emerald green focus
+      color: primary,
     },
     "& .MuiOutlinedInput-root": {
       fontSize: {
@@ -48,18 +54,18 @@ export default function Assessment() {
         sm: ".9rem",
         md: ".95rem",
       },
-      color: darkMode ? "#ffffff" : "#0f172a",
-      backgroundColor: darkMode ? "rgba(15, 23, 42, 0.3)" : "rgba(255, 255, 255, 0.4)",
+      color: textColor,
+      backgroundColor: colors.input,
       "& fieldset": {
-        borderColor: darkMode ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.1)",
+        borderColor: borderStyle,
         borderRadius: "10px",
         transition: "border-color 0.2s ease",
       },
       "&:hover fieldset": {
-        borderColor: "#10b981", // Emerald
+        borderColor: primary,
       },
       "&.Mui-focused fieldset": {
-        borderColor: "#10b981", // Emerald
+        borderColor: primary,
         borderWidth: "2px",
       },
     },
@@ -88,7 +94,7 @@ export default function Assessment() {
             fontWeight: 850,
             letterSpacing: "-0.03em",
             mb: 0.5,
-            color: darkMode ? "#ffffff" : "#0f172a",
+            color: textColor,
           }}
         >
           Online Assessment
@@ -112,20 +118,16 @@ export default function Assessment() {
             sm: 4,
             md: 5,
           },
-          bgcolor: darkMode ? "rgba(30, 41, 59, 0.45)" : "#ffffff",
+          bgcolor: colors.card,
           backdropFilter: "blur(12px)",
           border: `1px solid ${borderStyle}`,
-          boxShadow: darkMode
-            ? "0 10px 30px rgba(0,0,0,0.25)"
-            : "0 10px 30px rgba(0,0,0,0.02)",
+          boxShadow: colors.shadow,
 
           transition: "all .3s ease",
 
           "&:hover": {
             transform: "translateY(-2px)",
-            boxShadow: darkMode
-              ? "0 15px 35px rgba(0,0,0,.35)"
-              : "0 15px 35px rgba(0,0,0,.05)",
+            boxShadow: colors.shadow,
           },
         }}
       >
@@ -156,7 +158,7 @@ export default function Assessment() {
         >
           <Typography
             sx={{
-              color: darkMode ? "#ffffff" : "#0f172a",
+              color: textColor,
               fontWeight: 850,
               letterSpacing: "-0.02em",
               fontSize: {
@@ -169,7 +171,7 @@ export default function Assessment() {
             React Assessment
           </Typography>
 
-          {/* Countdown Clock Mockup */}
+          {/* Countdown Clock Mockup — kept semantic red (urgency indicator) */}
           <Box sx={{ display: "flex", alignItems: "center", gap: { xs: 1, sm: 1.5 } }}>
             <Box
               sx={{
@@ -212,7 +214,7 @@ export default function Assessment() {
           </Box>
         </Box>
 
-        {/* Live progress limit line */}
+        {/* Live progress limit line — semantic red (time-critical) */}
         <LinearProgress
           variant="determinate"
           value={98}
@@ -241,8 +243,8 @@ export default function Assessment() {
               md: 3,
             },
             borderRadius: "12px",
-            borderLeft: "4px solid #10b981",
-            bgcolor: darkMode ? "rgba(16,185,129,.08)" : "rgba(16,185,129,.04)",
+            borderLeft: `4px solid ${primary}`,
+            bgcolor: `${primary}0a`,
             mb: {
               xs: 3,
               sm: 4,
@@ -255,16 +257,13 @@ export default function Assessment() {
             },
           }}
         >
-          <Box sx={{ color: "#10b981", mt: 0.2 }}>
+          <Box sx={{ color: primary, mt: 0.2 }}>
             <FaInfoCircle size={window.innerWidth < 600 ? 13 : 16} />
           </Box>
           <Box>
             <Typography
               sx={{
-                color:
-                  darkMode
-                    ? "#ffffff"
-                    : "#0f172a",
+                color: textColor,
                 fontWeight: 800,
                 fontSize: {
                   xs: ".82rem",
@@ -321,16 +320,16 @@ export default function Assessment() {
                 md: 4,
               },
               border: `1px solid ${borderStyle}`,
-              bgcolor: darkMode ? "rgba(15,23,42,.30)" : "rgba(248,250,252,.9)",
+              bgcolor: colors.input,
               transition: "border-color 0.2s ease",
-              "&:hover": { borderColor: "#10b981" }
+              "&:hover": { borderColor: primary }
             }}
           >
             <Typography
               sx={{
                 fontSize: { xs: ".68rem", sm: ".74rem", md: ".78rem" },
                 fontWeight: 800,
-                color: "#10b981",
+                color: primary,
                 textTransform: "uppercase",
                 letterSpacing: "0.03em",
                 mb: 1.5
@@ -340,7 +339,7 @@ export default function Assessment() {
             </Typography>
             <Typography
               sx={{
-                color: darkMode ? "#ffffff" : "#0f172a",
+                color: textColor,
                 fontWeight: 700,
                 fontSize: {
                   xs: ".88rem",
@@ -380,16 +379,16 @@ export default function Assessment() {
                 md: 4,
               },
               border: `1px solid ${borderStyle}`,
-              bgcolor: darkMode ? "rgba(15,23,42,.30)" : "rgba(248,250,252,.9)",
+              bgcolor: colors.input,
               transition: "border-color 0.2s ease",
-              "&:hover": { borderColor: "#10b981" }
+              "&:hover": { borderColor: primary }
             }}
           >
             <Typography
               sx={{
                 fontSize: { xs: ".68rem", sm: ".74rem", md: ".78rem" },
                 fontWeight: 800,
-                color: "#10b981",
+                color: primary,
                 textTransform: "uppercase",
                 letterSpacing: "0.03em",
                 mb: 1.5
@@ -399,7 +398,7 @@ export default function Assessment() {
             </Typography>
             <Typography
               sx={{
-                color: darkMode ? "#ffffff" : "#0f172a",
+                color: textColor,
                 fontWeight: 700,
                 fontSize: {
                   xs: ".88rem",
@@ -462,11 +461,11 @@ export default function Assessment() {
                 sm: ".86rem",
                 md: ".92rem",
               },
-              background: "linear-gradient(90deg, #10b981, #059669)",
-              boxShadow: "0 4px 12px rgba(16,185,129,0.2)",
+              background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+              boxShadow: `0 4px 12px ${primary}33`,
               "&:hover": {
-                background: "linear-gradient(90deg, #059669, #047857)",
-                boxShadow: "0 10px 22px rgba(16,185,129,.35)",
+                background: `linear-gradient(90deg, ${primary}, ${primary})`,
+                boxShadow: `0 10px 22px ${primary}59`,
                 transform: "translateY(-2px)",
               }
             }}

@@ -3,16 +3,24 @@ import { Link, useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CandidateLayout from "../../Layouts/CandidateLayout";
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import { Typography, Paper, Box, Avatar, Chip, Button } from "@mui/material";
 import { FaBriefcase, FaCalendarAlt, FaChevronRight } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 
 export default function MyApplications() {
   const { darkMode } = useTheme();
+  const colors = useThemeColors();
   const [activeFilter, setActiveFilter] = useState("All");
   const [search, setSearch] = useState("");
-  const subText = darkMode ? "#94a3b8" : "#475569";
-  const borderStyle = darkMode ? "rgba(255, 255, 255, 0.06)" : "rgba(0, 0, 0, 0.05)";
+
+  // Colors — fully theme-driven (matches other candidate pages)
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
+
   const [searchParams, setSearchParams] = useSearchParams();
   const page =
     Number(searchParams.get("page")) || 1;
@@ -62,7 +70,10 @@ export default function MyApplications() {
     filteredApplications.length
   );
 
-  // Dynamic status chip renderer
+  // Dynamic status chip renderer — these colors are intentionally
+  // semantic/fixed (green=good, amber=in-progress, red=rejected,
+  // blue=applied) rather than theme-driven, same as the JobDetails
+  // employment-type chips.
   const getStatusChip = (status) => {
     switch (status) {
       case "Shortlisted":
@@ -133,7 +144,7 @@ export default function MyApplications() {
           position: "sticky",
           top: 0,
           zIndex: 10,
-          bgcolor: darkMode ? "#0f172a" : "#f8fafc",
+          bgcolor: colors.background,
           pb: 2,
         }}
       >
@@ -183,7 +194,7 @@ export default function MyApplications() {
                 sx={{
                   fontWeight: 850,
                   letterSpacing: "-0.03em",
-                  color: darkMode ? "#fff" : "#0f172a",
+                  color: textColor,
                   fontSize: {
                     xs: "1.45rem",
                     sm: "1.75rem",
@@ -202,7 +213,7 @@ export default function MyApplications() {
                     xs: "100%",
                     md: 380,
                   },
-                  bgcolor: darkMode ? "#1e293b" : "#fff",
+                  bgcolor: colors.input,
                   border: `1px solid ${borderStyle}`,
                   borderRadius: "12px",
                   px: 2,
@@ -212,13 +223,13 @@ export default function MyApplications() {
                     md: -2,
                   },
                   "&:focus-within": {
-                    borderColor: "#10b981",
-                    boxShadow: "0 0 0 3px rgba(16,185,129,.12)",
+                    borderColor: primary,
+                    boxShadow: `0 0 0 3px ${primary}1f`,
                   },
                 }}
               >
                 <FaSearch
-                  color={darkMode ? "#94a3b8" : "#64748b"}
+                  color={subText}
                 />
 
                 <input
@@ -235,7 +246,7 @@ export default function MyApplications() {
                     border: "none",
                     outline: "none",
                     background: "transparent",
-                    color: darkMode ? "#fff" : "#111827",
+                    color: textColor,
                     fontSize: ".9rem",
                   }}
                 />
@@ -248,6 +259,7 @@ export default function MyApplications() {
           <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 2, mb: 4 }}>
             <Box
               sx={{
+                gap: 1,
                 display: "flex",
                 overflowX: "auto",
                 flexWrap: {
@@ -309,24 +321,22 @@ export default function MyApplications() {
                     color:
                       activeFilter === filter
                         ? "#fff"
-                        : darkMode
-                          ? "#cbd5e1"
-                          : "#475569",
+                        : subText,
                     bgcolor:
                       activeFilter === filter
-                        ? "#10b981"
+                        ? primary
                         : "transparent",
                     borderColor:
                       activeFilter === filter
-                        ? "#10b981"
+                        ? primary
                         : borderStyle,
                     transition: "all .25s",
                     "&:hover": {
                       transform: "translateY(-2px)",
                       bgcolor:
                         activeFilter === filter
-                          ? "#059669"
-                          : "rgba(16,185,129,.05)",
+                          ? (secondary || primary)
+                          : `${primary}0d`,
                     },
                   }}
                 >
@@ -351,7 +361,7 @@ export default function MyApplications() {
               width: 8,
             },
             "&::-webkit-scrollbar-thumb": {
-              background: "#94a3b8",
+              background: subText,
               borderRadius: "20px",
             },
           }}
@@ -369,7 +379,7 @@ export default function MyApplications() {
                 xs: 3,
                 md: 4,
               },
-              bgcolor: darkMode ? "rgba(30,41,59,.45)" : "#fff",
+              bgcolor: colors.card,
               border: `1px solid ${borderStyle}`,
             }}
           >
@@ -386,7 +396,7 @@ export default function MyApplications() {
             <Typography
               variant="h4"
               sx={{
-                color: "#10b981",
+                color: primary,
                 fontWeight: 800,
               }}
             >
@@ -411,7 +421,7 @@ export default function MyApplications() {
                       xs: 3,
                       md: 5,
                     },
-                    bgcolor: darkMode ? "rgba(30, 41, 59, 0.45)" : "rgba(255, 255, 255, 0.8)",
+                    bgcolor: colors.card,
                     backdropFilter: "blur(12px)",
                     border: `1px solid ${borderStyle}`,
                     transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
@@ -420,8 +430,8 @@ export default function MyApplications() {
                         xs: "none",
                         md: "translateY(-4px)",
                       },
-                      borderColor: job.status === "Rejected" ? "rgba(239,68,68,0.3)" : "#10b981",
-                      boxShadow: darkMode ? "0 12px 24px rgba(0, 0, 0, 0.3)" : "0 12px 24px rgba(0, 0, 0, 0.02)",
+                      borderColor: job.status === "Rejected" ? "rgba(239,68,68,0.3)" : primary,
+                      boxShadow: colors.shadow,
                     },
                   }}
                 >
@@ -480,7 +490,7 @@ export default function MyApplications() {
                       <Box>
                         <Typography
                           sx={{
-                            color: darkMode ? "#fff" : "#0f172a",
+                            color: textColor,
                             fontWeight: 800,
                             letterSpacing: "-.01em",
                             mb: .3,
@@ -582,11 +592,11 @@ export default function MyApplications() {
                           borderRadius: "10px",
                           fontWeight: 750,
                           textTransform: "none",
-                          background: "linear-gradient(90deg, #10b981, #059669)",
-                          boxShadow: "0 4px 10px rgba(16,185,129,0.15)",
+                          background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+                          boxShadow: `0 4px 10px ${primary}26`,
                           "&:hover": {
-                            background: "linear-gradient(90deg, #059669, #047857)",
-                            boxShadow: "0 6px 14px rgba(16,185,129,0.25)",
+                            background: `linear-gradient(90deg, ${primary}, ${primary})`,
+                            boxShadow: `0 6px 14px ${primary}40`,
                             transform: "translateY(-1px)",
                           }
                         }}
@@ -610,9 +620,7 @@ export default function MyApplications() {
                     xs: 3,
                     md: 5,
                   },
-                  bgcolor: darkMode
-                    ? "rgba(30,41,59,.45)"
-                    : "#ffffff",
+                  bgcolor: colors.card,
                   border: `1px solid ${borderStyle}`,
                   textAlign: "center",
                 }}
@@ -622,6 +630,7 @@ export default function MyApplications() {
                   sx={{
                     fontWeight: 700,
                     mb: 1,
+                    color: textColor,
                   }}
                 >
                   No Applications Yet
@@ -641,8 +650,7 @@ export default function MyApplications() {
                   to="/browse-jobs"
                   variant="contained"
                   sx={{
-                    background:
-                      "linear-gradient(90deg,#10b981,#059669)",
+                    background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
                   }}
                 >
                   Browse Jobs
@@ -681,6 +689,7 @@ export default function MyApplications() {
                 xs: ".85rem",
                 md: ".95rem",
               },
+              color: textColor,
             }}
           >
             Showing {start}–{end} of {filteredApplications.length} applications
@@ -715,6 +724,12 @@ export default function MyApplications() {
                   xs: .8,
                   md: 1,
                 },
+                color: subText,
+                borderColor: borderStyle,
+                "&:hover": {
+                  borderColor: primary,
+                  color: primary,
+                },
               }}
               disabled={currentPage === 1}
               onClick={() => {
@@ -739,6 +754,7 @@ export default function MyApplications() {
                   xs: ".85rem",
                   md: ".95rem",
                 },
+                color: textColor,
               }}
             >
               {currentPage} / {totalPages}
@@ -761,6 +777,12 @@ export default function MyApplications() {
                 py: {
                   xs: .8,
                   md: 1,
+                },
+                color: subText,
+                borderColor: borderStyle,
+                "&:hover": {
+                  borderColor: primary,
+                  color: primary,
                 },
               }}
               disabled={currentPage === totalPages}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import { Link, useNavigate } from "react-router-dom";
 import HRLayout from "../../Layouts/HRLayout";
 import { toast } from "react-toastify";
@@ -24,6 +25,7 @@ import {
 
 export default function EditHRProfile() {
   const { darkMode } = useTheme();
+  const colors = useThemeColors();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -41,18 +43,18 @@ export default function EditHRProfile() {
     });
   };
 
-  const subText = darkMode ? "#94a3b8" : "#475569";
-  const textColor = darkMode ? "#ffffff" : "#0f172a";
-  const borderStyle = darkMode
-    ? "rgba(148, 163, 184, 0.22)"
-    : "rgba(15, 23, 42, 0.08)";
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const subText = colors.subText;
+  const textColor = colors.text;
+  const borderStyle = colors.border;
 
   // Unified clean input styling matching Login / Register / CreateJob
   const textFieldStyle = {
     mb: 2.5,
 
     "& .MuiInputLabel-root": {
-      color: darkMode ? "#94a3b8" : "#64748b",
+      color: subText,
 
       fontSize: {
         xs: "0.85rem",
@@ -62,22 +64,18 @@ export default function EditHRProfile() {
     },
 
     "& .MuiInputLabel-root.Mui-focused": {
-      color: "#2563eb",
+      color: primary,
     },
 
     "& .MuiOutlinedInput-root": {
-      color: darkMode ? "#fff" : "#0f172a",
+      color: textColor,
 
-      backgroundColor: darkMode
-        ? "rgba(15,23,42,0.55)"
-        : "rgba(255,255,255,0.6)",
+      backgroundColor: colors.input,
 
       borderRadius: "12px",
 
       "& fieldset": {
-        borderColor: darkMode
-          ? "rgba(255,255,255,0.22)"
-          : "rgba(0,0,0,0.18)",
+        borderColor: colors.border,
         borderWidth: "1.5px",
       },
 
@@ -90,11 +88,11 @@ export default function EditHRProfile() {
       },
 
       "&:hover fieldset": {
-        borderColor: "#2563eb",
+        borderColor: primary,
       },
 
       "&.Mui-focused fieldset": {
-        borderColor: "#2563eb",
+        borderColor: primary,
         borderWidth: "2px",
       },
     },
@@ -136,7 +134,11 @@ export default function EditHRProfile() {
           sx={{
             textTransform: "none",
             fontWeight: 700,
-            color: darkMode ? "#94a3b8" : "#475569",
+            color: subText,
+            "&:hover": {
+              bgcolor: "transparent",
+              color: primary,
+            },
           }}
         >
           Back
@@ -154,15 +156,11 @@ export default function EditHRProfile() {
       >
         <Typography
           sx={{
-            fontWeight: 850,
-            letterSpacing: "-0.03em",
-            mb: 0.3,
-            fontSize: {
-              xs: "1.45rem",
-              sm: "1.8rem",
-              md: "2.125rem",
-            },
-          }}
+                fontSize: { xs: "1.35rem", sm: "1.7rem", md: "2rem", lg: "2.2rem" },
+                mb: { xs: 0, md: 0.5 },
+                fontWeight: 850,
+                letterSpacing: "-0.03em",
+              }}
         >
           Edit Profile
         </Typography>
@@ -178,20 +176,11 @@ export default function EditHRProfile() {
             md: 4,
           },
           borderRadius: "22px",
-          bgcolor: darkMode ? "rgba(30, 41, 59, 0.45)" : "#ffffff",
+          bgcolor: colors.card,
           backdropFilter: "blur(12px)",
           border: `1px solid ${borderStyle}`,
 
-          // Premium Multi-layer Shadow
-          boxShadow: darkMode
-            ? `
-          0 10px 20px rgba(0,0,0,0.30),
-          0 4px 8px rgba(0,0,0,0.20)
-        `
-            : `
-          0 12px 24px rgba(15,23,42,0.08),
-          0 2px 6px rgba(15,23,42,0.05)
-        `,
+          boxShadow: colors.shadow,
 
           transition: "all 0.3s ease",
 
@@ -237,10 +226,10 @@ export default function EditHRProfile() {
                 xs: "1.4rem",
                 md: "2rem",
               },
-              background: "linear-gradient(135deg, #2563eb, #7c3aed)",
+              background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
               fontWeight: 800,
-              boxShadow: "0 8px 24px rgba(37,99,235,0.25)",
-              border: `4px solid ${darkMode ? "rgba(30,41,59,0.9)" : "#ffffff"}`,
+              boxShadow: `0 8px 24px ${primary}40`,
+              border: `4px solid ${colors.card}`,
             }}
           >
             {formData.fullName
@@ -266,6 +255,10 @@ export default function EditHRProfile() {
                 mt: 1,
                 textTransform: "none",
                 fontWeight: 700,
+                color: primary,
+                "&:hover": {
+                  bgcolor: `${primary}08`,
+                },
               }}
             >
               Change Photo
@@ -288,11 +281,11 @@ export default function EditHRProfile() {
                 md: 48,
               },
               borderRadius: 3,
-              bgcolor: "rgba(37,99,235,.12)",
+              bgcolor: `${primary}15`,
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              color: "#2563EB",
+              color: primary,
             }}
           >
             <FaUserTie size={22} />
@@ -422,11 +415,11 @@ export default function EditHRProfile() {
               borderRadius: "10px",
               fontWeight: 700,
               textTransform: "none",
-              color: darkMode ? "#cbd5e1" : "#475569",
-              borderColor: darkMode ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.12)",
+              color: subText,
+              borderColor: borderStyle,
               "&:hover": {
-                borderColor: darkMode ? "#cbd5e1" : "#475569",
-                bgcolor: darkMode ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.03)",
+                borderColor: primary,
+                bgcolor: `${primary}08`,
               }
             }}
           >
@@ -460,13 +453,13 @@ export default function EditHRProfile() {
               borderRadius: "10px",
               fontWeight: 700,
               textTransform: "none",
-              background: "linear-gradient(135deg,#2563EB,#3B82F6)",
-              boxShadow: "0 10px 22px rgba(37,99,235,.25)",
+              background: `linear-gradient(135deg,${primary},${secondary || primary})`,
+              boxShadow: `0 10px 22px ${primary}40`,
               transition: ".25s",
               "&:hover": {
-                background: "linear-gradient(135deg,#1D4ED8,#2563EB)",
+                background: `linear-gradient(135deg,${primary},${primary})`,
                 transform: "translateY(-2px)",
-                boxShadow: "0 15px 28px rgba(37,99,235,.35)",
+                boxShadow: `0 15px 28px ${primary}59`,
               }
             }}
           >

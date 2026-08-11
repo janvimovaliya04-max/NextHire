@@ -4,6 +4,7 @@ import { CircularProgress } from "@mui/material";
 import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import { Link } from "react-router-dom";
 import HRLayout from "../../Layouts/HRLayout";
 import {
@@ -30,6 +31,7 @@ import {
 
 export default function JobManagement() {
   const { darkMode } = useTheme();
+  const colors = useThemeColors();
   const [activeFilter, setActiveFilter] = useState("All");
   const [search, setSearch] = useState("");
   const jobs = jobsData
@@ -39,8 +41,11 @@ export default function JobManagement() {
     jobs.slice(0, JOBS_PER_LOAD)
   );
 
-  const subText = darkMode ? "#94a3b8" : "#475569";
-  const borderStyle = darkMode ? "rgba(255, 255, 255, 0.09)" : "rgba(0, 0, 0, 0.08)";
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
 
   // Filtering Logic
   const filteredJobs = visibleJobs.filter((job) => {
@@ -73,7 +78,7 @@ export default function JobManagement() {
             size="small"
             sx={{
               fontWeight: 800,
-              ffontSize: {
+              fontSize: {
                 xs: ".68rem",
                 md: ".72rem"
               },
@@ -140,18 +145,11 @@ export default function JobManagement() {
           {/* Title */}
           <Typography
             sx={{
-              flex: 1,
-              minWidth: 0,
-              wordBreak: "break-word",
-              fontSize: {
-                xs: "1.35rem",
-                sm: "1.7rem",
-                md: "2rem",
-                lg: "2.2rem",
-              },
-              fontWeight: 850,
-              letterSpacing: "-0.03em",
-            }}
+                fontSize: { xs: "1.35rem", sm: "1.7rem", md: "2rem", lg: "2.2rem" },
+                mb: { xs: 0, md: 0.5 },
+                fontWeight: 850,
+                letterSpacing: "-0.03em",
+              }}
           >
             Job Management
           </Typography>
@@ -166,14 +164,21 @@ export default function JobManagement() {
                 xs: "100%",
                 md: 330,
               },
-              bgcolor: darkMode ? "#1e293b" : "#fff",
+              bgcolor: colors.input,
               border: `1px solid ${borderStyle}`,
               borderRadius: "10px",
               px: 2,
+              transition: ".2s",
+              "&:hover": {
+                borderColor: primary,
+              },
+              "&:focus-within": {
+                borderColor: primary,
+              },
             }}
           >
             <FaSearch
-              color={darkMode ? "#94a3b8" : "#64748b"}
+              color={subText}
             />
 
             <input
@@ -187,7 +192,7 @@ export default function JobManagement() {
                 border: "none",
                 outline: "none",
                 background: "transparent",
-                color: darkMode ? "#fff" : "#111827",
+                color: textColor,
                 fontSize: "0.9rem",
               }}
             />
@@ -201,17 +206,16 @@ export default function JobManagement() {
             sx={{
               flexShrink: 0,
               whiteSpace: "nowrap",
-              whiteSpace: "nowrap",
               py: 1.3,
               px: 3,
               fontSize: ".9rem",
               fontWeight: 700,
               textTransform: "none",
               borderRadius: "10px",
-              background: "linear-gradient(90deg,#2563eb,#1d4ed8)",
-              boxShadow: "0 4px 12px rgba(37,99,235,.2)",
+              background: `linear-gradient(90deg,${primary},${secondary || primary})`,
+              boxShadow: `0 4px 12px ${primary}33`,
               "&:hover": {
-                background: "linear-gradient(90deg,#1d4ed8,#1e40af)",
+                background: `linear-gradient(90deg,${primary},${primary})`,
               },
             }}
           >
@@ -259,19 +263,19 @@ export default function JobManagement() {
                   },
                   color:
                     activeFilter ===
-                      filter ? "#fff" : darkMode ? "#cbd5e1" : "#475569",
+                      filter ? "#fff" : subText,
                   borderColor:
                     activeFilter ===
-                      filter ? "#2563eb" : borderStyle,
+                      filter ? primary : borderStyle,
                   bgcolor:
                     activeFilter ===
-                      filter ? "#2563eb" : "transparent",
+                      filter ? primary : "transparent",
                   boxShadow:
                     activeFilter ===
-                      filter ? "0 4px 10px rgba(37,99,235,0.2)" : "none",
+                      filter ? `0 4px 10px ${primary}33` : "none",
                   "&:hover": {
-                    borderColor: "#2563eb",
-                    bgcolor: activeFilter === filter ? "#1d4ed8" : darkMode ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)",
+                    borderColor: primary,
+                    bgcolor: activeFilter === filter ? primary : `${primary}08`,
                   }
                 }}
               >
@@ -293,20 +297,10 @@ export default function JobManagement() {
           overflow: "hidden",
           p: { xs: 2.5, md: 4 },
           borderRadius: "22px",
-          bgcolor: darkMode
-            ? "rgba(30,41,59,.72)"
-            : "#ffffff",
+          bgcolor: colors.card,
           backdropFilter: "blur(16px)",
           border: `1px solid ${borderStyle}`,
-          boxShadow: darkMode
-            ? `
-              0 18px 45px rgba(0,0,0,.35),
-              inset 0 1px 0 rgba(255,255,255,.04)
-            `
-            : `
-              0 18px 40px rgba(15,23,42,.08),
-              0 4px 12px rgba(15,23,42,.05)
-            `,
+          boxShadow: colors.shadow,
           transition: ".3s",
           "&:hover": {
             transform: "translateY(-4px)",
@@ -360,9 +354,7 @@ export default function JobManagement() {
                   md: "0.88rem",
                 },
                 fontWeight: 700,
-                bgcolor: darkMode
-                  ? "#1e293b"
-                  : "#f8fafc",
+                bgcolor: colors.background,
               },
             }}
             >
@@ -372,23 +364,23 @@ export default function JobManagement() {
                     xs: 60,
                     md: 82
                   },
-                  bgcolor: darkMode ? "rgba(15, 23, 42, 0.5)" : "rgba(248, 250, 252, 0.7)",
+                  bgcolor: colors.background,
                   borderBottom: `1px solid ${borderStyle}`,
                 }}
               >
-                <TableCell align="center" sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: { xs: ".8rem", md: ".95rem" }, borderBottom: `1px solid ${borderStyle}` }}>
+                <TableCell align="center" sx={{ color: textColor, fontWeight: 700, fontSize: { xs: ".8rem", md: ".95rem" }, borderBottom: `1px solid ${borderStyle}` }}>
                   Job Role
                 </TableCell>
-                <TableCell align="center" sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: { xs: ".8rem", md: ".95rem" }, borderBottom: `1px solid ${borderStyle}` }}>
+                <TableCell align="center" sx={{ color: textColor, fontWeight: 700, fontSize: { xs: ".8rem", md: ".95rem" }, borderBottom: `1px solid ${borderStyle}` }}>
                   Salary Package
                 </TableCell>
-                <TableCell sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: { xs: ".8rem", md: ".95rem" }, borderBottom: `1px solid ${borderStyle}` }}>
+                <TableCell sx={{ color: textColor, fontWeight: 700, fontSize: { xs: ".8rem", md: ".95rem" }, borderBottom: `1px solid ${borderStyle}` }}>
                   Department
                 </TableCell>
-                <TableCell sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: { xs: ".8rem", md: ".95rem" }, borderBottom: `1px solid ${borderStyle}` }}>
+                <TableCell sx={{ color: textColor, fontWeight: 700, fontSize: { xs: ".8rem", md: ".95rem" }, borderBottom: `1px solid ${borderStyle}` }}>
                   Listing Status
                 </TableCell>
-                <TableCell align="center" sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: { xs: ".8rem", md: ".95rem" }, borderBottom: `1px solid ${borderStyle}`, pr: 4 }}>
+                <TableCell align="center" sx={{ color: textColor, fontWeight: 700, fontSize: { xs: ".8rem", md: ".95rem" }, borderBottom: `1px solid ${borderStyle}`, pr: 4 }}>
                   Action Panel
                 </TableCell>
               </TableRow>
@@ -403,18 +395,18 @@ export default function JobManagement() {
                       borderBottom: `1px solid ${borderStyle}`,
                       transition: "all 0.2s ease",
                       "&:hover": {
-                        bgcolor: darkMode ? "rgba(255,255,255,0.02)" : "rgba(0,0,0,0.01)",
+                        bgcolor: `${primary}08`,
                       },
                     }}
                   >
                     {/* Job Title and Location Info */}
                     <TableCell sx={{ borderBottom: `1px solid ${borderStyle}` }}>
                       <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
-                        <Avatar sx={{ bgcolor: darkMode ? "rgba(255,255,255,0.04)" : "#eff6ff", color: "#2563eb", width: { xs: 36, md: 44 }, height: { xs: 36, md: 44 }, }}>
+                        <Avatar sx={{ bgcolor: `${primary}15`, color: primary, width: { xs: 36, md: 44 }, height: { xs: 36, md: 44 }, }}>
                           <FaBriefcase size={window.innerWidth < 600 ? 13 : 16} />
                         </Avatar>
                         <Box>
-                          <Typography sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontWeight: 700, fontSize: { xs: ".8rem", md: ".95rem" }, }}>
+                          <Typography sx={{ color: textColor, fontWeight: 700, fontSize: { xs: ".8rem", md: ".95rem" }, }}>
                             {job.title}
                           </Typography>
                           <Box sx={{ display: "flex", alignItems: "center", gap: 0.5, color: subText }}>
@@ -428,7 +420,7 @@ export default function JobManagement() {
                     </TableCell>
 
                     {/* Salary Package */}
-                    <TableCell sx={{ borderBottom: `1px solid ${borderStyle}`, fontWeight: 500, fontSize: { xs: ".8rem", md: ".88rem" }, color: darkMode ? "#ffffff" : "#0f172a" }}>
+                    <TableCell sx={{ borderBottom: `1px solid ${borderStyle}`, fontWeight: 500, fontSize: { xs: ".8rem", md: ".88rem" }, color: textColor }}>
                       {job.salaryRange}
                     </TableCell>
 
@@ -440,7 +432,7 @@ export default function JobManagement() {
                           md: 1
                         }
                       }}>
-                        <Typography sx={{ alignItems: "center", color: darkMode ? "#ffffff" : "#0f172a", fontSize: { xs: ".8rem", md: ".88rem" }, fontWeight: 700 }}>
+                        <Typography sx={{ alignItems: "center", color: textColor, fontSize: { xs: ".8rem", md: ".88rem" }, fontWeight: 700 }}>
                           {job.department}
                         </Typography>
                       </Box>
@@ -462,48 +454,11 @@ export default function JobManagement() {
                       <Box
                         sx={{
                           display: "flex",
-                          gap: {
-                            xs: .8,
-                            md: 1
-                          },
-                          justifyContent: "flex-end",
+                          justifyContent: "center",
                           flexWrap: "wrap",
                         }}
                       >
-                        <Button
-                          component={Link}
-                          to="/applicants"
-                          variant="outlined"
-                          size="small"
-                          sx={{
-                            textTransform: "none",
-                            fontWeight: 700,
-                            borderRadius: {
-                              xs: "7px",
-                              md: "8px"
-                            },
-                            px: {
-                              xs: 1.2,
-                              md: 2
-                            },
-                            fontSize: {
-                              xs: ".7rem",
-                              sm: ".75rem",
-                              md: ".8rem"
-                            },
-                            width: { xs: "100%", sm: "auto" },
-                            color: darkMode ? "#cbd5e1" : "#475569",
-                            borderColor: darkMode ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.12)",
-                            "&:hover": {
-                              borderColor: "#2563eb",
-                              color: "#2563eb",
-                              bgcolor: "rgba(37,99,235,0.03)",
-                            }
-                          }}
-                        >
-                          View Applicants
-                        </Button>
-
+                              
                         <Button
                           component={Link}
                           to="/create-assessment"
@@ -526,11 +481,11 @@ export default function JobManagement() {
                               md: ".8rem"
                             },
                             width: { xs: "100%", sm: "auto" },
-                            background: "linear-gradient(90deg, #2563eb, #1d4ed8)",
-                            boxShadow: "0 4px 12px rgba(37,99,235,0.2)",
+                            background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+                            boxShadow: `0 4px 12px ${primary}33`,
                             "&:hover": {
-                              background: "linear-gradient(90deg, #1d4ed8, #1e40af)",
-                              boxShadow: "0 6px 16px rgba(37,99,235,0.3)",
+                              background: `linear-gradient(90deg, ${primary}, ${primary})`,
+                              boxShadow: `0 6px 16px ${primary}4d`,
                             }
                           }}
                         >

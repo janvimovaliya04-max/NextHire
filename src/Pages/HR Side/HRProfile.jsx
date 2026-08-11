@@ -1,4 +1,5 @@
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import { Link } from "react-router-dom";
 import HRLayout from "../../Layouts/HRLayout";
 import {
@@ -20,15 +21,18 @@ import {
 
 export default function HRProfile() {
   const { darkMode } = useTheme();
-  const borderStyle = darkMode
-    ? "rgba(148, 163, 184, 0.18)"
-    : "rgba(0, 0, 0, 0.08)";
+  const colors = useThemeColors();
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
 
   // Cohesive styling for the read-only form elements
   const textFieldStyle = {
     mb: 2.5,
     "& .MuiInputLabel-root": {
-      color: darkMode ? "#94a3b8" : "#64748b",
+      color: subText,
       fontSize: {
         xs: "0.82rem",
         md: "0.95rem",
@@ -43,7 +47,7 @@ export default function HRProfile() {
 
     },
     "& .MuiOutlinedInput-root": {
-      color: darkMode ? "#ffffff" : "#0f172a",
+      color: textColor,
       fontSize: {
         xs: "0.9rem",
         md: "1rem",
@@ -53,22 +57,16 @@ export default function HRProfile() {
         xs: -5,
         md: 1.8,
       },
-      backgroundColor: darkMode
-        ? "rgba(15, 23, 42, 0.55)"
-        : "rgba(255,255,255,0.6)",
+      backgroundColor: colors.input,
 
       "& fieldset": {
-        borderColor: darkMode
-          ? "rgba(148,163,184,0.35)"
-          : "rgba(0,0,0,0.12)",
+        borderColor: colors.border,
         borderRadius: "10px",
         transition: "all .25s ease",
       },
 
       "&:hover fieldset": {
-        borderColor: darkMode
-          ? "rgba(255,255,255,0.45)"
-          : "#2563eb",
+        borderColor: primary,
       },
     },
   };
@@ -94,19 +92,11 @@ export default function HRProfile() {
         <Box>
           <Typography
             sx={{
-              fontSize: {
-                xs: "1.45rem",
-                sm: "1.7rem",
-                md: "2rem",
-                lg: "2.2rem",
-              },
-              mb: {
-                xs: 0,
-                md: 0.5,
-              },
-              fontWeight: 850,
-              letterSpacing: "-0.03em",
-            }}
+                fontSize: { xs: "1.35rem", sm: "1.7rem", md: "2rem", lg: "2.2rem" },
+                mb: { xs: 0, md: 0.5 },
+                fontWeight: 850,
+                letterSpacing: "-0.03em",
+              }}
           >
             HR Profile
           </Typography>
@@ -125,20 +115,11 @@ export default function HRProfile() {
               xs: 3,
               md: 5,
             },
-            bgcolor: darkMode ? "rgba(30, 41, 59, 0.45)" : "#ffffff",
+            bgcolor: colors.card,
             backdropFilter: "blur(12px)",
             border: `1px solid ${borderStyle}`,
 
-            // Premium Multi-layer Shadow
-            boxShadow: darkMode
-              ? `
-          0 10px 20px rgba(0,0,0,0.30),
-          0 4px 8px rgba(0,0,0,0.20)
-        `
-              : `
-          0 12px 24px rgba(15,23,42,0.08),
-          0 2px 6px rgba(15,23,42,0.05)
-        `,
+            boxShadow: colors.shadow,
 
             transition: "all 0.3s ease",
 
@@ -206,23 +187,23 @@ export default function HRProfile() {
                     xs: "1.5rem",
                     md: "2rem",
                   },
-                  background: "linear-gradient(135deg, #2563eb, #7c3aed)",
+                  background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
                   fontWeight: 800,
-                  boxShadow: "0 8px 24px rgba(37,99,235,0.25)",
-                  border: `4px solid ${darkMode ? "rgba(30,41,59,0.9)" : "#ffffff"}`,
+                  boxShadow: `0 8px 24px ${primary}40`,
+                  border: `4px solid ${colors.card}`,
                 }}
               >
                 HR
               </Avatar>
 
               <Box>
-                <Typography sx={{ fontSize: { xs: "1.2rem", sm: "1.45rem", md: "1.6rem", }, color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 850, letterSpacing: "-0.02em", mb: 0.5 }}>
+                <Typography sx={{ fontSize: { xs: "1.2rem", sm: "1.45rem", md: "1.6rem", }, color: textColor, fontWeight: 850, letterSpacing: "-0.02em", mb: 0.5 }}>
                   HR Manager
                 </Typography>
-                <Typography sx={{ color: "#2563eb", fontWeight: 700, fontSize: { xs: "0.82rem", md: "0.95rem" }, }}>
+                <Typography sx={{ color: primary, fontWeight: 700, fontSize: { xs: "0.82rem", md: "0.95rem" }, }}>
                   Senior HR Manager
                 </Typography>
-                <Typography sx={{ color: darkMode ? "#94a3b8" : "#64748b", fontSize: { xs: "0.75rem", md: "0.85rem" }, mt: 0.5 }}>
+                <Typography sx={{ color: subText, fontSize: { xs: "0.75rem", md: "0.85rem" }, mt: 0.5 }}>
                   hr@nexthire.com
                 </Typography>
               </Box>
@@ -261,10 +242,10 @@ export default function HRProfile() {
                   borderRadius: "10px",
                   fontWeight: 700,
                   textTransform: "none",
-                  background: "linear-gradient(90deg, #2563eb, #1d4ed8)",
-                  boxShadow: "0 4px 12px rgba(37,99,235,0.2)",
+                  background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+                  boxShadow: `0 4px 12px ${primary}33`,
                   "&:hover": {
-                    background: "linear-gradient(90deg, #1d4ed8, #1e40af)",
+                    background: `linear-gradient(90deg, ${primary}, ${primary})`,
                     transform: "translateY(-1px)",
                   },
                 }}
@@ -283,11 +264,11 @@ export default function HRProfile() {
                   fontWeight: 700,
                   textTransform: "none",
                   fontSize: "0.88rem",
-                  color: darkMode ? "#cbd5e1" : "#475569",
-                  borderColor: darkMode ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.12)",
+                  color: subText,
+                  borderColor: borderStyle,
                   "&:hover": {
-                    borderColor: darkMode ? "#cbd5e1" : "#475569",
-                    bgcolor: darkMode ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.03)",
+                    borderColor: primary,
+                    bgcolor: `${primary}08`,
                     transform: "translateY(-1px)",
                   },
                 }}
@@ -311,20 +292,11 @@ export default function HRProfile() {
               xs: 3,
               md: 5,
             },
-            bgcolor: darkMode ? "rgba(30, 41, 59, 0.45)" : "#ffffff",
+            bgcolor: colors.card,
             backdropFilter: "blur(12px)",
             border: `1px solid ${borderStyle}`,
 
-            // Premium Multi-layer Shadow
-            boxShadow: darkMode
-              ? `
-          0 10px 20px rgba(0,0,0,0.30),
-          0 4px 8px rgba(0,0,0,0.20)
-        `
-              : `
-          0 12px 24px rgba(15,23,42,0.08),
-          0 2px 6px rgba(15,23,42,0.05)
-        `,
+            boxShadow: colors.shadow,
 
             transition: "all 0.3s ease",
 
@@ -342,7 +314,7 @@ export default function HRProfile() {
             },
           }}
         >
-          <Typography sx={{ fontWeight: 800, mb: 3, color: darkMode ? "#ffffff" : "#0f172a", fontSize: { xs: "1.05rem", md: "1.25rem" }, }}>
+          <Typography sx={{ fontWeight: 800, mb: 3, color: textColor, fontSize: { xs: "1.05rem", md: "1.25rem" }, }}>
             Personal Details
           </Typography>
 
@@ -457,10 +429,10 @@ export default function HRProfile() {
               borderRadius: "10px",
               fontWeight: 700,
               textTransform: "none",
-              background: "linear-gradient(90deg, #2563eb, #1d4ed8)",
-              boxShadow: "0 4px 12px rgba(37,99,235,0.2)",
+              background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+              boxShadow: `0 4px 12px ${primary}33`,
               "&:hover": {
-                background: "linear-gradient(90deg, #1d4ed8, #1e40af)",
+                background: `linear-gradient(90deg, ${primary}, ${primary})`,
                 transform: "translateY(-1.5px)",
               },
             }}

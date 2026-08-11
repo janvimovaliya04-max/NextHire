@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; // Added useNavigate for redirection on save
 import CandidateLayout from "../../Layouts/CandidateLayout";
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import { Typography, TextField, Paper, Button, Avatar, Box, Divider } from "@mui/material";
 
 import Grid from "@mui/material/Grid";
@@ -10,6 +11,7 @@ import { FaArrowLeft, FaSave, FaTimes, FaUserEdit } from "react-icons/fa";
 
 export default function EditCandidateProfileR() {
   const { darkMode } = useTheme();
+  const colors = useThemeColors();
   const navigate = useNavigate();
   const [candidate, setCandidate] = useState(() => {
     const saved = localStorage.getItem("candidateData");
@@ -71,15 +73,18 @@ export default function EditCandidateProfileR() {
     navigate("/candidate-profile-r"); // Redirect back to profile page after saving
   };
 
-  const subText = darkMode ? "#94a3b8" : "#475569";
-  const textColor = darkMode ? "#ffffff" : "#0f172a";
-  const borderStyle = darkMode ? "rgba(255, 255, 255, 0.06)" : "rgba(0, 0, 0, 0.05)";
+  // Colors — fully theme-driven (matches other candidate pages)
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
 
   // Unified clean input styling matching Candidate Portal theme
   const textFieldStyle = {
     mb: { xs: 1.75, sm: 2, md: 2.5 },
     "& .MuiInputLabel-root": {
-      color: darkMode ? "#94a3b8" : "#64748b",
+      color: subText,
       fontSize: {
         xs: "0.85rem",
         sn: ".9rem",
@@ -87,7 +92,7 @@ export default function EditCandidateProfileR() {
       },
     },
     "& .MuiInputLabel-root.Mui-focused": {
-      color: "#10b981", // Emerald Focus
+      color: primary,
     },
     "& .MuiOutlinedInput-root": {
       fontSize: {
@@ -99,18 +104,18 @@ export default function EditCandidateProfileR() {
         xs: 52,
         md: 56,
       },
-      color: darkMode ? "#ffffff" : "#0f172a",
-      backgroundColor: darkMode ? "rgba(15, 23, 42, 0.55)" : "rgba(255, 255, 255, 0.4)",
+      color: textColor,
+      backgroundColor: colors.input,
       "& fieldset": {
-        borderColor: darkMode ? "rgba(255, 255, 255, 0.35)" : "rgba(0, 0, 0, 0.1)",
+        borderColor: borderStyle,
         borderRadius: "10px",
         transition: "border-color 0.2s ease",
       },
       "&:hover fieldset": {
-        borderColor: "#10b981", // Emerald
+        borderColor: primary,
       },
       "&.Mui-focused fieldset": {
-        borderColor: "#10b981", // Emerald
+        borderColor: primary,
         borderWidth: "2px",
       },
     },
@@ -177,9 +182,9 @@ export default function EditCandidateProfileR() {
             textTransform: "none",
             fontWeight: 700,
             fontSize: "0.85rem",
-            color: darkMode ? "#94a3b8" : "#475569",
+            color: subText,
             "&:hover": {
-              color: "#10b981",
+              color: primary,
               bgcolor: "transparent",
             }
           }}
@@ -202,16 +207,14 @@ export default function EditCandidateProfileR() {
             sm: 3,
             md: 5,
           },
-          bgcolor: darkMode ? "rgba(30, 41, 59, 0.45)" : "#ffffff",
+          bgcolor: colors.card,
           backdropFilter: "blur(12px)",
           border: `1px solid ${borderStyle}`,
-          boxShadow: darkMode ? "0 10px 30px rgba(0,0,0,0.25)" : "0 10px 30px rgba(0,0,0,0.02)",
+          boxShadow: colors.shadow,
           transition: "transform 0.3s ease, box-shadow 0.3s ease",
           "&:hover": {
             transform: "translateY(-4px)",
-            boxShadow: darkMode
-              ? "0 18px 40px rgba(0,0,0,.35)"
-              : "0 18px 40px rgba(0,0,0,.06)",
+            boxShadow: colors.shadow,
           },
         }}
       >
@@ -226,9 +229,9 @@ export default function EditCandidateProfileR() {
                 sm: "1.8rem",
                 md: "2rem",
               },
-              background: "linear-gradient(135deg, #10b981, #059669)", // Emerald Gradient
+              background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
               fontWeight: 800,
-              boxShadow: "0 8px 24px rgba(16,185,129,0.25)",
+              boxShadow: `0 8px 24px ${primary}40`,
               border: `4px solid ${darkMode ? "rgba(30,41,59,0.9)" : "#ffffff"}`,
             }}
           >
@@ -248,7 +251,7 @@ export default function EditCandidateProfileR() {
             },
           }}
         >
-          <Box sx={{ color: "#10b981", display: "flex" }}>
+          <Box sx={{ color: primary, display: "flex" }}>
             <FaUserEdit size={18} />
           </Box>
           <Typography
@@ -384,10 +387,10 @@ export default function EditCandidateProfileR() {
                 xs: "0.85rem",
                 md: "0.9rem",
               },
-              color: darkMode ? "#cbd5e1" : "#475569",
-              borderColor: darkMode ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.12)",
+              color: subText,
+              borderColor: borderStyle,
               "&:hover": {
-                borderColor: darkMode ? "#cbd5e1" : "#475569",
+                borderColor: subText,
                 bgcolor: darkMode ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.03)",
               }
             }}
@@ -418,16 +421,16 @@ export default function EditCandidateProfileR() {
                 xs: "0.85rem",
                 md: "0.9rem",
               },
-              background: "linear-gradient(90deg, #10b981, #059669)",
-              boxShadow: "0 4px 12px rgba(16,185,129,0.2)",
+              background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
+              boxShadow: `0 4px 12px ${primary}33`,
               transition: "all 0.3s ease",
               "&:hover": {
-                background: "linear-gradient(90deg,#059669,#047857)",
+                background: `linear-gradient(90deg, ${primary}, ${primary})`,
                 transform: {
                   xs: "translateY(-1px)",
                   md: "translateY(-2px) scale(1.02)",
                 },
-                boxShadow: "0 8px 22px rgba(16,185,129,.35)",
+                boxShadow: `0 8px 22px ${primary}59`,
               }
             }}
           >

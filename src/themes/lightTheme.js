@@ -1,6 +1,5 @@
-import { Divider } from "@mui/material";
+const lightTheme = {
 
-const lightTheme ={
     name: "Light",
 
     colors: {
@@ -43,7 +42,7 @@ const lightTheme ={
         badgeText: "#166534",
 
         shadow:
-        "0 10px 25px rgba(0,0,0,.08)"
+            "0 10px 25px rgba(0,0,0,.08)"
     }
 };
 

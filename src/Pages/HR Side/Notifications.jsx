@@ -3,9 +3,9 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { CircularProgress } from "@mui/material";
 import { FaBell, FaUserPlus, FaCalendarAlt, FaClipboardCheck, FaCheckDouble } from "react-icons/fa";
 
-
 import { useState, useEffect } from "react";
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import HRLayout from "../../Layouts/HRLayout";
 import {
   Typography,
@@ -19,6 +19,7 @@ import {
 export default function Notifications() {
 
   const { darkMode } = useTheme();
+  const colors = useThemeColors();
   const [activeFilter, setActiveFilter] = useState("All");
   const notifications = notificationsData;
   const NOTIFICATIONS_PER_LOAD = 6;
@@ -29,8 +30,11 @@ export default function Notifications() {
 
   const [loading, setLoading] = useState(true);
 
-  const subText = darkMode ? "#94a3b8" : "#475569";
-  const borderStyle = darkMode ? "rgba(255, 255, 255, 0.06)" : "rgba(0, 0, 0, 0.05)";
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
 
   useEffect(() => {
     localStorage.setItem(
@@ -70,6 +74,18 @@ export default function Notifications() {
       800);
   };
 
+  // Dynamic category accent (kept as soft-tint accents, consistent with status chip style)
+  const getCategoryStyle = (category) => {
+    switch (category) {
+      case "Hiring":
+        return { bg: `${primary}1f`, color: primary };
+      case "Interviews":
+        return { bg: "rgba(16, 185, 129, 0.12)", color: "#10b981" };
+      default:
+        return { bg: "rgba(245, 158, 11, 0.12)", color: "#f59e0b" };
+    }
+  };
+
   return (
     <HRLayout>
       {/* Title & Banner Header */}
@@ -101,6 +117,7 @@ export default function Notifications() {
               },
               fontWeight: 850,
               letterSpacing: "-0.03em",
+              color: textColor,
             }}
           >
             Notifications Center
@@ -131,14 +148,12 @@ export default function Notifications() {
             fontWeight: 700,
             textTransform: "none",
             borderRadius: "10px",
-            color: darkMode ? "#cbd5e1" : "#475569",
+            color: subText,
             borderColor: borderStyle,
             "&:hover": {
-              borderColor: "#2563eb",
-              color: "#2563eb",
-              bgcolor: darkMode
-                ? "rgba(37,99,235,0.03)"
-                : "rgba(37,99,235,0.02)",
+              borderColor: primary,
+              color: primary,
+              bgcolor: `${primary}08`,
             },
           }}
         >
@@ -177,13 +192,13 @@ export default function Notifications() {
                 xs: .55,
                 md: .7,
               },
-              color: activeFilter === filter ? "#fff" : darkMode ? "#cbd5e1" : "#475569",
-              borderColor: activeFilter === filter ? "#2563eb" : borderStyle,
-              bgcolor: activeFilter === filter ? "#2563eb" : "transparent",
-              boxShadow: activeFilter === filter ? "0 4px 10px rgba(37,99,235,0.2)" : "none",
+              color: activeFilter === filter ? "#fff" : subText,
+              borderColor: activeFilter === filter ? primary : borderStyle,
+              bgcolor: activeFilter === filter ? primary : "transparent",
+              boxShadow: activeFilter === filter ? `0 4px 10px ${primary}33` : "none",
               "&:hover": {
-                borderColor: "#2563eb",
-                bgcolor: activeFilter === filter ? "#1d4ed8" : darkMode ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)",
+                borderColor: primary,
+                bgcolor: activeFilter === filter ? primary : `${primary}08`,
               }
             }}
           >
@@ -230,7 +245,7 @@ export default function Notifications() {
                   py: 2,
                 }}
               >
-                <CircularProgress size={30} />
+                <CircularProgress size={30} sx={{ color: primary }} />
               </Box>
             }
             scrollableTarget="notificationScroll"
@@ -242,218 +257,204 @@ export default function Notifications() {
                   ? true
                   : item.category === activeFilter
               )
-              .map((item) => (
-                <Paper
-                  key={item.id}
-                  elevation={0}
-                  sx={{
-                    position: "relative",
-                    overflow: "auto",
-                    cursor: "pointer",
-                    p: {
-                      xs: 1.5,
-                      sm: 2.5,
-                      md: 4
-                    },
-                    borderRadius: {
-                      xs: 3,
-                      md: 5
-                    },
-                    bgcolor: darkMode ? "rgba(30, 41, 59, 0.45)" : "#ffffff",
-                    backdropFilter: "blur(12px)",
-                    border: `1px solid ${borderStyle}`,
-
-                    // Premium Multi-layer Shadow
-                    boxShadow: darkMode
-                      ? `
-          0 10px 20px rgba(0,0,0,0.30),
-          0 4px 8px rgba(0,0,0,0.20)
-        `
-                      : `
-          0 12px 24px rgba(15,23,42,0.08),
-          0 2px 6px rgba(15,23,42,0.05)
-        `,
-
-                    transition: "all 0.3s ease",
-
-                    "&:hover": {
-                      transform: "translateY(-3px) scale(1)",
-                      borderColor: item.color,
-
-                      boxShadow: darkMode
-                        ? "0 18px 38px rgba(0,0,0,.45)"
-                        : "0 18px 40px rgba(37,99,235,.12)",
-                    },
-                  }}
-                >
-                  {/* Unread dot indicator on the left border */}
-                  {item.unread && (
-                    <Box
-                      sx={{
-                        position: "absolute",
-                        left: 0,
-                        top: "50%",
-                        transform: "translateY(-50%)",
-                        width: {
-                          xs: 3,
-                          md: 4
-                        },
-                        height: {
-                          xs: 24,
-                          md: 32
-                        },
-                        borderRadius: "0 4px 4px 0",
-                        bgcolor: "#2563eb",
-                        boxShadow: "0 0 10px #2563eb",
-                      }}
-                    />
-                  )}
-
-                  <Box
+              .map((item) => {
+                const categoryStyle = getCategoryStyle(item.category);
+                return (
+                  <Paper
+                    key={item.id}
+                    elevation={0}
                     sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "flex-start",
-                      flexDirection: { xs: "column", sm: "row" },
-                      gap: 2,
+                      position: "relative",
+                      overflow: "auto",
+                      cursor: "pointer",
+                      p: {
+                        xs: 1.5,
+                        sm: 2.5,
+                        md: 4
+                      },
+                      borderRadius: {
+                        xs: 3,
+                        md: 5
+                      },
+                      bgcolor: colors.card,
+                      backdropFilter: "blur(12px)",
+                      border: `1px solid ${borderStyle}`,
+
+                      // Premium Multi-layer Shadow
+                      boxShadow: darkMode
+                        ? `
+            0 10px 20px rgba(0,0,0,0.30),
+            0 4px 8px rgba(0,0,0,0.20)
+          `
+                        : `
+            0 12px 24px rgba(15,23,42,0.08),
+            0 2px 6px rgba(15,23,42,0.05)
+          `,
+
+                      transition: "all 0.3s ease",
+
+                      "&:hover": {
+                        transform: "translateY(-3px) scale(1)",
+                        borderColor: item.color || primary,
+
+                        boxShadow: darkMode
+                          ? "0 18px 38px rgba(0,0,0,.45)"
+                          : `0 18px 40px ${primary}1f`,
+                      },
                     }}
                   >
+                    {/* Unread dot indicator on the left border */}
+                    {item.unread && (
+                      <Box
+                        sx={{
+                          position: "absolute",
+                          left: 0,
+                          top: "50%",
+                          transform: "translateY(-50%)",
+                          width: {
+                            xs: 3,
+                            md: 4
+                          },
+                          height: {
+                            xs: 24,
+                            md: 32
+                          },
+                          borderRadius: "0 4px 4px 0",
+                          bgcolor: primary,
+                          boxShadow: `0 0 10px ${primary}`,
+                        }}
+                      />
+                    )}
+
                     <Box
                       sx={{
                         display: "flex",
+                        justifyContent: "space-between",
                         alignItems: "flex-start",
-                        gap: 2
+                        flexDirection: { xs: "column", sm: "row" },
+                        gap: 2,
                       }}
                     >
-
-                      <Avatar
+                      <Box
                         sx={{
-                          width: {
-                            xs: 38,
-                            sm: 44,
-                            md: 48
-                          },
-
-                          height: {
-                            xs: 38,
-                            sm: 44,
-                            md: 48
-                          },
-                          bgcolor:
-                            item.category === "Hiring"
-                              ? "rgba(37,99,235,.12)"
-                              : item.category === "Interviews"
-                                ? "rgba(16,185,129,.12)"
-                                : "rgba(245,158,11,.12)",
-
-                          color:
-                            item.category === "Hiring"
-                              ? "#2563eb"
-                              : item.category === "Interviews"
-                                ? "#10b981"
-                                : "#f59e0b",
+                          display: "flex",
+                          alignItems: "flex-start",
+                          gap: 2
                         }}
                       >
-                        {item.category === "Hiring" ? (
-                          <FaUserPlus size={window.innerWidth < 600 ? 13 : 16} />
-                        ) : item.category === "Interviews" ? (
-                          <FaCalendarAlt size={window.innerWidth < 600 ? 13 : 16} />
-                        ) : (
-                          <FaClipboardCheck size={window.innerWidth < 600 ? 13 : 16} />
-                        )}
-                      </Avatar>
 
-                      <Box>
-                        <Typography
+                        <Avatar
                           sx={{
-                            color:
-                              darkMode
-                                ? "#ffffff"
-                                : "#0f172a",
-                            fontWeight: 800,
-                            fontSize: {
-                              xs: ".88rem",
-                              sm: ".98rem",
-                              md: "1.08rem"
+                            width: {
+                              xs: 38,
+                              sm: 44,
+                              md: 48
                             },
-                            mb: 0.5,
-                            letterSpacing: "-0.02em"
+
+                            height: {
+                              xs: 38,
+                              sm: 44,
+                              md: 48
+                            },
+                            bgcolor: categoryStyle.bg,
+                            color: categoryStyle.color,
                           }}
                         >
-                          {item.title}
-                        </Typography>
+                          {item.category === "Hiring" ? (
+                            <FaUserPlus size={window.innerWidth < 600 ? 13 : 16} />
+                          ) : item.category === "Interviews" ? (
+                            <FaCalendarAlt size={window.innerWidth < 600 ? 13 : 16} />
+                          ) : (
+                            <FaClipboardCheck size={window.innerWidth < 600 ? 13 : 16} />
+                          )}
+                        </Avatar>
+
+                        <Box>
+                          <Typography
+                            sx={{
+                              color: textColor,
+                              fontWeight: 800,
+                              fontSize: {
+                                xs: ".88rem",
+                                sm: ".98rem",
+                                md: "1.08rem"
+                              },
+                              mb: 0.5,
+                              letterSpacing: "-0.02em"
+                            }}
+                          >
+                            {item.title}
+                          </Typography>
+                          <Typography
+                            sx={{
+                              color: subText,
+                              fontSize: {
+                                xs: ".76rem",
+                                sm: ".84rem",
+                                md: ".9rem"
+                              },
+                              opacity: .9,
+                              lineHeight: 1.5
+                            }}
+                          >
+                            {item.message}
+                          </Typography>
+                        </Box>
+                      </Box>
+
+                      {/* Date / Time element */}
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: { xs: "row", sm: "column" },
+                          justifyContent: "space-between",
+                          alignItems: { xs: "center", sm: "flex-end" },
+                          width: { xs: "100%", sm: "auto" },
+                          gap: 1,
+                        }}
+                      >
+                        {item.unread && (
+                          <Chip
+                            label="NEW"
+                            size="small"
+                            sx={{
+                              bgcolor: item.color || primary,
+                              color: "#fff",
+                              fontWeight: 700,
+                              height: {
+                                xs: 20,
+                                md: 22
+                              },
+                              fontSize: {
+                                xs: ".6rem",
+                                md: ".68rem"
+                              },
+                            }}
+                          />
+                        )}
+
                         <Typography
                           sx={{
-                            color:
-                              darkMode
-                                ? "#cbd5e1"
-                                : "#475569",
                             fontSize: {
-                              xs: ".76rem",
-                              sm: ".84rem",
-                              md: ".9rem"
+                              xs: ".7rem",
+                              md: ".78rem"
                             },
-                            opacity: .9,
-                            lineHeight: 1.5
+                            color: subText,
+                            fontWeight: 600,
                           }}
                         >
-                          {item.message}
+                          {item.time}
                         </Typography>
                       </Box>
                     </Box>
-
-                    {/* Date / Time element */}
-                    <Box
-                      sx={{
-                        display: "flex",
-                        flexDirection: { xs: "row", sm: "column" },
-                        justifyContent: "space-between",
-                        alignItems: { xs: "center", sm: "flex-end" },
-                        width: { xs: "100%", sm: "auto" },
-                        gap: 1,
-                      }}
-                    >
-                      {item.unread && (
-                        <Chip
-                          label="NEW"
-                          size="small"
-                          sx={{
-                            bgcolor: item.color,
-                            color: "#fff",
-                            fontWeight: 700,
-                            height: {
-                              xs: 20,
-                              md: 22
-                            },
-                            fontSize: {
-                              xs: ".6rem",
-                              md: ".68rem"
-                            },
-                          }}
-                        />
-                      )}
-
-                      <Typography
-                        sx={{
-                          fontSize: {
-                            xs: ".7rem",
-                            md: ".78rem"
-                          },
-                          color: subText,
-                          fontWeight: 600,
-                        }}
-                      >
-                        {item.time}
-                      </Typography>
-                    </Box>
-                  </Box>
-                </Paper>
-              ))
+                  </Paper>
+                );
+              })
             }
           </InfiniteScroll>
         ) : (
           <Paper
-            elevation={6}
+            elevation={0}
             sx={{
               p: {
                 xs: 3,
@@ -463,7 +464,7 @@ export default function Notifications() {
                 xs: 3,
                 md: 4
               },
-              bgcolor: darkMode ? "rgba(30, 41, 59, 0.25)" : "#ffffff",
+              bgcolor: colors.card,
               border: `1px solid ${borderStyle}`,
               textAlign: "center",
               color: subText,
@@ -490,10 +491,8 @@ export default function Notifications() {
                     xs: 56,
                     md: 70
                   },
-                  bgcolor: darkMode
-                    ? "rgba(37,99,235,.15)"
-                    : "rgba(37,99,235,.08)",
-                  color: "#2563eb",
+                  bgcolor: `${primary}15`,
+                  color: primary,
                 }}
               >
                 <FaBell size={window.innerWidth < 600 ? 22 : 26} />
@@ -506,7 +505,7 @@ export default function Notifications() {
                     md: "1.2rem"
                   },
                   fontWeight: 700,
-                  color: darkMode ? "#fff" : "#0f172a",
+                  color: textColor,
                 }}
               >
                 No Notifications
@@ -531,4 +530,4 @@ export default function Notifications() {
       </Box>
     </HRLayout>
   );
-}   
+}

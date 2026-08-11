@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
 import { Typography, Box, Divider, Tooltip } from "@mui/material";
 import { useCandidate } from "../context/CandidateContext";
+import useThemeColors from "../hooks/useThemeColors";
 
 import {
   FaUser,
@@ -25,6 +26,12 @@ export default function CandidateLayout({ children }) {
   const navigate = useNavigate();
   const { darkMode, setDarkMode } = useTheme();
   const { candidate } = useCandidate();
+  const colors = useThemeColors();
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
   const sidebarRef = useRef(null);
   const contentRef = useRef(null);
 
@@ -40,8 +47,6 @@ export default function CandidateLayout({ children }) {
   }, [location.pathname]);
 
   const [mobileMenu, setMobileMenu] = useState(false);
-
-  const subText = darkMode ? "text-slate-400" : "text-slate-500";
 
   // Sidebar scroll restoration
   useEffect(() => {
@@ -124,28 +129,39 @@ export default function CandidateLayout({ children }) {
     }
   };
 
-  // Upgraded active classes (uses Emerald / Green palette)
-  const activeClass = (path) => {
+  // Upgraded active/hover styles — resolved dynamically via inline style, driven by theme
+  const getNavLinkStyle = (path) => {
     const isActive = location.pathname === path;
     if (isActive) {
-      return darkMode
-        ? "bg-emerald-600/10 text-emerald-400 font-semibold shadow-inner border-l-4 border-emerald-500 pl-2.5"
-        : "bg-emerald-50 text-emerald-600 font-semibold border-l-4 border-emerald-600 pl-2.5";
+      return {
+        backgroundColor: `${primary}1a`,
+        color: primary,
+        fontWeight: 600,
+        borderLeft: `4px solid ${primary}`,
+        paddingLeft: "0.625rem",
+      };
     }
-    return darkMode
-      ? "text-slate-400 hover:bg-slate-900/50 hover:text-slate-200 border-l-4 border-transparent"
-      : "text-slate-600 hover:bg-slate-50 hover:text-slate-900 border-l-4 border-transparent";
+    return {
+      color: subText,
+      borderLeft: "4px solid transparent",
+      paddingLeft: "0.625rem",
+    };
   };
 
+  const handleNavHover = (e, isEntering, path) => {
+    const isActive = location.pathname === path;
+    if (isActive) return;
+    e.currentTarget.style.backgroundColor = isEntering ? `${primary}0f` : "transparent";
+    e.currentTarget.style.color = isEntering ? primary : subText;
+  };
 
   return (
     <div
-      className={`h-screen flex flex-col md:flex-row overflow-hidden font-sans
-        ${darkMode
-          ? "bg-slate-950 text-white"
-          : "bg-slate-50 text-slate-900"
-        }
-      `}
+      className="h-screen flex flex-col md:flex-row overflow-hidden font-sans"
+      style={{
+        backgroundColor: colors.background,
+        color: textColor,
+      }}
     >
       {/* Sidebar with custom thin scrollbar */}
       <aside
@@ -164,24 +180,27 @@ export default function CandidateLayout({ children }) {
             ? "translate-x-0"
             : "-translate-x-full md:translate-x-0"
           }
-            ${darkMode
-            ? "bg-slate-900/90 border-slate-800/80 text-white"
-            : "bg-white border-slate-200 text-slate-800"
-          }
         `}
+        style={{
+          backgroundColor: colors.card,
+          borderColor: borderStyle,
+          color: textColor,
+        }}
       >
 
         {/* Logo & Brand Header */}
-        <div className="mb-6 px-2 py-3 border-b border-dashed border-slate-700/20">
+        <div
+          className="mb-6 px-2 py-3 border-b border-dashed"
+          style={{ borderColor: borderStyle }}
+        >
           <div className="flex items-center gap-3">
-
 
             <Typography
               sx={{
                 fontWeight: 800,
                 fontSize: "1.5rem",
                 lineHeight: 1.1,
-                color: "#10b981",
+                color: textColor,
               }}
             >
               Candidate Space
@@ -198,7 +217,10 @@ export default function CandidateLayout({ children }) {
           <nav className="space-y-5">
             {navGroups.map((group) => (
               <div key={group.title} className="space-y-1">
-                <h4 className={`text-[10px] uppercase font-bold tracking-widest px-3 mb-2 ${subText}`}>
+                <h4
+                  className="text-[10px] uppercase font-bold tracking-widest px-3 mb-2"
+                  style={{ color: subText }}
+                >
                   {group.title}
                 </h4>
                 {group.items.map((item) => (
@@ -206,9 +228,10 @@ export default function CandidateLayout({ children }) {
                     key={item.path}
                     to={item.path}
                     onClick={() => setMobileMenu(false)}
-                    className={`flex items-center gap-3 p-2.5 rounded-lg text-[0.92rem] transition-all duration-200 ${activeClass(
-                      item.path
-                    )}`}
+                    onMouseEnter={(e) => handleNavHover(e, true, item.path)}
+                    onMouseLeave={(e) => handleNavHover(e, false, item.path)}
+                    className="flex items-center gap-3 p-2.5 rounded-lg text-[0.92rem] transition-all duration-200"
+                    style={getNavLinkStyle(item.path)}
                   >
                     <span className="text-[1.05rem] opacity-80">{item.icon}</span>
                     {item.label}
@@ -218,17 +241,20 @@ export default function CandidateLayout({ children }) {
             ))}
           </nav>
 
-
-
-
-          <div className="md:hidden mt-3 pt-3 border-t border-slate-200 space-y-1">
+          <div
+            className="md:hidden mt-3 pt-3 border-t space-y-1"
+            style={{ borderColor: borderStyle }}
+          >
 
             <button
               onClick={() => {
                 setDarkMode(!darkMode);
                 setMobileMenu(false);
               }}
-              className="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-emerald-500/10"
+              className="w-full flex items-center gap-3 p-3 rounded-lg"
+              style={{ color: textColor }}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = `${primary}14`)}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
             >
               {darkMode ? <FaSun /> : <FaMoon />}
               <span>Theme</span>
@@ -237,7 +263,10 @@ export default function CandidateLayout({ children }) {
             <Link
               to="/candidate-profile-r"
               onClick={() => setMobileMenu(false)}
-              className="flex items-center gap-3 p-3 rounded-lg hover:bg-emerald-500/10"
+              className="flex items-center gap-3 p-3 rounded-lg"
+              style={{ color: textColor }}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = `${primary}14`)}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
             >
               <FaUser />
               <span>Profile</span>
@@ -247,17 +276,23 @@ export default function CandidateLayout({ children }) {
         </div>
 
         {/* Sidebar Footer - Profile Info */}
-        <div className="shrink-0 border-t border-slate-200 pt-3 px-2 pb-2">
+        <div
+          className="shrink-0 border-t pt-3 px-2 pb-2"
+          style={{ borderColor: borderStyle }}
+        >
 
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold text-sm">
+            <div
+              className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm"
+              style={{ background: `linear-gradient(90deg,${primary},${secondary || primary})` }}
+            >
               {candidate.fullName?.charAt(0) || "C"}
             </div>
             <div className="overflow-hidden">
-              <h5 className="font-semibold text-sm truncate">
+              <h5 className="font-semibold text-sm truncate" style={{ color: textColor }}>
                 {candidate.fullName || "Candidate"}
               </h5>
-              <p className={`text-xs truncate ${subText}`}>
+              <p className="text-xs truncate" style={{ color: subText }}>
                 {candidate.email || "candidate@nexthire.com"}
               </p>
             </div>
@@ -293,44 +328,36 @@ export default function CandidateLayout({ children }) {
 
         {/* Topbar Header */}
         <header
-          className={`
-            min-h-20
-            px-4
-            md:px-8
-            py-3
-            flex
-            flex-wrap
-            gap-3
-            justify-between
-            items-center
-            border-b
-            transition-all
-            duration-300
-              ${darkMode
-              ? "bg-slate-900/40 border-slate-800/80 text-white backdrop-blur-md"
-              : "bg-white border-slate-200 text-slate-800"
-            }
-          `}
+          className="min-h-20 px-4 md:px-8 py-3 flex flex-wrap gap-3 justify-between items-center border-b transition-all duration-300 backdrop-blur-md"
+          style={{
+            backgroundColor: colors.card,
+            borderColor: borderStyle,
+            color: textColor,
+          }}
         >
 
           <div className="flex items-center gap-2 md:hidden">
 
             <button
               onClick={() => setMobileMenu(true)}
-              className={`p-2 rounded-lg border ${darkMode
-                ? "border-slate-700 bg-slate-800"
-                : "border-slate-300 bg-white"
-                }`}
+              className="p-2 rounded-lg border"
+              style={{
+                borderColor: borderStyle,
+                backgroundColor: colors.input,
+                color: textColor,
+              }}
             >
               <FaBars />
             </button>
 
             <Link
               to="/candidate-notifications"
-              className={`relative p-2 rounded-lg border ${darkMode
-                ? "border-slate-700 bg-slate-800 text-white"
-                : "border-slate-300 bg-white text-slate-700"
-                }`}
+              className="relative p-2 rounded-lg border"
+              style={{
+                borderColor: borderStyle,
+                backgroundColor: colors.input,
+                color: textColor,
+              }}
             >
               <FaBell />
 
@@ -348,7 +375,8 @@ export default function CandidateLayout({ children }) {
                 fontSize: {
                   xs: "1.25rem",
                   md: "2.125rem"
-                }
+                },
+                color: textColor,
               }}
             >
               {getCurrentPageTitle()}
@@ -361,10 +389,12 @@ export default function CandidateLayout({ children }) {
             {/* Theme switcher */}
             <button
               onClick={() => setDarkMode(!darkMode)}
-              className={`p-2.5 rounded-xl border transition-all duration-200 ${darkMode
-                ? "bg-slate-800 text-emerald-400 border-slate-700 hover:bg-slate-700"
-                : "bg-white text-emerald-600 border-slate-200 hover:bg-emerald-50"
-                }`}
+              className="p-2.5 rounded-xl border transition-all duration-200"
+              style={{
+                backgroundColor: colors.input,
+                color: primary,
+                borderColor: borderStyle,
+              }}
             >
               {darkMode ? <FaSun size={15} /> : <FaMoon size={15} />}
             </button>
@@ -372,14 +402,18 @@ export default function CandidateLayout({ children }) {
             {/* Notifications Alert */}
             <Link
               to="/candidate-notifications"
-              className={`p-2.5 rounded-xl border relative transition-all duration-200 ${darkMode
-                ? "bg-slate-800 text-emerald-300 border-slate-700 hover:bg-slate-700"
-                : "bg-white text-emerald-600 border-slate-200 hover:bg-emerald-50"
-                }`}
+              className="p-2.5 rounded-xl border relative transition-all duration-200"
+              style={{
+                backgroundColor: colors.input,
+                color: primary,
+                borderColor: borderStyle,
+              }}
             >
               <FaBell size={15} />
               <span
-                className="absolute top-1.5 right-1.5 w-2 h-2 bg-emerald-600 rounded-full">
+                className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full"
+                style={{ backgroundColor: primary }}
+              >
               </span>
             </Link>
 
@@ -389,34 +423,16 @@ export default function CandidateLayout({ children }) {
               flexItem
               sx={{
                 display: { xs: "none", sm: "block" },
-                borderColor: darkMode
-                  ? "rgba(148,163,184,.25)"
-                  : "rgba(15,23,42,.08)"
+                borderColor: borderStyle,
               }}
             />
 
-            {/* Profile Action Link - Emerald style */}
+            {/* Profile Action Link */}
             <Tooltip title="My Profile">
               <Link
                 to="/candidate-profile-r"
-                className={`
-    w-10
-    h-10
-    rounded-full
-    flex
-    items-center
-    justify-center
-    font-bold
-    text-sm
-    transition-all
-    duration-300
-    border-2 border-white shadow-md
-    hover:scale-105
-    ${darkMode
-                    ? "bg-emerald-600 text-white hover:bg-emerald-500"
-                    : "bg-emerald-500 text-white hover:bg-emerald-600"
-                  }
-  `}
+                className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 border-2 border-white shadow-md hover:scale-105 text-white"
+                style={{ background: `linear-gradient(90deg,${primary},${secondary || primary})` }}
               >
                 {candidate.fullName?.charAt(0)?.toUpperCase() || "C"}
               </Link>
@@ -426,7 +442,7 @@ export default function CandidateLayout({ children }) {
             {/* Logout Action Button */}
             <button
               onClick={handleLogout}
-              className={`p-2.5 rounded-xl border flex items-center justify-center gap-2 font-semibold text-sm text-red-500 border-red-500/20 bg-red-500/5 hover:bg-red-500/10 hover:border-red-500/40 transition-all duration-300`}
+              className="p-2.5 rounded-xl border flex items-center justify-center gap-2 font-semibold text-sm text-red-500 border-red-500/20 bg-red-500/5 hover:bg-red-500/10 hover:border-red-500/40 transition-all duration-300"
             >
               <FaSignOutAlt size={14} />
               <span className="hidden sm:inline">Logout</span>
@@ -437,9 +453,8 @@ export default function CandidateLayout({ children }) {
         {/* Scrollable Layout Content */}
         <div
           ref={contentRef}
-          className={`flex-1 overflow-y-auto
-        ${darkMode ? "bg-slate-950" : "bg-slate-50"}
-    `}
+          className="flex-1 overflow-y-auto"
+          style={{ backgroundColor: colors.background }}
         >
 
           <Box

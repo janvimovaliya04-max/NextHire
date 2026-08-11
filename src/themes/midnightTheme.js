@@ -8,7 +8,7 @@ const midnightTheme = {
         secondary: "#0891B2",
 
         background: "#020617",
-        card: "#0F172A",
+        card: "#111827",
 
         navbar: "#020617",
         sidebar: "#020617",

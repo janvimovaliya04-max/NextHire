@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import HRLayout from "../../Layouts/HRLayout";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -26,12 +27,13 @@ import {
 
 export default function AddRecruiter() {
     const { darkMode } = useTheme();
+    const colors = useThemeColors();
+    const primary = colors.primary;
+    const textColor = colors.text;
 
     const navigate = useNavigate();
 
-    const subText = darkMode
-        ? "#94a3b8"
-        : "#475569";
+    const subText = colors.subText;
 
     const borderStyle = darkMode
         ? "rgba(148,163,184,.22)"
@@ -65,43 +67,37 @@ export default function AddRecruiter() {
         mb: 2.5,
 
         "& .MuiInputLabel-root": {
-            color: darkMode ? "#94a3b8" : "#64748b",
+            color: colors.subText,
             fontSize: ".95rem",
         },
 
         "& .MuiInputLabel-root.Mui-focused": {
-            color: "#2563EB",
+            color: primary,
         },
 
         "& .MuiOutlinedInput-root": {
-            color: darkMode ? "#fff" : "#0f172a",
+            color: textColor,
             minHeight: { xs: 52, md: 56 },
             borderRadius: "12px",
 
-            background: darkMode
-                ? "rgba(15,23,42,.65)"
-                : "#ffffff",
+            background: colors.input,
 
             borderRadius: "12px",
 
             "& fieldset": {
-                borderColor: darkMode
-                    ? "rgba(59,130,246,.18)"
-                    : "rgba(37,99,235,.10)",
+                borderColor: colors.border,
             },
 
             "&:hover fieldset": {
-                borderColor: "#3B82F6",
+                borderColor: primary,
             },
 
             "&.Mui-focused": {
-                boxShadow: darkMode
-                    ? "0 0 0 4px rgba(37,99,235,.18)"
-                    : "0 0 0 4px rgba(37,99,235,.12)",
+                boxShadow: `0 0 0 4px ${primary}22`,
             },
 
             "&.Mui-focused fieldset": {
-                borderColor: "#2563EB",
+                borderColor: primary,
                 borderWidth: "2px",
             },
         },
@@ -145,20 +141,10 @@ export default function AddRecruiter() {
                     mx: "auto",
                     p: { xs: 1.25, sm: 3, md: 5 },
                     borderRadius: "22px",
-                    bgcolor: darkMode
-                        ? "rgba(30,41,59,.72)"
-                        : "#ffffff",
+                    bgcolor: colors.card,
                     backdropFilter: "blur(16px)",
                     border: `1px solid ${borderStyle}`,
-                    boxShadow: darkMode
-                        ? `
-                          0 18px 45px rgba(0,0,0,.35),
-                          inset 0 1px 0 rgba(255,255,255,.04)
-                          `
-                        : `
-                          0 18px 40px rgba(15,23,42,.08),
-                          0 4px 12px rgba(15,23,42,.05)
-                          `,
+                    boxShadow: colors.shadow,
                 }}
             >
                 <CardContent sx={{
@@ -186,11 +172,11 @@ export default function AddRecruiter() {
                                     width: { xs: 42, md: 48 },
                                     height: { xs: 42, md: 48 },
                                     borderRadius: 3,
-                                    bgcolor: "rgba(37,99,235,.12)",
+                                    bgcolor: `${primary}15`,
                                     display: "flex",
                                     alignItems: "center",
                                     justifyContent: "center",
-                                    color: "#2563EB",
+                                    color: primary,
                                 }}
                             >
                                 <FaUserTie size={22} />
@@ -198,7 +184,7 @@ export default function AddRecruiter() {
 
                             <Typography
                                 sx={{
-                                    color: darkMode ? "#fff" : "#0f172a",
+                                    color: textColor,
                                     fontWeight: 800,
                                     fontSize: {
                                         xs: "1rem",
@@ -371,10 +357,8 @@ export default function AddRecruiter() {
                                     fontWeight: 700,
                                     textTransform: "none",
                                     fontSize: ".9rem",
-                                    color: darkMode ? "#cbd5e1" : "#475569",
-                                    borderColor: darkMode
-                                        ? "rgba(255,255,255,.12)"
-                                        : "rgba(0,0,0,.12)",
+                                    color: colors.subText,
+                                    borderColor: colors.border,
                                 }}
                             >
                                 Cancel
@@ -392,10 +376,10 @@ export default function AddRecruiter() {
                                     fontWeight: 700,
                                     textTransform: "none",
                                     fontSize: ".9rem",
-                                    background: "linear-gradient(90deg,#2563eb,#1d4ed8)",
+                                    background: `linear-gradient(90deg, ${primary}, ${primary}cc)`,
                                     boxShadow: "0 4px 12px rgba(37,99,235,.2)",
                                     "&:hover": {
-                                        background: "linear-gradient(90deg,#1d4ed8,#1e40af)",
+                                        background: `linear-gradient(90deg, ${primary}cc, ${primary}aa)`,
                                         boxShadow: "0 6px 16px rgba(37,99,235,.3)",
                                     },
                                 }}

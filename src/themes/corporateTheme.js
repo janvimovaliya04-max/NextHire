@@ -13,7 +13,7 @@ const corporateTheme = {
         navbar: "#FFFFFF",
         sidebar: "#0F172A",
         
-        text: "#0F172A",
+        text: "#1E3A8A",
         subText: "#64748B",
 
         border: "#CBD5E1",

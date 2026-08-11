@@ -3,6 +3,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useState, useEffect } from "react";
 import CandidateLayout from "../../Layouts/CandidateLayout";
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import {
   Typography,
   Paper,
@@ -21,17 +22,26 @@ import {
 
 export default function CandidateNotifications() {
   const { darkMode } = useTheme();
-  const subText = darkMode ? "#94a3b8" : "#475569";
-  const borderStyle =
-    darkMode
-      ? "rgba(255, 255, 255, 0.06)"
-      : "rgba(0, 0, 0, 0.05)";
+  const colors = useThemeColors();
+
+  // Colors — fully theme-driven (matches Assessment / BrowseJobs / Dashboard)
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
 
   const [activeFilter, setActiveFilter] = useState("All");
   const [notifications, setNotifications] = useState(NotificationData);
   const [visibleNotifications, setVisibleNotifications] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const LOAD_LIMIT = 10;
+
+  // NotificationC.json ships each item with its own `color`/`bgLight`/`bgDark`
+  // (that's where the earlier green came from). We ignore those and cycle
+  // through the theme's primary/secondary instead, so this page always
+  // matches whatever theme is active.
+  const accentFor = (idx) => (idx % 2 === 0 ? primary : (secondary || primary));
 
   useEffect(() => {
     const filtered =
@@ -112,7 +122,7 @@ export default function CandidateNotifications() {
           position: "sticky",
           top: 0,
           zIndex: 10,
-          bgcolor: darkMode ? "#0f172a" : "#f8fafc",
+          bgcolor: colors.background,
           pb: 2,
         }}
       >
@@ -147,7 +157,7 @@ export default function CandidateNotifications() {
                 fontWeight: 850,
                 letterSpacing: "-0.03em",
                 mb: 0.5,
-                color: darkMode ? "#fff" : "#0f172a",
+                color: textColor,
                 fontSize: {
                   xs: "1.45rem",
                   sm: "1.8rem",
@@ -209,12 +219,12 @@ export default function CandidateNotifications() {
               },
               fontWeight: 700,
               textTransform: "none",
-              color: darkMode ? "#cbd5e1" : "#475569",
+              color: subText,
               borderColor: borderStyle,
               "&:hover": {
-                borderColor: "#10b981",
-                color: "#10b981",
-                bgcolor: darkMode ? "rgba(16,185,129,0.03)" : "rgba(16,185,129,0.02)",
+                borderColor: primary,
+                color: primary,
+                bgcolor: `${primary}08`,
               }
             }}
           >
@@ -283,18 +293,18 @@ export default function CandidateNotifications() {
                   sm: 0.65,
                   md: 0.7,
                 },
-                color: activeFilter === filter ? "#fff" : darkMode ? "#cbd5e1" : "#475569",
-                borderColor: activeFilter === filter ? "#10b981" : borderStyle,
+                color: activeFilter === filter ? "#fff" : subText,
+                borderColor: activeFilter === filter ? primary : borderStyle,
                 background:
                   activeFilter === filter
-                    ? "linear-gradient(90deg,#10b981,#059669)"
+                    ? `linear-gradient(90deg, ${primary}, ${secondary || primary})`
                     : "transparent",
-                boxShadow: activeFilter === filter ? "0 4px 10px rgba(16,185,129,0.2)" : "none",
+                boxShadow: activeFilter === filter ? `0 4px 10px ${primary}33` : "none",
                 "&:hover": {
-                  borderColor: "#10b981",
+                  borderColor: primary,
                   background:
                     activeFilter === filter
-                      ? "linear-gradient(90deg,#059669,#047857)"
+                      ? `linear-gradient(90deg, ${primary}, ${primary})`
                       : undefined,
                 }
               }}
@@ -326,7 +336,7 @@ export default function CandidateNotifications() {
           },
 
           "&::-webkit-scrollbar-thumb": {
-            background: "#94a3b8",
+            background: subText,
             borderRadius: "20px",
           },
 
@@ -376,142 +386,142 @@ export default function CandidateNotifications() {
                 <CircularProgress
                   size={34}
                   thickness={4}
-                  sx={{ color: "#10b981" }}
+                  sx={{ color: primary }}
                 />
               </Box>
             }
           >
             {
-              visibleNotifications.map((item) => (
-
-                <Paper
-                  key={item.id}
-                  elevation={0}
-                  sx={{
-                    p: {
-                      xs: 2,
-                      sm: 2.5,
-                      md: 3,
-                    },
-                    borderRadius: {
-                      xs: 3,
-                      sm: 4,
-                    },
-                    bgcolor: darkMode ? "rgba(30, 41, 59, 0.45)" : "rgba(255, 255, 255, 0.8)",
-                    backdropFilter: "blur(10px)",
-                    border: `1px solid ${borderStyle}`,
-                    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                    position: "relative",
-                    "&:hover": {
-                      transform: {
-                        xs: "none",
-                        md: "translateY(-5px)",
-                      },
-                      boxShadow: darkMode
-                        ? "0 16px 35px rgba(16,185,129,.15)"
-                        : "0 12px 30px rgba(16,185,129,.08)",
-                      borderColor: item.color,
-                    },
-                  }}
-                >
-                  {/* Unread indicator dot on the left border */}
-                  {item.unread && (
-                    <Box
-                      sx={{
-                        position: "absolute",
-                        left: 0,
-                        top: "50%",
-                        transform: "translateY(-50%)",
-                        width: {
-                          xs: 4,
-                          sm: 5,
-                        },
-
-                        height: {
-                          xs: 36,
-                          sm: 45,
-                        },
-                        borderRadius: "0 8px 8px 0",
-                        bgcolor: "#10b981", // Matches candidate layout color
-                        boxShadow: "0 0 10px #10b981",
-                      }}
-                    />
-                  )}
-                  <Box
+              visibleNotifications.map((item, idx) => {
+                const accent = accentFor(idx);
+                return (
+                  <Paper
+                    key={item.id}
+                    elevation={0}
                     sx={{
-                      display: "flex",
-                      flexDirection: {
-                        xs: "column",
-                        sm: "row",
+                      p: {
+                        xs: 2,
+                        sm: 2.5,
+                        md: 3,
                       },
-                      justifyContent: "space-between",
-                      alignItems: {
-                        xs: "flex-start",
-                        sm: "flex-start",
+                      borderRadius: {
+                        xs: 3,
+                        sm: 4,
                       },
-                      gap: {
-                        xs: 1.5,
-                        sm: 2,
+                      bgcolor: colors.card,
+                      backdropFilter: "blur(10px)",
+                      border: `1px solid ${borderStyle}`,
+                      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                      position: "relative",
+                      "&:hover": {
+                        transform: {
+                          xs: "none",
+                          md: "translateY(-5px)",
+                        },
+                        boxShadow: colors.shadow,
+                        borderColor: accent,
                       },
                     }}
                   >
-                    <Box sx={{ display: "flex", alignItems: "flex-start", gap: { xs: 1.5, sm: 2 }, }}>
-                      {/* Accent-Colored Icon Badge */}
-                      <Avatar
+                    {/* Unread indicator dot on the left border */}
+                    {item.unread && (
+                      <Box
                         sx={{
+                          position: "absolute",
+                          left: 0,
+                          top: "50%",
+                          transform: "translateY(-50%)",
                           width: {
-                            xs: 38,
-                            sm: 42,
+                            xs: 4,
+                            sm: 5,
                           },
+
                           height: {
-                            xs: 38,
-                            sm: 42,
+                            xs: 36,
+                            sm: 45,
                           },
-                          bgcolor: darkMode ? item.bgDark : item.bgLight,
-                          color: item.color,
-                          borderRadius: 2.5,
+                          borderRadius: "0 8px 8px 0",
+                          bgcolor: primary,
+                          boxShadow: `0 0 10px ${primary}`,
+                        }}
+                      />
+                    )}
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: {
+                          xs: "column",
+                          sm: "row",
+                        },
+                        justifyContent: "space-between",
+                        alignItems: {
+                          xs: "flex-start",
+                          sm: "flex-start",
+                        },
+                        gap: {
+                          xs: 1.5,
+                          sm: 2,
+                        },
+                      }}
+                    >
+                      <Box sx={{ display: "flex", alignItems: "flex-start", gap: { xs: 1.5, sm: 2 }, }}>
+                        {/* Accent-Colored Icon Badge — theme-driven, not item.color */}
+                        <Avatar
+                          sx={{
+                            width: {
+                              xs: 38,
+                              sm: 42,
+                            },
+                            height: {
+                              xs: 38,
+                              sm: 42,
+                            },
+                            bgcolor: `${accent}14`,
+                            color: accent,
+                            borderRadius: 2.5,
+                            flexShrink: 0,
+                          }}
+                        >
+                          {getIcon(item.icon)}
+                        </Avatar>
+
+                        <Box>
+                          <Typography sx={{ color: textColor, fontWeight: 800, fontSize: { xs: ".92rem", sm: ".97rem", md: "1rem" }, mb: 0.5, letterSpacing: "-0.01em" }}>
+                            {item.title}
+                          </Typography>
+                          <Typography sx={{ color: subText, fontSize: { xs: ".8rem", sm: ".85rem", md: ".88rem", }, lineHeight: 1.65 }}>
+                            {item.message}
+                          </Typography>
+                        </Box>
+                      </Box>
+
+                      {/* Date / Time */}
+                      <Typography
+                        sx={{
+                          fontSize: {
+                            xs: ".74rem",
+                            sm: ".78rem",
+                            md: ".8rem",
+                          },
+                          color: subText,
+                          fontWeight: 600,
+                          alignSelf: {
+                            xs: "flex-start",
+                            sm: "flex-end",
+                          },
+                          mt: {
+                            xs: 1,
+                            sm: 0,
+                          },
                           flexShrink: 0,
                         }}
                       >
-                        {getIcon(item.icon)}
-                      </Avatar>
-
-                      <Box>
-                        <Typography sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 800, fontSize: { xs: ".92rem", sm: ".97rem", md: "1rem" }, mb: 0.5, letterSpacing: "-0.01em" }}>
-                          {item.title}
-                        </Typography>
-                        <Typography sx={{ color: darkMode ? "#cbd5e1" : "#475569", fontSize: { xs: ".8rem", sm: ".85rem", md: ".88rem", }, lineHeight: 1.65 }}>
-                          {item.message}
-                        </Typography>
-                      </Box>
+                        {item.time}
+                      </Typography>
                     </Box>
-
-                    {/* Date / Time */}
-                    <Typography
-                      sx={{
-                        fontSize: {
-                          xs: ".74rem",
-                          sm: ".78rem",
-                          md: ".8rem",
-                        },
-                        color: subText,
-                        fontWeight: 600,
-                        alignSelf: {
-                          xs: "flex-start",
-                          sm: "flex-end",
-                        },
-                        mt: {
-                          xs: 1,
-                          sm: 0,
-                        },
-                        flexShrink: 0,
-                      }}
-                    >
-                      {item.time}
-                    </Typography>
-                  </Box>
-                </Paper>
-              ))
+                  </Paper>
+                );
+              })
             }
           </InfiniteScroll>
         ) : (
@@ -524,7 +534,7 @@ export default function CandidateNotifications() {
                 md: 6,
               },
               borderRadius: 4,
-              bgcolor: darkMode ? "rgba(30, 41, 59, 0.25)" : "#ffffff",
+              bgcolor: colors.card,
               border: `1px solid ${borderStyle}`,
               textAlign: "center",
               color: subText,
@@ -542,7 +552,7 @@ export default function CandidateNotifications() {
             >
               <FaCheckDouble
                 size={32}
-                color="#10b981"
+                color={primary}
               />
             </Box>
 

@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import { Link } from "react-router-dom";
 import HRLayout from "../../Layouts/HRLayout";
 import {
@@ -25,11 +26,11 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 export default function Candidates() {
 
   const { darkMode } = useTheme();
-  const borderStyle = darkMode
-    ? "rgba(255,255,255,.08)"
-    : "rgba(15,23,42,.08)";
-
-  const subText = darkMode ? "#9CA3AF" : "#6B7280";
+  const colors = useThemeColors();
+  const primary = colors.primary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
 
   const [search, setSearch] = useState("");
 
@@ -120,9 +121,9 @@ export default function Candidates() {
             sx={{
               fontWeight: 800,
               fontSize: "0.72rem",
-              bgcolor: "rgba(59,130,246,.15)",
-              color: "#3B82F6",
-              border: "1px solid rgba(59,130,246,.2)",
+              bgcolor: `${primary}15`,
+              color: primary,
+              border: `1px solid ${primary}20`,
             }}
           />
         );
@@ -245,14 +246,11 @@ export default function Candidates() {
         >
           <Typography
             sx={{
-              fontWeight: 850,
-              letterSpacing: "-0.03em",
-              fontSize: {
-                xs: "1.35rem",
-                sm: "1.7rem",
-                md: "2.1rem",
-              },
-            }}
+                fontSize: { xs: "1.35rem", sm: "1.7rem", md: "2rem", lg: "2.2rem" },
+                mb: { xs: 0, md: 0.5 },
+                fontWeight: 850,
+                letterSpacing: "-0.03em",
+              }}
           >
             Talent Pool Directory
           </Typography>
@@ -265,13 +263,20 @@ export default function Candidates() {
                 xs: "100%",
                 md: 330,
               },
-              bgcolor: darkMode ? "#1e293b" : "#fff",
+              bgcolor: colors.input,
               border: `1px solid ${borderStyle}`,
               borderRadius: "10px",
               px: 2,
+              transition: ".2s",
+              "&:hover": {
+                borderColor: primary,
+              },
+              "&:focus-within": {
+                borderColor: primary,
+              },
             }}
           >
-            <FaSearch color={darkMode ? "#94a3b8" : "#64748b"} />
+            <FaSearch color={subText} />
 
             <input
               type="text"
@@ -287,7 +292,7 @@ export default function Candidates() {
                 border: "none",
                 outline: "none",
                 background: "transparent",
-                color: darkMode ? "#fff" : "#111827",
+                color: textColor,
                 fontSize: ".9rem",
               }}
             />
@@ -335,19 +340,25 @@ export default function Candidates() {
                 color:
                   activeFilter === filter
                     ? "#fff"
-                    : darkMode
-                      ? "#cbd5e1"
-                      : "#475569",
+                    : subText,
 
                 bgcolor:
                   activeFilter === filter
-                    ? "#3B82F6"
+                    ? primary
                     : "transparent",
 
                 borderColor:
                   activeFilter === filter
-                    ? "#3B82F6"
+                    ? primary
                     : borderStyle,
+
+                "&:hover": {
+                  borderColor: primary,
+                  bgcolor:
+                    activeFilter === filter
+                      ? primary
+                      : `${primary}08`,
+                },
               }}
             >
               {filter}
@@ -368,20 +379,10 @@ export default function Candidates() {
           overflow: "hidden",
           p: { xs: 2.5, md: 4 },
           borderRadius: "22px",
-          bgcolor: darkMode
-            ? "rgba(30,41,59,.72)"
-            : "#ffffff",
+          bgcolor: colors.card,
           backdropFilter: "blur(16px)",
           border: `1px solid ${borderStyle}`,
-          boxShadow: darkMode
-            ? `
-              0 18px 45px rgba(0,0,0,.35),
-              inset 0 1px 0 rgba(255,255,255,.04)
-            `
-            : `
-              0 18px 40px rgba(15,23,42,.08),
-              0 4px 12px rgba(15,23,42,.05)
-            `,
+          boxShadow: colors.shadow,
           transition: ".3s",
           "&:hover": {
             transform: "translateY(-4px)",
@@ -433,33 +434,29 @@ export default function Candidates() {
                   md: "0.88rem",
                 },
                 fontWeight: 700,
-                bgcolor: darkMode
-                  ? "#1e293b"
-                  : "#f8fafc",
+                bgcolor: colors.background,
               },
             }}
             >
               <TableRow
                 sx={{
-                  bgcolor: darkMode
-                    ? "rgba(59,130,246,.08)"
-                    : "#F8FAFC",
+                  bgcolor: colors.background,
                   borderBottom: `1px solid ${borderStyle}`,
                 }}
               >
-                <TableCell align="center" sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: "1rem", borderBottom: `1px solid ${borderStyle}` }}>
+                <TableCell align="center" sx={{ color: textColor, fontWeight: 700, fontSize: "1rem", borderBottom: `1px solid ${borderStyle}` }}>
                   Candidate
                 </TableCell>
-                <TableCell sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: "1rem", borderBottom: `1px solid ${borderStyle}` }}>
+                <TableCell sx={{ color: textColor, fontWeight: 700, fontSize: "1rem", borderBottom: `1px solid ${borderStyle}` }}>
                   Email Address
                 </TableCell>
-                <TableCell sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: "1rem", borderBottom: `1px solid ${borderStyle}` }}>
+                <TableCell sx={{ color: textColor, fontWeight: 700, fontSize: "1rem", borderBottom: `1px solid ${borderStyle}` }}>
                   Applied Role
                 </TableCell>
-                <TableCell sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: "1rem", borderBottom: `1px solid ${borderStyle}` }}>
+                <TableCell sx={{ color: textColor, fontWeight: 700, fontSize: "1rem", borderBottom: `1px solid ${borderStyle}` }}>
                   Availability Status
                 </TableCell>
-                <TableCell align="center" sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: "1rem", borderBottom: `1px solid ${borderStyle}`, pr: 4 }}>
+                <TableCell align="center" sx={{ color: textColor, fontWeight: 700, fontSize: "1rem", borderBottom: `1px solid ${borderStyle}`, pr: 4 }}>
                   Action Panel
                 </TableCell>
               </TableRow>
@@ -484,9 +481,7 @@ export default function Candidates() {
                       borderBottom: `1px solid ${borderStyle}`,
                       transition: "all 0.2s ease",
                       "&:hover": {
-                        bgcolor: darkMode
-                          ? "rgba(59,130,246,.08)"
-                          : "#EFF6FF",
+                        bgcolor: `${primary}08`,
                         cursor: "pointer",
                       },
                     }}
@@ -502,7 +497,7 @@ export default function Candidates() {
                             .slice(0, 2)}
                         </Avatar>
                         <Box>
-                          <Typography sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 700, fontSize: "0.95rem" }}>
+                          <Typography sx={{ color: textColor, fontWeight: 700, fontSize: "0.95rem" }}>
                             {candidate.fullName}
                           </Typography>
                           <Typography
@@ -518,12 +513,12 @@ export default function Candidates() {
                     </TableCell>
 
                     {/* Email */}
-                    <TableCell sx={{ borderBottom: `1px solid ${borderStyle}`, fontSize: "0.88rem", color: darkMode ? "#ffffff" : "#0f172a" }}>
+                    <TableCell sx={{ borderBottom: `1px solid ${borderStyle}`, fontSize: "0.88rem", color: textColor }}>
                       {candidate.email}
                     </TableCell>
 
                     {/* Role */}
-                    <TableCell sx={{ color: darkMode ? "#ffffff" : "#0f172a", borderBottom: `1px solid ${borderStyle}`, fontWeight: 600, fontSize: "0.9rem" }}>
+                    <TableCell sx={{ color: textColor, borderBottom: `1px solid ${borderStyle}`, fontWeight: 600, fontSize: "0.9rem" }}>
                       {candidate.position}
                     </TableCell>
 
@@ -539,6 +534,7 @@ export default function Candidates() {
                         to="/candidate-profile-v"
                         state={{ applicant: candidate }} // <-- Passes candidate state to Profile
                         fullWidth
+                        variant="contained"
                         sx={{
                           py: {
                             xs: 0.8,
@@ -557,6 +553,11 @@ export default function Candidates() {
                           whiteSpace: "nowrap",     // Prevents wrapping
                           borderRadius: "10px",
                           textTransform: "none",
+                          background: `linear-gradient(90deg,${primary},${primary})`,
+                          boxShadow: `0 10px 20px ${primary}20`,
+                          "&:hover": {
+                            transform: "translateY(-2px)",
+                          },
                         }}
                       >
                         View Details
@@ -598,7 +599,7 @@ export default function Candidates() {
               md: "center",
             },
             borderTop: `1px solid ${borderStyle}`,
-            bgcolor: darkMode ? "rgba(59,130,246,.05)" : "#F8FAFC",
+            bgcolor: colors.background,
           }}
         >
           <Typography
@@ -668,6 +669,7 @@ export default function Candidates() {
                   xs: ".75rem",
                   md: ".9rem",
                 },
+                color: textColor,
               }}
               disabled={currentPage === 1}
               onClick={() =>
@@ -686,7 +688,7 @@ export default function Candidates() {
                   key={index}
                   sx={{
                     px: 1,
-                    color: darkMode ? "#fff" : "#000",
+                    color: textColor,
                     fontWeight: 700,
                   }}
                 >
@@ -719,18 +721,16 @@ export default function Candidates() {
                       xs: ".75rem",
                       md: ".9rem"
                     },
-                    bgcolor: Number(currentPage) === Number(page) ? "#3B82F6" : "transparent",
+                    bgcolor: Number(currentPage) === Number(page) ? primary : "transparent",
                     color:
                       Number(currentPage) === Number(page)
                         ? "#fff"
-                        : darkMode
-                          ? "#fff"
-                          : "#0f172a",
+                        : textColor,
                     "&:hover": {
                       bgcolor:
                         Number(currentPage) === Number(page)
-                          ? "#2563EB"
-                          : "rgba(59,130,246,.08)",
+                          ? primary
+                          : `${primary}08`,
                     },
                   }}
                 >
@@ -755,6 +755,7 @@ export default function Candidates() {
                   xs: ".75rem",
                   md: ".9rem",
                 },
+                color: textColor,
               }}
               disabled={currentPage === totalPages}
               onClick={() =>

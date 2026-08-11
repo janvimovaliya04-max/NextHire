@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 
 import interviewsData from "../../data/interviews.json";
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import { Link } from "react-router-dom";
 import HRLayout from "../../Layouts/HRLayout";
 import {
@@ -31,6 +32,7 @@ import {
 export default function InterviewManagement() {
 
   const { darkMode } = useTheme();
+  const colors = useThemeColors();
 
   // Interview Data //
   const interviews = interviewsData;
@@ -109,21 +111,18 @@ export default function InterviewManagement() {
   };
 
   // Theme //
-  const primaryColor = "#2563eb";
-  const subText = darkMode
-    ? "#94a3b8"
-    : "#64748b";
-
-  const borderStyle = darkMode
-    ? "rgba(255,255,255,.08)"
-    : "rgba(15,23,42,.08)";
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
 
   // Status Chip //
   const getStatusChip = (status) => {
     const styles = {
       Scheduled: {
-        bg: "rgba(37,99,235,.12)",
-        color: "#2563eb",
+        bg: `${primary}12`,
+        color: primary,
       },
 
       Rescheduled: {
@@ -192,19 +191,11 @@ export default function InterviewManagement() {
         >
           <Typography
             sx={{
-              fontSize: {
-                xs: "1.45rem",
-                sm: "1.7rem",
-                md: "2rem",
-                lg: "2.2rem",
-              },
-              mb: {
-                xs: 0,
-                md: 0.5,
-              },
-              fontWeight: 850,
-              letterSpacing: "-0.03em",
-            }}
+                fontSize: { xs: "1.35rem", sm: "1.7rem", md: "2rem", lg: "2.2rem" },
+                mb: { xs: 0, md: 0.5 },
+                fontWeight: 850,
+                letterSpacing: "-0.03em",
+              }}
           >
             Interview Management
           </Typography>
@@ -229,13 +220,20 @@ export default function InterviewManagement() {
                   xs: "100%",
                   md: 300,
                 },
-                bgcolor: darkMode ? "#1e293b" : "#fff",
+                bgcolor: colors.input,
                 border: `1px solid ${borderStyle}`,
                 borderRadius: "10px",
                 px: 2,
+                transition: ".2s",
+                "&:hover": {
+                  borderColor: primary,
+                },
+                "&:focus-within": {
+                  borderColor: primary,
+                },
               }}
             >
-              <FaSearch color={darkMode ? "#94a3b8" : "#64748b"} />
+              <FaSearch color={subText} />
 
               <input
                 type="text"
@@ -251,7 +249,7 @@ export default function InterviewManagement() {
                   border: "none",
                   outline: "none",
                   background: "transparent",
-                  color: darkMode ? "#fff" : "#111827",
+                  color: textColor,
                   fontSize: ".9rem",
                 }}
               />
@@ -286,17 +284,13 @@ export default function InterviewManagement() {
                 borderRadius: "12px",
                 textTransform: "none",
                 fontWeight: 700,
-                background:
-                  "linear-gradient(135deg,#2563eb,#1d4ed8)",
-                boxShadow:
-                  "0 8px 18px rgba(37,99,235,.28)",
+                background: `linear-gradient(135deg,${primary},${secondary || primary})`,
+                boxShadow: `0 8px 18px ${primary}48`,
                 transition: ".25s",
                 "&:hover": {
-                  background:
-                    "linear-gradient(135deg,#1d4ed8,#1e40af)",
+                  background: `linear-gradient(135deg,${primary},${primary})`,
                   transform: "translateY(-2px)",
-                  boxShadow:
-                    "0 12px 24px rgba(37,99,235,.35)",
+                  boxShadow: `0 12px 24px ${primary}59`,
                 },
               }}
             >
@@ -357,30 +351,26 @@ export default function InterviewManagement() {
                 fontWeight: 700,
                 borderColor:
                   activeFilter === filter
-                    ? primaryColor
+                    ? primary
                     : borderStyle,
                 color:
                   activeFilter === filter
                     ? "#fff"
-                    : darkMode
-                      ? "#cbd5e1"
-                      : "#475569",
+                    : subText,
                 bgcolor:
                   activeFilter === filter
-                    ? primaryColor
+                    ? primary
                     : "transparent",
                 boxShadow:
                   activeFilter === filter
-                    ? "0 6px 14px rgba(37,99,235,.22)"
+                    ? `0 6px 14px ${primary}38`
                     : "none",
                 "&:hover": {
-                  borderColor: primaryColor,
+                  borderColor: primary,
                   bgcolor:
                     activeFilter === filter
-                      ? "#1d4ed8"
-                      : darkMode
-                        ? "rgba(255,255,255,.05)"
-                        : "rgba(37,99,235,.05)",
+                      ? primary
+                      : `${primary}08`,
                 },
               }}
             >
@@ -402,20 +392,10 @@ export default function InterviewManagement() {
           overflow: "hidden",
           p: { xs: 1.5, sm: 2.5, md: 4 },
           borderRadius: { xs: 3, md: "22px" },
-          bgcolor: darkMode
-            ? "rgba(30,41,59,.72)"
-            : "#ffffff",
+          bgcolor: colors.card,
           backdropFilter: "blur(16px)",
           border: `1px solid ${borderStyle}`,
-          boxShadow: darkMode
-            ? `
-              0 18px 45px rgba(0,0,0,.35),
-              inset 0 1px 0 rgba(255,255,255,.04)
-            `
-            : `
-              0 18px 40px rgba(15,23,42,.08),
-              0 4px 12px rgba(15,23,42,.05)
-            `,
+          boxShadow: colors.shadow,
           transition: ".3s",
           "&:hover": {
             transform: "translateY(-4px)",
@@ -468,22 +448,18 @@ export default function InterviewManagement() {
                   md: "0.88rem",
                 },
                 fontWeight: 700,
-                bgcolor: darkMode
-                  ? "#1e293b"
-                  : "#f8fafc",
+                bgcolor: colors.background,
               },
             }}
             >
               <TableRow
                 sx={{
-                  bgcolor: darkMode
-                    ? "rgba(15,23,42,.55)"
-                    : "#f8fafc",
+                  bgcolor: colors.background,
                 }}
               >
                 <TableCell align="center"
                   sx={{
-                    color: darkMode ? "#fff" : "#0f172a",
+                    color: textColor,
                     fontWeight: 700,
                     fontSize: {
                       xs: ".82rem",
@@ -497,7 +473,7 @@ export default function InterviewManagement() {
 
                 <TableCell
                   sx={{
-                    color: darkMode ? "#fff" : "#0f172a",
+                    color: textColor,
                     fontWeight: 700,
                     fontSize: {
                       xs: ".82rem",
@@ -511,7 +487,7 @@ export default function InterviewManagement() {
 
                 <TableCell
                   sx={{
-                    color: darkMode ? "#fff" : "#0f172a",
+                    color: textColor,
                     fontWeight: 700,
                     fontSize: {
                       xs: ".82rem",
@@ -525,7 +501,7 @@ export default function InterviewManagement() {
 
                 <TableCell
                   sx={{
-                    color: darkMode ? "#fff" : "#0f172a",
+                    color: textColor,
                     fontWeight: 700,
                     fontSize: {
                       xs: ".82rem",
@@ -539,7 +515,7 @@ export default function InterviewManagement() {
 
                 <TableCell
                   sx={{
-                    color: darkMode ? "#fff" : "#0f172a",
+                    color: textColor,
                     fontWeight: 700,
                     fontSize: {
                       xs: ".82rem",
@@ -574,7 +550,7 @@ export default function InterviewManagement() {
                           xs: ".8rem",
                           md: ".92rem"
                         },
-                        color: darkMode ? "#fff" : "#0f172a",
+                        color: textColor,
                       }}
                     >
                       <Box sx={{
@@ -594,10 +570,9 @@ export default function InterviewManagement() {
                               xs: 32,
                               md: 40
                             },
-                            background:
-                              "linear-gradient(135deg,#2563eb,#7c3aed)",
+                            background: `linear-gradient(135deg,${primary},${secondary || primary})`,
                             fontWeight: 700,
-                            boxShadow: "0 6px 14px rgba(37,99,235,.25)",
+                            boxShadow: `0 6px 14px ${primary}40`,
                           }}
                         >
                           <FaUser size={16} />
@@ -609,7 +584,7 @@ export default function InterviewManagement() {
                               xs: ".82rem",
                               md: ".95rem"
                             },
-                            color: darkMode ? "#fff" : "#0f172a",
+                            color: textColor,
                           }}
                         >
                           {interview.candidateId}
@@ -620,7 +595,7 @@ export default function InterviewManagement() {
 
                     <TableCell
                       sx={{
-                        color: darkMode ? "#e2e8f0" : "#0f172a",
+                        color: textColor,
                       }}
                     >
                       {interview.round}
@@ -632,7 +607,7 @@ export default function InterviewManagement() {
                           xs: ".8rem",
                           md: ".92rem"
                         },
-                        color: darkMode ? "#e2e8f0" : "#0f172a",
+                        color: textColor,
                       }}
                     >
                       {`${interview.date} • ${interview.time}`}
@@ -644,17 +619,17 @@ export default function InterviewManagement() {
                           xs: ".8rem",
                           md: ".92rem"
                         },
-                        color: darkMode ? "#e2e8f0" : "#0f172a",
+                        color: textColor,
                       }}
                     >
                       <Box>
-                        <Typography fontWeight={600}>
+                        <Typography sx={{ fontWeight: 600, color: textColor }}>
                           {interview.interviewer}
                         </Typography>
 
                         <Typography
                           variant="caption"
-                          color="text.secondary"
+                          sx={{ color: subText }}
                         >
                           {interview.mode}
                         </Typography>
@@ -687,7 +662,7 @@ export default function InterviewManagement() {
             justifyContent: "space-between",
             alignItems: { xs: "stretch", md: "center" },
             borderTop: `1px solid ${borderStyle}`,
-            bgcolor: darkMode ? "rgba(59,130,246,.05)" : "#F8FAFC",
+            bgcolor: colors.background,
           }}
         >
           <Typography sx={{ color: subText, fontSize: { xs: ".72rem", md: ".82rem" }, }}>
@@ -744,6 +719,7 @@ export default function InterviewManagement() {
                 height: { xs: 34, md: 36 },
                 p: 0,
                 flexShrink: 0,
+                color: textColor,
               }}
               onClick={() =>
                 setSearchParams({
@@ -760,7 +736,7 @@ export default function InterviewManagement() {
                   key={index}
                   sx={{
                     px: 1,
-                    color: darkMode ? "#fff" : "#000",
+                    color: textColor,
                     fontWeight: 700,
                   }}
                 >
@@ -790,19 +766,17 @@ export default function InterviewManagement() {
                     },
                     bgcolor:
                       Number(currentPage) === Number(page)
-                        ? "#3B82F6"
+                        ? primary
                         : "transparent",
                     color:
                       Number(currentPage) === Number(page)
                         ? "#fff"
-                        : darkMode
-                          ? "#fff"
-                          : "#0f172a",
+                        : textColor,
                     "&:hover": {
                       bgcolor:
                         Number(currentPage) === Number(page)
-                          ? "#2563EB"
-                          : "rgba(59,130,246,.08)",
+                          ? primary
+                          : `${primary}08`,
                     },
                   }}
                 >
@@ -820,6 +794,7 @@ export default function InterviewManagement() {
                 height: { xs: 34, md: 36 },
                 p: 0,
                 flexShrink: 0,
+                color: textColor,
               }}
               onClick={() =>
                 setSearchParams({

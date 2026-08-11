@@ -1,5 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
+import useThemeColors from "../hooks/useThemeColors";
 import { useRef, useEffect, useState } from "react";
 import { Typography, Divider, Box } from "@mui/material";
 
@@ -22,6 +23,17 @@ export default function InterviewerLayout({ children }) {
   const location = useLocation();
   const navigate = useNavigate();
   const { darkMode, setDarkMode } = useTheme();
+  const colors = useThemeColors();
+
+  // Colors — fully theme-driven (matches Candidate / Interviewer Settings)
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subTextColor = colors.subText;
+  const borderColor = colors.border;
+  const cardColor = colors.card;
+  const bgColor = colors.background || (darkMode ? "#020617" : "#f8fafc");
+
   const sidebarRef = useRef(null);
   const contentRef = useRef(null);
   useEffect(() => {
@@ -40,11 +52,7 @@ export default function InterviewerLayout({ children }) {
 
   const [mobileMenu, setMobileMenu] = useState(false);
 
-  const subText = darkMode ? "text-slate-400" : "text-slate-500";
-
   // Sidebar scroll restoration
-
-
   const handleSidebarScroll = () => {
     sessionStorage.setItem("interviewerSidebarScroll", sidebarRef.current.scrollTop);
   };
@@ -98,25 +106,30 @@ export default function InterviewerLayout({ children }) {
     }
   };
 
-  // Upgraded active classes (uses teal )
-  const activeClass = (path) => {
+  // Upgraded active row styling (theme primary/secondary driven)
+  const activeStyle = (path) => {
     const isActive = location.pathname === path;
 
     if (isActive) {
-      return darkMode
-        ? "bg-teal-500/15 text-teal-300 font-semibold shadow-inner border-l-4 border-teal-400 pl-2.5"
-        : "bg-teal-50 text-teal-700 font-semibold border-l-4 border-teal-600 pl-2.5";
+      return {
+        backgroundColor: `${primary}1f`,
+        color: primary,
+        fontWeight: 600,
+        borderLeft: `4px solid ${primary}`,
+        paddingLeft: "10px",
+      };
     }
 
-    return darkMode
-      ? "text-slate-400 hover:bg-slate-800 hover:text-white border-l-4 border-transparent"
-      : "text-slate-600 hover:bg-slate-100 hover:text-slate-900 border-l-4 border-transparent";
+    return {
+      color: subTextColor,
+      borderLeft: "4px solid transparent",
+    };
   };
 
   return (
     <div
-      className={`h-screen flex overflow-hidden font-sans ${darkMode ? "bg-slate-950 text-white" : "bg-slate-50 text-slate-900"
-        }`}
+      className="h-screen flex overflow-hidden font-sans"
+      style={{ backgroundColor: bgColor, color: textColor }}
     >
       {/* Sidebar with custom thin scrollbar */}
       <aside
@@ -136,15 +149,18 @@ export default function InterviewerLayout({ children }) {
             ? "translate-x-0"
             : "-translate-x-full md:translate-x-0"
           }
-
-    ${darkMode
-            ? "bg-slate-900/90 border-slate-800/80 text-white"
-            : "bg-white border-slate-200 text-slate-800"
-          }
   `}
+        style={{
+          backgroundColor: cardColor,
+          borderColor: borderColor,
+          color: textColor,
+        }}
       >
         {/* Logo */}
-        <div className="mb-6 px-2 py-3 border-b border-dashed border-slate-700/20">
+        <div
+          className="mb-6 px-2 py-3 border-b border-dashed"
+          style={{ borderColor: borderColor }}
+        >
           <div className="flex items-center gap-3">
 
             <Typography
@@ -152,7 +168,7 @@ export default function InterviewerLayout({ children }) {
                 fontWeight: 800,
                 fontSize: "1.40rem",
                 lineHeight: 1.1,
-                color: "#14b8a6",
+                color: primary,
               }}
             >
               Interviewer Space
@@ -170,7 +186,8 @@ export default function InterviewerLayout({ children }) {
             {navGroups.map((group) => (
               <div key={group.title} className="space-y-1">
                 <h4
-                  className={`text-[10px] uppercase font-bold tracking-widest px-3 mb-2 ${subText}`}
+                  className="text-[10px] uppercase font-bold tracking-widest px-3 mb-2"
+                  style={{ color: subTextColor }}
                 >
                   {group.title}
                 </h4>
@@ -180,9 +197,8 @@ export default function InterviewerLayout({ children }) {
                     key={item.path}
                     to={item.path}
                     onClick={() => setMobileMenu(false)}
-                    className={`flex items-center gap-3 p-2.5 rounded-lg text-[0.92rem] transition-all duration-200 ${activeClass(
-                      item.path
-                    )}`}
+                    className="flex items-center gap-3 p-2.5 rounded-lg text-[0.92rem] transition-all duration-200"
+                    style={activeStyle(item.path)}
                   >
                     <span className="text-[1.05rem] opacity-80">
                       {item.icon}
@@ -196,13 +212,19 @@ export default function InterviewerLayout({ children }) {
           </nav>
 
           {/* Mobile Theme + Profile */}
-          <div className="md:hidden mt-3 pt-3 border-t border-slate-200 space-y-1">
+          <div
+            className="md:hidden mt-3 pt-3 border-t space-y-1"
+            style={{ borderColor: borderColor }}
+          >
             <button
               onClick={() => {
                 setDarkMode(!darkMode);
                 setMobileMenu(false);
               }}
-              className="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-teal-500/10"
+              className="w-full flex items-center gap-3 p-3 rounded-lg"
+              style={{ color: textColor }}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = `${primary}10`)}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
             >
               {darkMode ? <FaSun /> : <FaMoon />}
               <span>Theme</span>
@@ -211,7 +233,10 @@ export default function InterviewerLayout({ children }) {
             <Link
               to="/interviewer-profile"
               onClick={() => setMobileMenu(false)}
-              className="flex items-center gap-3 p-3 rounded-lg hover:bg-teal-500/10"
+              className="flex items-center gap-3 p-3 rounded-lg"
+              style={{ color: textColor }}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = `${primary}10`)}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
             >
               <FaUser />
               <span>Profile</span>
@@ -220,18 +245,24 @@ export default function InterviewerLayout({ children }) {
         </div>
 
         {/* Fixed Footer */}
-        <div className="shrink-0 border-t border-slate-200 pt-2 px-2 pb-0">
+        <div
+          className="shrink-0 border-t pt-2 px-2 pb-0"
+          style={{ borderColor: borderColor }}
+        >
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-teal-600 flex items-center justify-center text-white font-bold text-sm">
+            <div
+              className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm"
+              style={{ background: `linear-gradient(135deg, ${primary}, ${secondary || primary})` }}
+            >
               INT
             </div>
 
             <div className="overflow-hidden flex-1">
-              <h5 className="font-semibold text-sm truncate">
+              <h5 className="font-semibold text-sm truncate" style={{ color: textColor }}>
                 Technical Reviewer
               </h5>
 
-              <p className={`text-xs truncate ${subText}`}>
+              <p className="text-xs truncate" style={{ color: subTextColor }}>
                 reviewer@nexthire.com
               </p>
             </div>
@@ -269,30 +300,28 @@ export default function InterviewerLayout({ children }) {
       <main className="flex-1 flex flex-col h-screen overflow-hidden w-full">
         {/* Topbar Header */}
         <header
-          className={`min-h-20 px-4 md:px-8 py-3 flex flex-wrap gap-3 justify-between items-center border-b transition-all duration-300 ${darkMode
-            ? "bg-slate-900/40 border-slate-800/80 text-white backdrop-blur-md"
-            : "bg-white border-slate-200 text-slate-800"
-            }`}
+          className="min-h-20 px-4 md:px-8 py-3 flex flex-wrap gap-3 justify-between items-center border-b transition-all duration-300 backdrop-blur-md"
+          style={{
+            backgroundColor: cardColor,
+            borderColor: borderColor,
+            color: textColor,
+          }}
         >
 
           <div className="flex items-center gap-2 md:hidden">
 
             <button
               onClick={() => setMobileMenu(true)}
-              className={`p-2 rounded-lg border ${darkMode
-                ? "border-slate-700 bg-slate-800"
-                : "border-slate-300 bg-white"
-                }`}
+              className="p-2 rounded-lg border"
+              style={{ borderColor: borderColor, backgroundColor: bgColor }}
             >
               <FaBars />
             </button>
 
             <Link
               to="/candidate-notifications"
-              className={`relative p-2 rounded-lg border ${darkMode
-                ? "border-slate-700 bg-slate-800 text-white"
-                : "border-slate-300 bg-white text-slate-700"
-                }`}
+              className="relative p-2 rounded-lg border"
+              style={{ borderColor: borderColor, backgroundColor: bgColor, color: textColor }}
             >
               <FaBell />
 
@@ -307,6 +336,7 @@ export default function InterviewerLayout({ children }) {
               sx={{
                 fontWeight: 700,
                 letterSpacing: "-.02em",
+                color: textColor,
 
                 fontSize: {
                   xs: "1.4rem",
@@ -325,10 +355,12 @@ export default function InterviewerLayout({ children }) {
             {/* Theme switcher */}
             <button
               onClick={() => setDarkMode(!darkMode)}
-              className={`p-2.5 rounded-xl border transition-all duration-200 hover:-translate-y-0.5 ${darkMode
-                ? "bg-slate-800 text-yellow-400 border-slate-700 hover:bg-slate-700"
-                : "bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100"
-                }`}
+              className="p-2.5 rounded-xl border transition-all duration-200 hover:-translate-y-0.5"
+              style={{
+                backgroundColor: bgColor,
+                color: darkMode ? "#facc15" : subTextColor,
+                borderColor: borderColor,
+              }}
             >
               {darkMode ? <FaSun size={15} /> : <FaMoon size={15} />}
             </button>
@@ -336,25 +368,31 @@ export default function InterviewerLayout({ children }) {
             {/* Notifications Button */}
             <Link
               to="/interviewer-notifications"
-              className={`p-2.5 rounded-xl border relative transition-all duration-200 hover:-translate-y-0.5 ${darkMode
-                ? "bg-slate-800 text-slate-200 border-slate-700 hover:bg-slate-700"
-                : "bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100"
-                }`}
+              className="p-2.5 rounded-xl border relative transition-all duration-200 hover:-translate-y-0.5"
+              style={{
+                backgroundColor: bgColor,
+                color: textColor,
+                borderColor: borderColor,
+              }}
             >
               <FaBell size={15} />
-              <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-teal-600 rounded-full"></span>
+              <span
+                className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full"
+                style={{ backgroundColor: primary }}
+              ></span>
             </Link>
 
             <Divider orientation="vertical" variant="middle" flexItem sx={{
-              borderColor: darkMode
-                ? "rgba(148,163,184,.2)"
-                : "rgba(15,23,42,.12)"
+              borderColor: borderColor,
             }} />
 
             {/* Profile Action Link */}
             <Link
               to="/interviewer-profile"
-              className="bg-linear-to-r from-teal-600 to-cyan-600 text-white px-4 py-2 text-sm font-semibold rounded-xl hover:from-teal-700 hover:to-cyan-700 transition shadow-md shadow-teal-600/10 hover:shadow-teal-600/20"
+              className="text-white px-4 py-2 text-sm font-semibold rounded-xl transition shadow-md"
+              style={{
+                background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+              }}
             >
               <span className="hidden sm:block">
                 Profile
@@ -366,7 +404,7 @@ export default function InterviewerLayout({ children }) {
             {/* Logout Action Button */}
             <button
               onClick={handleLogout}
-              className={`p-2.5 rounded-xl border flex items-center justify-center gap-2 font-semibold text-sm text-red-500 border-red-500/25 bg-red-500/5 hover:bg-red-500/15 transition`}
+              className="p-2.5 rounded-xl border flex items-center justify-center gap-2 font-semibold text-sm text-red-500 border-red-500/25 bg-red-500/5 hover:bg-red-500/15 transition"
             >
               <FaSignOutAlt size={14} />
               <span className="hidden sm:inline">
@@ -379,9 +417,8 @@ export default function InterviewerLayout({ children }) {
         {/* Scrollable Layout Content */}
         <div
           ref={contentRef}
-          className={`flex-1 overflow-y-auto
-        ${darkMode ? "bg-slate-950" : "bg-slate-50"}
-    `}
+          className="flex-1 overflow-y-auto"
+          style={{ backgroundColor: bgColor }}
         >
 
           <Box

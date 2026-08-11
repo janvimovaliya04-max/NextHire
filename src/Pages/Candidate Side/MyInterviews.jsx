@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import CandidateLayout from "../../Layouts/CandidateLayout";
 import { useTheme } from "../../context/ThemeContext";
-import { TextField, InputAdornment } from "@mui/material";
-import { FaSearch } from "react-icons/fa";
+import useThemeColors from "../../hooks/useThemeColors";
+import { TextField } from "@mui/material";
 import {
   Typography,
   Paper,
@@ -24,6 +24,15 @@ import {
 
 export default function MyInterviews() {
   const { darkMode } = useTheme();
+  const colors = useThemeColors();
+
+  // Colors — fully theme-driven (matches Dashboard / Assessment / BrowseJobs)
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
+
   const [search, setSearch] = useState("");
 
   const PER_LOAD = 4;
@@ -43,6 +52,8 @@ export default function MyInterviews() {
   const [visibleInterviews, setVisibleInterviews] = useState(
     filteredInterviews.slice(0, PER_LOAD)
   );
+
+  const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
     setVisibleInterviews(filteredInterviews.slice(0, PER_LOAD));
@@ -80,17 +91,19 @@ export default function MyInterviews() {
     };
   }, []);
 
-  const [hasMore, setHasMore] = useState(true);
-
-  const subText = darkMode ? "#94a3b8" : "#475569";
-  const borderStyle =
-    darkMode
-      ? "rgba(255,255,255,.06)"
-      : "rgba(0,0,0,.05)";
-
   const handleSearchChange = (value) => {
     setSearch(value);
   };
+
+  // Status accents — semantic (not brand), kept distinct from theme primary/secondary
+  const statusColor = (status) =>
+    status === "Upcoming"
+      ? "#3b82f6"
+      : status === "Completed"
+        ? primary
+        : status === "Cancelled"
+          ? "#ef4444"
+          : "#f59e0b";
 
   return (
     <CandidateLayout>
@@ -102,7 +115,7 @@ export default function MyInterviews() {
           top: 0,
           zIndex: 100,
 
-          bgcolor: darkMode ? "#0f172a" : "#f8fafc",
+          bgcolor: colors.background || (darkMode ? "#0f172a" : "#f8fafc"),
           px: { xs: 2, md: 4 },
           py: 2,
           mb: 3,
@@ -128,7 +141,7 @@ export default function MyInterviews() {
           sx={{
             fontWeight: 850,
             letterSpacing: "-0.03em",
-            color: darkMode ? "#fff" : "#0f172a",
+            color: textColor,
 
             mb: -1,
             fontSize: {
@@ -159,22 +172,20 @@ export default function MyInterviews() {
                 py: { xs: 1.3, md: 1.7 }
               },
               borderRadius: "14px",
-              bgcolor: darkMode
-                ? "rgba(30,41,59,.45)"
-                : "#fff",
-              color: darkMode ? "#fff" : "#0f172a",
+              bgcolor: colors.card,
+              color: textColor,
               "& fieldset": {
                 borderColor: borderStyle,
               },
               "&:hover fieldset": {
-                borderColor: "#2563eb",
+                borderColor: primary,
               },
               "&.Mui-focused fieldset": {
-                borderColor: "#2563eb",
+                borderColor: primary,
               },
             },
             "& input::placeholder": {
-              color: darkMode ? "#94a3b8" : "#64748b",
+              color: subText,
               opacity: 1,
             },
           }}
@@ -205,13 +216,13 @@ export default function MyInterviews() {
                   xs: "center",
                   sm: "center",
                 },
-                bgcolor: darkMode ? "#0f172a" : "#f8fafc",
+                bgcolor: colors.background || (darkMode ? "#0f172a" : "#f8fafc"),
                 gap: 2,
                 justifyContent: "center",
                 py: 3,
               }}
             >
-              <CircularProgress sx={{ color: "#10b981" }} />
+              <CircularProgress sx={{ color: primary }} />
             </Box>
           }
           endMessage={
@@ -249,20 +260,16 @@ export default function MyInterviews() {
                     display: "flex",
                     flexDirection: "column",
                     borderRadius: 5,
-                    bgcolor: darkMode
-                      ? "rgba(30,41,59,.45)"
-                      : "#ffffff",
+                    bgcolor: colors.card,
                     backdropFilter: "blur(12px)",
                     border: `1px solid ${borderStyle}`,
-                    boxShadow: darkMode
-                      ? "0 10px 30px rgba(0,0,0,.25)"
-                      : "0 10px 30px rgba(0,0,0,.02)",
-                    color: darkMode ? "#ffffff" : "#000000",
+                    boxShadow: colors.shadow,
+                    color: textColor,
                     transition: "all .25s ease",
                     "&:hover": {
                       transform: "translateY(-6px)",
-                      borderColor: "#10b981",
-                      boxShadow: 10,
+                      borderColor: primary,
+                      boxShadow: colors.shadow,
                     },
                   }}
                 >
@@ -288,7 +295,7 @@ export default function MyInterviews() {
                     >
                       <Avatar
                         sx={{
-                          background: "linear-gradient(135deg,#10b981,#059669)",
+                          background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
                           width: {
                             xs: 44,
                             sm: 52,
@@ -322,7 +329,7 @@ export default function MyInterviews() {
                             },
                             fontWeight: 800,
                             letterSpacing: "-0.01em",
-                            color: darkMode ? "#fff" : "#0f172a",
+                            color: textColor,
                           }}
                         >
                           {interview.company}
@@ -344,7 +351,7 @@ export default function MyInterviews() {
                         <Typography
                           sx={{
                             fontSize: "0.8rem",
-                            color: "#10b981",
+                            color: primary,
                             fontWeight: 600,
                             mt: 0.5,
                           }}
@@ -369,10 +376,10 @@ export default function MyInterviews() {
                               display: "flex",
                               alignItems: "flex-start",
                               gap: 1,
-                              color: darkMode ? "#cbd5e1" : "#475569",
+                              color: subText,
                             }}
                           >
-                            <FaCalendarAlt size={14} color="#10b981" />
+                            <FaCalendarAlt size={14} color={primary} />
                             <Typography variant="body2">
                               {interview.date}
                               <br />
@@ -389,7 +396,7 @@ export default function MyInterviews() {
                               color: subText,
                             }}
                           >
-                            <FaUserTie size={14} color="#3b82f6" />
+                            <FaUserTie size={14} color={secondary || primary} />
                             <Typography variant="body2">
                               {interview.interviewer}
                             </Typography>
@@ -419,7 +426,7 @@ export default function MyInterviews() {
                               color: subText,
                             }}
                           >
-                            <FaLaptop size={14} color="#8b5cf6" />
+                            <FaLaptop size={14} color={secondary || primary} />
                             <Typography variant="body2">
                               {interview.mode}
                             </Typography>
@@ -454,33 +461,10 @@ export default function MyInterviews() {
                         label={interview.status}
                         sx={{
                           fontWeight: 700,
-                          bgcolor:
-                            interview.status === "Upcoming"
-                              ? "rgba(59,130,246,.12)"
-                              : interview.status === "Completed"
-                                ? "rgba(16,185,129,.12)"
-                                : interview.status === "Cancelled"
-                                  ? "rgba(239,68,68,.12)"
-                                  : "rgba(245,158,11,.12)",
-
-                          color:
-                            interview.status === "Upcoming"
-                              ? "#3b82f6"
-                              : interview.status === "Completed"
-                                ? "#10b981"
-                                : interview.status === "Cancelled"
-                                  ? "#ef4444"
-                                  : "#f59e0b",
-
+                          bgcolor: `${statusColor(interview.status)}1f`,
+                          color: statusColor(interview.status),
                           border: "1px solid",
-                          borderColor:
-                            interview.status === "Upcoming"
-                              ? "rgba(59,130,246,.25)"
-                              : interview.status === "Completed"
-                                ? "rgba(16,185,129,.25)"
-                                : interview.status === "Cancelled"
-                                  ? "rgba(239,68,68,.25)"
-                                  : "rgba(245,158,11,.25)",
+                          borderColor: `${statusColor(interview.status)}40`,
                         }}
                       />
 
@@ -520,12 +504,13 @@ export default function MyInterviews() {
                             overflow: "hidden",
                             textOverflow: "ellipsis",
 
-                            background: "linear-gradient(90deg,#10b981,#059669)",
+                            background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+                            boxShadow: `0 4px 12px ${primary}33`,
 
                             "&:hover": {
-                              background: "linear-gradient(90deg,#10b981,#059669)",
+                              background: `linear-gradient(135deg, ${primary}, ${primary})`,
                               transform: "translateY(-1px)",
-                              boxShadow: "0 6px 16px rgba(16,185,129,.3)",
+                              boxShadow: `0 10px 22px ${primary}59`,
                             },
                           }}
                         >
@@ -547,19 +532,20 @@ export default function MyInterviews() {
                     md: 6,
                   },
                   borderRadius: 5,
-                  bgcolor: darkMode ? "#1e293b" : "#ffffff",
+                  bgcolor: colors.card,
+                  border: `1px solid ${borderStyle}`,
                   textAlign: "center",
                 }}
               >
-                <Typography variant="h6" fontWeight="bold" sx={{ mb: 2 }}>
+                <Typography variant="h6" fontWeight="bold" sx={{ mb: 2, color: textColor }}>
                   <Avatar
                     sx={{
                       width: 80,
                       height: 80,
                       mx: "auto",
                       mb: 2,
-                      bgcolor: "rgba(16,185,129,.1)",
-                      color: "#10b981",
+                      bgcolor: `${primary}1a`,
+                      color: primary,
                       fontSize: 34,
                     }}
                   >
@@ -568,7 +554,7 @@ export default function MyInterviews() {
                   No Interviews Scheduled
                 </Typography>
 
-                <Typography sx={{ color: darkMode ? "#94a3b8" : "#64748b", mb: 3 }}>
+                <Typography sx={{ color: subText, mb: 3 }}>
                   You don't have any interviews yet.
                 </Typography>
 
@@ -577,9 +563,11 @@ export default function MyInterviews() {
                   to="/browse-jobs"
                   variant="contained"
                   sx={{
-                    bgcolor: "#16a34a",
+                    textTransform: "none",
+                    fontWeight: 700,
+                    background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
                     "&:hover": {
-                      bgcolor: "#15803d",
+                      background: `linear-gradient(90deg, ${primary}, ${primary})`,
                     },
                   }}
                 >
@@ -592,4 +580,4 @@ export default function MyInterviews() {
       </Box>
     </CandidateLayout>
   );
-}
+} 

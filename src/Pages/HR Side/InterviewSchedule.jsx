@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import { Link } from "react-router-dom";
 import HRLayout from "../../Layouts/HRLayout";
 
@@ -18,6 +19,7 @@ import { FaCalendarPlus, FaSave, FaTimes } from "react-icons/fa";
 
 export default function InterviewSchedule() {
   const { darkMode } = useTheme();
+  const colors = useThemeColors();
 
   // Form State bindings
   const [candidateName, setCandidateName] = useState("");
@@ -37,7 +39,12 @@ export default function InterviewSchedule() {
     localStorage.getItem("roundType") || "technical"
   );
 
-  const subText = darkMode ? "#94a3b8" : "#475569";
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
+
   const handleSchedule = () => {
     if (!candidateName.trim()) {
       toast.error("Candidate name is required");
@@ -77,10 +84,6 @@ export default function InterviewSchedule() {
     toast.success("Interview Scheduled Successfully");
   };
 
-  const borderStyle = darkMode
-    ? "rgba(148, 163, 184, 0.22)"
-    : "rgba(15, 23, 42, 0.08)";
-
   // Unified clean input styling matching Login / Register / InterviewManagement
   const textFieldStyle = {
     mb: {
@@ -88,7 +91,7 @@ export default function InterviewSchedule() {
       md: 2.5
     },
     "& .MuiInputLabel-root": {
-      color: darkMode ? "#94a3b8" : "#64748b",
+      color: subText,
       fontSize: {
         xs: "0.82rem",
         sm: "0.9rem",
@@ -100,22 +103,18 @@ export default function InterviewSchedule() {
         xs: ".82rem",
         md: ".95rem",
       },
-      color: "#2563eb",
+      color: primary,
     },
     "& .MuiOutlinedInput-root": {
       fontSize: {
         xs: ".85rem",
         md: ".95rem"
       },
-      color: darkMode ? "#ffffff" : "#0f172a",
-      backgroundColor: darkMode
-        ? "rgba(15, 23, 42, 0.55)"
-        : "rgba(255, 255, 255, 0.4)",
+      color: textColor,
+      backgroundColor: colors.input,
 
       "& fieldset": {
-        borderColor: darkMode
-          ? "rgba(148, 163, 184, 0.35)"
-          : "rgba(0, 0, 0, 0.12)",
+        borderColor: colors.border,
         borderRadius: "10px",
         transition: "all 0.25s ease",
       },
@@ -126,17 +125,15 @@ export default function InterviewSchedule() {
         },
       },
       "&:hover fieldset": {
-        borderColor: darkMode
-          ? "rgba(255,255,255,0.45)"
-          : "#2563eb",
+        borderColor: primary,
       },
       "&.Mui-focused fieldset": {
-        borderColor: "#2563eb",
+        borderColor: primary,
         borderWidth: "2px",
       },
     },
     "& .MuiSelect-icon": {
-      color: darkMode ? "#94a3b8" : "#475569",
+      color: subText,
     },
   };
 
@@ -145,20 +142,12 @@ export default function InterviewSchedule() {
       {/* Page Header */}
       <Box sx={{ mb: { xs: 3, md: 4 }, }}>
         <Typography
-            sx={{
-              fontSize: {
-                xs: "1.45rem",
-                sm: "1.7rem",
-                md: "2rem",
-                lg: "2.2rem",
-              },
-              mb: {
-                xs: 0,
-                md: 0.5,
-              },
-              fontWeight: 850,
-              letterSpacing: "-0.03em",
-            }}
+             sx={{
+                fontSize: { xs: "1.35rem", sm: "1.7rem", md: "2rem", lg: "2.2rem" },
+                mb: { xs: 0, md: 0.5 },
+                fontWeight: 850,
+                letterSpacing: "-0.03em",
+              }}
           >
           Schedule Interview
         </Typography>
@@ -177,20 +166,10 @@ export default function InterviewSchedule() {
             xs: 3,
             md: "22px"
           },
-          bgcolor: darkMode
-            ? "rgba(30,41,59,.72)"
-            : "#ffffff",
+          bgcolor: colors.card,
           backdropFilter: "blur(16px)",
           border: `1px solid ${borderStyle}`,
-          boxShadow: darkMode
-            ? `
-              0 18px 45px rgba(0,0,0,.35),
-              inset 0 1px 0 rgba(255,255,255,.04)
-            `
-            : `
-              0 18px 40px rgba(15,23,42,.08),
-              0 4px 12px rgba(15,23,42,.05)
-            `,
+          boxShadow: colors.shadow,
 
           transition: ".3s",
 
@@ -212,8 +191,7 @@ export default function InterviewSchedule() {
           sx={{
             display: "flex",
             alignItems: "center",
-            gap: 1.5,
-            mb: 4, gap: {
+            gap: {
               xs: 1,
               md: 1.5
             },
@@ -226,7 +204,7 @@ export default function InterviewSchedule() {
         >
           <Box
             sx={{
-              color: "#2563eb", // Blue icon
+              color: primary,
               display: "flex",
             }}
           >
@@ -240,7 +218,7 @@ export default function InterviewSchedule() {
                 md: "1.25rem"
               },
               fontWeight: 800,
-              color: darkMode ? "#fff" : "#0f172a",
+              color: textColor,
             }}
           >
             Interview Details
@@ -504,13 +482,11 @@ export default function InterviewSchedule() {
               borderRadius: "10px",
               fontWeight: 700,
               textTransform: "none",
-              color: darkMode ? "#cbd5e1" : "#475569",
-              borderColor: darkMode ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.12)",
+              color: subText,
+              borderColor: borderStyle,
               "&:hover": {
-                borderColor: darkMode ? "#cbd5e1" : "#475569",
-                bgcolor: darkMode
-                  ? "rgba(37,99,235,.10)"
-                  : "rgba(37,99,235,.05)"
+                borderColor: primary,
+                bgcolor: `${primary}08`,
               }
             }}
           >
@@ -544,16 +520,16 @@ export default function InterviewSchedule() {
               borderRadius: "10px",
               fontWeight: 700,
               textTransform: "none",
-              background: "linear-gradient(135deg,#2563eb,#1d4ed8)",
+              background: `linear-gradient(135deg,${primary},${secondary || primary})`,
 
-              boxShadow: "0 8px 18px rgba(37,99,235,.28)",
+              boxShadow: `0 8px 18px ${primary}48`,
 
               transition: ".25s",
 
               "&:hover": {
-                background: "linear-gradient(135deg,#1d4ed8,#1e40af)",
+                background: `linear-gradient(135deg,${primary},${primary})`,
                 transform: "translateY(-2px)",
-                boxShadow: "0 12px 24px rgba(37,99,235,.35)",
+                boxShadow: `0 12px 24px ${primary}59`,
               }
             }}
           >

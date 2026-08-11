@@ -4,8 +4,8 @@ const purpleTheme = {
 
     colors: {
 
-        primary: "#9333EA",
-        secondary: "#7E22CE",
+        primary: "#6B21A8",
+        secondary: "#581C87",
 
         background: "#FAF5FF",
         card: "#FFFFFF",
@@ -27,11 +27,11 @@ const purpleTheme = {
 
         input: "#FFFFFF",
 
-        button: "#9333EA",
-        buttonHover: "#7E22CE",
+        button: "#6B21A8",
+        buttonHover: "#581C87",
 
         hover: "#F3E8FF",
-        activeMenu: "#9333EA",
+        activeMenu: "#6B21A8",
         activeText: "#FFFFFF",
 
         divider: "#E9D5FF",
@@ -43,7 +43,7 @@ const purpleTheme = {
         badgeText: "#581C87",
 
         shadow:
-        "0 10px 25px rgba(147,51,234,0.18)"
+        "0 10px 25px rgba(107,33,168,0.18)"
     }
 };
 

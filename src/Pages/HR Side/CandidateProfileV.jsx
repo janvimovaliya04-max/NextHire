@@ -1,4 +1,5 @@
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import { Link, useLocation } from "react-router-dom";
 import HRLayout from "../../Layouts/HRLayout";
 import { useNavigate } from "react-router-dom";
@@ -30,6 +31,12 @@ import {
 
 export default function CandidateProfileV() {
   const { darkMode } = useTheme();
+  const colors = useThemeColors();
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderColor = colors.border;
   const location = useLocation(); // <-- Get router state
 
   // Extract passed candidate details
@@ -39,7 +46,7 @@ export default function CandidateProfileV() {
   if (!candidate) {
     return (
       <HRLayout>
-        <Typography sx={{ p: 4 }}>
+        <Typography sx={{ p: 4, color: textColor }}>
           Candidate data not found.
         </Typography>
       </HRLayout>
@@ -47,11 +54,36 @@ export default function CandidateProfileV() {
   }
 
   const navigate = useNavigate();
+  const borderStyle = colors.border;
 
-  const subText = darkMode ? "#9CA3AF" : "#6B7280";
-  const borderStyle = darkMode
-    ? "rgba(255,255,255,0.08)"
-    : "rgba(15,23,42,0.08)";
+  // Primary Button (matches reference theme) //
+  const primaryBtn = {
+    py: { xs: 1.2, md: 2 },
+    borderRadius: { xs: "8px", md: "10px" },
+    fontWeight: 700,
+    textTransform: "none",
+    background: `linear-gradient(135deg,${primary},${secondary || primary})`,
+    boxShadow: `0 10px 22px ${primary}40`,
+    "&:hover": {
+      background: `linear-gradient(135deg,${primary},${primary})`,
+      transform: "translateY(-1px)",
+    },
+  };
+
+  // Outline Button (matches reference theme) //
+  const outlineBtn = {
+    py: { xs: 1.2, md: 2 },
+    borderRadius: { xs: "8px", md: "10px" },
+    fontWeight: 700,
+    textTransform: "none",
+    color: primary,
+    borderColor: `${primary}40`,
+    "&:hover": {
+      borderColor: primary,
+      bgcolor: `${primary}10`,
+      transform: "translateY(-1px)",
+    },
+  };
 
   return (
     <HRLayout>
@@ -67,9 +99,9 @@ export default function CandidateProfileV() {
               xs: "0.78rem",
               md: "0.85rem",
             },
-            color: darkMode ? "#94a3b8" : "#475569",
+            color: subText,
             "&:hover": {
-              color: "#3B82F6",
+              color: primary,
               bgcolor: "transparent",
             }
           }}
@@ -88,12 +120,10 @@ export default function CandidateProfileV() {
             sx={{
               p: { xs: 1.5, sm: 2.5, md: 4 },
               borderRadius: 5,
-              bgcolor: darkMode ? "#0F172A" : "#FFFFFF",
+              bgcolor: colors.card,
               backdropFilter: "blur(18px)",
               border: `1px solid ${borderStyle}`,
-              boxShadow: darkMode
-                ? "0 18px 45px rgba(0,0,0,.45)"
-                : "0 15px 35px rgba(15,23,42,.08)",
+              boxShadow: colors.shadow,
               textAlign: "center",
               position: { xs: "static", md: "sticky" },
               top: { md: 24 },
@@ -107,9 +137,9 @@ export default function CandidateProfileV() {
                 fontSize: { xs: 24, md: 36 },
                 mx: "auto",
                 mb: 2.5,
-                background: "linear-gradient(135deg,#2563EB,#3B82F6)",
+                background: `linear-gradient(135deg,${primary},${secondary || primary})`,
                 fontWeight: 800,
-                boxShadow: "0 15px 30px rgba(37,99,235,.28)",
+                boxShadow: `0 15px 30px ${primary}48`,
               }}
             >
               {candidate.initials ? candidate.initials : candidate.fullName.charAt(0)}
@@ -117,7 +147,7 @@ export default function CandidateProfileV() {
 
             <Typography
               sx={{
-                color: darkMode ? "#F8FAFC" : "#0F172A",
+                color: textColor,
                 fontWeight: 850,
                 mb: 0.5,
                 fontSize: {
@@ -132,7 +162,7 @@ export default function CandidateProfileV() {
 
             <Typography
               sx={{
-                color: "#3B82F6",
+                color: primary,
                 fontWeight: 700,
                 fontSize: "0.95rem",
               }}
@@ -142,7 +172,7 @@ export default function CandidateProfileV() {
 
             <Typography
               sx={{
-                color: subText,
+                color: textColor,
                 fontSize: "0.82rem",
                 mb: 2.5,
               }}
@@ -163,7 +193,7 @@ export default function CandidateProfileV() {
                       ? "rgba(239,68,68,.2)"
                       : candidate.status === "Interview Scheduled"
                         ? "rgba(139,92,246,.2)"
-                        : "rgba(59,130,246,.15)",
+                        : `${primary}25`,
 
                 color:
                   candidate.status === "Shortlisted"
@@ -172,8 +202,8 @@ export default function CandidateProfileV() {
                       ? "#ef4444"
                       : candidate.status === "Interview Scheduled"
                         ? "#8b5cf6"
-                        : "#3B82F6",
-                border: `1px solid ${candidate.status === "Shortlisted" ? "rgba(16, 185, 129, 0.2)" : candidate.status === "Rejected" ? "rgba(239, 68, 68, 0.2)" : "rgba(37, 99, 235, 0.2)"}`,
+                        : primary,
+                border: `1px solid ${candidate.status === "Shortlisted" ? "rgba(16, 185, 129, 0.2)" : candidate.status === "Rejected" ? "rgba(239, 68, 68, 0.2)" : `${primary}30`}`,
                 px: 1,
                 mb: 4,
               }}
@@ -182,22 +212,120 @@ export default function CandidateProfileV() {
             <Divider sx={{ mb: 3.5, borderColor: borderStyle }} />
 
             {/* Quick Contact Details */}
-            <Box sx={{ display: "flex", flexDirection: "column", gap: { xs: 1.9, md: 2 }, textAlign: "left", mb: 4 }}>
-              <Box sx={{ display: "flex", alignItems: "center", gap: { xs: 1.9, md: 2 } }}>
-                <FaEnvelope style={{ color: subText, fontSize: 14 }} />
-                <Typography sx={{ fontSize: { xs: "0.78rem", md: "0.88rem" }, fontWeight: 500, color: darkMode ? "#cbd5e1" : "#475569" }}>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: { xs: 2, md: 2.2 },
+                textAlign: "left",
+                mb: 4,
+              }}
+            >
+              {/* Email */}
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: { xs: 1.5, md: 1.8 },
+                }}
+              >
+                <Box
+                  sx={{
+                    width: 34,
+                    height: 34,
+                    borderRadius: "10px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                    bgcolor: `${primary}15`,
+                    color: primary,
+                  }}
+                >
+                  <FaEnvelope size={14} />
+                </Box>
+
+                <Typography
+                  sx={{
+                    fontSize: { xs: "0.78rem", md: "0.88rem" },
+                    fontWeight: 600,
+                    color: textColor,
+                    wordBreak: "break-word",
+                    lineHeight: 1.4,
+                  }}
+                >
                   {candidate.email}
                 </Typography>
               </Box>
-              <Box sx={{ display: "flex", alignItems: "center", gap: { xs: 1.9, md: 2 } }}>
-                <FaPhone style={{ color: subText, fontSize: 14 }} />
-                <Typography sx={{ fontSize: { xs: "0.78rem", md: "0.88rem" }, fontWeight: 500, color: darkMode ? "#cbd5e1" : "#475569" }}>
+
+              {/* Phone */}
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: { xs: 1.5, md: 1.8 },
+                }}
+              >
+                <Box
+                  sx={{
+                    width: 34,
+                    height: 34,
+                    borderRadius: "10px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                    bgcolor: "rgba(16,185,129,0.12)",
+                    color: "#34D399",
+                  }}
+                >
+                  <FaPhone size={13} />
+                </Box>
+
+                <Typography
+                  sx={{
+                    fontSize: { xs: "0.78rem", md: "0.88rem" },
+                    fontWeight: 600,
+                    color: textColor,
+                    lineHeight: 1.4,
+                  }}
+                >
                   {candidate.phone}
                 </Typography>
               </Box>
-              <Box sx={{ display: "flex", alignItems: "center", gap: { xs: 1.9, md: 2 } }}>
-                <FaMapMarkerAlt style={{ color: subText, fontSize: 14 }} />
-                <Typography sx={{ fontSize: { xs: "0.78rem", md: "0.88rem" }, fontWeight: 500, color: darkMode ? "#cbd5e1" : "#475569" }}>
+
+              {/* Location */}
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: { xs: 1.5, md: 1.8 },
+                }}
+              >
+                <Box
+                  sx={{
+                    width: 34,
+                    height: 34,
+                    borderRadius: "10px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                    bgcolor: "rgba(139,92,246,0.12)",
+                    color: "#A78BFA",
+                  }}
+                >
+                  <FaMapMarkerAlt size={14} />
+                </Box>
+
+                <Typography
+                  sx={{
+                    fontSize: { xs: "0.78rem", md: "0.88rem" },
+                    fontWeight: 600,
+                    color: textColor,
+                    lineHeight: 1.4,
+                  }}
+                >
                   {candidate.location}
                 </Typography>
               </Box>
@@ -288,21 +416,15 @@ export default function CandidateProfileV() {
               sx={{
                 p: { xs: 1.5, sm: 2.5, md: 4 },
                 borderRadius: 5,
-                bgcolor: darkMode
-                  ? "#0F172A"
-                  : "#FFFFFF",
+                bgcolor: colors.card,
                 backdropFilter: "blur(12px)",
                 border: `1px solid ${borderStyle}`,
-                boxShadow: darkMode
-                  ? "0 18px 45px rgba(0,0,0,.45)"
-                  : "0 15px 35px rgba(15,23,42,.08)",
+                boxShadow: colors.shadow,
                 transition: ".3s",
 
                 "&:hover": {
                   transform: "translateY(-3px)",
-                  boxShadow: darkMode
-                    ? "0 24px 55px rgba(0,0,0,.5)"
-                    : "0 20px 40px rgba(15,23,42,.12)",
+                  boxShadow: colors.shadow,
                 },
               }}
             >
@@ -312,7 +434,7 @@ export default function CandidateProfileV() {
                     xs: "1rem",
                     md: "1.25rem",
                   },
-                  color: subText,
+                  color: textColor,
                   fontWeight: 800,
                   mb: 3.5,
                   display: "flex",
@@ -320,7 +442,7 @@ export default function CandidateProfileV() {
                   gap: 1.5,
                 }}
               >
-                <FaGraduationCap style={{ color: "#3B82F6" }} size={20} />
+                <FaGraduationCap style={{ color: primary }} size={20} />
                 Skills & Education
               </Typography>
 
@@ -331,7 +453,7 @@ export default function CandidateProfileV() {
                     fontWeight: 800,
                     fontSize: ".82rem",
                     letterSpacing: "1px",
-                    color: "#3B82F6",
+                    color: primary,
                     mb: 1.5,
                   }}
                 >
@@ -339,7 +461,7 @@ export default function CandidateProfileV() {
                 </Typography>
                 <Typography
                   sx={{
-                    color: darkMode ? "#F8FAFC" : "#0F172A",
+                    color: textColor,
                     fontWeight: 700,
                     fontSize: {
                       xs: "0.95rem",
@@ -381,14 +503,13 @@ export default function CandidateProfileV() {
                   px: 1,
                   py: .5,
                   mb: 2,
-                  bgcolor: darkMode
-                    ? "rgba(59,130,246,.12)"
-                    : "#EFF6FF",
-                  color: "#3B82F6",
-                  border: "1px solid rgba(59,130,246,.20)",
+                  bgcolor: colors.background,
+                  color: primary,
+                  border: `1px solid ${primary}30`,
                   transition: ".25s",
+                  display: "inline-block",
                   "&:hover": {
-                    bgcolor: "#2563eb",
+                    bgcolor: primary,
                     color: "#fff",
                     transform: "translateY(-2px)",
                   },
@@ -407,13 +528,13 @@ export default function CandidateProfileV() {
                         py: 0.5,
                         px: 0.5,
                         borderRadius: "8px",
-                        bgcolor: darkMode ? "rgba(255,255,255,0.04)" : "rgba(0,0,0,0.02)",
+                        bgcolor: colors.background,
                         border: `1px solid ${borderStyle}`,
-                        color: darkMode ? "#cbd5e1" : "#475569",
+                        color: subText,
                         "&:hover": {
-                          borderColor: "#2563eb",
-                          color: "#2563eb",
-                          bgcolor: "rgba(37,99,235,0.02)",
+                          borderColor: primary,
+                          color: primary,
+                          bgcolor: `${primary}08`,
                         }
                       }}
                     />
@@ -428,19 +549,16 @@ export default function CandidateProfileV() {
               sx={{
                 p: { xs: 2.5, md: 4 },
                 borderRadius: 5,
-                bgcolor: darkMode ? "#0F172A" : "#FFFFFF",
+                bgcolor: colors.card,
+                backdropFilter: "blur(12px)",
                 border: `1px solid ${borderStyle}`,
-                boxShadow: darkMode
-                  ? "0 18px 45px rgba(0,0,0,.45)"
-                  : "0 15px 35px rgba(15,23,42,.08)",
+                boxShadow: colors.shadow,
 
                 transition: ".3s",
 
                 "&:hover": {
                   transform: "translateY(-3px)",
-                  boxShadow: darkMode
-                    ? "0 24px 55px rgba(0,0,0,.5)"
-                    : "0 20px 40px rgba(15,23,42,.12)",
+                  boxShadow: colors.shadow,
                 },
               }}
             >
@@ -450,7 +568,7 @@ export default function CandidateProfileV() {
                     xs: "1rem",
                     md: "1.25rem",
                   },
-                  color: subText,
+                  color: textColor,
                   fontWeight: 800,
                   mb: 3.5,
                   display: "flex",
@@ -473,9 +591,7 @@ export default function CandidateProfileV() {
                   },
                   borderRadius: 4,
                   border: `1px solid ${borderStyle}`,
-                  bgcolor: darkMode
-                    ? "rgba(59,130,246,.08)"
-                    : "#F8FAFC",
+                  bgcolor: colors.background,
                   flexWrap: "wrap",
                   gap: 2,
                 }}
@@ -483,7 +599,7 @@ export default function CandidateProfileV() {
                 <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
                   <FaFilePdf size={30} style={{ color: "#DC2626" }} />
                   <Box>
-                    <Typography sx={{ color: subText, fontWeight: 600, fontSize: "0.8rem" }}>
+                    <Typography sx={{ color: textColor, fontWeight: 600, fontSize: "0.8rem" }}>
                       {candidate.resume}
                     </Typography>
                     <Typography sx={{ color: subText, fontSize: "0.78rem" }}>
@@ -502,18 +618,9 @@ export default function CandidateProfileV() {
                       xs: "100%",
                       sm: "auto",
                     },
-                    textTransform: "none",
-                    fontWeight: 700,
-                    borderRadius: "10px",
-                    px: { xs: 2, md: 2.8 },
+                    ...primaryBtn,
                     py: 1,
-                    background: "linear-gradient(135deg,#2563EB,#3B82F6)",
-                    boxShadow: "0 10px 22px rgba(37,99,235,.25)",
-                    "&:hover": {
-                      background: "linear-gradient(135deg,#1D4ED8,#2563EB)",
-                      boxShadow: "0 15px 28px rgba(37,99,235,.35)",
-                      transform: "translateY(-1px)",
-                    },
+                    px: { xs: 2, md: 2.8 },
                   }}
                 >
                   Download Resume

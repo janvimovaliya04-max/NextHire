@@ -1,4 +1,5 @@
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import CandidateLayout from "../../Layouts/CandidateLayout";
 import { Link } from "react-router-dom";
 import { useCandidate } from "../../context/CandidateContext";
@@ -22,13 +23,17 @@ import {
 
 export default function CandidateProfileR() {
   const { darkMode } = useTheme();
+  const colors = useThemeColors();
   const candidateContext = useCandidate();
 
   const candidate = candidateContext?.candidate;
 
-  const subText = darkMode ? "#94a3b8" : "#475569";
-  const textColor = darkMode ? "#ffffff" : "#0f172a";
-  const borderStyle = darkMode ? "rgba(255, 255, 255, 0.06)" : "rgba(0, 0, 0, 0.05)";
+  // Colors — fully theme-driven (matches Assessment / BrowseJobs / Dashboard / Notifications)
+  const primary = colors.primary;
+  const secondary = colors.secondary;
+  const textColor = colors.text;
+  const subText = colors.subText;
+  const borderStyle = colors.border;
 
   // Cohesive styling for the read-only form elements
   const textFieldStyle = {
@@ -38,7 +43,7 @@ export default function CandidateProfileR() {
       md: 2.5,
     },
     "& .MuiInputLabel-root": {
-      color: darkMode ? "#94a3b8" : "#64748b",
+      color: subText,
       fontSize: "0.95rem",
     },
     "& .MuiOutlinedInput-root": {
@@ -46,10 +51,10 @@ export default function CandidateProfileR() {
         xs: 48,
         sm: 56,
       },
-      color: darkMode ? "#ffffff" : "#0f172a",
-      backgroundColor: darkMode ? "rgba(15, 23, 42, 0.15)" : "rgba(0, 0, 0, 0.01)",
+      color: textColor,
+      backgroundColor: colors.input,
       "& fieldset": {
-        borderColor: darkMode ? "rgba(255, 255, 255, 0.06)" : "rgba(0, 0, 0, 0.08)",
+        borderColor: borderStyle,
         borderRadius: {
           xs: "8px",
           sm: "10px",
@@ -62,12 +67,10 @@ export default function CandidateProfileR() {
           xs: "0.9rem",
           sm: "1rem",
         },
-        WebkitTextFillColor: darkMode
-          ? "#ffffff"
-          : "#0f172a",
+        WebkitTextFillColor: textColor,
       },
       "&:hover fieldset": {
-        borderColor: darkMode ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.15)",
+        borderColor: primary,
       },
     },
   };
@@ -93,7 +96,7 @@ export default function CandidateProfileR() {
               fontWeight: 850,
               letterSpacing: "-0.03em",
               mb: .5,
-              color: darkMode ? "#fff" : "#0f172a",
+              color: textColor,
               fontSize: {
                 xs: "1.45rem",
                 sm: "1.8rem",
@@ -120,17 +123,15 @@ export default function CandidateProfileR() {
               sm: 4,
               md: 5,
             },
-            bgcolor: darkMode ? "rgba(30, 41, 59, 0.45)" : "#ffffff",
+            bgcolor: colors.card,
             backdropFilter: "blur(12px)",
             border: `1px solid ${borderStyle}`,
-            boxShadow: darkMode ? "0 10px 30px rgba(0,0,0,0.25)" : "0 10px 30px rgba(0,0,0,0.02)",
+            boxShadow: colors.shadow,
             transition: "transform 0.3s ease, box-shadow 0.3s ease",
             "&:hover": {
               transform: "translateY(-2px)",
-              borderColor: "#10b981",
-              boxShadow: darkMode
-                ? "0 16px 34px rgba(0,0,0,.35)"
-                : "0 16px 34px rgba(0,0,0,.05)",
+              borderColor: primary,
+              boxShadow: colors.shadow,
             },
           }}
         >
@@ -156,9 +157,9 @@ export default function CandidateProfileR() {
                     sm: "1.8rem",
                     md: "2rem",
                   },
-                  background: "linear-gradient(135deg, #10b981, #059669)", // Emerald                  
+                  background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
                   fontWeight: 800,
-                  boxShadow: "0 8px 24px rgba(16,185,129,0.25)",
+                  boxShadow: `0 8px 24px ${primary}40`,
                   border: `4px solid ${darkMode ? "rgba(30,41,59,0.9)" : "#ffffff"}`,
                 }}
               >
@@ -180,7 +181,7 @@ export default function CandidateProfileR() {
                 >
                   {candidate?.fullName || "Janvi Movaliya"}
                 </Typography>
-                <Typography sx={{ color: "#10b981", fontWeight: 700, fontSize: "0.95rem" }}>
+                <Typography sx={{ color: primary, fontWeight: 700, fontSize: "0.95rem" }}>
                   {candidate?.designation || "Frontend Developer"}
                 </Typography>
                 <Typography sx={{ color: subText, fontSize: "0.85rem", mt: 0.5 }}>
@@ -207,8 +208,8 @@ export default function CandidateProfileR() {
                         sm: ".72rem",
                       },
                       height: 28,
-                      bgcolor: "rgba(16,185,129,.12)",
-                      color: "#10b981",
+                      bgcolor: `${primary}1f`,
+                      color: primary,
                     }}
                   />
 
@@ -222,8 +223,8 @@ export default function CandidateProfileR() {
                         sm: ".72rem",
                       },
                       height: 28,
-                      bgcolor: "rgba(16,185,129,.12)",
-                      color: "#10b981",
+                      bgcolor: `${primary}1f`,
+                      color: primary,
                     }}
                   />
                 </Box>
@@ -267,19 +268,14 @@ export default function CandidateProfileR() {
                     md: 3,
                   },
 
-                  fontSize: {
-                    xs: ".8rem",
-                    sm: ".85rem",
-                    md: ".9rem",
-                  },
+                  fontSize: "0.88rem",
                   borderRadius: "10px",
                   fontWeight: 700,
                   textTransform: "none",
-                  fontSize: "0.88rem",
-                  background: "linear-gradient(90deg, #10b981, #059669)",
-                  boxShadow: "0 4px 12px rgba(16,185,129,0.2)",
+                  background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+                  boxShadow: `0 4px 12px ${primary}33`,
                   "&:hover": {
-                    background: "linear-gradient(90deg, #059669, #047857)",
+                    background: `linear-gradient(90deg, ${primary}, ${primary})`,
                     transform: "translateY(-1px)",
                   },
                 }}
@@ -307,19 +303,14 @@ export default function CandidateProfileR() {
                     md: 3,
                   },
 
-                  fontSize: {
-                    xs: ".8rem",
-                    sm: ".85rem",
-                    md: ".9rem",
-                  },
+                  fontSize: "0.88rem",
                   borderRadius: "10px",
                   fontWeight: 700,
                   textTransform: "none",
-                  fontSize: "0.88rem",
-                  color: darkMode ? "#cbd5e1" : "#475569",
-                  borderColor: darkMode ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.12)",
+                  color: subText,
+                  borderColor: borderStyle,
                   "&:hover": {
-                    borderColor: darkMode ? "#cbd5e1" : "#475569",
+                    borderColor: subText,
                     bgcolor: darkMode ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.03)",
                     transform: "translateY(-1px)",
                   },
@@ -345,17 +336,15 @@ export default function CandidateProfileR() {
               sm: 4,
               md: 5,
             },
-            bgcolor: darkMode ? "rgba(30, 41, 59, 0.45)" : "#ffffff",
+            bgcolor: colors.card,
             backdropFilter: "blur(12px)",
             border: `1px solid ${borderStyle}`,
-            boxShadow: darkMode ? "0 10px 30px rgba(0,0,0,0.25)" : "0 10px 30px rgba(0,0,0,0.02)",
+            boxShadow: colors.shadow,
             transition: "all .3s ease",
             "&:hover": {
               transform: "translateY(-2px)",
-              borderColor: "#10b981",
-              boxShadow: darkMode
-                ? "0 16px 34px rgba(0,0,0,.35)"
-                : "0 16px 34px rgba(0,0,0,.05)",
+              borderColor: primary,
+              boxShadow: colors.shadow,
             },
           }}
         >
@@ -411,11 +400,11 @@ export default function CandidateProfileR() {
                 },
                 textTransform: "none",
                 borderRadius: "10px",
-                color: "#10b981",
-                borderColor: "#10b981",
+                color: primary,
+                borderColor: primary,
 
                 "&:hover": {
-                  bgcolor: "rgba(16,185,129,.05)",
+                  bgcolor: `${primary}0d`,
                 },
               }}
             >
@@ -596,10 +585,10 @@ export default function CandidateProfileR() {
               fontWeight: 700,
               textTransform: "none",
               fontSize: "0.9rem",
-              background: "linear-gradient(90deg, #10b981, #059669)",
-              boxShadow: "0 4px 12px rgba(16,185,129,0.2)",
+              background: `linear-gradient(90deg, ${primary}, ${secondary || primary})`,
+              boxShadow: `0 4px 12px ${primary}33`,
               "&:hover": {
-                background: "linear-gradient(90deg, #059669, #047857)",
+                background: `linear-gradient(90deg, ${primary}, ${primary})`,
                 transform: "translateY(-1.5px)",
               },
             }}

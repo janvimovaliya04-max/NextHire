@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import HRLayout from "../../Layouts/HRLayout";
 import {
   Card,
@@ -39,38 +40,41 @@ import {
 
 export default function Analytics() {
   const { darkMode } = useTheme();
+  const colors = useThemeColors();
+  const primary = colors.primary;
+  const textColor = colors.text;
   const [timePeriod, setTimePeriod] = useState("30"); // Interactivity state
 
-  const subText = darkMode ? "#94a3b8" : "#475569";
-  const borderStyle = darkMode ? "rgba(255, 255, 255, 0.06)" : "rgba(0, 0, 0, 0.05)";
+  const subText = colors.subText;
+  const borderStyle = colors.border;
 
   const stats = [
     {
       title: "Applications Received",
       value: "420",
       icon: <FaUsers size={20} />,
-      color: "#2563EB",
+      color: primary,
       growth: "+14.2%",
     },
     {
       title: "Hires Confirmed",
       value: "85",
       icon: <FaUserCheck size={20} />,
-      color: "#3B82F6",
+      color: `${primary}cc`,
       growth: "+8.4%",
     },
     {
       title: "Interviews Conducted",
       value: "128",
       icon: <FaCalendarAlt size={20} />,
-      color: "#60A5FA",
+      color: `${primary}99`,
       growth: "+22.1%",
     },
     {
       title: "Active Job Listings",
       value: "15",
       icon: <FaBriefcase size={20} />,
-      color: "#1D4ED8",
+      color: primary,
       growth: "+4.0%",
     },
   ];
@@ -221,7 +225,7 @@ export default function Analytics() {
     <HRLayout>
       {/* Analytics Page Title & Filters Bar */}
       <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 2, mb: { xs: 3, md: 5 }, }}>
-    
+
         {/* Dynamic Period Filter Buttons */}
         <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap", bgcolor: darkMode ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.03)", p: 0.7, borderRadius: "10px", border: `1px solid ${borderStyle}` }}>
           {["7", "30", "90", "365"].map((period) => (
@@ -238,10 +242,10 @@ export default function Analytics() {
                 fontWeight: 700,
                 fontSize: "0.82rem",
                 color: timePeriod === period ? "#fff" : darkMode ? "#cbd5e1" : "#475569",
-                bgcolor: timePeriod === period ? "#2563eb" : "transparent",
+                bgcolor: timePeriod === period ? primary : "transparent",
                 boxShadow: timePeriod === period ? "0 4px 10px rgba(37,99,235,0.2)" : "none",
                 "&:hover": {
-                  bgcolor: timePeriod === period ? "#1d4ed8" : darkMode ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.05)",
+                  bgcolor: timePeriod === period ? `${primary}dd` : darkMode ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.05)",
                 }
               }}
             >
@@ -259,9 +263,9 @@ export default function Analytics() {
               sx={{
                 width: "100%",
                 borderRadius: 4,
-                bgcolor: darkMode ? "rgba(30, 41, 59, 0.45)" : "rgba(255, 255, 255, 0.8)",
+                bgcolor: colors.card,
                 backdropFilter: "blur(8px)",
-                color: darkMode ? "#ffffff" : "#0f172a",
+                color: textColor,
                 border: `1px solid ${borderStyle}`,
                 transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                 "&:hover": {
@@ -320,13 +324,13 @@ export default function Analytics() {
             xs: 3,
             md: 5,
           },
-          bgcolor: darkMode ? "rgba(30, 41, 59, 0.25)" : "#ffffff",
+          bgcolor: colors.card,
           border: `1px solid ${borderStyle}`,
           mb: { xs: 3, md: 5 },
         }}
       >
         <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 4 }}>
-          <Typography variant="h6" sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 800 }}>
+          <Typography variant="h6" sx={{ color: textColor, fontWeight: 800 }}>
             Hiring Performance & Applications Over Time
           </Typography>
         </Box>
@@ -336,7 +340,7 @@ export default function Analytics() {
           sx={{
             height: { xs: 220, sm: 260, md: 320 },
             borderRadius: 3,
-            bgcolor: darkMode ? "rgba(15, 23, 42, 0.4)" : "#f8fafc",
+            bgcolor: colors.background,
             border: `1px solid ${borderStyle}`,
             p: {
               xs: 1.5,
@@ -423,7 +427,7 @@ export default function Analytics() {
                 xs: 3,
                 md: 5,
               },
-              bgcolor: darkMode ? "rgba(30, 41, 59, 0.25)" : "#ffffff",
+              bgcolor: colors.card,
               border: `1px solid ${borderStyle}`,
               p: {
                 xs: 2,
@@ -433,7 +437,7 @@ export default function Analytics() {
               height: "100%",
             }}
           >
-            <Typography variant="h6" sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 800, mb: 3.5 }}>
+            <Typography variant="h6" sx={{ color: textColor, fontWeight: 800, mb: 3.5 }}>
               Recruitment Conversion Funnel
             </Typography>
 
@@ -473,7 +477,7 @@ export default function Analytics() {
 
                 <Bar
                   dataKey="value"
-                  fill="#2563eb"
+                  fill={primary}
                   radius={[0, 8, 8, 0]}
                   isAnimationActive={true}
                 />
@@ -491,7 +495,7 @@ export default function Analytics() {
                 xs: 3,
                 md: 5,
               },
-              bgcolor: darkMode ? "rgba(30, 41, 59, 0.25)" : "#ffffff",
+              bgcolor: colors.card,
               border: `1px solid ${borderStyle}`,
               p: {
                 xs: 2,
@@ -501,7 +505,7 @@ export default function Analytics() {
               height: "100%",
             }}
           >
-            <Typography variant="h6" sx={{ color: darkMode ? "#ffffff" : "#0f172a", fontWeight: 800, mb: 3.5 }}>
+            <Typography variant="h6" sx={{ color: textColor, fontWeight: 800, mb: 3.5 }}>
               Candidate Acquisition Channels
             </Typography>
 
@@ -517,10 +521,10 @@ export default function Analytics() {
                   label
                   stroke="none"
                 >
-                  <Cell fill="#2563eb" />
-                  <Cell fill="#3B82F6" />
-                  <Cell fill="#60A5FA" />
-                  <Cell fill="#93C5FD" />
+                  <Cell fill={primary} />
+                  <Cell fill={`${primary}cc`} />
+                  <Cell fill={`${primary}99`} />
+                  <Cell fill={`${primary}66`} />
                 </Pie>
 
                 <Tooltip

@@ -1,23 +1,47 @@
-import CandidateLayout from "../../Layouts/CandidateLayout";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import InterviewerLayout from "../../Layouts/InterviewerLayout";
 import { useTheme } from "../../context/ThemeContext";
-import { Box, Paper, Chip, Typography, Avatar, Button, IconButton, Select, MenuItem, TextField } from "@mui/material";
-import { FaMicrophone, FaMicrophoneSlash, FaVideo, FaVideoSlash, FaDesktop, FaComments, FaPhoneSlash, FaPlay, FaPaperPlane, FaBriefcase } from "react-icons/fa";
+import useThemeColors from "../../hooks/useThemeColors";
 import { useState, useEffect, useRef } from "react";
 import Editor from "@monaco-editor/react";
+import {
+  Paper,
+  Typography,
+  Button,
+  Box,
+  Avatar,
+  IconButton,
+  Select,
+  MenuItem,
+  TextField,
+  Chip,
+  Tooltip,
+} from "@mui/material";
+import MicIcon from "@mui/icons-material/Mic";
+import MicOffIcon from "@mui/icons-material/MicOff";
+import VideocamIcon from "@mui/icons-material/Videocam";
+import VideocamOffIcon from "@mui/icons-material/VideocamOff";
+import ScreenShareIcon from "@mui/icons-material/ScreenShare";
+import CallEndIcon from "@mui/icons-material/CallEnd";
+import RateReviewIcon from "@mui/icons-material/RateReview";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import PersonIcon from "@mui/icons-material/Person";
+import SendIcon from "@mui/icons-material/Send";
+import FullscreenIcon from "@mui/icons-material/Fullscreen";
+import FullscreenExitIcon from "@mui/icons-material/FullscreenExit";
 
 // Language options for the editor's language selector
 const LANGUAGE_OPTIONS = [
-    { label: "JavaScript", value: "javascript" },
-    { label: "Python", value: "python" },
-    { label: "Java", value: "java" },
-    { label: "C++", value: "cpp" },
-    { label: "TypeScript", value: "typescript" },
+  { label: "JavaScript", value: "javascript" },
+  { label: "Python", value: "python" },
+  { label: "Java", value: "java" },
+  { label: "C++", value: "cpp" },
+  { label: "TypeScript", value: "typescript" },
 ];
 
 // Starter code snippets per language
 const CODE_TEMPLATES = {
-    javascript: `// Live Coding Exercise: Longest Substring Without Repeating Characters
+  javascript: `// Live Coding Exercise: Longest Substring Without Repeating Characters
 // Complete the implementation below and run test scenarios.
 
 function findLongestSubstring(s) {
@@ -39,7 +63,7 @@ function findLongestSubstring(s) {
 // Test cases
 console.log(findLongestSubstring("abcabcbb")); // Expected output: 3 ("abc")
 console.log(findLongestSubstring("bbbbb"));    // Expected output: 1 ("b")`,
-    python: `# Live Coding Exercise: Longest Substring Without Repeating Characters
+  python: `# Live Coding Exercise: Longest Substring Without Repeating Characters
 # Complete the implementation below and run test scenarios.
 
 def find_longest_substring(s):
@@ -58,7 +82,7 @@ def find_longest_substring(s):
 # Test cases
 print(find_longest_substring("abcabcbb"))  # Expected output: 3 ("abc")
 print(find_longest_substring("bbbbb"))     # Expected output: 1 ("b")`,
-    java: `// Live Coding Exercise: Longest Substring Without Repeating Characters
+  java: `// Live Coding Exercise: Longest Substring Without Repeating Characters
 import java.util.HashMap;
 
 public class Solution {
@@ -82,7 +106,7 @@ public class Solution {
         System.out.println(findLongestSubstring("bbbbb"));    // 1
     }
 }`,
-    cpp: `// Live Coding Exercise: Longest Substring Without Repeating Characters
+  cpp: `// Live Coding Exercise: Longest Substring Without Repeating Characters
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -104,7 +128,7 @@ int main() {
     cout << findLongestSubstring("abcabcbb") << endl; // 3
     cout << findLongestSubstring("bbbbb") << endl;    // 1
 }`,
-    typescript: `// Live Coding Exercise: Longest Substring Without Repeating Characters
+  typescript: `// Live Coding Exercise: Longest Substring Without Repeating Characters
 function findLongestSubstring(s: string): number {
   let maxLength = 0;
   let start = 0;
@@ -125,1153 +149,968 @@ console.log(findLongestSubstring("abcabcbb")); // 3
 console.log(findLongestSubstring("bbbbb"));    // 1`,
 };
 
-export default function JoinInterviewC() {
-    const { darkMode } = useTheme();
-    const { state } = useLocation();
-    const navigate = useNavigate();
-    const interview = state?.interview;
-    const [mic, setMic] = useState(true);
-    const [cam, setCam] = useState(true);
-    const [time, setTime] = useState(0);
+// Formats seconds elapsed into HH:MM:SS
+function formatElapsedTime(totalSeconds) {
+  const hrs = Math.floor(totalSeconds / 3600);
+  const mins = Math.floor((totalSeconds % 3600) / 60);
+  const secs = totalSeconds % 60;
+  return [hrs, mins, secs].map((unit) => String(unit).padStart(2, "0")).join(":");
+}
 
-    useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: "instant",
-        });
-    }, []);
+export default function JoinInterview() {
+  const { darkMode } = useTheme();
+  const colors = useThemeColors();
 
-    // Language + code state
-    const [language, setLanguage] = useState("javascript");
-    const [code, setCode] = useState(CODE_TEMPLATES.javascript);
+  // Colors — fully theme-driven (matches Dashboard / Settings / Evaluations)
+  const primaryColor = colors.primary;
+  const secondaryColor = colors.secondary || colors.primary;
+  const cardBg = colors.card;
+  const borderColor = colors.border;
+  const subText = colors.subText;
+  const textColor = colors.text;
 
-    // Console output state
-    const [consoleOutput, setConsoleOutput] = useState([
-        { type: "info", text: "Console ready. Click 'Run Code' to execute." },
-    ]);
-    const [isRunning, setIsRunning] = useState(false);
+  const location = useLocation();
 
-    // Personal notes state (candidate's own scratchpad)
-    const [notes, setNotes] = useState("");
+  // MONACO RELAYOUT
+  const editorRef = useRef(null);
 
-    // Chat box state
-    const [chatMessages, setChatMessages] = useState([
-        { id: 1, sender: "Interviewer", text: "Welcome! Take a moment to read the question.", self: false },
-    ]);
-    const [chatInput, setChatInput] = useState("");
-    const chatEndRef = useRef(null);
-    useEffect(() => {
-        const layout = document.getElementById("layout-scroll");
+  const handleEditorDidMount = (editor) => {
+    editorRef.current = editor;
 
-        if (layout) {
-            layout.scrollTo({
-                top: 0,
-                behavior: "instant",
-            });
-        }
+    setTimeout(() => {
+      editor.layout();
+    }, 100);
+  };
 
-        const i = setInterval(() => setTime((t) => t + 1), 1000);
+  // Read candidate information from location state, fallback to defaults
+  const interviewData = location.state?.interview || {
+    candidate: "Janvi",
+    position: "Frontend Developer",
+  };
 
-        return () => clearInterval(i);
-    }, []);
+  // State management for mock video meeting controls
+  const [micActive, setMicActive] = useState(true);
+  const [cameraActive, setCameraActive] = useState(true);
 
-    // Called whenever the Monaco Editor content changes
-    const handleEditorChange = (value) => {
-        setCode(value ?? "");
-    };
+  useEffect(() => {
+    const layoutScroll = document.getElementById("layout-scroll");
 
-    // Switch language and reset editor to that language's starter template
-    const handleLanguageChange = (event) => {
-        const nextLang = event.target.value;
-        setLanguage(nextLang);
-        setCode(CODE_TEMPLATES[nextLang] ?? "");
-    };
-
-    // Executes JavaScript code in-browser and captures console.log output.
-    // Other languages show a simulated-execution message since there's no
-    // backend compiler wired up here.
-    const handleRunCode = () => {
-        setIsRunning(true);
-        setConsoleOutput([{ type: "info", text: "Running..." }]);
-        setTimeout(() => {
-            if (language !== "javascript") {
-                setConsoleOutput([
-                    { type: "info", text: `Execution for ${language} requires a backend runner.` },
-                    { type: "info", text: "Connect a code-execution service to run this language live." },
-                ]);
-                setIsRunning(false);
-                return;
-            }
-            const capturedLogs = [];
-            const originalLog = console.log;
-            const originalError = console.error;
-            console.log = (...args) => {
-                capturedLogs.push({ type: "log", text: args.map(String).join(" ") });
-            };
-            console.error = (...args) => {
-                capturedLogs.push({ type: "error", text: args.map(String).join(" ") });
-            };
-            try {
-                // eslint-disable-next-line no-new-func
-                const runner = new Function(code);
-                runner();
-                setConsoleOutput(
-                    capturedLogs.length > 0
-                        ? capturedLogs
-                        : [{ type: "info", text: "Code ran with no console output." }]
-                );
-            } catch (err) {
-                setConsoleOutput([
-                    ...capturedLogs,
-                    { type: "error", text: `${err.name}: ${err.message}` },
-                ]);
-            } finally {
-                console.log = originalLog;
-                console.error = originalError;
-                setIsRunning(false);
-            }
-        }, 400);
-    };
-
-    // Chat send handler
-    const handleSendChat = () => {
-        if (!chatInput.trim()) return;
-        setChatMessages((prev) => [
-            ...prev,
-            { id: prev.length + 1, sender: "You", text: chatInput.trim(), self: true },
-        ]);
-        setChatInput("");
-    };
-    if (!interview) {
-        return (
-            <CandidateLayout>
-                <Paper
-                    sx={{
-                        position: { xs: "static", md: "sticky", },
-                        top: 24,
-                        p: { xs: 3, md: 5 },
-                        mx: { xs: 2, sm: "auto" },
-                        borderRadius: { xs: 3, md: 5 },
-                        maxWidth: 500, mx: "auto",
-                        textAlign: "center",
-                        bgcolor: darkMode
-                            ? "rgba(30,41,59,.45)"
-                            : "#fff",
-                        backdropFilter: "blur(12px)",
-                        border: `1px solid ${darkMode
-                            ? "rgba(255,255,255,.06)"
-                            : "rgba(0,0,0,.05)"
-                            }`,
-                        borderRadius: 5,
-                        boxShadow: darkMode
-                            ? "0 10px 30px rgba(0,0,0,.25)"
-                            : "0 10px 30px rgba(0,0,0,.03)",
-                        transition: ".3s",
-                        "&:hover": {
-                            transform: "translateY(-3px)",
-                        }
-                    }}
-                >
-                    <Typography
-                        variant="h5"
-                    >
-                        Interview not found.
-                    </Typography>
-                    <Button
-                        sx={{ mt: 2 }}
-                        variant="contained"
-                        onClick={() => navigate("/my-interviews")}
-                    >
-                        Back to My Interviews
-                    </Button>
-                </Paper>
-            </CandidateLayout>
-        );
+    if (layoutScroll) {
+      layoutScroll.scrollTo({
+        top: 0,
+        behavior: "instant",
+      });
     }
-    const fmt = (s) => {
-        const h = Math.floor(s / 3600);
-        const m = Math.floor((s % 3600) / 60);
-        const sec = s % 60;
-        return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
+  }, []);
+
+  // Language + code state
+  const [language, setLanguage] = useState("javascript");
+  const [code, setCode] = useState(CODE_TEMPLATES.javascript);
+
+  // Console output state
+  const [consoleOutput, setConsoleOutput] = useState([
+    { type: "info", text: "Console ready. Click 'Run Code' to execute." },
+  ]);
+  const [isRunning, setIsRunning] = useState(false);
+
+  // Fullscreen state for the coding workspace
+  const [isEditorFullscreen, setIsEditorFullscreen] = useState(false);
+
+  // Re-layout Monaco whenever the fullscreen state flips so it fills
+  // its new container correctly instead of keeping stale dimensions.
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      editorRef.current?.layout();
+    }, 150);
+    return () => clearTimeout(timeoutId);
+  }, [isEditorFullscreen]);
+
+  // Escape key exits fullscreen
+  useEffect(() => {
+    if (!isEditorFullscreen) return;
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") setIsEditorFullscreen(false);
     };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isEditorFullscreen]);
 
-    return (
-        <CandidateLayout>
-            <Box
-                sx={{
-                    display: "grid",
-                    gridTemplateColumns: {
-                        xs: "1fr",
-                        md: "2fr 1fr",
-                    },
-                    gap: {
-                        xs: 2,
-                        sm: 3,
-                        md: 4,
-                    },
-                }}
+  // Lock page scroll while fullscreen so only the overlay scrolls
+  useEffect(() => {
+    if (isEditorFullscreen) {
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = prevOverflow;
+      };
+    }
+  }, [isEditorFullscreen]);
+
+  // Interview notes state
+  const [notes, setNotes] = useState("");
+
+  // Chat box state
+  const [chatMessages, setChatMessages] = useState([
+    { id: 1, sender: "Janvi", text: "Hi! Ready whenever you are.", self: false },
+    { id: 2, sender: "You", text: "Great, let's get started.", self: true },
+  ]);
+  const [chatInput, setChatInput] = useState("");
+  const chatEndRef = useRef(null);
+
+  // Auto-incrementing interview timer
+  const [elapsedSeconds, setElapsedSeconds] = useState(1122); // starts at 00:18:42 to match previous mock value
+
+  useEffect(() => {
+    const timerId = setInterval(() => {
+      setElapsedSeconds((prev) => prev + 1);
+    }, 1000);
+    return () => clearInterval(timerId);
+  }, []);
+
+  // Called whenever the Monaco Editor content changes
+  const handleEditorChange = (value) => {
+    setCode(value ?? "");
+  };
+
+  // Switch language and reset editor to that language's starter template
+  const handleLanguageChange = (event) => {
+    const nextLang = event.target.value;
+    setLanguage(nextLang);
+    setCode(CODE_TEMPLATES[nextLang] ?? "");
+  };
+
+  // Executes JavaScript code in-browser and captures console.log output.
+  // Other languages show a simulated-execution message since there's no
+  // backend compiler wired up here.
+  const handleRunCode = () => {
+    setIsRunning(true);
+    setConsoleOutput([{ type: "info", text: "Running..." }]);
+
+    setTimeout(() => {
+      if (language !== "javascript") {
+        setConsoleOutput([
+          { type: "info", text: `Execution for ${language} requires a backend runner.` },
+          { type: "info", text: "Connect a code-execution service to run this language live." },
+        ]);
+        setIsRunning(false);
+        return;
+      }
+
+      const capturedLogs = [];
+      const originalLog = console.log;
+      const originalError = console.error;
+
+      console.log = (...args) => {
+        capturedLogs.push({ type: "log", text: args.map(String).join(" ") });
+      };
+      console.error = (...args) => {
+        capturedLogs.push({ type: "error", text: args.map(String).join(" ") });
+      };
+
+      try {
+        // eslint-disable-next-line no-new-func
+        const runner = new Function(code);
+        runner();
+        setConsoleOutput(
+          capturedLogs.length > 0
+            ? capturedLogs
+            : [{ type: "info", text: "Code ran with no console output." }]
+        );
+      } catch (err) {
+        setConsoleOutput([
+          ...capturedLogs,
+          { type: "error", text: `${err.name}: ${err.message}` },
+        ]);
+      } finally {
+        console.log = originalLog;
+        console.error = originalError;
+        setIsRunning(false);
+      }
+    }, 400);
+  };
+
+  // Chat send handler
+  const handleSendChat = () => {
+    if (!chatInput.trim()) return;
+    setChatMessages((prev) => [
+      ...prev,
+      { id: prev.length + 1, sender: "You", text: chatInput.trim(), self: true },
+    ]);
+    setChatInput("");
+  };
+
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chatMessages]);
+
+  // ---- Shared building blocks so the workspace looks identical whether
+  // it's docked inline or blown up to fullscreen ----
+
+  const editorTopBar = (
+    <Box
+      sx={{
+        bgcolor: "#181818",
+        px: { xs: 2, md: 3 },
+        py: 1.5,
+        borderBottom: "1px solid #2d2d2d",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        flexWrap: "wrap",
+        gap: 1,
+        flexShrink: 0,
+      }}
+    >
+      <Box sx={{ display: "flex", gap: 1, alignItems: "center", minWidth: 0 }}>
+        <Box sx={{ width: 12, height: 12, borderRadius: "50%", bgcolor: "#ff5f56", flexShrink: 0 }} />
+        <Box sx={{ width: 12, height: 12, borderRadius: "50%", bgcolor: "#ffbd2e", flexShrink: 0 }} />
+        <Box sx={{ width: 12, height: 12, borderRadius: "50%", bgcolor: "#27c93f", flexShrink: 0 }} />
+        <Typography
+          variant="caption"
+          noWrap
+          sx={{ ml: 2, color: "#858585", fontFamily: "monospace", fontWeight: "bold" }}
+        >
+          longest_substring - Shared Workspace
+        </Typography>
+      </Box>
+
+      <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
+        {/* Language Selector */}
+        <Select
+          size="small"
+          value={language}
+          onChange={handleLanguageChange}
+          sx={{
+            fontSize: ".8rem",
+            color: "#e2e8f0",
+            height: 32,
+            minWidth: 130,
+            "& .MuiOutlinedInput-notchedOutline": { borderColor: "#3a3a3a" },
+            "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: primaryColor },
+            "& .MuiSvgIcon-root": { color: "#e2e8f0" },
+          }}
+        >
+          {LANGUAGE_OPTIONS.map((opt) => (
+            <MenuItem key={opt.value} value={opt.value}>
+              {opt.label}
+            </MenuItem>
+          ))}
+        </Select>
+
+        {/* Fullscreen Toggle */}
+        <Tooltip title={isEditorFullscreen ? "Exit full screen (Esc)" : "Full screen"}>
+          <IconButton
+            size="small"
+            onClick={() => setIsEditorFullscreen((prev) => !prev)}
+            sx={{
+              color: "#e2e8f0",
+              border: "1px solid #3a3a3a",
+              borderRadius: 2,
+              "&:hover": { borderColor: primaryColor, color: primaryColor },
+            }}
+          >
+            {isEditorFullscreen ? (
+              <FullscreenExitIcon fontSize="small" />
+            ) : (
+              <FullscreenIcon fontSize="small" />
+            )}
+          </IconButton>
+        </Tooltip>
+      </Box>
+    </Box>
+  );
+
+  const runButton = (
+    <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2, flexShrink: 0 }}>
+      <Button
+        onClick={handleRunCode}
+        disabled={isRunning}
+        variant="contained"
+        startIcon={<PlayArrowIcon />}
+        sx={{
+          background: `linear-gradient(90deg, ${primaryColor}, ${secondaryColor})`,
+          "&:hover": { background: `linear-gradient(90deg, ${primaryColor}, ${primaryColor})` },
+          "&.Mui-disabled": {
+            background: darkMode ? "rgba(255,255,255,.08)" : "rgba(0,0,0,.08)",
+            color: darkMode ? "#64748b" : "#94a3b8",
+          },
+          borderRadius: 3,
+          textTransform: "none",
+          fontWeight: 700,
+          px: 3,
+          py: 1,
+        }}
+      >
+        {isRunning ? "Running..." : "Run Code"}
+      </Button>
+    </Box>
+  );
+
+  const consolePanel = (
+    <Paper
+      elevation={0}
+      sx={{
+        mt: 2,
+        borderRadius: 4,
+        overflow: "hidden",
+        bgcolor: "#111827",
+        border: "1px solid #2d2d2d",
+        flexShrink: 0,
+      }}
+    >
+      <Box sx={{ bgcolor: "#181818", px: 2.5, py: 1, borderBottom: "1px solid #2d2d2d" }}>
+        <Typography variant="caption" sx={{ color: "#858585", fontFamily: "monospace", fontWeight: "bold" }}>
+          Console Output
+        </Typography>
+      </Box>
+      <Box
+        sx={{
+          p: 2,
+          maxHeight: isEditorFullscreen ? 220 : 160,
+          overflowY: "auto",
+          fontFamily: 'Consolas, Monaco, "Courier New", monospace',
+          fontSize: ".82rem",
+        }}
+      >
+        {consoleOutput.map((line, idx) => (
+          <Typography
+            key={idx}
+            sx={{
+              color: line.type === "error" ? "#f87171" : line.type === "info" ? "#94a3b8" : "#9cdcfe",
+              fontFamily: "inherit",
+              fontSize: "inherit",
+              mb: 0.5,
+              whiteSpace: "pre-wrap",
+              wordBreak: "break-word",
+            }}
+          >
+            {line.type === "error" ? "✗ " : "> "}
+            {line.text}
+          </Typography>
+        ))}
+      </Box>
+    </Paper>
+  );
+
+  return (
+    <InterviewerLayout>
+      {/* Header Metadata banner */}
+      <Paper
+        elevation={0}
+        sx={{
+          mb: 4,
+          p: { xs: 2, sm: 3, md: 4 },
+          borderRadius: 4,
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: 2,
+          bgcolor: cardBg,
+          backdropFilter: "blur(10px)",
+          border: `1px solid ${borderColor}`,
+        }}
+      >
+        {/* Left Side */}
+        <Box>
+          <Typography
+            sx={{
+              fontWeight: 850,
+              letterSpacing: "-.03em",
+              fontSize: { xs: "1.7rem", sm: "2rem", md: "2.4rem" },
+              color: textColor,
+            }}
+          >
+            Interview Room
+          </Typography>
+          <Typography sx={{ color: subText, mt: 1 }}>
+            Candidate: <b>{interviewData.candidate}</b> • Position: <b>{interviewData.position}</b>
+          </Typography>
+          <Button
+            component={Link}
+            to="/candidate-profile-v"
+            state={{ applicant: interviewData }}
+            startIcon={<PersonIcon sx={{ fontSize: 16 }} />}
+            size="small"
+            sx={{
+              mt: 1.5,
+              textTransform: "none",
+              fontWeight: 700,
+              fontSize: "0.78rem",
+              borderRadius: 3,
+              px: 1.8,
+              py: 0.6,
+              color: primaryColor,
+              border: `1px solid ${primaryColor}55`,
+              "&:hover": { bgcolor: `${primaryColor}0f`, borderColor: primaryColor },
+            }}
+          >
+            View Candidate Profile
+          </Button>
+        </Box>
+
+        {/* Right Side */}
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 1,
+            background: `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`,
+            color: "#fff",
+            px: 3.5,
+            py: 1.3,
+            borderRadius: 3,
+            fontWeight: 700,
+          }}
+        >
+          🕒
+          <Typography fontWeight={700}>{formatElapsedTime(elapsedSeconds)}</Typography>
+        </Box>
+      </Paper>
+
+      {/* Workspace Split-Screen Grid */}
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: { xs: "1fr", lg: "1.4fr", xl: "1.7fr .9fr" },
+          alignItems: "start",
+          gap: { xs: 3, md: 4 },
+          mb: 4,
+        }}
+      >
+        {/* Coding Playground (docked / non-fullscreen render) */}
+        {!isEditorFullscreen && (
+          <Box>
+            <Typography
+              sx={{ fontWeight: 800, fontSize: { xs: "1.2rem", sm: "1.4rem" }, mb: 2, color: textColor }}
             >
-                <Paper
-                    sx={{
-                        position: {
-                            xs: "static",
-                            md: "sticky",
-                        },
-                        top: 24,
-                        p: {
-                            xs: 1.75,
-                            sm: 3,
-                            md: 4,
-                        },
-                        bgcolor: darkMode
-                            ? "rgba(30,41,59,.45)"
-                            : "#fff",
-                        backdropFilter: "blur(12px)",
-                        border: `1px solid ${darkMode
-                            ? "rgba(255,255,255,.06)"
-                            : "rgba(0,0,0,.05)"
-                            }`,
-                        borderRadius: {
-                            xs: 3,
-                            md: 5,
-                        },
-                        boxShadow: darkMode
-                            ? "0 10px 30px rgba(0,0,0,.25)"
-                            : "0 10px 30px rgba(0,0,0,.03)",
-                        transition: ".3s",
-                        "&:hover": {
-                            transform: "translateY(-3px)",
-                        }
-                    }}
-                >
-                    <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: 1.5 }}>
-                        <Box>
-                            <Typography
-                                sx={{
-                                    fontWeight: 900,
-                                    lineHeight: 1.3,
-                                    fontSize: {
-                                        xs: "1.25rem",
-                                        sm: "1.6rem",
-                                        md: "2rem",
-                                    },
-                                }}
-                            >
-                                {interview.position}
-                            </Typography>
-                            <Typography
-                                sx={{
-                                    color: "#10b981",
-                                    fontSize: {
-                                        xs: ".9rem",
-                                        md: "1rem",
-                                    }
-                                }}
-                            >
-                                {interview.company}
-                            </Typography>
-                        </Box>
+              Live Coding Workspace
+            </Typography>
+            
+            <Paper
+              elevation={6}
+              sx={{
+                borderRadius: 4,
+                overflow: "hidden",
+                bgcolor: "#1e1e1e",
+                color: "#ffffff",
+                display: "flex",
+                flexDirection: "column",
+                height: 420,
+                boxShadow: "0 10px 30px rgba(0,0,0,0.25)",
+              }}
+            >
+              {editorTopBar}
 
-                        <Button
-                            variant="outlined"
-                            size="small"
-                            startIcon={<FaBriefcase size={12} />}
-                            onClick={() => navigate("/browse-jobs")}
-                            sx={{
-                                textTransform: "none",
-                                fontWeight: 700,
-                                fontSize: ".78rem",
-                                borderRadius: 3,
-                                color: "#10b981",
-                                borderColor: "rgba(16,185,129,.4)",
-                                "&:hover": {
-                                    borderColor: "#10b981",
-                                    bgcolor: darkMode ? "rgba(16,185,129,.1)" : "rgba(16,185,129,.06)",
-                                },
-                            }}
-                        >
-                            View Job Details
-                        </Button>
-                    </Box>
-                    <Box
-                        sx={{
-                            display: "grid",
-                            gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-                            gap: 2,
-                            mt: 2
-                        }}
-                    >
-                        <Box
-                            sx={{
-                                height: {
-                                    xs: 170,
-                                    sm: 220,
-                                    md: 260,
-                                },
-                                bgcolor: "#111827",
-                                borderRadius: 2,
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                color: "#fff"
-                            }}
-                        >
-                            <Box sx={{ textAlign: "center" }}>
-                                <Avatar
-                                    sx={{
-                                        mx: "auto",
-                                        mb: 2,
-                                        width: {
-                                            xs: 56,
-                                            sm: 64,
-                                        },
-                                        height: {
-                                            xs: 56,
-                                            sm: 64,
-                                        },
-                                        bgcolor: "#10b981",
-                                    }}
-                                >
-                                    I
-                                </Avatar>
-                                <Typography fontWeight={700}>
-                                    Interviewer
-                                </Typography>
-                                <Typography variant="body2">
-                                    Camera Feed
-                                </Typography>
-                            </Box>
-                        </Box>
-                        <Box
-                            sx={{
-                                height: {
-                                    xs: 180,
-                                    sm: 240,
-                                    md: 260,
-                                },
-                                bgcolor: "#1f2937",
-                                borderRadius: 2,
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                color: "#fff"
-                            }}
-                        >
-                            <Box sx={{ textAlign: "center" }}>
-                                <Avatar
-                                    sx={{
-                                        mx: "auto",
-                                        mb: 2,
-                                        width: 64,
-                                        height: 64,
-                                        bgcolor: "#2563eb",
-                                    }}
-                                >
-                                    Y
-                                </Avatar>
-                                <Typography fontWeight={700}>
-                                    You
-                                </Typography>
-                                <Typography variant="body2">
-                                    Camera Preview
-                                </Typography>
-                            </Box>
-                        </Box>
-                    </Box>
-                    <Box
-                        sx={{
-                            display: "flex",
-                            justifyContent: "center",
-                            flexWrap: "wrap",
-                            gap: {
-                                xs: 1,
-                                sm: 2,
-                            },
-                            mt: {
-                                xs: 2,
-                                md: 3,
-                            },
-                            mt: 3
-                        }}
-                    >
-                        <IconButton
-                            color={mic ? "success" : "error"}
-                            onClick={() => setMic(!mic)}
-                            sx={{
-                                width: {
-                                    xs: 44,
-                                    sm: 52,
-                                },
-                                height: {
-                                    xs: 44,
-                                    sm: 52,
-                                },
-                                borderRadius: "50%",
-                                transition: ".25s",
-                                "&:hover": {
-                                    transform: "scale(1.08)",
-                                },
-                            }}
-                        >
-                            {mic
-                                ? <FaMicrophone />
-                                : <FaMicrophoneSlash />
-                            }
-                        </IconButton>
-                        <IconButton
-                            color={cam ? "success" : "error"}
-                            onClick={() => setCam(!cam)}
-                            sx={{
-                                width: {
-                                    xs: 44,
-                                    sm: 52,
-                                },
-                                height: {
-                                    xs: 44,
-                                    sm: 52,
-                                },
-                                borderRadius: "50%",
-                                transition: ".25s",
-                                "&:hover": {
-                                    transform: "scale(1.08)",
-                                },
-                            }}
-                        >
-                            {cam
-                                ? <FaVideo />
-                                : <FaVideoSlash />
-                            }
-                        </IconButton>
-                        <IconButton
-                            color="primary"
-                            sx={{
-                                width: {
-                                    xs: 44,
-                                    sm: 52,
-                                },
-                                height: {
-                                    xs: 44,
-                                    sm: 52,
-                                },
-                                borderRadius: "50%",
-                                transition: ".25s",
-                                "&:hover": {
-                                    transform: "scale(1.08)",
-                                },
-                            }}
-                        >
-                            <FaDesktop />
-                        </IconButton>
-                        <IconButton
-                            color="primary"
-                            sx={{
-                                width: {
-                                    xs: 44,
-                                    sm: 52,
-                                },
-                                height: {
-                                    xs: 44,
-                                    sm: 52,
-                                },
-                                borderRadius: "50%",
-                                transition: ".25s",
-                                "&:hover": {
-                                    transform: "scale(1.08)",
-                                },
-                            }}
-                        >
-                            <FaComments />
-                        </IconButton>
-                        <IconButton
-                            onClick={() => {
-                                if (window.confirm("Leave the interview?")) {
-                                    navigate("/my-interviews");
-                                }
-                            }}
-                            sx={{
-                                width: {
-                                    xs: 44,
-                                    sm: 52,
-                                },
-                                height: {
-                                    xs: 44,
-                                    sm: 52,
-                                },
-                                borderRadius: "50%",
-                                transition: ".25s",
-                                "&:hover": {
-                                    transform: "scale(1.08)",
-                                },
-                            }}
-                        >
-                            <FaPhoneSlash />
-                        </IconButton>
-                    </Box>
+              <Box sx={{ flexGrow: 1, position: "relative", minHeight: 0, overflow: "hidden" }}>
+                <Editor
+                  height="100%"
+                  width="100%"
+                  language={language}
+                  theme="vs-dark"
+                  value={code}
+                  onMount={handleEditorDidMount}
+                  onChange={handleEditorChange}
+                  options={{
+                    readOnly: true,
+                    minimap: { enabled: false },
+                    automaticLayout: true,
+                    fontSize: 14,
+                    fontFamily: 'Consolas, Monaco, "Courier New", monospace',
+                    scrollBeyondLastLine: false,
+                    wordWrap: "off",
+                    padding: { top: 16, bottom: 16 },
+                    smoothScrolling: true,
+                    cursorBlinking: "smooth",
+                    renderLineHighlight: "all",
+                    tabSize: 2,
+                    scrollbar: {
+                      vertical: "visible",
+                      horizontal: "visible",
+                      verticalScrollbarSize: 12,
+                      horizontalScrollbarSize: 12,
+                    },
+                  }}
+                />
+              </Box>
+            </Paper>
 
-                    {/* Coding Question Panel */}
-                    <Paper
-                        elevation={0}
-                        sx={{
-                            mt: 3,
-                            p: { xs: 2, sm: 2.5 },
-                            borderRadius: 4,
-                            bgcolor: darkMode ? "rgba(15,23,42,.4)" : "#f8fafc",
-                            border: `1px solid ${darkMode ? "rgba(255,255,255,.06)" : "rgba(0,0,0,.05)"}`,
-                        }}
-                    >
-                        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 1 }}>
-                            <Typography sx={{ fontWeight: 800, fontSize: "1rem" }}>
-                                Coding Question
-                            </Typography>
-                            <Chip
-                                label="Medium"
-                                size="small"
-                                sx={{
-                                    fontWeight: 700,
-                                    fontSize: ".7rem",
-                                    bgcolor: "rgba(245,158,11,.12)",
-                                    color: "#f59e0b",
-                                    border: "1px solid rgba(245,158,11,.3)",
-                                }}
-                            />
-                        </Box>
-                        <Typography sx={{ fontWeight: 700, fontSize: ".92rem", mb: 0.5 }}>
-                            Longest Substring Without Repeating Characters
-                        </Typography>
-                        <Typography sx={{ fontSize: ".85rem", color: darkMode ? "#94a3b8" : "#64748b", lineHeight: 1.6 }}>
-                            Given a string <code>s</code>, find the length of the longest substring without
-                            repeating characters. Implement an efficient solution and test it against the
-                            provided cases below before running.
-                        </Typography>
-                    </Paper>
+            {runButton}
+            {consolePanel}
+          </Box>
+        )}
 
-                    {/* Live Coding Workspace */}
-                    <Typography sx={{ fontWeight: 800, fontSize: "1.1rem", mt: 3, mb: 1.5 }}>
-                        Live Coding Workspace
-                    </Typography>
+        {/* Placeholder that keeps the grid column reserved while fullscreen is open */}
+        {isEditorFullscreen && (
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              minHeight: 420,
+              borderRadius: 4,
+              border: `1px dashed ${borderColor}`,
+              color: subText,
+              fontSize: ".85rem",
+            }}
+          >
+            Code workspace is in full screen — press Esc or the exit icon to return.
+          </Box>
+        )}
 
-                    <Paper
-                        elevation={6}
-                        sx={{
-                            borderRadius: 4,
-                            overflow: "hidden",
-                            bgcolor: "#1e1e1e",
-                            color: "#ffffff",
-                            display: "flex",
-                            flexDirection: "column",
-                            height: {
-                                xs: 380,
-                                md: 440,
-                            },
-                            boxShadow: "0 10px 30px rgba(0,0,0,0.25)",
-                        }}
-                    >
-                        {/* Editor Top Bar */}
-                        <Box
-                            sx={{
-                                bgcolor: "#181818",
-                                px: { xs: 2, md: 3 },
-                                py: 1.5,
-                                borderBottom: "1px solid #2d2d2d",
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                                flexWrap: "wrap",
-                                gap: 1,
-                            }}
-                        >
-                            <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
-                                <Box sx={{ width: 12, height: 12, borderRadius: "50%", bgcolor: "#ff5f56" }} />
-                                <Box sx={{ width: 12, height: 12, borderRadius: "50%", bgcolor: "#ffbd2e" }} />
-                                <Box sx={{ width: 12, height: 12, borderRadius: "50%", bgcolor: "#27c93f" }} />
-                                <Typography variant="caption" sx={{ ml: 2, color: "#858585", fontFamily: "monospace", fontWeight: "bold" }}>
-                                    longest_substring - Shared Workspace
-                                </Typography>
-                            </Box>
+        {/* Right Column — Video / Notes / Chat */}
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 3, minWidth: 0 }}>
+          <Typography sx={{ fontWeight: 800, fontSize: { xs: "1.2rem", sm: "1.4rem" }, color: textColor }}>
+            Video Meeting
+          </Typography>
 
-                            {/* Language Selector */}
-                            <Select
-                                size="small"
-                                value={language}
-                                onChange={handleLanguageChange}
-                                sx={{
-                                    fontSize: ".8rem",
-                                    color: "#e2e8f0",
-                                    height: 32,
-                                    minWidth: 130,
-                                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "#3a3a3a" },
-                                    "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "#10b981" },
-                                    "& .MuiSvgIcon-root": { color: "#e2e8f0" },
-                                }}
-                            >
-                                {LANGUAGE_OPTIONS.map((opt) => (
-                                    <MenuItem key={opt.value} value={opt.value}>
-                                        {opt.label}
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </Box>
+          {/* Candidate Screen Feed */}
+          <Paper
+            elevation={6}
+            sx={{
+              height: { xs: 200, md: 210 },
+              borderRadius: 4,
+              overflow: "hidden",
+              position: "relative",
+              bgcolor: cardBg,
+              backdropFilter: "blur(10px)",
+              border: `1px solid ${borderColor}`,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexShrink: 0,
+            }}
+          >
+            <Avatar
+              sx={{
+                width: { xs: 54, md: 60 },
+                height: { xs: 54, md: 60 },
+                background: `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`,
+                fontSize: "1.6rem",
+                fontWeight: "bold",
+                boxShadow: 3,
+              }}
+            >
+              {interviewData.company?.charAt(0) || "C"}
+            </Avatar>
 
-                        {/* Monaco Code Editor Workspace */}
-                        <Box sx={{ flexGrow: 1, position: "relative", overflow: "hidden" }}>
-                            <Editor
-                                height="100%"
-                                width="100%"
-                                language={language}
-                                theme="vs-dark"
-                                value={code}
-                                onChange={handleEditorChange}
-                                options={{
-                                    fontSize: 14,
-                                    fontFamily: 'Consolas, Monaco, "Courier New", monospace',
-                                    minimap: { enabled: false },
-                                    scrollBeyondLastLine: false,
-                                    automaticLayout: true,
-                                    wordWrap: "on",
-                                    padding: { top: 16, bottom: 16 },
-                                    smoothScrolling: true,
-                                    cursorBlinking: "smooth",
-                                    renderLineHighlight: "all",
-                                    tabSize: 2,
-                                    scrollbar: {
-                                        vertical: "auto",
-                                        horizontal: "auto",
-                                        verticalScrollbarSize: 10,
-                                        horizontalScrollbarSize: 10,
-                                    },
-                                }}
-                            />
-                        </Box>
-                    </Paper>
-
-                    {/* Run Code Button */}
-                    <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
-                        <Button
-                            onClick={handleRunCode}
-                            disabled={isRunning}
-                            variant="contained"
-                            startIcon={<FaPlay size={12} />}
-                            sx={{
-                                background: "linear-gradient(90deg,#10b981,#059669)",
-                                "&:hover": { background: "linear-gradient(90deg,#059669,#047857)" },
-                                "&.Mui-disabled": {
-                                    background: darkMode ? "rgba(255,255,255,.08)" : "rgba(0,0,0,.08)",
-                                    color: darkMode ? "#64748b" : "#94a3b8",
-                                },
-                                borderRadius: 3,
-                                textTransform: "none",
-                                fontWeight: 700,
-                                px: 3,
-                                py: 1,
-                            }}
-                        >
-                            {isRunning ? "Running..." : "Run Code"}
-                        </Button>
-                    </Box>
-
-                    {/* Console Output */}
-                    <Paper
-                        elevation={0}
-                        sx={{
-                            mt: 2,
-                            borderRadius: 4,
-                            overflow: "hidden",
-                            bgcolor: "#111827",
-                            border: "1px solid #2d2d2d",
-                        }}
-                    >
-                        <Box sx={{ bgcolor: "#181818", px: 2.5, py: 1, borderBottom: "1px solid #2d2d2d" }}>
-                            <Typography variant="caption" sx={{ color: "#858585", fontFamily: "monospace", fontWeight: "bold" }}>
-                                Console Output
-                            </Typography>
-                        </Box>
-                        <Box
-                            sx={{
-                                p: 2,
-                                maxHeight: 160,
-                                overflowY: "auto",
-                                fontFamily: 'Consolas, Monaco, "Courier New", monospace',
-                                fontSize: ".82rem",
-                            }}
-                        >
-                            {consoleOutput.map((line, idx) => (
-                                <Typography
-                                    key={idx}
-                                    sx={{
-                                        color: line.type === "error" ? "#f87171" : line.type === "info" ? "#94a3b8" : "#9cdcfe",
-                                        fontFamily: "inherit",
-                                        fontSize: "inherit",
-                                        mb: 0.5,
-                                        whiteSpace: "pre-wrap",
-                                    }}
-                                >
-                                    {line.type === "error" ? "✗ " : "> "}
-                                    {line.text}
-                                </Typography>
-                            ))}
-                        </Box>
-                    </Paper>
-                </Paper>
-                <Paper
-                    sx={{
-                        position: {
-                            xs: "static",
-                            md: "sticky",
-                        },
-                        top: 24,
-                        p: {
-                            xs: 1.75,
-                            sm: 3,
-                            md: 4,
-                        },
-                        mt: {
-                            xs: 2,
-                            md: 3,
-                        },
-                        borderRadius: 3
-                    }}
-                >
-                    <Avatar
-                        sx={{
-                            width: {
-                                xs: 50,
-                                sm: 64,
-                            },
-                            height: {
-                                xs: 50,
-                                sm: 64,
-                            },
-                            bgcolor: "#10b981",
-                            mb: 2
-                        }}
-                    >
-                        {interview.company?.charAt(0)}
-                    </Avatar>
-                    <Typography
-                        variant="h6"
-                        fontWeight={800}
-                        sx={{ mb: 2 }}
-                    >
-                        Interview Details
-                    </Typography>
-                    <Typography
-                        component="div"
-                        sx={{
-                            mb: 1.5,
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: {
-                                xs: "flex-start",
-                                md: "center",
-                            },
-                            flexDirection: {
-                                xs: "column",
-                                md: "row",
-                            },
-                            gap: {
-                                xs: .5,
-                                md: 0,
-                            },
-                            fontSize: ".95rem",
-                        }}
-                    >
-                        <Box component="span" fontWeight={700}>
-                            Company
-                        </Box>
-                        <Box component="span">
-                            {interview.company}
-                        </Box>
-                        <Box
-                            sx={{
-                                display: "flex",
-                                gap: 1,
-                                mt: 2,
-                                flexWrap: "wrap",
-                            }}
-                        >
-                            <Chip
-                                label="Live"
-                                color="success"
-                                size="small"
-                            />
-                            <Chip
-                                label={interview.mode}
-                                size="small"
-                                color="primary"
-                            />
-                        </Box>
-                    </Typography>
-                    <Typography
-                        sx={{
-                            mb: 1.5,
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: {
-                                xs: "flex-start",
-                                md: "center",
-                            },
-                            flexDirection: {
-                                xs: "column",
-                                md: "row",
-                            },
-                            gap: {
-                                xs: .5,
-                                md: 0,
-                            },
-                            fontSize: ".95rem",
-                        }}
-                    >
-                        <Box component="span" fontWeight={700}>
-                            Position
-                        </Box>
-                        <Box component="span">
-                            {interview.position}
-                        </Box>
-                    </Typography>
-                    <Typography
-                        sx={{
-                            mb: 1.5,
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: {
-                                xs: "flex-start",
-                                md: "center",
-                            },
-                            flexDirection: {
-                                xs: "column",
-                                md: "row",
-                            },
-                            gap: {
-                                xs: .5,
-                                md: 0,
-                            },
-                            fontSize: ".95rem",
-                        }}
-                    >
-                        <Box component="span" fontWeight={700}>
-                            Type
-                        </Box>
-                        <Box component="span">
-                            {interview.type}
-                        </Box>
-                    </Typography>
-                    <Typography
-                        sx={{
-                            mb: 1.5,
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: {
-                                xs: "flex-start",
-                                md: "center",
-                            },
-                            flexDirection: {
-                                xs: "column",
-                                md: "row",
-                            },
-                            gap: {
-                                xs: .5,
-                                md: 0,
-                            },
-                            fontSize: ".95rem",
-                        }}
-                    >
-                        <Box component="span" fontWeight={700}>
-                            Mode
-                        </Box>
-                        <Box component="span">
-                            {interview.mode}
-                        </Box>
-                    </Typography>
-                    <Typography
-                        sx={{
-                            mb: 1.5,
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: {
-                                xs: "flex-start",
-                                md: "center",
-                            },
-                            flexDirection: {
-                                xs: "column",
-                                md: "row",
-                            },
-                            gap: {
-                                xs: .5,
-                                md: 0,
-                            },
-                            fontSize: ".95rem",
-                        }}
-                    >
-                        <Box component="span" fontWeight={700}>
-                            Interviewer
-                        </Box>
-                        <Box component="span">
-                            {interview.interviewer}
-                        </Box>
-                    </Typography>
-                    <Typography
-                        sx={{
-                            mb: 1.5,
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: {
-                                xs: "flex-start",
-                                md: "center",
-                            },
-                            flexDirection: {
-                                xs: "column",
-                                md: "row",
-                            },
-                            gap: {
-                                xs: .5,
-                                md: 0,
-                            },
-                            fontSize: ".95rem",
-                        }}
-                    >
-                        <Box component="span" fontWeight={700}>
-                            Date
-                        </Box>
-                        <Box component="span">
-                            {interview.date}
-                        </Box>
-                    </Typography>
-                    <Typography
-                        sx={{
-                            mb: 1.5,
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: {
-                                xs: "flex-start",
-                                md: "center",
-                            },
-                            flexDirection: {
-                                xs: "column",
-                                md: "row",
-                            },
-                            gap: {
-                                xs: .5,
-                                md: 0,
-                            },
-                            fontSize: ".95rem",
-                        }}
-                    >
-                        <Box component="span" fontWeight={700}>
-                            Time
-                        </Box>
-                        <Box component="span">
-                            {interview.time}
-                        </Box>
-                    </Typography>
-                    <Typography
-                        sx={{
-                            mb: 1.5,
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: {
-                                xs: "flex-start",
-                                md: "center",
-                            },
-                            flexDirection: {
-                                xs: "column",
-                                md: "row",
-                            },
-                            gap: {
-                                xs: .5,
-                                md: 0,
-                            },
-                            fontSize: ".95rem",
-                        }}
-                    >
-                        <Box component="span" fontWeight={700}>
-                            Duration
-                        </Box>
-                        <Box component="span">
-                            {interview.duration}
-                        </Box>
-                    </Typography>
-                    <Typography
-                        sx={{
-                            mt: 3,
-                            fontWeight: 800,
-                            fontSize: {
-                                xs: ".9rem",
-                                md: "1rem",
-                            },
-                            color: "#10b981",
-                        }}
-                    >
-                        <b>Live Timer:</b>
-                        {fmt(time)}
-                    </Typography>
-
-                    {/* My Notes (candidate's personal scratchpad) */}
-                    <Paper
-                        elevation={0}
-                        sx={{
-                            mt: 3,
-                            p: { xs: 1.75, sm: 2.5 },
-                            borderRadius: 3,
-                            bgcolor: darkMode ? "rgba(15,23,42,.4)" : "#f8fafc",
-                            border: `1px solid ${darkMode ? "rgba(255,255,255,.06)" : "rgba(0,0,0,.05)"}`,
-                        }}
-                    >
-                        <Typography fontWeight={800} mb={1.5} fontSize=".95rem">
-                            My Notes
-                        </Typography>
-                        <TextField
-                            fullWidth
-                            multiline
-                            minRows={4}
-                            maxRows={8}
-                            placeholder="Jot down your thoughts, approach, or things to mention..."
-                            value={notes}
-                            onChange={(e) => setNotes(e.target.value)}
-                            sx={{
-                                "& .MuiOutlinedInput-root": {
-                                    fontSize: ".85rem",
-                                    bgcolor: darkMode ? "rgba(15,23,42,.4)" : "#fff",
-                                    "& fieldset": { borderColor: darkMode ? "rgba(255,255,255,.06)" : "rgba(0,0,0,.08)" },
-                                    "&:hover fieldset": { borderColor: "#10b981" },
-                                    "&.Mui-focused fieldset": { borderColor: "#10b981" },
-                                },
-                            }}
-                        />
-                    </Paper>
-
-                    {/* Chat Box */}
-                    <Paper
-                        elevation={0}
-                        sx={{
-                            mt: 3,
-                            borderRadius: 3,
-                            bgcolor: darkMode ? "rgba(15,23,42,.4)" : "#f8fafc",
-                            border: `1px solid ${darkMode ? "rgba(255,255,255,.06)" : "rgba(0,0,0,.05)"}`,
-                            display: "flex",
-                            flexDirection: "column",
-                            height: 260,
-                            overflow: "hidden",
-                        }}
-                    >
-                        <Box sx={{ px: 2, py: 1.3, borderBottom: `1px solid ${darkMode ? "rgba(255,255,255,.06)" : "rgba(0,0,0,.05)"}` }}>
-                            <Typography sx={{ fontWeight: 800, fontSize: ".9rem" }}>
-                                Chat
-                            </Typography>
-                        </Box>
-
-                        <Box sx={{ flexGrow: 1, overflowY: "auto", px: 2, py: 1.3, display: "flex", flexDirection: "column", gap: 1 }}>
-                            {chatMessages.map((msg) => (
-                                <Box
-                                    key={msg.id}
-                                    sx={{
-                                        alignSelf: msg.self ? "flex-end" : "flex-start",
-                                        maxWidth: "82%",
-                                    }}
-                                >
-                                    {!msg.self && (
-                                        <Typography variant="caption" sx={{ color: darkMode ? "#94a3b8" : "#64748b", fontWeight: 700, display: "block", mb: 0.3 }}>
-                                            {msg.sender}
-                                        </Typography>
-                                    )}
-                                    <Box
-                                        sx={{
-                                            px: 1.5,
-                                            py: 0.8,
-                                            borderRadius: 3,
-                                            fontSize: ".82rem",
-                                            background: msg.self ? "linear-gradient(90deg,#10b981,#059669)" : undefined,
-                                            bgcolor: msg.self ? undefined : darkMode ? "rgba(255,255,255,.06)" : "#fff",
-                                            color: msg.self ? "#fff" : darkMode ? "#e2e8f0" : "#0f172a",
-                                        }}
-                                    >
-                                        {msg.text}
-                                    </Box>
-                                </Box>
-                            ))}
-                            <div ref={chatEndRef} />
-                        </Box>
-
-                        <Box sx={{ display: "flex", gap: 1, p: 1.3, borderTop: `1px solid ${darkMode ? "rgba(255,255,255,.06)" : "rgba(0,0,0,.05)"}` }}>
-                            <TextField
-                                size="small"
-                                fullWidth
-                                placeholder="Type a message..."
-                                value={chatInput}
-                                onChange={(e) => setChatInput(e.target.value)}
-                                onKeyDown={(e) => {
-                                    if (e.key === "Enter") handleSendChat();
-                                }}
-                                sx={{
-                                    "& .MuiOutlinedInput-root": {
-                                        fontSize: ".82rem",
-                                        "& fieldset": { borderColor: darkMode ? "rgba(255,255,255,.06)" : "rgba(0,0,0,.08)" },
-                                        "&:hover fieldset": { borderColor: "#10b981" },
-                                        "&.Mui-focused fieldset": { borderColor: "#10b981" },
-                                    },
-                                }}
-                            />
-                            <IconButton
-                                onClick={handleSendChat}
-                                sx={{
-                                    bgcolor: "rgba(16,185,129,.15)",
-                                    color: "#10b981",
-                                    "&:hover": { bgcolor: "rgba(16,185,129,.25)" },
-                                }}
-                            >
-                                <FaPaperPlane size={14} />
-                            </IconButton>
-                        </Box>
-                    </Paper>
-
-                    <Paper
-                        sx={{
-                            position: {
-                                xs: "static",
-                                md: "sticky",
-                            },
-                            top: 24,
-                            mt: 3,
-                            p: {
-                                xs: 1.75,
-                                sm: 3,
-                                md: 4,
-                            },
-                            mt: {
-                                xs: 2,
-                                md: 3,
-                            },
-                            bgcolor: darkMode
-                                ? "rgba(16,185,129,.08)"
-                                : "rgba(16,185,129,.04)",
-                            border: "1px solid rgba(16,185,129,.18)",
-                            borderRadius: 2,
-                        }}
-                    >
-                        <Typography
-                            fontWeight={800}
-                            mb={1}
-                        >
-                            Interview Instructions
-                        </Typography>
-                        <Typography
-                            sx={{
-                                fontSize: {
-                                    xs: ".82rem",
-                                    md: ".9rem",
-                                },
-                                lineHeight: 1.8,
-                            }}
-                        >
-                            • Allow camera and microphone access.
-                            • Keep your internet connection stable.
-                            • Join from a quiet environment.
-                            • Do not refresh or close the page during the interview.
-                            • Wait until the interviewer ends the session.
-                        </Typography>
-                    </Paper>
-                </Paper>
+            <Box
+              sx={{
+                position: "absolute",
+                bottom: 12,
+                left: 12,
+                bgcolor: "rgba(0, 0, 0, 0.6)",
+                backdropFilter: "blur(4px)",
+                px: 2,
+                py: 0.5,
+                borderRadius: 2,
+                color: "#ffffff",
+              }}
+            >
+              <Typography variant="caption" fontWeight="bold">
+                {interviewData.candidate} (Candidate)
+              </Typography>
             </Box>
-        </CandidateLayout>
-    );
+            <Box
+              sx={{
+                position: "absolute",
+                top: 12,
+                right: 12,
+                background: `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`,
+                color: "#fff",
+                px: 1.5,
+                py: 0.4,
+                borderRadius: 5,
+                fontSize: 12,
+                fontWeight: 700,
+              }}
+            >
+              LIVE
+            </Box>
+          </Paper>
+
+          {/* Interviewer Screen Feed */}
+          <Paper
+            elevation={6}
+            sx={{
+              height: { xs: 180, md: 190 },
+              borderRadius: 4,
+              overflow: "hidden",
+              position: "relative",
+              bgcolor: cardBg,
+              backdropFilter: "blur(10px)",
+              border: `1px solid ${borderColor}`,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              transition: "background-color 0.3s",
+              flexShrink: 0,
+            }}
+          >
+            {cameraActive ? (
+              <Avatar
+                sx={{
+                  width: 56,
+                  height: 56,
+                  background: `linear-gradient(135deg, ${secondaryColor}, ${primaryColor})`,
+                  fontSize: "1.5rem",
+                  fontWeight: "bold",
+                  boxShadow: 3,
+                }}
+              >
+                RS
+              </Avatar>
+            ) : (
+              <Box sx={{ textAlign: "center", color: subText }}>
+                <VideocamOffIcon sx={{ fontSize: 36, mb: 1, opacity: 0.7 }} />
+                <Typography variant="body2" fontWeight="bold">
+                  Camera Off
+                </Typography>
+              </Box>
+            )}
+
+            <Box
+              sx={{
+                position: "absolute",
+                bottom: 12,
+                left: 12,
+                bgcolor: "rgba(0, 0, 0, 0.6)",
+                backdropFilter: "blur(4px)",
+                px: 2,
+                py: 0.5,
+                borderRadius: 2,
+                color: "#ffffff",
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+              }}
+            >
+              <Typography variant="caption" fontWeight="bold">
+                Rahul Sharma (Interviewer)
+              </Typography>
+              {!micActive && <MicOffIcon sx={{ fontSize: 14, color: "#f43f5e" }} />}
+            </Box>
+          </Paper>
+
+          {/* Interview Notes */}
+          <Paper
+            elevation={0}
+            sx={{
+              p: 2.5,
+              borderRadius: 4,
+              bgcolor: cardBg,
+              border: `1px solid ${borderColor}`,
+              flexShrink: 0,
+            }}
+          >
+            <Typography sx={{ fontWeight: 800, fontSize: ".95rem", mb: 1.5, color: textColor }}>
+              Interview Notes
+            </Typography>
+            <TextField
+              fullWidth
+              multiline
+              minRows={3}
+              maxRows={6}
+              placeholder="Jot down observations, strengths, and follow-up questions..."
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  fontSize: ".85rem",
+                  color: textColor,
+                  bgcolor: colors.input || cardBg,
+                  "& fieldset": { borderColor: borderColor },
+                  "&:hover fieldset": { borderColor: primaryColor },
+                  "&.Mui-focused fieldset": { borderColor: primaryColor },
+                },
+              }}
+            />
+          </Paper>
+
+          {/* Chat Box */}
+          <Paper
+            elevation={0}
+            sx={{
+              borderRadius: 4,
+              bgcolor: cardBg,
+              border: `1px solid ${borderColor}`,
+              display: "flex",
+              flexDirection: "column",
+              height: 260,
+              overflow: "hidden",
+              flexShrink: 0,
+            }}
+          >
+            <Box sx={{ px: 2.5, py: 1.5, borderBottom: `1px solid ${borderColor}`, flexShrink: 0 }}>
+              <Typography sx={{ fontWeight: 800, fontSize: ".9rem", color: textColor }}>Chat</Typography>
+            </Box>
+            <Box
+              sx={{
+                flexGrow: 1,
+                overflowY: "auto",
+                px: 2,
+                py: 1.5,
+                display: "flex",
+                flexDirection: "column",
+                gap: 1,
+                minHeight: 0,
+              }}
+            >
+              {chatMessages.map((msg) => (
+                <Box key={msg.id} sx={{ alignSelf: msg.self ? "flex-end" : "flex-start", maxWidth: "80%" }}>
+                  {!msg.self && (
+                    <Typography variant="caption" sx={{ color: subText, fontWeight: 700, display: "block", mb: 0.3 }}>
+                      {msg.sender}
+                    </Typography>
+                  )}
+                  <Box
+                    sx={{
+                      px: 1.5,
+                      py: 0.8,
+                      borderRadius: 3,
+                      fontSize: ".82rem",
+                      wordBreak: "break-word",
+                      background: msg.self ? `linear-gradient(90deg, ${primaryColor}, ${secondaryColor})` : undefined,
+                      bgcolor: msg.self ? undefined : darkMode ? "rgba(255,255,255,.06)" : "#f1f5f9",
+                      color: msg.self ? "#fff" : textColor,
+                    }}
+                  >
+                    {msg.text}
+                  </Box>
+                </Box>
+              ))}
+              <div ref={chatEndRef} />
+            </Box>
+            <Box sx={{ display: "flex", gap: 1, p: 1.5, borderTop: `1px solid ${borderColor}`, flexShrink: 0 }}>
+              <TextField
+                size="small"
+                fullWidth
+                placeholder="Type a message..."
+                value={chatInput}
+                onChange={(e) => setChatInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") handleSendChat();
+                }}
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    fontSize: ".82rem",
+                    color: textColor,
+                    "& fieldset": { borderColor: borderColor },
+                    "&:hover fieldset": { borderColor: primaryColor },
+                    "&.Mui-focused fieldset": { borderColor: primaryColor },
+                  },
+                }}
+              />
+              <IconButton
+                onClick={handleSendChat}
+                sx={{
+                  bgcolor: `${primaryColor}26`,
+                  color: primaryColor,
+                  "&:hover": { bgcolor: `${primaryColor}40` },
+                }}
+              >
+                <SendIcon fontSize="small" />
+              </IconButton>
+            </Box>
+          </Paper>
+        </Box>
+      </Box>
+
+      {/* Meeting Controls Control Tray */}
+      <Paper
+        elevation={6}
+        sx={{
+          width: "100%",
+          mt: 4,
+          maxWidth: "100%",
+          mx: "auto",
+          p: { xs: 2, sm: 2.5, md: 3 },
+          borderRadius: 4,
+          bgcolor: cardBg,
+          backdropFilter: "blur(10px)",
+          border: `1px solid ${borderColor}`,
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: 2,
+          bottom: 16,
+          zIndex: 5,
+        }}
+      >
+        {/* Audio/Video Toggle Controls */}
+        <Box sx={{ display: "flex", gap: 1.5 }}>
+          <IconButton
+            onClick={() => setMicActive(!micActive)}
+            sx={{
+              bgcolor: micActive ? `${primaryColor}26` : "rgba(244, 63, 94, 0.15)",
+              color: micActive ? primaryColor : "#f43f5e",
+              "&:hover": { bgcolor: micActive ? `${primaryColor}40` : "rgba(244, 63, 94, 0.25)" },
+              borderRadius: 3,
+              p: 1.5,
+            }}
+          >
+            {micActive ? <MicIcon /> : <MicOffIcon />}
+          </IconButton>
+          <IconButton
+            onClick={() => setCameraActive(!cameraActive)}
+            sx={{
+              bgcolor: cameraActive ? `${primaryColor}26` : "rgba(244, 63, 94, 0.15)",
+              color: cameraActive ? primaryColor : "#f43f5e",
+              "&:hover": { bgcolor: cameraActive ? `${primaryColor}40` : "rgba(244, 63, 94, 0.25)" },
+              borderRadius: 3,
+              p: 1.5,
+            }}
+          >
+            {cameraActive ? <VideocamIcon /> : <VideocamOffIcon />}
+          </IconButton>
+          <IconButton
+            sx={{
+              bgcolor: darkMode ? "rgba(255,255,255,0.04)" : "#f1f5f9",
+              color: primaryColor,
+              "&:hover": { bgcolor: darkMode ? "rgba(255,255,255,0.08)" : "#e2e8f0" },
+              borderRadius: 3,
+              p: 1.5,
+            }}
+          >
+            <ScreenShareIcon />
+          </IconButton>
+        </Box>
+
+        {/* Action Navigation Controls */}
+        <Box sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, width: { xs: "100%", sm: "auto" }, gap: 2 }}>
+          <Button
+            component={Link}
+            to="/feedback"
+            state={{ candidateName: interviewData.candidate }}
+            variant="contained"
+            startIcon={<RateReviewIcon sx={{ fontSize: 16 }} />}
+            sx={{
+              width: { xs: "100%", sm: "auto" },
+              background: `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`,
+              "&:hover": { background: `linear-gradient(135deg, ${primaryColor}, ${primaryColor})` },
+              borderRadius: 3,
+              textTransform: "none",
+              fontWeight: "bold",
+              px: 3,
+              py: 1.2,
+              fontSize: "0.875rem",
+            }}
+          >
+            Submit Feedback
+          </Button>
+          <Button
+            component={Link}
+            to="/assigned-interviews"
+            variant="contained"
+            startIcon={<CallEndIcon />}
+            sx={{
+              width: { xs: "100%", sm: "auto" },
+              background: "linear-gradient(135deg,#ef4444,#dc2626)",
+              "&:hover": {
+                background: "linear-gradient(135deg,#dc2626,#b91c1c)",
+                boxShadow: "0 6px 20px rgba(244, 63, 94, 0.25)",
+              },
+              borderRadius: 3,
+              textTransform: "none",
+              fontWeight: "bold",
+              px: 3,
+              py: 1.2,
+              fontSize: "0.875rem",
+              boxShadow: "0 4px 12px rgba(244, 63, 94, 0.15)",
+            }}
+          >
+            Leave Meeting
+          </Button>
+        </Box>
+      </Paper>
+
+      {/* Fullscreen Coding Workspace Overlay */}
+      {isEditorFullscreen && (
+        <Box
+          sx={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 1300,
+            bgcolor: darkMode ? "#0b0f19" : "#0f172a",
+            display: "flex",
+            flexDirection: "column",
+            p: { xs: 2, sm: 3 },
+            overflowY: "auto",
+          }}
+        >
+          <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 2, flexShrink: 0 }}>
+            <Typography sx={{ fontWeight: 800, fontSize: "1.2rem", color: "#f1f5f9" }}>
+              Live Coding Workspace
+            </Typography>
+            <Tooltip title="Exit full screen (Esc)">
+              <IconButton
+                onClick={() => setIsEditorFullscreen(false)}
+                sx={{
+                  color: "#f1f5f9",
+                  border: "1px solid rgba(255,255,255,.15)",
+                  borderRadius: 2,
+                  "&:hover": { borderColor: primaryColor, color: primaryColor },
+                }}
+              >
+                <FullscreenExitIcon />
+              </IconButton>
+            </Tooltip>
+          </Box>
+
+          <Paper
+            elevation={6}
+            sx={{
+              borderRadius: 4,
+              overflow: "hidden",
+              bgcolor: "#1e1e1e",
+              color: "#ffffff",
+              display: "flex",
+              flexDirection: "column",
+              flexGrow: 1,
+              minHeight: 0,
+              boxShadow: "0 10px 30px rgba(0,0,0,0.35)",
+            }}
+          >
+            {editorTopBar}
+
+            <Box sx={{ flexGrow: 1, position: "relative", minHeight: 0, overflow: "hidden" }}>
+              <Editor
+                height="100%"
+                width="100%"
+                language={language}
+                theme="vs-dark"
+                value={code}
+                onMount={handleEditorDidMount}
+                onChange={handleEditorChange}
+                options={{
+                  readOnly: true,
+                  minimap: { enabled: false },
+                  automaticLayout: true,
+                  fontSize: 14,
+                  fontFamily: 'Consolas, Monaco, "Courier New", monospace',
+                  scrollBeyondLastLine: false,
+                  wordWrap: "off",
+                  padding: { top: 16, bottom: 16 },
+                  smoothScrolling: true,
+                  cursorBlinking: "smooth",
+                  renderLineHighlight: "all",
+                  tabSize: 2,
+                  scrollbar: {
+                    vertical: "visible",
+                    horizontal: "visible",
+                    verticalScrollbarSize: 12,
+                    horizontalScrollbarSize: 12,
+                  },
+                }}
+              />
+            </Box>
+          </Paper>
+
+          {runButton}
+          {consolePanel}
+        </Box>
+      )}
+    </InterviewerLayout>
+  );
 }
