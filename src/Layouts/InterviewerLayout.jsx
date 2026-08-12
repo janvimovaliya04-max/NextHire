@@ -3,7 +3,6 @@ import { useTheme } from "../context/ThemeContext";
 import useThemeColors from "../hooks/useThemeColors";
 import { useRef, useEffect, useState } from "react";
 import { Typography, Divider, Box } from "@mui/material";
-
 import {
   House,
   Video,
@@ -24,6 +23,7 @@ export default function InterviewerLayout({ children }) {
   const navigate = useNavigate();
   const { darkMode, setDarkMode } = useTheme();
   const colors = useThemeColors();
+  const [mobileMenu, setMobileMenu] = useState(false);
 
   // Colors — fully theme-driven (matches Candidate / Interviewer Settings)
   const primary = colors.primary;
@@ -38,11 +38,9 @@ export default function InterviewerLayout({ children }) {
   const contentRef = useRef(null);
   useEffect(() => {
     const savedScroll = sessionStorage.getItem("interviewerSidebarScroll");
-
     if (savedScroll && sidebarRef.current) {
       sidebarRef.current.scrollTop = Number(savedScroll);
     }
-
     requestAnimationFrame(() => {
       if (contentRef.current) {
         contentRef.current.scrollTop = 0;
@@ -50,13 +48,10 @@ export default function InterviewerLayout({ children }) {
     });
   }, [location.pathname]);
 
-  const [mobileMenu, setMobileMenu] = useState(false);
-
   // Sidebar scroll restoration
   const handleSidebarScroll = () => {
     sessionStorage.setItem("interviewerSidebarScroll", sidebarRef.current.scrollTop);
   };
-
   const handleLogout = () => {
     localStorage.clear();
     navigate("/login");
@@ -90,7 +85,6 @@ export default function InterviewerLayout({ children }) {
         { path: "/interviewer-settings", label: "Settings", icon: <Settings /> },
       ],
     },
-
   ];
 
   // Pathname title resolver
@@ -109,7 +103,6 @@ export default function InterviewerLayout({ children }) {
   // Upgraded active row styling (theme primary/secondary driven)
   const activeStyle = (path) => {
     const isActive = location.pathname === path;
-
     if (isActive) {
       return {
         backgroundColor: `${primary}1f`,
@@ -119,7 +112,6 @@ export default function InterviewerLayout({ children }) {
         paddingLeft: "10px",
       };
     }
-
     return {
       color: subTextColor,
       borderLeft: "4px solid transparent",
@@ -131,25 +123,26 @@ export default function InterviewerLayout({ children }) {
       className="h-screen flex overflow-hidden font-sans"
       style={{ backgroundColor: bgColor, color: textColor }}
     >
+
       {/* Sidebar with custom thin scrollbar */}
       <aside
         className={`
-    fixed md:static
-    top-0 left-0
-    z-50
-    w-72
-    h-screen
-    overflow-hidden
-    p-3 md:p-5
-    border-r
-    transition-all duration-300
-    flex flex-col
-
-    ${mobileMenu
+          fixed md:static
+          top-0 left-0
+          z-50
+          w-72
+          h-screen
+          overflow-hidden
+          p-3 md:p-5
+          border-r
+          transition-all duration-300
+          flex flex-col
+          
+          ${mobileMenu
             ? "translate-x-0"
             : "-translate-x-full md:translate-x-0"
           }
-  `}
+        `}
         style={{
           backgroundColor: cardColor,
           borderColor: borderColor,
@@ -162,7 +155,6 @@ export default function InterviewerLayout({ children }) {
           style={{ borderColor: borderColor }}
         >
           <div className="flex items-center gap-3">
-
             <Typography
               sx={{
                 fontWeight: 800,
@@ -191,7 +183,6 @@ export default function InterviewerLayout({ children }) {
                 >
                   {group.title}
                 </h4>
-
                 {group.items.map((item) => (
                   <Link
                     key={item.path}
@@ -203,7 +194,6 @@ export default function InterviewerLayout({ children }) {
                     <span className="text-[1.05rem] opacity-80">
                       {item.icon}
                     </span>
-
                     {item.label}
                   </Link>
                 ))}
@@ -229,7 +219,6 @@ export default function InterviewerLayout({ children }) {
               {darkMode ? <Sun /> : <Moon />}
               <span>Theme</span>
             </button>
-
             <Link
               to="/interviewer-profile"
               onClick={() => setMobileMenu(false)}
@@ -256,12 +245,10 @@ export default function InterviewerLayout({ children }) {
             >
               INT
             </div>
-
             <div className="overflow-hidden flex-1">
               <h5 className="font-semibold text-sm truncate" style={{ color: textColor }}>
                 Technical Reviewer
               </h5>
-
               <p className="text-xs truncate" style={{ color: subTextColor }}>
                 reviewer@nexthire.com
               </p>
@@ -278,14 +265,10 @@ export default function InterviewerLayout({ children }) {
           </button>
         </div>
       </aside>
-
       {
         mobileMenu && (
-
           <div
-
             onClick={() => setMobileMenu(false)}
-
             className="
               fixed inset-0
               bg-black/40
@@ -298,6 +281,7 @@ export default function InterviewerLayout({ children }) {
 
       {/* Main Panel */}
       <main className="flex-1 flex flex-col h-screen overflow-hidden w-full">
+
         {/* Topbar Header */}
         <header
           className="min-h-20 px-4 md:px-8 py-3 flex flex-wrap gap-3 justify-between items-center border-b transition-all duration-300 backdrop-blur-md"
@@ -307,9 +291,7 @@ export default function InterviewerLayout({ children }) {
             color: textColor,
           }}
         >
-
           <div className="flex items-center gap-2 md:hidden">
-
             <button
               onClick={() => setMobileMenu(true)}
               className="p-2 rounded-lg border"
@@ -317,32 +299,22 @@ export default function InterviewerLayout({ children }) {
             >
               <Menu />
             </button>
-
             <Link
               to="/candidate-notifications"
               className="relative p-2 rounded-lg border"
               style={{ borderColor: borderColor, backgroundColor: bgColor, color: textColor }}
             >
               <Bell />
-
               <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-red-500"></span>
-
             </Link>
-
           </div>
-
           <div>
             <Typography
               sx={{
                 fontWeight: 700,
                 letterSpacing: "-.02em",
                 color: textColor,
-
-                fontSize: {
-                  xs: "1.4rem",
-                  sm: "1.7rem",
-                  md: "2rem"
-                }
+                fontSize: { xs: "1.4rem", sm: "1.7rem", md: "2rem" }
               }}
             >
               {getCurrentPageTitle()}
@@ -397,7 +369,6 @@ export default function InterviewerLayout({ children }) {
               <span className="hidden sm:block">
                 Profile
               </span>
-
               <User className="sm:hidden" />
             </Link>
 
@@ -420,7 +391,6 @@ export default function InterviewerLayout({ children }) {
           className="flex-1 overflow-y-auto"
           style={{ backgroundColor: bgColor }}
         >
-
           <Box
             sx={{
               px: { xs: 2, md: 4 },
@@ -429,7 +399,6 @@ export default function InterviewerLayout({ children }) {
           >
             {children}
           </Box>
-
         </div>
       </main>
     </div>

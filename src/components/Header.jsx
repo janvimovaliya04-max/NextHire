@@ -4,7 +4,6 @@ import {
   Box,
   IconButton,
 } from "@mui/material";
-
 import { Moon, Sun } from "lucide-react";
 
 export default function Header({
@@ -21,19 +20,14 @@ export default function Header({
         sx={{
           height: 100,
           zIndex: 1200,
-
           backgroundColor: darkMode
             ? "rgba(11,15,25,.75)"
             : "rgba(255,255,255,.80)",
-
           backdropFilter: "blur(12px)",
-
           borderBottom: darkMode
             ? "1px solid rgba(255,255,255,.06)"
             : "1px solid rgba(0,0,0,.05)",
-
           color: textColor,
-
           transition:
             "background-color .45s ease, border-color .45s ease, color .45s ease",
         }}
@@ -44,6 +38,7 @@ export default function Header({
             px: { xs: 2, md: 6 },
           }}
         >
+
           {/* LOGO */}
           <Box
             sx={{
@@ -69,14 +64,11 @@ export default function Header({
               bgcolor: darkMode
                 ? "rgba(255,255,255,.05)"
                 : "rgba(0,0,0,.03)",
-
               border: darkMode
                 ? "1px solid rgba(255,255,255,.10)"
                 : "1px solid rgba(0,0,0,.08)",
-
               transition:
                 "background-color .3s ease, border-color .3s ease",
-
               "&:hover": {
                 bgcolor: darkMode
                   ? "rgba(255,255,255,.10)"

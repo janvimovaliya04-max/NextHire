@@ -10,15 +10,11 @@ export default function StatisticsSection({
 }) {
   return (
     <Box sx={{
-      mb: {
-        xs: 4,
-        md: 10,
-      }
+      mb: { xs: 4, md: 10 }
     }}>
       <Typography align="center" sx={sectionHeadingStyle}>
         Trusted Performance at Scale
       </Typography>
-
       <Typography
         align="center"
         sx={{
@@ -30,7 +26,6 @@ export default function StatisticsSection({
         A high-growth statistics indicator for platform throughput and active
         volume.
       </Typography>
-
       <Grid container spacing={4} justifyContent="center">
         {stats.map((stat) => (
           <Grid
@@ -68,7 +63,6 @@ export default function StatisticsSection({
               <Box sx={{ color: "#2563eb", mb: 1 }}>
                 {stat.icon}
               </Box>
-
               <Typography
                 sx={{
                   color: textColor,
@@ -79,7 +73,6 @@ export default function StatisticsSection({
               >
                 {stat.value}
               </Typography>
-
               <Typography
                 sx={{
                   color: subText,

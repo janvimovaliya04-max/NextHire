@@ -62,7 +62,6 @@ export function ThemeProvider({ children }) {
   // Change theme
   const setTheme = (name) => {
     console.log("Changing theme to:", name);
-
     if (themes[name]) {
       setThemeName(name);
     } else {

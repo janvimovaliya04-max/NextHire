@@ -12,7 +12,6 @@ export const CandidateProvider = ({ children }) => {
     experience: "",
     location: "",
     education: "",
-
     appliedJobs: 0,
     assessments: 0,
     interviews: 0,

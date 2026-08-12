@@ -3,7 +3,6 @@ import { useTheme } from "../context/ThemeContext";
 import { useRef, useEffect, useState } from "react";
 import { Typography, Divider, Box } from "@mui/material";
 import useThemeColors from "../hooks/useThemeColors";
-
 import {
   Menu,
   LayoutDashboard,
@@ -77,7 +76,6 @@ export default function HRLayout({ children }) {
       items: [
         { path: "/candidates", label: "Candidates", icon: <Users /> },
         { path: "/candidate-feedback", label: "Feedback", icon: <ClipboardCheck /> },
-        // <-- REMOVED candidate profile route from here!
       ],
     },
     {
@@ -151,24 +149,25 @@ export default function HRLayout({ children }) {
         color: textColor,
       }}
     >
+
       {/* Sidebar with thin custom scrollbar */}
       <aside
         className={`
-    fixed md:static
-    top-0 left-0
-    z-50
-    w-72
-    h-screen
-    overflow-hidden
-    p-3 md:p-5
-    border-r
-    transition-all duration-300
-    flex flex-col
-
-    ${mobileMenu
+          fixed md:static
+          top-0 left-0
+          z-50
+          w-72
+          h-screen
+          overflow-hidden
+          p-3 md:p-5
+          border-r
+          transition-all duration-300
+          flex flex-col
+          
+          ${mobileMenu
             ? "translate-x-0"
             : "-translate-x-full md:translate-x-0"}
-  `}
+        `}
         style={{
           backgroundColor: colors.card,
           borderColor: borderStyle,
@@ -182,8 +181,7 @@ export default function HRLayout({ children }) {
           style={{ borderColor: borderStyle }}
         >
           <div className="flex items-center gap-3">
-
-           <Typography
+            <Typography
               sx={{
                 fontWeight: 800,
                 fontSize: "1.5rem",
@@ -211,7 +209,6 @@ export default function HRLayout({ children }) {
                 >
                   {group.title}
                 </h4>
-
                 {group.items.map((item) => (
                   <Link
                     key={item.path}
@@ -231,12 +228,10 @@ export default function HRLayout({ children }) {
               </div>
             ))}
           </nav>
-
           <div
             className="md:hidden mt-3 pt-3 border-t space-y-1"
             style={{ borderColor: borderStyle }}
           >
-
             <button
               onClick={() => {
                 setDarkMode(!darkMode);
@@ -250,7 +245,6 @@ export default function HRLayout({ children }) {
               {darkMode ? <Sun /> : <Moon />}
               <span>Theme</span>
             </button>
-
             <Link
               to="/hr-profile"
               onClick={() => setMobileMenu(false)}
@@ -262,9 +256,7 @@ export default function HRLayout({ children }) {
               <User />
               <span>Profile</span>
             </Link>
-
           </div>
-
         </div>
 
         {/* Footer */}
@@ -272,7 +264,6 @@ export default function HRLayout({ children }) {
           className="border-t pt-3 pb-2 px-2 shrink-0"
           style={{ borderColor: borderStyle }}
         >
-
           <div className="flex items-center gap-2 mb-2">
             <div
               className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm"
@@ -280,18 +271,15 @@ export default function HRLayout({ children }) {
             >
               HR
             </div>
-
             <div className="min-w-0">
               <h5 className="font-semibold text-sm leading-4" style={{ color: textColor }}>
                 Admin Manager
               </h5>
-
               <p className="text-xs leading-4" style={{ color: subText }}>
                 hr@nexthire.com
               </p>
             </div>
           </div>
-
           <button
             onClick={handleLogout}
             className="md:hidden flex items-center gap-2 text-red-500 py-2 px-1 rounded-lg hover:bg-red-50"
@@ -299,18 +287,12 @@ export default function HRLayout({ children }) {
             <LogOut />
             Logout
           </button>
-
         </div>
-
       </aside>
-
       {
         mobileMenu && (
-
           <div
-
             onClick={() => setMobileMenu(false)}
-
             className="
               fixed inset-0
               bg-black/40
@@ -333,9 +315,7 @@ export default function HRLayout({ children }) {
             color: textColor,
           }}
         >
-
           <div className="flex items-center gap-2 md:hidden">
-
             <button
               onClick={() => setMobileMenu(true)}
               className="p-2 rounded-lg border"
@@ -347,7 +327,6 @@ export default function HRLayout({ children }) {
             >
               <Menu />
             </button>
-
             <Link
               to="/notifications"
               className="relative p-2 rounded-lg border"
@@ -361,11 +340,8 @@ export default function HRLayout({ children }) {
 
               {/* Notification Badge */}
               <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-red-500"></span>
-
             </Link>
-
           </div>
-
           <div>
             <Typography
               sx={{
@@ -409,9 +385,7 @@ export default function HRLayout({ children }) {
               }}
             >
               <Bell size={15} />
-
             </Link>
-
             <Divider orientation="vertical" variant="middle" flexItem sx={{ borderColor: borderStyle }} />
 
             {/* Profile Action */}
@@ -445,7 +419,6 @@ export default function HRLayout({ children }) {
           className="flex-1 overflow-y-auto"
           style={{ backgroundColor: colors.background }}
         >
-
           <Box
             sx={{
               px: { xs: 2, md: 4 },
@@ -454,7 +427,6 @@ export default function HRLayout({ children }) {
           >
             {children}
           </Box>
-
         </div>
       </main>
     </div>

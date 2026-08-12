@@ -28,12 +28,10 @@ export default function ThemeSelector() {
                             themeName === theme
                                 ? `2px solid ${currentTheme.colors.primary}`
                                 : `1px solid ${currentTheme.colors.border}`,
-
                         background:
                             themeName === theme
                                 ? currentTheme.colors.activeMenu
                                 : currentTheme.colors.card,
-
                         color:
                             themeName === theme
                                 ? currentTheme.colors.activeText

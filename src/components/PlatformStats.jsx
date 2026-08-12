@@ -4,7 +4,6 @@ import {
   Typography,
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
-
 import {
   Briefcase,
   Users,
@@ -46,7 +45,6 @@ export default function PlatformStats({
       <Typography align="center" sx={sectionHeadingStyle}>
         Trusted Performance at Scale
       </Typography>
-
       <Typography
         align="center"
         sx={{
@@ -57,7 +55,6 @@ export default function PlatformStats({
       >
         A high-growth statistics indicator for platform throughput and active volume.
       </Typography>
-
       <Grid container spacing={4} justifyContent="center">
         {stats.map((stat) => (
           <Grid key={stat.label} size={{ xs: 12, sm: 6, md: 3 }} sx={{ display: "flex" }}>
@@ -91,7 +88,6 @@ export default function PlatformStats({
               <Box sx={{ color: "#2563eb", mb: 1 }}>
                 {stat.icon}
               </Box>
-
               <Typography
                 sx={{
                   color: textColor,
@@ -102,7 +98,6 @@ export default function PlatformStats({
               >
                 {stat.value}
               </Typography>
-
               <Typography
                 sx={{
                   color: subText,

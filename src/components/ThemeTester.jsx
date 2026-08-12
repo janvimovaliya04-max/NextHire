@@ -21,7 +21,6 @@ export default function ThemeTester() {
         >
             <h3>Current Theme: {themeName}</h3>
             <p>Primary Color: {colors.primary}</p>
-
             <Button onClick={() => setTheme("light")}>Light</Button>
             <Button onClick={() => setTheme("dark")}>Dark</Button>
             <Button onClick={() => setTheme("gold")}>Gold</Button>

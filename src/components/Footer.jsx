@@ -5,11 +5,9 @@ import {
   Typography,
   IconButton,
 } from "@mui/material";
-
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { Mail } from "lucide-react";
-
 import { Link } from "react-router-dom";
 
 export default function Footer({
@@ -22,9 +20,7 @@ export default function Footer({
     textDecoration: "none",
     fontSize: ".95rem",
     transition: ".3s",
-
     display: "inline-block",
-
     marginBottom: 12,
   };
 
@@ -34,24 +30,17 @@ export default function Footer({
       sx={{
         position: "relative",
         overflow: "hidden",
-
-        mt: {
-          xs: 2,
-          md: 8,
-        },
+        mt: { xs: 2, md: 8 },
         background: darkMode
           ? "linear-gradient(180deg,#0b0f19 0%,#101828 100%)"
           : "linear-gradient(180deg,#ffffff 0%,#f8fafc 100%)",
-
         borderTop: darkMode
           ? "1px solid rgba(255,255,255,.06)"
           : "1px solid rgba(0,0,0,.06)",
-
         py: 8,
       }}
     >
       <Container maxWidth="lg">
-
         <Box
           sx={{
             display: "flex",
@@ -60,10 +49,9 @@ export default function Footer({
             gap: 6,
           }}
         >
+
           {/* LEFT */}
-
           <Grid size={{ xs: 12, md: 5 }}>
-
             <Box
               sx={{
                 display: "flex",
@@ -80,7 +68,6 @@ export default function Footer({
                 }}
               />
             </Box>
-
             <Typography
               sx={{
                 color: subText,
@@ -95,16 +82,13 @@ export default function Footer({
               and candidate evaluation through an elegant
               and user-friendly interface.
             </Typography>
-
             <Box>
-
               <IconButton
                 sx={{
                   mr: 1,
                   bgcolor: darkMode
                     ? "#1e293b"
                     : "#eef2ff",
-
                   "&:hover": {
                     bgcolor: "#2563eb",
                     color: "#fff",
@@ -113,14 +97,12 @@ export default function Footer({
               >
                 <GitHubIcon />
               </IconButton>
-
               <IconButton
                 sx={{
                   mr: 1,
                   bgcolor: darkMode
                     ? "#1e293b"
                     : "#eef2ff",
-
                   "&:hover": {
                     bgcolor: "#2563eb",
                     color: "#fff",
@@ -129,13 +111,11 @@ export default function Footer({
               >
                 <LinkedInIcon />
               </IconButton>
-
               <IconButton
                 sx={{
                   bgcolor: darkMode
                     ? "#1e293b"
                     : "#eef2ff",
-
                   "&:hover": {
                     bgcolor: "#2563eb",
                     color: "#fff",
@@ -144,15 +124,11 @@ export default function Footer({
               >
                 <Mail />
               </IconButton>
-
             </Box>
-
           </Grid>
 
           {/* PRODUCT */}
-
           <Grid size={{ xs: 6, md: 2.3 }}>
-
             <Typography
               sx={{
                 fontWeight: 700,
@@ -162,7 +138,6 @@ export default function Footer({
             >
               Product
             </Typography>
-
             <Link
               to="/"
               style={footerLink}
@@ -171,9 +146,7 @@ export default function Footer({
             >
               Features
             </Link>
-
             <br />
-
             <Link
               to="/"
               style={footerLink}
@@ -182,9 +155,7 @@ export default function Footer({
             >
               Assessments
             </Link>
-
             <br />
-
             <Link
               to="/"
               style={footerLink}
@@ -193,13 +164,10 @@ export default function Footer({
             >
               Interviews
             </Link>
-
           </Grid>
 
           {/* COMPANY */}
-
           <Grid size={{ xs: 6, md: 2.3 }}>
-
             <Typography
               sx={{
                 fontWeight: 700,
@@ -209,7 +177,6 @@ export default function Footer({
             >
               Company
             </Typography>
-
             <Link
               to="/"
               style={footerLink}
@@ -218,9 +185,7 @@ export default function Footer({
             >
               About Us
             </Link>
-
             <br />
-
             <Link
               to="/"
               style={footerLink}
@@ -229,9 +194,7 @@ export default function Footer({
             >
               Careers
             </Link>
-
             <br />
-
             <Link
               to="/"
               style={footerLink}
@@ -240,13 +203,10 @@ export default function Footer({
             >
               Contact
             </Link>
-
           </Grid>
 
           {/* LEGAL */}
-
           <Grid size={{ xs: 12, md: 2.4 }}>
-
             <Typography
               sx={{
                 fontWeight: 700,
@@ -256,7 +216,6 @@ export default function Footer({
             >
               Legal
             </Typography>
-
             <Link
               to="/"
               style={footerLink}
@@ -265,9 +224,7 @@ export default function Footer({
             >
               Privacy Policy
             </Link>
-
             <br />
-
             <Link
               to="/"
               style={footerLink}
@@ -276,9 +233,7 @@ export default function Footer({
             >
               Terms & Conditions
             </Link>
-
             <br />
-
             <Link
               to="/"
               style={footerLink}
@@ -287,11 +242,8 @@ export default function Footer({
             >
               Security
             </Link>
-
           </Grid>
-
         </Box>
-
         <Box
           sx={{
             mt: 6,
@@ -299,17 +251,13 @@ export default function Footer({
             borderTop: darkMode
               ? "1px solid rgba(255,255,255,.08)"
               : "1px solid rgba(0,0,0,.08)",
-
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-
             flexWrap: "wrap",
-
             gap: 2,
           }}
         >
-
           <Typography
             sx={{
               color: subText,
@@ -318,11 +266,8 @@ export default function Footer({
           >
             © 2026 NextHire. All Rights Reserved.
           </Typography>
-
         </Box>
-
       </Container>
-
     </Box>
   );
 }

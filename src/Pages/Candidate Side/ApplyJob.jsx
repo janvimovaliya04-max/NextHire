@@ -69,28 +69,16 @@ export default function ApplyJob() {
 
   // Unified theme-driven input styling matching candidate portal
   const textFieldStyle = {
-    mb: {
-      xs: 2,
-      sm: 2.3,
-      md: 2.5,
-    },
+    mb: { xs: 2, sm: 2.3, md: 2.5 },
     "& .MuiInputLabel-root": {
       color: subText,
-      fontSize: {
-        xs: ".85rem",
-        sm: ".9rem",
-        md: ".95rem",
-      },
+      fontSize: { xs: ".85rem", sm: ".9rem", md: ".95rem" },
     },
     "& .MuiInputLabel-root.Mui-focused": {
       color: primary,
     },
     "& .MuiOutlinedInput-root": {
-      fontSize: {
-        xs: ".85rem",
-        sm: ".9rem",
-        md: ".95rem",
-      },
+      fontSize: { xs: ".85rem", sm: ".9rem", md: ".95rem" },
       color: textColor,
       backgroundColor: colors.input,
       "& fieldset": {
@@ -113,11 +101,7 @@ export default function ApplyJob() {
       {/* Back link */}
       <Box
         sx={{
-          mb: {
-            xs: 2,
-            sm: 3,
-            md: 4,
-          },
+          mb: { xs: 2, sm: 3, md: 4 },
         }}
       >
         <Button
@@ -126,11 +110,7 @@ export default function ApplyJob() {
           sx={{
             textTransform: "none",
             fontWeight: 700,
-            fontSize: {
-              xs: ".75rem",
-              sm: ".82rem",
-              md: ".85rem",
-            },
+            fontSize: { xs: ".75rem", sm: ".82rem", md: ".85rem" },
             color: textColor,
             "&:hover": {
               color: primary,
@@ -146,19 +126,10 @@ export default function ApplyJob() {
       <Paper
         elevation={0}
         sx={{
-          p: {
-            xs: 1.5,
-            sm: 2.5,
-            md: 4,
-            lg: 5,
-          },
+          p: { xs: 1.5, sm: 2.5, md: 4, lg: 5 },
           maxWidth: "850px",
           mx: "auto",
-          borderRadius: {
-            xs: 3,
-            sm: 4,
-            md: 5,
-          },
+          borderRadius: { xs: 3, sm: 4, md: 5 },
           bgcolor: colors.card,
           backdropFilter: "blur(12px)",
           border: `1px solid ${borderStyle}`,
@@ -176,16 +147,8 @@ export default function ApplyJob() {
               color: textColor,
               fontWeight: 850,
               letterSpacing: "-0.03em",
-              mb: {
-                xs: .5,
-                sm: .8,
-              },
-              fontSize: {
-                xs: "1.35rem",
-                sm: "1.7rem",
-                md: "2rem",
-                lg: "2.15rem",
-              },
+              mb: { xs: .5, sm: .8 },
+              fontSize: { xs: "1.35rem", sm: "1.7rem", md: "2rem", lg: "2.15rem" },
             }}
           >
             Apply for Position
@@ -194,11 +157,7 @@ export default function ApplyJob() {
 
         <Grid
           container
-          spacing={{
-            xs: 1.5,
-            sm: 2,
-            md: 2.5,
-          }}
+          spacing={{ xs: 1.5, sm: 2, md: 2.5 }}
         >
           {/* Full Name */}
           <Grid size={{ xs: 12 }}>
@@ -244,23 +203,15 @@ export default function ApplyJob() {
             <Typography
               sx={{
                 fontWeight: 700,
-                fontSize: {
-                  xs: ".8rem",
-                  sm: ".85rem",
-                },
+                fontSize: { xs: ".8rem", sm: ".85rem" },
                 color: subText,
                 textTransform: "uppercase",
                 tracking: "0.03em",
-                mb: {
-                  xs: 1,
-                  sm: 1.3,
-                  md: 1.5,
-                },
+                mb: { xs: 1, sm: 1.3, md: 1.5 },
               }}
             >
               Upload Documents
             </Typography>
-
             <Box
               component="label"
               sx={{
@@ -268,11 +219,7 @@ export default function ApplyJob() {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                p: {
-                  xs: 2,
-                  sm: 3,
-                  md: 4,
-                },
+                p: { xs: 2, sm: 3, md: 4 },
                 border: `2px dashed ${resume ? primary : borderStyle}`,
                 borderRadius: "12px",
                 cursor: "pointer",
@@ -292,10 +239,7 @@ export default function ApplyJob() {
               />
               <Box
                 sx={{
-                  fontSize: {
-                    xs: 26,
-                    sm: 32,
-                  },
+                  fontSize: { xs: 26, sm: 32 },
                   color: resume ? primary : subText,
                   mb: 1.5
                 }}
@@ -306,10 +250,8 @@ export default function ApplyJob() {
                 sx={{
                   color: subText,
                   fontWeight: 800,
-                  fontSize: {
-                    xs: ".88rem",
-                    sm: ".95rem",
-                  }, mb: 0.5
+                  fontSize: { xs: ".88rem", sm: ".95rem" },
+                  mb: 0.5
                 }}
               >
                 {resume ? "Replace Uploaded File" : "Choose CV / Resume File"}
@@ -324,22 +266,10 @@ export default function ApplyJob() {
               <Box
                 sx={{
                   display: "flex",
-                  flexDirection: {
-                    xs: "column",
-                    sm: "row",
-                  },
-                  alignItems: {
-                    xs: "flex-start",
-                    sm: "center",
-                  },
-                  gap: {
-                    xs: 1,
-                    sm: 2,
-                  },
-                  p: {
-                    xs: 1.5,
-                    sm: 2,
-                  },
+                  flexDirection: { xs: "column", sm: "row" },
+                  alignItems: { xs: "flex-start", sm: "center" },
+                  gap: { xs: 1, sm: 2 },
+                  p: { xs: 1.5, sm: 2 },
                   borderRadius: "10px",
                   border: `1px solid ${primary}33`,
                   bgcolor: `${primary}0a`,
@@ -351,10 +281,7 @@ export default function ApplyJob() {
                   <Typography
                     sx={{
                       fontWeight: 700,
-                      fontSize: {
-                        xs: ".82rem",
-                        sm: ".88rem",
-                      },
+                      fontSize: { xs: ".82rem", sm: ".88rem" },
                       color: primary
                     }}
                   >
@@ -389,24 +316,14 @@ export default function ApplyJob() {
         {error && (
           <Box
             sx={{
-              mb: {
-                xs: 2.5,
-                sm: 3,
-                md: 4,
-              },
-              p: {
-                xs: 1.5,
-                sm: 2,
-              },
+              mb: { xs: 2.5, sm: 3, md: 4 },
+              p: { xs: 1.5, sm: 2 },
               borderRadius: "8px",
               bgcolor: "rgba(239, 68, 68, 0.1)",
               border: "1px solid rgba(239, 68, 68, 0.2)",
               color: "#ef4444",
               fontWeight: 600,
-              fontSize: {
-                xs: ".8rem",
-                sm: ".88rem",
-              },
+              fontSize: { xs: ".8rem", sm: ".88rem" },
             }}
           >
             {error}
@@ -417,14 +334,8 @@ export default function ApplyJob() {
         <Box
           sx={{
             display: "flex",
-            flexDirection: {
-              xs: "column-reverse",
-              sm: "row",
-            },
-            gap: {
-              xs: 1.5,
-              sm: 2,
-            },
+            flexDirection: { xs: "column-reverse", sm: "row" },
+            gap: { xs: 1.5, sm: 2 },
             justifyContent: "flex-end",
             alignItems: "stretch",
           }}
@@ -435,24 +346,12 @@ export default function ApplyJob() {
             startIcon={<X size={12} />}
             sx={{
               width: { xs: "100%", sm: "auto" },
-              py: {
-                xs: 1.1,
-                sm: 1.3,
-                md: 1.4,
-              },
-              px: {
-                xs: 2,
-                sm: 2.5,
-                md: 3,
-              },
+              py: { xs: 1.1, sm: 1.3, md: 1.4 },
+              px: { xs: 2, sm: 2.5, md: 3 },
               borderRadius: "10px",
               fontWeight: 700,
               textTransform: "none",
-              fontSize: {
-                xs: ".8rem",
-                sm: ".85rem",
-                md: ".9rem",
-              },
+              fontSize: { xs: ".8rem", sm: ".85rem", md: ".9rem" },
               color: subText,
               borderColor: borderStyle,
               "&:hover": {
@@ -464,31 +363,18 @@ export default function ApplyJob() {
           >
             Cancel
           </Button>
-
           <Button
             variant="contained"
             onClick={handleSubmit}
             startIcon={<Send size={12} />}
             sx={{
               width: { xs: "100%", sm: "auto" },
-              py: {
-                xs: 1.1,
-                sm: 1.3,
-                md: 1.4,
-              },
-              px: {
-                xs: 2,
-                sm: 2.5,
-                md: 3,
-              },
+              py: { xs: 1.1, sm: 1.3, md: 1.4 },
+              px: { xs: 2, sm: 2.5, md: 3 },
               borderRadius: "10px",
               fontWeight: 700,
               textTransform: "none",
-              fontSize: {
-                xs: ".8rem",
-                sm: ".85rem",
-                md: ".9rem",
-              },
+              fontSize: { xs: ".8rem", sm: ".85rem", md: ".9rem" },
               background: `linear-gradient(135deg,${primary},${secondary || primary})`,
               boxShadow: `0 8px 18px ${primary}47`,
               "&:hover": {

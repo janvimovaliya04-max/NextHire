@@ -4,7 +4,6 @@ import { useRef, useEffect, useState } from "react";
 import { Typography, Box, Divider, Tooltip } from "@mui/material";
 import { useCandidate } from "../context/CandidateContext";
 import useThemeColors from "../hooks/useThemeColors";
-
 import {
   User,
   Menu,
@@ -45,7 +44,6 @@ export default function CandidateLayout({ children }) {
       }
     });
   }, [location.pathname]);
-
   const [mobileMenu, setMobileMenu] = useState(false);
 
   // Sidebar scroll restoration
@@ -56,16 +54,13 @@ export default function CandidateLayout({ children }) {
     }
   }, []);
 
-
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
         setMobileMenu(false);
       }
     };
-
     window.addEventListener("resize", handleResize);
-
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -166,16 +161,16 @@ export default function CandidateLayout({ children }) {
       {/* Sidebar with custom thin scrollbar */}
       <aside
         className={`
-    fixed md:static
-    top-0 left-0
-    z-50
-    w-72
-    h-screen
-    overflow-hidden
-    p-3 md:p-5
-    border-r
-    transition-all duration-300
-    flex flex-col
+          fixed md:static
+          top-0 left-0
+          z-50
+          w-72
+          h-screen
+          overflow-hidden
+          p-3 md:p-5
+          border-r
+          transition-all duration-300
+          flex flex-col
             ${mobileMenu
             ? "translate-x-0"
             : "-translate-x-full md:translate-x-0"
@@ -194,7 +189,6 @@ export default function CandidateLayout({ children }) {
           style={{ borderColor: borderStyle }}
         >
           <div className="flex items-center gap-3">
-
             <Typography
               sx={{
                 fontWeight: 800,
@@ -240,12 +234,10 @@ export default function CandidateLayout({ children }) {
               </div>
             ))}
           </nav>
-
           <div
             className="md:hidden mt-3 pt-3 border-t space-y-1"
             style={{ borderColor: borderStyle }}
           >
-
             <button
               onClick={() => {
                 setDarkMode(!darkMode);
@@ -259,7 +251,6 @@ export default function CandidateLayout({ children }) {
               {darkMode ? <Sun /> : <Moon />}
               <span>Theme</span>
             </button>
-
             <Link
               to="/candidate-profile-r"
               onClick={() => setMobileMenu(false)}
@@ -271,7 +262,6 @@ export default function CandidateLayout({ children }) {
               <User />
               <span>Profile</span>
             </Link>
-
           </div>
         </div>
 
@@ -280,7 +270,6 @@ export default function CandidateLayout({ children }) {
           className="shrink-0 border-t pt-3 px-2 pb-2"
           style={{ borderColor: borderStyle }}
         >
-
           <div className="flex items-center gap-3">
             <div
               className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm"
@@ -306,10 +295,8 @@ export default function CandidateLayout({ children }) {
           </button>
         </div>
       </aside>
-
       {
         mobileMenu && (
-
           <div
             onClick={() => setMobileMenu(false)}
             className="
@@ -335,9 +322,7 @@ export default function CandidateLayout({ children }) {
             color: textColor,
           }}
         >
-
           <div className="flex items-center gap-2 md:hidden">
-
             <button
               onClick={() => setMobileMenu(true)}
               className="p-2 rounded-lg border"
@@ -349,7 +334,6 @@ export default function CandidateLayout({ children }) {
             >
               <Menu />
             </button>
-
             <Link
               to="/candidate-notifications"
               className="relative p-2 rounded-lg border"
@@ -360,22 +344,15 @@ export default function CandidateLayout({ children }) {
               }}
             >
               <Bell />
-
               <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-red-500"></span>
-
             </Link>
-
           </div>
-
           <div>
             <Typography
               sx={{
                 fontWeight: 700,
                 letterSpacing: "-0.02em",
-                fontSize: {
-                  xs: "1.25rem",
-                  md: "2.125rem"
-                },
+                fontSize: { xs: "1.25rem", md: "2.125rem" },
                 color: textColor,
               }}
             >
@@ -436,7 +413,6 @@ export default function CandidateLayout({ children }) {
               >
                 {candidate.fullName?.charAt(0)?.toUpperCase() || "C"}
               </Link>
-
             </Tooltip>
 
             {/* Logout Action Button */}
@@ -456,7 +432,6 @@ export default function CandidateLayout({ children }) {
           className="flex-1 overflow-y-auto"
           style={{ backgroundColor: colors.background }}
         >
-
           <Box
             sx={{
               px: { xs: 2, md: 4 },
@@ -465,7 +440,6 @@ export default function CandidateLayout({ children }) {
           >
             {children}
           </Box>
-
         </div>
       </main>
     </div>
