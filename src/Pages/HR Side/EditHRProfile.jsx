@@ -111,7 +111,7 @@ export default function EditHRProfile() {
 
     toast.success("Profile updated successfully");
 
-    navigate("/hr-profile");
+    navigate("/hr/hr-profile");
   };
 
   return (
@@ -389,7 +389,7 @@ export default function EditHRProfile() {
         >
           <Button
             component={Link}
-            to="/hr-profile"
+            to="/hr/hr-profile"
             variant="outlined"
             startIcon={<X size={12} />}
             sx={{

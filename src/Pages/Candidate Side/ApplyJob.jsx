@@ -64,7 +64,7 @@ export default function ApplyJob() {
     }
     setError("");
     toast.success("Application submitted successfully");
-    navigate("/my-applications");
+    navigate("/candidate/my-applications");
   };
 
   // Unified theme-driven input styling matching candidate portal

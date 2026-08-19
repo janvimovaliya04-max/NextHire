@@ -363,7 +363,7 @@ export default function CandidateProfileV() {
                   fullWidth
                   variant="outlined"
                   component={Link}
-                  to="/interview-schedule"
+                  to="/hr/interview-schedule"
                   state={{ candidate }}
                   startIcon={<Calendar size={12} />}
                   sx={{

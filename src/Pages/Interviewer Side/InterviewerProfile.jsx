@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import InterviewerLayout from "../../Layouts/InterviewerLayout";
 import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
+import { useAuth } from "../../context/AuthContext";
 import {
   Paper,
   Avatar,
@@ -12,6 +13,7 @@ import {
 } from "@mui/material";
 
 export default function InterviewerProfile() {
+  const { user } = useAuth();
   const { darkMode } = useTheme();
   const colors = useThemeColors();
 
@@ -22,12 +24,27 @@ export default function InterviewerProfile() {
   const subText = colors.subText;
   const borderStyle = colors.border;
 
+  // Safe profile object mapping with fallback values based on auth user data
+  const profile = {
+    firstName: user?.firstName || "Rahul",
+    lastName: user?.lastName || "Sharma",
+    fullName: user?.firstName && user?.lastName 
+      ? `${user.firstName} ${user.lastName}` 
+      : user?.username || "Rahul Sharma",
+    email: user?.email || "rahul@nexthire.com",
+    role: user?.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : "Senior Technical Interviewer",
+    experience: user?.experience || "8 Years",
+    specialization: user?.specialization || "Frontend & React",
+    interviewsConducted: user?.interviewsConducted || "150+",
+  };
+
   const textFieldStyle = {
     "& .MuiInputLabel-root": {
       color: subText,
     },
     "& input": {
       cursor: "default",
+      WebkitTextFillColor: textColor,
     },
     "& .MuiInputLabel-root.Mui-focused": {
       fontSize: {
@@ -63,8 +80,6 @@ export default function InterviewerProfile() {
 
   return (
     <InterviewerLayout>
-
-
       <Typography
         sx={{
           fontWeight: 850,
@@ -85,8 +100,6 @@ export default function InterviewerProfile() {
         Profile
       </Typography>
 
-
-
       {/* Profile Header Card */}
       <Paper
         elevation={6}
@@ -96,12 +109,9 @@ export default function InterviewerProfile() {
             sm: 3,
             md: 4,
           },
-
           borderRadius: 5,
           bgcolor: colors.card,
-
           backdropFilter: "blur(10px)",
-
           border: `1px solid ${borderStyle}`,
           color: textColor,
           transition: "all .3s ease",
@@ -136,13 +146,13 @@ export default function InterviewerProfile() {
             }}
           >
             <Avatar
+              src={user?.image || ""}
               sx={{
                 width: {
                   xs: 80,
                   sm: 90,
                   md: 100,
                 },
-
                 height: {
                   xs: 80,
                   sm: 90,
@@ -155,7 +165,7 @@ export default function InterviewerProfile() {
                 fontWeight: 800,
               }}
             >
-              RS
+              {!user?.image && profile.fullName ? profile.fullName.split(" ").map(n => n[0]).join("") : "RS"}
             </Avatar>
             <Box>
               <Typography
@@ -164,7 +174,6 @@ export default function InterviewerProfile() {
                   fontWeight: 800,
                   letterSpacing: "-.03em",
                   color: textColor,
-
                   fontSize: {
                     xs: "1.5rem",
                     sm: "1.8rem",
@@ -172,7 +181,7 @@ export default function InterviewerProfile() {
                   }
                 }}
               >
-                Rahul Sharma
+                {profile.fullName}
               </Typography>
               <Typography
                 sx={{
@@ -184,7 +193,7 @@ export default function InterviewerProfile() {
                   }
                 }}
               >
-                Senior Technical Interviewer
+                {profile.role}
               </Typography>
             </Box>
           </Box>
@@ -205,7 +214,7 @@ export default function InterviewerProfile() {
           >
             <Button
               component={Link}
-              to="/edit-interviewer-profile"
+              to="/interviewer/edit-interviewer-profile"
               variant="contained"
               sx={{
                 background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
@@ -215,15 +224,11 @@ export default function InterviewerProfile() {
                 px: 4,
                 py: 1.2,
                 boxShadow: `0 4px 12px ${primary}33`,
-
                 "&:hover": {
                   background: `linear-gradient(135deg, ${primary}, ${primary})`,
-
                   transform: "translateY(-2px)",
-
                   boxShadow: `0 8px 20px ${primary}59`,
                 },
-
               }}
             >
               Edit Profile
@@ -231,17 +236,13 @@ export default function InterviewerProfile() {
 
             <Button
               component={Link}
-              to="/interviewer-notifications"
+              to="/interviewer/interviewer-notifications"
               variant="text"
               sx={{
                 color: primary,
-
                 fontWeight: 700,
-
                 borderRadius: 3,
-
                 bgcolor: `${primary}14`,
-
                 "&:hover": {
                   bgcolor: `${primary}22`,
                 }
@@ -269,30 +270,23 @@ export default function InterviewerProfile() {
           },
           borderRadius: 5,
           bgcolor: colors.card,
-
           backdropFilter: "blur(10px)",
-
           border: `1px solid ${borderStyle}`,
           color: textColor,
           transition: "all .25s ease",
-
           "&:hover": {
             transform: "translateY(-6px)",
-
             boxShadow: colors.shadow,
-
           },
         }}
       >
         <Typography sx={{
           fontWeight: 800,
           color: textColor,
-
           fontSize: {
             xs: "1.1rem",
             md: "1.25rem"
           },
-
           mb: {
             xs: 2,
             sm: 3,
@@ -305,12 +299,10 @@ export default function InterviewerProfile() {
         <Box
           sx={{
             display: "grid",
-
             gridTemplateColumns: {
               xs: "1fr",
               md: "repeat(2,1fr)"
             },
-
             gap: {
               xs: 1,
               sm: 2,
@@ -319,10 +311,10 @@ export default function InterviewerProfile() {
           }}
         >
           <TextField
-
             label="Email"
-            value="rahul@nexthire.com"
+            value={profile.email}
             sx={textFieldStyle}
+            InputLabelProps={{ shrink: true }}
             slotProps={{
               input: {
                 readOnly: true,
@@ -333,8 +325,9 @@ export default function InterviewerProfile() {
 
           <TextField
             label="Experience"
-            value="8 Years"
+            value={profile.experience}
             sx={textFieldStyle}
+            InputLabelProps={{ shrink: true }}
             slotProps={{
               input: {
                 readOnly: true,
@@ -345,8 +338,9 @@ export default function InterviewerProfile() {
 
           <TextField
             label="Specialization"
-            value="Frontend & React"
+            value={profile.specialization}
             sx={textFieldStyle}
+            InputLabelProps={{ shrink: true }}
             slotProps={{
               input: {
                 readOnly: true,
@@ -357,8 +351,9 @@ export default function InterviewerProfile() {
 
           <TextField
             label="Interviews Conducted"
-            value="150+"
+            value={profile.interviewsConducted}
             sx={textFieldStyle}
+            InputLabelProps={{ shrink: true }}
             slotProps={{
               input: {
                 readOnly: true,
@@ -368,7 +363,6 @@ export default function InterviewerProfile() {
           />
         </Box>
       </Paper>
-
     </InterviewerLayout>
   );
 }

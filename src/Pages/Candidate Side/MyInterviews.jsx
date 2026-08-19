@@ -369,7 +369,7 @@ export default function MyInterviews() {
                       {interview.status === "Upcoming" && (
                         <Button
                           component={Link}
-                          to="/join-interview-c"
+                          to="/candidate/join-interview-c"
                           state={{ interview }}
                           variant="contained"
                           sx={{
@@ -439,7 +439,7 @@ export default function MyInterviews() {
 
                 <Button
                   component={Link}
-                  to="/browse-jobs"
+                  to="/candidate/browse-jobs"
                   variant="contained"
                   sx={{
                     textTransform: "none",

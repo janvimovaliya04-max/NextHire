@@ -148,7 +148,7 @@ export default function AssignedInterviews() {
       cell: ({ row }) => (
         <Button
           component={Link}
-          to="/join-interview"
+          to="/interviewer/join-interview"
           state={{ interview: row.original }}
           variant="contained"
           size="small"

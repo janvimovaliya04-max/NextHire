@@ -271,7 +271,7 @@ export default function InterviewManagement() {
 
             <Button
               component={Link}
-              to="/interview-schedule"
+              to="/hr/interview-schedule"
               variant="contained"
               startIcon={<Plus size={11} />}
               sx={{

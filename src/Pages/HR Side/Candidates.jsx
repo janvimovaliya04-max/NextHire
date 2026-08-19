@@ -134,7 +134,7 @@ export default function Candidates() {
       cell: ({ row }) => (
         <Button
           component={Link}
-          to="/candidate-profile-v"
+          to="/hr/candidate-profile-v"
           state={{ applicant: row.original }}
           fullWidth
           variant="contained"

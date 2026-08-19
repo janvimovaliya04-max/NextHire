@@ -67,7 +67,7 @@ export default function CreateJob() {
     }
 
     toast.success("Job created successfully");
-    navigate("/job-management");
+    navigate("/hr/job-management");
   };
 
   // Unified clean input styling matching Login / Register / CreateAssessment
@@ -146,7 +146,7 @@ export default function CreateJob() {
       >
         <Button
           component={Link}
-          to="/job-management"
+          to="/hr/job-management"
           startIcon={<ArrowLeft size={12} />}
           sx={{
             textTransform: "none",

@@ -59,7 +59,7 @@ export default function AddRecruiter() {
 
         toast.success("Recruiter added successfully");
 
-        navigate("/recruiters");
+        navigate("/hr/recruiters");
     };
 
     const textFieldStyle = {
@@ -345,7 +345,7 @@ export default function AddRecruiter() {
                             <Button
                                 component={Link}
                                 fullWidth={window.innerWidth < 600}
-                                to="/recruiters"
+                                to="/hr/recruiters"
                                 variant="outlined"
                                 startIcon={<X size={12} />}
                                 sx={{

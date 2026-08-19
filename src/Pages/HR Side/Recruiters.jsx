@@ -138,7 +138,7 @@ export default function Recruiters() {
                     </Typography>
                     <Button
                         component={Link}
-                        to="/add-recruiter"
+                        to="/hr/add-recruiter"
                         variant="contained"
                         startIcon={<Plus size={11} />}
                         sx={{

@@ -181,7 +181,7 @@ export default function EditCandidateProfileR() {
       >
         <Button
           component={Link}
-          to="/candidate-profile-r"
+          to="/candidate/candidate-profile-r"
           startIcon={<ArrowLeft size={12} />}
           sx={{
             textTransform: "none",
@@ -370,7 +370,7 @@ export default function EditCandidateProfileR() {
         >
           <Button
             component={Link}
-            to="/candidate-profile-r"
+            to="/candidate/candidate-profile-r"
             variant="outlined"
             startIcon={<X size={12} />}
             sx={{

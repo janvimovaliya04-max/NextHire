@@ -460,7 +460,7 @@ export default function InterviewSchedule() {
         }}>
           <Button
             component={Link}
-            to="/interview-management"
+            to="/hr/interview-management"
             variant="outlined"
             startIcon={<X size={12} />}
             sx={{

@@ -4,7 +4,7 @@ import { useTheme } from "../../context/ThemeContext";
 import HRLayout from "../../Layouts/HRLayout";
 import ThemeSelector from "../../components/ThemeSelector";
 import useThemeColors from "../../hooks/useThemeColors";
-
+import { useAuth } from "../../context/AuthContext";
 import {
   Paper,
   Typography,
@@ -13,7 +13,6 @@ import {
   Switch,
   Box,
   Avatar,
-  Divider,
   Chip,
 } from "@mui/material";
 
@@ -38,31 +37,45 @@ import {
 } from "lucide-react";
 
 export default function Settings() {
-
-  const { darkMode, setDarkMode } = useTheme();
+  const { user } = useAuth();
+  const { darkMode } = useTheme();
   const colors = useThemeColors();
   const [showThemes, setShowThemes] = useState(false);
+
   const [twoFactor, setTwoFactor] = useState(() => {
     const saved = localStorage.getItem("twoFactor");
     return saved ? JSON.parse(saved) : false;
   });
+
   const borderStyle = darkMode
     ? "rgba(148,163,184,.12)"
     : "rgba(15,23,42,.08)";
 
   useEffect(() => {
-    localStorage.setItem(
-      "twoFactor",
-      JSON.stringify(twoFactor)
-    );
+    localStorage.setItem("twoFactor", JSON.stringify(twoFactor));
   }, [twoFactor]);
 
-  // Colors //
+  // Colors
   const primary = colors.primary;
-  const secondary = colors.secondary;
-  const lightBlue = colors.primary;
-  const darkBlue = colors.secondary;
   const textColor = colors.text;
+  const subText = colors.subText;
+  const borderColor = colors.border;
+  const glassBg = colors.card;
+
+  // Profile State to allow editing
+  const [profile, setProfile] = useState({
+    firstName: user?.firstName || "HR",
+    lastName: user?.lastName || "Manager",
+    fullName: user?.firstName && user?.lastName
+      ? `${user.firstName} ${user.lastName}`
+      : user?.username || "HR Manager",
+    employeeId: user?.employeeId || user?.id || "HR101",
+    email: user?.email || "hr@gmail.com",
+    phone: user?.phone || user?.phoneNumber || "9562314785",
+    department: user?.department || "Human Resources",
+    role: user?.designation || user?.role || "Administrator",
+    status: "Active",
+  });
 
   const cards = [
     {
@@ -78,12 +91,6 @@ export default function Settings() {
       color: colors.primary,
     },
     {
-      title: "Theme",
-      value: darkMode ? "Dark" : "Light",
-      icon: darkMode ? <Moon /> : <Sun />,
-      color: colors.primary,
-    },
-    {
       title: "Last Login",
       value: "Today",
       icon: <Clock />,
@@ -91,30 +98,7 @@ export default function Settings() {
     },
   ];
 
-  const subText = colors.subText;
-
-  const borderColor = colors.border;
-
-  const glassBg = colors.card;
-
-  // Common Card Style //
-  const cardStyle = {
-    borderRadius: { xs: 2.5, sm: 3, md: 4 },
-    bgcolor: glassBg,
-    backdropFilter: "blur(10px)",
-    border: `1px solid ${borderColor}`,
-    transition: ".3s",
-
-    "&:hover": {
-      transform: "translateY(-4px)",
-      borderColor: primary,
-      boxShadow: darkMode
-        ? "0 16px 35px rgba(0,0,0,.35)"
-        : "0 16px 35px rgba(15,23,42,.08)",
-    },
-  };
-
-  // TextField Style //
+  // TextField Style
   const textFieldStyle = {
     "& .MuiInputLabel-root": {
       color: subText,
@@ -137,28 +121,18 @@ export default function Settings() {
     },
   };
 
-  // Switch Card //
+  // Switch Card Style
   const switchCard = {
     display: "flex",
-
     flexDirection: { xs: "column", sm: "row" },
-
     justifyContent: "space-between",
-
     alignItems: { xs: "flex-start", sm: "center" },
-
     gap: 2,
-
     p: { xs: 2, sm: 2.5, md: 3 },
-
     borderRadius: { xs: 2.5, md: 3 },
-
     bgcolor: colors.background,
-
     border: `1px solid ${borderColor}`,
-
     transition: "all .25s ease",
-
     "&:hover": {
       borderColor: primary,
       transform: "translateY(-2px)",
@@ -168,26 +142,23 @@ export default function Settings() {
     },
   };
 
-  // Primary Button //
+  // Primary Button
   const primaryBtn = {
-    py: { xs: 1, md: 1.3, },
+    py: { xs: 1, md: 1.3 },
     px: { xs: 2, md: 3 },
-    fontSize: { xs: ".78rem", md: ".9rem", },
+    fontSize: { xs: ".78rem", md: ".9rem" },
     borderRadius: "12px",
     textTransform: "none",
     fontWeight: 700,
-    background:
-      "linear-gradient(135deg,#2563EB,#3B82F6)",
-    boxShadow:
-      "0 10px 20px rgba(37,99,235,.20)",
+    background: "linear-gradient(135deg,#2563EB,#3B82F6)",
+    boxShadow: "0 10px 20px rgba(37,99,235,.20)",
     "&:hover": {
-      background:
-        "linear-gradient(135deg,#1D4ED8,#2563EB)",
+      background: "linear-gradient(135deg,#1D4ED8,#2563EB)",
       transform: "translateY(-2px)",
     },
   };
 
-  // Outline Button //
+  // Outline Button
   const outlineBtn = {
     py: { xs: 1, md: 1.3 },
     px: { xs: 2, md: 3 },
@@ -203,16 +174,7 @@ export default function Settings() {
     },
   };
 
-  // Dummy User Data //
-  const [profile] = useState({
-    name: "HR Manager",
-    email: "hr@gmail.com",
-    department: "Human Resources",
-    role: "Administrator",
-    status: "Active",
-  });
-
-  // Notification Toggles //
+  // Notification Toggles
   const [notifications, setNotifications] = useState(() => {
     const saved = localStorage.getItem("notifications");
     return saved
@@ -226,13 +188,9 @@ export default function Settings() {
   });
 
   useEffect(() => {
-    localStorage.setItem(
-      "notifications",
-      JSON.stringify(notifications)
-    );
+    localStorage.setItem("notifications", JSON.stringify(notifications));
   }, [notifications]);
 
-  // PART 1B - Header + Profile Overview + Account Card //
   return (
     <HRLayout>
       <Box
@@ -243,8 +201,7 @@ export default function Settings() {
           gap: { xs: 2, sm: 3, md: 4 },
         }}
       >
-
-        {/* ================= Header ================= */}
+        {/* Header */}
         <Box
           sx={{
             display: "flex",
@@ -281,13 +238,13 @@ export default function Settings() {
           />
         </Box>
 
-        {/* ================= Profile Overview ================= */}
+        {/* Profile Overview */}
         <Paper
           elevation={0}
           sx={{
             p: { xs: 2, sm: 2.5, md: 4 },
             borderRadius: { xs: 3, md: "22px" },
-            bgcolor: colors.card,
+            bgcolor: glassBg,
             backdropFilter: "blur(16px)",
             border: `1px solid ${borderStyle}`,
             boxShadow: colors.shadow,
@@ -295,43 +252,43 @@ export default function Settings() {
             "&:hover": {
               transform: "translateY(-4px)",
               boxShadow: darkMode
-                ? ` 0 24px 55px rgba(0,0,0,.42) `
-                : ` 0 26px 55px rgba(15,23,42,.12)`,
+                ? `0 24px 55px rgba(0,0,0,.42)`
+                : `0 26px 55px rgba(15,23,42,.12)`,
             },
           }}
         >
-          <Grid container spacing={{ xs: 2.5, md: 4 }}
-            sx={{ alignItems: "center" }}
-          >
-            <Grid size={{ xs: 12, lg: 4 }}>
+          <Grid container spacing={3} sx={{ alignItems: "center" }}>
+            {/* Left Side: Profile Info */}
+            <Grid item xs={12} lg={4}>
               <Box
                 sx={{
                   display: "flex",
                   flexDirection: { xs: "column", sm: "row" },
-                  alignItems: { xs: "center", sm: "center" },
+                  alignItems: { xs: "center", sm: "flex-start" },
                   textAlign: { xs: "center", sm: "left" },
-                  gap: { xs: 1.5, sm: 2 },
+                  gap: { xs: 2, sm: 2.5 },
                 }}
               >
                 <Avatar
                   sx={{
-                    width: { xs: 60, md: 72 },
-                    height: { xs: 60, md: 72 },
+                    width: { xs: 64, md: 72 },
+                    height: { xs: 64, md: 72 },
                     fontSize: { xs: "1.25rem", md: "1.5rem" },
                     bgcolor: `${primary}15`,
                     color: primary,
                     fontWeight: 800,
+                    flexShrink: 0,
                   }}
                 >
                   HM
                 </Avatar>
 
-                <Box>
+                <Box sx={{ overflow: "hidden", width: "100%" }}>
                   <Typography
                     sx={{
                       color: textColor,
                       fontWeight: 800,
-                      fontSize: { xs: "1rem", md: "1.2rem" },
+                      fontSize: { xs: "1.1rem", md: "1.25rem" },
                     }}
                   >
                     {profile.name}
@@ -342,6 +299,7 @@ export default function Settings() {
                       color: subText,
                       fontSize: { xs: ".8rem", md: ".9rem" },
                       wordBreak: "break-word",
+                      mt: 0.5,
                     }}
                   >
                     {profile.email}
@@ -351,7 +309,7 @@ export default function Settings() {
                     size="small"
                     label={profile.status}
                     sx={{
-                      mt: 1,
+                      mt: 1.2,
                       fontSize: { xs: ".68rem", md: ".75rem" },
                       height: { xs: 22, md: 24 },
                       bgcolor: "rgba(16,185,129,.12)",
@@ -363,103 +321,105 @@ export default function Settings() {
               </Box>
             </Grid>
 
-            <Grid size={{ xs: 12, lg: 8 }}>
-              <Grid container spacing={{ xs: 2, md: 2.5 }}
+            {/* Right Side: Stats / Info Cards */}
+            <Grid item xs={12} lg={8}>
+              <Box
                 sx={{
-                  height: "100%",
-                  alignItems: "center",
-                  justifyContent: "flex-end",
+                  display: "grid",
+                  gridTemplateColumns: {
+                    xs: "1fr",
+                    sm: "repeat(2, 1fr)",
+                    md: "repeat(4, 1fr)",
+                  },
+                  gap: 2,
                 }}
               >
                 {cards.map((item) => (
-                  <Grid
+                  <Paper
                     key={item.title}
-                    size={{ xs: 12, sm: 6, md: 3 }}
+                    elevation={0}
+                    sx={{
+                      height: "100%",
+                      minHeight: 115,
+                      p: { xs: 2, md: 2 },
+                      borderRadius: { xs: 2.5, md: "18px" },
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      bgcolor: colors.card,
+                      border: `1px solid ${darkMode ? "rgba(255,255,255,.08)" : "#E8EEF7"
+                        }`,
+                      boxShadow: colors.shadow,
+                      transition: ".3s",
+                      "&:hover": {
+                        transform: "translateY(-4px)",
+                        borderColor: item.color,
+                        boxShadow: "0 16px 35px rgba(37,99,235,.12)",
+                      },
+                    }}
                   >
-                    <Paper
-                      elevation={0}
+                    <Box
                       sx={{
-                        height: { xs: "auto", md: 125 },
-                        minWidth: "100%",
-                        p: { xs: 2, md: 2.5 },
-                        borderRadius: { xs: 2.5, md: "18px" },
                         display: "flex",
-                        flexDirection: "column",
                         justifyContent: "space-between",
-                        bgcolor: colors.card,
-                        border: `1px solid ${darkMode
-                          ? "rgba(255,255,255,.08)"
-                          : "#E8EEF7"
-                          }`,
-                        boxShadow: colors.shadow,
-                        transition: ".3s",
-                        "&:hover": {
-                          transform: "translateY(-5px)",
-                          borderColor: item.color,
-                          boxShadow:
-                            "0 16px 35px rgba(37,99,235,.12)",
-                        },
+                        alignItems: "center",
+                        mb: 1.5,
                       }}
                     >
-                      <Box
-                        sx={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          alignItems: "center",
-                          gap: { xs: 1.5, sm: 2 },
-                        }}
-                      >
-                        <Typography
-                          sx={{
-                            color: textColor,
-                            fontSize: { xs: ".75rem", md: ".82rem" },
-                            fontWeight: 800,
-                          }}
-                        >
-                          {item.title}
-                        </Typography>
-
-                        <Box
-                          sx={{
-                            width: { xs: 32, md: 36 },
-                            height: { xs: 32, md: 36 },
-                            borderRadius: { xs: "8px", md: "10px" },
-                            fontSize: { xs: ".85rem", md: ".95rem" },
-                            bgcolor: `${item.color}15`,
-                            color: item.color,
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                          }}
-                        >
-                          {item.icon}
-                        </Box>
-                      </Box>
-
                       <Typography
                         sx={{
-                          color: textColor,
-                          fontSize: { xs: ".95rem", md: "1.08rem" },
-                          lineHeight: 1.35,
+                          color: subText,
+                          fontSize: { xs: ".75rem", md: ".8rem" },
+                          fontWeight: 700,
+                          textTransform: "uppercase",
+                          letterSpacing: "0.03em",
                         }}
                       >
-                        {item.value}
+                        {item.title}
                       </Typography>
-                    </Paper>
-                  </Grid>
+
+                      <Box
+                        sx={{
+                          width: 32,
+                          height: 32,
+                          borderRadius: "8px",
+                          fontSize: ".9rem",
+                          bgcolor: `${item.color}15`,
+                          color: item.color,
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          flexShrink: 0,
+                        }}
+                      >
+                        {item.icon}
+                      </Box>
+                    </Box>
+
+                    <Typography
+                      sx={{
+                        color: textColor,
+                        fontSize: { xs: ".95rem", md: "1.05rem" },
+                        fontWeight: 700,
+                        lineHeight: 1.3,
+                      }}
+                    >
+                      {item.value}
+                    </Typography>
+                  </Paper>
                 ))}
-              </Grid>
+              </Box>
             </Grid>
           </Grid>
         </Paper>
 
-        {/* ================= Account Settings ================= */}
+        {/* Account Settings */}
         <Paper
           elevation={0}
           sx={{
             p: { xs: 2, sm: 2.5, md: 4 },
             borderRadius: { xs: 3, md: "22px" },
-            bgcolor: colors.card,
+            bgcolor: glassBg,
             backdropFilter: "blur(16px)",
             border: `1px solid ${borderStyle}`,
             boxShadow: colors.shadow,
@@ -467,8 +427,8 @@ export default function Settings() {
             "&:hover": {
               transform: "translateY(-4px)",
               boxShadow: darkMode
-                ? `  0 24px 55px rgba(0,0,0,.42) `
-                : ` 0 26px 55px rgba(15,23,42,.12) `,
+                ? `0 24px 55px rgba(0,0,0,.42)`
+                : `0 26px 55px rgba(15,23,42,.12)`,
             },
           }}
         >
@@ -514,16 +474,15 @@ export default function Settings() {
             </Box>
           </Box>
 
-          <Grid container spacing={{ xs: 2, md: 3 }} >
+          <Grid container spacing={{ xs: 2, md: 3 }}>
             <Grid size={{ xs: 12, sm: 6 }}>
               <TextField
                 fullWidth
                 label="Recruiter Name"
-                value={profile.name}
-                sx={{
-                  ...textFieldStyle,
-                  mb: { xs: 2, md: 0 },
-                }}
+                value={profile.fullName}
+                InputLabelProps={{ shrink: true }}
+                onChange={(e) => setProfile({ ...profile, name: e.target.value })}
+                sx={textFieldStyle}
               />
             </Grid>
             <Grid size={{ xs: 12, sm: 6 }}>
@@ -531,10 +490,9 @@ export default function Settings() {
                 fullWidth
                 label="Email Address"
                 value={profile.email}
-                sx={{
-                  ...textFieldStyle,
-                  mb: { xs: 2, md: 0 },
-                }}
+                InputLabelProps={{ shrink: true }}
+                onChange={(e) => setProfile({ ...profile, email: e.target.value })}
+                sx={textFieldStyle}
               />
             </Grid>
             <Grid size={{ xs: 12, sm: 6 }}>
@@ -542,10 +500,11 @@ export default function Settings() {
                 fullWidth
                 label="Department"
                 value={profile.department}
-                sx={{
-                  ...textFieldStyle,
-                  mb: { xs: 2, md: 0 },
-                }}
+                InputLabelProps={{ shrink: true }}
+                onChange={(e) =>
+                  setProfile({ ...profile, department: e.target.value })
+                }
+                sx={textFieldStyle}
               />
             </Grid>
             <Grid size={{ xs: 12, sm: 6 }}>
@@ -553,34 +512,27 @@ export default function Settings() {
                 fullWidth
                 label="Role"
                 value={profile.role}
-                sx={{
-                  ...textFieldStyle,
-                  mb: { xs: 2, md: 0 },
-                }}
+                InputLabelProps={{ shrink: true }}
+                onChange={(e) => setProfile({ ...profile, role: e.target.value })}
+                sx={textFieldStyle}
               />
             </Grid>
           </Grid>
         </Paper>
 
-        {/* ================= APPEARANCE ================= */}
+        {/* Appearance */}
         <Paper
           elevation={0}
           sx={{
             p: { xs: 2, sm: 2.5, md: 4 },
             borderRadius: { xs: 3, md: "22px" },
-            bgcolor: colors.card,
+            bgcolor: glassBg,
             backdropFilter: "blur(16px)",
             border: `1px solid ${borderStyle}`,
             boxShadow: colors.shadow,
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 1.5,
-            }}
-          >
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
             <Avatar
               sx={{
                 width: { xs: 40, md: 48 },
@@ -591,8 +543,6 @@ export default function Settings() {
             >
               <Palette />
             </Avatar>
-
-
 
             <Box>
               <Typography
@@ -635,48 +585,28 @@ export default function Settings() {
             }}
           >
             <Box>
-              <Typography
-                sx={{
-                  color: textColor,
-                  fontWeight: 700,
-                }}
-              >
+              <Typography sx={{ color: textColor, fontWeight: 700 }}>
                 Theme
               </Typography>
 
-              <Typography
-                sx={{
-                  color: subText,
-                  fontSize: ".8rem",
-                  mt: 0.3,
-                }}
-              >
+              <Typography sx={{ color: subText, fontSize: ".8rem", mt: 0.3 }}>
                 Choose your preferred theme
               </Typography>
             </Box>
 
-            <Palette
-              style={{
-                color: primary,
-                fontsize: "18px"
-              }}
-            />
-
+            <Palette style={{ color: primary, fontSize: "18px" }} />
           </Box>
 
-          {showThemes && (
-            <ThemeSelector />
-          )}
-
+          {showThemes && <ThemeSelector />}
         </Paper>
 
-        {/* ================= NOTIFICATION SETTINGS ================= */}
+        {/* Notification Settings */}
         <Paper
           elevation={0}
           sx={{
             p: { xs: 2, sm: 2.5, md: 4 },
-            borderRadius: { xs: 3, md: "22px", },
-            bgcolor: colors.card,
+            borderRadius: { xs: 3, md: "22px" },
+            bgcolor: glassBg,
             backdropFilter: "blur(16px)",
             border: `1px solid ${borderStyle}`,
             boxShadow: colors.shadow,
@@ -684,8 +614,8 @@ export default function Settings() {
             "&:hover": {
               transform: "translateY(-4px)",
               boxShadow: darkMode
-                ? ` 0 24px 55px rgba(0,0,0,.42) `
-                : ` 0 26px 55px rgba(15,23,42,.12) `,
+                ? `0 24px 55px rgba(0,0,0,.42)`
+                : `0 26px 55px rgba(15,23,42,.12)`,
             },
           }}
         >
@@ -730,6 +660,7 @@ export default function Settings() {
               </Typography>
             </Box>
           </Box>
+
           <Box
             sx={{
               display: "flex",
@@ -737,7 +668,6 @@ export default function Settings() {
               gap: { xs: 1.5, md: 2.2 },
             }}
           >
-
             {/* Email */}
             <Box sx={switchCard}>
               <Box
@@ -790,9 +720,7 @@ export default function Settings() {
                 }
                 sx={{
                   alignSelf: { xs: "flex-end", sm: "center" },
-                  "& .MuiSwitch-switchBase.Mui-checked": {
-                    color: primary,
-                  },
+                  "& .MuiSwitch-switchBase.Mui-checked": { color: primary },
                   "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
                     bgcolor: primary,
                   },
@@ -853,9 +781,7 @@ export default function Settings() {
                 }
                 sx={{
                   alignSelf: { xs: "flex-end", sm: "center" },
-                  "& .MuiSwitch-switchBase.Mui-checked": {
-                    color: primary,
-                  },
+                  "& .MuiSwitch-switchBase.Mui-checked": { color: primary },
                   "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
                     bgcolor: primary,
                   },
@@ -916,9 +842,7 @@ export default function Settings() {
                 }
                 sx={{
                   alignSelf: { xs: "flex-end", sm: "center" },
-                  "& .MuiSwitch-switchBase.Mui-checked": {
-                    color: primary,
-                  },
+                  "& .MuiSwitch-switchBase.Mui-checked": { color: primary },
                   "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
                     bgcolor: primary,
                   },
@@ -979,9 +903,7 @@ export default function Settings() {
                 }
                 sx={{
                   alignSelf: { xs: "flex-end", sm: "center" },
-                  "& .MuiSwitch-switchBase.Mui-checked": {
-                    color: primary,
-                  },
+                  "& .MuiSwitch-switchBase.Mui-checked": { color: primary },
                   "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
                     bgcolor: primary,
                   },
@@ -991,13 +913,13 @@ export default function Settings() {
           </Box>
         </Paper>
 
-        {/* ================= SECURITY SETTINGS ================= */}
+        {/* Security Settings */}
         <Paper
           elevation={0}
           sx={{
             p: { xs: 2, sm: 2.5, md: 4 },
             borderRadius: { xs: 3, sm: 4, md: "22px" },
-            bgcolor: colors.card,
+            bgcolor: glassBg,
             backdropFilter: "blur(16px)",
             border: `1px solid ${borderStyle}`,
             boxShadow: colors.shadow,
@@ -1005,8 +927,8 @@ export default function Settings() {
             "&:hover": {
               transform: "translateY(-4px)",
               boxShadow: darkMode
-                ? ` 0 24px 55px rgba(0,0,0,.42) `
-                : ` 0 26px 55px rgba(15,23,42,.12) `,
+                ? `0 24px 55px rgba(0,0,0,.42)`
+                : `0 26px 55px rgba(15,23,42,.12)`,
             },
           }}
         >
@@ -1053,9 +975,8 @@ export default function Settings() {
             </Box>
           </Box>
 
-          <Grid container spacing={{ xs: 2, sm: 2.5, md: 3, }}>
-
-            {/* Password */}
+          <Grid container spacing={{ xs: 2, sm: 2.5, md: 3 }}>
+            {/* Password Security Card */}
             <Grid size={{ xs: 12, md: 6 }}>
               <Paper
                 elevation={0}
@@ -1064,16 +985,20 @@ export default function Settings() {
                   borderRadius: { xs: 2.5, md: 3 },
                   bgcolor: colors.background,
                   border: `1px solid ${borderColor}`,
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
                 }}
               >
                 <Box
                   sx={{
-                    bgcolor: colors.background,
                     display: "flex",
                     flexDirection: { xs: "column", sm: "row" },
                     alignItems: { xs: "center", sm: "flex-start" },
                     textAlign: { xs: "center", sm: "left" },
                     gap: 2,
+                    mb: 2,
                   }}
                 >
                   <Avatar
@@ -1081,56 +1006,33 @@ export default function Settings() {
                       width: { xs: 40, sm: 46, md: 50 },
                       height: { xs: 40, sm: 46, md: 50 },
                       bgcolor: `${primary}15`,
-                      color: primary
+                      color: primary,
                     }}
                   >
                     <Lock />
                   </Avatar>
 
-                  <Box
-                    sx={{
-                      bgcolor: colors.background,
-                      flexGrow: 1,
-                      width: "100%",
-                    }}
-                  >
+                  <Box>
                     <Typography
-                      sx={{
-                        color: textColor,
-                        fontWeight: 700,
-                        fontSize: { xs: ".88rem", sm: ".95rem", md: "1rem" },
-                      }}
+                      sx={{ color: textColor, fontWeight: 700, fontSize: "1rem" }}
                     >
-                      Password
+                      Password & Credentials
                     </Typography>
-
                     <Typography
-                      sx={{
-                        color: subText,
-                        fontSize: { xs: ".74rem", sm: ".79rem", md: ".82rem" },
-                        lineHeight: 1.6,
-                        mb: 2,
-                      }}
+                      sx={{ color: subText, fontSize: ".82rem", mt: 0.5 }}
                     >
-                      Last updated 30 days ago.
+                      Change your current password and manage account login safety.
                     </Typography>
-
-                    <Button
-                      variant="outlined"
-                      fullWidth
-                      sx={{
-                        ...outlineBtn,
-                        width: { xs: "100%", sm: "auto" },
-                      }}
-                    >
-                      Change Password
-                    </Button>
                   </Box>
                 </Box>
+
+                <Button variant="outlined" sx={{ ...outlineBtn, alignSelf: "flex-start" }}>
+                  Change Password
+                </Button>
               </Paper>
             </Grid>
 
-            {/* Two Factor */}
+            {/* 2FA Security Card */}
             <Grid size={{ xs: 12, md: 6 }}>
               <Paper
                 elevation={0}
@@ -1139,6 +1041,10 @@ export default function Settings() {
                   borderRadius: { xs: 2.5, md: 3 },
                   bgcolor: colors.background,
                   border: `1px solid ${borderColor}`,
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
                 }}
               >
                 <Box
@@ -1147,7 +1053,8 @@ export default function Settings() {
                     flexDirection: { xs: "column", sm: "row" },
                     alignItems: { xs: "center", sm: "flex-start" },
                     textAlign: { xs: "center", sm: "left" },
-                    gap: { xs: 1.5, sm: 2 },
+                    gap: 2,
+                    mb: 2,
                   }}
                 >
                   <Avatar
@@ -1155,141 +1062,79 @@ export default function Settings() {
                       width: { xs: 40, sm: 46, md: 50 },
                       height: { xs: 40, sm: 46, md: 50 },
                       bgcolor: `${primary}15`,
-                      color: primary
+                      color: primary,
                     }}
                   >
-                    <UserRoundCheck />
+                    <Shield />
                   </Avatar>
 
-                  <Box
-                    sx={{
-                      flexGrow: 1,
-                      width: "100%",
-                    }}
-                  >
+                  <Box>
                     <Typography
-                      sx={{
-                        color: textColor,
-                        fontWeight: 700,
-                      }}
+                      sx={{ color: textColor, fontWeight: 700, fontSize: "1rem" }}
                     >
                       Two-Factor Authentication
                     </Typography>
-
                     <Typography
-                      sx={{
-                        color: subText,
-                        fontSize: ".82rem",
-                        mb: 2,
-                      }}
+                      sx={{ color: subText, fontSize: ".82rem", mt: 0.5 }}
                     >
-                      Add an extra security layer to your account.
+                      Add an extra layer of security to prevent unauthorized access.
                     </Typography>
-
-                    <Switch
-                      checked={twoFactor}
-                      onChange={() =>
-                        setTwoFactor(!twoFactor)
-                      }
-                      sx={{
-                        alignSelf: { xs: "flex-end", sm: "center" },
-                        "& .MuiSwitch-switchBase.Mui-checked": {
-                          color: primary,
-                        },
-                        "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
-                          bgcolor: primary,
-                        },
-                      }}
-                    />
                   </Box>
+                </Box>
+
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    width: "100%",
+                  }}
+                >
+                  <Typography sx={{ color: textColor, fontWeight: 600, fontSize: ".85rem" }}>
+                    Enable 2FA
+                  </Typography>
+                  <Switch
+                    checked={twoFactor}
+                    onChange={(e) => setTwoFactor(e.target.checked)}
+                    sx={{
+                      "& .MuiSwitch-switchBase.Mui-checked": { color: primary },
+                      "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
+                        bgcolor: primary,
+                      },
+                    }}
+                  />
                 </Box>
               </Paper>
             </Grid>
           </Grid>
-
-          <Divider sx={{
-            my: { xs: 2.5, sm: 3, md: 4 },
-          }} />
-
-          <Typography
-            sx={{
-              color: textColor,
-              fontWeight: 700,
-              fontSize: { xs: ".9rem", sm: ".98rem", md: "1rem" },
-              mb: { xs: 1.5, md: 2 },
-            }}
-          >
-            Recent Login Activity
-          </Typography>
-
-          <Paper
-            elevation={0}
-            sx={{
-              p: { xs: 1.75, sm: 2, md: 2.5 },
-              borderRadius: { xs: 2.5, md: 3 },
-              bgcolor: colors.background,
-              border: `1px solid ${borderColor}`,
-            }}
-          >
-            <Typography
-              sx={{
-                color: textColor,
-                fontWeight: 600,
-                fontSize: { xs: ".82rem", sm: ".88rem", md: ".95rem" },
-                wordBreak: "break-word",
-              }}
-            >
-              Ahmedabad, Gujarat
-            </Typography>
-
-            <Typography
-              sx={{
-                color: subText,
-                fontSize: { xs: ".72rem", sm: ".78rem", md: ".82rem" },
-                lineHeight: 1.6,
-                wordBreak: "break-word",
-              }}
-            >
-              Chrome • Windows 11 • Today 10:42 AM
-            </Typography>
-          </Paper>
         </Paper>
 
-        {/* ================= ACTION BUTTONS ================= */}
+        {/* Footer Actions */}
         <Box
           sx={{
             display: "flex",
-            flexDirection: { xs: "column", sm: "row" },
             justifyContent: "flex-end",
-            flexWrap: "wrap",
-            gap: { xs: 1.5, sm: 2 },
-            mt: { xs: 2, md: 1 },
+            alignItems: "center",
+            gap: 2,
+            pt: 1,
+            pb: 2,
           }}
         >
           <Button
             component={Link}
-            to="/hr-profile"
+            to="/hr"
             variant="outlined"
-            startIcon={<ArrowLeft />}
-            sx={{
-              ...outlineBtn,
-              width: { xs: "100%", sm: "auto" },
-              fontSize: { xs: ".78rem", md: ".9rem" },
-            }}
+            startIcon={<ArrowLeft size={18} />}
+            sx={outlineBtn}
           >
-            Back to Profile
+            Back
           </Button>
-
           <Button
             variant="contained"
-            startIcon={<Save />}
-            sx={{
-              ...primaryBtn,
-              width: { xs: "100%", sm: "auto" },
-              fontSize: { xs: ".78rem", md: ".9rem" },
-            }}
+            startIcon={<Save size={18} />}
+            sx={primaryBtn}
           >
-            Save Settings
+            Save Changes
           </Button>
         </Box>
       </Box>

@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 
 import Grid from "@mui/material/Grid";
+import { useAuth } from "../../context/AuthContext";
 
 import {
   UserRoundPen,
@@ -22,6 +23,7 @@ import {
 } from "lucide-react";
 
 export default function CandidateProfileR() {
+  const { user } = useAuth();
   const { darkMode } = useTheme();
   const colors = useThemeColors();
   const candidateContext = useCandidate();
@@ -34,6 +36,19 @@ export default function CandidateProfileR() {
   const textColor = colors.text;
   const subText = colors.subText;
   const borderStyle = colors.border;
+
+  // Safe profile object mapping with fallback values if users.json is missing fields
+  const profile = {
+    firstName: user?.firstName || "Rahul",
+    lastName: user?.lastName || "Sharma",
+    fullName: user?.firstName && user?.lastName 
+      ? `${user.firstName} ${user.lastName}` 
+      : user?.username || "Rahul Sharma",
+    employeeId: user?.employeeId || user?.id || "CAN101",
+    email: user?.email || "can@gmail.com",
+    phone: user?.phone || user?.phoneNumber || "9562314785",
+    designation: user?.designation || user?.role || "candidate",
+  };
 
   // Cohesive styling for the read-only form elements
   const textFieldStyle = {
@@ -163,7 +178,7 @@ export default function CandidateProfileR() {
                   border: `4px solid ${darkMode ? "rgba(30,41,59,0.9)" : "#ffffff"}`,
                 }}
               >
-                {candidate?.fullName?.trim() ? candidate.fullName.split(" ").map(n => n[0]).join("") : "JM"}
+                {profile.fullName?.trim() ? profile.fullName.split(" ").map(n => n[0]).join("") : "JM"}
               </Avatar>
 
               <Box>
@@ -179,13 +194,13 @@ export default function CandidateProfileR() {
                     }
                   }}
                 >
-                  {candidate?.fullName || "Janvi Movaliya"}
+                  {profile.fullName}
                 </Typography>
                 <Typography sx={{ color: primary, fontWeight: 700, fontSize: "0.95rem" }}>
-                  {candidate?.designation || "Frontend Developer"}
+                  {profile.designation}
                 </Typography>
                 <Typography sx={{ color: subText, fontSize: "0.85rem", mt: 0.5 }}>
-                  {candidate?.email || "janvi@gmail.com"}
+                  {profile.email}
                 </Typography>
                 <Box
                   sx={{
@@ -235,20 +250,14 @@ export default function CandidateProfileR() {
             <Box
               sx={{
                 display: "flex",
-                flexDirection: {
-                  xs: "column",
-                  sm: "row",
-                },
+                flexDirection: { xs: "column", sm: "row" },
                 gap: 2,
-                width: {
-                  xs: "100%",
-                  md: "auto",
-                },
+                width: { xs: "100%", sm: "auto" },
               }}
             >
               <Button
                 component={Link}
-                to="/edit-candidate-profile-r"
+                to="/candidate/edit-candidate-profile-r"
                 variant="contained"
                 startIcon={<UserRoundPen size={13} />}
                 sx={{
@@ -284,6 +293,8 @@ export default function CandidateProfileR() {
               </Button>
 
               <Button
+                component={Link}
+                to="/candidate/candidate-settings"
                 variant="outlined"
                 startIcon={<KeyRound size={12} />}
                 sx={{
@@ -391,6 +402,8 @@ export default function CandidateProfileR() {
             </Box>
 
             <Button
+              component={Link}
+              to="/candidate/edit-candidate-profile-r"
               variant="outlined"
               fullWidth={false}
               sx={{
@@ -425,7 +438,8 @@ export default function CandidateProfileR() {
               <TextField
                 fullWidth
                 label="Full Name"
-                value={candidate?.fullName || "Janvi Movaliya"}
+                value={profile.fullName}
+                InputLabelProps={{ shrink: true }}
                 slotProps={{
                   input: {
                     readOnly: true,
@@ -441,7 +455,7 @@ export default function CandidateProfileR() {
               <TextField
                 fullWidth
                 label="Candidate ID"
-                value={candidate?.candidateId || "CAN-3829-10"}
+                value={profile.employeeId}
                 slotProps={{
                   input: {
                     readOnly: true,
@@ -457,7 +471,8 @@ export default function CandidateProfileR() {
               <TextField
                 fullWidth
                 label="Email Address"
-                value={candidate?.email || "janvi@gmail.com"}
+                value={profile.email}
+                InputLabelProps={{ shrink: true }}
                 slotProps={{
                   input: {
                     readOnly: true,
@@ -473,7 +488,8 @@ export default function CandidateProfileR() {
               <TextField
                 fullWidth
                 label="Phone Number"
-                value={candidate?.phone || "+91 98765 43210"}
+                value={profile.phone}
+                InputLabelProps={{ shrink: true }}
                 slotProps={{
                   input: {
                     readOnly: true,
@@ -571,7 +587,7 @@ export default function CandidateProfileR() {
         >
           <Button
             component={Link}
-            to="/candidate-settings"
+            to="/candidate/candidate-settings"
             variant="contained"
             endIcon={<ArrowRight size={12} />}
             sx={{

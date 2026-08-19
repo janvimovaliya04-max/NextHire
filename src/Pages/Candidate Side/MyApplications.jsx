@@ -381,7 +381,7 @@ export default function MyApplications() {
 
                     <Button
                       component={Link}
-                      to={`/my-application-job/${job.applicationId}`}
+                      to={`/candidate/my-application-job/${job.applicationId}`}
                       variant="contained"
                       endIcon={<ChevronRight size={10} />}
                       sx={{
@@ -428,7 +428,7 @@ export default function MyApplications() {
 
               <Button
                 component={Link}
-                to="/browse-jobs"
+                to="/candidate/browse-jobs"
                 variant="contained"
                 sx={{ background: `linear-gradient(135deg, ${primary}, ${secondary || primary})` }}
               >

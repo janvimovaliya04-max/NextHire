@@ -471,7 +471,7 @@ export default function MyApplicationJobDetails() {
               <Button
                 fullWidth
                 size="large"
-                onClick={() => navigate("/my-applications")}
+                onClick={() => navigate("/candidate/my-applications")}
                 variant="contained"
                 sx={{
                   mt: 4,

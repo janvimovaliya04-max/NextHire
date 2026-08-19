@@ -67,7 +67,7 @@ export default function JobDetails() {
 
           <Button
             sx={{ mt: 3 }}
-            onClick={() => navigate("/browse-jobs")}
+            onClick={() => navigate("/candidate/browse-jobs")}
           >
             Back to Browse Jobs
           </Button>
@@ -595,7 +595,7 @@ export default function JobDetails() {
                   md: 1.5,
                 }, mt: 2,
               }}>
-                <Link to={`/apply-job/${job.jobId}`}
+                <Link to={`/candidate/apply-job/${job.jobId}`}
                   style={{
                     textDecoration: "none"
                   }}

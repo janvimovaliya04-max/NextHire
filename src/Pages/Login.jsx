@@ -1,6 +1,9 @@
 import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import usersData from "../data/users.json"; // usersData import
+import { useAuth } from "../context/AuthContext";
+
 import {
   Box,
   Paper,
@@ -11,12 +14,19 @@ import {
   FormControlLabel,
   Avatar,
   Chip,
+  InputAdornment,
+  IconButton,
 } from "@mui/material";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 export default function Login() {
-  const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
   const [searchParams] = useSearchParams();
   const { darkMode } = useTheme();
   const subText = darkMode ? "#94a3b8" : "#475569";
@@ -67,24 +77,35 @@ export default function Login() {
 
   const roleTheme = getRoleTheme(role);
 
-  const handleLogin = () => {
-    if (role === "hr") {
-      navigate("/hr");
-    } else if (role === "candidate") {
-      navigate("/candidate");
-    } else if (role === "interviewer") {
-      navigate("/interviewer");
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+ const handleLogin = (e) => {
+    if (e) e.preventDefault();
+
+    // Context ના login ફંક્શનને Call કરો
+    const result = login(username.trim(), password.trim());
+
+    if (result.success) {
+      const userRole = result.role.toLowerCase();
+
+      // Role મુજબ Navigate કરો
+      if (userRole === 'hr') {
+        navigate('/hr');
+      } else if (userRole === 'candidate') {
+        navigate('/candidate');
+      } else if (userRole === 'interviewer') {
+        navigate('/interviewer');
+      } else {
+        navigate('/');
+      }
     } else {
-      navigate("/dashboard");
+      alert(result.message || 'Invalid Username or Password!');
     }
   };
 
-  // Fixed nested selector styles & updated dynamic focus colors
   const textFieldStyle = {
-    mb: 2.5, mb: {
-      xs: 1.6,
-      sm: 2.5,
-    },
+    mb: { xs: 1.6, sm: 2.5 },
     "& .MuiInputLabel-root": {
       color: darkMode ? "#94a3b8" : "#64748b",
       fontSize: "0.95rem",
@@ -137,7 +158,6 @@ export default function Login() {
         overflow: "hidden",
       }}
     >
-      {/* Background Decorative Glow Blobs based on theme */}
       <Box
         sx={{
           position: "absolute",
@@ -153,7 +173,6 @@ export default function Login() {
         }}
       />
 
-      {/* Dynamic Back Navigation */}
       <Box
         sx={{
           position: "absolute",
@@ -173,35 +192,23 @@ export default function Login() {
             textTransform: "none",
             fontWeight: 600,
             mb: { xs: 1, md: 3 },
-            fontSize: {
-              xs: ".75rem",
-              sm: ".9rem",
-            },
+            fontSize: { xs: ".75rem", sm: ".9rem" },
             "&:hover": {
               color: roleTheme.accent,
               background: "transparent",
-            }
+            },
           }}
         >
           Back to Home
         </Button>
       </Box>
 
-      {/* Premium Glassmorphic Login Card */}
       <Paper
         sx={{
           mx: "auto",
           width: "100%",
-          maxWidth: {
-            xs: "100%",
-            sm: 450,
-            md: 480,
-          },
-          p: {
-            xs: 2,
-            sm: 4,
-            md: 5,
-          },
+          maxWidth: { xs: "100%", sm: 450, md: 480 },
+          p: { xs: 2, sm: 4, md: 5 },
           borderRadius: 5,
           position: "relative",
           zIndex: 1,
@@ -216,36 +223,14 @@ export default function Login() {
             : "0 25px 50px -12px rgba(0, 0, 0, 0.06)",
         }}
       >
-        <Box
-          textAlign="center"
-          sx={{
-            mb: {
-              xs: 1,
-              sm: 2,
-            },
-          }}
-        >
+        <Box textAlign="center" sx={{ mb: { xs: 1, sm: 2 } }}>
           <Avatar
             sx={{
-              width: {
-                xs: 48,
-                sm: 64,
-              },
-
-              height: {
-                xs: 48,
-                sm: 64,
-              },
-
-              fontSize: {
-                xs: 20,
-                sm: 26,
-              },
+              width: { xs: 48, sm: 64 },
+              height: { xs: 48, sm: 64 },
+              fontSize: { xs: 20, sm: 26 },
               mx: "auto",
-              mb: {
-                xs: 1.5,
-                sm: 2.5,
-              },
+              mb: { xs: 1.5, sm: 2.5 },
               fontWeight: 800,
               background: roleTheme.gradient,
               boxShadow: `0 8px 20px ${roleTheme.accent}33`,
@@ -254,16 +239,14 @@ export default function Login() {
             N
           </Avatar>
 
-
           {role && (
             <Chip
               label={`${role.toUpperCase()} PORTAL`}
               sx={{
                 display: "flex",
                 width: "fit-content",
-                mx: "auto", // Centers the chip
+                mx: "auto",
                 mb: 2,
-
                 bgcolor: roleTheme.chipBg,
                 color: roleTheme.chipText,
                 fontWeight: 800,
@@ -287,46 +270,53 @@ export default function Login() {
           </Typography>
         </Box>
 
-        <Box component="form" noValidate autoComplete="off">
+        <Box component="form" onSubmit={handleLogin} noValidate autoComplete="off">
           <TextField
             size="small"
             fullWidth
-            label="Email Address"
+            label="Username or Email"
             variant="outlined"
-            type="email"
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             sx={textFieldStyle}
           />
+
           <TextField
             size="small"
             fullWidth
             label="Password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             variant="outlined"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             sx={textFieldStyle}
+            slotProps={{
+              input: {
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={() => setShowPassword(!showPassword)}
+                      edge="end"
+                      sx={{ color: darkMode ? "#94a3b8" : "#64748b" }}
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              },
+            }}
           />
 
           <Box
             sx={{
               display: "flex",
-              flexDirection: {
-                xs: "column",
-                sm: "row",
-              },
+              flexDirection: { xs: "column", sm: "row" },
               justifyContent: "space-between",
-              alignItems: {
-                xs: "flex-start",
-                sm: "center",
-              },
+              alignItems: { xs: "flex-start", sm: "center" },
               gap: 1,
-              mt: {
-                xs: 1,
-                sm: 2,
-              },
-
-              mb: {
-                xs: 0.5,
-                sm: 1,
-              },
+              mt: { xs: 1, sm: 2 },
+              mb: { xs: 0.5, sm: 1 },
             }}
           >
             <FormControlLabel
@@ -334,12 +324,9 @@ export default function Login() {
                 m: 0,
                 "& .MuiFormControlLabel-label": {
                   color: darkMode ? "#cbd5e1" : "#475569",
-                  fontSize: {
-                    xs: ".82rem",
-                    sm: ".88rem",
-                  },
+                  fontSize: { xs: ".82rem", sm: ".88rem" },
                   fontWeight: 500,
-                }
+                },
               }}
               control={
                 <Checkbox
@@ -376,14 +363,11 @@ export default function Login() {
 
           <Button
             fullWidth
+            type="submit"
             variant="contained"
             size="large"
-            onClick={handleLogin}
             sx={{
-              py: {
-                xs: 1.15,
-                sm: 1.7,
-              },
+              py: { xs: 1.15, sm: 1.7 },
               borderRadius: "10px",
               fontWeight: 700,
               textTransform: "none",
@@ -405,14 +389,8 @@ export default function Login() {
         <Typography
           align="center"
           sx={{
-            mt: {
-              xs: 2,
-              sm: 4,
-            },
-            fontSize: {
-              xs: ".82rem",
-              sm: ".9rem",
-            },
+            mt: { xs: 2, sm: 4 },
+            fontSize: { xs: ".82rem", sm: ".9rem" },
             color: subText,
           }}
         >

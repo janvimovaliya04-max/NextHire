@@ -290,7 +290,7 @@ export default function EditInterviewerProfile() {
         >
           <Button
             component={Link}
-            to="/interviewer-profile"
+            to="/interviewer/interviewer-profile"
             variant="outlined"
             sx={{
               borderRadius: "10px",

@@ -3,6 +3,7 @@ import ThemeSelector from "../../components/ThemeSelector";
 import useThemeColors from "../../hooks/useThemeColors";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 import { useCandidate } from "../../context/CandidateContext";
 import CandidateLayout from "../../Layouts/CandidateLayout";
 import {
@@ -26,6 +27,7 @@ import {
 } from "lucide-react";
 
 export default function CandidateSettings() {
+  const { user } = useAuth();
   const { darkMode } = useTheme();
   const colors = useThemeColors();
   const [showThemes, setShowThemes] = useState(false);
@@ -38,6 +40,20 @@ export default function CandidateSettings() {
   const textColor = colors.text;
   const subText = colors.subText;
   const borderStyle = colors.border;
+
+  // Profile State to allow editing
+  const [profile, setProfile] = useState({
+    firstName: user?.firstName || "Rahul",
+    lastName: user?.lastName || "Sharma",
+    fullName: user?.firstName && user?.lastName
+      ? `${user.firstName} ${user.lastName}`
+      : user?.username || "Rahul Sharma",
+    employeeId: user?.employeeId || user?.id || "CAN101",
+    email: user?.email || "can@gmail.com",
+    phone: user?.phone || user?.phoneNumber || "9562314785",
+    role: user?.designation || user?.role || "Administrator",
+    status: "Active",
+  });
 
   // Unified clean input styling matching Candidate Portal theme
   const textFieldStyle = {
@@ -204,7 +220,8 @@ export default function CandidateSettings() {
               <TextField
                 fullWidth
                 label="Full Name"
-                value={candidate?.fullName || ""}
+                value={profile.fullName}
+                InputLabelProps={{ shrink: true }}
                 slotProps={{
                   input: {
                     readOnly: true,
@@ -217,7 +234,7 @@ export default function CandidateSettings() {
               <TextField
                 fullWidth
                 label="Email ID"
-                value={candidate?.email || ""}
+                value={profile.email}
                 slotProps={{
                   input: {
                     readOnly: true,
@@ -230,7 +247,7 @@ export default function CandidateSettings() {
               <TextField
                 fullWidth
                 label="Registered Role"
-                value={candidate?.role || "Candidate"}
+                value={profile.role}
                 slotProps={{
                   input: {
                     readOnly: true,
@@ -243,7 +260,7 @@ export default function CandidateSettings() {
               <TextField
                 fullWidth
                 label="System Status"
-                value={candidate?.status || "Active"}
+                value={profile.status}
                 slotProps={{
                   input: {
                     readOnly: true,
@@ -705,7 +722,7 @@ export default function CandidateSettings() {
         >
           <Button
             component={Link}
-            to="/candidate-profile-r"
+            to="/candidate/candidate-profile-r"
             variant="outlined"
             startIcon={<ArrowLeft size={11} />}
             sx={{

@@ -1,0 +1,67 @@
+[
+    {
+        "id": 201,
+        "username": "alexdev",
+        "password": "alexCandidate1",
+        "email": "alex.johnson@gmail.com",
+        "firstName": "Alex",
+        "lastName": "Johnson",
+        "gender": "male",
+        "image": "https://dummyjson.com/icon/alexdev/128",
+        "role": "candidate",
+        "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjAxLCJyb2xlIjoiY2FuZGlkYXRlIn0.cand_token_201",
+        "refreshToken": "cand_refresh_201"
+    },
+    {
+        "id": 202,
+        "username": "priya_m",
+        "password": "priyaPass2026",
+        "email": "priya.mehta@yahoo.com",
+        "firstName": "Priya",
+        "lastName": "Mehta",
+        "gender": "female",
+        "image": "https://dummyjson.com/icon/priya_m/128",
+        "role": "candidate",
+        "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjAyLCJyb2xlIjoiY2FuZGlkYXRlIn0.cand_token_202",
+        "refreshToken": "cand_refresh_202"
+    },
+    {
+        "id": 203,
+        "username": "liam_smith",
+        "password": "liamSecurePassword",
+        "email": "liam.smith@outlook.com",
+        "firstName": "Liam",
+        "lastName": "Smith",
+        "gender": "male",
+        "image": "https://dummyjson.com/icon/liam_smith/128",
+        "role": "candidate",
+        "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjAzLCJyb2xlIjoiY2FuZGlkYXRlIn0.cand_token_203",
+        "refreshToken": "cand_refresh_203"
+    },
+    {
+        "id": 204,
+        "username": "sophiat",
+        "password": "sophiaTaylor99",
+        "email": "sophia.taylor@gmail.com",
+        "firstName": "Sophia",
+        "lastName": "Taylor",
+        "gender": "female",
+        "image": "https://dummyjson.com/icon/sophiat/128",
+        "role": "candidate",
+        "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjA0LCJyb2xlIjoiY2FuZGlkYXRlIn0.cand_token_204",
+        "refreshToken": "cand_refresh_204"
+    },
+    {
+        "id": 205,
+        "username": "daniel_k",
+        "password": "danielKimPass",
+        "email": "daniel.kim@hotmail.com",
+        "firstName": "Daniel",
+        "lastName": "Kim",
+        "gender": "male",
+        "image": "https://dummyjson.com/icon/daniel_k/128",
+        "role": "candidate",
+        "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjA1LCJyb2xlIjoiY2FuZGlkYXRlIn0.cand_token_205",
+        "refreshToken": "cand_refresh_205"
+    }
+]

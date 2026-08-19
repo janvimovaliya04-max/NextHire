@@ -1,20 +1,8 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
 import useThemeColors from "../hooks/useThemeColors";
-import { useAuth } from "../context/AuthContext";
 import { useRef, useEffect, useState } from "react";
-import {
-  Typography,
-  Divider,
-  Box,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-  Button,
-  Tooltip,
-} from "@mui/material";
+import { Typography, Divider, Box } from "@mui/material";
 import {
   House,
   Video,
@@ -34,21 +22,12 @@ export default function InterviewerLayout({ children }) {
   const location = useLocation();
   const navigate = useNavigate();
   const { darkMode, setDarkMode } = useTheme();
-  const { user, logout } = useAuth() || {};
   const colors = useThemeColors();
-
-  // Dynamic Interviewer details from Auth Context with fallback
-  const interviewerUser = {
-    fullName: user?.name || "Technical Reviewer",
-    email: user?.email || "reviewer@nexthire.com",
-  };
-
   const [mobileMenu, setMobileMenu] = useState(false);
-  const [openLogoutModal, setOpenLogoutModal] = useState(false);
 
-  // Theme-driven colors
-  const primary = colors.primary || "#10b981";
-  const secondary = colors.secondary || "#34d399";
+  // Colors — fully theme-driven (matches Candidate / Interviewer Settings)
+  const primary = colors.primary;
+  const secondary = colors.secondary;
   const textColor = colors.text;
   const subTextColor = colors.subText;
   const borderColor = colors.border;
@@ -57,86 +36,53 @@ export default function InterviewerLayout({ children }) {
 
   const sidebarRef = useRef(null);
   const contentRef = useRef(null);
-
-  // Scroll main content to top on path change
-  useEffect(() => {
-    requestAnimationFrame(() => {
-      if (contentRef.current) {
-        contentRef.current.scrollTo({
-          top: 0,
-          behavior: "instant",
-        });
-      }
-    });
-  }, [location.pathname]);
-
-  // Sidebar scroll position restoration
   useEffect(() => {
     const savedScroll = sessionStorage.getItem("interviewerSidebarScroll");
     if (savedScroll && sidebarRef.current) {
       sidebarRef.current.scrollTop = Number(savedScroll);
     }
-  }, []);
-
-  // Handle window resize for mobile menu toggle cleanup
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setMobileMenu(false);
+    requestAnimationFrame(() => {
+      if (contentRef.current) {
+        contentRef.current.scrollTop = 0;
       }
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    });
+  }, [location.pathname]);
 
+  // Sidebar scroll restoration
   const handleSidebarScroll = () => {
-    if (sidebarRef.current) {
-      sessionStorage.setItem("interviewerSidebarScroll", sidebarRef.current.scrollTop);
-    }
+    sessionStorage.setItem("interviewerSidebarScroll", sidebarRef.current.scrollTop);
+  };
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/login");
   };
 
-  const handleOpenLogoutModal = () => {
-    setMobileMenu(false);
-    setOpenLogoutModal(true);
-  };
-
-  const handleCloseLogoutModal = () => {
-    setOpenLogoutModal(false);
-  };
-
-  const handleConfirmLogout = () => {
-    setOpenLogoutModal(false);
-    if (logout) logout();
-    localStorage.removeItem("interviewer");
-    navigate("/login?role=interviewer");
-  };
-
-  // Grouped navigation config
+  // Grouped navigation config for the Interviewer
   const navGroups = [
     {
       title: "Overview",
       items: [
-        { path: "/interviewer", label: "Dashboard", icon: <House size={18} /> },
+        { path: "/interviewer", label: "Dashboard", icon: <House /> },
       ],
     },
     {
       title: "Interviews",
       items: [
-        { path: "/interviewer/assigned-interviews", label: "Assigned Interviews", icon: <Video size={18} /> },
-        { path: "/interviewer/join-interview", label: "Join Interview", icon: <Laptop size={18} /> },
+        { path: "/assigned-interviews", label: "Assigned Interviews", icon: <Video /> },
+        { path: "/join-interview", label: "Join Interview", icon: <Laptop /> },
       ],
     },
     {
       title: "Assessments",
       items: [
-        { path: "/interviewer/feedback", label: "Feedback", icon: <ClipboardCheck size={18} /> },
-        { path: "/interviewer/evaluations", label: "Evaluations", icon: <ChartBar size={18} /> },
+        { path: "/feedback", label: "Feedback", icon: <ClipboardCheck /> },
+        { path: "/evaluations", label: "Evaluations", icon: <ChartBar /> },
       ],
     },
     {
       title: "Account & System",
       items: [
-        { path: "/interviewer/interviewer-settings", label: "Settings", icon: <Settings size={18} /> },
+        { path: "/interviewer-settings", label: "Settings", icon: <Settings /> },
       ],
     },
   ];
@@ -144,19 +90,17 @@ export default function InterviewerLayout({ children }) {
   // Pathname title resolver
   const getCurrentPageTitle = () => {
     switch (location.pathname) {
-      case "/interviewer": return "Dashboard";
-      case "/interviewer/assigned-interviews": return "Interviews";
-      case "/interviewer/join-interview": return "Join Interview";
-      case "/interviewer/feedback": return "Feedback";
-      case "/interviewer/evaluations": return "Past Evaluations";
-      case "/interviewer/interviewer-profile": return "My Profile Details";
-      case "/interviewer/interviewer-settings": return "System Settings";
-      case "/interviewer/interviewer-notifications": return "Notifications Hub";
-      default: return "Control Room";
+      case "/interviewer": return " Dashboard";
+      case "/assigned-interviews": return " Interviews";
+      case "/join-interview": return "Join Interview";
+      case "/feedback": return "Feedback";
+      case "/evaluations": return "Past Evaluations";
+      case "/interviewer-profile": return "My Profile Details";
+      default: return " Control Room";
     }
   };
 
-  // Active navigation row styling
+  // Upgraded active row styling (theme primary/secondary driven)
   const activeStyle = (path) => {
     const isActive = location.pathname === path;
     if (isActive) {
@@ -171,23 +115,16 @@ export default function InterviewerLayout({ children }) {
     return {
       color: subTextColor,
       borderLeft: "4px solid transparent",
-      paddingLeft: "10px",
     };
-  };
-
-  const handleNavHover = (e, isEntering, path) => {
-    const isActive = location.pathname === path;
-    if (isActive) return;
-    e.currentTarget.style.backgroundColor = isEntering ? `${primary}0f` : "transparent";
-    e.currentTarget.style.color = isEntering ? primary : subTextColor;
   };
 
   return (
     <div
-      className="h-screen flex flex-col md:flex-row overflow-hidden font-sans"
+      className="h-screen flex overflow-hidden font-sans"
       style={{ backgroundColor: bgColor, color: textColor }}
     >
-      {/* Sidebar Navigation */}
+
+      {/* Sidebar with custom thin scrollbar */}
       <aside
         className={`
           fixed md:static
@@ -200,7 +137,11 @@ export default function InterviewerLayout({ children }) {
           border-r
           transition-all duration-300
           flex flex-col
-          ${mobileMenu ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
+          
+          ${mobileMenu
+            ? "translate-x-0"
+            : "-translate-x-full md:translate-x-0"
+          }
         `}
         style={{
           backgroundColor: cardColor,
@@ -208,7 +149,7 @@ export default function InterviewerLayout({ children }) {
           color: textColor,
         }}
       >
-        {/* Logo Section */}
+        {/* Logo */}
         <div
           className="mb-6 px-2 py-3 border-b border-dashed"
           style={{ borderColor: borderColor }}
@@ -227,7 +168,7 @@ export default function InterviewerLayout({ children }) {
           </div>
         </div>
 
-        {/* Scrollable Nav Area */}
+        {/* Scrollable Area */}
         <div
           ref={sidebarRef}
           onScroll={handleSidebarScroll}
@@ -247,12 +188,12 @@ export default function InterviewerLayout({ children }) {
                     key={item.path}
                     to={item.path}
                     onClick={() => setMobileMenu(false)}
-                    onMouseEnter={(e) => handleNavHover(e, true, item.path)}
-                    onMouseLeave={(e) => handleNavHover(e, false, item.path)}
                     className="flex items-center gap-3 p-2.5 rounded-lg text-[0.92rem] transition-all duration-200"
                     style={activeStyle(item.path)}
                   >
-                    <span className="text-[1.05rem] opacity-80">{item.icon}</span>
+                    <span className="text-[1.05rem] opacity-80">
+                      {item.icon}
+                    </span>
                     {item.label}
                   </Link>
                 ))}
@@ -275,65 +216,72 @@ export default function InterviewerLayout({ children }) {
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = `${primary}10`)}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
             >
-              {darkMode ? <Sun size={18} /> : <Moon size={18} />}
+              {darkMode ? <Sun /> : <Moon />}
               <span>Theme</span>
             </button>
             <Link
-              to="/interviewer/interviewer-profile"
+              to="/interviewer-profile"
               onClick={() => setMobileMenu(false)}
               className="flex items-center gap-3 p-3 rounded-lg"
               style={{ color: textColor }}
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = `${primary}10`)}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
             >
-              <User size={18} />
+              <User />
               <span>Profile</span>
             </Link>
           </div>
         </div>
 
-        {/* Footer User Info */}
+        {/* Fixed Footer */}
         <div
-          className="shrink-0 border-t pt-3 px-2 pb-2"
+          className="shrink-0 border-t pt-2 px-2 pb-0"
           style={{ borderColor: borderColor }}
         >
-          <div className="flex items-center gap-3 mb-2">
+          <div className="flex items-center gap-3">
             <div
               className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm"
               style={{ background: `linear-gradient(135deg, ${primary}, ${secondary || primary})` }}
             >
-              {interviewerUser.fullName?.charAt(0)?.toUpperCase() || "I"}
+              INT
             </div>
             <div className="overflow-hidden flex-1">
               <h5 className="font-semibold text-sm truncate" style={{ color: textColor }}>
-                {interviewerUser.fullName}
+                Technical Reviewer
               </h5>
               <p className="text-xs truncate" style={{ color: subTextColor }}>
-                {interviewerUser.email}
+                reviewer@nexthire.com
               </p>
             </div>
           </div>
 
+          {/* Mobile Logout */}
           <button
-            onClick={handleOpenLogoutModal}
-            className="md:hidden w-full flex items-center justify-center gap-2 py-2 rounded-lg text-red-500 hover:bg-red-500/10 transition-colors"
+            onClick={handleLogout}
+            className="md:hidden w-full flex items-center gap-2 px-2 py-2 mt-1 rounded-lg text-red-500 hover:bg-red-500/10"
           >
-            <LogOut size={16} />
+            <LogOut />
             <span>Logout</span>
           </button>
         </div>
       </aside>
+      {
+        mobileMenu && (
+          <div
+            onClick={() => setMobileMenu(false)}
+            className="
+              fixed inset-0
+              bg-black/40
+              z-40
+              md:hidden
+              "
+          />
+        )
+      }
 
-      {/* Backdrop for Mobile Sidebar */}
-      {mobileMenu && (
-        <div
-          onClick={() => setMobileMenu(false)}
-          className="fixed inset-0 bg-black/40 z-40 md:hidden"
-        />
-      )}
-
-      {/* Main Panel Content */}
+      {/* Main Panel */}
       <main className="flex-1 flex flex-col h-screen overflow-hidden w-full">
+
         {/* Topbar Header */}
         <header
           className="min-h-20 px-4 md:px-8 py-3 flex flex-wrap gap-3 justify-between items-center border-b transition-all duration-300 backdrop-blur-md"
@@ -347,16 +295,16 @@ export default function InterviewerLayout({ children }) {
             <button
               onClick={() => setMobileMenu(true)}
               className="p-2 rounded-lg border"
-              style={{ borderColor: borderColor, backgroundColor: bgColor, color: textColor }}
+              style={{ borderColor: borderColor, backgroundColor: bgColor }}
             >
-              <Menu size={20} />
+              <Menu />
             </button>
             <Link
-              to="/interviewer/interviewer-notifications"
+              to="/candidate-notifications"
               className="relative p-2 rounded-lg border"
               style={{ borderColor: borderColor, backgroundColor: bgColor, color: textColor }}
             >
-              <Bell size={20} />
+              <Bell />
               <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-red-500"></span>
             </Link>
           </div>
@@ -366,75 +314,78 @@ export default function InterviewerLayout({ children }) {
                 fontWeight: 700,
                 letterSpacing: "-.02em",
                 color: textColor,
-                fontSize: { xs: "1.25rem", sm: "1.7rem", md: "1.75rem" },
+                fontSize: { xs: "1.4rem", sm: "1.7rem", md: "2rem" }
               }}
             >
               {getCurrentPageTitle()}
             </Typography>
           </div>
 
-          {/* Topbar Desktop Controls */}
+          {/* Topbar Controls */}
           <div className="hidden md:flex items-center gap-3.5">
+
             {/* Theme switcher */}
             <button
               onClick={() => setDarkMode(!darkMode)}
-              className="p-2.5 rounded-xl border transition-all duration-200"
+              className="p-2.5 rounded-xl border transition-all duration-200 hover:-translate-y-0.5"
               style={{
                 backgroundColor: bgColor,
-                color: primary,
+                color: darkMode ? "#facc15" : subTextColor,
                 borderColor: borderColor,
               }}
             >
-              {darkMode ? <Sun size={16} /> : <Moon size={16} />}
+              {darkMode ? <Sun size={15} /> : <Moon size={15} />}
             </button>
 
-            {/* Notifications Alert */}
+            {/* Notifications Button */}
             <Link
-              to="/interviewer/interviewer-notifications"
-              className="p-2.5 rounded-xl border relative transition-all duration-200"
+              to="/interviewer-notifications"
+              className="p-2.5 rounded-xl border relative transition-all duration-200 hover:-translate-y-0.5"
               style={{
                 backgroundColor: bgColor,
-                color: primary,
+                color: textColor,
                 borderColor: borderColor,
               }}
             >
-              <Bell size={16} />
+              <Bell size={15} />
               <span
                 className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full"
                 style={{ backgroundColor: primary }}
               ></span>
             </Link>
 
-            <Divider
-              orientation="vertical"
-              variant="middle"
-              flexItem
-              sx={{ borderColor: borderColor }}
-            />
+            <Divider orientation="vertical" variant="middle" flexItem sx={{
+              borderColor: borderColor,
+            }} />
 
-            {/* Profile Link */}
-            <Tooltip title="Interviewer Profile">
-              <Link
-                to="/interviewer/interviewer-profile"
-                className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 border-2 border-white shadow-md hover:scale-105 text-white"
-                style={{ background: `linear-gradient(135deg, ${primary}, ${secondary || primary})` }}
-              >
-                {interviewerUser.fullName?.charAt(0)?.toUpperCase() || "I"}
-              </Link>
-            </Tooltip>
+            {/* Profile Action Link */}
+            <Link
+              to="/interviewer-profile"
+              className="text-white px-4 py-2 text-sm font-semibold rounded-xl transition shadow-md"
+              style={{
+                background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
+              }}
+            >
+              <span className="hidden sm:block">
+                Profile
+              </span>
+              <User className="sm:hidden" />
+            </Link>
 
             {/* Logout Action Button */}
             <button
-              onClick={handleOpenLogoutModal}
-              className="p-2.5 rounded-xl border flex items-center justify-center gap-2 font-semibold text-sm text-red-500 border-red-500/20 bg-red-500/5 hover:bg-red-500/10 hover:border-red-500/40 transition-all duration-300 cursor-pointer"
+              onClick={handleLogout}
+              className="p-2.5 rounded-xl border flex items-center justify-center gap-2 font-semibold text-sm text-red-500 border-red-500/25 bg-red-500/5 hover:bg-red-500/15 transition"
             >
-              <LogOut size={16} />
-              <span className="hidden sm:inline">Logout</span>
+              <LogOut size={14} />
+              <span className="hidden sm:inline">
+                Logout
+              </span>
             </button>
           </div>
         </header>
 
-        {/* Dynamic Route Content */}
+        {/* Scrollable Layout Content */}
         <div
           ref={contentRef}
           className="flex-1 overflow-y-auto"
@@ -450,62 +401,6 @@ export default function InterviewerLayout({ children }) {
           </Box>
         </div>
       </main>
-
-      {/* Confirmation Modal for Logout */}
-      <Dialog
-        open={openLogoutModal}
-        onClose={handleCloseLogoutModal}
-        PaperProps={{
-          sx: {
-            borderRadius: "16px",
-            padding: "8px",
-            backgroundColor: cardColor,
-            color: textColor,
-            maxWidth: "400px",
-            width: "100%",
-            border: `1px solid ${borderColor}`,
-          },
-        }}
-      >
-        <DialogTitle sx={{ fontWeight: 700, fontSize: "1.2rem", color: textColor }}>
-          Confirm Logout
-        </DialogTitle>
-
-        <DialogContent>
-          <DialogContentText sx={{ color: subTextColor, fontSize: "0.95rem" }}>
-            Are you sure you want to log out of NextHire Interviewer Space?
-          </DialogContentText>
-        </DialogContent>
-
-        <DialogActions sx={{ padding: "12px 20px" }}>
-          <Button
-            onClick={handleCloseLogoutModal}
-            sx={{
-              textTransform: "none",
-              fontWeight: 600,
-              color: subTextColor,
-              borderRadius: "8px",
-            }}
-          >
-            Cancel
-          </Button>
-
-          <Button
-            onClick={handleConfirmLogout}
-            variant="contained"
-            color="error"
-            startIcon={<LogOut size={16} />}
-            sx={{
-              textTransform: "none",
-              fontWeight: 600,
-              borderRadius: "8px",
-              boxShadow: "none",
-            }}
-          >
-            Logout
-          </Button>
-        </DialogActions>
-      </Dialog>
     </div>
   );
 }

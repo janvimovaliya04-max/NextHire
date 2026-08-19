@@ -1,154 +1,121 @@
-import { useTheme } from "../context/ThemeContext";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useTheme } from "../context/ThemeContext";
 import { useRef, useEffect, useState } from "react";
-import { Typography, Box, Divider, Tooltip } from "@mui/material";
-import { useCandidate } from "../context/CandidateContext";
-import { useAuth } from "../context/AuthContext";
+import { Typography, Divider, Box } from "@mui/material";
 import useThemeColors from "../hooks/useThemeColors";
 import {
-  User,
   Menu,
   LayoutDashboard,
-  Search,
+  CirclePlus,
+  Briefcase,
+  Users,
+  User,
   FileText,
+  Star,
   ClipboardCheck,
+  Mic,
   Calendar,
+  ChartLine,
   Bell,
   Settings,
-  Send,
   Sun,
   Moon,
   LogOut,
 } from "lucide-react";
 
-export default function CandidateLayout({ children }) {
+export default function HRLayout({ children }) {
   const location = useLocation();
   const navigate = useNavigate();
   const { darkMode, setDarkMode } = useTheme();
-  const { candidate: contextCandidate } = useCandidate() || {};
-  const { user, logout } = useAuth();
   const colors = useThemeColors();
-
-  // Dynamic candidate fallback from Auth Context or Candidate Context
-  const candidate = {
-    fullName: user?.name || contextCandidate?.fullName || "Candidate User",
-    email: user?.email || contextCandidate?.email || "candidate@nexthire.com",
-  };
-
-  const primary = colors.primary || "#10b981";
-  const secondary = colors.secondary || "#34d399";
+  const primary = colors.primary;
+  const secondary = colors.secondary;
   const textColor = colors.text;
   const subText = colors.subText;
   const borderStyle = colors.border;
   const sidebarRef = useRef(null);
   const contentRef = useRef(null);
-
   const [mobileMenu, setMobileMenu] = useState(false);
-
-  // Scroll content to top on navigation change
-  useEffect(() => {
-    requestAnimationFrame(() => {
-      if (contentRef.current) {
-        contentRef.current.scrollTo({
-          top: 0,
-          behavior: "instant",
-        });
-      }
-    });
-  }, [location.pathname]);
 
   // Sidebar scroll restoration
   useEffect(() => {
-    const savedScroll = sessionStorage.getItem("candidateSidebarScroll");
+    const savedScroll = sessionStorage.getItem("hrSidebarScroll");
     if (savedScroll && sidebarRef.current) {
       sidebarRef.current.scrollTop = Number(savedScroll);
     }
   }, []);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setMobileMenu(false);
-      }
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   const handleSidebarScroll = () => {
-    if (sidebarRef.current) {
-      sessionStorage.setItem("candidateSidebarScroll", sidebarRef.current.scrollTop);
-    }
+    sessionStorage.setItem("hrSidebarScroll", sidebarRef.current.scrollTop);
   };
 
   const handleLogout = () => {
     setMobileMenu(false);
-    logout();
-    localStorage.removeItem("candidate");
-    navigate("/login?role=candidate");
+    localStorage.clear();
+    navigate("/login");
   };
 
-  // Grouped Navigation configuration for Candidates
+  // Dynamic Navigation Groups configuration (Removed Candidate Profile entry)
   const navGroups = [
     {
       title: "Overview",
       items: [
-        { path: "/candidate", label: "Dashboard", icon: <LayoutDashboard size={18} /> },
-        { path: "/candidate/apply-job/:id", label: "Apply For Job", icon: <Send size={18} /> },
+        { path: "/hr", label: "Dashboard", icon: <LayoutDashboard /> },
+        { path: "/analytics", label: "Analytics", icon: <ChartLine /> },
       ],
     },
     {
-      title: "Jobs & Applications",
+      title: "Job Openings",
       items: [
-        { path: "/candidate/browse-jobs", label: "Browse Jobs", icon: <Search size={18} /> },
-        { path: "/candidate/my-applications", label: "My Applications", icon: <FileText size={18} /> },
+        { path: "/create-job", label: "Create Job", icon: <CirclePlus /> },
+        { path: "/job-management", label: "Job Management", icon: <Briefcase /> },
+      ],
+    },
+    {
+      title: "Candidates",
+      items: [
+        { path: "/candidates", label: "Candidates", icon: <Users /> },
+        { path: "/candidate-feedback", label: "Feedback", icon: <ClipboardCheck /> },
       ],
     },
     {
       title: "Assessments & Interviews",
       items: [
-        { path: "/candidate/candidate-assessment", label: "Assessments", icon: <ClipboardCheck size={18} /> },
-        { path: "/candidate/my-interviews", label: "My Interviews", icon: <Calendar size={18} /> },
+        { path: "/create-assessment", label: "Create Assessment", icon: <ClipboardCheck /> },
+        { path: "/interview-management", label: "Interview Management", icon: <Mic /> },
+        { path: "/interview-schedule", label: "Interview Scheduling", icon: <Calendar /> },
+        { path: "/recruiters", label: "Recruiters", icon: <Users /> },
       ],
     },
     {
-      title: "Settings & System",
+      title: "Account",
       items: [
-        { path: "/candidate/candidate-settings", label: "Settings", icon: <Settings size={18} /> },
+        { path: "/settings", label: "Settings", icon: <Settings /> },
       ],
     },
   ];
 
-  // Pathname title resolver for Topbar
+  // Dynamic header titles based on pathname
   const getCurrentPageTitle = () => {
-    if (location.pathname.startsWith("/apply-job/")) {
-      return "Submit Application";
-    }
     switch (location.pathname) {
-      case "/candidate":
-        return "Candidate Dashboard";
-      case "/candidate/browse-jobs":
-        return "Job Openings";
-      case "/candidate/my-applications":
-        return "My Job Applications";
-      case "/candidate/candidate-assessment":
-        return "Skill Assessments";
-      case "/candidate/my-interviews":
-        return "Interview Schedule";
-      case "/candidate/candidate-profile-r":
-        return "Control Center";
-      case "/candidate/candidate-notifications":
-        return "My Alerts";
-      case "/candidate/candidate-settings":
-        return "System Configuration";
-      case "/candidate/apply-job/:id":
-        return "Apply For Job";
-      default:
-        return "Candidate Workspace";
+      case "/hr": return "Dashboard Overview";
+      case "/create-job": return "Create New Job";
+      case "/job-management": return "Job Postings ";
+      case "/candidates": return "Candidates Directory";
+      case "/create-assessment": return " Custom Assessment";
+      case "/interview-management": return "Interview Rounds";
+      case "/interview-schedule": return "Interview Scheduling";
+      case "/analytics": return "Hiring Analytics";
+      case "/notifications": return "Notification Hub";
+      case "/settings": return "System Configuration";
+      case "/candidate-feedback": return "Feedback";
+      case "/recruiters": return "Assigned Recruiters";
+      default: return "HR Control Center";
     }
   };
 
-  // Active navigation link styling
+  // Upgraded active and hover styles — colors resolved dynamically via inline style,
+  // Tailwind classes kept for layout/spacing only
   const getNavLinkStyle = (path) => {
     const isActive = location.pathname === path;
     if (isActive) {
@@ -176,13 +143,14 @@ export default function CandidateLayout({ children }) {
 
   return (
     <div
-      className="h-screen flex flex-col md:flex-row overflow-hidden font-sans"
+      className="h-screen flex overflow-hidden font-sans flex-col md:flex-row"
       style={{
         backgroundColor: colors.background,
         color: textColor,
       }}
     >
-      {/* Sidebar with custom thin scrollbar */}
+
+      {/* Sidebar with thin custom scrollbar */}
       <aside
         className={`
           fixed md:static
@@ -195,7 +163,10 @@ export default function CandidateLayout({ children }) {
           border-r
           transition-all duration-300
           flex flex-col
-          ${mobileMenu ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
+          
+          ${mobileMenu
+            ? "translate-x-0"
+            : "-translate-x-full md:translate-x-0"}
         `}
         style={{
           backgroundColor: colors.card,
@@ -203,7 +174,8 @@ export default function CandidateLayout({ children }) {
           color: textColor,
         }}
       >
-        {/* Logo & Brand Header */}
+
+        {/* Logo */}
         <div
           className="mb-6 px-2 py-3 border-b border-dashed"
           style={{ borderColor: borderStyle }}
@@ -217,7 +189,7 @@ export default function CandidateLayout({ children }) {
                 color: textColor,
               }}
             >
-              Candidate Space
+              HR Admin Space
             </Typography>
           </div>
         </div>
@@ -247,7 +219,9 @@ export default function CandidateLayout({ children }) {
                     className="flex items-center gap-3 p-2.5 rounded-lg text-[0.92rem] transition-all duration-200"
                     style={getNavLinkStyle(item.path)}
                   >
-                    <span className="text-[1.05rem] opacity-80">{item.icon}</span>
+                    <span className="text-[1.05rem] opacity-80">
+                      {item.icon}
+                    </span>
                     {item.label}
                   </Link>
                 ))}
@@ -268,63 +242,70 @@ export default function CandidateLayout({ children }) {
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = `${primary}14`)}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
             >
-              {darkMode ? <Sun size={18} /> : <Moon size={18} />}
+              {darkMode ? <Sun /> : <Moon />}
               <span>Theme</span>
             </button>
             <Link
-              to="/candidate/candidate-profile-r"
+              to="/hr-profile"
               onClick={() => setMobileMenu(false)}
               className="flex items-center gap-3 p-3 rounded-lg"
               style={{ color: textColor }}
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = `${primary}14`)}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
             >
-              <User size={18} />
+              <User />
               <span>Profile</span>
             </Link>
           </div>
         </div>
 
-        {/* Sidebar Footer - Profile Info */}
+        {/* Footer */}
         <div
-          className="shrink-0 border-t pt-3 px-2 pb-2"
+          className="border-t pt-3 pb-2 px-2 shrink-0"
           style={{ borderColor: borderStyle }}
         >
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 mb-2">
             <div
               className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm"
               style={{ background: `linear-gradient(135deg,${primary},${secondary || primary})` }}
             >
-              {candidate.fullName?.charAt(0)?.toUpperCase() || "C"}
+              HR
             </div>
-            <div className="overflow-hidden">
-              <h5 className="font-semibold text-sm truncate" style={{ color: textColor }}>
-                {candidate.fullName}
+            <div className="min-w-0">
+              <h5 className="font-semibold text-sm leading-4" style={{ color: textColor }}>
+                Admin Manager
               </h5>
-              <p className="text-xs truncate" style={{ color: subText }}>
-                {candidate.email}
+              <p className="text-xs leading-4" style={{ color: subText }}>
+                hr@nexthire.com
               </p>
             </div>
           </div>
           <button
             onClick={handleLogout}
-            className="md:hidden w-full mt-3 flex items-center justify-center gap-2 text-red-500 py-2 px-1 rounded-lg hover:bg-red-500/10 transition-colors"
+            className="md:hidden flex items-center gap-2 text-red-500 py-2 px-1 rounded-lg hover:bg-red-50"
           >
-            <LogOut size={16} />
+            <LogOut />
             Logout
           </button>
         </div>
       </aside>
+      {
+        mobileMenu && (
+          <div
+            onClick={() => setMobileMenu(false)}
+            className="
+              fixed inset-0
+              bg-black/40
+              z-40
+              md:hidden
+              "
+          />
+        )
+      }
 
-      {mobileMenu && (
-        <div
-          onClick={() => setMobileMenu(false)}
-          className="fixed inset-0 bg-black/40 z-40 md:hidden"
-        />
-      )}
-
-      {/* Main Content Area */}
+      {/* Main Panel */}
       <main className="flex-1 flex flex-col h-screen overflow-hidden w-full">
+
         {/* Topbar Header */}
         <header
           className="min-h-20 px-4 md:px-8 py-3 flex flex-wrap gap-3 justify-between items-center border-b transition-all duration-300 backdrop-blur-md"
@@ -344,10 +325,10 @@ export default function CandidateLayout({ children }) {
                 color: textColor,
               }}
             >
-              <Menu size={20} />
+              <Menu />
             </button>
             <Link
-              to="/candidate/candidate-notifications"
+              to="/notifications"
               className="relative p-2 rounded-lg border"
               style={{
                 borderColor: borderStyle,
@@ -355,7 +336,9 @@ export default function CandidateLayout({ children }) {
                 color: textColor,
               }}
             >
-              <Bell size={20} />
+              <Bell />
+
+              {/* Notification Badge */}
               <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-red-500"></span>
             </Link>
           </div>
@@ -364,7 +347,10 @@ export default function CandidateLayout({ children }) {
               sx={{
                 fontWeight: 700,
                 letterSpacing: "-0.02em",
-                fontSize: { xs: "1.25rem", md: "1.75rem" },
+                fontSize: {
+                  xs: "1.25rem",
+                  md: "2.125rem"
+                },
                 color: textColor,
               }}
             >
@@ -374,7 +360,8 @@ export default function CandidateLayout({ children }) {
 
           {/* Topbar Control Elements */}
           <div className="hidden md:flex items-center gap-3.5">
-            {/* Theme switcher */}
+
+            {/* Theme Switcher */}
             <button
               onClick={() => setDarkMode(!darkMode)}
               className="p-2.5 rounded-xl border transition-all duration-200"
@@ -384,54 +371,44 @@ export default function CandidateLayout({ children }) {
                 borderColor: borderStyle,
               }}
             >
-              {darkMode ? <Sun size={16} /> : <Moon size={16} />}
+              {darkMode ? <Sun size={15} /> : <Moon size={15} />}
             </button>
 
-            {/* Notifications Alert */}
+            {/* Notifications Button */}
             <Link
-              to="/candidate/candidate-notifications"
+              to="/notifications"
               className="p-2.5 rounded-xl border relative transition-all duration-200"
               style={{
                 backgroundColor: colors.input,
-                color: primary,
+                color: textColor,
                 borderColor: borderStyle,
               }}
             >
-              <Bell size={16} />
-              <span
-                className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full"
-                style={{ backgroundColor: primary }}
-              ></span>
+              <Bell size={15} />
+            </Link>
+            <Divider orientation="vertical" variant="middle" flexItem sx={{ borderColor: borderStyle }} />
+
+            {/* Profile Action */}
+            <Link
+              to="/hr-profile"
+              className="text-white px-4 py-2 text-sm font-semibold rounded-xl"
+              style={{ background: `linear-gradient(135deg,${primary},${secondary || primary})` }}
+            >
+              <span className="hidden sm:block">
+                Profile
+              </span>
+              <User className="sm:hidden" />
             </Link>
 
-            <Divider
-              orientation="vertical"
-              variant="middle"
-              flexItem
-              sx={{
-                display: { xs: "none", sm: "block" },
-                borderColor: borderStyle,
-              }}
-            />
-
-            {/* Profile Action Link */}
-            <Tooltip title="My Profile">
-              <Link
-                to="/candidate/candidate-profile-r"
-                className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 border-2 border-white shadow-md hover:scale-105 text-white"
-                style={{ background: `linear-gradient(135deg,${primary},${secondary || primary})` }}
-              >
-                {candidate.fullName?.charAt(0)?.toUpperCase() || "C"}
-              </Link>
-            </Tooltip>
-
-            {/* Logout Action Button */}
+            {/* Logout Action */}
             <button
               onClick={handleLogout}
-              className="p-2.5 rounded-xl border flex items-center justify-center gap-2 font-semibold text-sm text-red-500 border-red-500/20 bg-red-500/5 hover:bg-red-500/10 hover:border-red-500/40 transition-all duration-300"
+              className="p-2.5 rounded-xl border flex items-center justify-center gap-2 font-semibold text-sm text-red-500 border-red-500/25 bg-red-500/5 hover:bg-red-500/10 transition"
             >
-              <LogOut size={16} />
-              <span className="hidden sm:inline">Logout</span>
+              <LogOut size={14} />
+              <span className="hidden sm:inline">
+                Logout
+              </span>
             </button>
           </div>
         </header>

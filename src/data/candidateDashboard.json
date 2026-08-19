@@ -17,21 +17,21 @@
     "title": "Explore Open Jobs",
     "desc": "Browse current job listings, check technical skill stacks, and apply.",
     "btnText": "Find Openings",
-    "link": "/browse-jobs",
+    "link": "/candidate/browse-jobs",
     "icon": "briefcase"
   },
   {
     "title": "Track Applications",
     "desc": "Check recruitment stages, test feedback, and review offers.",
     "btnText": "View Progress",
-    "link": "/my-applications",
+    "link": "/candidate/my-applications",
     "icon": "clipboard"
   },
   {
     "title": "Prepare Interviews",
     "desc": "Check scheduled slots and interview details.",
     "btnText": "Check Schedule",
-    "link": "/my-interviews",
+    "link": "/candidate/my-interviews",
     "icon": "calendar"
   }
 ],
@@ -66,6 +66,6 @@
     "company": "PixelCraft Solutions",
     "time": "Today, 03:30 PM",
     "interviewer": "David (Lead UI)",
-    "link": "/candidate-assessment"
+    "link": "/candidate/candidate-assessment"
   }
 }

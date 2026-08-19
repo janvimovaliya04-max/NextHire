@@ -423,7 +423,7 @@ export default function BrowseJobs() {
 
                       <Button
                         component={Link}
-                        to={`/job-details/${job.jobId}`}
+                        to={`/candidate/job-details/${job.jobId}`}
                         onClick={() => {
                           sessionStorage.setItem("browseJobsScroll", window.scrollY);
                         }}

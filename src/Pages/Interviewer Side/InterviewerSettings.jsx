@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom";
+import InterviewerLayout from "../../Layouts/InterviewerLayout";
 import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
 import ThemeSelector from "../../components/ThemeSelector";
-import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import { useState } from "react";
-import InterviewerLayout from "../../Layouts/InterviewerLayout";
 import {
   Paper,
   Typography,
@@ -25,10 +26,11 @@ import {
 } from "lucide-react";
 
 export default function InterviewerSettings() {
+  const { user } = useAuth();
   const { darkMode } = useTheme();
   const colors = useThemeColors();
 
-  // Colors — fully theme-driven (matches CandidateSettings)
+  // Colors — fully theme-driven (matches CandidateSettings & InterviewerProfile)
   const primary = colors.primary;
   const secondary = colors.secondary;
   const textColor = colors.text;
@@ -40,6 +42,16 @@ export default function InterviewerSettings() {
   const [interviewReminders, setInterviewReminders] = useState(true);
   const [assessmentAlerts, setAssessmentAlerts] = useState(true);
   const [feedbackUpdates, setFeedbackUpdates] = useState(false);
+
+  // Safe profile details mapped consistently with InterviewerProfile
+  const profile = {
+    firstName: user?.firstName || "Rahul",
+    lastName: user?.lastName || "Sharma",
+    fullName: user?.firstName && user?.lastName 
+      ? `${user.firstName} ${user.lastName}` 
+      : user?.username || "Rahul Sharma",
+    email: user?.email || "rahul@nexthire.com",
+  };
 
   // Unified clean input styling matching Candidate Portal theme
   const textFieldStyle = {
@@ -57,7 +69,7 @@ export default function InterviewerSettings() {
         sm: 56,
       },
       color: textColor,
-      backgroundColor: colors.input,
+      backgroundColor: colors.input || colors.card,
       "& fieldset": {
         borderColor: borderStyle,
         borderRadius: "10px",
@@ -96,7 +108,7 @@ export default function InterviewerSettings() {
     },
     borderRadius: "10px",
     border: `1px solid ${borderStyle}`,
-    bgcolor: colors.input,
+    bgcolor: colors.input || colors.card,
     transition: "all .3s cubic-bezier(.4,0,.2,1)",
     "&:hover": {
       borderColor: primary,
@@ -153,7 +165,6 @@ export default function InterviewerSettings() {
           },
         }}
       >
-
         {/* Page Header */}
         <Box
           sx={{
@@ -217,7 +228,7 @@ export default function InterviewerSettings() {
               <TextField
                 fullWidth
                 label="Full Name"
-                value="Rahul Sharma"
+                value={profile.fullName}
                 slotProps={{
                   input: {
                     readOnly: true,
@@ -230,7 +241,7 @@ export default function InterviewerSettings() {
               <TextField
                 fullWidth
                 label="Email"
-                value="rahul@nexthire.com"
+                value={profile.email}
                 slotProps={{
                   input: {
                     readOnly: true,
@@ -543,7 +554,7 @@ export default function InterviewerSettings() {
         >
           <Button
             component={Link}
-            to="/interviewer-profile"
+            to="/interviewer/interviewer-profile"
             variant="outlined"
             startIcon={<ArrowLeft size={11} />}
             sx={{
@@ -614,7 +625,6 @@ export default function InterviewerSettings() {
             Save Settings
           </Button>
         </Box>
-
       </Box>
     </InterviewerLayout>
   );

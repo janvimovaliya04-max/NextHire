@@ -382,7 +382,7 @@ export default function Feedback() {
           >
             <Button
               component={Link}
-              to="/evaluations"
+              to="/interviewer/evaluations"
               variant="outlined"
               sx={{
                 borderRadius: 5,

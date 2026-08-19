@@ -1,7 +1,9 @@
-import InterviewerLayout from "../../Layouts/InterviewerLayout";
+import React from "react";
 import { Link } from "react-router-dom";
+import InterviewerLayout from "../../Layouts/InterviewerLayout";
 import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
+import { useAuth } from "../../context/AuthContext"; // 👈 Auth Context import karyu
 import {
   Card,
   Grid,
@@ -13,7 +15,6 @@ import {
   Chip,
   Paper,
 } from "@mui/material";
-
 import {
   Calendar,
   ClipboardCheck,
@@ -22,108 +23,95 @@ import {
   Video,
 } from "lucide-react";
 
-// Adjust this path to match where you place the JSON file
 import dashboardData from "../../data/interviewerDashboard.json";
 
 export default function InterviewerDashboard() {
+  const { user } = useAuth(); // 👈 Logged-in user context mathi read karyo
   const { darkMode } = useTheme();
   const colors = useThemeColors();
 
-  // Colors — fully theme-driven (matches Candidate Dashboard / Settings / Evaluations)
   const primary = colors.primary;
-  const secondary = colors.secondary;
+  const secondary = colors.secondary || primary;
   const textColor = colors.text;
   const subText = colors.subText;
   const borderStyle = colors.border;
 
-  // Stat card meta — accents alternate between theme primary/secondary,
-  // "Feedback Pending" keeps a semantic red since it signals something outstanding
+  // Dynamic interviewer name calculation
+  const interviewerName =
+    user?.name ||
+    (user?.firstName ? `${user.firstName} ${user.lastName || ""}` : user?.username) ||
+    dashboardData.welcomeName;
+
+  // Dynamic Theme Config Mapping
   const cardMeta = {
     "Interviews Assigned": {
       icon: <Calendar size={20} />,
-      link: "/assigned-interviews",
+      link: "/interviewer/assigned-interviews",
       color: primary,
       bgLight: `${primary}14`,
       bgDark: `${primary}26`,
     },
     "Feedback Pending": {
       icon: <ClipboardCheck size={20} />,
-      link: "/feedback",
+      link: "/interviewer/feedback",
       color: primary,
-      bgLight: `${secondary || primary}14`,
-      bgDark: `${secondary || primary}26`,
+      bgLight: `${secondary}14`,
+      bgDark: `${secondary}26`,
     },
     "Completed Evaluations": {
       icon: <ChartBar size={20} />,
-      link: "/evaluations",
-      color: secondary || primary,
-      bgLight: `${secondary || primary}14`,
-      bgDark: `${secondary || primary}26`,
+      link: "/interviewer/evaluations",
+      color: secondary,
+      bgLight: `${secondary}14`,
+      bgDark: `${secondary}26`,
     },
   };
 
   const actions = [
-    {
-      title: "Assigned Interviews",
-      link: "/assigned-interviews",
-      color: primary,
-    },
-
-    {
-      title: "Submit Feedback",
-      link: "/feedback",
-      color: primary,
-    },
-
-    {
-      title: "Evaluations Hub",
-      link: "/evaluations",
-      color: primary,
-    },
+    { title: "Assigned Interviews", link: "/interviewer/assigned-interviews", color: primary },
+    { title: "Submit Feedback", link: "/interviewer/feedback", color: primary },
+    { title: "Evaluations Hub", link: "/interviewer/evaluations", color: primary },
   ];
 
-  const cards = dashboardData.cards.map((card) => ({
-    ...card,
-    icon: cardMeta[card.title]?.icon,
-    link: cardMeta[card.title]?.link,
-    color: cardMeta[card.title]?.color,
-    bgLight: cardMeta[card.title]?.bgLight,
-    bgDark: cardMeta[card.title]?.bgDark,
-  }));
+  const cards = (dashboardData.cards || []).map((card) => {
+    const meta = cardMeta[card.title] || {};
+    return {
+      ...card,
+      icon: meta.icon,
+      link: meta.link || "#",
+      color: meta.color || primary,
+      bgLight: meta.bgLight || `${primary}14`,
+      bgDark: meta.bgDark || `${primary}26`,
+    };
+  });
 
-  const recentInterviews = dashboardData.recentInterviews;
-  const recentEvaluations = dashboardData.recentEvaluations;
+  const recentInterviews = dashboardData.recentInterviews || [];
+  const recentEvaluations = dashboardData.recentEvaluations || [];
 
   return (
     <InterviewerLayout>
-
-      {/* Welcome Greeting Section */}
+      {/* Dynamic Welcome Greeting Banner */}
       <Box sx={{ mb: 5 }}>
         <Typography
           sx={{
             fontWeight: 850,
             letterSpacing: "-0.03em",
-            fontSize: {
-              xs: "1.6rem",
-              sm: "2rem",
-              md: "2.2rem",
-            },
+            fontSize: { xs: "1.6rem", sm: "2rem", md: "2.2rem" },
             mb: 1,
             color: textColor,
           }}
         >
-          Welcome Back, {dashboardData.welcomeName}
+          Welcome Back, {interviewerName}!
         </Typography>
       </Box>
 
       {/* Dashboard Stat Cards */}
       <Grid container spacing={3} sx={{ mb: 6 }}>
         {cards.map((card) => (
-          <Grid key={card.title} size={{ xs: 12, sm: 6, md: 4 }} sx={{ display: "flex" }}>
+          <Grid item xs={12} sm={6} md={4} key={card.title} sx={{ display: "flex" }}>
             <Link to={card.link} style={{ textDecoration: "none", width: "100%" }}>
               <Card
                 sx={{
-                  mt: -2,
                   borderRadius: 5,
                   bgcolor: colors.card,
                   backdropFilter: "blur(8px)",
@@ -138,34 +126,23 @@ export default function InterviewerDashboard() {
                   },
                 }}
               >
-                <CardContent sx={{
-                  p: {
-                    xs: 2.5,
-                    sm: 3,
-                    md: 3.5
-                  },
-                }}>
+                <CardContent sx={{ p: { xs: 2.5, sm: 3, md: 3.5 } }}>
                   <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2 }}>
-                    <Typography sx={{
-                      fontWeight: 700, fontSize: {
-                        xs: ".75rem",
-                        sm: ".82rem",
-                        md: ".85rem",
-                      }, color: subText, textTransform: "uppercase", letterSpacing: "0.03em"
-                    }}>
+                    <Typography
+                      sx={{
+                        fontWeight: 700,
+                        fontSize: { xs: ".75rem", sm: ".82rem", md: ".85rem" },
+                        color: subText,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.03em",
+                      }}
+                    >
                       {card.title}
                     </Typography>
                     <Box
                       sx={{
-                        width: {
-                          xs: 36,
-                          sm: 40,
-                        },
-
-                        height: {
-                          xs: 36,
-                          sm: 40,
-                        },
+                        width: { xs: 36, sm: 40 },
+                        height: { xs: 36, sm: 40 },
                         borderRadius: "8px",
                         bgcolor: darkMode ? card.bgDark : card.bgLight,
                         color: card.color,
@@ -177,16 +154,14 @@ export default function InterviewerDashboard() {
                       {card.icon}
                     </Box>
                   </Box>
-                  <Typography sx={{
-                    fontWeight: 800,
-                    letterSpacing: "-.04em",
 
-                    fontSize: {
-                      xs: "2rem",
-                      sm: "2.4rem",
-                      md: "2.8rem",
-                    }
-                  }}>
+                  <Typography
+                    sx={{
+                      fontWeight: 800,
+                      letterSpacing: "-.04em",
+                      fontSize: { xs: "2rem", sm: "2.4rem", md: "2.8rem" },
+                    }}
+                  >
                     {card.value}
                   </Typography>
                   <Typography sx={{ color: card.color, fontSize: "0.78rem", fontWeight: 700 }}>
@@ -201,75 +176,44 @@ export default function InterviewerDashboard() {
 
       {/* Quick Actions Panel */}
       <Box sx={{ mb: 5 }}>
-        <Typography variant="h6" sx={{ mt: -3, mb: 2, fontWeight: 800, color: textColor }}>
+        <Typography variant="h6" sx={{ mb: 2, fontWeight: 800, color: textColor }}>
           Quick Actions
         </Typography>
 
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: {
-              xs: "1fr",
-              sm: "repeat(3,1fr)"
-            },
-            gap: 3
+            gridTemplateColumns: { xs: "1fr", sm: "repeat(3, 1fr)" },
+            gap: 3,
           }}
         >
-
           {actions.map((action) => (
             <Button
-
               key={action.title}
-
               component={Link}
-
               to={action.link}
-
               variant="contained"
-
               sx={{
-
-                py: {
-                  xs: 1.6,
-                  md: 2
-                },
-
+                py: { xs: 1.6, md: 2 },
                 borderRadius: 5,
-
                 fontWeight: 700,
-
                 textTransform: "none",
-
-                fontSize: {
-                  xs: ".85rem",
-                  sm: ".9rem"
-                },
-
-                background: `linear-gradient(135deg, ${action.color}, ${secondary || primary})`,
-
+                fontSize: { xs: ".85rem", sm: ".9rem" },
+                background: `linear-gradient(135deg, ${action.color}, ${secondary})`,
                 "&:hover": {
-
                   background: `linear-gradient(135deg, ${primary}, ${primary})`,
-
                   transform: "translateY(-2px)",
-
-                  filter: "brightness(1.03)"
-                }
-
+                  filter: "brightness(1.03)",
+                },
               }}
-
             >
-
               {action.title}
-
             </Button>
-
           ))}
         </Box>
-
       </Box>
 
-      {/* Detailed Feed Grids */}
+      {/* Feed Grids */}
       <Box
         sx={{
           display: "grid",
@@ -278,110 +222,54 @@ export default function InterviewerDashboard() {
           alignItems: "start",
         }}
       >
-        {/* Upcoming Rounds list */}
+        {/* Upcoming Rounds Panel */}
         <Paper
           elevation={2}
           sx={{
-            p: {
-              xs: 2.5,
-              sm: 3,
-              md: 3.5
-            },
+            p: { xs: 2.5, sm: 3, md: 3.5 },
             borderRadius: 5,
             bgcolor: colors.card,
-
             backdropFilter: "blur(10px)",
-
             border: `1px solid ${borderStyle}`,
             color: textColor,
             transition: "all .3s ease",
-
             "&:hover": {
-
               transform: "translateY(-2px)",
-
               boxShadow: colors.shadow,
             },
-
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: {
-                xs: "column",
-                sm: "row",
-              },
-              alignItems: {
-                xs: "flex-start",
-                sm: "center",
-              },
-              justifyContent: "space-between",
-              gap: 1.5,
-              mb: 1,
-            }}
-          >
-            <Typography variant="h6" sx={{ fontWeight: 800, color: textColor }}>
-              Upcoming Rounds
-            </Typography>
+          <Typography variant="h6" sx={{ fontWeight: 800, color: textColor, mb: 2 }}>
+            Upcoming Rounds
+          </Typography>
 
-          </Box>
-
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mb: 2 }}>
             {recentInterviews.map((item) => (
               <Box
                 key={item.id}
                 sx={{
                   display: "flex",
-
-                  flexDirection: {
-                    xs: "column",
-                    sm: "row",
-                  },
-
-                  alignItems: {
-                    xs: "stretch",
-                    sm: "center",
-                  },
-
+                  flexDirection: { xs: "column", sm: "row" },
+                  alignItems: { xs: "stretch", sm: "center" },
                   justifyContent: "space-between",
-
-                  gap: {
-                    xs: 2,
-                    sm: 0,
-                  },
-
+                  gap: { xs: 2, sm: 0 },
                   p: 2,
-
                   borderRadius: 3,
-
                   bgcolor: `${primary}08`,
-
                   border: `1.5px solid ${borderStyle}`,
                 }}
               >
-                <Box sx={{ display: "flex", alignItems: "center", gap: 2, }}>
+                <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
                   <Avatar
                     sx={{
-                      background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
-                      width: {
-                        xs: 34,
-                        sm: 38
-                      },
-
-                      height: {
-                        xs: 34,
-                        sm: 38
-                      },
-
-                      fontSize: {
-                        xs: ".8rem",
-                        sm: ".95rem"
-                      },
+                      background: `linear-gradient(135deg, ${primary}, ${secondary})`,
+                      width: { xs: 34, sm: 38 },
+                      height: { xs: 34, sm: 38 },
+                      fontSize: { xs: ".8rem", sm: ".95rem" },
                       fontWeight: "bold",
                     }}
                   >
-                    {item.candidate.charAt(0)}
+                    {item.candidate?.charAt(0)}
                   </Avatar>
                   <Box>
                     <Typography fontWeight="bold" sx={{ fontSize: "0.95rem", color: textColor }}>
@@ -395,7 +283,7 @@ export default function InterviewerDashboard() {
 
                 <Button
                   component={Link}
-                  to="/join-interview"
+                  to="/interviewer/join-interview"
                   state={{ interview: item }}
                   variant="contained"
                   size="small"
@@ -404,17 +292,13 @@ export default function InterviewerDashboard() {
                     textTransform: "none",
                     fontWeight: "bold",
                     px: 2.5,
-                    background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
-
+                    background: `linear-gradient(135deg, ${primary}, ${secondary})`,
                     transition: "all .25s ease",
-
                     "&:hover": {
                       transform: "translateY(-2px)",
-
                       filter: "brightness(1.03)",
-                      background: `linear-gradient(135deg, ${primary}, ${primary})`
+                      background: `linear-gradient(135deg, ${primary}, ${primary})`,
                     },
-
                   }}
                 >
                   <Video size={12} style={{ marginRight: "6px" }} />
@@ -426,186 +310,90 @@ export default function InterviewerDashboard() {
 
           <Button
             component={Link}
-            to="/assigned-interviews"
+            to="/interviewer/assigned-interviews"
             endIcon={<ArrowRight size={12} />}
             sx={{
               textTransform: "none",
               color: primary,
               fontWeight: 700,
-
-              alignSelf: {
-                xs: "stretch",
-                sm: "auto",
-              },
-
-              width: {
-                xs: "100%",
-                sm: "auto",
-              },
-
+              width: { xs: "100%", sm: "auto" },
               justifyContent: "center",
-
               borderRadius: "10px",
-
-              py: {
-                xs: 1,
-                sm: 0.6,
-              },
-
-              "&:hover": {
-                bgcolor: `${primary}0f`,
-              },
+              py: { xs: 1, sm: 0.6 },
+              "&:hover": { bgcolor: `${primary}0f` },
             }}
           >
             View All
           </Button>
-
         </Paper>
 
-        {/* Recent Evaluations list */}
+        {/* Recent Outcomes Panel */}
         <Paper
           elevation={2}
           sx={{
-            p: {
-              xs: 2.5,
-              sm: 3,
-              md: 3.5
-            },
+            p: { xs: 2.5, sm: 3, md: 3.5 },
             borderRadius: 5,
             bgcolor: colors.card,
-
             backdropFilter: "blur(10px)",
-
             border: `1px solid ${borderStyle}`,
             color: textColor,
             transition: "all .3s ease",
-
             "&:hover": {
-
               transform: "translateY(-2px)",
-
               boxShadow: colors.shadow,
             },
-
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: {
-                xs: "column",
-                sm: "row",
-              },
-              alignItems: {
-                xs: "stretch",
-                sm: "center",
-              },
-              justifyContent: "space-between",
-              gap: 1.5,
-              mb: 1,
-            }}
-          >
-            <Typography variant="h6" sx={{ fontWeight: 800, color: textColor }}>
-              Recent Outcomes
-            </Typography>
+          <Typography variant="h6" sx={{ fontWeight: 800, color: textColor, mb: 2 }}>
+            Recent Outcomes
+          </Typography>
 
-          </Box>
-
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mb: 2 }}>
             {recentEvaluations.map((item) => (
               <Box
                 key={item.id}
                 sx={{
                   display: "flex",
-
-                  flexDirection: {
-                    xs: "column",
-                    sm: "row",
-                  },
-
-                  alignItems: {
-                    xs: "flex-start",
-                    sm: "center",
-                  },
-
+                  flexDirection: { xs: "column", sm: "row" },
+                  alignItems: { xs: "flex-start", sm: "center" },
                   justifyContent: "space-between",
-
-                  gap: {
-                    xs: 2,
-                    sm: 0,
-                  },
-                  p: {
-                    xs: 2.5,
-                    sm: 3,
-                    md: 3.5
-                  },
-
+                  gap: { xs: 2, sm: 0 },
+                  p: { xs: 2.5, sm: 3 },
                   borderRadius: 5,
-
                   transition: "all .3s ease",
                   bgcolor: `${primary}08`,
                   border: `1.5px solid ${borderStyle}`,
                   "&:hover": {
                     bgcolor: `${primary}14`,
-
                     transform: "translateY(-2px)",
-
-                    filter: "brightness(1.03)"
-                  }
+                    filter: "brightness(1.03)",
+                  },
                 }}
               >
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 2,
-                  }}
-                >
+                <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
                   <Avatar
                     sx={{
-                      width: {
-                        xs: 34,
-                        sm: 40,
-                      },
-
-                      height: {
-                        xs: 34,
-                        sm: 40,
-                      },
-
+                      width: { xs: 34, sm: 40 },
+                      height: { xs: 34, sm: 40 },
                       fontWeight: 700,
-
-                      background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
-
+                      background: `linear-gradient(135deg, ${primary}, ${secondary})`,
                       boxShadow: `0 6px 18px ${primary}47`,
                     }}
                   >
-                    {item.candidate.charAt(0)}
+                    {item.candidate?.charAt(0)}
                   </Avatar>
 
                   <Box>
-                    <Typography
-                      sx={{
-                        fontWeight: 700,
-                        color: textColor,
-                      }}
-                    >
+                    <Typography sx={{ fontWeight: 700, color: textColor }}>
                       {item.candidate}
                     </Typography>
-
-                    <Typography
-                      variant="caption"
-                      sx={{
-                        color: subText,
-                      }}
-                    >
+                    <Typography variant="caption" sx={{ color: subText, display: "block" }}>
                       {item.role}
                     </Typography>
-
                     <Typography
                       sx={{
-                        mt: .4,
-                        color: secondary || primary,
+                        mt: 0.4,
+                        color: secondary,
                         fontWeight: 700,
                         fontSize: ".82rem",
                       }}
@@ -620,67 +408,38 @@ export default function InterviewerDashboard() {
                   size="small"
                   sx={{
                     px: 1,
-
                     fontWeight: 700,
-
                     fontSize: ".75rem",
-
                     borderRadius: "999px",
-
-                    bgcolor:
-                      item.result === "Recommended"
-                        ? `${primary}1f`
-                        : "rgba(245,158,11,.12)",
-
-                    color:
-                      item.result === "Recommended"
-                        ? primary
-                        : "#f59e0b",
-
+                    bgcolor: item.result === "Recommended" ? `${primary}1f` : "rgba(245,158,11,.12)",
+                    color: item.result === "Recommended" ? primary : "#f59e0b",
                     border: "1px solid",
-
-                    borderColor:
-                      item.result === "Recommended"
-                        ? `${primary}4d`
-                        : "rgba(245,158,11,.30)",
+                    borderColor: item.result === "Recommended" ? `${primary}4d` : "rgba(245,158,11,.30)",
                   }}
                 />
               </Box>
             ))}
           </Box>
+
           <Button
             component={Link}
-            to="/evaluations"
+            to="/interviewer/evaluations"
             endIcon={<ArrowRight size={12} />}
             sx={{
               textTransform: "none",
               color: primary,
               fontWeight: 700,
-
-              width: {
-                xs: "100%",
-                sm: "auto",
-              },
-
+              width: { xs: "100%", sm: "auto" },
               justifyContent: "center",
-
               borderRadius: 2,
-
-              py: {
-                xs: 1,
-                sm: 0.6,
-              },
-
-              "&:hover": {
-                bgcolor: `${primary}0d`,
-              },
+              py: { xs: 1, sm: 0.6 },
+              "&:hover": { bgcolor: `${primary}0d` },
             }}
           >
             Evaluations
           </Button>
         </Paper>
       </Box>
-
     </InterviewerLayout>
   );
 }

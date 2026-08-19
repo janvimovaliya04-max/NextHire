@@ -147,7 +147,7 @@ export default function JobManagement() {
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <Button
             component={Link}
-            to="/create-assessment"
+            to="/hr/create-assessment"
             variant="contained"
             size="small"
             sx={{
@@ -331,7 +331,7 @@ export default function JobManagement() {
 
           <Button
             component={Link}
-            to="/create-job"
+            to="/hr/create-job"
             variant="contained"
             startIcon={<Plus size={11} />}
             sx={{

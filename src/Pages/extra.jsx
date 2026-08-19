@@ -1,516 +1,418 @@
-import jobsData from "../../data/jobs.json"
-import InfiniteScroll from "react-infinite-scroll-component";
-import { CircularProgress } from "@mui/material";
-import { useState } from "react";
-import { useTheme } from "../../context/ThemeContext";
-import useThemeColors from "../../hooks/useThemeColors";
-import { Link } from "react-router-dom";
-import HRLayout from "../../Layouts/HRLayout";
+import { useNavigate, useSearchParams, Link } from "react-router-dom";
+import { useTheme } from "../context/ThemeContext";
+import { useEffect, useState } from "react";
+import usersData from "../data/users.json"; // 👈 usersData import ઉમેર્યું છે
+
 import {
-  Button,
+  Box,
   Paper,
   Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
+  TextField,
+  Button,
+  Checkbox,
+  FormControlLabel,
   Avatar,
   Chip,
-  Box,
+  InputAdornment,
+  IconButton,
 } from "@mui/material";
 
-import {
-  Plus,
-  Search,
-  Briefcase,
-  MapPin,
-  Users,
-} from "lucide-react";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
-export default function JobManagement() {
+export default function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { darkMode } = useTheme();
-  const colors = useThemeColors();
-  const [activeFilter, setActiveFilter] = useState("All");
-  const [search, setSearch] = useState("");
-  const jobs = jobsData
-  const JOBS_PER_LOAD = 10;
+  const subText = darkMode ? "#94a3b8" : "#475569";
 
-  const [visibleJobs, setVisibleJobs] = useState(
-    jobs.slice(0, JOBS_PER_LOAD)
-  );
+  const role = searchParams.get("role");
 
-  const primary = colors.primary;
-  const secondary = colors.secondary;
-  const textColor = colors.text;
-  const subText = colors.subText;
-  const borderStyle = colors.border;
-
-  // Filtering Logic
-  const filteredJobs = visibleJobs.filter((job) => {
-    const matchesStatus =
-      activeFilter === "All" || job.status === activeFilter;
-
-    const matchesSearch =
-      job.title.toLowerCase().includes(search.toLowerCase()) ||
-      job.department.toLowerCase().includes(search.toLowerCase()) ||
-      job.location.toLowerCase().includes(search.toLowerCase());
-
-    return matchesStatus && matchesSearch;
-  });
-  const loadMoreJobs = () => {
-    setTimeout(() => {
-      setVisibleJobs((prev) => [
-        ...prev,
-        ...jobs.slice(prev.length, prev.length + JOBS_PER_LOAD),
-      ]);
-    }, 1000);
-  };
-
-  // Dynamic Status Chip styling
-  const getStatusChip = (status) => {
-    switch (status) {
-      case "Open":
-        return (
-          <Chip
-            label="Open"
-            size="small"
-            sx={{
-              fontWeight: 800,
-              fontSize: {
-                xs: ".68rem",
-                md: ".72rem"
-              },
-              bgcolor: "rgba(16, 185, 129, 0.12)",
-              color: "#10b981",
-              border: "1px solid rgba(16, 185, 129, 0.2)"
-            }}
-          />
-        );
-      case "Closed":
-        return (
-          <Chip
-            label="Closed"
-            size="small"
-            sx={{
-              fontWeight: 800,
-              fontSize: "0.72rem",
-              bgcolor: "rgba(239, 68, 68, 0.12)",
-              color: "#ef4444",
-              border: "1px solid rgba(239, 68, 68, 0.2)"
-            }}
-          />
-        );
-      case "Draft":
-        return (
-          <Chip
-            label="Draft"
-            size="small"
-            sx={{
-              fontWeight: 800,
-              fontSize: "0.72rem",
-              bgcolor: "rgba(245, 158, 11, 0.12)",
-              color: "#f59e0b",
-              border: "1px solid rgba(245, 158, 11, 0.2)"
-            }}
-          />
-        );
+  // Dynamic Theme configurations for each role
+  const getRoleTheme = (userRole) => {
+    switch (userRole) {
+      case "hr":
+        return {
+          accent: "#2563eb",
+          gradient: "linear-gradient(135deg, #2563eb, #3b82f6)",
+          hoverGradient: "linear-gradient(135deg, #1d4ed8, #2563eb)",
+          glow: "radial-gradient(circle, rgba(37,99,235,0.12) 0%, rgba(37,99,235,0) 70%)",
+          chipBg: darkMode ? "rgba(37, 99, 235, 0.15)" : "#eff6ff",
+          chipText: "#2563eb",
+        };
+      case "candidate":
+        return {
+          accent: "#10b981",
+          gradient: "linear-gradient(135deg, #10b981, #34d399)",
+          hoverGradient: "linear-gradient(135deg, #059669, #10b981)",
+          glow: "radial-gradient(circle, rgba(16,185,129,0.12) 0%, rgba(16,185,129,0) 70%)",
+          chipBg: darkMode ? "rgba(16, 185, 129, 0.15)" : "#ecfdf5",
+          chipText: "#10b981",
+        };
+      case "interviewer":
+        return {
+          accent: "#8b5cf6",
+          gradient: "linear-gradient(135deg, #8b5cf6, #c084fc)",
+          hoverGradient: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
+          glow: "radial-gradient(circle, rgba(139,92,246,0.12) 0%, rgba(139,92,246,0) 70%)",
+          chipBg: darkMode ? "rgba(139, 92, 246, 0.15)" : "#f5f3ff",
+          chipText: "#8b5cf6",
+        };
       default:
-        return <Chip label={status} size="small" />;
+        return {
+          accent: "#2563eb",
+          gradient: "linear-gradient(135deg, #2563eb, #7c3aed)",
+          hoverGradient: "linear-gradient(135deg, #1d4ed8, #6d28d9)",
+          glow: "radial-gradient(circle, rgba(37,99,235,0.12) 0%, rgba(37,99,235,0) 70%)",
+          chipBg: darkMode ? "rgba(37, 99, 235, 0.15)" : "#eff6ff",
+          chipText: "#2563eb",
+        };
     }
   };
 
+  const roleTheme = getRoleTheme(role);
+
+  const handleLogin = (e) => {
+    e?.preventDefault();
+
+    // 1. JSON Data માંથી matching user શોધો (username અથવા email બંને ચાલે)
+    const foundUser = usersData.find(
+      (user) =>
+        (user.username === username || user.email === username) &&
+        user.password === password
+    );
+
+    if (foundUser) {
+      // 2. LocalStorage માં user data સેટ કરો
+      localStorage.setItem("accessToken", foundUser.accessToken || "mock-token");
+      localStorage.setItem("refreshToken", foundUser.refreshToken || "mock-refresh-token");
+      localStorage.setItem("userData", JSON.stringify(foundUser));
+
+      // 3. User ના પોતાના Role અથવા URL ના Role પ્રમાણે Navigation
+      const targetRole = role || foundUser.role;
+
+      if (targetRole === "hr") {
+        navigate("/hr");
+      } else if (targetRole === "candidate") {
+        navigate("/candidate");
+      } else if (targetRole === "interviewer") {
+        navigate("/interviewer");
+      } else {
+        navigate("/");
+      }
+    } else {
+      alert("Invalid Username or Password!");
+    }
+  };
+
+  const textFieldStyle = {
+    mb: { xs: 1.6, sm: 2.5 },
+    "& .MuiInputLabel-root": {
+      color: darkMode ? "#94a3b8" : "#64748b",
+      fontSize: "0.95rem",
+    },
+    "& .MuiInputLabel-root.Mui-focused": {
+      color: roleTheme.accent,
+    },
+    "& .MuiOutlinedInput-root": {
+      color: darkMode ? "#ffffff" : "#0f172a",
+      backgroundColor: darkMode
+        ? "rgba(15, 23, 42, 0.55)"
+        : "rgba(255, 255, 255, 0.4)",
+      "& fieldset": {
+        borderColor: darkMode
+          ? "rgba(148,163,184,0.35)"
+          : "rgba(0, 0, 0, 0.12)",
+        borderRadius: "10px",
+        transition: "all 0.25s ease",
+      },
+      "&:hover fieldset": {
+        borderColor: darkMode
+          ? "rgba(255,255,255,0.35)"
+          : roleTheme.accent,
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: roleTheme.accent,
+        borderWidth: "2px",
+      },
+    },
+  };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <HRLayout>
+    <Box
+      sx={{
+        minHeight: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        px: { xs: 2, sm: 3 },
+        py: { xs: 2, sm: 4 },
+        position: "relative",
+        bgcolor: darkMode ? "#0b0f19" : "#f8fafc",
+        background: darkMode
+          ? `radial-gradient(ellipse at center, #111827 0%, #0b0f19 80%)`
+          : `radial-gradient(ellipse at center, #f0fdf4 0%, #f8fafc 80%)`,
+        overflow: "hidden",
+      }}
+    >
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 2,
-          mb: 2,
-          flexShrink: 0,
+          position: "absolute",
+          width: { xs: 280, sm: 400, md: 500 },
+          height: { xs: 280, sm: 400, md: 500 },
+          borderRadius: "50%",
+          background: roleTheme.glow,
+          filter: "blur(120px)",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          pointerEvents: "none",
+        }}
+      />
+
+      <Box
+        sx={{
+          position: "absolute",
+          top: { xs: 6, sm: 24 },
+          left: { xs: 12, sm: 24 },
+          zIndex: 10,
         }}
       >
-        {/* Title & Banner Header */}
-        <Box
+        <Button
+          size="small"
+          startIcon={<ArrowBackIcon />}
+          onClick={() => {
+            navigate("/", { state: { restorePortal: true } });
+          }}
           sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            flexWrap: "wrap",
-            gap: 2,
+            color: darkMode ? "#94a3b8" : "#475569",
+            textTransform: "none",
+            fontWeight: 600,
+            mb: { xs: 1, md: 3 },
+            fontSize: { xs: ".75rem", sm: ".9rem" },
+            "&:hover": {
+              color: roleTheme.accent,
+              background: "transparent",
+            },
           }}
         >
-          {/* Title */}
+          Back to Home
+        </Button>
+      </Box>
+
+      <Paper
+        sx={{
+          mx: "auto",
+          width: "100%",
+          maxWidth: { xs: "100%", sm: 450, md: 480 },
+          p: { xs: 2, sm: 4, md: 5 },
+          borderRadius: 5,
+          position: "relative",
+          zIndex: 1,
+          bgcolor: darkMode ? "rgba(30, 41, 59, 0.45)" : "rgba(255, 255, 255, 0.75)",
+          backdropFilter: "blur(16px)",
+          color: darkMode ? "#ffffff" : "#0f172a",
+          border: darkMode
+            ? "1px solid rgba(255, 255, 255, 0.08)"
+            : "1px solid rgba(0, 0, 0, 0.05)",
+          boxShadow: darkMode
+            ? "0 25px 50px -12px rgba(0, 0, 0, 0.5)"
+            : "0 25px 50px -12px rgba(0, 0, 0, 0.06)",
+        }}
+      >
+        <Box textAlign="center" sx={{ mb: { xs: 1, sm: 2 } }}>
+          <Avatar
+            sx={{
+              width: { xs: 48, sm: 64 },
+              height: { xs: 48, sm: 64 },
+              fontSize: { xs: 20, sm: 26 },
+              mx: "auto",
+              mb: { xs: 1.5, sm: 2.5 },
+              fontWeight: 800,
+              background: roleTheme.gradient,
+              boxShadow: `0 8px 20px ${roleTheme.accent}33`,
+            }}
+          >
+            N
+          </Avatar>
+
+          {role && (
+            <Chip
+              label={`${role.toUpperCase()} PORTAL`}
+              sx={{
+                display: "flex",
+                width: "fit-content",
+                mx: "auto",
+                mb: 2,
+                bgcolor: roleTheme.chipBg,
+                color: roleTheme.chipText,
+                fontWeight: 800,
+                fontSize: "0.75rem",
+                letterSpacing: "0.05em",
+                borderRadius: "6px",
+                border: `1px solid ${roleTheme.accent}33`,
+              }}
+            />
+          )}
           <Typography
             sx={{
-                fontSize: { xs: "1.35rem", sm: "1.7rem", md: "2rem", lg: "2.2rem" },
-                mb: { xs: 0, md: 0.5 },
-                fontWeight: 850,
-                letterSpacing: "-0.03em",
-              }}
+              color: subText,
+              fontSize: "0.95rem",
+              lineHeight: 1.5,
+            }}
           >
-            Job Management
+            {role
+              ? `Please enter your ${role} credentials to continue`
+              : "Sign in to access your NextHire account"}
           </Typography>
+        </Box>
 
-          {/* Search + Button */}
+        <Box component="form" onSubmit={handleLogin} noValidate autoComplete="off">
+          <TextField
+            size="small"
+            fullWidth
+            label="Username or Email"
+            variant="outlined"
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            sx={textFieldStyle}
+          />
+
+          <TextField
+            size="small"
+            fullWidth
+            label="Password"
+            type={showPassword ? "text" : "password"}
+            variant="outlined"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            sx={textFieldStyle}
+            slotProps={{
+              input: {
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={() => setShowPassword(!showPassword)}
+                      edge="end"
+                      sx={{ color: darkMode ? "#94a3b8" : "#64748b" }}
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              },
+            }}
+          />
 
           <Box
             sx={{
               display: "flex",
-              alignItems: "center",
-              width: {
-                xs: "100%",
-                md: 330,
-              },
-              bgcolor: colors.input,
-              border: `1px solid ${borderStyle}`,
-              borderRadius: "10px",
-              px: 2,
-              transition: ".2s",
-              "&:hover": {
-                borderColor: primary,
-              },
-              "&:focus-within": {
-                borderColor: primary,
-              },
+              flexDirection: { xs: "column", sm: "row" },
+              justifyContent: "space-between",
+              alignItems: { xs: "flex-start", sm: "center" },
+              gap: 1,
+              mt: { xs: 1, sm: 2 },
+              mb: { xs: 0.5, sm: 1 },
             }}
           >
-            <Search
-              color={subText}
+            <FormControlLabel
+              sx={{
+                m: 0,
+                "& .MuiFormControlLabel-label": {
+                  color: darkMode ? "#cbd5e1" : "#475569",
+                  fontSize: { xs: ".82rem", sm: ".88rem" },
+                  fontWeight: 500,
+                },
+              }}
+              control={
+                <Checkbox
+                  sx={{
+                    color: darkMode ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.25)",
+                    p: 0.8,
+                    mr: 0.5,
+                    "&.Mui-checked": {
+                      color: roleTheme.accent,
+                    },
+                  }}
+                />
+              }
+              label="Remember me"
             />
 
-            <input
-              type="text"
-              placeholder="Search jobs..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              style={{
-                width: "100%",
-                padding: "12px",
-                border: "none",
-                outline: "none",
-                background: "transparent",
-                color: textColor,
-                fontSize: "0.9rem",
+            <Typography
+              component="a"
+              href="#"
+              sx={{
+                color: roleTheme.accent,
+                textDecoration: "none",
+                fontWeight: 700,
+                fontSize: "0.88rem",
+                transition: "opacity 0.2s",
+                "&:hover": {
+                  opacity: 0.85,
+                },
               }}
-            />
+            >
+              Forgot Password?
+            </Typography>
           </Box>
 
           <Button
-            component={Link}
-            to="/create-job"
+            fullWidth
+            type="submit"
             variant="contained"
-            startIcon={<Plus size={11} />}
+            size="large"
             sx={{
-              flexShrink: 0,
-              whiteSpace: "nowrap",
-              py: 1.3,
-              px: 3,
-              fontSize: ".9rem",
+              py: { xs: 1.15, sm: 1.7 },
+              borderRadius: "10px",
               fontWeight: 700,
               textTransform: "none",
-              borderRadius: "10px",
-              background: `linear-gradient(135deg,${primary},${secondary || primary})`,
-              boxShadow: `0 4px 12px ${primary}33`,
+              fontSize: "1rem",
+              background: roleTheme.gradient,
+              boxShadow: `0 8px 25px ${roleTheme.accent}22`,
+              transition: "all 0.3s ease",
               "&:hover": {
-                background: `linear-gradient(135deg,${primary},${primary})`,
+                background: roleTheme.hoverGradient,
+                transform: "translateY(-1px)",
+                boxShadow: `0 12px 30px ${roleTheme.accent}33`,
               },
             }}
           >
-            Create New Job
+            Sign In
           </Button>
         </Box>
 
-        {/* Filter panel */}
-         <Box
+        <Typography
+          align="center"
           sx={{
-            display: "flex",
-            gap: 1,
-            overflowX: "auto",
-            pb: 1,
-            flexShrink: 0,
-
-            "&::-webkit-scrollbar": {
-              display: "none",
-            },
+            mt: { xs: 2, sm: 4 },
+            fontSize: { xs: ".82rem", sm: ".9rem" },
+            color: subText,
           }}
         >
-            {["All", "Open", "Closed", "Draft"].map((filter) => (
-              <Button
-                key={filter}
-                variant="outlined"
-                size="small"
-                onClick={() => setActiveFilter(filter)}
-                sx={{
-                  borderRadius: "20px",
-                  textTransform: "none",
-                  fontWeight: 700,
-                  fontSize: {
-                    xs: ".75rem",
-                    md: ".82rem"
-                  },
-
-                  px: {
-                    xs: 1.6,
-                    md: 2.2
-                  },
-
-                  py: {
-                    xs: .55,
-                    md: .7
-                  },
-                  color:
-                    activeFilter ===
-                      filter ? "#fff" : subText,
-                  borderColor:
-                    activeFilter ===
-                      filter ? primary : borderStyle,
-                  bgcolor:
-                    activeFilter ===
-                      filter ? primary : "transparent",
-                  boxShadow:
-                    activeFilter ===
-                      filter ? `0 4px 10px ${primary}33` : "none",
-                  "&:hover": {
-                    borderColor: primary,
-                    bgcolor: activeFilter === filter ? primary : `${primary}08`,
-                  }
-                }}
-              >
-                {filter}
-              </Button>
-            ))}
-          </Box>
-        </Box>
-
-      {/* Premium Glassmorphic Table Card */}
-      <Paper
-        elevation={0}
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          height: "75vh",
-          width: "100%",
-          maxWidth: "100%",
-          overflow: "hidden",
-          p: { xs: 2.5, md: 4 },
-          borderRadius: "22px",
-          bgcolor: colors.card,
-          backdropFilter: "blur(16px)",
-          border: `1px solid ${borderStyle}`,
-          boxShadow: colors.shadow,
-          transition: ".3s",
-          "&:hover": {
-            transform: "translateY(-4px)",
-            boxShadow: darkMode
-              ? `
-                0 24px 55px rgba(0,0,0,.42)
-              `
-              : `
-                0 26px 55px rgba(15,23,42,.12)
-              `,
-          },
-        }}
-      >
-        
-        <TableContainer
-          sx={{
-            width: "100%",
-            overflowX: "auto",
-            flex: 1,
-            overflowY: "auto",
-            "&::-webkit-scrollbar": {
-              height: 8,
-            },
-            "&::-webkit-scrollbar-thumb": {
-              background: "#94a3b8",
-              borderRadius: 10,
-            },
-          }}
-        >
-
-          <Table
-            stickyHeader
-            size="small"
-            sx={{
-              "& .MuiTableCell-root": {
-                py: 0.75,
-                px: 1.5,
-                fontSize: "0.78rem",
-                lineHeight: 1.2,
-              },
-              minWidth: {
-                xs: 850,
-                md: 1000,
-              },
+          Don't have an account?{" "}
+          <Link
+            to="/register"
+            style={{
+              color: roleTheme.accent,
+              fontWeight: 700,
+              textDecoration: "none",
             }}
           >
-            <TableHead sx={{
-              "& .MuiTableCell-root": {
-                fontSize: {
-                  xs: ".9rem",
-                  md: "0.88rem",
-                },
-                fontWeight: 700,
-                bgcolor: colors.background,
-              },
-            }}
-            >
-              <TableRow
-                sx={{
-                  height: {
-                    xs: 60,
-                    md: 82
-                  },
-                  bgcolor: colors.background,
-                  borderBottom: `1px solid ${borderStyle}`,
-                }}
-              >
-                <TableCell align="center" sx={{ color: textColor, fontWeight: 700, fontSize: { xs: ".8rem", md: ".95rem" }, borderBottom: `1px solid ${borderStyle}` }}>
-                  Job Role
-                </TableCell>
-                <TableCell align="center" sx={{ color: textColor, fontWeight: 700, fontSize: { xs: ".8rem", md: ".95rem" }, borderBottom: `1px solid ${borderStyle}` }}>
-                  Salary Package
-                </TableCell>
-                <TableCell sx={{ color: textColor, fontWeight: 700, fontSize: { xs: ".8rem", md: ".95rem" }, borderBottom: `1px solid ${borderStyle}` }}>
-                  Department
-                </TableCell>
-                <TableCell sx={{ color: textColor, fontWeight: 700, fontSize: { xs: ".8rem", md: ".95rem" }, borderBottom: `1px solid ${borderStyle}` }}>
-                  Listing Status
-                </TableCell>
-                <TableCell align="center" sx={{ color: textColor, fontWeight: 700, fontSize: { xs: ".8rem", md: ".95rem" }, borderBottom: `1px solid ${borderStyle}`, pr: 4 }}>
-                  Action Panel
-                </TableCell>
-              </TableRow>
-            </TableHead>
-
-            <TableBody>
-              {filteredJobs.length > 0 ? (
-                filteredJobs.map((job) => (
-                  <TableRow
-                    key={job.jobId}
-                    sx={{
-                      borderBottom: `1px solid ${borderStyle}`,
-                      transition: "all 0.2s ease",
-                      "&:hover": {
-                        bgcolor: `${primary}08`,
-                      },
-                    }}
-                  >
-                    {/* Job Title and Location Info */}
-                    <TableCell sx={{ borderBottom: `1px solid ${borderStyle}` }}>
-                      <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
-                        <Avatar sx={{ bgcolor: `${primary}15`, color: primary, width: { xs: 36, md: 44 }, height: { xs: 36, md: 44 }, }}>
-                          <Briefcase size={window.innerWidth < 600 ? 13 : 16} />
-                        </Avatar>
-                        <Box>
-                          <Typography sx={{ color: textColor, fontWeight: 700, fontSize: { xs: ".8rem", md: ".95rem" }, }}>
-                            {job.title}
-                          </Typography>
-                          <Box sx={{ display: "flex", alignItems: "center", gap: 0.5, color: subText }}>
-                            <MapPin size={10} style={{ opacity: 0.7 }} />
-                            <Typography sx={{ fontSize: { xs: ".72rem", md: ".78rem" } }}>
-                              {job.location}
-                            </Typography>
-                          </Box>
-                        </Box>
-                      </Box>
-                    </TableCell>
-
-                    {/* Salary Package */}
-                    <TableCell sx={{ borderBottom: `1px solid ${borderStyle}`, fontWeight: 500, fontSize: { xs: ".8rem", md: ".88rem" }, color: textColor }}>
-                      {job.salaryRange}
-                    </TableCell>
-
-                    {/* Applicants count indicator */}
-                    <TableCell sx={{ alignItems: "center", borderBottom: `1px solid ${borderStyle}` }}>
-                      <Box sx={{
-                        display: "flex", alignItems: "center", gap: {
-                          xs: .8,
-                          md: 1
-                        }
-                      }}>
-                        <Typography sx={{ alignItems: "center", color: textColor, fontSize: { xs: ".8rem", md: ".88rem" }, fontWeight: 700 }}>
-                          {job.department}
-                        </Typography>
-                      </Box>
-                    </TableCell>
-
-                    {/* Status Pill */}
-                    <TableCell sx={{ borderBottom: `1px solid ${borderStyle}` }}>
-                      {getStatusChip(job.status)}
-                    </TableCell>
-
-                    {/* Action buttons */}
-                    <TableCell
-                      align="right"
-                      sx={{
-                        borderBottom: `1px solid ${borderStyle}`,
-                        pr: 4
-                      }}
-                    >
-                      <Box
-                        sx={{
-                          display: "flex",
-                          justifyContent: "center",
-                          flexWrap: "wrap",
-                        }}
-                      >
-                              
-                        <Button
-                          component={Link}
-                          to="/create-assessment"
-                          variant="contained"
-                          size="small"
-                          sx={{
-                            textTransform: "none",
-                            fontWeight: 700,
-                            borderRadius: {
-                              xs: "7px",
-                              md: "8px"
-                            },
-                            px: {
-                              xs: 1.2,
-                              md: 2
-                            },
-                            fontSize: {
-                              xs: ".7rem",
-                              sm: ".75rem",
-                              md: ".8rem"
-                            },
-                            width: { xs: "100%", sm: "auto" },
-                            background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
-                            boxShadow: `0 4px 12px ${primary}33`,
-                            "&:hover": {
-                              background: `linear-gradient(135deg, ${primary}, ${primary})`,
-                              boxShadow: `0 6px 16px ${primary}4d`,
-                            }
-                          }}
-                        >
-                          Create Assessment
-                        </Button>
-                      </Box>
-                    </TableCell>
-                  </TableRow>
-                ))
-              ) : (
-                <TableRow>
-                  <TableCell colSpan={5} align="center" sx={{
-                    py: { xs: 4, md: 6 }, color: subText, fontSize: {
-                      xs: ".85rem",
-                      md: "1rem"
-                    }
-                  }}>
-                    No job postings found matching this category filter.
-                  </TableCell>
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
+            Register
+          </Link>
+        </Typography>
       </Paper>
-    </HRLayout>
+    </Box>
   );
 }

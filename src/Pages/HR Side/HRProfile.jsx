@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 
 import Grid from "@mui/material/Grid";
+import { useAuth } from "../../context/AuthContext";
 
 import {
   UserRoundPen,
@@ -20,6 +21,7 @@ import {
 } from "lucide-react";
 
 export default function HRProfile() {
+  const { user } = useAuth();
   const { darkMode } = useTheme();
   const colors = useThemeColors();
   const primary = colors.primary;
@@ -28,7 +30,21 @@ export default function HRProfile() {
   const subText = colors.subText;
   const borderStyle = colors.border;
 
-  // Cohesive styling for the read-only form elements
+  // Safe profile object mapping with fallback values if users.json is missing fields
+  const profile = {
+    firstName: user?.firstName || "HR",
+    lastName: user?.lastName || "Manager",
+    fullName: user?.firstName && user?.lastName 
+      ? `${user.firstName} ${user.lastName}` 
+      : user?.username || "HR Manager",
+    employeeId: user?.employeeId || user?.id || "HR101",
+    email: user?.email || "hr@gmail.com",
+    phone: user?.phone || user?.phoneNumber || "9562314785",
+    department: user?.department || "Human Resources",
+    designation: user?.designation || user?.role || "Senior HR Manager",
+  };
+
+  // Cohesive styling for the form elements
   const textFieldStyle = {
     mb: 2.5,
     "& .MuiInputLabel-root": {
@@ -37,14 +53,10 @@ export default function HRProfile() {
         xs: "0.82rem",
         md: "0.95rem",
       },
-    },
-    "& .MuiFormHelperText-root": {
-
-      fontSize: {
-        xs: "0.72rem",
-        md: "0.8rem",
+      // Ensures label doesn't overlap weirdly when shrunk
+      "&.Mui-shrink": {
+        transform: "translate(14px, -9px) scale(0.75)",
       },
-
     },
     "& .MuiOutlinedInput-root": {
       color: textColor,
@@ -52,21 +64,18 @@ export default function HRProfile() {
         xs: "0.9rem",
         md: "1rem",
       },
-
-      py: {
-        xs: -5,
-        md: 1.8,
-      },
       backgroundColor: colors.input,
-
+      borderRadius: "12px",
       "& fieldset": {
         borderColor: colors.border,
-        borderRadius: "10px",
         transition: "all .25s ease",
       },
-
       "&:hover fieldset": {
         borderColor: primary,
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: primary,
+        borderWidth: "2px",
       },
     },
   };
@@ -84,19 +93,18 @@ export default function HRProfile() {
           pb: {
             xs: 2,
             md: 0,
-          }
+          },
         }}
       >
-
         {/* Page Header */}
         <Box>
           <Typography
             sx={{
-                fontSize: { xs: "1.35rem", sm: "1.7rem", md: "2rem", lg: "2.2rem" },
-                mb: { xs: 0, md: 0.5 },
-                fontWeight: 850,
-                letterSpacing: "-0.03em",
-              }}
+              fontSize: { xs: "1.35rem", sm: "1.7rem", md: "2rem", lg: "2.2rem" },
+              mb: { xs: 0, md: 0.5 },
+              fontWeight: 850,
+              letterSpacing: "-0.03em",
+            }}
           >
             HR Profile
           </Typography>
@@ -109,64 +117,57 @@ export default function HRProfile() {
             p: {
               xs: 2,
               sm: 3,
-              md: 4
+              md: 4,
             },
             borderRadius: {
               xs: 3,
-              md: 5,
+              md: "22px",
             },
             bgcolor: colors.card,
             backdropFilter: "blur(12px)",
             border: `1px solid ${borderStyle}`,
-
             boxShadow: colors.shadow,
-
             transition: "all 0.3s ease",
-
             "&:hover": {
               transform: "translateY(-3px)",
               boxShadow: darkMode
-                ? `
-            0 18px 36px rgba(0,0,0,0.40),
-            0 8px 12px rgba(0,0,0,0.25)
-          `
-                : `
-            0 20px 40px rgba(15,23,42,0.12),
-            0 6px 12px rgba(15,23,42,0.08)
-          `,
+                ? `0 24px 55px rgba(0,0,0,.42)`
+                : `0 26px 55px rgba(15,23,42,.12)`,
             },
           }}
         >
-          <Box sx={{
-            display: "flex",
-            flexDirection: {
-              xs: "column",
-              md: "row"
-            },
-            justifyContent: "space-between",
-            alignItems: "center",
-            gap: {
-              xs: 2.5,
-              md: 4
-            }
-          }}
-          >
-            <Box sx={{
+          <Box
+            sx={{
               display: "flex",
               flexDirection: {
                 xs: "column",
-                sm: "row"
+                md: "row",
               },
+              justifyContent: "space-between",
               alignItems: "center",
               gap: {
-                xs: 2,
-                md: 3.5
+                xs: 2.5,
+                md: 4,
               },
-              textAlign: {
-                xs: "center",
-                sm: "left"
-              }
             }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: {
+                  xs: "column",
+                  sm: "row",
+                },
+                alignItems: "center",
+                gap: {
+                  xs: 2,
+                  md: 3.5,
+                },
+                textAlign: {
+                  xs: "center",
+                  sm: "left",
+                },
+              }}
             >
               {/* Premium Gradient Avatar */}
               <Avatar
@@ -176,13 +177,11 @@ export default function HRProfile() {
                     sm: 84,
                     md: 96,
                   },
-
                   height: {
                     xs: 72,
                     sm: 84,
                     md: 96,
                   },
-
                   fontSize: {
                     xs: "1.5rem",
                     md: "2rem",
@@ -197,14 +196,34 @@ export default function HRProfile() {
               </Avatar>
 
               <Box>
-                <Typography sx={{ fontSize: { xs: "1.2rem", sm: "1.45rem", md: "1.6rem", }, color: textColor, fontWeight: 850, letterSpacing: "-0.02em", mb: 0.5 }}>
-                  HR Manager
+                <Typography
+                  sx={{
+                    fontSize: { xs: "1.2rem", sm: "1.45rem", md: "1.6rem" },
+                    color: textColor,
+                    fontWeight: 850,
+                    letterSpacing: "-0.02em",
+                    mb: 0.5,
+                  }}
+                >
+                  {profile.fullName}
                 </Typography>
-                <Typography sx={{ color: primary, fontWeight: 700, fontSize: { xs: "0.82rem", md: "0.95rem" }, }}>
-                  Senior HR Manager
+                <Typography
+                  sx={{
+                    color: primary,
+                    fontWeight: 700,
+                    fontSize: { xs: "0.82rem", md: "0.95rem" },
+                  }}
+                >
+                  {profile.designation}
                 </Typography>
-                <Typography sx={{ color: subText, fontSize: { xs: "0.75rem", md: "0.85rem" }, mt: 0.5 }}>
-                  hr@nexthire.com
+                <Typography
+                  sx={{
+                    color: subText,
+                    fontSize: { xs: "0.75rem", md: "0.85rem" },
+                    mt: 0.5,
+                  }}
+                >
+                  {profile.email}
                 </Typography>
               </Box>
             </Box>
@@ -220,26 +239,24 @@ export default function HRProfile() {
             >
               <Button
                 component={Link}
-                to="/edit-hr-profile"
+                to="/hr/edit-hr-profile"
                 variant="contained"
-                startIcon={<UserRoundPen size={13} />}
+                startIcon={<UserRoundPen size={14} />}
                 sx={{
                   py: {
                     xs: 1,
                     md: 1.3,
                   },
-
                   px: {
                     xs: 2,
                     md: 3,
                   },
-
                   fontSize: {
                     xs: "0.82rem",
                     md: "0.88rem",
                   },
                   width: { xs: "100%", sm: "auto" },
-                  borderRadius: "10px",
+                  borderRadius: "12px",
                   fontWeight: 700,
                   textTransform: "none",
                   background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
@@ -255,12 +272,12 @@ export default function HRProfile() {
 
               <Button
                 variant="outlined"
-                startIcon={<KeyRound size={12} />}
+                startIcon={<KeyRound size={14} />}
                 sx={{
-                  py: 1.3,
-                  px: 3,
+                  py: { xs: 1, md: 1.3 },
+                  px: { xs: 2, md: 3 },
                   width: { xs: "100%", sm: "auto" },
-                  borderRadius: "10px",
+                  borderRadius: "12px",
                   fontWeight: 700,
                   textTransform: "none",
                   fontSize: "0.88rem",
@@ -281,56 +298,58 @@ export default function HRProfile() {
 
         {/* Detailed Personal Information Card */}
         <Paper
-          elevation={6}
+          elevation={0}
           sx={{
             p: {
               xs: 2,
               sm: 3,
-              md: 4
+              md: 4,
             },
             borderRadius: {
               xs: 3,
-              md: 5,
+              md: "22px",
             },
             bgcolor: colors.card,
             backdropFilter: "blur(12px)",
             border: `1px solid ${borderStyle}`,
-
             boxShadow: colors.shadow,
-
             transition: "all 0.3s ease",
-
             "&:hover": {
               transform: "translateY(-3px)",
               boxShadow: darkMode
-                ? `
-            0 18px 36px rgba(0,0,0,0.40),
-            0 8px 12px rgba(0,0,0,0.25)
-          `
-                : `
-            0 20px 40px rgba(15,23,42,0.12),
-            0 6px 12px rgba(15,23,42,0.08)
-          `,
+                ? `0 24px 55px rgba(0,0,0,.42)`
+                : `0 26px 55px rgba(15,23,42,.12)`,
             },
           }}
         >
-          <Typography sx={{ fontWeight: 800, mb: 3, color: textColor, fontSize: { xs: "1.05rem", md: "1.25rem" }, }}>
+          <Typography
+            sx={{
+              fontWeight: 800,
+              mb: 3,
+              color: textColor,
+              fontSize: { xs: "1.05rem", md: "1.25rem" },
+            }}
+          >
             Personal Details
           </Typography>
 
-          <Grid container spacing={{
-            xs: 1,
-            md: 2.5,
-          }}>
+          <Grid
+            container
+            spacing={{
+              xs: 1.5,
+              md: 2.5,
+            }}
+          >
             <Grid size={{ xs: 12, md: 6 }}>
               <TextField
                 fullWidth
                 label="Full Name"
-                value="HR Manager"
+                value={profile.fullName}
+                InputLabelProps={{ shrink: true }}
                 slotProps={{
                   input: {
                     readOnly: true,
-                  }
+                  },
                 }}
                 sx={textFieldStyle}
               />
@@ -339,11 +358,12 @@ export default function HRProfile() {
               <TextField
                 fullWidth
                 label="Employee ID"
-                value="HR101"
+                value={profile.employeeId}
+                InputLabelProps={{ shrink: true }}
                 slotProps={{
                   input: {
                     readOnly: true,
-                  }
+                  },
                 }}
                 sx={textFieldStyle}
               />
@@ -352,11 +372,12 @@ export default function HRProfile() {
               <TextField
                 fullWidth
                 label="Email Address"
-                value="hr@gmail.com"
+                value={profile.email}
+                InputLabelProps={{ shrink: true }}
                 slotProps={{
                   input: {
                     readOnly: true,
-                  }
+                  },
                 }}
                 sx={textFieldStyle}
               />
@@ -365,11 +386,12 @@ export default function HRProfile() {
               <TextField
                 fullWidth
                 label="Phone Number"
-                value="9562314785"
+                value={profile.phone}
+                InputLabelProps={{ shrink: true }}
                 slotProps={{
                   input: {
                     readOnly: true,
-                  }
+                  },
                 }}
                 sx={textFieldStyle}
               />
@@ -378,11 +400,12 @@ export default function HRProfile() {
               <TextField
                 fullWidth
                 label="Department"
-                value="Human Resources"
+                value={profile.department}
+                InputLabelProps={{ shrink: true }}
                 slotProps={{
                   input: {
                     readOnly: true,
-                  }
+                  },
                 }}
                 sx={textFieldStyle}
               />
@@ -391,11 +414,12 @@ export default function HRProfile() {
               <TextField
                 fullWidth
                 label="Job Designation"
-                value="Senior HR Manager"
+                value={profile.designation}
+                InputLabelProps={{ shrink: true }}
                 slotProps={{
                   input: {
                     readOnly: true,
-                  }
+                  },
                 }}
                 sx={textFieldStyle}
               />
@@ -407,26 +431,24 @@ export default function HRProfile() {
         <Box sx={{ mt: 1 }}>
           <Button
             component={Link}
-            to="/settings"
+            to="/hr/settings"
             variant="contained"
-            endIcon={<ArrowRight size={12} />}
+            endIcon={<ArrowRight size={14} />}
             sx={{
               py: {
                 xs: 1.2,
                 md: 1.5,
               },
-
               px: {
                 xs: 2,
                 md: 3.5,
               },
-
               fontSize: {
                 xs: "0.82rem",
                 md: "0.9rem",
               },
               width: { xs: "100%", sm: "auto" },
-              borderRadius: "10px",
+              borderRadius: "12px",
               fontWeight: 700,
               textTransform: "none",
               background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
@@ -440,7 +462,6 @@ export default function HRProfile() {
             Go To Settings
           </Button>
         </Box>
-
       </Box>
     </HRLayout>
   );

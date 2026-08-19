@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 /* Common Pages */
 import Landing from "./Pages/Landing";
@@ -22,6 +24,7 @@ import EditHRProfile from "./Pages/HR Side/EditHRProfile";
 import CandidateFeedback from "./Pages/HR Side/CandidateFeedback";
 import Recruiters from "./Pages/HR Side/Recruiters";
 import AddRecruiter from "./Pages/HR Side/AddRecruiter";
+import NotesEditorPage from "./Pages/HR Side/NotesEditorPage";
 
 /* Candidate Side */
 import CandidateDashboard from "./Pages/Candidate Side/CandidateDashboard";
@@ -49,77 +52,81 @@ import InterviewerNotifications from "./Pages/Interviewer Side/InterviewerNotifi
 import EditInterviewerProfile from "./Pages/Interviewer Side/EditInterviewerProfile";
 import InterviewerSettings from "./Pages/Interviewer Side/InterviewerSettings";
 
-
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
 
-        {/* Landing */}
-        <Route path="/" element={<Landing />} />
+          {/* Public Routes */}
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
-        {/* Auth */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+          {/* HR Protected Routes */}
+          <Route element={<ProtectedRoute allowedRoles={["hr"]} />}>
+            <Route path="/hr" element={<HRDashboard />} />
+            <Route path="/hr/create-job" element={<CreateJob />} />
+            <Route path="/hr/job-management" element={<JobManagement />} />
+            <Route path="/hr/candidates" element={<Candidates />} />
+            <Route path="/hr/create-assessment" element={<CreateAssessment />} />
+            <Route path="/hr/interview-management" element={<InterviewManagement />} />
+            <Route path="/hr/interview-schedule" element={<InterviewSchedule />} />
+            <Route path="/hr/analytics" element={<Analytics />} />
+            <Route path="/hr/notifications" element={<Notifications />} />
+            <Route path="/hr/hr-profile" element={<HRProfile />} />
+            <Route path="/hr/settings" element={<Settings />} />
+            <Route path="/hr/candidate-profile-v" element={<CandidateProfileV />} />
+            <Route path="/hr/edit-hr-profile" element={<EditHRProfile />} />
+            <Route path="/hr/candidate-feedback" element={<CandidateFeedback />} />
+            <Route path="/hr/recruiters" element={<Recruiters />} />
+            <Route path="/hr/add-recruiter" element={<AddRecruiter />} />
+            <Route path="/hr/notes" element={<NotesEditorPage />} />
+          </Route>
 
-        {/* HR Side */}
-        <Route path="/hr" element={<HRDashboard />} />
-        <Route path="/create-job" element={<CreateJob />} />
-        <Route path="/job-management" element={<JobManagement />} />
-        <Route path="/candidates" element={<Candidates />} />
-        <Route path="/create-assessment" element={<CreateAssessment />} />
-        <Route path="/interview-management" element={<InterviewManagement />} />
-        <Route path="/interview-schedule" element={<InterviewSchedule />} />
-        <Route path="/analytics" element={<Analytics />} />
-        <Route path="/notifications" element={<Notifications />} />
-        <Route path="/hr-profile" element={<HRProfile />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/candidate-profile-v" element={<CandidateProfileV />} />
-        <Route path="/edit-hr-profile" element={<EditHRProfile />} />
-        <Route path="/candidate-feedback" element={<CandidateFeedback />} />
-        <Route path="/recruiters" element={<Recruiters />} />
-        <Route path="/add-recruiter" element={<AddRecruiter />} />
+          {/* Candidate Protected Routes */}
+          <Route element={<ProtectedRoute allowedRoles={["candidate"]} />}>
+            <Route path="/candidate" element={<CandidateDashboard />} />
+            <Route path="/candidate/browse-jobs" element={<BrowseJobs />} />
+            <Route path="/candidate/job-details/:id" element={<JobDetails />} />
+            <Route path="/candidate/apply-job/:id" element={<ApplyJob />} />
+            <Route path="/candidate/my-applications" element={<MyApplications />} />
+            <Route path="/candidate/my-application-job/:id" element={<MyApplicationJobDetails />} />
+            <Route path="/candidate/candidate-assessment" element={<Assessment />} />
+            <Route path="/candidate/my-interviews" element={<MyInterviews />} />
+            <Route path="/candidate/candidate-notifications" element={<CandidateNotifications />} />
+            <Route path="/candidate/candidate-profile-r" element={<CandidateProfileR />} />
+            <Route path="/candidate/edit-candidate-profile-r" element={<EditCandidateProfileR />} />
+            <Route path="/candidate/candidate-settings" element={<CandidateSettings />} />
+            <Route path="/candidate/join-interview-c" element={<JoinInterviewC />} />
+          </Route>
 
-        {/* Candidate Side */}
-        <Route path="/candidate" element={<CandidateDashboard />} />
-        <Route path="/browse-jobs" element={<BrowseJobs />} />
-        <Route path="/job-details/:id" element={<JobDetails />} />
-        <Route path="/apply-job/:id" element={<ApplyJob />} />
-        <Route path="/my-applications" element={<MyApplications />} />
-        <Route path="/my-application-job/:id" element={<MyApplicationJobDetails />} />
-        <Route path="/candidate-assessment" element={<Assessment />} />
-        <Route path="/my-interviews" element={<MyInterviews />} />
-        <Route path="/candidate-notifications" element={<CandidateNotifications />} />
-        <Route path="/candidate-profile-r" element={<CandidateProfileR />} />
-        <Route path="/edit-candidate-profile-r" element={<EditCandidateProfileR />} />
-        <Route path="/candidate-settings" element={<CandidateSettings />} />
-        <Route path="/join-interview-c" element={<JoinInterviewC />} />
+          {/* Interviewer Protected Routes */}
+          <Route element={<ProtectedRoute allowedRoles={["interviewer"]} />}>
+            <Route path="/interviewer" element={<InterviewerDashboard />} />
+            <Route path="/interviewer/assigned-interviews" element={<AssignedInterviews />} />
+            <Route path="/interviewer/join-interview" element={<JoinInterview />} />
+            <Route path="/interviewer/feedback" element={<Feedback />} />
+            <Route path="/interviewer/evaluations" element={<Evaluations />} />
+            <Route path="/interviewer/interviewer-profile" element={<InterviewerProfile />} />
+            <Route path="/interviewer/interviewer-notifications" element={<InterviewerNotifications />} />
+            <Route path="/interviewer/edit-interviewer-profile" element={<EditInterviewerProfile />} />
+            <Route path="/interviewer/interviewer-settings" element={<InterviewerSettings />} />
+          </Route>
 
-        {/* Interviewer Side */}
-        <Route path="/interviewer" element={<InterviewerDashboard />} />
-        <Route path="/assigned-interviews" element={<AssignedInterviews />} />
-        <Route path="/join-interview" element={<JoinInterview />} />
-        <Route path="/feedback" element={<Feedback />} />
-        <Route path="/evaluations" element={<Evaluations />} />
-        <Route path="/interviewer-profile" element={<InterviewerProfile />} />
-        <Route path="/interviewer-notifications" element={<InterviewerNotifications />} />
-        <Route path="/edit-interviewer-profile" element={<EditInterviewerProfile />} />
-        <Route path="/interviewer-settings" element={<InterviewerSettings />} />
-
-        {/* Error Message */}
-        <Route path="*" element={
-          <div className="h-screen flex items-center justify-center">
-            <h1 className="text-4xl font-bold">
-              404 - Page Not Found
-            </h1>
-          </div>
-        }
-        />
-
-      </Routes>
-    </BrowserRouter>
+          {/* 404 Fallback */}
+          <Route
+            path="*"
+            element={
+              <div className="h-screen flex items-center justify-center">
+                <h1 className="text-4xl font-bold">404 - Page Not Found</h1>
+              </div>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
 export default App;
-

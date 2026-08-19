@@ -68,7 +68,7 @@ export default function CreateAssessment() {
 
     toast.success("Assessment created successfully!");
 
-    navigate("/job-management");
+    navigate("/hr/job-management");
   };
 
   // ==============================
@@ -132,7 +132,7 @@ export default function CreateAssessment() {
       >
         <Button
           component={Link}
-          to="/job-management"
+          to="/hr/job-management"
           startIcon={<ArrowLeft size={12} />}
           sx={{
             textTransform: "none",

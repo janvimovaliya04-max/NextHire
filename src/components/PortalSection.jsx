@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Avatar,
   Box,
@@ -7,7 +7,6 @@ import {
   Container,
   Typography,
 } from "@mui/material";
-import Grid from "@mui/material/Grid";
 import { ArrowRight } from "lucide-react";
 
 export default function PortalSection({
@@ -36,7 +35,7 @@ export default function PortalSection({
       <Box
         ref={rolesSectionRef}
         sx={{
-          pt: { xs: .5, md: 6 },
+          pt: { xs: 0.5, md: 6 },
           mb: { xs: 6, sm: 8, md: 12 },
         }}
       >
@@ -61,142 +60,132 @@ export default function PortalSection({
         >
           Choose your specific gateway below to enter the NextHire space.
         </Typography>
+
+        {/* Clean CSS Grid to guarantee exact 3 columns on medium/large screens */}
         <Box
           sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
+            display: "grid",
+            gridTemplateColumns: {
+              xs: "1fr",
+              sm: "repeat(2, 1fr)",
+              md: "repeat(3, 1fr)",
+            },
             gap: 4,
+            justifyContent: "center",
           }}
         >
           {roles.map((role) => (
             <Box
               key={role.title}
+              onClick={() => handlePortalClick(role.link)}
               sx={{
+                textDecoration: "none",
+                width: "100%",
+                cursor: "pointer",
                 display: "flex",
-                width: {
-                  xs: "100%",
-                  sm: "calc(50% - 16px)",
-                  md: "calc(33.333% - 22px)",
-                },
               }}
             >
-              <Box
-                onClick={() => handlePortalClick(role.link)}
+              <Card
                 sx={{
-                  textDecoration: "none",
                   width: "100%",
-                  cursor: "pointer",
+                  height: "100%",
+                  borderRadius: 5,
+                  bgcolor: darkMode
+                    ? "rgba(30,41,59,.45)"
+                    : "rgba(255,255,255,.70)",
+                  color: textColor,
+                  border: darkMode
+                    ? "1px solid rgba(255,255,255,.08)"
+                    : "1px solid rgba(229,231,235,.80)",
+                  transition:
+                    "transform .30s ease, box-shadow .30s ease, border-color .30s ease",
+                  display: "flex",
+                  flexDirection: "column",
+                  "&:hover": {
+                    transform: "translateY(-8px)",
+                    borderColor: role.accentColor,
+                    boxShadow: darkMode
+                      ? `0 20px 40px rgba(0,0,0,.40),0 0 20px ${role.accentColor}1a`
+                      : `0 20px 40px rgba(0,0,0,.05),0 0 20px ${role.accentColor}1a`,
+                    "& .arrow-icon": {
+                      transform: "translateX(6px)",
+                    },
+                  },
                 }}
               >
-                <Card
+                <CardContent
                   sx={{
-                    width: "100%",
+                    p: { xs: 2.5, sm: 3, md: 4 },
                     height: "100%",
-                    minHeight: { xs: 200, sm: 220, md: 240 },
-                    borderRadius: 5,
-                    bgcolor: darkMode
-                      ? "rgba(30,41,59,.45)"
-                      : "rgba(255,255,255,.70)",
-                    color: textColor,
-                    border: darkMode
-                      ? "1px solid rgba(255,255,255,.08)"
-                      : "1px solid rgba(229,231,235,.80)",
-                    transition:
-                      "transform .30s ease, box-shadow .30s ease, border-color .30s ease",
                     display: "flex",
                     flexDirection: "column",
-                    "&:hover": {
-                      transform: "translateY(-8px)",
-                      borderColor:
-                        role.accentColor,
-                      boxShadow: darkMode
-                        ? `0 20px 40px rgba(0,0,0,.40),0 0 20px ${role.accentColor}1a`
-                        : `0 20px 40px rgba(0,0,0,.05),0 0 20px ${role.accentColor}1a`,
-                      "& .arrow-icon": {
-                        transform:
-                          "translateX(6px)",
-                      },
-                    },
+                    justifyContent: "space-between",
                   }}
                 >
-                  <CardContent
+                  <Box
                     sx={{
-                      p: { xs: 2.5, sm: 3, md: 4 },
-                      height: "100%",
                       display: "flex",
                       flexDirection: "column",
-                      justifyContent:
-                        "space-between",
+                      alignItems: "flex-start",
+                      textAlign: "left",
+                      gap: 2.5,
+                      mb: 3,
                     }}
                   >
-                    <Box
+                    <Avatar
                       sx={{
-                        display: "flex",
-                        flexDirection: { xs: "column", sm: "row" },
-                        alignItems: { xs: "center", sm: "flex-start" },
-                        textAlign: { xs: "center", sm: "left" },
-                        gap: { xs: 2, sm: 3 },
-                        mb: { xs: 3, sm: 4 },
+                        width: { xs: 52, sm: 56, md: 60 },
+                        height: { xs: 52, sm: 56, md: 60 },
+                        bgcolor: role.avatarBg,
+                        borderRadius: 3,
+                        flexShrink: 0,
                       }}
                     >
-                      <Avatar
+                      {role.icon}
+                    </Avatar>
+                    <Box>
+                      <Typography
                         sx={{
-                          width: { xs: 52, sm: 60 },
-                          height: { xs: 52, sm: 60 },
-                          bgcolor: role.avatarBg,
-                          borderRadius: 3,
-                          flexShrink: 0,
+                          fontWeight: 800,
+                          fontSize: { xs: "1.2rem", sm: "1.25rem", md: "1.45rem" },
+                          mb: 1,
+                          letterSpacing: "-0.02em",
                         }}
                       >
-                        {role.icon}
-                      </Avatar>
-                      <Box>
-                        <Typography
-                          sx={{
-                            fontWeight: 800,
-                            fontSize: { xs: "1.2rem", sm: "1.35rem", md: "1.45rem" },
-                            mb: 1,
-                            letterSpacing: "-0.02em",
-                          }}
-                        >
-                          {role.title}
-                        </Typography>
-                        <Typography
-                          sx={{
-                            color: subText,
-                            fontSize: { xs: ".85rem", sm: ".9rem", md: ".95rem" },
-                            lineHeight: 1.6,
-                          }}
-                        >
-                          {role.desc}
-                        </Typography>
-                      </Box>
-                    </Box>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 1,
-                        color: role.accentColor,
-                        fontWeight: 700,
-                        fontSize: { xs: ".8rem", sm: ".85rem", md: ".9rem" },
-                        justifyContent: { xs: "center", sm: "flex-start" },
-                      }}
-                    >
-                      CONTINUE TO PORTAL
-                      <ArrowRight
-                        className="arrow-icon"
+                        {role.title}
+                      </Typography>
+                      <Typography
                         sx={{
-                          fontSize: 18,
-                          transition:
-                            "transform .30s ease",
+                          color: subText,
+                          fontSize: { xs: ".85rem", sm: ".88rem", md: ".95rem" },
+                          lineHeight: 1.6,
                         }}
-                      />
+                      >
+                        {role.desc}
+                      </Typography>
                     </Box>
-                  </CardContent>
-                </Card>
-              </Box>
+                  </Box>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 1,
+                      color: role.accentColor,
+                      fontWeight: 700,
+                      fontSize: { xs: ".8rem", sm: ".85rem", md: ".9rem" },
+                    }}
+                  >
+                    CONTINUE TO PORTAL
+                    <ArrowRight
+                      className="arrow-icon"
+                      sx={{
+                        fontSize: 18,
+                        transition: "transform .30s ease",
+                      }}
+                    />
+                  </Box>
+                </CardContent>
+              </Card>
             </Box>
           ))}
         </Box>

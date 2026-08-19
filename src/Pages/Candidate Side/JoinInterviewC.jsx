@@ -530,7 +530,7 @@ export default function JoinInterview() {
           </Typography>
           <Button
             component={Link}
-            to="/candidate-profile-v"
+            to="/candidate/candidate-profile-v"
             state={{ applicant: interviewData }}
             startIcon={<User sx={{ fontSize: 16 }} />}
             size="small"
@@ -983,7 +983,7 @@ export default function JoinInterview() {
         <Box sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, width: { xs: "100%", sm: "auto" }, gap: 2 }}>
           <Button
             component={Link}
-            to="/feedback"
+            to="/candidate/feedback"
             state={{ candidateName: interviewData.candidate }}
             variant="contained"
             startIcon={<MessageSquareText sx={{ fontSize: 16 }} />}
@@ -1003,7 +1003,7 @@ export default function JoinInterview() {
           </Button>
           <Button
             component={Link}
-            to="/assigned-interviews"
+            to="/candidate/assigned-interviews"
             variant="contained"
             startIcon={<PhoneOff />}
             sx={{
