@@ -136,6 +136,7 @@ export default function InterviewerLayout({ children }) {
     {
       title: "Account & System",
       items: [
+        { path: "/interviewer/keep-notes", label: "Notes & Documentation", icon: <Menu size={18} /> },
         { path: "/interviewer/interviewer-settings", label: "Settings", icon: <Settings size={18} /> },
       ],
     },
@@ -152,6 +153,7 @@ export default function InterviewerLayout({ children }) {
       case "/interviewer/interviewer-profile": return "My Profile Details";
       case "/interviewer/interviewer-settings": return "System Settings";
       case "/interviewer/interviewer-notifications": return "Notifications Hub";
+      case "/interviewer/keep-notes": return "Notes & Documentation";
       default: return "Control Room";
     }
   };

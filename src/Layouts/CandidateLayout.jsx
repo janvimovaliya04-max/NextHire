@@ -114,6 +114,7 @@ export default function CandidateLayout({ children }) {
     {
       title: "Settings & System",
       items: [
+        { path: "/candidate/notes-c", label: "Notes", icon: <Menu size={18} /> },
         { path: "/candidate/candidate-settings", label: "Settings", icon: <Settings size={18} /> },
       ],
     },
@@ -131,6 +132,8 @@ export default function CandidateLayout({ children }) {
         return "Job Openings";
       case "/candidate/my-applications":
         return "My Job Applications";
+      case "/candidate/notes-c":
+        return "Notes";
       case "/candidate/candidate-assessment":
         return "Skill Assessments";
       case "/candidate/my-interviews":

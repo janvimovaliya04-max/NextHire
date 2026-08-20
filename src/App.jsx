@@ -40,6 +40,7 @@ import CandidateProfileR from "./Pages/Candidate Side/CandidateProfileR";
 import EditCandidateProfileR from "./Pages/Candidate Side/EditCandidateProfileR";
 import CandidateSettings from "./Pages/Candidate Side/CandidateSettings";
 import JoinInterviewC from "./Pages/Candidate Side/JoinInterviewC";
+import Notes from "./Pages/Candidate Side/Notes";
 
 /* Interviewer Side */
 import InterviewerDashboard from "./Pages/Interviewer Side/InterviewerDashboard";
@@ -51,6 +52,7 @@ import InterviewerProfile from "./Pages/Interviewer Side/InterviewerProfile";
 import InterviewerNotifications from "./Pages/Interviewer Side/InterviewerNotifications";
 import EditInterviewerProfile from "./Pages/Interviewer Side/EditInterviewerProfile";
 import InterviewerSettings from "./Pages/Interviewer Side/InterviewerSettings";
+import KeepNotes from "./Pages/Interviewer Side/KeepNotes";
 
 function App() {
   return (
@@ -99,6 +101,7 @@ function App() {
             <Route path="/candidate/edit-candidate-profile-r" element={<EditCandidateProfileR />} />
             <Route path="/candidate/candidate-settings" element={<CandidateSettings />} />
             <Route path="/candidate/join-interview-c" element={<JoinInterviewC />} />
+            <Route path="/candidate/notes-c" element={<Notes />} />
           </Route>
 
           {/* Interviewer Protected Routes */}
@@ -112,6 +115,7 @@ function App() {
             <Route path="/interviewer/interviewer-notifications" element={<InterviewerNotifications />} />
             <Route path="/interviewer/edit-interviewer-profile" element={<EditInterviewerProfile />} />
             <Route path="/interviewer/interviewer-settings" element={<InterviewerSettings />} />
+            <Route path="/interviewer/keep-notes" element={<KeepNotes />} />
           </Route>
 
           {/* 404 Fallback */}
