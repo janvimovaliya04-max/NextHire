@@ -49,7 +49,6 @@ export default function Header({
           >
             <img
               src="/NextHirelogo.png"
-              alt="NextHire"
               style={{
                 height: 130,
                 objectFit: "contain",
