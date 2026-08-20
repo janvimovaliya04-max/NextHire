@@ -25,7 +25,256 @@ import {
   UserRound,
   Clock,
   Laptop,
+  GripVertical,
 } from "lucide-react";
+
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  rectSortingStrategy,
+  useSortable,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+
+// Sortable wrapper for a single interview card
+function SortableInterviewCard({ interview, primary, secondary, textColor, subText, borderStyle, colors, statusColor }) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: interview.interviewId });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.6 : 1,
+    zIndex: isDragging ? 10 : "auto",
+  };
+
+  return (
+    <Paper
+      ref={setNodeRef}
+      style={style}
+      elevation={6}
+      sx={{
+        position: "relative",
+        p: { xs: 2, sm: 2.5, md: 3 },
+        display: "flex",
+        flexDirection: "column",
+        borderRadius: 5,
+        bgcolor: colors.card,
+        backdropFilter: "blur(12px)",
+        border: `1px solid ${borderStyle}`,
+        boxShadow: colors.shadow,
+        color: textColor,
+        transition: "all .25s ease",
+        "&:hover": {
+          transform: isDragging ? undefined : "translateY(-6px)",
+          borderColor: primary,
+          boxShadow: colors.shadow,
+        },
+      }}
+    >
+      {/* Drag handle */}
+      <Box
+        {...attributes}
+        {...listeners}
+        sx={{
+          position: "absolute",
+          top: 14,
+          right: 14,
+          cursor: "grab",
+          color: subText,
+          display: "flex",
+          alignItems: "center",
+          touchAction: "none",
+          zIndex: 2,
+          "&:active": { cursor: "grabbing" },
+        }}
+      >
+        <GripVertical size={16} />
+      </Box>
+
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
+          gap: 2,
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "flex-start",
+            gap: 2,
+            flex: 1,
+            width: "100%",
+            minWidth: 0,
+          }}
+        >
+          <Avatar
+            sx={{
+              background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
+              width: { xs: 44, sm: 52, md: 56 },
+              height: { xs: 44, sm: 52, md: 56 },
+              fontSize: { xs: "1rem", sm: "1.2rem", md: "1.35rem" },
+              fontWeight: "bold",
+              boxShadow: 2,
+            }}
+          >
+            {interview.company.charAt(0)}
+          </Avatar>
+          <Box>
+            <Typography
+              sx={{
+                fontSize: { xs: "1rem", sm: "1.15rem", md: "1.25rem" },
+                fontWeight: 800,
+                letterSpacing: "-0.01em",
+                color: textColor,
+              }}
+            >
+              {interview.company}
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              sx={{
+                color: subText,
+                fontWeight: 600,
+                fontSize: { xs: "0.82rem", sm: "0.9rem" }
+              }}
+            >
+              {interview.position}
+            </Typography>
+
+            <Typography
+              sx={{
+                fontSize: "0.8rem",
+                color: primary,
+                fontWeight: 600,
+                mt: 0.5,
+              }}
+            >
+              {interview.type}
+            </Typography>
+
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: {
+                  xs: "repeat(2, 1fr)",
+                  sm: "1fr",
+                },
+                gap: 1.2,
+                mt: 1,
+              }}
+            >
+              <Box sx={{ display: "flex", alignItems: "flex-start", gap: 1, color: subText }}>
+                <Calendar size={14} color={primary} />
+                <Typography variant="body2">
+                  {interview.date}
+                  <br />
+                  {interview.time}
+                </Typography>
+              </Box>
+
+              <Box sx={{ display: "flex", alignItems: "flex-start", gap: 1, color: subText }}>
+                <UserRound size={14} color={secondary || primary} />
+                <Typography variant="body2">
+                  {interview.interviewer}
+                </Typography>
+              </Box>
+
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1, color: subText }}>
+                <Clock size={14} color="#f59e0b" />
+                <Typography variant="body2">
+                  {interview.duration}
+                </Typography>
+              </Box>
+
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1, color: subText }}>
+                <Laptop size={14} color={secondary || primary} />
+                <Typography variant="body2">
+                  {interview.mode}
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "row", sm: "column" },
+            justifyContent: { xs: "space-between", sm: "space-between" },
+            width: { xs: "100%", sm: "auto" },
+            alignItems: { xs: "center", sm: "flex-end" },
+            gap: 2,
+          }}
+        >
+          <Chip
+            label={interview.status}
+            sx={{
+              fontWeight: 700,
+              bgcolor: `${statusColor(interview.status)}1f`,
+              color: statusColor(interview.status),
+              border: "1px solid",
+              borderColor: `${statusColor(interview.status)}40`,
+              mt: { xs: 0, sm: 2.5 },
+            }}
+          />
+
+          {interview.status === "Upcoming" && (
+            <Button
+              component={Link}
+              to="/candidate/join-interview-c"
+              state={{ interview }}
+              variant="contained"
+              sx={{
+                borderRadius: 3,
+                textTransform: "none",
+                fontWeight: 700,
+                width: {
+                  xs: "calc(100% - 120px)",
+                  sm: 170,
+                  md: 180,
+                },
+                minWidth: 0,
+                maxWidth: { xs: "220px", sm: "none" },
+                height: 44,
+                px: 2,
+                fontSize: { xs: "0.82rem", sm: "0.9rem" },
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
+                boxShadow: `0 4px 12px ${primary}33`,
+                "&:hover": {
+                  background: `linear-gradient(135deg, ${primary}, ${primary})`,
+                  transform: "translateY(-1px)",
+                  boxShadow: `0 10px 22px ${primary}59`,
+                },
+              }}
+            >
+              Join Interview
+            </Button>
+          )}
+        </Box>
+      </Box>
+    </Paper>
+  );
+}
 
 export default function MyInterviews() {
   const { darkMode } = useTheme();
@@ -72,29 +321,97 @@ export default function MyInterviews() {
 
   const filteredInterviews = table.getFilteredRowModel().rows.map((row) => row.original);
 
-  const [visibleInterviews, setVisibleInterviews] = useState(
-    filteredInterviews.slice(0, PER_LOAD)
-  );
+  // NEW: drag & drop order — tracks order of all currently filtered interviews.
+  // Resyncs whenever the search/filter changes (new result set).
+  // const [interviewOrder, setInterviewOrder] = useState(() =>
+  //   filteredInterviews.map((i) => i.interviewId)
+  // );
 
+  const [interviewOrder, setInterviewOrder] = useState(() => {
+    const savedOrder = localStorage.getItem("myInterviewsOrder");
+    return savedOrder ? JSON.parse(savedOrder) : filteredInterviews.map((i) => i.interviewId);
+  });
+
+
+  // Final ordered list = filteredInterviews reshuffled by interviewOrder
+  const orderedInterviews = interviewOrder
+    .map((id) => filteredInterviews.find((i) => i.interviewId === id))
+    .filter(Boolean);
+
+  const [visibleCount, setVisibleCount] = useState(PER_LOAD);
   const [hasMore, setHasMore] = useState(true);
 
+  // useEffect(() => {
+  //   setInterviewOrder(filteredInterviews.map((i) => i.interviewId));
+  //   setVisibleCount(PER_LOAD);
+  //   setHasMore(filteredInterviews.length > PER_LOAD);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [globalFilter]);
+
+
   useEffect(() => {
-    setVisibleInterviews(filteredInterviews.slice(0, PER_LOAD));
+    const savedOrder = localStorage.getItem("myInterviewsOrder");
+    if (savedOrder) {
+      const parsedOrder = JSON.parse(savedOrder);
+      const currentFilteredIds = filteredInterviews.map((i) => i.interviewId);
+
+      // Filter existing items based on search results
+      const updated = parsedOrder.filter((id) => currentFilteredIds.includes(id));
+
+      // Push new items if missing
+      currentFilteredIds.forEach((id) => {
+        if (!updated.includes(id)) updated.push(id);
+      });
+      setInterviewOrder(updated);
+    } else {
+      setInterviewOrder(filteredInterviews.map((i) => i.interviewId));
+    }
+
+    setVisibleCount(PER_LOAD);
     setHasMore(filteredInterviews.length > PER_LOAD);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globalFilter]);
+
+  useEffect(() => {
+    setHasMore(visibleCount < orderedInterviews.length);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visibleCount, filteredInterviews.length]);
+
+  const visibleInterviews = orderedInterviews.slice(0, visibleCount);
 
   const loadMore = () => {
     setTimeout(() => {
-      const next = filteredInterviews.slice(
-        visibleInterviews.length,
-        visibleInterviews.length + PER_LOAD
-      );
-      if (next.length === 0) {
-        setHasMore(false);
-        return;
-      }
-      setVisibleInterviews((prev) => [...prev, ...next]);
+      setVisibleCount((prev) => {
+        const next = prev + PER_LOAD;
+        if (next >= orderedInterviews.length) setHasMore(false);
+        return next;
+      });
     }, 700);
+  };
+
+  // NEW: dnd-kit sensors
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
+  );
+
+  // NEW: drag end handler — reorders immediately, no refresh needed
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+
+    setInterviewOrder((prev) => {
+      const oldIndex = prev.indexOf(active.id);
+      const newIndex = prev.indexOf(over.id);
+      if (oldIndex === -1 || newIndex === -1) return prev;
+
+      const newOrder = arrayMove(prev, oldIndex, newIndex);
+
+      // Save to localStorage
+      localStorage.setItem("myInterviewsOrder", JSON.stringify(newOrder));
+
+      return newOrder;
+    });
   };
 
   useEffect(() => {
@@ -130,7 +447,7 @@ export default function MyInterviews() {
       <Paper
         elevation={0}
         sx={{
-          position: "sticky", 
+          position: "sticky",
           top: 0,
           zIndex: 20,
           p: { xs: 2, md: 3 },
@@ -208,204 +525,48 @@ export default function MyInterviews() {
           }
         >
           {/* MAIN CARDS */}
-          
-          <Box
-            sx={{
-              display: "grid",
-              gridTemplateColumns: { xs: "1fr", md: "repeat(2,1fr)" },
-              gap: 3,
-            }}
-          >
-            {filteredInterviews.length > 0 ? (
-              visibleInterviews.map((interview) => (
-                <Paper
-                  key={interview.interviewId}
-                  elevation={6}
+
+          {filteredInterviews.length > 0 ? (
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
+            >
+              <SortableContext
+                items={visibleInterviews.map((i) => i.interviewId)}
+                strategy={rectSortingStrategy}
+              >
+                <Box
                   sx={{
-                    p: { xs: 2, sm: 2.5, md: 3 },
-                    display: "flex",
-                    flexDirection: "column",
-                    borderRadius: 5,
-                    bgcolor: colors.card,
-                    backdropFilter: "blur(12px)",
-                    border: `1px solid ${borderStyle}`,
-                    boxShadow: colors.shadow,
-                    color: textColor,
-                    transition: "all .25s ease",
-                    "&:hover": {
-                      transform: "translateY(-6px)",
-                      borderColor: primary,
-                      boxShadow: colors.shadow,
-                    },
+                    display: "grid",
+                    gridTemplateColumns: { xs: "1fr", md: "repeat(2,1fr)" },
+                    gap: 3,
                   }}
                 >
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: { xs: "column", sm: "row" },
-                      gap: 2,
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "flex-start",
-                        gap: 2,
-                        flex: 1,
-                        width: "100%",
-                        minWidth: 0,
-                      }}
-                    >
-                      <Avatar
-                        sx={{
-                          background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
-                          width: { xs: 44, sm: 52, md: 56 },
-                          height: { xs: 44, sm: 52, md: 56 },
-                          fontSize: { xs: "1rem", sm: "1.2rem", md: "1.35rem" },
-                          fontWeight: "bold",
-                          boxShadow: 2,
-                        }}
-                      >
-                        {interview.company.charAt(0)}
-                      </Avatar>
-                      <Box>
-                        <Typography
-                          sx={{
-                            fontSize: { xs: "1rem", sm: "1.15rem", md: "1.25rem" },
-                            fontWeight: 800,
-                            letterSpacing: "-0.01em",
-                            color: textColor,
-                          }}
-                        >
-                          {interview.company}
-                        </Typography>
-                        <Typography
-                          variant="subtitle1"
-                          sx={{
-                            color: subText,
-                            fontWeight: 600,
-                            fontSize: { xs: "0.82rem", sm: "0.9rem" }
-                          }}
-                        >
-                          {interview.position}
-                        </Typography>
-
-                        <Typography
-                          sx={{
-                            fontSize: "0.8rem",
-                            color: primary,
-                            fontWeight: 600,
-                            mt: 0.5,
-                          }}
-                        >
-                          {interview.type}
-                        </Typography>
-
-                        <Box
-                          sx={{
-                            display: "grid",
-                            gridTemplateColumns: {
-                              xs: "repeat(2, 1fr)",
-                              sm: "1fr",
-                            },
-                            gap: 1.2,
-                            mt: 1,
-                          }}
-                        >
-                          <Box sx={{ display: "flex", alignItems: "flex-start", gap: 1, color: subText }}>
-                            <Calendar size={14} color={primary} />
-                            <Typography variant="body2">
-                              {interview.date}
-                              <br />
-                              {interview.time}
-                            </Typography>
-                          </Box>
-
-                          <Box sx={{ display: "flex", alignItems: "flex-start", gap: 1, color: subText }}>
-                            <UserRound size={14} color={secondary || primary} />
-                            <Typography variant="body2">
-                              {interview.interviewer}
-                            </Typography>
-                          </Box>
-
-                          <Box sx={{ display: "flex", alignItems: "center", gap: 1, color: subText }}>
-                            <Clock size={14} color="#f59e0b" />
-                            <Typography variant="body2">
-                              {interview.duration}
-                            </Typography>
-                          </Box>
-
-                          <Box sx={{ display: "flex", alignItems: "center", gap: 1, color: subText }}>
-                            <Laptop size={14} color={secondary || primary} />
-                            <Typography variant="body2">
-                              {interview.mode}
-                            </Typography>
-                          </Box>
-                        </Box>
-                      </Box>
-                    </Box>
-
-                    <Box
-                      sx={{
-                        display: "flex",
-                        flexDirection: { xs: "row", sm: "column" },
-                        justifyContent: { xs: "space-between", sm: "space-between" },
-                        width: { xs: "100%", sm: "auto" },
-                        alignItems: { xs: "center", sm: "flex-end" },
-                        gap: 2,
-                      }}
-                    >
-                      <Chip
-                        label={interview.status}
-                        sx={{
-                          fontWeight: 700,
-                          bgcolor: `${statusColor(interview.status)}1f`,
-                          color: statusColor(interview.status),
-                          border: "1px solid",
-                          borderColor: `${statusColor(interview.status)}40`,
-                        }}
-                      />
-
-                      {interview.status === "Upcoming" && (
-                        <Button
-                          component={Link}
-                          to="/candidate/join-interview-c"
-                          state={{ interview }}
-                          variant="contained"
-                          sx={{
-                            borderRadius: 3,
-                            textTransform: "none",
-                            fontWeight: 700,
-                            width: {
-                              xs: "calc(100% - 120px)",
-                              sm: 170,
-                              md: 180,
-                            },
-                            minWidth: 0,
-                            maxWidth: { xs: "220px", sm: "none" },
-                            height: 44,
-                            px: 2,
-                            fontSize: { xs: "0.82rem", sm: "0.9rem" },
-                            whiteSpace: "nowrap",
-                            overflow: "hidden",
-                            textOverflow: "ellipsis",
-                            background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
-                            boxShadow: `0 4px 12px ${primary}33`,
-                            "&:hover": {
-                              background: `linear-gradient(135deg, ${primary}, ${primary})`,
-                              transform: "translateY(-1px)",
-                              boxShadow: `0 10px 22px ${primary}59`,
-                            },
-                          }}
-                        >
-                          Join Interview
-                        </Button>
-                      )}
-                    </Box>
-                  </Box>
-                </Paper>
-              ))
-            ) : (
+                  {visibleInterviews.map((interview) => (
+                    <SortableInterviewCard
+                      key={interview.interviewId}
+                      interview={interview}
+                      primary={primary}
+                      secondary={secondary}
+                      textColor={textColor}
+                      subText={subText}
+                      borderStyle={borderStyle}
+                      colors={colors}
+                      statusColor={statusColor}
+                    />
+                  ))}
+                </Box>
+              </SortableContext>
+            </DndContext>
+          ) : (
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: { xs: "1fr", md: "repeat(2,1fr)" },
+                gap: 3,
+              }}
+            >
               <Paper
                 elevation={6}
                 sx={{
@@ -453,8 +614,8 @@ export default function MyInterviews() {
                   Browse Jobs
                 </Button>
               </Paper>
-            )}
-          </Box>
+            </Box>
+          )}
         </InfiniteScroll>
       </Box>
     </CandidateLayout>

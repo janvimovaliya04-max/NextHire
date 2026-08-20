@@ -1,5 +1,5 @@
 import recruitersData from "../../data/recruiters.json";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
     useReactTable,
@@ -23,9 +23,6 @@ import {
     Tooltip,
 } from "@mui/material";
 
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
@@ -33,20 +30,231 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 import {
     Plus,
-    ChevronLeft,
-    ChevronRight,
     UserRound,
     Mail,
     Phone,
     MapPin,
     Briefcase,
     Building2,
+    GripVertical,
 } from "lucide-react";
+
+import {
+    DndContext,
+    closestCenter,
+    KeyboardSensor,
+    PointerSensor,
+    useSensor,
+    useSensors,
+} from "@dnd-kit/core";
+import {
+    arrayMove,
+    SortableContext,
+    sortableKeyboardCoordinates,
+    rectSortingStrategy,
+    useSortable,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+
+// Sortable wrapper for a single recruiter card
+function SortableRecruiterCard({ r, primary, subText, textColor, borderStyle, darkMode }) {
+    const {
+        attributes,
+        listeners,
+        setNodeRef,
+        transform,
+        transition,
+        isDragging,
+    } = useSortable({ id: r.recruiterId });
+
+    const style = {
+        transform: CSS.Transform.toString(transform),
+        transition,
+        opacity: isDragging ? 0.6 : 1,
+        zIndex: isDragging ? 10 : "auto",
+    };
+
+    return (
+        <Paper
+            ref={setNodeRef}
+            style={style}
+            elevation={0}
+            sx={{
+                position: "relative",
+                cursor: "pointer",
+                p: { xs: 1.5, sm: 2.5, md: 3 },
+                borderRadius: { xs: 3, md: 5 },
+                bgcolor: "background.paper",
+                backdropFilter: "blur(12px)",
+                border: `1px solid ${borderStyle}`,
+                boxShadow: darkMode
+                    ? `0 10px 20px rgba(0,0,0,0.30), 0 4px 8px rgba(0,0,0,0.20)`
+                    : `0 12px 24px rgba(15,23,42,0.08), 0 2px 6px rgba(15,23,42,0.05)`,
+                transition: "all 0.3s ease",
+                "&:hover": {
+                    transform: isDragging ? undefined : "translateY(-3px)",
+                    borderColor: primary,
+                    boxShadow: darkMode
+                        ? "0 18px 38px rgba(0,0,0,.45)"
+                        : `0 18px 40px ${primary}1f`,
+                },
+            }}
+        >
+            {/* Drag handle */}
+            <Box
+                {...attributes}
+                {...listeners}
+                sx={{
+                    position: "absolute",
+                    top: 10,
+                    right: 10,
+                    cursor: "grab",
+                    color: subText,
+                    display: "flex",
+                    alignItems: "center",
+                    touchAction: "none",
+                    "&:active": { cursor: "grabbing" },
+                }}
+            >
+                <GripVertical size={16} />
+            </Box>
+
+            <Box
+                sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: { xs: "flex-start", sm: "center" },
+                    flexDirection: { xs: "column", sm: "row" },
+                    gap: { xs: 1.5, sm: 2 },
+                }}
+            >
+                <Box
+                    sx={{
+                        display: "flex",
+                        alignItems: "flex-start",
+                        flexDirection: { xs: "column", sm: "row" },
+                        gap: { xs: 1.5, sm: 2 },
+                        width: "100%",
+                    }}
+                >
+                    <Avatar
+                        src={r.profileImage}
+                        sx={{
+                            width: { xs: 38, sm: 44 },
+                            height: { xs: 38, sm: 44 },
+                            bgcolor: primary,
+                            fontSize: { xs: ".95rem", sm: "1.1rem" },
+                            fontWeight: 700,
+                        }}
+                    >
+                        {r.fullName.split(" ").map(x => x[0]).join("")}
+                    </Avatar>
+                    <Box>
+                        <Typography
+                            sx={{
+                                fontSize: { xs: ".88rem", sm: ".98rem" },
+                                fontWeight: 800,
+                                color: textColor,
+                                mb: .3,
+                            }}
+                        >
+                            {r.fullName}
+                        </Typography>
+                        <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 0.7 }}>
+                            <UserRound size={13} color={primary} />
+                            <Typography
+                                sx={{
+                                    color: primary,
+                                    fontWeight: 700,
+                                    fontSize: { xs: ".8rem", sm: ".88rem" },
+                                }}
+                            >
+                                {r.designation}
+                            </Typography>
+                        </Box>
+
+                        <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 0.5 }}>
+                            <Building2 size={12} color={subText} />
+                            <Typography sx={{ color: subText, fontSize: { xs: ".78rem", sm: ".84rem" } }}>
+                                {r.department}
+                            </Typography>
+                        </Box>
+                        <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 0.5 }}>
+                            <Mail size={12} color={subText} />
+                            <Typography
+                                sx={{
+                                    color: subText,
+                                    fontSize: { xs: ".78rem", sm: ".84rem" },
+                                    wordBreak: "break-word",
+                                }}
+                            >
+                                {r.email}
+                            </Typography>
+                        </Box>
+                        <Box sx={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 2, mb: 0.5 }}>
+                            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                                <Phone size={11} color={subText} />
+                                <Typography sx={{ color: subText, fontSize: { xs: ".78rem", sm: ".84rem" } }}>
+                                    {r.phone}
+                                </Typography>
+                            </Box>
+
+                            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                                <MapPin size={11} color={subText} />
+                                <Typography sx={{ color: subText, fontSize: { xs: ".78rem", sm: ".84rem" } }}>
+                                    {r.city}
+                                </Typography>
+                            </Box>
+                        </Box>
+                        <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 0.5 }}>
+                            <Briefcase size={12} color={subText} />
+                            <Typography sx={{ color: subText, fontSize: { xs: ".78rem", sm: ".84rem" } }}>
+                                {r.experience}
+                            </Typography>
+                        </Box>
+                        <Typography
+                            sx={{
+                                color: subText,
+                                fontSize: { xs: ".78rem", sm: ".84rem" },
+                                mb: { xs: .25, md: .35 },
+                            }}
+                        >
+                            Assigned Jobs: {r.assignedJobs.length}
+                        </Typography>
+                    </Box>
+                </Box>
+                <Chip
+                    label={r.status}
+                    sx={{
+                        alignSelf: { xs: "flex-start", sm: "center" },
+                        bgcolor: r.status === "Active" ? "rgba(34,197,94,.15)" : "rgba(234,179,8,.15)",
+                        color: r.status === "Active" ? "#22c55e" : "#f59e0b",
+                        fontWeight: 700,
+                        fontSize: { xs: ".68rem", md: ".78rem" },
+                        height: { xs: 22, md: 28 },
+                        border: r.status === "Active"
+                            ? "1px solid rgba(34,197,94,.3)"
+                            : "1px solid rgba(245,158,11,.3)",
+                    }}
+                />
+            </Box>
+        </Paper>
+    );
+}
 
 export default function Recruiters() {
     const { darkMode } = useTheme();
-    const colors = useThemeColors();
-    const recruiters = recruitersData;
+    const colors = useThemeColors(); const [recruiters, setRecruiters] = useState(() => {
+        const saved = localStorage.getItem("recruiters_order");
+        if (saved) {
+            try {
+                return JSON.parse(saved);
+            } catch (e) {
+                console.error("Error loading saved order", e);
+            }
+        }
+        return recruitersData;
+    });
 
     const primary = colors.primary;
     const secondary = colors.secondary;
@@ -91,12 +299,37 @@ export default function Recruiters() {
         },
     });
 
-    const currentRecruiters = table.getRowModel().rows.map((row) => row.original);
-
     const handleFilterChange = (filter) => {
         setActiveFilter(filter);
         table.setPageIndex(0);
     };
+
+    const sensors = useSensors(
+        useSensor(PointerSensor, {
+            activationConstraint: { distance: 5 },
+        }),
+        useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
+    );
+
+    // NEW: drag end handler — updates immediately, no refresh needed
+    const handleDragEnd = (event) => {
+        const { active, over } = event;
+        if (!over || active.id === over.id) return;
+
+        setRecruiters((prev) => {
+            const oldIndex = prev.findIndex((r) => r.recruiterId === active.id);
+            const newIndex = prev.findIndex((r) => r.recruiterId === over.id);
+
+            if (oldIndex === -1 || newIndex === -1) return prev;
+
+            const updated = arrayMove(prev, oldIndex, newIndex);
+            // LocalStorage update to persist order across sessions
+            localStorage.setItem("recruiters_order", JSON.stringify(updated));
+            return updated;
+        });
+    };
+
+    const currentRecruiters = table.getRowModel().rows.map((row) => row.original);
 
     return (
         <HRLayout>
@@ -263,160 +496,36 @@ export default function Recruiters() {
                     }}
                 >
                     {currentRecruiters.length > 0 ? (
-                        <Box
-                            sx={{
-                                display: "grid",
-                                gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-                                gap: { xs: 2, md: 3 },
-                            }}
+                        <DndContext
+                            sensors={sensors}
+                            collisionDetection={closestCenter}
+                            onDragEnd={handleDragEnd}
                         >
-                            {currentRecruiters.map(r =>
-                                <Paper
-                                    key={r.recruiterId}
-                                    elevation={0}
+                            <SortableContext
+                                items={currentRecruiters.map((r) => r.recruiterId)}
+                                strategy={rectSortingStrategy}
+                            >
+                                <Box
                                     sx={{
-                                        position: "relative",
-                                        cursor: "pointer",
-                                        p: { xs: 1.5, sm: 2.5, md: 3 },
-                                        borderRadius: { xs: 3, md: 5 },
-                                        bgcolor: colors.card,
-                                        backdropFilter: "blur(12px)",
-                                        border: `1px solid ${borderStyle}`,
-                                        boxShadow: darkMode
-                                            ? `0 10px 20px rgba(0,0,0,0.30), 0 4px 8px rgba(0,0,0,0.20)`
-                                            : `0 12px 24px rgba(15,23,42,0.08), 0 2px 6px rgba(15,23,42,0.05)`,
-                                        transition: "all 0.3s ease",
-                                        "&:hover": {
-                                            transform: "translateY(-3px)",
-                                            borderColor: primary,
-                                            boxShadow: darkMode
-                                                ? "0 18px 38px rgba(0,0,0,.45)"
-                                                : `0 18px 40px ${primary}1f`,
-                                        },
+                                        display: "grid",
+                                        gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+                                        gap: { xs: 2, md: 3 },
                                     }}
                                 >
-                                    <Box
-                                        sx={{
-                                            display: "flex",
-                                            justifyContent: "space-between",
-                                            alignItems: { xs: "flex-start", sm: "center" },
-                                            flexDirection: { xs: "column", sm: "row" },
-                                            gap: { xs: 1.5, sm: 2 },
-                                        }}
-                                    >
-                                        <Box
-                                            sx={{
-                                                display: "flex",
-                                                alignItems: "flex-start",
-                                                flexDirection: { xs: "column", sm: "row" },
-                                                gap: { xs: 1.5, sm: 2 },
-                                                width: "100%",
-                                            }}
-                                        >
-                                            <Avatar
-                                                src={r.profileImage}
-                                                sx={{
-                                                    width: { xs: 38, sm: 44 },
-                                                    height: { xs: 38, sm: 44 },
-                                                    bgcolor: primary,
-                                                    fontSize: { xs: ".95rem", sm: "1.1rem" },
-                                                    fontWeight: 700,
-                                                }}
-                                            >
-                                                {r.fullName.split(" ").map(x => x[0]).join("")}
-                                            </Avatar>
-                                            <Box>
-                                                <Typography
-                                                    sx={{
-                                                        fontSize: { xs: ".88rem", sm: ".98rem" },
-                                                        fontWeight: 800,
-                                                        color: textColor,
-                                                        mb: .3,
-                                                    }}
-                                                >
-                                                    {r.fullName}
-                                                </Typography>
-                                                <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 0.7 }}>
-                                                    <UserRound size={13} color={primary} />
-                                                    <Typography
-                                                        sx={{
-                                                            color: primary,
-                                                            fontWeight: 700,
-                                                            fontSize: { xs: ".8rem", sm: ".88rem" },
-                                                        }}
-                                                    >
-                                                        {r.designation}
-                                                    </Typography>
-                                                </Box>
-
-                                                <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 0.5 }}>
-                                                    <Building2 size={12} color={subText} />
-                                                    <Typography sx={{ color: subText, fontSize: { xs: ".78rem", sm: ".84rem" } }}>
-                                                        {r.department}
-                                                    </Typography>
-                                                </Box>
-                                                <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 0.5 }}>
-                                                    <Mail size={12} color={subText} />
-                                                    <Typography
-                                                        sx={{
-                                                            color: subText,
-                                                            fontSize: { xs: ".78rem", sm: ".84rem" },
-                                                            wordBreak: "break-word",
-                                                        }}
-                                                    >
-                                                        {r.email}
-                                                    </Typography>
-                                                </Box>
-                                                <Box sx={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 2, mb: 0.5 }}>
-                                                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                                                        <Phone size={11} color={subText} />
-                                                        <Typography sx={{ color: subText, fontSize: { xs: ".78rem", sm: ".84rem" } }}>
-                                                            {r.phone}
-                                                        </Typography>
-                                                    </Box>
-
-                                                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                                                        <MapPin size={11} color={subText} />
-                                                        <Typography sx={{ color: subText, fontSize: { xs: ".78rem", sm: ".84rem" } }}>
-                                                            {r.city}
-                                                        </Typography>
-                                                    </Box>
-                                                </Box>
-                                                <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 0.5 }}>
-                                                    <Briefcase size={12} color={subText} />
-                                                    <Typography sx={{ color: subText, fontSize: { xs: ".78rem", sm: ".84rem" } }}>
-                                                        {r.experience}
-                                                    </Typography>
-                                                </Box>
-                                                <Typography
-                                                    sx={{
-                                                        color: subText,
-                                                        fontSize: { xs: ".78rem", sm: ".84rem" },
-                                                        mb: { xs: .25, md: .35 },
-                                                    }}
-                                                >
-                                                    Assigned Jobs: {r.assignedJobs.length}
-                                                </Typography>
-                                            </Box>
-                                        </Box>
-                                        <Chip
-                                            label={r.status}
-                                            sx={{
-                                                alignSelf: { xs: "flex-start", sm: "center" },
-                                                bgcolor: r.status === "Active" ? "rgba(34,197,94,.15)" : "rgba(234,179,8,.15)",
-                                                color: r.status === "Active" ? "#22c55e" : "#f59e0b",
-                                                fontWeight: 700,
-                                                fontSize: { xs: ".68rem", md: ".78rem" },
-                                                   height: { xs: 22, md: 28 },
-                                                border: r.status === "Active"
-                                                    ? "1px solid rgba(34,197,94,.3)"
-                                                    : "1px solid rgba(245,158,11,.3)",
-                                            }}
+                                    {currentRecruiters.map(r =>
+                                        <SortableRecruiterCard
+                                            key={r.recruiterId}
+                                            r={r}
+                                            primary={primary}
+                                            subText={subText}
+                                            textColor={textColor}
+                                            borderStyle={borderStyle}
+                                            darkMode={darkMode}
                                         />
-                                    </Box>
-                                </Paper>
-                            )}
-                        </Box>
+                                    )}
+                                </Box>
+                            </SortableContext>
+                        </DndContext>
                     ) : (
                         <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%" }}>
                             <Typography sx={{ color: subText }}>
@@ -442,7 +551,7 @@ export default function Recruiters() {
                     <Typography sx={{ fontSize: ".82rem", color: subText }}>
                         {Object.keys(rowSelection).length > 0
                             ? `${Object.keys(rowSelection).length} of ${table.getFilteredRowModel().rows.length} row(s) selected`
-                            : `Total: ${table.getFilteredRowModel().rows.length} jobs`}
+                            : `Total: ${table.getFilteredRowModel().rows.length} Recruiters`}
                     </Typography>
 
                     {/* Pagination controls */}

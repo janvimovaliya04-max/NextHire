@@ -27,7 +27,243 @@ import {
   MapPin,
   Banknote,
   Clock,
+  GripVertical,
 } from "lucide-react";
+
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  rectSortingStrategy,
+  useSortable,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+
+// Sortable wrapper for a single job card
+function SortableJobCard({ job, primary, secondary, textColor, subText, borderStyle, colors }) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: job.jobId });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.6 : 1,
+    zIndex: isDragging ? 10 : "auto",
+    height: "100%",
+  };
+
+  return (
+    <Grid
+      key={job.jobId}
+      size={{ xs: 12, md: 6 }}
+      sx={{ display: "flex" }}
+      ref={setNodeRef}
+      style={style}
+    >
+      <Card
+        elevation={0}
+        sx={{
+          position: "relative",
+          width: "100%",
+          borderRadius: { xs: 3, sm: 4, md: 5 },
+          bgcolor: colors.card,
+          backdropFilter: "blur(12px)",
+          border: `1px solid ${borderStyle}`,
+          boxShadow: colors.shadow,
+          transition: "all 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
+          display: "flex",
+          flexDirection: "column",
+          "&:hover": {
+            transform: isDragging ? undefined : { xs: "none", md: "translateY(-6px)" },
+            borderColor: primary,
+            boxShadow: colors.shadow,
+          }
+        }}
+      >
+        {/* Drag handle */}
+        <Box
+          {...attributes}
+          {...listeners}
+          sx={{
+            position: "absolute",
+            top: 12,
+            right: 12,
+            cursor: "grab",
+            color: subText,
+            display: "flex",
+            alignItems: "center",
+            touchAction: "none",
+            zIndex: 2,
+            "&:active": { cursor: "grabbing" },
+          }}
+        >
+          <GripVertical size={16} />
+        </Box>
+
+        <CardContent
+          sx={{
+            p: { xs: 2, sm: 3, md: 4 },
+            display: "flex",
+            flexDirection: "column",
+            height: "100%",
+            justifyContent: "space-between"
+          }}
+        >
+          <Box>
+            <Box sx={{ display: "flex", gap: { xs: 1.5, sm: 2 }, mb: { xs: 2, sm: 2.5 }, alignItems: "center" }}>
+              <Avatar
+                sx={{
+                  width: { xs: 38, sm: 42, md: 44 },
+                  height: { xs: 38, sm: 42, md: 44 },
+                  bgcolor: job.logoBg,
+                  color: job.logoColor,
+                  borderRadius: { xs: 2, sm: 2.5 },
+                  fontWeight: 800,
+                  fontSize: "1.1rem",
+                  flexShrink: 0,
+                }}
+              >
+                {job.logoLetter}
+              </Avatar>
+              <Box>
+                <Typography
+                  sx={{
+                    color: textColor,
+                    fontWeight: 800,
+                    letterSpacing: "-0.01em",
+                    lineHeight: 1.2,
+                    fontSize: { xs: ".95rem", sm: "1.05rem", md: "1.15rem" }
+                  }}>
+                  {job.title}
+                </Typography>
+                <Typography
+                  sx={{
+                    color: subText,
+                    fontSize: { xs: ".74rem", sm: ".8rem", md: ".85rem" },
+                    fontWeight: 600,
+                    mt: 0.3
+                  }}
+                >
+                  {job.company}
+                </Typography>
+              </Box>
+            </Box>
+
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: { xs: 1, sm: 1.2 },
+                mb: { xs: 2.5, sm: 3 },
+              }}>
+              <Box sx={{ display: "flex", alignItems: "center", gap: { xs: 1, sm: 1.5 } }}>
+                <MapPin style={{ color: primary, fontSize: 13 }} />
+                <Typography sx={{
+                  fontSize: { xs: ".76rem", sm: ".82rem", md: ".88rem" },
+                  fontWeight: 550,
+                  color: subText
+                }}>
+                  {job.location}
+                </Typography>
+              </Box>
+
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+                <Banknote style={{ color: primary, fontSize: 13 }} />
+                <Typography
+                  sx={{
+                    fontSize: { xs: ".76rem", sm: ".82rem", md: ".88rem" },
+                    fontWeight: 550,
+                    color: subText
+                  }}
+                >
+                  {job.salary}
+                </Typography>
+              </Box>
+
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+                <Clock style={{ color: primary, fontSize: 13 }} />
+                <Typography
+                  sx={{
+                    fontSize: { xs: ".76rem", sm: ".82rem", md: ".88rem" },
+                    fontWeight: 550,
+                    color: subText
+                  }}
+                >
+                  {job.type}
+                </Typography>
+              </Box>
+            </Box>
+
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: { xs: .8, sm: 1 },
+                mb: { xs: 3, sm: 3.5, md: 4 },
+              }}
+            >
+              {job.tags.map((tag) => (
+                <Chip
+                  key={tag}
+                  label={tag}
+                  size="small"
+                  sx={{
+                    fontWeight: 700,
+                    px: { xs: .5, sm: .8 },
+                    fontSize: { xs: ".66rem", sm: ".72rem", md: ".75rem" },
+                    bgcolor: `${primary}14`,
+                    border: `1px solid ${borderStyle}`,
+                    color: primary,
+                  }}
+                />
+              ))}
+            </Box>
+          </Box>
+
+          <Button
+            component={Link}
+            to={`/candidate/job-details/${job.jobId}`}
+            onClick={() => {
+              sessionStorage.setItem("browseJobsScroll", window.scrollY);
+            }}
+            variant="contained"
+            fullWidth
+            sx={{
+              py: { xs: 1.1, sm: 1.2, md: 1.3 },
+              borderRadius: { xs: "8px", sm: "10px" },
+              fontWeight: 700,
+              textTransform: "none",
+              fontSize: { xs: ".8rem", sm: ".85rem", md: ".9rem" },
+              background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
+              boxShadow: `0 4px 12px ${primary}33`,
+              "&:hover": {
+                background: `linear-gradient(135deg, ${primary}, ${primary})`,
+                boxShadow: `0 10px 22px ${primary}59`,
+                transform: "translateY(-2px)",
+              }
+            }}
+          >
+            View Details
+          </Button>
+        </CardContent>
+      </Card>
+    </Grid>
+  );
+}
 
 export default function BrowseJobs() {
   const { darkMode } = useTheme();
@@ -93,6 +329,70 @@ export default function BrowseJobs() {
   });
 
   const filteredJobs = table.getFilteredRowModel().rows.map((row) => row.original);
+
+  // // NEW: drag & drop order — tracks order of all currently filtered jobs.
+  // // Resyncs whenever the filter or search changes (new result set).
+  // const [jobOrder, setJobOrder] = useState(() => filteredJobs.map((j) => j.jobId));
+
+  // useEffect(() => {
+  //   setJobOrder(filteredJobs.map((j) => j.jobId));
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [activeFilter, globalFilter]);
+
+  const [jobOrder, setJobOrder] = useState(() => {
+    const savedOrder = localStorage.getItem("browseJobsOrder");
+    return savedOrder ? JSON.parse(savedOrder) : filteredJobs.map((j) => j.jobId);
+  });
+
+  useEffect(() => {
+    const savedOrder = localStorage.getItem("browseJobsOrder");
+    if (savedOrder) {
+      const parsedOrder = JSON.parse(savedOrder);
+      // Keep existing saved order for items that exist in current filtered result
+      const currentFilteredIds = filteredJobs.map((j) => j.jobId);
+      const updated = parsedOrder.filter((id) => currentFilteredIds.includes(id));
+
+      // Add any new items that were not in saved order
+      currentFilteredIds.forEach((id) => {
+        if (!updated.includes(id)) updated.push(id);
+      });
+      setJobOrder(updated);
+    } else {
+      setJobOrder(filteredJobs.map((j) => j.jobId));
+    }
+  }, [activeFilter, globalFilter]);
+
+  // NEW: dnd-kit sensors
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
+  );
+
+  // Final ordered list = filteredJobs reshuffled by jobOrder
+  const orderedJobs = jobOrder
+    .map((id) => filteredJobs.find((j) => j.jobId === id))
+    .filter(Boolean);
+
+  const displayedJobs = orderedJobs.slice(0, visibleJobs);
+
+  // NEW: drag end handler — reorders immediately, no refresh needed
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+
+    setJobOrder((prev) => {
+      const oldIndex = prev.indexOf(active.id);
+      const newIndex = prev.indexOf(over.id);
+      if (oldIndex === -1 || newIndex === -1) return prev;
+
+      const newOrder = arrayMove(prev, oldIndex, newIndex);
+
+      // SAVE TO LOCALSTORAGE TO PERSIST AFTER REFRESH
+      localStorage.setItem("browseJobsOrder", JSON.stringify(newOrder));
+
+      return newOrder;
+    });
+  };
 
   const loadMoreJobs = () => {
     setTimeout(() => {
@@ -251,9 +551,9 @@ export default function BrowseJobs() {
         }}
       >
         <InfiniteScroll
-          dataLength={Math.min(visibleJobs, filteredJobs.length)}
+          dataLength={Math.min(visibleJobs, orderedJobs.length)}
           next={loadMoreJobs}
-          hasMore={visibleJobs < filteredJobs.length}
+          hasMore={visibleJobs < orderedJobs.length}
           scrollThreshold={0.8}
           loader={
             <Box sx={{ display: "flex", justifyContent: "center", py: { xs: 3, sm: 4 } }}>
@@ -273,184 +573,31 @@ export default function BrowseJobs() {
             </Typography>
           }
         >
-          <Grid container spacing={{ xs: 2, sm: 2.5, md: 3 }}>
-            {filteredJobs
-              .slice(0, visibleJobs)
-              .map((job) => (
-                <Grid
-                  key={job.jobId}
-                  size={{ xs: 12, md: 6 }}
-                  sx={{ display: "flex" }}
-                >
-                  <Card
-                    elevation={0}
-                    sx={{
-                      width: "100%",
-                      borderRadius: { xs: 3, sm: 4, md: 5 },
-                      bgcolor: colors.card,
-                      backdropFilter: "blur(12px)",
-                      border: `1px solid ${borderStyle}`,
-                      boxShadow: colors.shadow,
-                      transition: "all 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
-                      display: "flex",
-                      flexDirection: "column",
-                      "&:hover": {
-                        transform: { xs: "none", md: "translateY(-6px)" },
-                        borderColor: primary,
-                        boxShadow: colors.shadow,
-                      }
-                    }}
-                  >
-                    <CardContent
-                      sx={{
-                        p: { xs: 2, sm: 3, md: 4 },
-                        display: "flex",
-                        flexDirection: "column",
-                        height: "100%",
-                        justifyContent: "space-between"
-                      }}
-                    >
-                      <Box>
-                        <Box sx={{ display: "flex", gap: { xs: 1.5, sm: 2 }, mb: { xs: 2, sm: 2.5 }, alignItems: "center" }}>
-                          <Avatar
-                            sx={{
-                              width: { xs: 38, sm: 42, md: 44 },
-                              height: { xs: 38, sm: 42, md: 44 },
-                              bgcolor: job.logoBg,
-                              color: job.logoColor,
-                              borderRadius: { xs: 2, sm: 2.5 },
-                              fontWeight: 800,
-                              fontSize: "1.1rem",
-                              flexShrink: 0,
-                            }}
-                          >
-                            {job.logoLetter}
-                          </Avatar>
-                          <Box>
-                            <Typography
-                              sx={{
-                                color: textColor,
-                                fontWeight: 800,
-                                letterSpacing: "-0.01em",
-                                lineHeight: 1.2,
-                                fontSize: { xs: ".95rem", sm: "1.05rem", md: "1.15rem" }
-                              }}>
-                              {job.title}
-                            </Typography>
-                            <Typography
-                              sx={{
-                                color: subText,
-                                fontSize: { xs: ".74rem", sm: ".8rem", md: ".85rem" },
-                                fontWeight: 600,
-                                mt: 0.3
-                              }}
-                            >
-                              {job.company}
-                            </Typography>
-                          </Box>
-                        </Box>
-
-                        <Box
-                          sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: { xs: 1, sm: 1.2 },
-                            mb: { xs: 2.5, sm: 3 },
-                          }}>
-                          <Box sx={{ display: "flex", alignItems: "center", gap: { xs: 1, sm: 1.5 } }}>
-                            <MapPin style={{ color: primary, fontSize: 13 }} />
-                            <Typography sx={{
-                              fontSize: { xs: ".76rem", sm: ".82rem", md: ".88rem" },
-                              fontWeight: 550,
-                              color: subText
-                            }}>
-                              {job.location}
-                            </Typography>
-                          </Box>
-
-                          <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-                            <Banknote style={{ color: primary, fontSize: 13 }} />
-                            <Typography
-                              sx={{
-                                fontSize: { xs: ".76rem", sm: ".82rem", md: ".88rem" },
-                                fontWeight: 550,
-                                color: subText
-                              }}
-                            >
-                              {job.salary}
-                            </Typography>
-                          </Box>
-
-                          <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-                            <Clock style={{ color: primary, fontSize: 13 }} />
-                            <Typography
-                              sx={{
-                                fontSize: { xs: ".76rem", sm: ".82rem", md: ".88rem" },
-                                fontWeight: 550,
-                                color: subText
-                              }}
-                            >
-                              {job.type}
-                            </Typography>
-                          </Box>
-                        </Box>
-
-                        <Box
-                          sx={{
-                            display: "flex",
-                            flexWrap: "wrap",
-                            gap: { xs: .8, sm: 1 },
-                            mb: { xs: 3, sm: 3.5, md: 4 },
-                          }}
-                        >
-                          {job.tags.map((tag) => (
-                            <Chip
-                              key={tag}
-                              label={tag}
-                              size="small"
-                              sx={{
-                                fontWeight: 700,
-                                px: { xs: .5, sm: .8 },
-                                fontSize: { xs: ".66rem", sm: ".72rem", md: ".75rem" },
-                                bgcolor: `${primary}14`,
-                                border: `1px solid ${borderStyle}`,
-                                color: primary,
-                              }}
-                            />
-                          ))}
-                        </Box>
-                      </Box>
-
-                      <Button
-                        component={Link}
-                        to={`/candidate/job-details/${job.jobId}`}
-                        onClick={() => {
-                          sessionStorage.setItem("browseJobsScroll", window.scrollY);
-                        }}
-                        variant="contained"
-                        fullWidth
-                        sx={{
-                          py: { xs: 1.1, sm: 1.2, md: 1.3 },
-                          borderRadius: { xs: "8px", sm: "10px" },
-                          fontWeight: 700,
-                          textTransform: "none",
-                          fontSize: { xs: ".8rem", sm: ".85rem", md: ".9rem" },
-                          background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
-                          boxShadow: `0 4px 12px ${primary}33`,
-                          "&:hover": {
-                            background: `linear-gradient(135deg, ${primary}, ${primary})`,
-                            boxShadow: `0 10px 22px ${primary}59`,
-                            transform: "translateY(-2px)",
-                          }
-                        }}
-                      >
-                        View Details
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              ))}
-          </Grid>
+          <DndContext
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragEnd={handleDragEnd}
+          >
+            <SortableContext
+              items={displayedJobs.map((j) => j.jobId)}
+              strategy={rectSortingStrategy}
+            >
+              <Grid container spacing={{ xs: 2, sm: 2.5, md: 3 }}>
+                {displayedJobs.map((job) => (
+                  <SortableJobCard
+                    key={job.jobId}
+                    job={job}
+                    primary={primary}
+                    secondary={secondary}
+                    textColor={textColor}
+                    subText={subText}
+                    borderStyle={borderStyle}
+                    colors={colors}
+                  />
+                ))}
+              </Grid>
+            </SortableContext>
+          </DndContext>
         </InfiniteScroll>
       </Box>
     </CandidateLayout>
