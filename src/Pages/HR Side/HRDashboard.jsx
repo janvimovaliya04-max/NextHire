@@ -23,7 +23,7 @@ import {
   HelpCircle,
 } from "lucide-react";
 
-import dashboardData from "../../data/Dashboard.json";
+import dashboardData from "../../data/dashboard.json";
 import HRLayout from "../../Layouts/HRLayout";
 import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
