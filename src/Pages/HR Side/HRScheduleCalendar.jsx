@@ -14,6 +14,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import VideocamIcon from "@mui/icons-material/Videocam";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import listPlugin from "@fullcalendar/list";
 import interactionPlugin from "@fullcalendar/interaction";
 
 import { useTheme } from "../../context/ThemeContext";
@@ -179,6 +181,34 @@ export default function HRScheduleCalendar() {
                             color: textColor,
                             fontFamily: "inherit",
                         },
+                        /* FullCalendar List View Hover & Dark Background Fixes */
+                        "& .fc-list-event": {
+                            background: `linear-gradient(135deg, ${primary}, ${secondary || primary}) !important`,
+                            cursor: "pointer",
+                        },
+                        "& .fc-list-event td": {
+                            borderColor: `${borderStyle} !important`,
+                            background: "transparent !important",
+                        },
+                        "& .fc-list-event-title, & .fc-list-event-time, & .fc-list-event-title a, & .fc-list-event-time a": {
+                            color: "#ffffff !important",
+                            fontWeight: 600,
+                        },
+                        "& .fc-list-event:hover": {
+                            opacity: 0.9,
+                            filter: "brightness(1.1)",
+                        },
+                        "& .fc-list-event:hover td, & .fc-list-event:hover a": {
+                            background: "transparent !important",
+                            color: "#ffffff !important",
+                        },
+                        "& .fc-list-day-cushion": {
+                            backgroundColor: `${colors.input} !important`,
+                        },
+                        "& .fc-list-day-text, & .fc-list-day-side-text": {
+                            color: `${textColor} !important`,
+                            fontWeight: 700,
+                        },
                         "& .fc-toolbar-title": {
                             fontSize: { xs: "1.1rem", md: "1.4rem" },
                             fontWeight: 800,
@@ -262,7 +292,7 @@ export default function HRScheduleCalendar() {
                     }}
                 >
                     <FullCalendar
-                        plugins={[dayGridPlugin, interactionPlugin]}
+                        plugins={[dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin]}
                         initialView="dayGridMonth"
                         initialDate="2026-08-01"
                         events={formatInterviewsToEvents(filteredInterviews)}
@@ -270,7 +300,13 @@ export default function HRScheduleCalendar() {
                         headerToolbar={{
                             left: "prev,next today",
                             center: "title",
-                            right: "dayGridMonth",
+                            right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
+                        }}
+                        buttonText={{
+                            dayGridMonth: "Month",
+                            timeGridWeek: "Weekly Schedule",
+                            timeGridDay: "Daily Agenda",
+                            listWeek: "List View",
                         }}
                         dayMaxEvents={2}
                         height="auto"
