@@ -3,7 +3,10 @@ import InterviewerLayout from "../../Layouts/InterviewerLayout";
 import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
 import { useState, useEffect, useRef } from "react";
+import React, { useCallback } from "react";
 import Editor from "@monaco-editor/react";
+import useTabSwitchWarning from "../../hooks/useTabSwitchWarning";
+import WarningModal from "../../components/WarningModal";
 import {
   Paper,
   Typography,
@@ -14,7 +17,6 @@ import {
   Select,
   MenuItem,
   TextField,
-  Chip,
   Tooltip,
 } from "@mui/material";
 import {
@@ -160,6 +162,7 @@ function formatElapsedTime(totalSeconds) {
 }
 
 export default function JoinInterview() {
+  const isTerminatedRef = useRef(false);
   const { darkMode } = useTheme();
   const colors = useThemeColors();
 
@@ -189,6 +192,22 @@ export default function JoinInterview() {
     candidate: "Janvi",
     position: "Frontend Developer",
   };
+
+  // Termination handler triggered on the 3rd tab switch
+  const handleMaxExceeded = useCallback(() => {
+    if (isTerminatedRef.current) return;
+    isTerminatedRef.current = true;;
+    // Show confirmation alert
+    alert("You have switched tabs 3 times. Your interview session is now terminated.");
+
+    // Force hard browser redirect (replace with your actual target URL path)
+    window.location.href = "/candidate/my-interviews";
+  }, []);
+
+  const { switchCount, showWarningModal, closeModal } = useTabSwitchWarning({
+    maxWarnings: 3,
+    onMaxExceeded: handleMaxExceeded,
+  });
 
   // State management for mock video meeting controls
   const [micActive, setMicActive] = useState(true);
@@ -532,7 +551,7 @@ export default function JoinInterview() {
             component={Link}
             to="/candidate/candidate-profile-v"
             state={{ applicant: interviewData }}
-            startIcon={<User sx={{ fontSize: 16 }} />}
+            startIcon={<User size={16} />}
             size="small"
             sx={{
               mt: 1.5,
@@ -588,7 +607,7 @@ export default function JoinInterview() {
             >
               Live Coding Workspace
             </Typography>
-            
+
             <Paper
               elevation={6}
               sx={{
@@ -614,7 +633,7 @@ export default function JoinInterview() {
                   onMount={handleEditorDidMount}
                   onChange={handleEditorChange}
                   options={{
-                    readOnly: true,
+                    readOnly: false,
                     minimap: { enabled: false },
                     automaticLayout: true,
                     fontSize: 14,
@@ -877,7 +896,7 @@ export default function JoinInterview() {
                       color: msg.self ? "#fff" : textColor,
                     }}
                   >
-                    {msg.text}  
+                    {msg.text}
                   </Box>
                 </Box>
               ))}
@@ -1086,7 +1105,7 @@ export default function JoinInterview() {
                 onMount={handleEditorDidMount}
                 onChange={handleEditorChange}
                 options={{
-                  readOnly: true,
+                  readOnly: false,
                   minimap: { enabled: false },
                   automaticLayout: true,
                   fontSize: 14,
@@ -1112,6 +1131,14 @@ export default function JoinInterview() {
           {runButton}
           {consolePanel}
         </Box>
+      )}
+      {/* 2. Render the Warning Modal component */}
+      {showWarningModal && switchCount < 3 && (
+        <WarningModal
+          open={showWarningModal}
+          onClose={closeModal}
+          warningCount={switchCount}
+        />
       )}
     </InterviewerLayout>
   );

@@ -1,0 +1,422 @@
+import React, { useState } from "react";
+import {
+    Box,
+    Paper,
+    Typography,
+    Dialog,
+    Button,
+    Chip,
+    Stack,
+    Divider,
+    IconButton
+} from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import VideocamIcon from "@mui/icons-material/Videocam";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
+
+import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
+import interviewData from "../../data/interviews.json";
+import HRLayout from "../../Layouts/HRLayout";
+
+export default function HRScheduleCalendar() {
+    const { darkMode } = useTheme();
+    const colors = useThemeColors();
+    const primary = colors.primary;
+    const secondary = colors.secondary;
+    const textColor = colors.text;
+    const subText = colors.subText;
+    const borderStyle = colors.border;
+
+    const [selectedEvent, setSelectedEvent] = useState(null);
+    const [statusFilter, setStatusFilter] = useState("All");
+    const [modeFilter, setModeFilter] = useState("All");
+
+    const handleEventClick = (info) => {
+        setSelectedEvent({
+            title: info.event.title,
+            start: info.event.start,
+            ...info.event.extendedProps,
+        });
+    };
+
+    const handleCloseModal = () => {
+        setSelectedEvent(null);
+    };
+
+    const filteredInterviews = interviewData.filter((item) => {
+        const matchesStatus = statusFilter === "All" || item.status === statusFilter;
+        const matchesMode = modeFilter === "All" || item.mode === modeFilter;
+        return matchesStatus && matchesMode;
+    });
+
+    const formatInterviewsToEvents = (interviews) => {
+        return interviews.map((interview) => ({
+            id: interview.interviewId,
+            title: `${interview.round} - ${interview.interviewer}`,
+            start: `${interview.date}T${interview.time}:00`,
+            extendedProps: {
+                candidateName: interview.candidateName,
+                jobId: interview.jobId,
+                recruiterId: interview.recruiterId,
+                mode: interview.mode,
+                platform: interview.platform,
+                status: interview.status,
+                result: interview.result,
+                remarks: interview.remarks,
+            },
+        }));
+    };
+
+    // Helper to format ISO strings cleanly
+    const formatEventDateTime = (dateObj) => {
+        if (!dateObj) return "N/A";
+        const date = new Date(dateObj);
+        return date.toLocaleString("en-US", {
+            weekday: "short",
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+            hour: "numeric",
+            minute: "2-digit",
+            hour12: true,
+        });
+    };
+
+    return (
+        <HRLayout>
+            <Box
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: { xs: 3, md: 4 },
+                    pb: { xs: 2, md: 0 },
+                }}
+            >
+                {/* Page Header */}
+                <Box
+                    sx={{
+                        display: "flex",
+                        flexDirection: { xs: "column", sm: "row" },
+                        justifyContent: "space-between",
+                        alignItems: { xs: "flex-start", sm: "center" },
+                        gap: 2,
+                    }}
+                >
+                    <Box>
+                        <Typography
+                            sx={{
+                                fontSize: { xs: "1.35rem", sm: "1.7rem", md: "2rem", lg: "2.2rem" },
+                                mb: { xs: 0, md: 0.5 },
+                                fontWeight: 850,
+                                letterSpacing: "-0.03em",
+                                color: textColor,
+                            }}
+                        >
+                            HR Schedule Calendar
+                        </Typography>
+                    </Box>
+
+                    {/* Filter Action Chips */}
+                    <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
+                        <Chip
+                            label={`Status: ${statusFilter}`}
+                            onClick={() => {
+                                const statuses = ["All", "Scheduled", "Completed", "Cancelled"];
+                                const nextIndex = (statuses.indexOf(statusFilter) + 1) % statuses.length;
+                                setStatusFilter(statuses[nextIndex]);
+                            }}
+                            sx={{
+                                bgcolor: colors.input,
+                                color: textColor,
+                                border: `1px solid ${borderStyle}`,
+                                fontWeight: 700,
+                                borderRadius: "10px",
+                                "&:hover": { bgcolor: `${primary}15`, borderColor: primary, color: primary }
+                            }}
+                        />
+                        <Chip
+                            label={`Mode: ${modeFilter}`}
+                            onClick={() => {
+                                const modes = ["All", "Online", "Offline"];
+                                const nextIndex = (modes.indexOf(modeFilter) + 1) % modes.length;
+                                setModeFilter(modes[nextIndex]);
+                            }}
+                            sx={{
+                                bgcolor: colors.input,
+                                color: textColor,
+                                border: `1px solid ${borderStyle}`,
+                                fontWeight: 700,
+                                borderRadius: "10px",
+                                "&:hover": { bgcolor: `${primary}15`, borderColor: primary, color: primary }
+                            }}
+                        />
+                    </Stack>
+                </Box>
+
+                {/* Calendar Container Paper */}
+                <Paper
+                    elevation={0}
+                    sx={{
+                        p: { xs: 2, sm: 3, md: 4 },
+                        borderRadius: { xs: 3, md: "22px" },
+                        bgcolor: colors.card,
+                        backdropFilter: "blur(12px)",
+                        border: `1px solid ${borderStyle}`,
+                        boxShadow: colors.shadow,
+                        transition: "all 0.3s ease",
+                        "&:hover": {
+                            transform: "translateY(-3px)",
+                            boxShadow: darkMode
+                                ? `0 24px 55px rgba(0,0,0,.42)`
+                                : `0 26px 55px rgba(15,23,42,.12)`,
+                        },
+
+                        /* FullCalendar Dynamic Theme Overrides */
+                        "& .fc": {
+                            color: textColor,
+                            fontFamily: "inherit",
+                        },
+                        "& .fc-toolbar-title": {
+                            fontSize: { xs: "1.1rem", md: "1.4rem" },
+                            fontWeight: 800,
+                            color: textColor,
+                        },
+                        "& .fc-button-group": {
+                            gap: "8px",
+                        },
+                        "& .fc-button-group > .fc-button": {
+                            borderRadius: "10px !important",
+                        },
+                        "& .fc-button": {
+                            backgroundColor: colors.input,
+                            borderColor: borderStyle,
+                            color: textColor,
+                            fontWeight: 700,
+                            gap: "4px",
+                            padding: "6px 14px",
+                            fontSize: "0.85rem",
+                            borderRadius: "10px !important",
+                            textTransform: "capitalize",
+                            boxShadow: "none",
+                            transition: "all 0.2s ease",
+                            "&:hover": {
+                                backgroundColor: `${primary}15`,
+                                borderColor: primary,
+                                color: primary,
+                            },
+                            "&:focus, &:active": {
+                                boxShadow: "none !important",
+                            },
+                        },
+                        "& .fc-button-primary:not(:disabled).fc-button-active, & .fc-button-primary:not(:disabled):active": {
+                            background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
+                            borderColor: "transparent",
+                            color: "#fff",
+                        },
+                        "& .fc-theme-standard td, & .fc-theme-standard th, & .fc-theme-standard .fc-scrollgrid": {
+                            borderColor: borderStyle,
+                        },
+                        "& .fc-col-header-cell": {
+                            padding: "10px 0",
+                            backgroundColor: colors.input,
+                        },
+                        "& .fc-col-header-cell-cushion": {
+                            color: subText,
+                            fontWeight: 700,
+                            fontSize: "0.88rem",
+                        },
+                        "& .fc-daygrid-day-number": {
+                            color: textColor,
+                            fontSize: "0.85rem",
+                            fontWeight: 600,
+                            padding: "8px",
+                        },
+                        "& .fc-day-today": {
+                            backgroundColor: `${primary}10 !important`,
+                        },
+                        "& .fc-event": {
+                            borderRadius: "8px",
+                            padding: "2px 6px",
+                            fontSize: "0.8rem",
+                            fontWeight: 600,
+                            border: "none",
+                            background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
+                            boxShadow: `0 2px 6px ${primary}33`,
+                            cursor: "pointer",
+                            color: "#ffffff !important",
+                            transition: "transform 0.2s ease",
+                            "&:hover": {
+                                transform: "scale(1.02)",
+                            },
+                        },
+                        "& .fc-event-title": {
+                            fontWeight: 600,
+                        },
+                        "& .fc-more-link": {
+                            color: primary,
+                            fontWeight: 700,
+                        },
+                    }}
+                >
+                    <FullCalendar
+                        plugins={[dayGridPlugin, interactionPlugin]}
+                        initialView="dayGridMonth"
+                        initialDate="2026-08-01"
+                        events={formatInterviewsToEvents(filteredInterviews)}
+                        eventClick={handleEventClick}
+                        headerToolbar={{
+                            left: "prev,next today",
+                            center: "title",
+                            right: "dayGridMonth",
+                        }}
+                        dayMaxEvents={2}
+                        height="auto"
+                        editable={true}
+                        selectable={true}
+                    />
+                </Paper>
+
+                {/* Glassmorphic Modal with Corrected Padding */}
+                <Dialog
+                    open={Boolean(selectedEvent)}
+                    onClose={handleCloseModal}
+                    slotProps={{
+                        backdrop: {
+                            sx: {
+                                backdropFilter: "blur(8px)",
+                                backgroundColor: darkMode ? "rgba(0, 0, 0, 0.5)" : "rgba(15, 23, 42, 0.25)",
+                            },
+                        },
+                    }}
+                    PaperProps={{
+                        sx: {
+                            borderRadius: "24px",
+                            background: darkMode
+                                ? "linear-gradient(135deg, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.75))"
+                                : "linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.6))",
+                            backdropFilter: "blur(20px)",
+                            WebkitBackdropFilter: "blur(20px)",
+                            border: `1px solid ${darkMode ? "rgba(255, 255, 255, 0.15)" : "rgba(255, 255, 255, 0.8)"}`,
+                            boxShadow: darkMode
+                                ? "0 20px 40px rgba(0, 0, 0, 0.6)"
+                                : "0 20px 40px rgba(15, 23, 42, 0.15)",
+                            color: textColor,
+                            width: "100%",
+                            maxWidth: "460px",
+                            margin: { xs: 2, sm: 3 },
+                            overflow: "hidden",
+                            backgroundImage: "none",
+                        },
+                    }}
+                >
+                    {selectedEvent && (
+                        <Box sx={{ p: { xs: 2.5, sm: 3.5 } }}>
+                            {/* Modal Header */}
+                            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 2, mb: 1.5 }}>
+                                <Typography variant="h6" fontWeight={800} sx={{ color: textColor, fontSize: "1.1rem", lineHeight: 1.3 }}>
+                                    {selectedEvent.title}
+                                </Typography>
+                                <IconButton
+                                    onClick={handleCloseModal}
+                                    size="small"
+                                    sx={{
+                                        color: textColor,
+                                        bgcolor: darkMode ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)",
+                                        flexShrink: 0,
+                                        "&:hover": {
+                                            bgcolor: darkMode ? "rgba(255,255,255,0.18)" : "rgba(0,0,0,0.1)",
+                                        },
+                                    }}
+                                >
+                                    <CloseIcon fontSize="small" />
+                                </IconButton>
+                            </Box>
+
+                            <Divider sx={{ borderColor: darkMode ? "rgba(255, 255, 255, 0.12)" : "rgba(0, 0, 0, 0.08)", mb: 2.5 }} />
+
+                            {/* Details List */}
+                            <Stack spacing={2}>
+                                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2 }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0 }}>
+                                        Candidate
+                                    </Typography>
+                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right", wordBreak: "break-word" }}>
+                                        {selectedEvent.candidateName}
+                                    </Typography>
+                                </Box>
+
+                                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2 }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0 }}>
+                                        Date & Time
+                                    </Typography>
+                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right" }}>
+                                        {formatEventDateTime(selectedEvent.start)}
+                                    </Typography>
+                                </Box>
+
+                                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2 }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0 }}>
+                                        Mode
+                                    </Typography>
+                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right" }}>
+                                        {selectedEvent.mode} ({selectedEvent.platform})
+                                    </Typography>
+                                </Box>
+
+                                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2 }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0 }}>
+                                        Status
+                                    </Typography>
+                                    <Chip
+                                        label={selectedEvent.status}
+                                        size="small"
+                                        sx={{
+                                            bgcolor: `${primary}22`,
+                                            color: primary,
+                                            fontWeight: 700,
+                                            height: "24px",
+                                            borderRadius: "8px",
+                                            fontSize: "0.78rem"
+                                        }}
+                                    />
+                                </Box>
+
+                                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2 }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0 }}>
+                                        Result
+                                    </Typography>
+                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right" }}>
+                                        {selectedEvent.result || "Pending"}
+                                    </Typography>
+                                </Box>
+
+                                <Box sx={{ display: "flex", flexDirection: "column", gap: 0.8, pt: 0.5 }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText }}>
+                                        Remarks
+                                    </Typography>
+                                    <Typography
+                                        variant="body2"
+                                        sx={{
+                                            p: 1.75,
+                                            borderRadius: "14px",
+                                            bgcolor: darkMode ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.03)",
+                                            border: `1px solid ${darkMode ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.06)"}`,
+                                            color: textColor,
+                                            fontSize: "0.85rem",
+                                            lineHeight: 1.5,
+                                        }}
+                                    >
+                                        {selectedEvent.remarks || "No remarks available."}
+                                    </Typography>
+                                </Box>
+                            </Stack>
+                        </Box>
+                    )}
+                </Dialog>
+            </Box>
+        </HRLayout>
+    );
+}

@@ -36,9 +36,11 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 import { Plus, User, Search } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 
 export default function InterviewManagement() {
-
+  const navigate = useNavigate();
   const { darkMode } = useTheme();
   const colors = useThemeColors();
   const interviews = interviewsData;
@@ -268,6 +270,27 @@ export default function InterviewManagement() {
                 }}
               />
             </Box>
+
+            <Button
+              variant="contained"
+              startIcon={<CalendarTodayIcon />}
+              onClick={() => navigate("/hr/schedule-calendar")} // Replace with your actual calendar route path
+              sx={{
+                borderRadius: "12px",
+                textTransform: "none",
+                fontWeight: 700,
+                px: 2.5,
+                py: 1,
+                background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
+                boxShadow: `0 4px 12px ${primary}33`,
+                "&:hover": {
+                  opacity: 0.9,
+                  boxShadow: `0 6px 16px ${primary}44`,
+                },
+              }}
+            >
+              Calendar
+            </Button>
 
             <Button
               component={Link}

@@ -25,6 +25,7 @@ import CandidateFeedback from "./Pages/HR Side/CandidateFeedback";
 import Recruiters from "./Pages/HR Side/Recruiters";
 import AddRecruiter from "./Pages/HR Side/AddRecruiter";
 import NotesEditorPage from "./Pages/HR Side/NotesEditorPage";
+import HRScheduleCalendar from "./Pages/HR Side/HRScheduleCalendar";
 
 /* Candidate Side */
 import CandidateDashboard from "./Pages/Candidate Side/CandidateDashboard";
@@ -84,6 +85,7 @@ function App() {
             <Route path="/hr/recruiters" element={<Recruiters />} />
             <Route path="/hr/add-recruiter" element={<AddRecruiter />} />
             <Route path="/hr/notes" element={<NotesEditorPage />} />
+            <Route path="/hr/schedule-calendar" element={<HRScheduleCalendar />} />
           </Route>
 
           {/* Candidate Protected Routes */}

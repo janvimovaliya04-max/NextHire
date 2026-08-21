@@ -16,6 +16,8 @@ import { ReactRenderer } from '@tiptap/react';
 import tippy from 'tippy.js';
 import Youtube from '@tiptap/extension-youtube';
 import { Video } from 'lucide-react';
+import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 import {
     Box,
     Button,
@@ -62,7 +64,21 @@ import {
     AtSign
 } from "lucide-react";
 
-export default function NotesEditorPage({ darkMode, textColor, subText, primary = "#3b82f6", colors }) {
+export default function NotesEditorPage() {
+    // NEW: theme now comes directly from hooks, not from props
+    const { darkMode } = useTheme();
+    const colors = useThemeColors();
+
+    const primary = colors.primary;
+    const secondary = colors.secondary;
+    const textColor = colors.text;
+    const subText = colors.subText;
+    const borderStyle = colors.border;
+    const cardColor = colors.card;
+    const inputColor = colors.input;
+    const shadowColor = colors.shadow;
+    const secondaryColor = secondary || primary;
+
     const [savedStatus, setSavedStatus] = useState(false);
     const [, setForceUpdate] = useState({});
 
@@ -238,36 +254,48 @@ export default function NotesEditorPage({ darkMode, textColor, subText, primary 
         }
     };
 
-    const activeColor = primary || "#3b82f6";
+    const activeColor = primary;
 
     const getToolbarBtnSx = (isActive, isDisabled = false) => ({
         padding: "8px",
         borderRadius: "10px",
-        backgroundColor: isActive
-            ? activeColor
-            : darkMode
-                ? "rgba(255,255,255,0.04)"
-                : "rgba(0,0,0,0.03)",
-        color: isActive
-            ? "#ffffff"
-            : darkMode
-                ? "rgba(255,255,255,0.7)"
-                : "rgba(0,0,0,0.65)",
+        backgroundColor: isActive ? activeColor : inputColor,
+        color: isActive ? "#ffffff" : subText,
         opacity: isDisabled ? 0.3 : 1,
         transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
         boxShadow: isActive ? `0 4px 12px ${activeColor}45` : "none",
         "&:hover": {
-            backgroundColor: isActive
-                ? activeColor
-                : darkMode
-                    ? "rgba(255,255,255,0.1)"
-                    : "rgba(0,0,0,0.07)",
-            color: isActive ? "#ffffff" : textColor,
+            backgroundColor: isActive ? activeColor : `${primary}14`,
+            color: isActive ? "#ffffff" : primary,
         },
     });
 
+    // Reference-matching menu paper style
+    const menuPaperSx = {
+        bgcolor: cardColor,
+        color: textColor,
+        borderRadius: "12px",
+        border: `1px solid ${borderStyle}`,
+        mt: 1,
+        boxShadow: shadowColor,
+    };
+
+    // Reference-matching outlined button style (Templates / Export)
+    const outlinedBtnSx = {
+        borderColor: borderStyle,
+        color: subText,
+        fontWeight: 700,
+        borderRadius: "10px",
+        textTransform: "none",
+        px: 2,
+        "&:hover": {
+            borderColor: primary,
+            bgcolor: `${primary}08`,
+        }
+    };
+
     return (
-        <InterviewerLayout darkMode={darkMode} textColor={textColor} subText={subText} colors={colors}>
+        <InterviewerLayout>
             <Container maxWidth="lg" sx={{ mt: 4, mb: 6 }}>
                 {/* Hidden File Input for Local Explorer */}
                 <input
@@ -298,8 +326,9 @@ export default function NotesEditorPage({ darkMode, textColor, subText, primary 
                                 label={`${syncStatus} ${lastSavedTime ? `(${lastSavedTime})` : ""}`}
                                 size="small"
                                 sx={{
-                                    bgcolor: darkMode ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)",
+                                    bgcolor: inputColor,
                                     color: subText,
+                                    border: `1px solid ${borderStyle}`,
                                     fontSize: "0.75rem",
                                     height: "24px"
                                 }}
@@ -313,15 +342,7 @@ export default function NotesEditorPage({ darkMode, textColor, subText, primary 
                             variant="outlined"
                             onClick={handleTemplateClick}
                             startIcon={<FileText size={16} />}
-                            sx={{
-                                borderColor: darkMode ? "rgba(255,255,255,0.2)" : "#cbd5e1",
-                                color: textColor,
-                                fontWeight: 600,
-                                borderRadius: "10px",
-                                textTransform: "none",
-                                px: 2,
-                                "&:hover": { borderColor: activeColor, bgcolor: darkMode ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.02)" }
-                            }}
+                            sx={outlinedBtnSx}
                         >
                             Templates
                         </Button>
@@ -329,20 +350,12 @@ export default function NotesEditorPage({ darkMode, textColor, subText, primary 
                             anchorEl={templateAnchorEl}
                             open={Boolean(templateAnchorEl)}
                             onClose={handleTemplateClose}
-                            PaperProps={{
-                                sx: {
-                                    bgcolor: darkMode ? "#1e293b" : "#ffffff",
-                                    color: textColor,
-                                    borderRadius: "12px",
-                                    mt: 1,
-                                    boxShadow: darkMode ? "0 8px 24px rgba(0,0,0,0.5)" : "0 4px 20px rgba(0,0,0,0.1)"
-                                }
-                            }}
+                            PaperProps={{ sx: menuPaperSx }}
                         >
                             <MenuItem onClick={() => applyTemplate("tech")} sx={{ fontSize: "0.9rem" }}>Technical Evaluation</MenuItem>
                             <MenuItem onClick={() => applyTemplate("behavioral")} sx={{ fontSize: "0.9rem" }}>Behavioral & Culture Fit</MenuItem>
                             <MenuItem onClick={() => applyTemplate("coding_debrief")} sx={{ fontSize: "0.9rem" }}>Live Coding Review</MenuItem>
-                            <MenuItem onClick={() => applyTemplate("panel_debrief")} sx={{ fontSize: "0.9rem" }}>Panel Debrief Summary</MenuItem>    
+                            <MenuItem onClick={() => applyTemplate("panel_debrief")} sx={{ fontSize: "0.9rem" }}>Panel Debrief Summary</MenuItem>
                         </Menu>
 
                         {/* Feature 1: Export Button */}
@@ -350,15 +363,7 @@ export default function NotesEditorPage({ darkMode, textColor, subText, primary 
                             variant="outlined"
                             onClick={handleExportClick}
                             startIcon={<Download size={16} />}
-                            sx={{
-                                borderColor: darkMode ? "rgba(255,255,255,0.2)" : "#cbd5e1",
-                                color: textColor,
-                                fontWeight: 600,
-                                borderRadius: "10px",
-                                textTransform: "none",
-                                px: 2,
-                                "&:hover": { borderColor: activeColor, bgcolor: darkMode ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.02)" }
-                            }}
+                            sx={outlinedBtnSx}
                         >
                             Export
                         </Button>
@@ -366,15 +371,7 @@ export default function NotesEditorPage({ darkMode, textColor, subText, primary 
                             anchorEl={exportAnchorEl}
                             open={Boolean(exportAnchorEl)}
                             onClose={handleExportClose}
-                            PaperProps={{
-                                sx: {
-                                    bgcolor: darkMode ? "#1e293b" : "#ffffff",
-                                    color: textColor,
-                                    borderRadius: "12px",
-                                    mt: 1,
-                                    boxShadow: darkMode ? "0 8px 24px rgba(0,0,0,0.5)" : "0 4px 20px rgba(0,0,0,0.1)"
-                                }
-                            }}
+                            PaperProps={{ sx: menuPaperSx }}
                         >
                             <MenuItem onClick={handleExportPDF} sx={{ fontSize: "0.9rem" }}>Export as PDF (Print)</MenuItem>
                             <MenuItem onClick={handleExportWord} sx={{ fontSize: "0.9rem" }}>Export as Word (.doc)</MenuItem>
@@ -385,13 +382,18 @@ export default function NotesEditorPage({ darkMode, textColor, subText, primary 
                             onClick={handleSave}
                             startIcon={<Save size={18} />}
                             sx={{
-                                bgcolor: activeColor,
-                                fontWeight: 700,
                                 borderRadius: "10px",
+                                fontWeight: 700,
                                 textTransform: "none",
                                 px: 3,
-                                boxShadow: "none",
-                                "&:hover": { bgcolor: activeColor, opacity: 0.9 },
+                                background: `linear-gradient(135deg, ${primary}, ${secondaryColor})`,
+                                boxShadow: `0 4px 12px ${primary}33`,
+                                transition: ".25s",
+                                "&:hover": {
+                                    background: `linear-gradient(135deg, ${primary}, ${primary})`,
+                                    transform: "translateY(-2px)",
+                                    boxShadow: `0 10px 22px ${primary}59`,
+                                },
                             }}
                         >
                             {savedStatus ? "Saved!" : "Save Notes"}
@@ -402,22 +404,30 @@ export default function NotesEditorPage({ darkMode, textColor, subText, primary 
                 <Paper
                     elevation={0}
                     sx={{
-                        borderRadius: "16px",
-                        border: `1px solid ${darkMode ? "rgba(255,255,255,.08)" : "#E8EEF7"}`,
-                        bgcolor: darkMode ? "rgba(30,41,59,.45)" : "#ffffff",
+                        borderRadius: "22px",
+                        border: `1px solid ${borderStyle}`,
+                        bgcolor: cardColor,
+                        backdropFilter: "blur(12px)",
                         overflow: "hidden",
-                        boxShadow: colors?.shadow || "none",
+                        boxShadow: shadowColor,
+                        transition: "all 0.3s ease",
+                        "&:hover": {
+                            transform: "translateY(-3px)",
+                            boxShadow: darkMode
+                                ? `0 18px 36px rgba(0,0,0,0.40), 0 8px 12px rgba(0,0,0,0.25)`
+                                : `0 20px 40px rgba(15,23,42,0.12), 0 6px 12px rgba(15,23,42,0.08)`,
+                        },
                     }}
                 >
-                    {/* Toolbar Container */}
+                    {/* Toolbar Container — FIXED: bgcolor/color now use theme tokens instead of hardcoded rgba */}
                     <Box
                         sx={{
                             display: "flex",
                             flexWrap: "wrap",
                             gap: 1,
                             p: 1.5,
-                            borderBottom: `1px solid ${darkMode ? "rgba(255,255,255,.08)" : "#E8EEF7"}`,
-                            bgcolor: darkMode ? "rgba(15,23,42,.5)" : "#f8fafc",
+                            borderBottom: `1px solid ${borderStyle}`,
+                            bgcolor: inputColor,
                             alignItems: "center",
                         }}
                     >
@@ -435,7 +445,7 @@ export default function NotesEditorPage({ darkMode, textColor, subText, primary 
                             <Strikethrough size={18} />
                         </IconButton>
 
-                        <Divider orientation="vertical" flexItem sx={{ mx: 0.5, borderColor: darkMode ? "rgba(255,255,255,0.1)" : "#ddd" }} />
+                        <Divider orientation="vertical" flexItem sx={{ mx: 0.5, borderColor: borderStyle }} />
 
                         {/* Lists & Quotes & Feature 4: Checklist Task List */}
                         <IconButton onClick={() => editor.chain().focus().toggleBulletList().run()} sx={getToolbarBtnSx(editor.isActive("bulletList"))} title="Bullet List">
@@ -451,7 +461,7 @@ export default function NotesEditorPage({ darkMode, textColor, subText, primary 
                             <Quote size={18} />
                         </IconButton>
 
-                        <Divider orientation="vertical" flexItem sx={{ mx: 0.5, borderColor: darkMode ? "rgba(255,255,255,0.1)" : "#ddd" }} />
+                        <Divider orientation="vertical" flexItem sx={{ mx: 0.5, borderColor: borderStyle }} />
 
                         {/* Text Alignment */}
                         <IconButton onClick={() => editor.chain().focus().setTextAlign("left").run()} sx={getToolbarBtnSx(editor.isActive({ textAlign: "left" }))} title="Align Text Left">
@@ -464,7 +474,7 @@ export default function NotesEditorPage({ darkMode, textColor, subText, primary 
                             <AlignRight size={18} />
                         </IconButton>
 
-                        <Divider orientation="vertical" flexItem sx={{ mx: 0.5, borderColor: darkMode ? "rgba(255,255,255,0.1)" : "#ddd" }} />
+                        <Divider orientation="vertical" flexItem sx={{ mx: 0.5, borderColor: borderStyle }} />
 
                         {/* Image Movement / Position Controls */}
                         <IconButton onClick={() => setImageAlignment("left")} sx={getToolbarBtnSx(false)} title="Move Image Left">
@@ -477,7 +487,7 @@ export default function NotesEditorPage({ darkMode, textColor, subText, primary 
                             <AlignRight size={18} />
                         </IconButton>
 
-                        <Divider orientation="vertical" flexItem sx={{ mx: 0.5, borderColor: darkMode ? "rgba(255,255,255,0.1)" : "#ddd" }} />
+                        <Divider orientation="vertical" flexItem sx={{ mx: 0.5, borderColor: borderStyle }} />
 
                         {/* Special Tools */}
                         <IconButton onClick={() => editor.chain().focus().toggleHighlight().run()} sx={getToolbarBtnSx(editor.isActive("highlight"))} title="Highlight">
@@ -500,11 +510,7 @@ export default function NotesEditorPage({ darkMode, textColor, subText, primary 
                             onClose={() => setMentionAnchorEl(null)}
                             PaperProps={{
                                 sx: {
-                                    bgcolor: darkMode ? "#1e293b" : "#ffffff",
-                                    color: textColor,
-                                    borderRadius: "12px",
-                                    mt: 1,
-                                    boxShadow: darkMode ? "0 8px 24px rgba(0,0,0,0.5)" : "0 4px 20px rgba(0,0,0,0.1)",
+                                    ...menuPaperSx,
                                     width: "220px"
                                 }
                             }}
@@ -524,7 +530,7 @@ export default function NotesEditorPage({ darkMode, textColor, subText, primary 
                                 fontWeight: 700,
                                 position: "sticky",
                                 top: 0,
-                                bgcolor: darkMode ? "#1e293b" : "#ffffff",
+                                bgcolor: cardColor,
                                 zIndex: 1
                             }}>
                                 SELECT EMPLOYEE TO TAG
@@ -581,15 +587,7 @@ export default function NotesEditorPage({ darkMode, textColor, subText, primary 
                             anchorEl={imageAnchorEl}
                             open={Boolean(imageAnchorEl)}
                             onClose={handleImageClose}
-                            PaperProps={{
-                                sx: {
-                                    bgcolor: darkMode ? "#1e293b" : "#ffffff",
-                                    color: textColor,
-                                    borderRadius: "12px",
-                                    mt: 1,
-                                    boxShadow: darkMode ? "0 8px 24px rgba(0,0,0,0.5)" : "0 4px 20px rgba(0,0,0,0.1)"
-                                }
-                            }}
+                            PaperProps={{ sx: menuPaperSx }}
                         >
                             <MenuItem onClick={handleAddImageByURL} sx={{ fontSize: "0.9rem", gap: 1.5 }}>
                                 <ListItemIcon sx={{ color: textColor, minWidth: "auto" }}><LinkIcon size={16} /></ListItemIcon>
@@ -605,7 +603,7 @@ export default function NotesEditorPage({ darkMode, textColor, subText, primary 
                             <Code size={18} />
                         </IconButton>
 
-                        <Divider orientation="vertical" flexItem sx={{ mx: 0.5, borderColor: darkMode ? "rgba(255,255,255,0.1)" : "#ddd" }} />
+                        <Divider orientation="vertical" flexItem sx={{ mx: 0.5, borderColor: borderStyle }} />
 
                         {/* Undo / Redo */}
                         <IconButton onClick={() => editor.chain().focus().undo().run()} disabled={!editor.can().undo()} sx={getToolbarBtnSx(false, !editor.can().undo())} title="Undo">
