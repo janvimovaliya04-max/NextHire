@@ -55,6 +55,7 @@ import {
     useSortable,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 // Sortable wrapper for a single recruiter card
 function SortableRecruiterCard({ r, primary, subText, textColor, borderStyle, darkMode }) {
@@ -333,6 +334,13 @@ export default function Recruiters() {
 
     return (
         <HRLayout>
+            {/* Dynamic SEO Tags Injection */}
+            <SEO
+                title="Recruiters"
+                description="Manage job postings, candidates, and interview schedules on NextHire HR Portal."
+                canonicalUrl="/hr-portal/dashboard"
+            />
+
             {/* Title & Banner Header */}
             <Paper
                 elevation={0}

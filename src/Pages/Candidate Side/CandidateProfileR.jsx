@@ -21,6 +21,7 @@ import {
   KeyRound,
   ArrowRight,
 } from "lucide-react";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function CandidateProfileR() {
   const { user } = useAuth();
@@ -41,8 +42,8 @@ export default function CandidateProfileR() {
   const profile = {
     firstName: user?.firstName || "Rahul",
     lastName: user?.lastName || "Sharma",
-    fullName: user?.firstName && user?.lastName 
-      ? `${user.firstName} ${user.lastName}` 
+    fullName: user?.firstName && user?.lastName
+      ? `${user.firstName} ${user.lastName}`
       : user?.username || "Rahul Sharma",
     employeeId: user?.employeeId || user?.id || "CAN101",
     email: user?.email || "can@gmail.com",
@@ -92,6 +93,13 @@ export default function CandidateProfileR() {
 
   return (
     <CandidateLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="My Profile"
+        description="View and update your profile information on NextHire HR Portal."
+        canonicalUrl="/candidate/profile"
+      />
+
       <Box
         sx={{
           display: "flex",

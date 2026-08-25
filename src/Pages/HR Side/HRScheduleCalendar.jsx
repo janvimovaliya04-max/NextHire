@@ -22,6 +22,7 @@ import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
 import interviewData from "../../data/interviews.json";
 import HRLayout from "../../Layouts/HRLayout";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function HRScheduleCalendar() {
     const { darkMode } = useTheme();
@@ -89,6 +90,13 @@ export default function HRScheduleCalendar() {
 
     return (
         <HRLayout>
+            {/* Dynamic SEO Tags Injection */}
+            <SEO
+                title="HR Schedule Calendar"
+                description="Manage job postings, candidates, and interview schedules on NextHire HR Portal."
+                canonicalUrl="/hr-portal/dashboard"
+            />
+
             <Box
                 sx={{
                     display: "flex",

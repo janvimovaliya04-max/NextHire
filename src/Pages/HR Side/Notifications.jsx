@@ -21,6 +21,7 @@ import {
   ClipboardCheck,
   ListChecks,
 } from "lucide-react";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function Notifications() {
 
@@ -94,6 +95,13 @@ export default function Notifications() {
 
   return (
     <HRLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="Notifications"
+        description="Manage job postings, candidates, and interview schedules on NextHire HR Portal."
+        canonicalUrl="/hr-portal/dashboard"
+      />
+
       {/* Title & Banner Header */}
       <Paper
         elevation={0}
@@ -148,8 +156,8 @@ export default function Notifications() {
             startIcon={<ListChecks size={11} />}
             sx={{
               width: { xs: "100%", sm: "auto" },
-              py: {xs: 1, md: 1.2 },
-              px: { xs: 2, md: 2.5},
+              py: { xs: 1, md: 1.2 },
+              px: { xs: 2, md: 2.5 },
               fontSize: { xs: ".78rem", md: ".85rem" },
               fontWeight: 700,
               textTransform: "none",

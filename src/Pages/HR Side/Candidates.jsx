@@ -43,6 +43,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function Candidates() {
 
@@ -287,6 +288,13 @@ export default function Candidates() {
 
   return (
     <HRLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="Candidates"
+        description="Manage job postings, candidates, and interview schedules on NextHire HR Portal."
+        canonicalUrl="/hr-portal/dashboard"
+      />
+
       {/* Title + Search */}
       <Paper
         elevation={0}

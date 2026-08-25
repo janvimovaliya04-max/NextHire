@@ -25,28 +25,28 @@ import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 
 export default function LandingNew() {
   const { darkMode, setDarkMode } = useTheme();
-  
+
   // Anchor reference for smooth scrolling
   const rolesSectionRef = useRef(null);
 
   const location = useLocation();
 
-useEffect(() => {
-  if (location.state?.restorePortal) {
-    setTimeout(() => {
-      rolesSectionRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }, 100);
-  }
-}, [location]);
+  useEffect(() => {
+    if (location.state?.restorePortal) {
+      setTimeout(() => {
+        rolesSectionRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 100);
+    }
+  }, [location]);
 
   const pageBg = darkMode ? "#0b0f19" : "#f8fafc";
   const textColor = darkMode ? "#ffffff" : "#0f172a";
   const subText = darkMode ? "#94a3b8" : "#475569";
   const pageTransition =
-  "background-color .45s ease, background .45s ease, color .45s ease, border-color .45s ease, box-shadow .45s ease";
+    "background-color .45s ease, background .45s ease, color .45s ease, border-color .45s ease, box-shadow .45s ease";
 
   const roles = [
     {
@@ -130,89 +130,89 @@ useEffect(() => {
   };
 
   const sectionHeadingStyle = {
-  fontWeight: 900,
-  fontSize: { xs: "1.8rem", md: "2.5rem" },
-  letterSpacing: "-0.03em",
-  mb: 1,
-  background: darkMode
-    ? "linear-gradient(135deg, #ffffff 0%, #cbd5e1 55%, #94a3b8 100%)"
-    : "linear-gradient(135deg, #0f172a 0%, #2563eb 55%, #7c3aed 100%)",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-};
+    fontWeight: 900,
+    fontSize: { xs: "1.8rem", md: "2.5rem" },
+    letterSpacing: "-0.03em",
+    mb: 1,
+    background: darkMode
+      ? "linear-gradient(135deg, #ffffff 0%, #cbd5e1 55%, #94a3b8 100%)"
+      : "linear-gradient(135deg, #0f172a 0%, #2563eb 55%, #7c3aed 100%)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+  };
 
-const footerLinkStyle = {
-  textDecoration: "none",
-  color: darkMode ? "#94a3b8" : "#475569",
-  fontSize: "0.85rem",
-  transition: "color .3s ease",
-};
+  const footerLinkStyle = {
+    textDecoration: "none",
+    color: darkMode ? "#94a3b8" : "#475569",
+    fontSize: "0.85rem",
+    transition: "color .3s ease",
+  };
 
-useEffect(() => {
-  const savedScroll = sessionStorage.getItem("landingScroll");
+  useEffect(() => {
+    const savedScroll = sessionStorage.getItem("landingScroll");
 
-  if (savedScroll) {
-    setTimeout(() => {
-      window.scrollTo({
-        top: Number(savedScroll),
-        behavior: "auto",
-      });
-    }, 50);
-  }
-}, []);
+    if (savedScroll) {
+      setTimeout(() => {
+        window.scrollTo({
+          top: Number(savedScroll),
+          behavior: "auto",
+        });
+      }, 50);
+    }
+  }, []);
 
   return (
-    
+
     <Box sx={{ minHeight: "100vh", bgcolor: pageBg, color: textColor }}>
 
-  <Header
-    darkMode={darkMode}
-    setDarkMode={setDarkMode}
-    textColor={textColor}
-  />
+      <Header
+        darkMode={darkMode}
+        setDarkMode={setDarkMode}
+        textColor={textColor}
+      />
 
-  <HeroSection
-    darkMode={darkMode}
-    pageBg={pageBg}
-    subText={subText}
-    handleGetStarted={handleGetStarted}
-  />
+      <HeroSection
+        darkMode={darkMode}
+        pageBg={pageBg}
+        subText={subText}
+        handleGetStarted={handleGetStarted}
+      />
 
-  <Container maxWidth={false} sx={{ width: "90%", maxWidth: "1400px", mx: "auto" }}>
+      <Container maxWidth={false} sx={{ width: "90%", maxWidth: "1400px", mx: "auto" }}>
 
-    <PortalSection
-      roles={roles}
-      darkMode={darkMode}
-      textColor={textColor}
-      subText={subText}
-      sectionHeadingStyle={sectionHeadingStyle}
-      rolesSectionRef={rolesSectionRef}
-    />
+        <PortalSection
+          roles={roles}
+          darkMode={darkMode}
+          textColor={textColor}
+          subText={subText}
+          sectionHeadingStyle={sectionHeadingStyle}
+          rolesSectionRef={rolesSectionRef}
+        />
 
-    <FeatureSection
-      features={features}
-      darkMode={darkMode}
-      subText={subText}
-      sectionHeadingStyle={sectionHeadingStyle}
-    />
+        <FeatureSection
+          features={features}
+          darkMode={darkMode}
+          subText={subText}
+          sectionHeadingStyle={sectionHeadingStyle}
+        />
 
-    <StatisticsSection
-      stats={stats}
-      darkMode={darkMode}
-      textColor={textColor}
-      subText={subText}
-      sectionHeadingStyle={sectionHeadingStyle}
-    />
+        <StatisticsSection
+          stats={stats}
+          darkMode={darkMode}
+          textColor={textColor}
+          subText={subText}
+          sectionHeadingStyle={sectionHeadingStyle}
+        />
 
-  </Container>
+      </Container>
 
-  <Footer
-    darkMode={darkMode}
-    textColor={textColor}
-    subText={subText}
-    footerLinkStyle={footerLinkStyle}
-  />
+      <Footer
+        darkMode={darkMode}
+        textColor={textColor}
+        subText={subText}
+        footerLinkStyle={footerLinkStyle}
+      />
 
-</Box>
+    </Box>
   );
 }

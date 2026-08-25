@@ -1,0 +1,12 @@
+user-agent: *
+Allow: /
+Allow: /jobs
+Allow: /jobs/*
+
+# Disallow private user & HR portal pages
+Disallow: /dashboard/
+Disallow: /hr-portal/
+Disallow: /applicant-portal/
+
+# Link to your Sitemap
+Sitemap: https://nexthire.com/sitemap.xml

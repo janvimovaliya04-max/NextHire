@@ -25,6 +25,7 @@ import {
   Save,
   ArrowLeft,
 } from "lucide-react";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function CandidateSettings() {
   const { user } = useAuth();
@@ -119,6 +120,13 @@ export default function CandidateSettings() {
 
   return (
     <CandidateLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="Settings & Preferences"
+        description="Manage your account settings and preferences on NextHire HR Portal."
+        canonicalUrl="/candidate/settings"
+      />
+
       <Box
         sx={{
           display: "flex",

@@ -17,6 +17,7 @@ import {
   ChevronRight,
   Search,
 } from "lucide-react";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function MyApplications() {
   const { darkMode } = useTheme();
@@ -137,6 +138,13 @@ export default function MyApplications() {
 
   return (
     <CandidateLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="My Applications"
+        description="View and manage your job applications on NextHire."
+        canonicalUrl="/candidate/applications"
+      />
+
       {/* Title Header */}
       <Paper
         elevation={0}

@@ -38,6 +38,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Plus, User, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function InterviewManagement() {
   const navigate = useNavigate();
@@ -193,6 +194,12 @@ export default function InterviewManagement() {
 
   return (
     <HRLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="Interview Management"
+        description="Manage job postings, candidates, and interview schedules on NextHire HR Portal."
+        canonicalUrl="/hr-portal/dashboard"
+      />
 
       <Paper
         elevation={0}

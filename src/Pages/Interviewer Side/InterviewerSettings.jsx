@@ -24,6 +24,7 @@ import {
   ArrowLeft,
   Palette,
 } from "lucide-react";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function InterviewerSettings() {
   const { user } = useAuth();
@@ -47,8 +48,8 @@ export default function InterviewerSettings() {
   const profile = {
     firstName: user?.firstName || "Rahul",
     lastName: user?.lastName || "Sharma",
-    fullName: user?.firstName && user?.lastName 
-      ? `${user.firstName} ${user.lastName}` 
+    fullName: user?.firstName && user?.lastName
+      ? `${user.firstName} ${user.lastName}`
       : user?.username || "Rahul Sharma",
     email: user?.email || "rahul@nexthire.com",
   };
@@ -151,6 +152,13 @@ export default function InterviewerSettings() {
 
   return (
     <InterviewerLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="Settings & Preferences"
+        description="Manage your settings and preferences on NextHire HR Portal."
+        canonicalUrl="/interviewer/settings"
+      />
+
       <Box
         sx={{
           display: "flex",

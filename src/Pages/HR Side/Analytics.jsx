@@ -37,6 +37,7 @@ import {
   Briefcase,
   ArrowUp,
 } from "lucide-react";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function Analytics() {
   const { darkMode } = useTheme();
@@ -223,6 +224,13 @@ export default function Analytics() {
 
   return (
     <HRLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="Analytics Dashboard"
+        description="Manage job postings, candidates, and interview schedules on NextHire HR Portal."
+        canonicalUrl="/hr-portal/dashboard"
+      />
+
       {/* Analytics Page Title & Filters Bar */}
       <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 2, mb: { xs: 3, md: 5 }, }}>
 

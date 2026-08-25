@@ -147,6 +147,7 @@ export default function Register() {
         overflow: "hidden",
       }}
     >
+
       {/* Background Decorative Glow Blobs based on theme */}
       <Box
         sx={{

@@ -24,9 +24,10 @@ import {
   Video,
   Clock,
 } from "lucide-react";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function CandidateDashboard() {
-  const { user } = useAuth(); // 👈 Logged-in user context mathi read karyo
+  const { user } = useAuth(); // Logged-in user context mathi read karyo
   const { darkMode } = useTheme();
   const colors = useThemeColors();
 
@@ -96,6 +97,13 @@ export default function CandidateDashboard() {
 
   return (
     <CandidateLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="Candidate Dashboard"
+        description="View your job applications, assessments, and interviews on NextHire HR Portal."
+        canonicalUrl="/candidate/dashboard"
+      />
+
       {/* Dynamic Welcome Greeting Banner */}
       <Box sx={{ mb: { xs: 3, sm: 4, md: 5 } }}>
         <Typography

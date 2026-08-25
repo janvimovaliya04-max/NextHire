@@ -46,6 +46,7 @@ import {
   useSortable,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 // Sortable wrapper for a single job card
 function SortableJobCard({ job, primary, secondary, textColor, subText, borderStyle, colors }) {
@@ -416,6 +417,13 @@ export default function BrowseJobs() {
 
   return (
     <CandidateLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="Browse Jobs"
+        description="Explore and apply for job openings on NextHire HR Portal."
+        canonicalUrl="/candidate/jobs"
+      />
+
       <Paper
         elevation={0}
         sx={{

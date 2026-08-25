@@ -32,6 +32,7 @@ import LastPageIcon from "@mui/icons-material/LastPage";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Search } from "lucide-react";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function Candidatefeedback() {
 
@@ -148,6 +149,13 @@ export default function Candidatefeedback() {
 
   return (
     <HRLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="Candidate Feedback"
+        description="Manage job postings, candidates, and interview schedules on NextHire HR Portal."
+        canonicalUrl="/hr-portal/dashboard"
+      />
+
       <Paper
         elevation={0}
         sx={{

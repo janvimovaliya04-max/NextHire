@@ -20,6 +20,7 @@ import {
 
 // Adjust this path to match where you place the JSON file
 import allNotifications from "../../data/interviewerNotifications.json";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 const PAGE_SIZE = 10;
 const READ_STORAGE_KEY = "interviewer_read_notifications";
@@ -126,6 +127,12 @@ export default function InterviewerNotifications() {
 
   return (
     <InterviewerLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="Notifications"
+        description="View your notifications on NextHire HR Portal."
+        canonicalUrl="/interviewer/notifications"
+      />
 
       <Box
         sx={{

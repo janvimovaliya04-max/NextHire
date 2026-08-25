@@ -20,6 +20,7 @@ import {
   Save,
   X,
 } from "lucide-react";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function InterviewSchedule() {
   const { darkMode } = useTheme();
@@ -143,16 +144,23 @@ export default function InterviewSchedule() {
 
   return (
     <HRLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="Schedule Interview"
+        description="Manage job postings, candidates, and interview schedules on NextHire HR Portal."
+        canonicalUrl="/hr-portal/dashboard"
+      />
+
       {/* Page Header */}
       <Box sx={{ mb: { xs: 3, md: 4 }, }}>
         <Typography
-             sx={{
-                fontSize: { xs: "1.35rem", sm: "1.7rem", md: "2rem", lg: "2.2rem" },
-                mb: { xs: 0, md: 0.5 },
-                fontWeight: 850,
-                letterSpacing: "-0.03em",
-              }}
-          >
+          sx={{
+            fontSize: { xs: "1.35rem", sm: "1.7rem", md: "2rem", lg: "2.2rem" },
+            mb: { xs: 0, md: 0.5 },
+            fontWeight: 850,
+            letterSpacing: "-0.03em",
+          }}
+        >
           Schedule Interview
         </Typography>
       </Box>

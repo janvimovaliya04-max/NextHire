@@ -60,6 +60,7 @@ import {
     Cloud,
     AtSign
 } from "lucide-react";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function NotesEditorPage() {
     // NEW: theme now comes directly from hooks, not from props
@@ -291,6 +292,13 @@ export default function NotesEditorPage() {
 
     return (
         <CandidateLayout>
+            {/* Dynamic SEO Tags Injection */}
+            <SEO
+                title="Candidate Notes"
+                description="Manage your candidate notes and documentation on NextHire HR Portal."
+                canonicalUrl="/candidate/notes"
+            />
+
             <Container maxWidth="lg" sx={{ mt: 4, mb: 6 }}>
                 {/* Hidden File Input for Local Explorer */}
                 <input

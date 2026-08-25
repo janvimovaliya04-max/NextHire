@@ -19,6 +19,7 @@ import {
   Award,
   ListChecks,
 } from "lucide-react";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function CandidateNotifications() {
   const { darkMode } = useTheme();
@@ -117,6 +118,13 @@ export default function CandidateNotifications() {
 
   return (
     <CandidateLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="Notifications"
+        description="View and manage your notifications on NextHire HR Portal."
+        canonicalUrl="/candidate/notifications"
+      />
+
       <Box
         sx={{
           position: "sticky",

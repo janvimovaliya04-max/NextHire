@@ -24,6 +24,7 @@ import {
   Save,
   X,
 } from "lucide-react";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function CreateJob() {
   const { darkMode } = useTheme();
@@ -132,6 +133,12 @@ export default function CreateJob() {
 
   return (
     <HRLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="Create Job Posting"
+        description="Manage job postings, candidates, and interview schedules on NextHire HR Portal."
+        canonicalUrl="/hr-portal/dashboard"
+      />
 
       {/* Back button */}
       <Box
@@ -173,11 +180,11 @@ export default function CreateJob() {
       >
         <Typography
           sx={{
-                fontSize: { xs: "1.35rem", sm: "1.7rem", md: "2rem", lg: "2.2rem" },
-                mb: { xs: 0, md: 0.5 },
-                fontWeight: 850,
-                letterSpacing: "-0.03em",
-              }}
+            fontSize: { xs: "1.35rem", sm: "1.7rem", md: "2rem", lg: "2.2rem" },
+            mb: { xs: 0, md: 0.5 },
+            fontWeight: 850,
+            letterSpacing: "-0.03em",
+          }}
         >
           Create Job Posting
         </Typography>

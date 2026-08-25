@@ -5,6 +5,7 @@ import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
 import { Typography, Paper, Box, TextField, Button, LinearProgress } from "@mui/material";
 import { Clock, Info, Send } from "lucide-react";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function Assessment() {
   const { darkMode } = useTheme();
@@ -59,6 +60,13 @@ export default function Assessment() {
 
   return (
     <CandidateLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="Online Assessment"
+        description="Complete the online assessment for the job position."
+        canonicalUrl="/candidate/assessment"
+      />
+
       {/* Page Header */}
       <Box
         sx={{

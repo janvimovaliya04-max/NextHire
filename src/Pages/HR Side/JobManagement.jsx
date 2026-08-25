@@ -30,9 +30,6 @@ import {
   Checkbox,
   Tooltip,
 } from "@mui/material";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
@@ -45,6 +42,7 @@ import {
   MapPin,
   Users,
 } from "lucide-react";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function JobManagement() {
   const { darkMode } = useTheme();
@@ -248,8 +246,15 @@ export default function JobManagement() {
 
   return (
     <HRLayout>
-        {/* Title & Banner Header */}
-       <Paper
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="Job Management"
+        description="Manage job postings, candidates, and interview schedules on NextHire HR Portal."
+        canonicalUrl="/hr-portal/dashboard"
+      />
+
+      {/* Title & Banner Header */}
+      <Paper
         elevation={0}
         sx={{
           position: "relative",
@@ -414,8 +419,8 @@ export default function JobManagement() {
             </Button>
           ))}
         </Box>
-        </Paper>
-      
+      </Paper>
+
 
       {/* Premium Glassmorphic Table Card */}
       <Paper

@@ -32,6 +32,7 @@ import {
   Maximize,
   Minimize,
 } from "lucide-react";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 // Language options for the editor's language selector
 const LANGUAGE_OPTIONS = [
@@ -497,6 +498,13 @@ export default function JoinInterview() {
 
   return (
     <InterviewerLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="Join Interview"
+        description="Join your scheduled interviews on NextHire HR Portal."
+        canonicalUrl="/interviewer/join-interview"
+      />
+
       {/* Header Metadata banner */}
       <Paper
         elevation={0}

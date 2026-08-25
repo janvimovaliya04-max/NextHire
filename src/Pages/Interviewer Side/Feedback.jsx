@@ -14,6 +14,7 @@ import {
   MenuItem,
   Alert,
 } from "@mui/material";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function Feedback() {
   const { darkMode } = useTheme();
@@ -124,6 +125,12 @@ export default function Feedback() {
 
   return (
     <InterviewerLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="Feedback"
+        description="Provide feedback about candidates after interviews on NextHire HR Portal."
+        canonicalUrl="/interviewer/feedback"
+      />
 
       <Box sx={{ mb: 4 }}>
         <Typography

@@ -13,6 +13,7 @@ import {
   Box,
   Avatar,
 } from "@mui/material";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function EditInterviewerProfile() {
   const { darkMode } = useTheme();
@@ -83,10 +84,14 @@ export default function EditInterviewerProfile() {
     }
   }
 
-
-
   return (
     <InterviewerLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="Edit Interviewer Profile"
+        description="Update your profile information on NextHire HR Portal."
+        canonicalUrl="/interviewer/edit-profile"
+      />
 
       <Typography
         variant="h4"

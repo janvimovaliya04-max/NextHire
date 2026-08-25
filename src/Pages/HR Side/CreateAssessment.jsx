@@ -24,15 +24,14 @@ import {
   Save,
   X,
 } from "lucide-react";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function CreateAssessment() {
   const { darkMode } = useTheme();
   const colors = useThemeColors();
   const navigate = useNavigate();
 
-  // ==============================
   // Form States
-  // ==============================
 
   const [title, setTitle] = useState("");
   const [instructions, setInstructions] = useState("");
@@ -41,9 +40,7 @@ export default function CreateAssessment() {
   const [difficulty, setDifficulty] = useState("medium");
   const [duration, setDuration] = useState("60");
 
-  // ==============================
   // Theme Colors
-  // ==============================
 
   const primary = colors.primary;
   const secondary = colors.secondary;
@@ -51,9 +48,7 @@ export default function CreateAssessment() {
   const subText = colors.subText;
   const borderStyle = colors.border;
 
-  // ==============================
   // Save Assessment
-  // ==============================
 
   const handleSave = () => {
     if (!title.trim()) {
@@ -71,9 +66,7 @@ export default function CreateAssessment() {
     navigate("/hr/job-management");
   };
 
-  // ==============================
   // Shared TextField Style
-  // ==============================
 
   const textFieldStyle = {
     mb: 2.5,
@@ -118,6 +111,12 @@ export default function CreateAssessment() {
 
   return (
     <HRLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="Create Assessment"
+        description="Manage job postings, candidates, and interview schedules on NextHire HR Portal."
+        canonicalUrl="/hr-portal/dashboard"
+      />
 
       {/* Back Button */}
       <Box
@@ -155,11 +154,11 @@ export default function CreateAssessment() {
       <Box sx={{ mb: 4 }}>
         <Typography
           sx={{
-                fontSize: { xs: "1.35rem", sm: "1.7rem", md: "2rem", lg: "2.2rem" },
-                mb: { xs: 0, md: 0.5 },
-                fontWeight: 850,
-                letterSpacing: "-0.03em",
-              }}
+            fontSize: { xs: "1.35rem", sm: "1.7rem", md: "2rem", lg: "2.2rem" },
+            mb: { xs: 0, md: 0.5 },
+            fontWeight: 850,
+            letterSpacing: "-0.03em",
+          }}
         >
           Create Assessment
         </Typography>

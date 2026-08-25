@@ -33,6 +33,7 @@ import {
   Maximize,
   Minimize,
 } from "lucide-react";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 // Language options for the editor's language selector
 const LANGUAGE_OPTIONS = [
@@ -514,7 +515,14 @@ export default function JoinInterview() {
   );
 
   return (
-    <InterviewerLayout>
+    <CandidateLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="Join Interview"
+        description="Participate in your scheduled interview with live coding and video conferencing."
+        canonicalUrl="/candidate/join-interview"
+      />
+
       {/* Header Metadata banner */}
       <Paper
         elevation={0}
@@ -1140,6 +1148,6 @@ export default function JoinInterview() {
           warningCount={switchCount}
         />
       )}
-    </InterviewerLayout>
+    </CandidateLayout>
   );
 }

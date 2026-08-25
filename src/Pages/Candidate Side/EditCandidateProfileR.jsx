@@ -13,6 +13,7 @@ import {
   X,
   UserRoundPen,
 } from "lucide-react";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function EditCandidateProfileR() {
   const { darkMode } = useTheme();
@@ -128,6 +129,13 @@ export default function EditCandidateProfileR() {
 
   return (
     <CandidateLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="Edit Profile"
+        description="Update your profile information on NextHire HR Portal."
+        canonicalUrl="/candidate/edit-profile"
+      />
+
       {/* Header */}
       <Box
         sx={{

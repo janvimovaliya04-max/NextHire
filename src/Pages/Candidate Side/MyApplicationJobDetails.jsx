@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { Check } from "lucide-react";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function MyApplicationJobDetails() {
   const { darkMode } = useTheme();
@@ -50,6 +51,13 @@ export default function MyApplicationJobDetails() {
 
   return (
     <CandidateLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="My Application Job Details"
+        description="View the details of your job application on NextHire HR Portal."
+        canonicalUrl="/candidate/applications"
+      />
+
       <Box
         sx={{
           px: {

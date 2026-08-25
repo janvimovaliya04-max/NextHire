@@ -19,10 +19,11 @@ import {
 import Grid from "@mui/material/Grid";
 
 import {
-  UserRound,
-  Save,
-  X,
+    UserRound,
+    Save,
+    X,
 } from "lucide-react";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function AddRecruiter() {
     const { darkMode } = useTheme();
@@ -104,6 +105,13 @@ export default function AddRecruiter() {
 
     return (
         <HRLayout>
+            {/* Dynamic SEO Tags Injection */}
+            <SEO
+                title="Add Recruiter"
+                description="Manage job postings, candidates, and interview schedules on NextHire HR Portal."
+                canonicalUrl="/hr-portal/dashboard"
+            />
+
             <Box
                 sx={{
                     mb: {

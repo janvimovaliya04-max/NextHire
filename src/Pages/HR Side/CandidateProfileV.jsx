@@ -28,6 +28,7 @@ import {
   FileText,
   X,
 } from "lucide-react";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function CandidateProfileV() {
   const { darkMode } = useTheme();
@@ -46,6 +47,13 @@ export default function CandidateProfileV() {
   if (!candidate) {
     return (
       <HRLayout>
+        {/* Dynamic SEO Tags Injection */}
+        <SEO
+          title="Candidate Profile"
+          description="Manage job postings, candidates, and interview schedules on NextHire HR Portal."
+          canonicalUrl="/hr-portal/dashboard"
+        />
+
         <Typography sx={{ p: 4, color: textColor }}>
           Candidate data not found.
         </Typography>

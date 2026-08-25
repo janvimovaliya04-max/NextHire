@@ -35,6 +35,7 @@ import LastPageIcon from "@mui/icons-material/LastPage";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Search } from "lucide-react";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 const STATUS_FILTERS = ["All", "Scheduled", "Completed", "Cancelled", "Rescheduled"];
 
@@ -204,6 +205,12 @@ export default function AssignedInterviews() {
 
   return (
     <InterviewerLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="Assigned Interviews"
+        description="Manage job postings, candidates, and interview schedules on NextHire HR Portal."
+        canonicalUrl="/interviewer/assigned-interviews"
+      />
 
       {/* Title & Banner Area */}
       <Paper

@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 
 import dashboardData from "../../data/interviewerDashboard.json";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function InterviewerDashboard() {
   const { user } = useAuth(); // 👈 Logged-in user context mathi read karyo
@@ -90,6 +91,13 @@ export default function InterviewerDashboard() {
 
   return (
     <InterviewerLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="Interviewer Dashboard"
+        description="Manage job postings, candidates, and interview schedules on NextHire HR Portal."
+        canonicalUrl="/interviewer/dashboard"
+      />
+
       {/* Dynamic Welcome Greeting Banner */}
       <Box sx={{ mb: 5 }}>
         <Typography

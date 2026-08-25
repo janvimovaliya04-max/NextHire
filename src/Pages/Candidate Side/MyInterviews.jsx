@@ -44,6 +44,7 @@ import {
   useSortable,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 // Sortable wrapper for a single interview card
 function SortableInterviewCard({ interview, primary, secondary, textColor, subText, borderStyle, colors, statusColor }) {
@@ -442,6 +443,12 @@ export default function MyInterviews() {
 
   return (
     <CandidateLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="My Interviews"
+        description="View and manage your scheduled interviews on NextHire HR Portal."
+        canonicalUrl="/candidate/interviews"
+      />
 
       {/* STICKY HEADER */}
       <Paper

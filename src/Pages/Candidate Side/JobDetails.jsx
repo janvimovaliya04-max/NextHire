@@ -23,6 +23,7 @@ import {
   Layers,
   Check,
 } from "lucide-react";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function JobDetails() {
   const { darkMode } = useTheme();
@@ -51,6 +52,13 @@ export default function JobDetails() {
   if (!job) {
     return (
       <CandidateLayout>
+        {/* Dynamic SEO Tags Injection */}
+        <SEO
+          title="Job Details"
+          description="View the details of the job position on NextHire HR Portal."
+          canonicalUrl="/candidate/jobs"
+        />
+
         <Box
           sx={{
             textAlign: "center",

@@ -19,6 +19,7 @@ import {
   Send,
   X,
 } from "lucide-react";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function ApplyJob() {
   const { darkMode } = useTheme();
@@ -98,6 +99,12 @@ export default function ApplyJob() {
 
   return (
     <CandidateLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="Apply for Job"
+        description="Submit your application for the desired position."
+        canonicalUrl={`/candidate/apply/${id}`}
+      />
       {/* Back link */}
       <Box
         sx={{

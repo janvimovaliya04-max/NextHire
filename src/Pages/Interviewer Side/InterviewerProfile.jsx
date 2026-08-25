@@ -11,6 +11,7 @@ import {
   TextField,
   Box,
 } from "@mui/material";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function InterviewerProfile() {
   const { user } = useAuth();
@@ -28,8 +29,8 @@ export default function InterviewerProfile() {
   const profile = {
     firstName: user?.firstName || "Rahul",
     lastName: user?.lastName || "Sharma",
-    fullName: user?.firstName && user?.lastName 
-      ? `${user.firstName} ${user.lastName}` 
+    fullName: user?.firstName && user?.lastName
+      ? `${user.firstName} ${user.lastName}`
       : user?.username || "Rahul Sharma",
     email: user?.email || "rahul@nexthire.com",
     role: user?.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : "Senior Technical Interviewer",
@@ -80,6 +81,13 @@ export default function InterviewerProfile() {
 
   return (
     <InterviewerLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="Interviewer Profile"
+        description="View your profile information on NextHire HR Portal."
+        canonicalUrl="/interviewer/profile"
+      />
+
       <Typography
         sx={{
           fontWeight: 850,

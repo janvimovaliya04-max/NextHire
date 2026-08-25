@@ -27,7 +27,8 @@ import dashboardData from "../../data/dashboard.json";
 import HRLayout from "../../Layouts/HRLayout";
 import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
-import { useAuth } from "../../context/AuthContext"; // 👈 Context imported
+import { useAuth } from "../../context/AuthContext";
+import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 // Icon mapping configuration
 const ICON_MAP = {
@@ -200,7 +201,7 @@ const ActionCard = ({ action, colors }) => (
 );
 
 export default function HRDashboard() {
-  const { user } = useAuth(); // 👈 Logged-in user data get karyo
+  const { user } = useAuth();
   const { darkMode } = useTheme();
   const colors = useThemeColors();
   const primary = colors.primary;
@@ -235,11 +236,17 @@ export default function HRDashboard() {
     },
   ];
 
-  // Dynamic Name logic based on JSON properties
   const displayName = user?.name || (user?.firstName ? `${user.firstName} ${user.lastName || ""}` : user?.username) || "User";
 
   return (
     <HRLayout>
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="HR Dashboard"
+        description="Manage job postings, candidates, and interview schedules on NextHire HR Portal."
+        canonicalUrl="/hr-portal/dashboard"
+      />
+
       {/* Dynamic Welcome Banner */}
       <Box sx={{ mb: { xs: 3, md: 5 } }}>
         <Typography
@@ -322,7 +329,7 @@ export default function HRDashboard() {
                     sx={{
                       color: colors.text,
                       display: "flex",
-                      justifyContent: "space-between",
+                      justify: "space-between",
                       alignItems: "center",
                       pb: idx !== recentCandidates.length - 1 ? 2.5 : 0,
                       borderBottom: idx !== recentCandidates.length - 1 ? `1px solid ${colors.border}` : "none",
