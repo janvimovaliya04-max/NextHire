@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { siteMetadata } from '../../data/SEO/seoData';
+import { siteMetadata } from '../../data/SEO/seoData'
 
 const SEO = ({ title, description, keywords, canonicalUrl, image }) => {
     const fullTitle = title

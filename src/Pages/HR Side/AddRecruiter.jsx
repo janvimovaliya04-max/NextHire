@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import api from "../../api/axios";
 import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
 import HRLayout from "../../Layouts/HRLayout";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import {
     CardContent,
@@ -14,6 +14,7 @@ import {
     Stack,
     Box,
     MenuItem,
+    CircularProgress,
 } from "@mui/material";
 
 import Grid from "@mui/material/Grid";
@@ -23,7 +24,20 @@ import {
     Save,
     X,
 } from "lucide-react";
-import SEO from "../../components/common/SEO"; // SEO Component Import Added
+import SEO from "../../components/common/SEO";
+
+const initialFormState = {
+    fullName: "",
+    email: "",
+    phone: "",
+    designation: "",
+    department: "",
+    experience: "",
+    city: "",
+    joiningDate: "",
+    status: "Active",
+    profileImage: "",
+};
 
 export default function AddRecruiter() {
     const { darkMode } = useTheme();
@@ -32,15 +46,46 @@ export default function AddRecruiter() {
     const textColor = colors.text;
 
     const navigate = useNavigate();
+    const location = useLocation();
+
+    // Edit mode detection (Recruiters.jsx sends this via navigate state)
+    const isEdit = Boolean(location.state?.isEdit);
+    const recruiterToEdit = location.state?.recruiter || null;
+    const recruiterId =
+        recruiterToEdit?.recruiterId || recruiterToEdit?._id || recruiterToEdit?.id || null;
 
     const subText = colors.subText;
 
     const borderStyle = darkMode
         ? "rgba(148,163,184,.22)"
         : "rgba(15,23,42,.08)";
-    const [form, setForm] = useState({ fullName: "", email: "", phone: "", designation: "", department: "", experience: "", city: "", joiningDate: "", status: "Active", profileImage: "" });
-    const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
-    const handleSubmit = (e) => {
+
+    const [form, setForm] = useState(initialFormState);
+    const [submitting, setSubmitting] = useState(false);
+
+    // Prefill form when editing
+    useEffect(() => {
+        if (isEdit && recruiterToEdit) {
+            setForm({
+                fullName: recruiterToEdit.fullName || "",
+                email: recruiterToEdit.email || "",
+                phone: recruiterToEdit.phone || "",
+                designation: recruiterToEdit.designation || "",
+                department: recruiterToEdit.department || "",
+                experience: recruiterToEdit.experience || "",
+                city: recruiterToEdit.city || "",
+                joiningDate: recruiterToEdit.joiningDate
+                    ? recruiterToEdit.joiningDate.slice(0, 10) // handles ISO date strings
+                    : "",
+                status: recruiterToEdit.status || "Active",
+                profileImage: recruiterToEdit.profileImage || "",
+            });
+        }
+    }, [isEdit, recruiterToEdit]);
+
+    const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (!form.fullName.trim())
@@ -58,9 +103,29 @@ export default function AddRecruiter() {
         if (!form.department.trim())
             return toast.error("Department is required");
 
-        toast.success("Recruiter added successfully");
+        setSubmitting(true);
 
-        navigate("/hr/recruiters");
+        try {
+            if (isEdit && recruiterId) {
+                // PATCH: Update existing recruiter
+                await api.patch(`/recruiters/${recruiterId}`, form);
+                toast.success("Recruiter updated successfully");
+            } else {
+                // POST: Create new recruiter
+                await api.post("/recruiters", form);
+                toast.success("Recruiter added successfully");
+            }
+
+            navigate("/hr/recruiters");
+        } catch (error) {
+            console.error("Error saving recruiter:", error);
+            toast.error(
+                error?.response?.data?.message ||
+                `Failed to ${isEdit ? "update" : "add"} recruiter. Please try again.`
+            );
+        } finally {
+            setSubmitting(false);
+        }
     };
 
     const textFieldStyle = {
@@ -107,7 +172,7 @@ export default function AddRecruiter() {
         <HRLayout>
             {/* Dynamic SEO Tags Injection */}
             <SEO
-                title="Add Recruiter"
+                title={isEdit ? "Edit Recruiter" : "Add Recruiter"}
                 description="Manage job postings, candidates, and interview schedules on NextHire HR Portal."
                 canonicalUrl="/hr-portal/dashboard"
             />
@@ -138,7 +203,7 @@ export default function AddRecruiter() {
                         mb: 0.5,
                     }}
                 >
-                    Add Recruiter
+                    {isEdit ? "Edit Recruiter" : "Add Recruiter"}
                 </Typography>
             </Box>
             <Paper
@@ -356,6 +421,7 @@ export default function AddRecruiter() {
                                 to="/hr/recruiters"
                                 variant="outlined"
                                 startIcon={<X size={12} />}
+                                disabled={submitting}
                                 sx={{
                                     width: { xs: "100%", sm: "auto" },
                                     py: 1.4,
@@ -374,7 +440,14 @@ export default function AddRecruiter() {
                             <Button
                                 type="submit"
                                 variant="contained"
-                                startIcon={<Save size={12} />}
+                                disabled={submitting}
+                                startIcon={
+                                    submitting ? (
+                                        <CircularProgress size={14} sx={{ color: "#fff" }} />
+                                    ) : (
+                                        <Save size={12} />
+                                    )
+                                }
                                 sx={{
                                     width: { xs: "100%", sm: "auto" },
                                     py: 1.4,
@@ -391,7 +464,9 @@ export default function AddRecruiter() {
                                     },
                                 }}
                             >
-                                Save Recruiter
+                                {submitting
+                                    ? isEdit ? "Updating..." : "Saving..."
+                                    : isEdit ? "Update Recruiter" : "Save Recruiter"}
                             </Button>
                         </Stack>
                     </Box>
@@ -399,5 +474,4 @@ export default function AddRecruiter() {
             </Paper>
         </HRLayout>
     );
-
 }

@@ -168,6 +168,7 @@ export default function HRLayout({ children }) {
       case "/hr/recruiters": return "Assigned Recruiters";
       case "/hr/hr-profile": return "HR Admin Profile";
       case "/hr/notes": return "Keep Notes";
+      case "/hr/schedule-calendar": return "Interview Calendar";
       default: return "HR Control Center";
     }
   };
@@ -362,6 +363,9 @@ export default function HRLayout({ children }) {
           }}
         >
           <div className="flex items-center gap-2 md:hidden">
+
+
+
             <button
               onClick={() => setMobileMenu(true)}
               className="p-2 rounded-lg border"
@@ -401,6 +405,20 @@ export default function HRLayout({ children }) {
 
           {/* Desktop Controls */}
           <div className="hidden md:flex items-center gap-3.5">
+
+            {/* Interview Schedule Calendar */}
+            <Link
+              to="/hr/schedule-calendar"
+              className="p-2.5 rounded-xl border relative transition-all duration-200"
+              style={{
+                backgroundColor: colors.input,
+                color: primary,
+                borderColor: borderStyle,
+              }}
+            >
+              <Calendar size={16} />
+            </Link>
+
             {/* Theme Toggle */}
             <button
               onClick={() => setDarkMode(!darkMode)}

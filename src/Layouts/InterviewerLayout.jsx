@@ -22,6 +22,7 @@ import {
   ClipboardCheck,
   ChartBar,
   Bell,
+  Calendar,
   Menu,
   Settings,
   Sun,
@@ -154,6 +155,7 @@ export default function InterviewerLayout({ children }) {
       case "/interviewer/interviewer-settings": return "System Settings";
       case "/interviewer/interviewer-notifications": return "Notifications Hub";
       case "/interviewer/keep-notes": return "Notes & Documentation";
+      case "/interviewer/interviewer-calendar": return "Interview Schedule Calendar";
       default: return "Control Room";
     }
   };
@@ -377,6 +379,19 @@ export default function InterviewerLayout({ children }) {
 
           {/* Topbar Desktop Controls */}
           <div className="hidden md:flex items-center gap-3.5">
+
+            {/* Interview Schedule Calendar */}
+            <Link
+              to="/interviewer/interviewer-calendar"
+              className="p-2.5 rounded-xl border relative transition-all duration-200"
+              style={{
+                backgroundColor: colors.input,
+                color: primary,
+              }}
+            >
+              <Calendar size={16} />
+            </Link>
+
             {/* Theme switcher */}
             <button
               onClick={() => setDarkMode(!darkMode)}

@@ -146,6 +146,8 @@ export default function CandidateLayout({ children }) {
         return "System Configuration";
       case "/candidate/apply-job/:id":
         return "Apply For Job";
+      case "/candidate/candidate-calendar":
+        return "Candidate Calendar";
       default:
         return "Candidate Workspace";
     }
@@ -377,6 +379,20 @@ export default function CandidateLayout({ children }) {
 
           {/* Topbar Control Elements */}
           <div className="hidden md:flex items-center gap-3.5">
+
+            {/* Interview Schedule Calendar */}
+            <Link
+              to="/candidate/candidate-calendar"
+              className="p-2.5 rounded-xl border relative transition-all duration-200"
+              style={{
+                backgroundColor: colors.input,
+                color: primary,
+                borderColor: borderStyle,
+              }}
+            >
+              <Calendar size={16} />
+            </Link>
+
             {/* Theme switcher */}
             <button
               onClick={() => setDarkMode(!darkMode)}

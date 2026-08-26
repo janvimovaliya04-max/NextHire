@@ -116,8 +116,19 @@ export default function InterviewerDashboard() {
       {/* Dashboard Stat Cards */}
       <Grid container spacing={3} sx={{ mb: 6 }}>
         {cards.map((card) => (
-          <Grid item xs={12} sm={6} md={4} key={card.title} sx={{ display: "flex" }}>
-            <Link to={card.link} style={{ textDecoration: "none", width: "100%" }}>
+          <Grid
+            size={{ xs: 12, sm: 6, md: 4 }}
+            key={card.title}
+            sx={{ display: "flex" }}
+          >
+            <Link
+              to={card.link}
+              style={{
+                textDecoration: "none",
+                width: "100%",
+                display: "flex",
+                flexDirection: "column"
+              }}>
               <Card
                 sx={{
                   borderRadius: 5,
@@ -126,7 +137,11 @@ export default function InterviewerDashboard() {
                   color: textColor,
                   border: `1px solid ${borderStyle}`,
                   transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                  flex: 1,
                   height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
                   "&:hover": {
                     transform: "translateY(-6px)",
                     borderColor: card.color,

@@ -1,6 +1,6 @@
-import recruitersData from "../../data/recruiters.json";
 import { useState, useMemo, useEffect } from "react";
-import { Link } from "react-router-dom";
+import api from "../../api/axios";
+import { Link, useNavigate } from "react-router-dom";
 import {
     useReactTable,
     getCoreRowModel,
@@ -19,8 +19,13 @@ import {
     Chip,
     TextField,
     IconButton,
-    Checkbox,
     Tooltip,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogContentText,
+    DialogActions,
+    CircularProgress,
 } from "@mui/material";
 
 import FirstPageIcon from "@mui/icons-material/FirstPage";
@@ -37,6 +42,10 @@ import {
     Briefcase,
     Building2,
     GripVertical,
+    Trash2,
+    Edit,
+    ToggleLeft,
+    ToggleRight,
 } from "lucide-react";
 
 import {
@@ -55,10 +64,20 @@ import {
     useSortable,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import SEO from "../../components/common/SEO"; // SEO Component Import Added
+import SEO from "../../components/common/SEO";
 
 // Sortable wrapper for a single recruiter card
-function SortableRecruiterCard({ r, primary, subText, textColor, borderStyle, darkMode }) {
+function SortableRecruiterCard({
+    r,
+    primary,
+    subText,
+    textColor,
+    borderStyle,
+    darkMode,
+    onDelete,
+    onStatusToggle,
+    onEdit,
+}) {
     const {
         attributes,
         listeners,
@@ -66,7 +85,7 @@ function SortableRecruiterCard({ r, primary, subText, textColor, borderStyle, da
         transform,
         transition,
         isDragging,
-    } = useSortable({ id: r.recruiterId });
+    } = useSortable({ id: r.recruiterId || r._id || r.id });
 
     const style = {
         transform: CSS.Transform.toString(transform),
@@ -123,7 +142,7 @@ function SortableRecruiterCard({ r, primary, subText, textColor, borderStyle, da
             <Box
                 sx={{
                     display: "flex",
-                    justifyContent: "space-between",
+                    justify: "space-between",
                     alignItems: { xs: "flex-start", sm: "center" },
                     flexDirection: { xs: "column", sm: "row" },
                     gap: { xs: 1.5, sm: 2 },
@@ -138,25 +157,16 @@ function SortableRecruiterCard({ r, primary, subText, textColor, borderStyle, da
                         width: "100%",
                     }}
                 >
-                    <Avatar
-                        src={r.profileImage}
-                        sx={{
-                            width: { xs: 38, sm: 44 },
-                            height: { xs: 38, sm: 44 },
-                            bgcolor: primary,
-                            fontSize: { xs: ".95rem", sm: "1.1rem" },
-                            fontWeight: 700,
-                        }}
-                    >
-                        {r.fullName.split(" ").map(x => x[0]).join("")}
+                    <Avatar sx={{ bgcolor: primary }}>
+                        {r.fullName ? r.fullName[0].toUpperCase() : "R"}
                     </Avatar>
-                    <Box>
+                    <Box sx={{ width: "100%" }}>
                         <Typography
                             sx={{
                                 fontSize: { xs: ".88rem", sm: ".98rem" },
                                 fontWeight: 800,
                                 color: textColor,
-                                mb: .3,
+                                mb: 0.3,
                             }}
                         >
                             {r.fullName}
@@ -217,45 +227,163 @@ function SortableRecruiterCard({ r, primary, subText, textColor, borderStyle, da
                             sx={{
                                 color: subText,
                                 fontSize: { xs: ".78rem", sm: ".84rem" },
-                                mb: { xs: .25, md: .35 },
+                                mb: { xs: 0.25, md: 0.35 },
                             }}
                         >
-                            Assigned Jobs: {r.assignedJobs.length}
+                            Assigned Jobs: {Array.isArray(r.assignedJobs) ? r.assignedJobs.length : r.assignedJobs || 0}
                         </Typography>
                     </Box>
                 </Box>
-                <Chip
-                    label={r.status}
-                    sx={{
-                        alignSelf: { xs: "flex-start", sm: "center" },
-                        bgcolor: r.status === "Active" ? "rgba(34,197,94,.15)" : "rgba(234,179,8,.15)",
-                        color: r.status === "Active" ? "#22c55e" : "#f59e0b",
-                        fontWeight: 700,
-                        fontSize: { xs: ".68rem", md: ".78rem" },
-                        height: { xs: 22, md: 28 },
-                        border: r.status === "Active"
-                            ? "1px solid rgba(34,197,94,.3)"
-                            : "1px solid rgba(245,158,11,.3)",
-                    }}
-                />
+
+                {/* Status & Action Buttons */}
+                <Box sx={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 1, minWidth: 100 }}>
+                    <Chip
+                        label={r.status}
+                        sx={{
+                            alignSelf: { xs: "flex-start", sm: "flex-end" },
+                            bgcolor: r.status === "Active" ? "rgba(34,197,94,.15)" : "rgba(234,179,8,.15)",
+                            color: r.status === "Active" ? "#22c55e" : "#f59e0b",
+                            fontWeight: 700,
+                            fontSize: { xs: ".68rem", md: ".78rem" },
+                            height: { xs: 22, md: 28 },
+                            border: r.status === "Active"
+                                ? "1px solid rgba(34,197,94,.3)"
+                                : "1px solid rgba(245,158,11,.3)",
+                        }}
+                    />
+
+                    {/* Action Controls */}
+                    <Box sx={{ display: "flex", gap: 0.5, mt: 1 }}>
+                        {/* PATCH Status Toggle */}
+                        <Tooltip title={`Mark as ${r.status === "Active" ? "On Leave" : "Active"}`}>
+                            <IconButton size="small" onClick={() => onStatusToggle(r)} sx={{ color: primary }}>
+                                {r.status === "Active" ? <ToggleRight size={18} /> : <ToggleLeft size={18} />}
+                            </IconButton>
+                        </Tooltip>
+
+                        {/* PUT Edit */}
+                        <Tooltip title="Edit Recruiter">
+                            <IconButton size="small" onClick={() => onEdit(r)} sx={{ color: primary }}>
+                                <Edit size={16} />
+                            </IconButton>
+                        </Tooltip>
+
+                        {/* DELETE Action */}
+                        <Tooltip title="Delete Recruiter">
+                            <IconButton size="small" onClick={() => onDelete(r)} sx={{ color: "#ef4444" }}>
+                                <Trash2 size={16} />
+                            </IconButton>
+                        </Tooltip>
+                    </Box>
+                </Box>
             </Box>
         </Paper>
     );
 }
 
 export default function Recruiters() {
+    const navigate = useNavigate();
     const { darkMode } = useTheme();
-    const colors = useThemeColors(); const [recruiters, setRecruiters] = useState(() => {
-        const saved = localStorage.getItem("recruiters_order");
-        if (saved) {
-            try {
-                return JSON.parse(saved);
-            } catch (e) {
-                console.error("Error loading saved order", e);
-            }
+    const colors = useThemeColors();
+    const [activeFilter, setActiveFilter] = useState("All");
+    const [globalFilter, setGlobalFilter] = useState("");
+    const [rowSelection, setRowSelection] = useState({});
+    const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 8 });
+
+    // API & State Integration
+    const [recruiters, setRecruiters] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    // Delete Modal Confirmation State
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+    const [selectedRecruiter, setSelectedRecruiter] = useState(null);
+
+    // GET: Fetch All Recruiters
+    const fetchRecruiters = async () => {
+        setLoading(true);
+        try {
+            const response = await api.get("/recruiters");
+            setRecruiters(response.data);
+        } catch (error) {
+            console.error("Error fetching recruiters:", error);
+        } finally {
+            setLoading(false);
         }
-        return recruitersData;
-    });
+    };
+
+    useEffect(() => {
+        fetchRecruiters();
+    }, []);
+
+    // GET with Query Params (Live Search & Filter)
+    useEffect(() => {
+        const searchRecruiters = async () => {
+            try {
+                const params = {};
+                if (globalFilter.trim()) params.fullName = globalFilter;
+                if (activeFilter !== "All") params.status = activeFilter;
+
+                const response = await api.get("/recruiters", { params });
+                setRecruiters(response.data);
+                setPagination((prev) => ({ ...prev, pageIndex: 0 }));
+            } catch (error) {
+                console.error("Error filtering recruiters:", error);
+            }
+        };
+
+        const timeoutId = setTimeout(() => {
+            searchRecruiters();
+        }, 300); // 300ms Debounce
+
+        return () => clearTimeout(timeoutId);
+    }, [globalFilter, activeFilter]);
+
+    // PATCH: Toggle Status Quick Action
+    const handleStatusToggle = async (recruiter) => {
+        const recruiterId = recruiter.recruiterId || recruiter._id || recruiter.id;
+        const updatedStatus = recruiter.status === "Active" ? "On Leave" : "Active";
+
+        try {
+            const response = await api.patch(`/recruiters/${recruiterId}`, {
+                status: updatedStatus,
+            });
+
+            setRecruiters((prev) =>
+                prev.map((r) =>
+                    (r.recruiterId || r._id || r.id) === recruiterId
+                        ? { ...r, status: response.data.status || updatedStatus }
+                        : r
+                )
+            );
+        } catch (error) {
+            console.error("Error updating recruiter status:", error);
+        }
+    };
+
+    // DELETE: Recruiter Action
+    const handleDeleteClick = (recruiter) => {
+        setSelectedRecruiter(recruiter);
+        setDeleteModalOpen(true);
+    };
+
+    const confirmDelete = async () => {
+        if (!selectedRecruiter) return;
+        const id = selectedRecruiter.recruiterId || selectedRecruiter._id || selectedRecruiter.id;
+
+        try {
+            await api.delete(`/recruiters/${id}`);
+            setRecruiters((prev) => prev.filter((r) => (r.recruiterId || r._id || r.id) !== id));
+            setDeleteModalOpen(false);
+            setSelectedRecruiter(null);
+        } catch (error) {
+            console.error("Error deleting recruiter:", error);
+        }
+    };
+
+    // PUT: Navigate to Edit Page with recruiter data
+    const handleEditClick = (recruiter) => {
+        navigate("/hr/add-recruiter", { state: { recruiter, isEdit: true } });
+    };
 
     const primary = colors.primary;
     const secondary = colors.secondary;
@@ -263,17 +391,14 @@ export default function Recruiters() {
     const subText = colors.subText;
     const borderStyle = colors.border;
 
-    const [activeFilter, setActiveFilter] = useState("All");
-    const [globalFilter, setGlobalFilter] = useState("");
-    const [rowSelection, setRowSelection] = useState({});
-    const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 8 });
-
-    const filteredByStatus = useMemo(() =>
-        recruiters.filter((r) => activeFilter === "All" || r.status === activeFilter),
+    const filteredByStatus = useMemo(
+        () =>
+            recruiters.filter(
+                (r) => activeFilter === "All" || r.status === activeFilter
+            ),
         [recruiters, activeFilter]
     );
 
-    // Headless columns — no visual cells needed since we render cards, not a <table>
     const columns = useMemo(() => [
         { accessorKey: "fullName" },
         { accessorKey: "email" },
@@ -291,13 +416,6 @@ export default function Recruiters() {
         getFilteredRowModel: getFilteredRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
         enableRowSelection: true,
-        globalFilterFn: (row, columnId, filterValue) => {
-            const v = filterValue.toLowerCase();
-            return (
-                row.original.fullName.toLowerCase().includes(v) ||
-                row.original.email.toLowerCase().includes(v)
-            );
-        },
     });
 
     const handleFilterChange = (filter) => {
@@ -306,25 +424,21 @@ export default function Recruiters() {
     };
 
     const sensors = useSensors(
-        useSensor(PointerSensor, {
-            activationConstraint: { distance: 5 },
-        }),
+        useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
         useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
     );
 
-    // NEW: drag end handler — updates immediately, no refresh needed
     const handleDragEnd = (event) => {
         const { active, over } = event;
         if (!over || active.id === over.id) return;
 
         setRecruiters((prev) => {
-            const oldIndex = prev.findIndex((r) => r.recruiterId === active.id);
-            const newIndex = prev.findIndex((r) => r.recruiterId === over.id);
+            const oldIndex = prev.findIndex((r) => (r.recruiterId || r._id || r.id) === active.id);
+            const newIndex = prev.findIndex((r) => (r.recruiterId || r._id || r.id) === over.id);
 
             if (oldIndex === -1 || newIndex === -1) return prev;
 
             const updated = arrayMove(prev, oldIndex, newIndex);
-            // LocalStorage update to persist order across sessions
             localStorage.setItem("recruiters_order", JSON.stringify(updated));
             return updated;
         });
@@ -334,14 +448,12 @@ export default function Recruiters() {
 
     return (
         <HRLayout>
-            {/* Dynamic SEO Tags Injection */}
             <SEO
                 title="Recruiters"
                 description="Manage job postings, candidates, and interview schedules on NextHire HR Portal."
                 canonicalUrl="/hr-portal/dashboard"
             />
 
-            {/* Title & Banner Header */}
             <Paper
                 elevation={0}
                 sx={{
@@ -369,7 +481,6 @@ export default function Recruiters() {
                     <Typography
                         sx={{
                             fontSize: { xs: "1.35rem", sm: "1.7rem", md: "2rem", lg: "2.2rem" },
-                            mb: { xs: 0, md: -4 },
                             fontWeight: 850,
                             letterSpacing: "-0.03em",
                             color: textColor,
@@ -392,7 +503,6 @@ export default function Recruiters() {
                             borderRadius: "10px",
                             background: `linear-gradient(135deg,${primary},${secondary || primary})`,
                             boxShadow: `0 4px 12px ${primary}33`,
-                            transition: "all .2s",
                             "&:hover": {
                                 background: `linear-gradient(135deg,${primary},${primary})`,
                                 transform: "scale(1.02)",
@@ -424,7 +534,6 @@ export default function Recruiters() {
                     }}
                 />
 
-                {/* Filter panel options */}
                 <Box
                     sx={{
                         display: "flex",
@@ -436,20 +545,19 @@ export default function Recruiters() {
                     }}
                 >
                     <Box sx={{ display: "flex", gap: 1.2, flexWrap: "wrap" }}>
-                        {["All", "Active", "On Leave"].map(f =>
+                        {["All", "Active", "On Leave"].map(f => (
                             <Button
                                 key={f}
                                 variant="outlined"
                                 size="small"
                                 onClick={() => handleFilterChange(f)}
                                 sx={{
-                                    mb: -2,
                                     borderRadius: "20px",
                                     textTransform: "none",
                                     fontWeight: 700,
                                     fontSize: { xs: ".74rem", md: ".82rem" },
                                     px: { xs: 1.5, md: 2.2 },
-                                    py: { xs: .55, md: .7 },
+                                    py: { xs: 0.55, md: 0.7 },
                                     minWidth: { xs: 80, md: 95 },
                                     color: activeFilter === f ? "#fff" : subText,
                                     borderColor: activeFilter === f ? primary : borderStyle,
@@ -463,12 +571,12 @@ export default function Recruiters() {
                             >
                                 {f}
                             </Button>
-                        )}
+                        ))}
                     </Box>
                 </Box>
             </Paper>
 
-            {/* Cards Panel */}
+            {/* Content Display */}
             <Paper
                 elevation={0}
                 sx={{
@@ -482,13 +590,6 @@ export default function Recruiters() {
                     backdropFilter: "blur(16px)",
                     border: `1px solid ${borderStyle}`,
                     boxShadow: colors.shadow,
-                    transition: ".3s",
-                    "&:hover": {
-                        transform: "translateY(-4px)",
-                        boxShadow: darkMode
-                            ? `0 24px 55px rgba(0,0,0,.42)`
-                            : `0 26px 55px rgba(15,23,42,.12)`,
-                    },
                 }}
             >
                 <Box
@@ -496,21 +597,22 @@ export default function Recruiters() {
                         flex: 1,
                         minHeight: 0,
                         overflowY: "auto",
-                        overflowX: "auto",
                         pr: 1,
                         scrollbarWidth: "thin",
-                        "&::-webkit-scrollbar": { height: 8, width: 8 },
-                        "&::-webkit-scrollbar-thumb": { background: "#94a3b8", borderRadius: 10 },
                     }}
                 >
-                    {currentRecruiters.length > 0 ? (
+                    {loading ? (
+                        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
+                            <CircularProgress sx={{ color: primary }} />
+                        </Box>
+                    ) : currentRecruiters.length > 0 ? (
                         <DndContext
                             sensors={sensors}
                             collisionDetection={closestCenter}
                             onDragEnd={handleDragEnd}
                         >
                             <SortableContext
-                                items={currentRecruiters.map((r) => r.recruiterId)}
+                                items={currentRecruiters.map((r) => r.recruiterId || r._id || r.id)}
                                 strategy={rectSortingStrategy}
                             >
                                 <Box
@@ -520,17 +622,20 @@ export default function Recruiters() {
                                         gap: { xs: 2, md: 3 },
                                     }}
                                 >
-                                    {currentRecruiters.map(r =>
+                                    {currentRecruiters.map((r) => (
                                         <SortableRecruiterCard
-                                            key={r.recruiterId}
+                                            key={r.recruiterId || r._id || r.id}
                                             r={r}
                                             primary={primary}
                                             subText={subText}
                                             textColor={textColor}
                                             borderStyle={borderStyle}
                                             darkMode={darkMode}
+                                            onDelete={handleDeleteClick}
+                                            onStatusToggle={handleStatusToggle}
+                                            onEdit={handleEditClick}
                                         />
-                                    )}
+                                    ))}
                                 </Box>
                             </SortableContext>
                         </DndContext>
@@ -543,122 +648,70 @@ export default function Recruiters() {
                     )}
                 </Box>
 
-                {/* TanStack Pagination */}
+                {/* TanStack Pagination Controls */}
                 <Box
                     sx={{
                         display: "flex",
                         alignItems: "center",
-                        justifyContent: "space-between",
+                        justify: "space-between",
                         flexWrap: "wrap",
                         gap: 1,
                         pt: 2,
                         borderTop: `1px solid ${borderStyle}`,
                     }}
                 >
-                    {/* Row selection info */}
                     <Typography sx={{ fontSize: ".82rem", color: subText }}>
-                        {Object.keys(rowSelection).length > 0
-                            ? `${Object.keys(rowSelection).length} of ${table.getFilteredRowModel().rows.length} row(s) selected`
-                            : `Total: ${table.getFilteredRowModel().rows.length} Recruiters`}
+                        Total: {table.getFilteredRowModel().rows.length} Recruiters
                     </Typography>
 
-                    {/* Pagination controls */}
                     <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
-                        <Tooltip title="First page">
-                            <span>
-                                <IconButton
-                                    size="small"
-                                    onClick={() => table.setPageIndex(0)}
-                                    disabled={!table.getCanPreviousPage()}
-                                    sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
-                                >
-                                    <FirstPageIcon fontSize="small" />
-                                </IconButton>
-                            </span>
-                        </Tooltip>
-
-                        <Tooltip title="Previous page">
-                            <span>
-                                <IconButton
-                                    size="small"
-                                    onClick={() => table.previousPage()}
-                                    disabled={!table.getCanPreviousPage()}
-                                    sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
-                                >
-                                    <ChevronLeftIcon fontSize="small" />
-                                </IconButton>
-                            </span>
-                        </Tooltip>
-
-                        {/* Page number buttons */}
-                        {Array.from({ length: table.getPageCount() }, (_, i) => i)
-                            .filter((i) =>
-                                i === 0 ||
-                                i === table.getPageCount() - 1 ||
-                                Math.abs(i - table.getState().pagination.pageIndex) <= 1
-                            )
-                            .reduce((acc, i, idx, arr) => {
-                                if (idx > 0 && i - arr[idx - 1] > 1) {
-                                    acc.push("...");
-                                }
-                                acc.push(i);
-                                return acc;
-                            }, [])
-                            .map((item, idx) =>
-                                item === "..." ? (
-                                    <Typography key={`dots-${idx}`} sx={{ px: 1, color: subText }}>...</Typography>
-                                ) : (
-                                    <IconButton
-                                        key={item}
-                                        size="small"
-                                        onClick={() => table.setPageIndex(item)}
-                                        sx={{
-                                            minWidth: 32,
-                                            height: 32,
-                                            borderRadius: 1.5,
-                                            fontSize: ".82rem",
-                                            fontWeight: 700,
-                                            bgcolor: table.getState().pagination.pageIndex === item ? primary : "transparent",
-                                            color: table.getState().pagination.pageIndex === item ? "#fff" : textColor,
-                                            border: `1px solid ${table.getState().pagination.pageIndex === item ? primary : borderStyle}`,
-                                            "&:hover": {
-                                                bgcolor: table.getState().pagination.pageIndex === item ? `${primary}dd` : `${primary}15`,
-                                            },
-                                        }}
-                                    >
-                                        {item + 1}
-                                    </IconButton>
-                                )
-                            )}
-
-                        <Tooltip title="Next page">
-                            <span>
-                                <IconButton
-                                    size="small"
-                                    onClick={() => table.nextPage()}
-                                    disabled={!table.getCanNextPage()}
-                                    sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
-                                >
-                                    <ChevronRightIcon fontSize="small" />
-                                </IconButton>
-                            </span>
-                        </Tooltip>
-
-                        <Tooltip title="Last page">
-                            <span>
-                                <IconButton
-                                    size="small"
-                                    onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-                                    disabled={!table.getCanNextPage()}
-                                    sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
-                                >
-                                    <LastPageIcon fontSize="small" />
-                                </IconButton>
-                            </span>
-                        </Tooltip>
+                        <IconButton
+                            size="small"
+                            onClick={() => table.setPageIndex(0)}
+                            disabled={!table.getCanPreviousPage()}
+                        >
+                            <FirstPageIcon fontSize="small" />
+                        </IconButton>
+                        <IconButton
+                            size="small"
+                            onClick={() => table.previousPage()}
+                            disabled={!table.getCanPreviousPage()}
+                        >
+                            <ChevronLeftIcon fontSize="small" />
+                        </IconButton>
+                        <IconButton
+                            size="small"
+                            onClick={() => table.nextPage()}
+                            disabled={!table.getCanNextPage()}
+                        >
+                            <ChevronRightIcon fontSize="small" />
+                        </IconButton>
+                        <IconButton
+                            size="small"
+                            onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+                            disabled={!table.getCanNextPage()}
+                        >
+                            <LastPageIcon fontSize="small" />
+                        </IconButton>
                     </Box>
                 </Box>
             </Paper>
+
+            {/* Confirm Delete Dialog */}
+            <Dialog open={deleteModalOpen} onClose={() => setDeleteModalOpen(false)}>
+                <DialogTitle>Confirm Delete</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Are you sure you want to delete recruiter "{selectedRecruiter?.fullName}"? This action cannot be undone.
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setDeleteModalOpen(false)}>Cancel</Button>
+                    <Button onClick={confirmDelete} color="error" variant="contained">
+                        Delete
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </HRLayout>
     );
 }
