@@ -46,7 +46,7 @@ import {
   useSortable,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import SEO from "../../components/common/SEO"; // SEO Component Import Added
+import SEO from "../../components/common/SEO";
 
 // Sortable wrapper for a single job card
 function SortableJobCard({ job, primary, secondary, textColor, subText, borderStyle, colors }) {
@@ -95,8 +95,10 @@ function SortableJobCard({ job, primary, secondary, textColor, subText, borderSt
           }
         }}
       >
-        {/* Drag handle */}
+        {/* Drag handle fix: added role="button" and descriptive aria-label */}
         <Box
+          role="button"
+          aria-label={`Reorder ${job.title} at ${job.company}`}
           {...attributes}
           {...listeners}
           sx={{
@@ -121,7 +123,7 @@ function SortableJobCard({ job, primary, secondary, textColor, subText, borderSt
             display: "flex",
             flexDirection: "column",
             height: "100%",
-            justifyContent: "space-between"
+            justify: "space-between"
           }}
         >
           <Box>
@@ -302,7 +304,6 @@ export default function BrowseJobs() {
     [browseJobs, activeFilter]
   );
 
-  // Headless columns — no visual cells needed, cards are rendered manually below
   const columns = useMemo(() => [
     { accessorKey: "title" },
     { accessorKey: "company" },
@@ -331,15 +332,6 @@ export default function BrowseJobs() {
 
   const filteredJobs = table.getFilteredRowModel().rows.map((row) => row.original);
 
-  // // NEW: drag & drop order — tracks order of all currently filtered jobs.
-  // // Resyncs whenever the filter or search changes (new result set).
-  // const [jobOrder, setJobOrder] = useState(() => filteredJobs.map((j) => j.jobId));
-
-  // useEffect(() => {
-  //   setJobOrder(filteredJobs.map((j) => j.jobId));
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [activeFilter, globalFilter]);
-
   const [jobOrder, setJobOrder] = useState(() => {
     const savedOrder = localStorage.getItem("browseJobsOrder");
     return savedOrder ? JSON.parse(savedOrder) : filteredJobs.map((j) => j.jobId);
@@ -349,11 +341,9 @@ export default function BrowseJobs() {
     const savedOrder = localStorage.getItem("browseJobsOrder");
     if (savedOrder) {
       const parsedOrder = JSON.parse(savedOrder);
-      // Keep existing saved order for items that exist in current filtered result
       const currentFilteredIds = filteredJobs.map((j) => j.jobId);
       const updated = parsedOrder.filter((id) => currentFilteredIds.includes(id));
 
-      // Add any new items that were not in saved order
       currentFilteredIds.forEach((id) => {
         if (!updated.includes(id)) updated.push(id);
       });
@@ -363,20 +353,17 @@ export default function BrowseJobs() {
     }
   }, [activeFilter, globalFilter]);
 
-  // NEW: dnd-kit sensors
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
   );
 
-  // Final ordered list = filteredJobs reshuffled by jobOrder
   const orderedJobs = jobOrder
     .map((id) => filteredJobs.find((j) => j.jobId === id))
     .filter(Boolean);
 
   const displayedJobs = orderedJobs.slice(0, visibleJobs);
 
-  // NEW: drag end handler — reorders immediately, no refresh needed
   const handleDragEnd = (event) => {
     const { active, over } = event;
     if (!over || active.id === over.id) return;
@@ -387,10 +374,7 @@ export default function BrowseJobs() {
       if (oldIndex === -1 || newIndex === -1) return prev;
 
       const newOrder = arrayMove(prev, oldIndex, newIndex);
-
-      // SAVE TO LOCALSTORAGE TO PERSIST AFTER REFRESH
       localStorage.setItem("browseJobsOrder", JSON.stringify(newOrder));
-
       return newOrder;
     });
   };
@@ -417,7 +401,6 @@ export default function BrowseJobs() {
 
   return (
     <CandidateLayout>
-      {/* Dynamic SEO Tags Injection */}
       <SEO
         title="Browse Jobs"
         description="Explore and apply for job openings on NextHire HR Portal."
@@ -502,7 +485,6 @@ export default function BrowseJobs() {
           </Box>
         </Box>
 
-        {/* Filter panel options */}
         <Box
           sx={{
             display: "flex",
@@ -548,7 +530,6 @@ export default function BrowseJobs() {
         </Box>
       </Paper>
 
-      {/* Responsive Grid of Cards */}
       <Box
         sx={{
           height: { xs: "calc(100vh - 235px)", md: "calc(100vh - 255px)" },
@@ -565,7 +546,9 @@ export default function BrowseJobs() {
           scrollThreshold={0.8}
           loader={
             <Box sx={{ display: "flex", justifyContent: "center", py: { xs: 3, sm: 4 } }}>
+              {/* Progressbar fix: added aria-label */}
               <CircularProgress
+                aria-label="Loading more job listings"
                 size={window.innerWidth < 600 ? 30 : 36}
                 thickness={4}
                 sx={{ color: primary }}

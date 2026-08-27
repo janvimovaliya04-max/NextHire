@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import CandidateLayout from "../../Layouts/CandidateLayout";
 import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
-import { useAuth } from "../../context/AuthContext"; // 👈 Auth Context import karyu
+import { useAuth } from "../../context/AuthContext"; // Auth Context import karyu
 import dashboardData from "../../data/candidateDashboard.json";
 import {
   Card,
@@ -350,6 +350,7 @@ export default function CandidateDashboard() {
                   <LinearProgress
                     variant="determinate"
                     value={app.progress}
+                    aria-label="Job match score percentage"
                     sx={{
                       height: 5,
                       borderRadius: 10,

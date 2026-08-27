@@ -44,7 +44,7 @@ import {
   useSortable,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import SEO from "../../components/common/SEO"; // SEO Component Import Added
+import SEO from "../../components/common/SEO";
 
 // Sortable wrapper for a single interview card
 function SortableInterviewCard({ interview, primary, secondary, textColor, subText, borderStyle, colors, statusColor }) {
@@ -88,10 +88,13 @@ function SortableInterviewCard({ interview, primary, secondary, textColor, subTe
         },
       }}
     >
-      {/* Drag handle */}
+      {/* Drag handle — ACCESSIBILITY FIXED */}
       <Box
         {...attributes}
         {...listeners}
+        role="button"
+        tabIndex={0}
+        aria-label={`Reorder ${interview.company} interview card`}
         sx={{
           position: "absolute",
           top: 14,
@@ -218,7 +221,7 @@ function SortableInterviewCard({ interview, primary, secondary, textColor, subTe
           sx={{
             display: "flex",
             flexDirection: { xs: "row", sm: "column" },
-            justifyContent: { xs: "space-between", sm: "space-between" },
+            justify: { xs: "space-between", sm: "space-between" },
             width: { xs: "100%", sm: "auto" },
             alignItems: { xs: "center", sm: "flex-end" },
             gap: 2,
@@ -242,6 +245,7 @@ function SortableInterviewCard({ interview, primary, secondary, textColor, subTe
               to="/candidate/join-interview-c"
               state={{ interview }}
               variant="contained"
+              aria-label={`Join interview with ${interview.company} for ${interview.position}`}
               sx={{
                 borderRadius: 3,
                 textTransform: "none",
@@ -288,10 +292,8 @@ export default function MyInterviews() {
   const borderStyle = colors.border;
 
   const [globalFilter, setGlobalFilter] = useState("");
-
   const PER_LOAD = 4;
 
-  // Headless columns — no visual cells needed, cards render manually below
   const columns = useMemo(() => [
     { accessorKey: "company" },
     { accessorKey: "position" },
@@ -322,19 +324,11 @@ export default function MyInterviews() {
 
   const filteredInterviews = table.getFilteredRowModel().rows.map((row) => row.original);
 
-  // NEW: drag & drop order — tracks order of all currently filtered interviews.
-  // Resyncs whenever the search/filter changes (new result set).
-  // const [interviewOrder, setInterviewOrder] = useState(() =>
-  //   filteredInterviews.map((i) => i.interviewId)
-  // );
-
   const [interviewOrder, setInterviewOrder] = useState(() => {
     const savedOrder = localStorage.getItem("myInterviewsOrder");
     return savedOrder ? JSON.parse(savedOrder) : filteredInterviews.map((i) => i.interviewId);
   });
 
-
-  // Final ordered list = filteredInterviews reshuffled by interviewOrder
   const orderedInterviews = interviewOrder
     .map((id) => filteredInterviews.find((i) => i.interviewId === id))
     .filter(Boolean);
@@ -342,24 +336,13 @@ export default function MyInterviews() {
   const [visibleCount, setVisibleCount] = useState(PER_LOAD);
   const [hasMore, setHasMore] = useState(true);
 
-  // useEffect(() => {
-  //   setInterviewOrder(filteredInterviews.map((i) => i.interviewId));
-  //   setVisibleCount(PER_LOAD);
-  //   setHasMore(filteredInterviews.length > PER_LOAD);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [globalFilter]);
-
-
   useEffect(() => {
     const savedOrder = localStorage.getItem("myInterviewsOrder");
     if (savedOrder) {
       const parsedOrder = JSON.parse(savedOrder);
       const currentFilteredIds = filteredInterviews.map((i) => i.interviewId);
 
-      // Filter existing items based on search results
       const updated = parsedOrder.filter((id) => currentFilteredIds.includes(id));
-
-      // Push new items if missing
       currentFilteredIds.forEach((id) => {
         if (!updated.includes(id)) updated.push(id);
       });
@@ -390,13 +373,11 @@ export default function MyInterviews() {
     }, 700);
   };
 
-  // NEW: dnd-kit sensors
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
   );
 
-  // NEW: drag end handler — reorders immediately, no refresh needed
   const handleDragEnd = (event) => {
     const { active, over } = event;
     if (!over || active.id === over.id) return;
@@ -407,17 +388,13 @@ export default function MyInterviews() {
       if (oldIndex === -1 || newIndex === -1) return prev;
 
       const newOrder = arrayMove(prev, oldIndex, newIndex);
-
-      // Save to localStorage
       localStorage.setItem("myInterviewsOrder", JSON.stringify(newOrder));
-
       return newOrder;
     });
   };
 
   useEffect(() => {
     const saved = sessionStorage.getItem("interviewScroll");
-
     if (saved) {
       window.scrollTo(0, Number(saved));
     }
@@ -425,10 +402,7 @@ export default function MyInterviews() {
 
   useEffect(() => {
     return () => {
-      sessionStorage.setItem(
-        "interviewScroll",
-        window.scrollY
-      );
+      sessionStorage.setItem("interviewScroll", window.scrollY);
     };
   }, []);
 
@@ -443,14 +417,12 @@ export default function MyInterviews() {
 
   return (
     <CandidateLayout>
-      {/* Dynamic SEO Tags Injection */}
       <SEO
         title="My Interviews"
         description="View and manage your scheduled interviews on NextHire HR Portal."
         canonicalUrl="/candidate/interviews"
       />
 
-      {/* STICKY HEADER */}
       <Paper
         elevation={0}
         sx={{
@@ -491,6 +463,9 @@ export default function MyInterviews() {
             placeholder="Search interviews..."
             value={globalFilter}
             onChange={(e) => setGlobalFilter(e.target.value)}
+            slotProps={{
+              htmlInput: { "aria-label": "Search interviews" },
+            }}
             sx={{
               width: { xs: "100%", md: 350 },
               mb: { xs: 1, md: 2 },
@@ -527,12 +502,11 @@ export default function MyInterviews() {
                 py: 3,
               }}
             >
-              <CircularProgress sx={{ color: primary }} />
+              {/* ACCESSIBILITY FIXED */}
+              <CircularProgress sx={{ color: primary }} aria-label="Loading more interviews" />
             </Box>
           }
         >
-          {/* MAIN CARDS */}
-
           {filteredInterviews.length > 0 ? (
             <DndContext
               sensors={sensors}
@@ -609,6 +583,7 @@ export default function MyInterviews() {
                   component={Link}
                   to="/candidate/browse-jobs"
                   variant="contained"
+                  aria-label="Browse available jobs"
                   sx={{
                     textTransform: "none",
                     fontWeight: 700,

@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import InterviewerLayout from "../../Layouts/InterviewerLayout";
+import CandidateLayout from "../../Layouts/CandidateLayout";
 import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
 import { useState, useEffect, useRef } from "react";
@@ -402,6 +402,7 @@ export default function JoinInterview() {
           size="small"
           value={language}
           onChange={handleLanguageChange}
+          aria-label="Select programming language"
           sx={{
             fontSize: ".8rem",
             color: "#e2e8f0",
@@ -424,6 +425,7 @@ export default function JoinInterview() {
           <IconButton
             size="small"
             onClick={() => setIsEditorFullscreen((prev) => !prev)}
+            aria-label={isEditorFullscreen ? "Exit full screen" : "Enter full screen"}
             sx={{
               color: "#e2e8f0",
               border: "1px solid #3a3a3a",
@@ -843,6 +845,7 @@ export default function JoinInterview() {
               placeholder="Jot down observations, strengths, and follow-up questions..."
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
+              aria-label="Interview notes"
               sx={{
                 "& .MuiOutlinedInput-root": {
                   fontSize: ".85rem",
@@ -920,6 +923,7 @@ export default function JoinInterview() {
                 onKeyDown={(e) => {
                   if (e.key === "Enter") handleSendChat();
                 }}
+                aria-label="Type a chat message"
                 sx={{
                   "& .MuiOutlinedInput-root": {
                     fontSize: ".82rem",
@@ -932,6 +936,7 @@ export default function JoinInterview() {
               />
               <IconButton
                 onClick={handleSendChat}
+                aria-label="Send message"
                 sx={{
                   bgcolor: `${primaryColor}26`,
                   color: primaryColor,
@@ -971,6 +976,7 @@ export default function JoinInterview() {
         <Box sx={{ display: "flex", gap: 1.5 }}>
           <IconButton
             onClick={() => setMicActive(!micActive)}
+            aria-label={micActive ? "Mute microphone" : "Unmute microphone"}
             sx={{
               bgcolor: micActive ? `${primaryColor}26` : "rgba(244, 63, 94, 0.15)",
               color: micActive ? primaryColor : "#f43f5e",
@@ -983,6 +989,7 @@ export default function JoinInterview() {
           </IconButton>
           <IconButton
             onClick={() => setCameraActive(!cameraActive)}
+            aria-label={cameraActive ? "Turn off camera" : "Turn on camera"}
             sx={{
               bgcolor: cameraActive ? `${primaryColor}26` : "rgba(244, 63, 94, 0.15)",
               color: cameraActive ? primaryColor : "#f43f5e",
@@ -994,6 +1001,7 @@ export default function JoinInterview() {
             {cameraActive ? <Video /> : <VideoOff />}
           </IconButton>
           <IconButton
+            aria-label="Share screen"
             sx={{
               bgcolor: darkMode ? "rgba(255,255,255,0.04)" : "#f1f5f9",
               color: primaryColor,
@@ -1075,6 +1083,7 @@ export default function JoinInterview() {
             <Tooltip title="Exit full screen (Esc)">
               <IconButton
                 onClick={() => setIsEditorFullscreen(false)}
+                aria-label="Exit full screen"
                 sx={{
                   color: "#f1f5f9",
                   border: "1px solid rgba(255,255,255,.15)",

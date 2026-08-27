@@ -96,7 +96,15 @@ export default function InterviewManagement() {
           checked={table.getIsAllPageRowsSelected()}
           indeterminate={table.getIsSomePageRowsSelected()}
           onChange={table.getToggleAllPageRowsSelectedHandler()}
-          sx={{ color: subText, "&.Mui-checked": { color: primary } }}
+          slotProps={{
+            input: {
+              "aria-label": "Select all interviews",
+            },
+          }}
+          sx={{
+            color: subText,
+            "&.Mui-checked": { color: primary },
+          }}
         />
       ),
       cell: ({ row }) => (
@@ -104,7 +112,15 @@ export default function InterviewManagement() {
           size="small"
           checked={row.getIsSelected()}
           onChange={row.getToggleSelectedHandler()}
-          sx={{ color: subText, "&.Mui-checked": { color: primary } }}
+          slotProps={{
+            input: {
+              "aria-label": `Select interview for ${row.original.candidateId}`,
+            },
+          }}
+          sx={{
+            color: subText,
+            "&.Mui-checked": { color: primary },
+          }}
         />
       ),
       enableSorting: false,
@@ -266,6 +282,7 @@ export default function InterviewManagement() {
                 placeholder="Search candidate or interviewer..."
                 value={globalFilter}
                 onChange={(e) => setGlobalFilter(e.target.value)}
+                aria-label="Search candidate or interviewer"
                 style={{
                   width: "100%",
                   padding: "12px",
@@ -513,9 +530,13 @@ export default function InterviewManagement() {
               <span>
                 <IconButton
                   size="small"
+                  aria-label="Go to first page"
                   onClick={() => table.setPageIndex(0)}
                   disabled={!table.getCanPreviousPage()}
-                  sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
+                  sx={{
+                    color: textColor,
+                    "&:disabled": { opacity: 0.3 },
+                  }}
                 >
                   <FirstPageIcon fontSize="small" />
                 </IconButton>
@@ -526,9 +547,13 @@ export default function InterviewManagement() {
               <span>
                 <IconButton
                   size="small"
+                  aria-label="Go to previous page"
                   onClick={() => table.previousPage()}
                   disabled={!table.getCanPreviousPage()}
-                  sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
+                  sx={{
+                    color: textColor,
+                    "&:disabled": { opacity: 0.3 },
+                  }}
                 >
                   <ChevronLeftIcon fontSize="small" />
                 </IconButton>
@@ -553,6 +578,7 @@ export default function InterviewManagement() {
                   <IconButton
                     key={item}
                     size="small"
+                    aria-label={`Go to page ${item + 1}`}
                     onClick={() => table.setPageIndex(item)}
                     sx={{
                       minWidth: 32,
@@ -560,11 +586,23 @@ export default function InterviewManagement() {
                       borderRadius: 1.5,
                       fontSize: ".82rem",
                       fontWeight: 700,
-                      bgcolor: table.getState().pagination.pageIndex === item ? primary : "transparent",
-                      color: table.getState().pagination.pageIndex === item ? "#fff" : textColor,
-                      border: `1px solid ${table.getState().pagination.pageIndex === item ? primary : borderStyle}`,
+                      bgcolor:
+                        table.getState().pagination.pageIndex === item
+                          ? primary
+                          : "transparent",
+                      color:
+                        table.getState().pagination.pageIndex === item
+                          ? "#fff"
+                          : textColor,
+                      border: `1px solid ${table.getState().pagination.pageIndex === item
+                          ? primary
+                          : borderStyle
+                        }`,
                       "&:hover": {
-                        bgcolor: table.getState().pagination.pageIndex === item ? `${primary}dd` : `${primary}15`,
+                        bgcolor:
+                          table.getState().pagination.pageIndex === item
+                            ? `${primary}dd`
+                            : `${primary}15`,
                       },
                     }}
                   >
@@ -577,9 +615,13 @@ export default function InterviewManagement() {
               <span>
                 <IconButton
                   size="small"
+                  aria-label="Go to next page"
                   onClick={() => table.nextPage()}
                   disabled={!table.getCanNextPage()}
-                  sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
+                  sx={{
+                    color: textColor,
+                    "&:disabled": { opacity: 0.3 },
+                  }}
                 >
                   <ChevronRightIcon fontSize="small" />
                 </IconButton>
@@ -590,9 +632,13 @@ export default function InterviewManagement() {
               <span>
                 <IconButton
                   size="small"
+                  aria-label="Go to last page"
                   onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                   disabled={!table.getCanNextPage()}
-                  sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
+                  sx={{
+                    color: textColor,
+                    "&:disabled": { opacity: 0.3 },
+                  }}
                 >
                   <LastPageIcon fontSize="small" />
                 </IconButton>
@@ -605,6 +651,7 @@ export default function InterviewManagement() {
             <select
               value={pagination.pageSize}
               onChange={(e) => table.setPageSize(Number(e.target.value))}
+              aria-label="Rows per page"
               style={{
                 background: colors.input,
                 color: textColor,

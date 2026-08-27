@@ -84,6 +84,7 @@ export default function Footer({
             </Typography>
             <Box>
               <IconButton
+                aria-label="NextHire on GitHub"
                 sx={{
                   mr: 1,
                   bgcolor: darkMode
@@ -98,6 +99,7 @@ export default function Footer({
                 <GitHubIcon />
               </IconButton>
               <IconButton
+                aria-label="NextHire on LinkedIn"
                 sx={{
                   mr: 1,
                   bgcolor: darkMode
@@ -112,6 +114,7 @@ export default function Footer({
                 <LinkedInIcon />
               </IconButton>
               <IconButton
+                aria-label="Email NextHire"
                 sx={{
                   bgcolor: darkMode
                     ? "#1e293b"

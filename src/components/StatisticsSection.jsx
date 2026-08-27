@@ -26,7 +26,7 @@ export default function StatisticsSection({
         A high-growth statistics indicator for platform throughput and active
         volume.
       </Typography>
-      <Grid container spacing={4} justifyContent="center">
+      <Grid container spacing={4} sx={{ justifyContent: "center" }}>
         {stats.map((stat) => (
           <Grid
             key={stat.label}

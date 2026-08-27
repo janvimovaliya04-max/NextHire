@@ -35,6 +35,8 @@ export default function InterviewerCalendar() {
     const [statusFilter, setStatusFilter] = useState("All");
 
     const handleEventClick = (info) => {
+        // Prevent any default anchor navigation since fc-event renders as <a>
+        info.jsEvent.preventDefault();
         setSelectedEvent({
             title: info.event.title,
             start: info.event.start,
@@ -44,6 +46,22 @@ export default function InterviewerCalendar() {
 
     const handleCloseModal = () => {
         setSelectedEvent(null);
+    };
+
+    // Strip href from FullCalendar's generated <a> tags so they aren't
+    // flagged as uncrawlable links — these are JS-driven modal triggers,
+    // not real navigable pages. Keep them keyboard/screen-reader accessible.
+    const handleEventDidMount = (info) => {
+        const el = info.el;
+        if (el.tagName === "A") {
+            el.removeAttribute("href");
+            el.setAttribute("role", "button");
+            el.setAttribute("tabindex", "0");
+            el.setAttribute(
+                "aria-label",
+                `${info.event.title}, ${info.event.extendedProps.status || ""}`
+            );
+        }
     };
 
     // Filter logic updated based on new JSON fields
@@ -121,7 +139,11 @@ export default function InterviewerCalendar() {
                     </Box>
 
                     {/* Filter Action Chips */}
-                    <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
+                    <Stack
+                        direction="row"
+                        spacing={1.5}
+                        sx={{ flexWrap: "wrap", rowGap: 1.5 }}
+                    >
                         <Chip
                             label={`Status: ${statusFilter}`}
                             onClick={() => {
@@ -135,6 +157,8 @@ export default function InterviewerCalendar() {
                                 border: `1px solid ${borderStyle}`,
                                 fontWeight: 700,
                                 borderRadius: "10px",
+                                fontSize: { xs: "0.75rem", sm: "0.8125rem" },
+                                height: { xs: 28, sm: 32 },
                                 "&:hover": { bgcolor: `${primary}15`, borderColor: primary, color: primary }
                             }}
                         />
@@ -187,7 +211,7 @@ export default function InterviewerCalendar() {
                             color: textColor,
                         },
                         "& .fc-button-group": {
-                            gap: "8px",
+                            gap: { xs: "5px", sm: "8px" },
                         },
                         "& .fc-button-group > .fc-button": {
                             borderRadius: "10px !important",
@@ -198,8 +222,8 @@ export default function InterviewerCalendar() {
                             color: textColor,
                             fontWeight: 700,
                             gap: "4px",
-                            padding: "6px 14px",
-                            fontSize: "0.85rem",
+                            padding: { xs: "4px 8px", sm: "6px 14px" },
+                            fontSize: { xs: "0.72rem", sm: "0.85rem" },
                             borderRadius: "10px !important",
                             textTransform: "capitalize",
                             boxShadow: "none",
@@ -219,27 +243,27 @@ export default function InterviewerCalendar() {
                             borderColor: borderStyle,
                         },
                         "& .fc-col-header-cell": {
-                            padding: "10px 0",
+                            padding: { xs: "6px 0", sm: "10px 0" },
                             backgroundColor: colors.input,
                         },
                         "& .fc-col-header-cell-cushion": {
                             color: subText,
                             fontWeight: 700,
-                            fontSize: "0.88rem",
+                            fontSize: { xs: "0.72rem", sm: "0.88rem" },
                         },
                         "& .fc-daygrid-day-number": {
                             color: textColor,
-                            fontSize: "0.85rem",
+                            fontSize: { xs: "0.72rem", sm: "0.85rem" },
                             fontWeight: 600,
-                            padding: "8px",
+                            padding: { xs: "4px", sm: "8px" },
                         },
                         "& .fc-day-today": {
                             backgroundColor: `${primary}10 !important`,
                         },
                         "& .fc-event": {
                             borderRadius: "8px",
-                            padding: "2px 6px",
-                            fontSize: "0.8rem",
+                            padding: { xs: "1px 4px", sm: "2px 6px" },
+                            fontSize: { xs: "0.68rem", sm: "0.8rem" },
                             fontWeight: 600,
                             border: "none",
                             background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
@@ -259,6 +283,7 @@ export default function InterviewerCalendar() {
                         initialDate="2026-06-01" // 10 June 2026 ડેટા જોવા માટે initialDate 2026-06 રાખેલ છે
                         events={formatInterviewsToEvents(filteredInterviews)}
                         eventClick={handleEventClick}
+                        eventDidMount={handleEventDidMount}
                         headerToolbar={{
                             left: "prev,next today",
                             center: "title",
@@ -302,22 +327,23 @@ export default function InterviewerCalendar() {
                                 : "0 20px 40px rgba(15, 23, 42, 0.15)",
                             color: textColor,
                             width: "100%",
-                            maxWidth: "460px",
+                            maxWidth: { xs: "100%", sm: "460px" },
                             margin: { xs: 2, sm: 3 },
                             overflow: "hidden",
                         },
                     }}
                 >
                     {selectedEvent && (
-                        <Box sx={{ p: { xs: 2.5, sm: 3.5 } }}>
+                        <Box sx={{ p: { xs: 2, sm: 2.5, md: 3.5 } }}>
                             {/* Modal Header */}
                             <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 2, mb: 1.5 }}>
-                                <Typography variant="h6" fontWeight={800} sx={{ color: textColor, fontSize: "1.1rem", lineHeight: 1.3 }}>
+                                <Typography variant="h6" fontWeight={800} sx={{ color: textColor, fontSize: { xs: "1rem", sm: "1.1rem" }, lineHeight: 1.3 }}>
                                     {selectedEvent.title}
                                 </Typography>
                                 <IconButton
                                     onClick={handleCloseModal}
                                     size="small"
+                                    aria-label="Close"
                                     sx={{
                                         color: textColor,
                                         bgcolor: darkMode ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)",
@@ -333,43 +359,43 @@ export default function InterviewerCalendar() {
                             {/* Details List (Updated with new Json fields) */}
                             <Stack spacing={2}>
                                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2 }}>
-                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0 }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0, fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         Candidate
                                     </Typography>
-                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right" }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right", fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         {selectedEvent.candidate}
                                     </Typography>
                                 </Box>
 
                                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2 }}>
-                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0 }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0, fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         Position
                                     </Typography>
-                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right" }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right", fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         {selectedEvent.position}
                                     </Typography>
                                 </Box>
 
                                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2 }}>
-                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0 }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0, fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         Date
                                     </Typography>
-                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right" }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right", fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         {selectedEvent.date}
                                     </Typography>
                                 </Box>
 
                                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2 }}>
-                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0 }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0, fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         Time
                                     </Typography>
-                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right" }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right", fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         {selectedEvent.time}
                                     </Typography>
                                 </Box>
 
                                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2 }}>
-                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0 }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0, fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         Status
                                     </Typography>
                                     <Chip
@@ -379,9 +405,9 @@ export default function InterviewerCalendar() {
                                             bgcolor: selectedEvent.status === "Cancelled" ? "#f4433622" : `${primary}22`,
                                             color: selectedEvent.status === "Cancelled" ? "#f44336" : primary,
                                             fontWeight: 700,
-                                            height: "24px",
+                                            height: { xs: "22px", sm: "24px" },
                                             borderRadius: "8px",
-                                            fontSize: "0.78rem"
+                                            fontSize: { xs: "0.7rem", sm: "0.78rem" }
                                         }}
                                     />
                                 </Box>

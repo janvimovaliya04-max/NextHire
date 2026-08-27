@@ -353,8 +353,10 @@ export default function HRProfile() {
                 fullWidth
                 label="Full Name"
                 value={profile.fullName}
-                InputLabelProps={{ shrink: true }}
                 slotProps={{
+                  inputLabel: {
+                    shrink: true,
+                  },
                   input: {
                     readOnly: true,
                   },
@@ -367,8 +369,10 @@ export default function HRProfile() {
                 fullWidth
                 label="Employee ID"
                 value={profile.employeeId}
-                InputLabelProps={{ shrink: true }}
                 slotProps={{
+                  inputLabel: {
+                    shrink: true,
+                  },
                   input: {
                     readOnly: true,
                   },
@@ -381,8 +385,10 @@ export default function HRProfile() {
                 fullWidth
                 label="Email Address"
                 value={profile.email}
-                InputLabelProps={{ shrink: true }}
                 slotProps={{
+                  inputLabel: {
+                    shrink: true,
+                  },
                   input: {
                     readOnly: true,
                   },
@@ -395,8 +401,10 @@ export default function HRProfile() {
                 fullWidth
                 label="Phone Number"
                 value={profile.phone}
-                InputLabelProps={{ shrink: true }}
                 slotProps={{
+                  inputLabel: {
+                    shrink: true,
+                  },
                   input: {
                     readOnly: true,
                   },
@@ -409,8 +417,10 @@ export default function HRProfile() {
                 fullWidth
                 label="Department"
                 value={profile.department}
-                InputLabelProps={{ shrink: true }}
                 slotProps={{
+                  inputLabel: {
+                    shrink: true,
+                  },
                   input: {
                     readOnly: true,
                   },
@@ -423,8 +433,10 @@ export default function HRProfile() {
                 fullWidth
                 label="Job Designation"
                 value={profile.designation}
-                InputLabelProps={{ shrink: true }}
                 slotProps={{
+                  inputLabel: {
+                    shrink: true,
+                  },
                   input: {
                     readOnly: true,
                   },

@@ -350,6 +350,7 @@ export default function InterviewerLayout({ children }) {
           <div className="flex items-center gap-2 md:hidden">
             <button
               onClick={() => setMobileMenu(true)}
+              aria-label="Open navigation menu"
               className="p-2 rounded-lg border"
               style={{ borderColor: borderColor, backgroundColor: bgColor, color: textColor }}
             >
@@ -357,6 +358,7 @@ export default function InterviewerLayout({ children }) {
             </button>
             <Link
               to="/interviewer/interviewer-notifications"
+              aria-label="View notifications"
               className="relative p-2 rounded-lg border"
               style={{ borderColor: borderColor, backgroundColor: bgColor, color: textColor }}
             >
@@ -383,6 +385,7 @@ export default function InterviewerLayout({ children }) {
             {/* Interview Schedule Calendar */}
             <Link
               to="/interviewer/interviewer-calendar"
+              aria-label="Open interview schedule calendar"
               className="p-2.5 rounded-xl border relative transition-all duration-200"
               style={{
                 backgroundColor: colors.input,
@@ -395,6 +398,7 @@ export default function InterviewerLayout({ children }) {
             {/* Theme switcher */}
             <button
               onClick={() => setDarkMode(!darkMode)}
+              aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
               className="p-2.5 rounded-xl border transition-all duration-200"
               style={{
                 backgroundColor: bgColor,
@@ -408,6 +412,7 @@ export default function InterviewerLayout({ children }) {
             {/* Notifications Alert */}
             <Link
               to="/interviewer/interviewer-notifications"
+              aria-label="View notifications"
               className="p-2.5 rounded-xl border relative transition-all duration-200"
               style={{
                 backgroundColor: bgColor,
@@ -433,6 +438,7 @@ export default function InterviewerLayout({ children }) {
             <Tooltip title="Interviewer Profile">
               <Link
                 to="/interviewer/interviewer-profile"
+                aria-label="View interviewer profile"
                 className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 border-2 border-white shadow-md hover:scale-105 text-white"
                 style={{ background: `linear-gradient(135deg, ${primary}, ${secondary || primary})` }}
               >
@@ -443,6 +449,7 @@ export default function InterviewerLayout({ children }) {
             {/* Logout Action Button */}
             <button
               onClick={handleOpenLogoutModal}
+              aria-label="Logout"
               className="p-2.5 rounded-xl border flex items-center justify-center gap-2 font-semibold text-sm text-red-500 border-red-500/20 bg-red-500/5 hover:bg-red-500/10 hover:border-red-500/40 transition-all duration-300 cursor-pointer"
             >
               <LogOut size={16} />

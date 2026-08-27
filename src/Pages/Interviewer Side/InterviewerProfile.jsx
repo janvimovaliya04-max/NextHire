@@ -155,6 +155,7 @@ export default function InterviewerProfile() {
           >
             <Avatar
               src={user?.image || ""}
+              alt={profile.fullName}
               sx={{
                 width: {
                   xs: 80,
@@ -322,11 +323,9 @@ export default function InterviewerProfile() {
             label="Email"
             value={profile.email}
             sx={textFieldStyle}
-            InputLabelProps={{ shrink: true }}
             slotProps={{
-              input: {
-                readOnly: true,
-              },
+              inputLabel: { shrink: true },
+              input: { readOnly: true },
             }}
             fullWidth
           />
@@ -335,11 +334,9 @@ export default function InterviewerProfile() {
             label="Experience"
             value={profile.experience}
             sx={textFieldStyle}
-            InputLabelProps={{ shrink: true }}
             slotProps={{
-              input: {
-                readOnly: true,
-              },
+              inputLabel: { shrink: true },
+              input: { readOnly: true },
             }}
             fullWidth
           />
@@ -348,11 +345,9 @@ export default function InterviewerProfile() {
             label="Specialization"
             value={profile.specialization}
             sx={textFieldStyle}
-            InputLabelProps={{ shrink: true }}
             slotProps={{
-              input: {
-                readOnly: true,
-              },
+              inputLabel: { shrink: true },
+              input: { readOnly: true },
             }}
             fullWidth
           />
@@ -361,11 +356,9 @@ export default function InterviewerProfile() {
             label="Interviews Conducted"
             value={profile.interviewsConducted}
             sx={textFieldStyle}
-            InputLabelProps={{ shrink: true }}
             slotProps={{
-              input: {
-                readOnly: true,
-              },
+              inputLabel: { shrink: true },
+              input: { readOnly: true },
             }}
             fullWidth
           />

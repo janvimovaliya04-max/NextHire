@@ -79,6 +79,11 @@ export default function JobManagement() {
           indeterminate={table.getIsSomePageRowsSelected()}
           onChange={table.getToggleAllPageRowsSelectedHandler()}
           sx={{ color: subText, "&.Mui-checked": { color: primary } }}
+          slotProps={{
+            input: {
+              "aria-label": "Select all jobs",
+            },
+          }}
         />
       ),
       cell: ({ row }) => (
@@ -87,6 +92,11 @@ export default function JobManagement() {
           checked={row.getIsSelected()}
           onChange={row.getToggleSelectedHandler()}
           sx={{ color: subText, "&.Mui-checked": { color: primary } }}
+          slotProps={{
+            input: {
+              "aria-label": `Select ${row.original.title}`,
+            },
+          }}
         />
       ),
       enableSorting: false,
@@ -145,6 +155,7 @@ export default function JobManagement() {
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <Button
             component={Link}
+            aria-label="Create assessment"
             to="/hr/create-assessment"
             variant="contained"
             size="small"
@@ -201,16 +212,14 @@ export default function JobManagement() {
             size="small"
             sx={{
               fontWeight: 800,
-              fontSize: {
-                xs: ".68rem",
-                md: ".72rem"
-              },
+              fontSize: { xs: ".68rem", md: ".72rem" },
               bgcolor: "rgba(16, 185, 129, 0.12)",
-              color: "#10b981",
-              border: "1px solid rgba(16, 185, 129, 0.2)"
+              color: "#047857",
+              border: "1px solid rgba(4, 120, 87, 0.25)",
             }}
           />
         );
+
       case "Closed":
         return (
           <Chip
@@ -220,11 +229,12 @@ export default function JobManagement() {
               fontWeight: 800,
               fontSize: "0.72rem",
               bgcolor: "rgba(239, 68, 68, 0.12)",
-              color: "#ef4444",
-              border: "1px solid rgba(239, 68, 68, 0.2)"
+              color: "#b91c1c",
+              border: "1px solid rgba(185, 28, 28, 0.25)",
             }}
           />
         );
+
       case "Draft":
         return (
           <Chip
@@ -234,11 +244,12 @@ export default function JobManagement() {
               fontWeight: 800,
               fontSize: "0.72rem",
               bgcolor: "rgba(245, 158, 11, 0.12)",
-              color: "#f59e0b",
-              border: "1px solid rgba(245, 158, 11, 0.2)"
+              color: "#b45309",
+              border: "1px solid rgba(180, 83, 9, 0.25)",
             }}
           />
         );
+
       default:
         return <Chip label={status} size="small" />;
     }
@@ -378,6 +389,7 @@ export default function JobManagement() {
               key={filter}
               variant="outlined"
               size="small"
+              aria-label="Filter by status"
               onClick={() => setActiveFilter(filter)}
               sx={{
                 borderRadius: "20px",
@@ -596,6 +608,7 @@ export default function JobManagement() {
                 <IconButton
                   size="small"
                   onClick={() => table.setPageIndex(0)}
+                  aria-label="start from one"
                   disabled={!table.getCanPreviousPage()}
                   sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
                 >
@@ -609,6 +622,7 @@ export default function JobManagement() {
                 <IconButton
                   size="small"
                   onClick={() => table.previousPage()}
+                  aria-label="next page"
                   disabled={!table.getCanPreviousPage()}
                   sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
                 >
@@ -639,6 +653,7 @@ export default function JobManagement() {
                     key={item}
                     size="small"
                     onClick={() => table.setPageIndex(item)}
+                    aria-label="next page"
                     sx={{
                       minWidth: 32,
                       height: 32,
@@ -663,6 +678,7 @@ export default function JobManagement() {
                 <IconButton
                   size="small"
                   onClick={() => table.nextPage()}
+                  aria-label="move to next page"
                   disabled={!table.getCanNextPage()}
                   sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
                 >
@@ -676,6 +692,7 @@ export default function JobManagement() {
                 <IconButton
                   size="small"
                   onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+                  aria-label="last page"
                   disabled={!table.getCanNextPage()}
                   sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
                 >
@@ -690,6 +707,7 @@ export default function JobManagement() {
             <Typography sx={{ fontSize: ".82rem", color: subText }}>Rows per page:</Typography>
             <select
               value={pagination.pageSize}
+              aria-label="Rows per page"
               onChange={(e) => table.setPageSize(Number(e.target.value))}
               style={{
                 background: colors.input,

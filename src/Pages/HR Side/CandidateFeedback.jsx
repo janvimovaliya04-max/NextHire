@@ -378,6 +378,7 @@ export default function Candidatefeedback() {
                 <IconButton
                   size="small"
                   onClick={() => table.setPageIndex(0)}
+                  aria-label="Go to first page"
                   disabled={!table.getCanPreviousPage()}
                   sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
                 >
@@ -391,6 +392,7 @@ export default function Candidatefeedback() {
                 <IconButton
                   size="small"
                   onClick={() => table.previousPage()}
+                  aria-label="Go to previous page"
                   disabled={!table.getCanPreviousPage()}
                   sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
                 >
@@ -418,6 +420,7 @@ export default function Candidatefeedback() {
                     key={item}
                     size="small"
                     onClick={() => table.setPageIndex(item)}
+                    aria-label={`Go to page ${item + 1}`}
                     sx={{
                       minWidth: 32,
                       height: 32,
@@ -442,6 +445,7 @@ export default function Candidatefeedback() {
                 <IconButton
                   size="small"
                   onClick={() => table.nextPage()}
+                  aria-label="Go to next page"
                   disabled={!table.getCanNextPage()}
                   sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
                 >
@@ -455,6 +459,7 @@ export default function Candidatefeedback() {
                 <IconButton
                   size="small"
                   onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+                  aria-label="Go to last page"
                   disabled={!table.getCanNextPage()}
                   sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
                 >

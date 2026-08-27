@@ -27,7 +27,7 @@ export default function FeatureSection({
         Engineered to empower every stage of the technical assessment and
         hiring journey.
       </Typography>
-      <Grid container spacing={4} justifyContent="center">
+      <Grid container spacing={4} sx={{ justifyContent: "center" }}>
         {features.map((item) => (
           <Grid
             key={item.title}

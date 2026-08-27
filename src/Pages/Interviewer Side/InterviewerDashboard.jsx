@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import InterviewerLayout from "../../Layouts/InterviewerLayout";
 import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
-import { useAuth } from "../../context/AuthContext"; // 👈 Auth Context import karyu
+import { useAuth } from "../../context/AuthContext"; // Auth Context import karyu
 import {
   Card,
   Grid,
@@ -27,7 +27,7 @@ import dashboardData from "../../data/interviewerDashboard.json";
 import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
 export default function InterviewerDashboard() {
-  const { user } = useAuth(); // 👈 Logged-in user context mathi read karyo
+  const { user } = useAuth(); // Logged-in user context mathi read karyo
   const { darkMode } = useTheme();
   const colors = useThemeColors();
 

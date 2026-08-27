@@ -54,9 +54,9 @@ export default function JobDetails() {
       <CandidateLayout>
         {/* Dynamic SEO Tags Injection */}
         <SEO
-          title="Job Details"
-          description="View the details of the job position on NextHire HR Portal."
-          canonicalUrl="/candidate/jobs"
+          title="Job Not Found"
+          description="The requested job details could not be found."
+          canonicalUrl="/candidate/browse-jobs"
         />
 
         <Box
@@ -86,6 +86,12 @@ export default function JobDetails() {
 
   return (
     <CandidateLayout>
+      {/* Dynamic SEO Tags rendered safely when job exists */}
+      <SEO
+        title={`${job.position} at ${job.company}`}
+        description={job.description || `Apply for the ${job.position} position at ${job.company}.`}
+        canonicalUrl={`/candidate/jobs/${job.jobId}`}
+      />
       {/* Back button */}
       <Box
         sx={{

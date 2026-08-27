@@ -76,7 +76,15 @@ export default function Candidates() {
           checked={table.getIsAllPageRowsSelected()}
           indeterminate={table.getIsSomePageRowsSelected()}
           onChange={table.getToggleAllPageRowsSelectedHandler()}
-          sx={{ color: subText, "&.Mui-checked": { color: primary } }}
+          slotProps={{
+            input: {
+              "aria-label": "Select all candidates",
+            },
+          }}
+          sx={{
+            color: subText,
+            "&.Mui-checked": { color: primary },
+          }}
         />
       ),
       cell: ({ row }) => (
@@ -84,7 +92,15 @@ export default function Candidates() {
           size="small"
           checked={row.getIsSelected()}
           onChange={row.getToggleSelectedHandler()}
-          sx={{ color: subText, "&.Mui-checked": { color: primary } }}
+          slotProps={{
+            input: {
+              "aria-label": `Select ${row.original.fullName}`,
+            },
+          }}
+          sx={{
+            color: subText,
+            "&.Mui-checked": { color: primary },
+          }}
         />
       ),
       enableSorting: false,
@@ -356,6 +372,7 @@ export default function Candidates() {
 
             <input
               type="text"
+              aria-label="Search candidates"
               placeholder="Search candidates..."
               value={globalFilter}
               onChange={(e) => setGlobalFilter(e.target.value)}
@@ -606,6 +623,7 @@ export default function Candidates() {
                 <IconButton
                   size="small"
                   onClick={() => table.setPageIndex(0)}
+                  aria-label="Go to first page"
                   disabled={!table.getCanPreviousPage()}
                   sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
                 >
@@ -619,6 +637,7 @@ export default function Candidates() {
                 <IconButton
                   size="small"
                   onClick={() => table.previousPage()}
+                  aria-label="Go to previous page"
                   disabled={!table.getCanPreviousPage()}
                   sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
                 >
@@ -649,6 +668,7 @@ export default function Candidates() {
                     key={item}
                     size="small"
                     onClick={() => table.setPageIndex(item)}
+                    aria-label={`Go to page ${item + 1}`}
                     sx={{
                       minWidth: 32,
                       height: 32,
@@ -673,6 +693,7 @@ export default function Candidates() {
                 <IconButton
                   size="small"
                   onClick={() => table.nextPage()}
+                  aria-label="Go to next page"
                   disabled={!table.getCanNextPage()}
                   sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
                 >
@@ -686,6 +707,7 @@ export default function Candidates() {
                 <IconButton
                   size="small"
                   onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+                  aria-label="Go to last page"
                   disabled={!table.getCanNextPage()}
                   sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
                 >
@@ -701,6 +723,7 @@ export default function Candidates() {
             <select
               value={pagination.pageSize}
               onChange={(e) => table.setPageSize(Number(e.target.value))}
+              aria-label="Rows per page"
               style={{
                 background: colors.input,
                 color: textColor,

@@ -267,7 +267,7 @@ export default function Settings() {
         >
           <Grid container spacing={3} sx={{ alignItems: "center" }}>
             {/* Left Side: Profile Info */}
-            <Grid item xs={12} lg={4}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <Box
                 sx={{
                   display: "flex",
@@ -330,7 +330,7 @@ export default function Settings() {
             </Grid>
 
             {/* Right Side: Stats / Info Cards */}
-            <Grid item xs={12} lg={8}>
+            <Grid size={{ xs: 12, lg: 8 }}>
               <Box
                 sx={{
                   display: "grid",
@@ -488,7 +488,11 @@ export default function Settings() {
                 fullWidth
                 label="Recruiter Name"
                 value={profile.fullName}
-                InputLabelProps={{ shrink: true }}
+                slotProps={{
+                  inputLabel: {
+                    shrink: true,
+                  },
+                }}
                 onChange={(e) => setProfile({ ...profile, name: e.target.value })}
                 sx={textFieldStyle}
               />
@@ -498,7 +502,11 @@ export default function Settings() {
                 fullWidth
                 label="Email Address"
                 value={profile.email}
-                InputLabelProps={{ shrink: true }}
+                slotProps={{
+                  inputLabel: {
+                    shrink: true,
+                  },
+                }}
                 onChange={(e) => setProfile({ ...profile, email: e.target.value })}
                 sx={textFieldStyle}
               />
@@ -508,7 +516,11 @@ export default function Settings() {
                 fullWidth
                 label="Department"
                 value={profile.department}
-                InputLabelProps={{ shrink: true }}
+                slotProps={{
+                  inputLabel: {
+                    shrink: true,
+                  },
+                }}
                 onChange={(e) =>
                   setProfile({ ...profile, department: e.target.value })
                 }
@@ -520,7 +532,11 @@ export default function Settings() {
                 fullWidth
                 label="Role"
                 value={profile.role}
-                InputLabelProps={{ shrink: true }}
+                slotProps={{
+                  inputLabel: {
+                    shrink: true,
+                  },
+                }}
                 onChange={(e) => setProfile({ ...profile, role: e.target.value })}
                 sx={textFieldStyle}
               />
@@ -726,6 +742,11 @@ export default function Settings() {
                     email: e.target.checked,
                   })
                 }
+                slotProps={{
+                  input: {
+                    "aria-label": "Enable Email Notifications",
+                  },
+                }}
                 sx={{
                   alignSelf: { xs: "flex-end", sm: "center" },
                   "& .MuiSwitch-switchBase.Mui-checked": { color: primary },
@@ -787,6 +808,11 @@ export default function Settings() {
                     candidate: e.target.checked,
                   })
                 }
+                slotProps={{
+                  input: {
+                    "aria-label": "Enable Candidate Updates",
+                  },
+                }}
                 sx={{
                   alignSelf: { xs: "flex-end", sm: "center" },
                   "& .MuiSwitch-switchBase.Mui-checked": { color: primary },
@@ -848,6 +874,11 @@ export default function Settings() {
                     interview: e.target.checked,
                   })
                 }
+                slotProps={{
+                  input: {
+                    "aria-label": "Enable Interview Reminders",
+                  },
+                }}
                 sx={{
                   alignSelf: { xs: "flex-end", sm: "center" },
                   "& .MuiSwitch-switchBase.Mui-checked": { color: primary },
@@ -909,6 +940,11 @@ export default function Settings() {
                     jobs: e.target.checked,
                   })
                 }
+                slotProps={{
+                  input: {
+                    "aria-label": "Enable Job Alerts",
+                  },
+                }}
                 sx={{
                   alignSelf: { xs: "flex-end", sm: "center" },
                   "& .MuiSwitch-switchBase.Mui-checked": { color: primary },
@@ -1104,6 +1140,11 @@ export default function Settings() {
                   <Switch
                     checked={twoFactor}
                     onChange={(e) => setTwoFactor(e.target.checked)}
+                    slotProps={{
+                      input: {
+                        "aria-label": "Enable Two-Factor Authentication",
+                      },
+                    }}
                     sx={{
                       "& .MuiSwitch-switchBase.Mui-checked": { color: primary },
                       "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {

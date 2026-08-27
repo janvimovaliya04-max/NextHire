@@ -87,6 +87,7 @@ export default function CandidateCalendar() {
             id: interview.interviewId,
             title: `${interview.round || interview.type || "Interview"} - ${interview.company || interview.interviewer}`,
             start: `${interview.date}T${convertTimeTo24Hr(interview.time)}`,
+            url: "#",
             extendedProps: {
                 candidateName: interview.candidateName || interview.company || "N/A",
                 company: interview.company || "N/A",
@@ -122,6 +123,7 @@ export default function CandidateCalendar() {
                 title="Candidate Schedule Calendar"
                 description="Manage your interview schedules and stay updated on upcoming meetings."
                 canonicalUrl="/candidate/candidate-calendar"
+                noindex={true}
             />
 
             <Box
@@ -157,7 +159,7 @@ export default function CandidateCalendar() {
                     </Box>
 
                     {/* Filter Action Chips */}
-                    <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
+                    <Stack direction="row" spacing={1.5} useFlexGap sx={{ flexWrap: "wrap" }}>
                         <Chip
                             label={`Status: ${statusFilter}`}
                             onClick={() => {
@@ -171,6 +173,8 @@ export default function CandidateCalendar() {
                                 border: `1px solid ${borderStyle}`,
                                 fontWeight: 700,
                                 borderRadius: "10px",
+                                fontSize: { xs: "0.75rem", sm: "0.8125rem" },
+                                height: { xs: 28, sm: 32 },
                                 "&:hover": { bgcolor: `${primary}15`, borderColor: primary, color: primary }
                             }}
                         />
@@ -187,6 +191,8 @@ export default function CandidateCalendar() {
                                 border: `1px solid ${borderStyle}`,
                                 fontWeight: 700,
                                 borderRadius: "10px",
+                                fontSize: { xs: "0.75rem", sm: "0.8125rem" },
+                                height: { xs: 28, sm: 32 },
                                 "&:hover": { bgcolor: `${primary}15`, borderColor: primary, color: primary }
                             }}
                         />
@@ -249,7 +255,7 @@ export default function CandidateCalendar() {
                             color: textColor,
                         },
                         "& .fc-button-group": {
-                            gap: "8px",
+                            gap: { xs: "5px", sm: "8px" },
                         },
                         "& .fc-button-group > .fc-button": {
                             borderRadius: "10px !important",
@@ -260,8 +266,8 @@ export default function CandidateCalendar() {
                             color: textColor,
                             fontWeight: 700,
                             gap: "4px",
-                            padding: "6px 14px",
-                            fontSize: "0.85rem",
+                            padding: { xs: "4px 8px", sm: "6px 14px" },
+                            fontSize: { xs: "0.72rem", sm: "0.85rem" },
                             borderRadius: "10px !important",
                             textTransform: "capitalize",
                             boxShadow: "none",
@@ -284,27 +290,27 @@ export default function CandidateCalendar() {
                             borderColor: borderStyle,
                         },
                         "& .fc-col-header-cell": {
-                            padding: "10px 0",
+                            padding: { xs: "6px 0", sm: "10px 0" },
                             backgroundColor: colors.input,
                         },
                         "& .fc-col-header-cell-cushion": {
                             color: subText,
                             fontWeight: 700,
-                            fontSize: "0.88rem",
+                            fontSize: { xs: "0.72rem", sm: "0.88rem" },
                         },
                         "& .fc-daygrid-day-number": {
                             color: textColor,
-                            fontSize: "0.85rem",
+                            fontSize: { xs: "0.72rem", sm: "0.85rem" },
                             fontWeight: 600,
-                            padding: "8px",
+                            padding: { xs: "4px", sm: "8px" },
                         },
                         "& .fc-day-today": {
                             backgroundColor: `${primary}10 !important`,
                         },
                         "& .fc-event": {
                             borderRadius: "8px",
-                            padding: "2px 6px",
-                            fontSize: "0.8rem",
+                            padding: { xs: "1px 4px", sm: "2px 6px" },
+                            fontSize: { xs: "0.68rem", sm: "0.8rem" },
                             fontWeight: 600,
                             border: "none",
                             background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
@@ -322,6 +328,7 @@ export default function CandidateCalendar() {
                         "& .fc-more-link": {
                             color: primary,
                             fontWeight: 700,
+                            fontSize: { xs: "0.68rem", sm: "0.8rem" },
                         },
                     }}
                 >
@@ -332,6 +339,15 @@ export default function CandidateCalendar() {
                         initialDate="2026-07-01"
                         events={formatInterviewsToEvents(filteredInterviews)}
                         eventClick={handleEventClick}
+                        eventContent={(eventInfo) => (
+                            <div
+                                role="button"
+                                tabIndex={0}
+                                style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}
+                            >
+                                <b>{eventInfo.timeText}</b> {eventInfo.event.title}
+                            </div>
+                        )}
                         headerToolbar={{
                             left: "prev,next today",
                             center: "title",
@@ -376,7 +392,7 @@ export default function CandidateCalendar() {
                                 : "0 20px 40px rgba(15, 23, 42, 0.15)",
                             color: textColor,
                             width: "100%",
-                            maxWidth: "460px",
+                            maxWidth: { xs: "100%", sm: "460px" },
                             margin: { xs: 2, sm: 3 },
                             overflow: "hidden",
                             backgroundImage: "none",
@@ -384,10 +400,10 @@ export default function CandidateCalendar() {
                     }}
                 >
                     {selectedEvent && (
-                        <Box sx={{ p: { xs: 2.5, sm: 3.5 } }}>
+                        <Box sx={{ p: { xs: 2, sm: 2.5, md: 3.5 } }}>
                             {/* Modal Header */}
                             <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 2, mb: 1.5 }}>
-                                <Typography variant="h6" fontWeight={800} sx={{ color: textColor, fontSize: "1.1rem", lineHeight: 1.3 }}>
+                                <Typography variant="h6" fontWeight={800} sx={{ color: textColor, fontSize: { xs: "1rem", sm: "1.1rem" }, lineHeight: 1.3 }}>
                                     {selectedEvent.title}
                                 </Typography>
                                 <IconButton
@@ -411,43 +427,43 @@ export default function CandidateCalendar() {
                             {/* Details List */}
                             <Stack spacing={2}>
                                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2 }}>
-                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0 }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0, fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         Company / Candidate
                                     </Typography>
-                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right", wordBreak: "break-word" }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right", wordBreak: "break-word", fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         {selectedEvent.candidateName}
                                     </Typography>
                                 </Box>
 
                                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2 }}>
-                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0 }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0, fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         Position
                                     </Typography>
-                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right" }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right", fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         {selectedEvent.position}
                                     </Typography>
                                 </Box>
 
                                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2 }}>
-                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0 }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0, fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         Date & Time
                                     </Typography>
-                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right" }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right", fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         {formatEventDateTime(selectedEvent.start)}
                                     </Typography>
                                 </Box>
 
                                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2 }}>
-                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0 }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0, fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         Mode
                                     </Typography>
-                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right" }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right", fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         {selectedEvent.mode} ({selectedEvent.platform})
                                     </Typography>
                                 </Box>
 
                                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2 }}>
-                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0 }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0, fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         Status
                                     </Typography>
                                     <Chip
@@ -457,35 +473,35 @@ export default function CandidateCalendar() {
                                             bgcolor: `${primary}22`,
                                             color: primary,
                                             fontWeight: 700,
-                                            height: "24px",
+                                            height: { xs: "22px", sm: "24px" },
                                             borderRadius: "8px",
-                                            fontSize: "0.78rem"
+                                            fontSize: { xs: "0.7rem", sm: "0.78rem" }
                                         }}
                                     />
                                 </Box>
 
                                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2 }}>
-                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0 }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0, fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         Result
                                     </Typography>
-                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right" }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right", fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         {selectedEvent.result || "Pending"}
                                     </Typography>
                                 </Box>
 
                                 <Box sx={{ display: "flex", flexDirection: "column", gap: 0.8, pt: 0.5 }}>
-                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         Remarks / Duration
                                     </Typography>
                                     <Typography
                                         variant="body2"
                                         sx={{
-                                            p: 1.75,
+                                            p: { xs: 1.4, sm: 1.75 },
                                             borderRadius: "14px",
                                             bgcolor: darkMode ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.03)",
                                             border: `1px solid ${darkMode ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.06)"}`,
                                             color: textColor,
-                                            fontSize: "0.85rem",
+                                            fontSize: { xs: "0.78rem", sm: "0.85rem" },
                                             lineHeight: 1.5,
                                         }}
                                     >

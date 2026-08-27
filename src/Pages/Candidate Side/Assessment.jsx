@@ -5,7 +5,7 @@ import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
 import { Typography, Paper, Box, TextField, Button, LinearProgress } from "@mui/material";
 import { Clock, Info, Send } from "lucide-react";
-import SEO from "../../components/common/SEO"; // SEO Component Import Added
+import SEO from "../../components/common/SEO";
 
 export default function Assessment() {
   const { darkMode } = useTheme();
@@ -21,6 +21,7 @@ export default function Assessment() {
   const textColor = colors.text;
   const subText = colors.subText;
   const borderStyle = colors.border;
+
   const handleSubmit = () => {
     if (!q1Answer.trim() || !q2Answer.trim()) {
       toast.error("Please answer all questions.");
@@ -161,6 +162,7 @@ export default function Assessment() {
 
         {/* Live progress limit line — semantic red (time-critical) */}
         <LinearProgress
+          aria-label="Assessment time remaining progress"
           variant="determinate"
           value={98}
           sx={{

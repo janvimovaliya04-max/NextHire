@@ -300,6 +300,9 @@ export default function InterviewerSettings() {
                 checked={emailNotification}
                 onChange={(e) => setEmailNotification(e.target.checked)}
                 sx={switchStyle}
+                slotProps={{
+                  input: { "aria-label": "Toggle email notifications" },
+                }}
               />
             </Box>
 
@@ -316,6 +319,9 @@ export default function InterviewerSettings() {
                 checked={interviewReminders}
                 onChange={(e) => setInterviewReminders(e.target.checked)}
                 sx={switchStyle}
+                slotProps={{
+                  input: { "aria-label": "Toggle interview reminders" },
+                }}
               />
             </Box>
 
@@ -332,6 +338,9 @@ export default function InterviewerSettings() {
                 checked={assessmentAlerts}
                 onChange={(e) => setAssessmentAlerts(e.target.checked)}
                 sx={switchStyle}
+                slotProps={{
+                  input: { "aria-label": "Toggle assessment alerts" },
+                }}
               />
             </Box>
 
@@ -348,6 +357,9 @@ export default function InterviewerSettings() {
                 checked={feedbackUpdates}
                 onChange={(e) => setFeedbackUpdates(e.target.checked)}
                 sx={switchStyle}
+                slotProps={{
+                  input: { "aria-label": "Toggle feedback updates" },
+                }}
               />
             </Box>
           </Box>

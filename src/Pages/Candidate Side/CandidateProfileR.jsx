@@ -21,7 +21,7 @@ import {
   KeyRound,
   ArrowRight,
 } from "lucide-react";
-import SEO from "../../components/common/SEO"; // SEO Component Import Added
+import SEO from "../../components/common/SEO";
 
 export default function CandidateProfileR() {
   const { user } = useAuth();
@@ -31,14 +31,12 @@ export default function CandidateProfileR() {
 
   const candidate = candidateContext?.candidate;
 
-  // Colors — fully theme-driven (matches Assessment / BrowseJobs / Dashboard / Notifications)
   const primary = colors.primary;
   const secondary = colors.secondary;
   const textColor = colors.text;
   const subText = colors.subText;
   const borderStyle = colors.border;
 
-  // Safe profile object mapping with fallback values if users.json is missing fields
   const profile = {
     firstName: user?.firstName || "Rahul",
     lastName: user?.lastName || "Sharma",
@@ -51,7 +49,6 @@ export default function CandidateProfileR() {
     designation: user?.designation || user?.role || "candidate",
   };
 
-  // Cohesive styling for the read-only form elements
   const textFieldStyle = {
     mb: {
       xs: 2,
@@ -93,7 +90,6 @@ export default function CandidateProfileR() {
 
   return (
     <CandidateLayout>
-      {/* Dynamic SEO Tags Injection */}
       <SEO
         title="My Profile"
         description="View and update your profile information on NextHire HR Portal."
@@ -111,21 +107,20 @@ export default function CandidateProfileR() {
           },
         }}
       >
-
         {/* Page Header */}
         <Box>
           <Typography
             sx={{
               fontWeight: 850,
               letterSpacing: "-0.03em",
-              mb: .5,
+              mb: 0.5,
               color: textColor,
               fontSize: {
                 xs: "1.45rem",
                 sm: "1.8rem",
                 md: "2rem",
                 lg: "2.2rem",
-              }
+              },
             }}
           >
             My Profile
@@ -158,9 +153,24 @@ export default function CandidateProfileR() {
             },
           }}
         >
-          <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, justifyContent: "space-between", alignItems: "center", gap: { xs: 3, md: 4 } }}>
-            <Box sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, alignItems: "center", gap: 3.5, textAlign: { xs: "center", sm: "left" } }}>
-              {/* Premium Gradient Avatar */}
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              justifyContent: "space-between",
+              alignItems: "center",
+              gap: { xs: 3, md: 4 },
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: { xs: "column", sm: "row" },
+                alignItems: "center",
+                gap: 3.5,
+                textAlign: { xs: "center", sm: "left" },
+              }}
+            >
               <Avatar
                 sx={{
                   width: {
@@ -168,25 +178,30 @@ export default function CandidateProfileR() {
                     sm: 95,
                     md: 110,
                   },
-
                   height: {
                     xs: 80,
                     sm: 95,
                     md: 110,
                   },
-
                   fontSize: {
                     xs: "1.6rem",
                     sm: "1.8rem",
                     md: "2rem",
                   },
-                  background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
+                  background: `linear-gradient(135deg, ${primary}, ${secondary || primary
+                    })`,
                   fontWeight: 800,
                   boxShadow: `0 8px 24px ${primary}40`,
-                  border: `4px solid ${darkMode ? "rgba(30,41,59,0.9)" : "#ffffff"}`,
+                  border: `4px solid ${darkMode ? "rgba(30,41,59,0.9)" : "#ffffff"
+                    }`,
                 }}
               >
-                {profile.fullName?.trim() ? profile.fullName.split(" ").map(n => n[0]).join("") : "JM"}
+                {profile.fullName?.trim()
+                  ? profile.fullName
+                    .split(" ")
+                    .map((n) => n[0])
+                    .join("")
+                  : "JM"}
               </Avatar>
 
               <Box>
@@ -199,15 +214,19 @@ export default function CandidateProfileR() {
                       xs: "1.3rem",
                       sm: "1.5rem",
                       md: "1.7rem",
-                    }
+                    },
                   }}
                 >
                   {profile.fullName}
                 </Typography>
-                <Typography sx={{ color: primary, fontWeight: 700, fontSize: "0.95rem" }}>
+                <Typography
+                  sx={{ color: primary, fontWeight: 700, fontSize: "0.95rem" }}
+                >
                   {profile.designation}
                 </Typography>
-                <Typography sx={{ color: subText, fontSize: "0.85rem", mt: 0.5 }}>
+                <Typography
+                  sx={{ color: subText, fontSize: "0.85rem", mt: 0.5 }}
+                >
                   {profile.email}
                 </Typography>
                 <Box
@@ -278,18 +297,17 @@ export default function CandidateProfileR() {
                     sm: 1.2,
                     md: 1.3,
                   },
-
                   px: {
                     xs: 2,
                     sm: 2.5,
                     md: 3,
                   },
-
                   fontSize: "0.88rem",
                   borderRadius: "10px",
                   fontWeight: 700,
                   textTransform: "none",
-                  background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
+                  background: `linear-gradient(135deg, ${primary}, ${secondary || primary
+                    })`,
                   boxShadow: `0 4px 12px ${primary}33`,
                   "&:hover": {
                     background: `linear-gradient(135deg, ${primary}, ${primary})`,
@@ -315,13 +333,11 @@ export default function CandidateProfileR() {
                     sm: 1.2,
                     md: 1.3,
                   },
-
                   px: {
                     xs: 2,
                     sm: 2.5,
                     md: 3,
                   },
-
                   fontSize: "0.88rem",
                   borderRadius: "10px",
                   fontWeight: 700,
@@ -330,7 +346,9 @@ export default function CandidateProfileR() {
                   borderColor: borderStyle,
                   "&:hover": {
                     borderColor: subText,
-                    bgcolor: darkMode ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.03)",
+                    bgcolor: darkMode
+                      ? "rgba(255,255,255,0.03)"
+                      : "rgba(0,0,0,0.03)",
                     transform: "translateY(-1px)",
                   },
                 }}
@@ -392,7 +410,7 @@ export default function CandidateProfileR() {
                     xs: "1.05rem",
                     sm: "1.15rem",
                     md: "1.25rem",
-                  }
+                  },
                 }}
               >
                 Personal Details
@@ -402,7 +420,7 @@ export default function CandidateProfileR() {
                 sx={{
                   color: subText,
                   fontSize: ".85rem",
-                  mt: .4,
+                  mt: 0.4,
                 }}
               >
                 Your profile information used while applying for jobs.
@@ -423,7 +441,6 @@ export default function CandidateProfileR() {
                 borderRadius: "10px",
                 color: primary,
                 borderColor: primary,
-
                 "&:hover": {
                   bgcolor: `${primary}0d`,
                 },
@@ -447,14 +464,10 @@ export default function CandidateProfileR() {
                 fullWidth
                 label="Full Name"
                 value={profile.fullName}
-                InputLabelProps={{ shrink: true }}
                 slotProps={{
-                  input: {
-                    readOnly: true,
-                  },
-                  htmlInput: {
-                    autoComplete: "off",
-                  },
+                  inputLabel: { shrink: true },
+                  input: { readOnly: true },
+                  htmlInput: { autoComplete: "off" },
                 }}
                 sx={textFieldStyle}
               />
@@ -465,12 +478,8 @@ export default function CandidateProfileR() {
                 label="Candidate ID"
                 value={profile.employeeId}
                 slotProps={{
-                  input: {
-                    readOnly: true,
-                  },
-                  htmlInput: {
-                    autoComplete: "off",
-                  },
+                  input: { readOnly: true },
+                  htmlInput: { autoComplete: "off" },
                 }}
                 sx={textFieldStyle}
               />
@@ -480,14 +489,10 @@ export default function CandidateProfileR() {
                 fullWidth
                 label="Email Address"
                 value={profile.email}
-                InputLabelProps={{ shrink: true }}
                 slotProps={{
-                  input: {
-                    readOnly: true,
-                  },
-                  htmlInput: {
-                    autoComplete: "off",
-                  },
+                  inputLabel: { shrink: true },
+                  input: { readOnly: true },
+                  htmlInput: { autoComplete: "off" },
                 }}
                 sx={textFieldStyle}
               />
@@ -497,14 +502,10 @@ export default function CandidateProfileR() {
                 fullWidth
                 label="Phone Number"
                 value={profile.phone}
-                InputLabelProps={{ shrink: true }}
                 slotProps={{
-                  input: {
-                    readOnly: true,
-                  },
-                  htmlInput: {
-                    autoComplete: "off",
-                  },
+                  inputLabel: { shrink: true },
+                  input: { readOnly: true },
+                  htmlInput: { autoComplete: "off" },
                 }}
                 sx={textFieldStyle}
               />
@@ -515,12 +516,8 @@ export default function CandidateProfileR() {
                 label="Core Skills"
                 value={candidate?.skills || "React, JavaScript, Tailwind CSS"}
                 slotProps={{
-                  input: {
-                    readOnly: true,
-                  },
-                  htmlInput: {
-                    autoComplete: "off",
-                  },
+                  input: { readOnly: true },
+                  htmlInput: { autoComplete: "off" },
                 }}
                 sx={textFieldStyle}
               />
@@ -531,12 +528,8 @@ export default function CandidateProfileR() {
                 label="Experience"
                 value={candidate?.experience || "2 Years"}
                 slotProps={{
-                  input: {
-                    readOnly: true,
-                  },
-                  htmlInput: {
-                    autoComplete: "off",
-                  },
+                  input: { readOnly: true },
+                  htmlInput: { autoComplete: "off" },
                 }}
                 sx={textFieldStyle}
               />
@@ -547,12 +540,8 @@ export default function CandidateProfileR() {
                 label="Location"
                 value={candidate?.location || "Surat, Gujarat, India"}
                 slotProps={{
-                  input: {
-                    readOnly: true,
-                  },
-                  htmlInput: {
-                    autoComplete: "off",
-                  },
+                  input: { readOnly: true },
+                  htmlInput: { autoComplete: "off" },
                 }}
                 sx={textFieldStyle}
               />
@@ -566,12 +555,8 @@ export default function CandidateProfileR() {
                   "B.Tech Computer Engineering"
                 }
                 slotProps={{
-                  input: {
-                    readOnly: true,
-                  },
-                  htmlInput: {
-                    autoComplete: "off",
-                  },
+                  input: { readOnly: true },
+                  htmlInput: { autoComplete: "off" },
                 }}
                 sx={textFieldStyle}
               />
@@ -609,7 +594,8 @@ export default function CandidateProfileR() {
               fontWeight: 700,
               textTransform: "none",
               fontSize: "0.9rem",
-              background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
+              background: `linear-gradient(135deg, ${primary}, ${secondary || primary
+                })`,
               boxShadow: `0 4px 12px ${primary}33`,
               "&:hover": {
                 background: `linear-gradient(135deg, ${primary}, ${primary})`,
@@ -620,7 +606,6 @@ export default function CandidateProfileR() {
             Manage Account Settings
           </Button>
         </Box>
-
       </Box>
     </CandidateLayout>
   );

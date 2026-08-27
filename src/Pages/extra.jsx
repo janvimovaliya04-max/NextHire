@@ -1,7 +1,7 @@
 import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
 import { useEffect, useState } from "react";
-import usersData from "../data/users.json"; // 👈 usersData import ઉમેર્યું છે
+import usersData from "../data/users.json"; // usersData import ઉમેર્યું છે
 
 import {
   Box,

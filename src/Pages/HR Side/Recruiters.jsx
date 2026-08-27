@@ -122,6 +122,7 @@ function SortableRecruiterCard({
         >
             {/* Drag handle */}
             <Box
+                aria-label={`Drag recruiter ${r.fullName}`}
                 {...attributes}
                 {...listeners}
                 sx={{
@@ -256,21 +257,41 @@ function SortableRecruiterCard({
                     <Box sx={{ display: "flex", gap: 0.5, mt: 1 }}>
                         {/* PATCH Status Toggle */}
                         <Tooltip title={`Mark as ${r.status === "Active" ? "On Leave" : "Active"}`}>
-                            <IconButton size="small" onClick={() => onStatusToggle(r)} sx={{ color: primary }}>
-                                {r.status === "Active" ? <ToggleRight size={18} /> : <ToggleLeft size={18} />}
+                            <IconButton
+                                size="small"
+                                aria-label={`Mark ${r.fullName} as ${r.status === "Active" ? "On Leave" : "Active"
+                                    }`}
+                                onClick={() => onStatusToggle(r)}
+                                sx={{ color: primary }}
+                            >
+                                {r.status === "Active" ? (
+                                    <ToggleRight size={18} aria-hidden="true" />
+                                ) : (
+                                    <ToggleLeft size={18} aria-hidden="true" />
+                                )}
                             </IconButton>
                         </Tooltip>
 
                         {/* PUT Edit */}
                         <Tooltip title="Edit Recruiter">
-                            <IconButton size="small" onClick={() => onEdit(r)} sx={{ color: primary }}>
+                            <IconButton
+                                size="small"
+                                aria-label={`Edit recruiter ${r.fullName}`}
+                                onClick={() => onEdit(r)}
+                                sx={{ color: primary }}
+                            >
                                 <Edit size={16} />
                             </IconButton>
                         </Tooltip>
 
                         {/* DELETE Action */}
                         <Tooltip title="Delete Recruiter">
-                            <IconButton size="small" onClick={() => onDelete(r)} sx={{ color: "#ef4444" }}>
+                            <IconButton
+                                size="small"
+                                aria-label={`Delete recruiter ${r.fullName}`}
+                                onClick={() => onDelete(r)}
+                                sx={{ color: "#ef4444" }}
+                            >
                                 <Trash2 size={16} />
                             </IconButton>
                         </Tooltip>
@@ -518,6 +539,7 @@ export default function Recruiters() {
                     placeholder="Search recruiter..."
                     value={globalFilter}
                     onChange={(e) => setGlobalFilter(e.target.value)}
+                    aria-label="Search recruiters"
                     sx={{
                         mb: { xs: 2, md: 2 },
                         "& .MuiOutlinedInput-root": {
@@ -668,6 +690,7 @@ export default function Recruiters() {
                         <IconButton
                             size="small"
                             onClick={() => table.setPageIndex(0)}
+                            aria-label="Go to first page"
                             disabled={!table.getCanPreviousPage()}
                         >
                             <FirstPageIcon fontSize="small" />
@@ -675,6 +698,7 @@ export default function Recruiters() {
                         <IconButton
                             size="small"
                             onClick={() => table.previousPage()}
+                            aria-label="Go to previous page"
                             disabled={!table.getCanPreviousPage()}
                         >
                             <ChevronLeftIcon fontSize="small" />
@@ -682,6 +706,7 @@ export default function Recruiters() {
                         <IconButton
                             size="small"
                             onClick={() => table.nextPage()}
+                            aria-label="Go to next page"
                             disabled={!table.getCanNextPage()}
                         >
                             <ChevronRightIcon fontSize="small" />
@@ -689,6 +714,7 @@ export default function Recruiters() {
                         <IconButton
                             size="small"
                             onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+                            aria-label="Go to last page"
                             disabled={!table.getCanNextPage()}
                         >
                             <LastPageIcon fontSize="small" />

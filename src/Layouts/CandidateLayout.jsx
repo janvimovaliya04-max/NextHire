@@ -341,6 +341,7 @@ export default function CandidateLayout({ children }) {
         >
           <div className="flex items-center gap-2 md:hidden">
             <button
+              aria-label="Toggle navigation menu"
               onClick={() => setMobileMenu(true)}
               className="p-2 rounded-lg border"
               style={{
@@ -353,6 +354,7 @@ export default function CandidateLayout({ children }) {
             </button>
             <Link
               to="/candidate/candidate-notifications"
+              aria-label="View notifications"
               className="relative p-2 rounded-lg border"
               style={{
                 borderColor: borderStyle,
@@ -383,6 +385,7 @@ export default function CandidateLayout({ children }) {
             {/* Interview Schedule Calendar */}
             <Link
               to="/candidate/candidate-calendar"
+              aria-label="View candidate calendar"
               className="p-2.5 rounded-xl border relative transition-all duration-200"
               style={{
                 backgroundColor: colors.input,
@@ -395,6 +398,7 @@ export default function CandidateLayout({ children }) {
 
             {/* Theme switcher */}
             <button
+              aria-label={darkMode ? "Switch to light theme" : "Switch to dark theme"}
               onClick={() => setDarkMode(!darkMode)}
               className="p-2.5 rounded-xl border transition-all duration-200"
               style={{
@@ -409,6 +413,7 @@ export default function CandidateLayout({ children }) {
             {/* Notifications Alert */}
             <Link
               to="/candidate/candidate-notifications"
+              aria-label="View notifications"
               className="p-2.5 rounded-xl border relative transition-all duration-200"
               style={{
                 backgroundColor: colors.input,
@@ -437,6 +442,7 @@ export default function CandidateLayout({ children }) {
             <Tooltip title="My Profile">
               <Link
                 to="/candidate/candidate-profile-r"
+                aria-label="View user profile"
                 className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 border-2 border-white shadow-md hover:scale-105 text-white"
                 style={{ background: `linear-gradient(135deg,${primary},${secondary || primary})` }}
               >

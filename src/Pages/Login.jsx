@@ -21,6 +21,7 @@ import {
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import SEO from "../components/common/SEO";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -143,6 +144,7 @@ export default function Login() {
 
   return (
     <Box
+      component="main"
       sx={{
         minHeight: "100vh",
         display: "flex",
@@ -158,6 +160,12 @@ export default function Login() {
         overflow: "hidden",
       }}
     >
+      {/* Dynamic SEO Tags Injection */}
+      <SEO
+        title="Sign In"
+        description="Sign in to NextHire to access your HR, candidate, or interviewer portal."
+        canonicalUrl="/login"
+      />
 
       <Box
         sx={{
@@ -224,7 +232,7 @@ export default function Login() {
             : "0 25px 50px -12px rgba(0, 0, 0, 0.06)",
         }}
       >
-        <Box textAlign="center" sx={{ mb: { xs: 1, sm: 2 } }}>
+        <Box sx={{ textAlign: "center", mb: { xs: 1, sm: 2 } }}>
           <Avatar
             sx={{
               width: { xs: 48, sm: 64 },
@@ -299,6 +307,7 @@ export default function Login() {
                     <IconButton
                       onClick={() => setShowPassword(!showPassword)}
                       edge="end"
+                      aria-label={showPassword ? "Hide password" : "Show password"}
                       sx={{ color: darkMode ? "#94a3b8" : "#64748b" }}
                     >
                       {showPassword ? <VisibilityOff /> : <Visibility />}

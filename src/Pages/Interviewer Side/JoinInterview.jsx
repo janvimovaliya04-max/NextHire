@@ -384,6 +384,7 @@ export default function JoinInterview() {
           size="small"
           value={language}
           onChange={handleLanguageChange}
+          aria-label="Select programming language"
           sx={{
             fontSize: ".8rem",
             color: "#e2e8f0",
@@ -406,6 +407,7 @@ export default function JoinInterview() {
           <IconButton
             size="small"
             onClick={() => setIsEditorFullscreen((prev) => !prev)}
+            aria-label={isEditorFullscreen ? "Exit full screen" : "Enter full screen"}
             sx={{
               color: "#e2e8f0",
               border: "1px solid #3a3a3a",
@@ -924,6 +926,7 @@ export default function JoinInterview() {
           />
           <IconButton
             onClick={handleSendChat}
+            aria-label="Send message"
             sx={{
               bgcolor: `${primaryColor}26`,
               color: primaryColor,
@@ -961,6 +964,7 @@ export default function JoinInterview() {
         <Box sx={{ display: "flex", gap: 1.5 }}>
           <IconButton
             onClick={() => setMicActive(!micActive)}
+            aria-label={micActive ? "Mute microphone" : "Unmute microphone"}
             sx={{
               bgcolor: micActive ? `${primaryColor}26` : "rgba(244, 63, 94, 0.15)",
               color: micActive ? primaryColor : "#f43f5e",
@@ -973,6 +977,7 @@ export default function JoinInterview() {
           </IconButton>
           <IconButton
             onClick={() => setCameraActive(!cameraActive)}
+            aria-label={cameraActive ? "Turn camera off" : "Turn camera on"}
             sx={{
               bgcolor: cameraActive ? `${primaryColor}26` : "rgba(244, 63, 94, 0.15)",
               color: cameraActive ? primaryColor : "#f43f5e",
@@ -984,6 +989,7 @@ export default function JoinInterview() {
             {cameraActive ? <Video /> : <VideoOff />}
           </IconButton>
           <IconButton
+            aria-label="Share screen"
             sx={{
               bgcolor: darkMode ? "rgba(255,255,255,0.04)" : "#f1f5f9",
               color: primaryColor,
@@ -1065,6 +1071,7 @@ export default function JoinInterview() {
             <Tooltip title="Exit full screen (Esc)">
               <IconButton
                 onClick={() => setIsEditorFullscreen(false)}
+                aria-label="Exit full screen"
                 sx={{
                   color: "#f1f5f9",
                   border: "1px solid rgba(255,255,255,.15)",

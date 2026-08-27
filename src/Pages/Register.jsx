@@ -22,6 +22,7 @@ import GoogleIcon from "@mui/icons-material/Google";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import SEO from "../components/common/SEO";
 
 export default function Register() {
   const { darkMode } = useTheme();
@@ -129,6 +130,7 @@ export default function Register() {
 
   return (
     <Box
+      component="main"
       sx={{
         minHeight: "100vh",
         display: "flex",
@@ -147,6 +149,13 @@ export default function Register() {
         overflow: "hidden",
       }}
     >
+
+       {/* Dynamic SEO Tags Injection */}
+            <SEO
+              title="Sign In"
+              description="Sign in to NextHire to access your HR, candidate, or interviewer portal."
+              canonicalUrl="/register"
+            />
 
       {/* Background Decorative Glow Blobs based on theme */}
       <Box
@@ -382,6 +391,7 @@ export default function Register() {
                     <IconButton
                       onClick={() => setShowPassword(!showPassword)}
                       edge="end"
+                      aria-label={showPassword ? "Hide password" : "Show password"}
                       sx={{ color: darkMode ? "#94a3b8" : "#64748b" }}
                     >
                       {showPassword ? <VisibilityOff /> : <Visibility />}
@@ -405,6 +415,7 @@ export default function Register() {
                     <IconButton
                       onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                       edge="end"
+                      aria-label={showConfirmPassword ? "Hide confirm password" : "Show confirm password"}
                       sx={{ color: darkMode ? "#94a3b8" : "#64748b" }}
                     >
                       {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
@@ -449,6 +460,7 @@ export default function Register() {
             fullWidth
             variant="contained"
             size="large"
+            type="submit"
             sx={{
               py: {
                 xs: 1.4,

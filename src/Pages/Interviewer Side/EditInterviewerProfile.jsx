@@ -214,6 +214,7 @@ export default function EditInterviewerProfile() {
 
           <Typography
             variant="h6"
+            component="h5"
             sx={{
               fontWeight: 800,
               color: textColor

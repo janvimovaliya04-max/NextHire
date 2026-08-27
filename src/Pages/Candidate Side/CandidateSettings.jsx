@@ -25,7 +25,7 @@ import {
   Save,
   ArrowLeft,
 } from "lucide-react";
-import SEO from "../../components/common/SEO"; // SEO Component Import Added
+import SEO from "../../components/common/SEO";
 
 export default function CandidateSettings() {
   const { user } = useAuth();
@@ -229,11 +229,9 @@ export default function CandidateSettings() {
                 fullWidth
                 label="Full Name"
                 value={profile.fullName}
-                InputLabelProps={{ shrink: true }}
                 slotProps={{
-                  input: {
-                    readOnly: true,
-                  },
+                  inputLabel: { shrink: true },
+                  input: { readOnly: true },
                 }}
                 sx={textFieldStyle}
               />
@@ -244,9 +242,7 @@ export default function CandidateSettings() {
                 label="Email ID"
                 value={profile.email}
                 slotProps={{
-                  input: {
-                    readOnly: true,
-                  },
+                  input: { readOnly: true },
                 }}
                 sx={textFieldStyle}
               />
@@ -257,9 +253,7 @@ export default function CandidateSettings() {
                 label="Registered Role"
                 value={profile.role}
                 slotProps={{
-                  input: {
-                    readOnly: true,
-                  },
+                  input: { readOnly: true },
                 }}
                 sx={textFieldStyle}
               />
@@ -270,9 +264,7 @@ export default function CandidateSettings() {
                 label="System Status"
                 value={profile.status}
                 slotProps={{
-                  input: {
-                    readOnly: true,
-                  },
+                  input: { readOnly: true },
                 }}
                 sx={textFieldStyle}
               />
@@ -395,6 +387,7 @@ export default function CandidateSettings() {
                 }}>Receive general status logs to your primary email inbox.</Typography>
               </Box>
               <Switch
+                slotProps={{ input: { 'aria-label': 'Email Notifications' } }}
                 sx={{
                   alignSelf: {
                     xs: "flex-end",
@@ -436,6 +429,7 @@ export default function CandidateSettings() {
                 }}>Get notified instantly when recruiters update your application stage.</Typography>
               </Box>
               <Switch
+                slotProps={{ input: { 'aria-label': 'Application Updates' } }}
                 sx={{
                   alignSelf: {
                     xs: "flex-end",
@@ -477,6 +471,7 @@ export default function CandidateSettings() {
                 }}>Alert prior to scheduled technical panel assessments.</Typography>
               </Box>
               <Switch
+                slotProps={{ input: { 'aria-label': 'Interview reminders' } }}
                 sx={{
                   alignSelf: {
                     xs: "flex-end",

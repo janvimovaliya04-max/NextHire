@@ -105,6 +105,13 @@ export default function NotesEditorPage() {
     const employeesList = evaluationsData;
 
     const editor = useEditor({
+        editorProps: {
+            attributes: {
+                role: "textbox",
+                "aria-label": "HR notes editor",
+                "aria-multiline": "true",
+            },
+        },
         extensions: [
             Youtube.configure({
                 controls: true,
@@ -258,7 +265,7 @@ export default function NotesEditorPage() {
     const activeColor = primary;
 
     const getToolbarBtnSx = (isActive, isDisabled = false) => ({
-        padding: "8px",
+        padding: { xs: "6px", sm: "8px" },
         borderRadius: "10px",
         backgroundColor: isActive ? activeColor : inputColor,
         color: isActive ? "#ffffff" : subText,
@@ -288,7 +295,8 @@ export default function NotesEditorPage() {
         fontWeight: 700,
         borderRadius: "10px",
         textTransform: "none",
-        px: 2,
+        px: { xs: 1.4, sm: 2 },
+        fontSize: { xs: "0.78rem", sm: "0.875rem" },
         "&:hover": {
             borderColor: primary,
             bgcolor: `${primary}08`,
@@ -304,7 +312,7 @@ export default function NotesEditorPage() {
                 canonicalUrl="/interviewer/notes"
             />
 
-            <Container maxWidth="lg" sx={{ mt: 4, mb: 6 }}>
+            <Container maxWidth="lg" sx={{ mt: { xs: 2.5, sm: 4 }, mb: { xs: 4, sm: 6 }, px: { xs: 1.5, sm: 3 } }}>
                 {/* Hidden File Input for Local Explorer */}
                 <input
                     type="file"
@@ -314,7 +322,7 @@ export default function NotesEditorPage() {
                     onChange={handleFileChange}
                 />
 
-                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 3, flexWrap: "wrap", gap: 2 }}>
+                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: { xs: 2, sm: 3 }, flexWrap: "wrap", gap: 2 }}>
                     <Box>
                         <Typography
                             sx={{
@@ -337,14 +345,14 @@ export default function NotesEditorPage() {
                                     bgcolor: inputColor,
                                     color: subText,
                                     border: `1px solid ${borderStyle}`,
-                                    fontSize: "0.75rem",
-                                    height: "24px"
+                                    fontSize: { xs: "0.68rem", sm: "0.75rem" },
+                                    height: { xs: 22, sm: 24 }
                                 }}
                             />
                         </Box>
                     </Box>
 
-                    <Box sx={{ display: "flex", gap: 1.5, alignItems: "center" }}>
+                    <Box sx={{ display: "flex", gap: { xs: 1, sm: 1.5 }, alignItems: "center", flexWrap: "wrap" }}>
                         {/* Feature 5: Templates Button */}
                         <Button
                             variant="outlined"
@@ -360,10 +368,10 @@ export default function NotesEditorPage() {
                             onClose={handleTemplateClose}
                             PaperProps={{ sx: menuPaperSx }}
                         >
-                            <MenuItem onClick={() => applyTemplate("tech")} sx={{ fontSize: "0.9rem" }}>Technical Evaluation</MenuItem>
-                            <MenuItem onClick={() => applyTemplate("behavioral")} sx={{ fontSize: "0.9rem" }}>Behavioral & Culture Fit</MenuItem>
-                            <MenuItem onClick={() => applyTemplate("coding_debrief")} sx={{ fontSize: "0.9rem" }}>Live Coding Review</MenuItem>
-                            <MenuItem onClick={() => applyTemplate("panel_debrief")} sx={{ fontSize: "0.9rem" }}>Panel Debrief Summary</MenuItem>
+                            <MenuItem onClick={() => applyTemplate("tech")} sx={{ fontSize: { xs: "0.82rem", sm: "0.9rem" } }}>Technical Evaluation</MenuItem>
+                            <MenuItem onClick={() => applyTemplate("behavioral")} sx={{ fontSize: { xs: "0.82rem", sm: "0.9rem" } }}>Behavioral & Culture Fit</MenuItem>
+                            <MenuItem onClick={() => applyTemplate("coding_debrief")} sx={{ fontSize: { xs: "0.82rem", sm: "0.9rem" } }}>Live Coding Review</MenuItem>
+                            <MenuItem onClick={() => applyTemplate("panel_debrief")} sx={{ fontSize: { xs: "0.82rem", sm: "0.9rem" } }}>Panel Debrief Summary</MenuItem>
                         </Menu>
 
                         {/* Feature 1: Export Button */}
@@ -381,8 +389,8 @@ export default function NotesEditorPage() {
                             onClose={handleExportClose}
                             PaperProps={{ sx: menuPaperSx }}
                         >
-                            <MenuItem onClick={handleExportPDF} sx={{ fontSize: "0.9rem" }}>Export as PDF (Print)</MenuItem>
-                            <MenuItem onClick={handleExportWord} sx={{ fontSize: "0.9rem" }}>Export as Word (.doc)</MenuItem>
+                            <MenuItem onClick={handleExportPDF} sx={{ fontSize: { xs: "0.82rem", sm: "0.9rem" } }}>Export as PDF (Print)</MenuItem>
+                            <MenuItem onClick={handleExportWord} sx={{ fontSize: { xs: "0.82rem", sm: "0.9rem" } }}>Export as Word (.doc)</MenuItem>
                         </Menu>
 
                         <Button
@@ -393,7 +401,8 @@ export default function NotesEditorPage() {
                                 borderRadius: "10px",
                                 fontWeight: 700,
                                 textTransform: "none",
-                                px: 3,
+                                px: { xs: 2, sm: 3 },
+                                fontSize: { xs: "0.78rem", sm: "0.875rem" },
                                 background: `linear-gradient(135deg, ${primary}, ${secondaryColor})`,
                                 boxShadow: `0 4px 12px ${primary}33`,
                                 transition: ".25s",
@@ -412,7 +421,7 @@ export default function NotesEditorPage() {
                 <Paper
                     elevation={0}
                     sx={{
-                        borderRadius: "22px",
+                        borderRadius: { xs: "16px", sm: "22px" },
                         border: `1px solid ${borderStyle}`,
                         bgcolor: cardColor,
                         backdropFilter: "blur(12px)",
@@ -432,8 +441,8 @@ export default function NotesEditorPage() {
                         sx={{
                             display: "flex",
                             flexWrap: "wrap",
-                            gap: 1,
-                            p: 1.5,
+                            gap: { xs: 0.5, sm: 1 },
+                            p: { xs: 1, sm: 1.5 },
                             borderBottom: `1px solid ${borderStyle}`,
                             bgcolor: inputColor,
                             alignItems: "center",
@@ -519,7 +528,7 @@ export default function NotesEditorPage() {
                             PaperProps={{
                                 sx: {
                                     ...menuPaperSx,
-                                    width: "220px"
+                                    width: { xs: "180px", sm: "220px" }
                                 }
                             }}
                             MenuListProps={{
@@ -550,14 +559,14 @@ export default function NotesEditorPage() {
                                         key={idx}
                                         onClick={() => { handleInsertMention(emp); setMentionAnchorEl(null); }}
                                         sx={{
-                                            fontSize: "0.9rem",
+                                            fontSize: { xs: "0.82rem", sm: "0.9rem" },
                                             display: "flex",
                                             flexDirection: "column",
                                             alignItems: "flex-start",
                                             py: 0.5
                                         }}
                                     >
-                                        <Typography sx={{ fontWeight: 600, fontSize: "0.9rem", color: textColor }}>
+                                        <Typography sx={{ fontWeight: 600, fontSize: { xs: "0.82rem", sm: "0.9rem" }, color: textColor }}>
                                             {emp.candidate}
                                         </Typography>
                                         <Typography sx={{ fontSize: "0.75rem", color: subText }}>
@@ -597,11 +606,11 @@ export default function NotesEditorPage() {
                             onClose={handleImageClose}
                             PaperProps={{ sx: menuPaperSx }}
                         >
-                            <MenuItem onClick={handleAddImageByURL} sx={{ fontSize: "0.9rem", gap: 1.5 }}>
+                            <MenuItem onClick={handleAddImageByURL} sx={{ fontSize: { xs: "0.82rem", sm: "0.9rem" }, gap: 1.5 }}>
                                 <ListItemIcon sx={{ color: textColor, minWidth: "auto" }}><LinkIcon size={16} /></ListItemIcon>
                                 <ListItemText>Insert via URL</ListItemText>
                             </MenuItem>
-                            <MenuItem onClick={handleTriggerFileExplorer} sx={{ fontSize: "0.9rem", gap: 1.5 }}>
+                            <MenuItem onClick={handleTriggerFileExplorer} sx={{ fontSize: { xs: "0.82rem", sm: "0.9rem" }, gap: 1.5 }}>
                                 <ListItemIcon sx={{ color: textColor, minWidth: "auto" }}><FolderOpen size={16} /></ListItemIcon>
                                 <ListItemText>Upload from Computer</ListItemText>
                             </MenuItem>
@@ -625,13 +634,13 @@ export default function NotesEditorPage() {
                     {/* Editor Content Area */}
                     <Box
                         sx={{
-                            p: 3,
-                            minHeight: "300px",
+                            p: { xs: 1.75, sm: 2.25, md: 3 },
+                            minHeight: { xs: "240px", sm: "300px" },
                             color: textColor,
                             "& .ProseMirror": {
                                 outline: "none",
-                                minHeight: "260px",
-                                fontSize: "1rem",
+                                minHeight: { xs: "200px", sm: "260px" },
+                                fontSize: { xs: "0.92rem", sm: "1rem" },
                                 lineHeight: 1.6,
                                 color: textColor,
                             },

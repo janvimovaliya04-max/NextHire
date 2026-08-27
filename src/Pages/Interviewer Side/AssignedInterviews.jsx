@@ -253,12 +253,15 @@ export default function AssignedInterviews() {
             placeholder="Search candidate..."
             value={globalFilter}
             onChange={(e) => setGlobalFilter(e.target.value)}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Search color={primary} />
-                </InputAdornment>
-              )
+            slotProps={{
+              input: {
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Search color={primary} />
+                  </InputAdornment>
+                ),
+                "aria-label": "Search candidate",
+              },
             }}
             sx={{
               width: { xs: "100%", sm: "320px", md: "360px" },
@@ -477,6 +480,7 @@ export default function AssignedInterviews() {
                   size="small"
                   onClick={() => table.setPageIndex(0)}
                   disabled={!table.getCanPreviousPage()}
+                  aria-label="First page"
                   sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
                 >
                   <FirstPageIcon fontSize="small" />
@@ -490,6 +494,7 @@ export default function AssignedInterviews() {
                   size="small"
                   onClick={() => table.previousPage()}
                   disabled={!table.getCanPreviousPage()}
+                  aria-label="Previous page"
                   sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
                 >
                   <ChevronLeftIcon fontSize="small" />
@@ -516,6 +521,8 @@ export default function AssignedInterviews() {
                     key={item}
                     size="small"
                     onClick={() => table.setPageIndex(item)}
+                    aria-label={`Go to page ${item + 1}`}
+                    aria-current={table.getState().pagination.pageIndex === item ? "page" : undefined}
                     sx={{
                       minWidth: 32,
                       height: 32,
@@ -541,6 +548,7 @@ export default function AssignedInterviews() {
                   size="small"
                   onClick={() => table.nextPage()}
                   disabled={!table.getCanNextPage()}
+                  aria-label="Next page"
                   sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
                 >
                   <ChevronRightIcon fontSize="small" />
@@ -554,6 +562,7 @@ export default function AssignedInterviews() {
                   size="small"
                   onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                   disabled={!table.getCanNextPage()}
+                  aria-label="Last page"
                   sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
                 >
                   <LastPageIcon fontSize="small" />
@@ -563,10 +572,14 @@ export default function AssignedInterviews() {
           </Box>
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <Typography sx={{ fontSize: ".82rem", color: subText }}>Rows per page:</Typography>
+            <Typography id="rows-per-page-label" sx={{ fontSize: ".82rem", color: subText }}>
+              Rows per page:
+            </Typography>
             <select
               value={pagination.pageSize}
               onChange={(e) => table.setPageSize(Number(e.target.value))}
+              aria-label="Rows per page"
+              aria-labelledby="rows-per-page-label"
               style={{
                 background: colors.input,
                 color: textColor,

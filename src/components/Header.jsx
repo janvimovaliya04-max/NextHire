@@ -49,6 +49,7 @@ export default function Header({
           >
             <img
               src="/NextHirelogo.png"
+              alt="NextHire"
               style={{
                 height: 130,
                 objectFit: "contain",
@@ -59,6 +60,7 @@ export default function Header({
           {/* THEME TOGGLE */}
           <IconButton
             onClick={() => setDarkMode(!darkMode)}
+            aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
             sx={{
               bgcolor: darkMode
                 ? "rgba(255,255,255,.05)"

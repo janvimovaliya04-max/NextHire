@@ -119,9 +119,21 @@ export default function NotesEditorPage() {
                     style: "border-radius: 8px; cursor: pointer;",
                 },
             }),
-            TextAlign.configure({ types: ["heading", "paragraph"] }),
+            TextAlign.configure({
+                types: ["heading", "paragraph"],
+            }),
         ],
-        content: "<p>Start writing HR notes, interview feedback, or meeting summaries here...</p>",
+
+        editorProps: {
+            attributes: {
+                role: "textbox",
+                "aria-label": "HR notes editor",
+                "aria-multiline": "true",
+            },
+        },
+
+        content:
+            "<p>Start writing HR notes, interview feedback, or meeting summaries here...</p>",
     });
 
     useEffect(() => {
@@ -253,7 +265,7 @@ export default function NotesEditorPage() {
     const activeColor = primary;
 
     const getToolbarBtnSx = (isActive, isDisabled = false) => ({
-        padding: "8px",
+        padding: { xs: "6px", sm: "8px" },
         borderRadius: "10px",
         backgroundColor: isActive ? activeColor : inputColor,
         color: isActive ? "#ffffff" : subText,
@@ -283,7 +295,8 @@ export default function NotesEditorPage() {
         fontWeight: 700,
         borderRadius: "10px",
         textTransform: "none",
-        px: 2,
+        px: { xs: 1.4, sm: 2 },
+        fontSize: { xs: "0.78rem", sm: "0.875rem" },
         "&:hover": {
             borderColor: primary,
             bgcolor: `${primary}08`,
@@ -299,7 +312,7 @@ export default function NotesEditorPage() {
                 canonicalUrl="/hr-portal/dashboard"
             />
 
-            <Container maxWidth="lg" sx={{ mt: 4, mb: 6 }}>
+            <Container maxWidth="lg" sx={{ mt: { xs: 2.5, sm: 4 }, mb: { xs: 4, sm: 6 }, px: { xs: 1.5, sm: 3 } }}>
                 {/* Hidden File Input for Local Explorer */}
                 <input
                     type="file"
@@ -309,7 +322,7 @@ export default function NotesEditorPage() {
                     onChange={handleFileChange}
                 />
 
-                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 3, flexWrap: "wrap", gap: 2 }}>
+                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: { xs: 2, sm: 3 }, flexWrap: "wrap", gap: 2 }}>
                     <Box>
                         <Typography
                             sx={{
@@ -332,14 +345,14 @@ export default function NotesEditorPage() {
                                     bgcolor: inputColor,
                                     color: subText,
                                     border: `1px solid ${borderStyle}`,
-                                    fontSize: "0.75rem",
-                                    height: "24px"
+                                    fontSize: { xs: "0.68rem", sm: "0.75rem" },
+                                    height: { xs: 22, sm: 24 }
                                 }}
                             />
                         </Box>
                     </Box>
 
-                    <Box sx={{ display: "flex", gap: 1.5, alignItems: "center" }}>
+                    <Box sx={{ display: "flex", gap: { xs: 1, sm: 1.5 }, alignItems: "center", flexWrap: "wrap" }}>
                         {/* Feature 5: Templates Button */}
                         <Button
                             variant="outlined"
@@ -355,9 +368,9 @@ export default function NotesEditorPage() {
                             onClose={handleTemplateClose}
                             PaperProps={{ sx: menuPaperSx }}
                         >
-                            <MenuItem onClick={() => applyTemplate("tech")} sx={{ fontSize: "0.9rem" }}>Technical Interview Template</MenuItem>
-                            <MenuItem onClick={() => applyTemplate("hr")} sx={{ fontSize: "0.9rem" }}>HR Round Feedback</MenuItem>
-                            <MenuItem onClick={() => applyTemplate("performance")} sx={{ fontSize: "0.9rem" }}>Performance Review</MenuItem>
+                            <MenuItem onClick={() => applyTemplate("tech")} sx={{ fontSize: { xs: "0.82rem", sm: "0.9rem" } }}>Technical Interview Template</MenuItem>
+                            <MenuItem onClick={() => applyTemplate("hr")} sx={{ fontSize: { xs: "0.82rem", sm: "0.9rem" } }}>HR Round Feedback</MenuItem>
+                            <MenuItem onClick={() => applyTemplate("performance")} sx={{ fontSize: { xs: "0.82rem", sm: "0.9rem" } }}>Performance Review</MenuItem>
                         </Menu>
 
                         {/* Feature 1: Export Button */}
@@ -375,8 +388,8 @@ export default function NotesEditorPage() {
                             onClose={handleExportClose}
                             PaperProps={{ sx: menuPaperSx }}
                         >
-                            <MenuItem onClick={handleExportPDF} sx={{ fontSize: "0.9rem" }}>Export as PDF (Print)</MenuItem>
-                            <MenuItem onClick={handleExportWord} sx={{ fontSize: "0.9rem" }}>Export as Word (.doc)</MenuItem>
+                            <MenuItem onClick={handleExportPDF} sx={{ fontSize: { xs: "0.82rem", sm: "0.9rem" } }}>Export as PDF (Print)</MenuItem>
+                            <MenuItem onClick={handleExportWord} sx={{ fontSize: { xs: "0.82rem", sm: "0.9rem" } }}>Export as Word (.doc)</MenuItem>
                         </Menu>
 
                         {/* FIXED: removed duplicate sx keys (textTransform/fontWeight/borderRadius/px were repeated) */}
@@ -388,7 +401,8 @@ export default function NotesEditorPage() {
                                 borderRadius: "10px",
                                 fontWeight: 700,
                                 textTransform: "none",
-                                px: 3,
+                                px: { xs: 2, sm: 3 },
+                                fontSize: { xs: "0.78rem", sm: "0.875rem" },
                                 background: `linear-gradient(135deg, ${primary}, ${secondaryColor})`,
                                 boxShadow: `0 4px 12px ${primary}33`,
                                 transition: ".25s",
@@ -407,7 +421,7 @@ export default function NotesEditorPage() {
                 <Paper
                     elevation={0}
                     sx={{
-                        borderRadius: "22px",
+                        borderRadius: { xs: "16px", sm: "22px" },
                         border: `1px solid ${borderStyle}`,
                         bgcolor: cardColor,
                         backdropFilter: "blur(12px)",
@@ -427,84 +441,166 @@ export default function NotesEditorPage() {
                         sx={{
                             display: "flex",
                             flexWrap: "wrap",
-                            gap: 1,
-                            p: 1.5,
+                            gap: { xs: 0.5, sm: 1 },
+                            p: { xs: 1, sm: 1.5 },
                             borderBottom: `1px solid ${borderStyle}`,
                             bgcolor: inputColor,
                             alignItems: "center",
                         }}
                     >
                         {/* Formatting Controls */}
-                        <IconButton onClick={() => editor.chain().focus().toggleBold().run()} sx={getToolbarBtnSx(editor.isActive("bold"))} title="Bold">
+                        <IconButton
+                            onClick={() => editor.chain().focus().toggleBold().run()}
+                            sx={getToolbarBtnSx(editor.isActive("bold"))}
+                            aria-label="Bold"
+                        >
                             <Bold size={18} />
                         </IconButton>
-                        <IconButton onClick={() => editor.chain().focus().toggleItalic().run()} sx={getToolbarBtnSx(editor.isActive("italic"))} title="Italic">
+
+                        <IconButton
+                            onClick={() => editor.chain().focus().toggleItalic().run()}
+                            sx={getToolbarBtnSx(editor.isActive("italic"))}
+                            aria-label="Italic"
+                        >
                             <Italic size={18} />
                         </IconButton>
-                        <IconButton onClick={() => editor.chain().focus().toggleUnderline().run()} sx={getToolbarBtnSx(editor.isActive("underline"))} title="Underline">
+
+                        <IconButton
+                            onClick={() => editor.chain().focus().toggleUnderline().run()}
+                            sx={getToolbarBtnSx(editor.isActive("underline"))}
+                            aria-label="Underline"
+                        >
                             <UnderlineIcon size={18} />
                         </IconButton>
-                        <IconButton onClick={() => editor.chain().focus().toggleStrike().run()} sx={getToolbarBtnSx(editor.isActive("strike"))} title="Strikethrough">
+
+                        <IconButton
+                            onClick={() => editor.chain().focus().toggleStrike().run()}
+                            sx={getToolbarBtnSx(editor.isActive("strike"))}
+                            aria-label="Strikethrough"
+                        >
                             <Strikethrough size={18} />
                         </IconButton>
 
                         <Divider orientation="vertical" flexItem sx={{ mx: 0.5, borderColor: borderStyle }} />
 
                         {/* Lists & Quotes & Feature 4: Checklist Task List */}
-                        <IconButton onClick={() => editor.chain().focus().toggleBulletList().run()} sx={getToolbarBtnSx(editor.isActive("bulletList"))} title="Bullet List">
+                        <IconButton
+                            onClick={() => editor.chain().focus().toggleBulletList().run()}
+                            sx={getToolbarBtnSx(editor.isActive("bulletList"))}
+                            aria-label="Bullet List"
+                        >
                             <List size={18} />
                         </IconButton>
-                        <IconButton onClick={() => editor.chain().focus().toggleOrderedList().run()} sx={getToolbarBtnSx(editor.isActive("orderedList"))} title="Ordered List">
+
+                        <IconButton
+                            onClick={() => editor.chain().focus().toggleOrderedList().run()}
+                            sx={getToolbarBtnSx(editor.isActive("orderedList"))}
+                            aria-label="Numbered List"
+                        >
                             <ListOrdered size={18} />
                         </IconButton>
-                        <IconButton onClick={() => editor.chain().focus().toggleTaskList().run()} sx={getToolbarBtnSx(editor.isActive("taskList"))} title="Action Items Checklist">
+
+                        <IconButton
+                            onClick={() => editor.chain().focus().toggleTaskList().run()}
+                            sx={getToolbarBtnSx(editor.isActive("taskList"))}
+                            aria-label="Action Items Checklist"
+                        >
                             <CheckSquare size={18} />
                         </IconButton>
-                        <IconButton onClick={() => editor.chain().focus().toggleBlockquote().run()} sx={getToolbarBtnSx(editor.isActive("blockquote"))} title="Quote">
+
+                        <IconButton
+                            onClick={() => editor.chain().focus().toggleBlockquote().run()}
+                            sx={getToolbarBtnSx(editor.isActive("blockquote"))}
+                            aria-label="Quote"
+                        >
                             <Quote size={18} />
                         </IconButton>
 
                         <Divider orientation="vertical" flexItem sx={{ mx: 0.5, borderColor: borderStyle }} />
 
                         {/* Text Alignment */}
-                        <IconButton onClick={() => editor.chain().focus().setTextAlign("left").run()} sx={getToolbarBtnSx(editor.isActive({ textAlign: "left" }))} title="Align Text Left">
+                        <IconButton
+                            onClick={() => editor.chain().focus().setTextAlign("left").run()}
+                            sx={getToolbarBtnSx(editor.isActive({ textAlign: "left" }))}
+                            aria-label="Align Text Left"
+                        >
                             <AlignLeft size={18} />
                         </IconButton>
-                        <IconButton onClick={() => editor.chain().focus().setTextAlign("center").run()} sx={getToolbarBtnSx(editor.isActive({ textAlign: "center" }))} title="Align Text Center">
+
+                        <IconButton
+                            onClick={() => editor.chain().focus().setTextAlign("center").run()}
+                            sx={getToolbarBtnSx(editor.isActive({ textAlign: "center" }))}
+                            aria-label="Align Text Center"
+                        >
                             <AlignCenter size={18} />
                         </IconButton>
-                        <IconButton onClick={() => editor.chain().focus().setTextAlign("right").run()} sx={getToolbarBtnSx(editor.isActive({ textAlign: "right" }))} title="Align Text Right">
+
+                        <IconButton
+                            onClick={() => editor.chain().focus().setTextAlign("right").run()}
+                            sx={getToolbarBtnSx(editor.isActive({ textAlign: "right" }))}
+                            aria-label="Align Text Right"
+                        >
                             <AlignRight size={18} />
                         </IconButton>
 
                         <Divider orientation="vertical" flexItem sx={{ mx: 0.5, borderColor: borderStyle }} />
 
                         {/* Image Movement / Position Controls */}
-                        <IconButton onClick={() => setImageAlignment("left")} sx={getToolbarBtnSx(false)} title="Move Image Left">
+                        <IconButton
+                            onClick={() => setImageAlignment("left")}
+                            sx={getToolbarBtnSx(false)}
+                            aria-label="Move Image Left"
+                        >
                             <AlignLeft size={18} />
                         </IconButton>
-                        <IconButton onClick={() => setImageAlignment("center")} sx={getToolbarBtnSx(false)} title="Move Image Center">
+
+                        <IconButton
+                            onClick={() => setImageAlignment("center")}
+                            sx={getToolbarBtnSx(false)}
+                            aria-label="Move Image Center"
+                        >
                             <AlignCenter size={18} />
                         </IconButton>
-                        <IconButton onClick={() => setImageAlignment("right")} sx={getToolbarBtnSx(false)} title="Move Image Right">
+
+                        <IconButton
+                            onClick={() => setImageAlignment("right")}
+                            sx={getToolbarBtnSx(false)}
+                            aria-label="Move Image Right"
+                        >
                             <AlignRight size={18} />
                         </IconButton>
 
                         <Divider orientation="vertical" flexItem sx={{ mx: 0.5, borderColor: borderStyle }} />
 
                         {/* Special Tools */}
-                        <IconButton onClick={() => editor.chain().focus().toggleHighlight().run()} sx={getToolbarBtnSx(editor.isActive("highlight"))} title="Highlight">
+                        <IconButton
+                            onClick={() => editor.chain().focus().toggleHighlight().run()}
+                            sx={getToolbarBtnSx(editor.isActive("highlight"))}
+                            aria-label="Highlight"
+                        >
                             <Highlighter size={18} />
                         </IconButton>
-                        <IconButton onClick={() => editor.chain().focus().toggleSubscript().run()} sx={getToolbarBtnSx(editor.isActive("subscript"))} title="Subscript">
+                        <IconButton
+                            onClick={() => editor.chain().focus().toggleSubscript().run()}
+                            sx={getToolbarBtnSx(editor.isActive("subscript"))}
+                            aria-label="Subscript"
+                        >
                             <SubscriptIcon size={18} />
                         </IconButton>
-                        <IconButton onClick={() => editor.chain().focus().toggleSuperscript().run()} sx={getToolbarBtnSx(editor.isActive("superscript"))} title="Superscript">
+                        <IconButton
+                            onClick={() => editor.chain().focus().toggleSuperscript().run()}
+                            sx={getToolbarBtnSx(editor.isActive("superscript"))}
+                            aria-label="Superscript"
+                        >
                             <SuperscriptIcon size={18} />
                         </IconButton>
 
                         {/* Feature 2: Employee Tagging Button */}
-                        <IconButton onClick={(e) => setMentionAnchorEl(e.currentTarget)} sx={getToolbarBtnSx(Boolean(mentionAnchorEl))} title="Tag Employee (@)">
+                        <IconButton
+                            onClick={(e) => setMentionAnchorEl(e.currentTarget)}
+                            sx={getToolbarBtnSx(Boolean(mentionAnchorEl))}
+                            aria-label="Tag Employee"
+                        >
                             <AtSign size={18} />
                         </IconButton>
                         <Menu
@@ -514,7 +610,7 @@ export default function NotesEditorPage() {
                             PaperProps={{
                                 sx: {
                                     ...menuPaperSx,
-                                    width: "220px"
+                                    width: { xs: "180px", sm: "220px" }
                                 }
                             }}
                             MenuListProps={{
@@ -545,14 +641,14 @@ export default function NotesEditorPage() {
                                         key={idx}
                                         onClick={() => { handleInsertMention(emp); setMentionAnchorEl(null); }}
                                         sx={{
-                                            fontSize: "0.9rem",
+                                            fontSize: { xs: "0.82rem", sm: "0.9rem" },
                                             display: "flex",
                                             flexDirection: "column",
                                             alignItems: "flex-start",
                                             py: 0.5
                                         }}
                                     >
-                                        <Typography sx={{ fontWeight: 600, fontSize: "0.9rem", color: textColor }}>
+                                        <Typography sx={{ fontWeight: 600, fontSize: { xs: "0.82rem", sm: "0.9rem" }, color: textColor }}>
                                             {emp.fullName}
                                         </Typography>
                                         <Typography sx={{ fontSize: "0.75rem", color: subText }}>
@@ -571,19 +667,23 @@ export default function NotesEditorPage() {
 
                         <IconButton
                             onClick={() => {
-                                const url = window.prompt('Enter YouTube URL:');
+                                const url = window.prompt("Enter YouTube URL:");
                                 if (url) {
                                     editor.chain().focus().setYoutubeVideo({ src: url }).run();
                                 }
                             }}
                             sx={getToolbarBtnSx(false)}
-                            title="Insert Video"
+                            aria-label="Insert Video"
                         >
                             <Video size={18} />
                         </IconButton>
 
                         {/* Image Dropdown Button */}
-                        <IconButton onClick={handleImageClick} sx={getToolbarBtnSx(Boolean(imageAnchorEl))} title="Insert Image">
+                        <IconButton
+                            onClick={handleImageClick}
+                            sx={getToolbarBtnSx(Boolean(imageAnchorEl))}
+                            aria-label="Insert Image"
+                        >
                             <ImageIcon size={18} />
                         </IconButton>
                         <Menu
@@ -592,27 +692,42 @@ export default function NotesEditorPage() {
                             onClose={handleImageClose}
                             PaperProps={{ sx: menuPaperSx }}
                         >
-                            <MenuItem onClick={handleAddImageByURL} sx={{ fontSize: "0.9rem", gap: 1.5 }}>
+                            <MenuItem onClick={handleAddImageByURL} sx={{ fontSize: { xs: "0.82rem", sm: "0.9rem" }, gap: 1.5 }}>
                                 <ListItemIcon sx={{ color: textColor, minWidth: "auto" }}><LinkIcon size={16} /></ListItemIcon>
                                 <ListItemText>Insert via URL</ListItemText>
                             </MenuItem>
-                            <MenuItem onClick={handleTriggerFileExplorer} sx={{ fontSize: "0.9rem", gap: 1.5 }}>
+                            <MenuItem onClick={handleTriggerFileExplorer} sx={{ fontSize: { xs: "0.82rem", sm: "0.9rem" }, gap: 1.5 }}>
                                 <ListItemIcon sx={{ color: textColor, minWidth: "auto" }}><FolderOpen size={16} /></ListItemIcon>
                                 <ListItemText>Upload from Computer</ListItemText>
                             </MenuItem>
                         </Menu>
 
-                        <IconButton onClick={() => editor.chain().focus().toggleCodeBlock().run()} sx={getToolbarBtnSx(editor.isActive("codeBlock"))} title="Code Block">
+                        <IconButton
+                            onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+                            sx={getToolbarBtnSx(editor.isActive("codeBlock"))}
+                            aria-label="Code Block"
+                        >
                             <Code size={18} />
                         </IconButton>
 
                         <Divider orientation="vertical" flexItem sx={{ mx: 0.5, borderColor: borderStyle }} />
 
                         {/* Undo / Redo */}
-                        <IconButton onClick={() => editor.chain().focus().undo().run()} disabled={!editor.can().undo()} sx={getToolbarBtnSx(false, !editor.can().undo())} title="Undo">
+                        <IconButton
+                            onClick={() => editor.chain().focus().undo().run()}
+                            disabled={!editor.can().undo()}
+                            sx={getToolbarBtnSx(false, !editor.can().undo())}
+                            aria-label="Undo"
+                        >
                             <Undo size={18} />
                         </IconButton>
-                        <IconButton onClick={() => editor.chain().focus().redo().run()} disabled={!editor.can().redo()} sx={getToolbarBtnSx(false, !editor.can().redo())} title="Redo">
+
+                        <IconButton
+                            onClick={() => editor.chain().focus().redo().run()}
+                            disabled={!editor.can().redo()}
+                            sx={getToolbarBtnSx(false, !editor.can().redo())}
+                            aria-label="Redo"
+                        >
                             <Redo size={18} />
                         </IconButton>
                     </Box>
@@ -620,13 +735,13 @@ export default function NotesEditorPage() {
                     {/* Editor Content Area */}
                     <Box
                         sx={{
-                            p: 3,
-                            minHeight: "300px",
+                            p: { xs: 1.75, sm: 2.25, md: 3 },
+                            minHeight: { xs: "240px", sm: "300px" },
                             color: textColor,
                             "& .ProseMirror": {
                                 outline: "none",
-                                minHeight: "260px",
-                                fontSize: "1rem",
+                                minHeight: { xs: "200px", sm: "260px" },
+                                fontSize: { xs: "0.92rem", sm: "1rem" },
                                 lineHeight: 1.6,
                                 color: textColor,
                             },

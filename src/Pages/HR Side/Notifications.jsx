@@ -1,6 +1,5 @@
-import notificationsData from "../../data//notifications.json";
+import notificationsData from "../../data/notifications.json";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { CircularProgress } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
@@ -12,6 +11,7 @@ import {
   Button,
   Chip,
   Avatar,
+  CircularProgress,
 } from "@mui/material";
 
 import {
@@ -21,10 +21,9 @@ import {
   ClipboardCheck,
   ListChecks,
 } from "lucide-react";
-import SEO from "../../components/common/SEO"; // SEO Component Import Added
+import SEO from "../../components/common/SEO";
 
 export default function Notifications() {
-
   const { darkMode } = useTheme();
   const colors = useThemeColors();
   const [activeFilter, setActiveFilter] = useState("All");
@@ -77,11 +76,9 @@ export default function Notifications() {
         ...prev,
         ...notifications.slice(prev.length, prev.length + NOTIFICATIONS_PER_LOAD),
       ]);
-    },
-      800);
+    }, 800);
   };
 
-  // Dynamic category accent (kept as soft-tint accents, consistent with status chip style)
   const getCategoryStyle = (category) => {
     switch (category) {
       case "Hiring":
@@ -110,7 +107,7 @@ export default function Notifications() {
           top: 0,
           zIndex: 20,
           p: { xs: 2, md: 3 },
-          mb: 1,
+          mb: 2,
           borderRadius: "20px",
           bgcolor: colors.card,
           border: `1px solid ${borderStyle}`,
@@ -124,10 +121,7 @@ export default function Notifications() {
             alignItems: "center",
             flexWrap: "wrap",
             gap: 2,
-            mb: {
-              xs: 3,
-              md: 5
-            }
+            mb: 2,
           }}
         >
           <Box>
@@ -139,7 +133,6 @@ export default function Notifications() {
                   md: "2rem",
                   lg: "2.2rem",
                 },
-                mb: -2.5,
                 fontWeight: 850,
                 letterSpacing: "-0.03em",
                 color: textColor,
@@ -153,7 +146,7 @@ export default function Notifications() {
             fullWidth={{ xs: true, sm: false }}
             variant="outlined"
             onClick={handleMarkAllRead}
-            startIcon={<ListChecks size={11} />}
+            startIcon={<ListChecks size={14} />}
             sx={{
               width: { xs: "100%", sm: "auto" },
               py: { xs: 1, md: 1.2 },
@@ -176,7 +169,7 @@ export default function Notifications() {
         </Box>
 
         {/* Filter panel options */}
-        <Box sx={{ display: "flex", gap: 1.2, flexWrap: "wrap", mb: 4 }}>
+        <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
           {["All", "Hiring", "Interviews"].map((filter) => (
             <Button
               key={filter}
@@ -184,22 +177,22 @@ export default function Notifications() {
               size="small"
               onClick={() => setActiveFilter(filter)}
               sx={{
-                mb: -3,
                 borderRadius: "12px",
                 textTransform: "none",
                 fontWeight: 700,
-                minWidth: { xs: 80, md: 95 },
+                minWidth: { xs: 70, md: 95 },
                 fontSize: { xs: ".74rem", md: ".82rem" },
                 px: { xs: 1.5, md: 2.2 },
-                py: { xs: .55, md: .7 },
+                py: { xs: 0.55, md: 0.7 },
                 color: activeFilter === filter ? "#fff" : subText,
                 borderColor: activeFilter === filter ? primary : borderStyle,
                 bgcolor: activeFilter === filter ? primary : "transparent",
-                boxShadow: activeFilter === filter ? `0 4px 10px ${primary}33` : "none",
+                boxShadow:
+                  activeFilter === filter ? `0 4px 10px ${primary}33` : "none",
                 "&:hover": {
                   borderColor: primary,
                   bgcolor: activeFilter === filter ? primary : `${primary}08`,
-                }
+                },
               }}
             >
               {filter}
@@ -216,12 +209,11 @@ export default function Notifications() {
           flexDirection: "column",
           gap: {
             xs: 2,
-            md: 4
+            md: 4,
           },
           maxHeight: "75vh",
           overflow: "auto",
           scrollbarWidth: "none",
-
           "&::-webkit-scrollbar": {
             display: "none",
           },
@@ -251,18 +243,17 @@ export default function Notifications() {
             }
             scrollableTarget="notificationScroll"
           >
-
             {visibleNotifications
               .filter((item) =>
                 activeFilter === "All"
                   ? true
                   : item.category === activeFilter
               )
-              .map((item) => {
+              .map((item, index) => {
                 const categoryStyle = getCategoryStyle(item.category);
                 return (
                   <Paper
-                    key={item.id}
+                    key={item.id ? `${item.id}-${index}` : `notification-${index}`}
                     elevation={0}
                     sx={{
                       position: "relative",
@@ -271,17 +262,15 @@ export default function Notifications() {
                       p: {
                         xs: 1.5,
                         sm: 2.5,
-                        md: 4
+                        md: 4,
                       },
                       borderRadius: {
                         xs: 3,
-                        md: 5
+                        md: 5,
                       },
                       bgcolor: colors.card,
                       backdropFilter: "blur(12px)",
                       border: `1px solid ${borderStyle}`,
-
-                      // Premium Multi-layer Shadow
                       boxShadow: darkMode
                         ? `
             0 10px 20px rgba(0,0,0,0.30),
@@ -291,13 +280,10 @@ export default function Notifications() {
             0 12px 24px rgba(15,23,42,0.08),
             0 2px 6px rgba(15,23,42,0.05)
           `,
-
                       transition: "all 0.3s ease",
-
                       "&:hover": {
                         transform: "translateY(-3px) scale(1)",
                         borderColor: item.color || primary,
-
                         boxShadow: darkMode
                           ? "0 18px 38px rgba(0,0,0,.45)"
                           : `0 18px 40px ${primary}1f`,
@@ -314,11 +300,11 @@ export default function Notifications() {
                           transform: "translateY(-50%)",
                           width: {
                             xs: 3,
-                            md: 4
+                            md: 4,
                           },
                           height: {
                             xs: 24,
-                            md: 32
+                            md: 32,
                           },
                           borderRadius: "0 4px 4px 0",
                           bgcolor: primary,
@@ -340,22 +326,20 @@ export default function Notifications() {
                         sx={{
                           display: "flex",
                           alignItems: "flex-start",
-                          gap: 2
+                          gap: 2,
                         }}
                       >
-
                         <Avatar
                           sx={{
                             width: {
                               xs: 38,
                               sm: 44,
-                              md: 48
+                              md: 48,
                             },
-
                             height: {
                               xs: 38,
                               sm: 44,
-                              md: 48
+                              md: 48,
                             },
                             bgcolor: categoryStyle.bg,
                             color: categoryStyle.color,
@@ -378,10 +362,10 @@ export default function Notifications() {
                               fontSize: {
                                 xs: ".88rem",
                                 sm: ".98rem",
-                                md: "1.08rem"
+                                md: "1.08rem",
                               },
                               mb: 0.5,
-                              letterSpacing: "-0.02em"
+                              letterSpacing: "-0.02em",
                             }}
                           >
                             {item.title}
@@ -392,10 +376,10 @@ export default function Notifications() {
                               fontSize: {
                                 xs: ".76rem",
                                 sm: ".84rem",
-                                md: ".9rem"
+                                md: ".9rem",
                               },
-                              opacity: .9,
-                              lineHeight: 1.5
+                              opacity: 0.9,
+                              lineHeight: 1.5,
                             }}
                           >
                             {item.message}
@@ -424,11 +408,11 @@ export default function Notifications() {
                               fontWeight: 700,
                               height: {
                                 xs: 20,
-                                md: 22
+                                md: 22,
                               },
                               fontSize: {
                                 xs: ".6rem",
-                                md: ".68rem"
+                                md: ".68rem",
                               },
                             }}
                           />
@@ -438,7 +422,7 @@ export default function Notifications() {
                           sx={{
                             fontSize: {
                               xs: ".7rem",
-                              md: ".78rem"
+                              md: ".78rem",
                             },
                             color: subText,
                             fontWeight: 600,
@@ -450,8 +434,7 @@ export default function Notifications() {
                     </Box>
                   </Paper>
                 );
-              })
-            }
+              })}
           </InfiniteScroll>
         ) : (
           <Paper
@@ -459,11 +442,11 @@ export default function Notifications() {
             sx={{
               p: {
                 xs: 3,
-                md: 6
+                md: 6,
               },
               borderRadius: {
                 xs: 3,
-                md: 4
+                md: 4,
               },
               bgcolor: colors.card,
               border: `1px solid ${borderStyle}`,
@@ -471,7 +454,6 @@ export default function Notifications() {
               color: subText,
             }}
           >
-
             <Box
               sx={{
                 display: "flex",
@@ -480,17 +462,15 @@ export default function Notifications() {
                 gap: 2,
               }}
             >
-
               <Avatar
                 sx={{
                   width: {
                     xs: 56,
-                    md: 70
+                    md: 70,
                   },
-
                   height: {
                     xs: 56,
-                    md: 70
+                    md: 70,
                   },
                   bgcolor: `${primary}15`,
                   color: primary,
@@ -503,7 +483,7 @@ export default function Notifications() {
                 sx={{
                   fontSize: {
                     xs: "1rem",
-                    md: "1.2rem"
+                    md: "1.2rem",
                   },
                   fontWeight: 700,
                   color: textColor,
@@ -516,16 +496,14 @@ export default function Notifications() {
                 sx={{
                   fontSize: {
                     xs: ".82rem",
-                    md: ".95rem"
+                    md: ".95rem",
                   },
                   color: subText,
                 }}
               >
                 You're all caught up.
               </Typography>
-
             </Box>
-
           </Paper>
         )}
       </Box>

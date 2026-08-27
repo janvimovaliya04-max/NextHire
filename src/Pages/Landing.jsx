@@ -1,3 +1,4 @@
+import SEO from "../components/common/SEO";
 import Header from "../components/Header";
 import HeroSection from "../components/HeroSection";
 import PortalSection from "../components/PortalSection";
@@ -163,7 +164,13 @@ export default function LandingNew() {
 
   return (
 
-    <Box sx={{ minHeight: "100vh", bgcolor: pageBg, color: textColor }}>
+    <Box component="main" sx={{ minHeight: "100vh", bgcolor: pageBg, color: textColor }}>
+
+      <SEO
+        title="NextHire — Smart Hiring, Simplified"
+        description="NextHire is an all-in-one HR portal for managing job postings, candidate applications, interview scheduling, and hiring analytics."
+        canonicalUrl="/"
+      />
 
       <Header
         darkMode={darkMode}

@@ -165,6 +165,8 @@ export default function Evaluations() {
     table.setPageIndex(0);
   };
 
+  const currentPageIndex = table.getState().pagination.pageIndex;
+
   return (
     <InterviewerLayout>
       {/* Dynamic SEO Tags Injection */}
@@ -217,12 +219,14 @@ export default function Evaluations() {
             label="Search Candidate..."
             value={globalFilter}
             onChange={(e) => setGlobalFilter(e.target.value)}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Search color={primary} />
-                </InputAdornment>
-              ),
+            slotProps={{
+              input: {
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Search color={primary} aria-hidden="true" focusable="false" />
+                  </InputAdornment>
+                ),
+              },
             }}
             sx={{
               width: { xs: "100%", sm: "320px", md: "360px" },
@@ -268,6 +272,7 @@ export default function Evaluations() {
                 variant="outlined"
                 size="small"
                 onClick={() => handleFilterChange(result)}
+                aria-pressed={isActive}
                 sx={{
                   flexShrink: 0,
                   borderRadius: "999px",
@@ -359,22 +364,51 @@ export default function Evaluations() {
                   key={headerGroup.id}
                   sx={{ bgcolor: `${primary}08`, borderBottom: `1px solid ${borderStyle}` }}
                 >
-                  {headerGroup.headers.map((header) => (
-                    <TableCell
-                      key={header.id}
-                      onClick={header.column.getToggleSortingHandler()}
-                      sx={{
-                        color: textColor,
-                        fontWeight: 700,
-                        fontSize: "1rem",
-                        borderBottom: `1px solid ${borderStyle}`,
-                        cursor: header.column.getCanSort() ? "pointer" : "default",
-                        userSelect: "none",
-                      }}
-                    >
-                      {flexRender(header.column.columnDef.header, header.getContext())}
-                    </TableCell>
-                  ))}
+                  {headerGroup.headers.map((header) => {
+                    const canSort = header.column.getCanSort();
+                    const sortDir = header.column.getIsSorted();
+                    return (
+                      <TableCell
+                        key={header.id}
+                        aria-sort={
+                          canSort
+                            ? sortDir === "asc"
+                              ? "ascending"
+                              : sortDir === "desc"
+                                ? "descending"
+                                : "none"
+                            : undefined
+                        }
+                        sx={{
+                          color: textColor,
+                          fontWeight: 700,
+                          fontSize: "1rem",
+                          borderBottom: `1px solid ${borderStyle}`,
+                          cursor: canSort ? "pointer" : "default",
+                          userSelect: "none",
+                        }}
+                      >
+                        {canSort ? (
+                          <Box
+                            component="button"
+                            type="button"
+                            onClick={header.column.getToggleSortingHandler()}
+                            aria-label={`Sort by ${flexRender(header.column.columnDef.header, header.getContext())}`}
+                            sx={{
+                              all: "unset",
+                              cursor: "pointer",
+                              font: "inherit",
+                              color: "inherit",
+                            }}
+                          >
+                            {flexRender(header.column.columnDef.header, header.getContext())}
+                          </Box>
+                        ) : (
+                          flexRender(header.column.columnDef.header, header.getContext())
+                        )}
+                      </TableCell>
+                    );
+                  })}
                 </TableRow>
               ))}
             </TableHead>
@@ -441,11 +475,16 @@ export default function Evaluations() {
             </Typography>
           </Box>
 
-          <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+          <Box
+            component="nav"
+            aria-label="Pagination"
+            sx={{ display: "flex", alignItems: "center", gap: 0.5 }}
+          >
             <Tooltip title="First page">
               <span>
                 <IconButton
                   size="small"
+                  aria-label="Go to first page"
                   onClick={() => table.setPageIndex(0)}
                   disabled={!table.getCanPreviousPage()}
                   sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
@@ -459,6 +498,7 @@ export default function Evaluations() {
               <span>
                 <IconButton
                   size="small"
+                  aria-label="Go to previous page"
                   onClick={() => table.previousPage()}
                   disabled={!table.getCanPreviousPage()}
                   sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
@@ -472,7 +512,7 @@ export default function Evaluations() {
               .filter((i) =>
                 i === 0 ||
                 i === table.getPageCount() - 1 ||
-                Math.abs(i - table.getState().pagination.pageIndex) <= 1
+                Math.abs(i - currentPageIndex) <= 1
               )
               .reduce((acc, i, idx, arr) => {
                 if (idx > 0 && i - arr[idx - 1] > 1) acc.push("...");
@@ -481,11 +521,13 @@ export default function Evaluations() {
               }, [])
               .map((item, idx) =>
                 item === "..." ? (
-                  <Typography key={`dots-${idx}`} sx={{ px: 1, color: subText }}>...</Typography>
+                  <Typography key={`dots-${idx}`} sx={{ px: 1, color: subText }} aria-hidden="true">...</Typography>
                 ) : (
                   <IconButton
                     key={item}
                     size="small"
+                    aria-label={`Go to page ${item + 1}`}
+                    aria-current={currentPageIndex === item ? "page" : undefined}
                     onClick={() => table.setPageIndex(item)}
                     sx={{
                       minWidth: 32,
@@ -493,11 +535,11 @@ export default function Evaluations() {
                       borderRadius: 1.5,
                       fontSize: ".82rem",
                       fontWeight: 700,
-                      bgcolor: table.getState().pagination.pageIndex === item ? primary : "transparent",
-                      color: table.getState().pagination.pageIndex === item ? "#fff" : textColor,
-                      border: `1px solid ${table.getState().pagination.pageIndex === item ? primary : borderStyle}`,
+                      bgcolor: currentPageIndex === item ? primary : "transparent",
+                      color: currentPageIndex === item ? "#fff" : textColor,
+                      border: `1px solid ${currentPageIndex === item ? primary : borderStyle}`,
                       "&:hover": {
-                        bgcolor: table.getState().pagination.pageIndex === item ? `${primary}dd` : `${primary}15`,
+                        bgcolor: currentPageIndex === item ? `${primary}dd` : `${primary}15`,
                       },
                     }}
                   >
@@ -510,6 +552,7 @@ export default function Evaluations() {
               <span>
                 <IconButton
                   size="small"
+                  aria-label="Go to next page"
                   onClick={() => table.nextPage()}
                   disabled={!table.getCanNextPage()}
                   sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
@@ -523,6 +566,7 @@ export default function Evaluations() {
               <span>
                 <IconButton
                   size="small"
+                  aria-label="Go to last page"
                   onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                   disabled={!table.getCanNextPage()}
                   sx={{ color: textColor, "&:disabled": { opacity: 0.3 } }}
@@ -534,8 +578,17 @@ export default function Evaluations() {
           </Box>
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <Typography sx={{ fontSize: ".82rem", color: subText }}>Rows per page:</Typography>
+            <Typography
+              sx={{ fontSize: ".82rem", color: subText }}
+              id="rows-per-page-label"
+              component="label"
+              htmlFor="rows-per-page-select"
+            >
+              Rows per page:
+            </Typography>
             <select
+              id="rows-per-page-select"
+              aria-labelledby="rows-per-page-label"
               value={pagination.pageSize}
               onChange={(e) => table.setPageSize(Number(e.target.value))}
               style={{

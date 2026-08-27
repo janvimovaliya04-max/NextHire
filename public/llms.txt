@@ -1,0 +1,10 @@
+# NextHire
+
+NextHire is an interview management platform that helps recruiters, interviewers, and candidates manage the interview process.
+
+## Main Pages
+
+- [Home](/)
+- [Login](/login)
+- [Register](/register)
+- [Dashboard](/dashboard)

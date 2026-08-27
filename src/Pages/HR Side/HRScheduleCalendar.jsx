@@ -38,6 +38,11 @@ export default function HRScheduleCalendar() {
     const [modeFilter, setModeFilter] = useState("All");
 
     const handleEventClick = (info) => {
+        // Prevent the anchor's default navigation since we use it only
+        // to open the details modal (the href exists purely so the
+        // link is crawlable/accessible, not for actual navigation).
+        info.jsEvent.preventDefault();
+
         setSelectedEvent({
             title: info.event.title,
             start: info.event.start,
@@ -60,6 +65,10 @@ export default function HRScheduleCalendar() {
             id: interview.interviewId,
             title: `${interview.round} - ${interview.interviewer}`,
             start: `${interview.date}T${interview.time}:00`,
+            // FullCalendar renders events as <a> tags internally.
+            // Without a url, that anchor has no href, which fails
+            // "Links are not crawlable" accessibility/SEO audits.
+            url: `#interview-${interview.interviewId}`,
             extendedProps: {
                 candidateName: interview.candidateName,
                 jobId: interview.jobId,
@@ -130,7 +139,12 @@ export default function HRScheduleCalendar() {
                     </Box>
 
                     {/* Filter Action Chips */}
-                    <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
+                    <Stack
+                        direction="row"
+                        spacing={1.5}
+                        useFlexGap
+                        sx={{ flexWrap: "wrap" }}
+                    >
                         <Chip
                             label={`Status: ${statusFilter}`}
                             onClick={() => {
@@ -144,6 +158,8 @@ export default function HRScheduleCalendar() {
                                 border: `1px solid ${borderStyle}`,
                                 fontWeight: 700,
                                 borderRadius: "10px",
+                                fontSize: { xs: "0.75rem", sm: "0.8125rem" },
+                                height: { xs: 28, sm: 32 },
                                 "&:hover": { bgcolor: `${primary}15`, borderColor: primary, color: primary }
                             }}
                         />
@@ -160,6 +176,8 @@ export default function HRScheduleCalendar() {
                                 border: `1px solid ${borderStyle}`,
                                 fontWeight: 700,
                                 borderRadius: "10px",
+                                fontSize: { xs: "0.75rem", sm: "0.8125rem" },
+                                height: { xs: 28, sm: 32 },
                                 "&:hover": { bgcolor: `${primary}15`, borderColor: primary, color: primary }
                             }}
                         />
@@ -170,7 +188,7 @@ export default function HRScheduleCalendar() {
                 <Paper
                     elevation={0}
                     sx={{
-                        p: { xs: 2, sm: 3, md: 4 },
+                        p: { xs: 1.5, sm: 3, md: 4 },
                         borderRadius: { xs: 3, md: "22px" },
                         bgcolor: colors.card,
                         backdropFilter: "blur(12px)",
@@ -184,61 +202,64 @@ export default function HRScheduleCalendar() {
                                 : `0 26px 55px rgba(15,23,42,.12)`,
                         },
 
-                        /* FullCalendar Dynamic Theme Overrides */
+                        /* FullCalendar Responsive & Layout Fixes */
                         "& .fc": {
                             color: textColor,
                             fontFamily: "inherit",
                         },
-                        /* FullCalendar List View Hover & Dark Background Fixes */
-                        "& .fc-list-event": {
-                            background: `linear-gradient(135deg, ${primary}, ${secondary || primary}) !important`,
-                            cursor: "pointer",
+
+                        /* Flexible Responsive Header Toolbar Structure */
+                        "& .fc-header-toolbar": {
+                            display: "flex",
+                            flexDirection: { xs: "column", sm: "row" },
+                            flexWrap: "wrap",
+                            gap: { xs: 1.5, sm: 2 },
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            mb: { xs: 2, sm: 3 },
                         },
-                        "& .fc-list-event td": {
-                            borderColor: `${borderStyle} !important`,
-                            background: "transparent !important",
+
+                        /* Allow left/center/right toolbar segments to wrap naturally */
+                        "& .fc-toolbar-chunk": {
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            flexWrap: "wrap",
+                            gap: "6px",
+                            width: { xs: "100%", sm: "auto" },
                         },
-                        "& .fc-list-event-title, & .fc-list-event-time, & .fc-list-event-title a, & .fc-list-event-time a": {
-                            color: "#ffffff !important",
-                            fontWeight: 600,
-                        },
-                        "& .fc-list-event:hover": {
-                            opacity: 0.9,
-                            filter: "brightness(1.1)",
-                        },
-                        "& .fc-list-event:hover td, & .fc-list-event:hover a": {
-                            background: "transparent !important",
-                            color: "#ffffff !important",
-                        },
-                        "& .fc-list-day-cushion": {
-                            backgroundColor: `${colors.input} !important`,
-                        },
-                        "& .fc-list-day-text, & .fc-list-day-side-text": {
-                            color: `${textColor} !important`,
-                            fontWeight: 700,
-                        },
+
                         "& .fc-toolbar-title": {
-                            fontSize: { xs: "1.1rem", md: "1.4rem" },
+                            fontSize: { xs: "1.1rem", sm: "1.3rem", md: "1.5rem" },
                             fontWeight: 800,
                             color: textColor,
+                            textAlign: "center",
+                            width: "100%",
                         },
+
                         "& .fc-button-group": {
-                            gap: "8px",
+                            gap: { xs: "3px", sm: "6px" },
+                            flexWrap: "wrap",
+                            justifyContent: "center",
+                            width: { xs: "100%", sm: "auto" },
                         },
+
                         "& .fc-button-group > .fc-button": {
                             borderRadius: "10px !important",
+                            margin: "2px 0 !important",
                         },
+
                         "& .fc-button": {
                             backgroundColor: colors.input,
                             borderColor: borderStyle,
                             color: textColor,
                             fontWeight: 700,
-                            gap: "4px",
-                            padding: "6px 14px",
-                            fontSize: "0.85rem",
+                            padding: { xs: "4px 8px", sm: "6px 12px" },
+                            fontSize: { xs: "0.7rem", sm: "0.82rem" },
                             borderRadius: "10px !important",
                             textTransform: "capitalize",
                             boxShadow: "none",
+                            whiteSpace: "nowrap",
                             transition: "all 0.2s ease",
                             "&:hover": {
                                 backgroundColor: `${primary}15`,
@@ -249,36 +270,39 @@ export default function HRScheduleCalendar() {
                                 boxShadow: "none !important",
                             },
                         },
+
                         "& .fc-button-primary:not(:disabled).fc-button-active, & .fc-button-primary:not(:disabled):active": {
                             background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
                             borderColor: "transparent",
                             color: "#fff",
                         },
+
+                        /* Grid & Table Styles */
                         "& .fc-theme-standard td, & .fc-theme-standard th, & .fc-theme-standard .fc-scrollgrid": {
                             borderColor: borderStyle,
                         },
                         "& .fc-col-header-cell": {
-                            padding: "10px 0",
+                            padding: { xs: "4px 0", sm: "10px 0" },
                             backgroundColor: colors.input,
                         },
                         "& .fc-col-header-cell-cushion": {
                             color: subText,
                             fontWeight: 700,
-                            fontSize: "0.88rem",
+                            fontSize: { xs: "0.7rem", sm: "0.88rem" },
                         },
                         "& .fc-daygrid-day-number": {
                             color: textColor,
-                            fontSize: "0.85rem",
+                            fontSize: { xs: "0.7rem", sm: "0.85rem" },
                             fontWeight: 600,
-                            padding: "8px",
+                            padding: { xs: "2px", sm: "8px" },
                         },
                         "& .fc-day-today": {
                             backgroundColor: `${primary}10 !important`,
                         },
                         "& .fc-event": {
                             borderRadius: "8px",
-                            padding: "2px 6px",
-                            fontSize: "0.8rem",
+                            padding: { xs: "1px 3px", sm: "2px 6px" },
+                            fontSize: { xs: "0.65rem", sm: "0.8rem" },
                             fontWeight: 600,
                             border: "none",
                             background: `linear-gradient(135deg, ${primary}, ${secondary || primary})`,
@@ -296,6 +320,7 @@ export default function HRScheduleCalendar() {
                         "& .fc-more-link": {
                             color: primary,
                             fontWeight: 700,
+                            fontSize: { xs: "0.65rem", sm: "0.8rem" },
                         },
                     }}
                 >
@@ -312,9 +337,9 @@ export default function HRScheduleCalendar() {
                         }}
                         buttonText={{
                             dayGridMonth: "Month",
-                            timeGridWeek: "Weekly Schedule",
-                            timeGridDay: "Daily Agenda",
-                            listWeek: "List View",
+                            timeGridWeek: "Week",    // Shortened from "Weekly Schedule"
+                            timeGridDay: "Day",      // Shortened from "Daily Agenda"
+                            listWeek: "List",        // Shortened from "List View"
                         }}
                         dayMaxEvents={2}
                         height="auto"
@@ -349,7 +374,7 @@ export default function HRScheduleCalendar() {
                                 : "0 20px 40px rgba(15, 23, 42, 0.15)",
                             color: textColor,
                             width: "100%",
-                            maxWidth: "460px",
+                            maxWidth: { xs: "100%", sm: "460px" },
                             margin: { xs: 2, sm: 3 },
                             overflow: "hidden",
                             backgroundImage: "none",
@@ -357,15 +382,16 @@ export default function HRScheduleCalendar() {
                     }}
                 >
                     {selectedEvent && (
-                        <Box sx={{ p: { xs: 2.5, sm: 3.5 } }}>
+                        <Box sx={{ p: { xs: 2, sm: 2.5, md: 3.5 } }}>
                             {/* Modal Header */}
                             <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 2, mb: 1.5 }}>
-                                <Typography variant="h6" fontWeight={800} sx={{ color: textColor, fontSize: "1.1rem", lineHeight: 1.3 }}>
+                                <Typography variant="h6" fontWeight={800} sx={{ color: textColor, fontSize: { xs: "1rem", sm: "1.1rem" }, lineHeight: 1.3 }}>
                                     {selectedEvent.title}
                                 </Typography>
                                 <IconButton
                                     onClick={handleCloseModal}
                                     size="small"
+                                    aria-label="Close interview details"
                                     sx={{
                                         color: textColor,
                                         bgcolor: darkMode ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)",
@@ -384,34 +410,34 @@ export default function HRScheduleCalendar() {
                             {/* Details List */}
                             <Stack spacing={2}>
                                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2 }}>
-                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0 }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0, fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         Candidate
                                     </Typography>
-                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right", wordBreak: "break-word" }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right", wordBreak: "break-word", fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         {selectedEvent.candidateName}
                                     </Typography>
                                 </Box>
 
                                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2 }}>
-                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0 }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0, fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         Date & Time
                                     </Typography>
-                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right" }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right", fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         {formatEventDateTime(selectedEvent.start)}
                                     </Typography>
                                 </Box>
 
                                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2 }}>
-                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0 }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0, fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         Mode
                                     </Typography>
-                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right" }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right", fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         {selectedEvent.mode} ({selectedEvent.platform})
                                     </Typography>
                                 </Box>
 
                                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2 }}>
-                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0 }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0, fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         Status
                                     </Typography>
                                     <Chip
@@ -421,35 +447,35 @@ export default function HRScheduleCalendar() {
                                             bgcolor: `${primary}22`,
                                             color: primary,
                                             fontWeight: 700,
-                                            height: "24px",
+                                            height: { xs: "22px", sm: "24px" },
                                             borderRadius: "8px",
-                                            fontSize: "0.78rem"
+                                            fontSize: { xs: "0.7rem", sm: "0.78rem" }
                                         }}
                                     />
                                 </Box>
 
                                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2 }}>
-                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0 }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, flexShrink: 0, fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         Result
                                     </Typography>
-                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right" }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 600, color: textColor, textAlign: "right", fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         {selectedEvent.result || "Pending"}
                                     </Typography>
                                 </Box>
 
                                 <Box sx={{ display: "flex", flexDirection: "column", gap: 0.8, pt: 0.5 }}>
-                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 700, color: subText, fontSize: { xs: "0.78rem", sm: "0.875rem" } }}>
                                         Remarks
                                     </Typography>
                                     <Typography
                                         variant="body2"
                                         sx={{
-                                            p: 1.75,
+                                            p: { xs: 1.4, sm: 1.75 },
                                             borderRadius: "14px",
                                             bgcolor: darkMode ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.03)",
                                             border: `1px solid ${darkMode ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.06)"}`,
                                             color: textColor,
-                                            fontSize: "0.85rem",
+                                            fontSize: { xs: "0.78rem", sm: "0.85rem" },
                                             lineHeight: 1.5,
                                         }}
                                     >

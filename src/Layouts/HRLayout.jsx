@@ -369,6 +369,7 @@ export default function HRLayout({ children }) {
             <button
               onClick={() => setMobileMenu(true)}
               className="p-2 rounded-lg border"
+              aria-label="Open menu"
               style={{
                 borderColor: borderStyle,
                 backgroundColor: colors.input,
@@ -380,6 +381,7 @@ export default function HRLayout({ children }) {
             <Link
               to="/hr/notifications"
               className="relative p-2 rounded-lg border"
+              aria-label="Notifications"
               style={{
                 borderColor: borderStyle,
                 backgroundColor: colors.input,
@@ -410,6 +412,7 @@ export default function HRLayout({ children }) {
             <Link
               to="/hr/schedule-calendar"
               className="p-2.5 rounded-xl border relative transition-all duration-200"
+               aria-label="Calendar"
               style={{
                 backgroundColor: colors.input,
                 color: primary,
@@ -423,6 +426,7 @@ export default function HRLayout({ children }) {
             <button
               onClick={() => setDarkMode(!darkMode)}
               className="p-2.5 rounded-xl border transition-all duration-200"
+              aria-label="Toggle dark mode"
               style={{
                 backgroundColor: colors.input,
                 color: primary,
@@ -436,6 +440,7 @@ export default function HRLayout({ children }) {
             <Link
               to="/hr/notifications"
               className="p-2.5 rounded-xl border relative transition-all duration-200"
+              aria-label="Notifications"
               style={{
                 backgroundColor: colors.input,
                 color: primary,

@@ -347,7 +347,11 @@ export default function InterviewerNotifications() {
               py: 3,
             }}
           >
-            <CircularProgress size={28} sx={{ color: primary }} />
+            <CircularProgress
+              size={28}
+              sx={{ color: primary }}
+              aria-label="Loading more notifications"
+            />
           </Box>
         )}
 
