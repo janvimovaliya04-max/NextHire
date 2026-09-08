@@ -22,6 +22,7 @@ import {
   Briefcase,
   Users,
   User,
+  Table,
   ClipboardCheck,
   Mic,
   Calendar,
@@ -117,6 +118,7 @@ export default function HRLayout({ children }) {
       items: [
         { path: "/hr", label: "Dashboard", icon: <LayoutDashboard size={18} /> },
         { path: "/hr/analytics", label: "Analytics", icon: <ChartLine size={18} /> },
+        { path: "/hr/custom-table", label: "Data-table", icon: <Table size={18} /> },
       ],
     },
     {
@@ -169,6 +171,7 @@ export default function HRLayout({ children }) {
       case "/hr/hr-profile": return "HR Admin Profile";
       case "/hr/notes": return "Keep Notes";
       case "/hr/schedule-calendar": return "Interview Calendar";
+      case "/hr/custom-table": return "Candidate Table"
       default: return "HR Control Center";
     }
   };
