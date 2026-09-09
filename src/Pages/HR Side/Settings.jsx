@@ -330,14 +330,14 @@ export default function Settings() {
             </Grid>
 
             {/* Right Side: Stats / Info Cards */}
-            <Grid size={{ xs: 12, lg: 8 }}>
+            <Grid size={{ xs: 12, md: 4, lg: 8 }}>
               <Box
                 sx={{
                   display: "grid",
                   gridTemplateColumns: {
                     xs: "1fr",
                     sm: "repeat(2, 1fr)",
-                    md: "repeat(4, 1fr)",
+                    md: "repeat(3, 1fr)",
                   },
                   gap: 2,
                 }}
