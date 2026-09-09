@@ -12,12 +12,14 @@ import {
 
 import {
     Search, Settings2,
-    MoreHorizontal, Plus, Trash2,
+    MoreHorizontal, Plus, Trash2, Pencil,
     Check, Copy, CalendarDays,
     Hash, Type, CircleCheck,
     Eye, EyeOff, WrapText,
+    Download, Upload,
 } from "lucide-react";
 
+import * as XLSX from "xlsx";
 import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
 import HRLayout from "../../Layouts/HRLayout";
@@ -44,7 +46,7 @@ const DEFAULT_STATUS_OPTIONS = [
     { id: "status-completed", name: "Completed", color: "#3b82f6", },
 ];
 
-const createRow = (columns) => {
+const createRow = (columns, originalIndex = 0) => {
     const cells = {};
 
     columns.forEach((column) => {
@@ -55,12 +57,15 @@ const createRow = (columns) => {
         id: `row-${Date.now()}-${Math.random()
             .toString(36)
             .slice(2, 8)}`,
+        originalIndex,
         cells,
     };
 };
 
 const createInitialRows = (columns) =>
-    Array.from({ length: 10 }, () => createRow(columns));
+    Array.from({ length: 10 }, (_, index) =>
+        createRow(columns, index)
+    );
 
 const CustomTable = () => {
     const { darkMode } = useTheme();
@@ -75,6 +80,18 @@ const CustomTable = () => {
 
     const [columns, setColumns] =
         useState([]);
+    const [draggedColumnId, setDraggedColumnId] =
+        useState(null);
+    const [columnWidths, setColumnWidths] =
+        useState({});
+    const [resizingColumnId, setResizingColumnId] =
+        useState(null);
+    const [sortConfig, setSortConfig] = useState({
+        columnId: null,
+        direction: null,
+    });
+    const [showSortOptions, setShowSortOptions] =
+        useState(false);
     const [rows, setRows] =
         useState([]);
     const [statusOptions, setStatusOptions] =
@@ -107,6 +124,13 @@ const CustomTable = () => {
         useState({});
     const [isSaved, setIsSaved] =
         useState(false);
+    const [cellErrors, setCellErrors] =
+        useState({});
+    const [pinnedColumns, setPinnedColumns] =
+        useState({
+            left: [],
+            right: [],
+        });
     const [isLoading, setIsLoading] =
         useState(true);
     const [deleteConfirmation, setDeleteConfirmation] =
@@ -117,6 +141,10 @@ const CustomTable = () => {
         useState("#3b82f6");
     const [statusToDelete, setStatusToDelete] =
         useState(null);
+    const [statusToRename, setStatusToRename] =
+        useState(null);
+    const [renameStatusName, setRenameStatusName] =
+        useState("");
     const [cellSelectionStart, setCellSelectionStart] =
         useState(null);
     const [cellSelectionEnd, setCellSelectionEnd] =
@@ -167,6 +195,22 @@ const CustomTable = () => {
                     setWrapEnabledColumns(
                         parsed.wrapEnabledColumns || {}
                     );
+                    setSortConfig(
+                        parsed.sortConfig || {
+                            columnId: null,
+                            direction: null,
+                        }
+                    );
+                    setColumnWidths(parsed.columnWidths || {});
+                    setSearchValue(parsed.searchValue || "");
+                    setFilterColumn(parsed.filterColumn || "");
+                    setFilterValue(parsed.filterValue || "");
+                    setPinnedColumns(
+                        parsed.pinnedColumns || {
+                            left: [],
+                            right: [],
+                        }
+                    );
                 } else {
                     const initialRows =
                         createInitialRows(DEFAULT_COLUMNS);
@@ -206,6 +250,7 @@ const CustomTable = () => {
         wrapEnabledColumns: structuredClone(wrapEnabledColumns),
         selectedRows: [...selectedRows],
         statusOptions: structuredClone(statusOptions),
+        pinnedColumns: structuredClone(pinnedColumns),
     });
     const pushHistory = () => {
         undoStackRef.current.push(createSnapshot());
@@ -225,6 +270,12 @@ const CustomTable = () => {
         setWrapEnabledColumns(previous.wrapEnabledColumns);
         setSelectedRows(previous.selectedRows);
         setStatusOptions(previous.statusOptions);
+        setPinnedColumns(
+            previous.pinnedColumns || {
+                left: [],
+                right: [],
+            }
+        );
         setIsSaved(false);
     };
     const handleRedo = () => {
@@ -237,6 +288,12 @@ const CustomTable = () => {
         setWrapEnabledColumns(next.wrapEnabledColumns);
         setSelectedRows(next.selectedRows);
         setStatusOptions(next.statusOptions);
+        setPinnedColumns(
+            next.pinnedColumns || {
+                left: [],
+                right: [],
+            }
+        );
         setIsSaved(false);
     };
 
@@ -301,6 +358,143 @@ const CustomTable = () => {
     }, []);
 
     /* =====================================================
+       Excel Export function
+    ===================================================== */
+
+    const handleExportExcel = () => {
+        const exportData = rows.map((row) => {
+            const rowData = {};
+
+            columns.forEach((column) => {
+                rowData[column.name] =
+                    row.cells?.[column.id] ?? "";
+            });
+
+            return rowData;
+        });
+
+        const worksheet = XLSX.utils.json_to_sheet(exportData);
+        const workbook = XLSX.utils.book_new();
+
+        XLSX.utils.book_append_sheet(
+            workbook,
+            worksheet,
+            "Table"
+        );
+
+        XLSX.writeFile(workbook, "NextHire_Table.xlsx");
+    };
+
+    /* =====================================================
+       Excel Import function
+    ===================================================== */
+
+    const handleImportExcel = (event) => {
+        const file = event.target.files?.[0];
+
+        if (!file) return;
+
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+            try {
+                const data = new Uint8Array(e.target.result);
+                const workbook = XLSX.read(data, {
+                    type: "array",
+                });
+
+                const worksheet =
+                    workbook.Sheets[workbook.SheetNames[0]];
+
+                const importedData = XLSX.utils.sheet_to_json(
+                    worksheet,
+                    {
+                        header: 1,
+                        defval: "",
+                    }
+                );
+
+                const [, ...dataRows] = importedData;
+
+                if (!importedData.length) {
+                    return;
+                }
+
+                const importedErrors = {};
+                const importedRows = dataRows
+                    .filter((row) =>
+                        row.some(
+                            (cell) =>
+                                String(cell).trim() !== ""
+                        )
+                    )
+                    .map((excelRow, index) => {
+                        const rowId = `row-${Date.now()}-${index}`;
+                        const rowCells = {};
+                        // const rowErrors = {};
+
+                        columns.forEach((column, columnIndex) => {
+                            const value = String(
+                                excelRow[columnIndex] ?? ""
+                            ).trim();
+
+                            rowCells[column.id] = value;
+
+                            const errorKey = `${rowId}-${column.id}`;
+
+                            if (
+                                column.name.toLowerCase() ===
+                                "phone number" &&
+                                value !== ""
+                            ) {
+                                const phoneRegex = /^\d{10}$/;
+
+                                if (!phoneRegex.test(value)) {
+                                    importedErrors[errorKey] =
+                                        "Phone number must be 10 digits";
+                                }
+                            }
+
+                            if (
+                                column.name.toLowerCase() ===
+                                "email" &&
+                                value !== ""
+                            ) {
+                                const emailRegex =
+                                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                                if (!emailRegex.test(value)) {
+                                    importedErrors[errorKey] =
+                                        "Invalid email address";
+                                }
+                            }
+                        });
+
+                        return {
+                            id: rowId,
+                            originalIndex: index,
+                            cells: rowCells,
+                        };
+                    });
+
+                pushHistory();
+                setRows(importedRows);
+                setCellErrors(importedErrors);
+                setIsSaved(false);
+            } catch (error) {
+                console.error(
+                    "Excel import failed:",
+                    error
+                );
+            }
+        };
+
+        reader.readAsArrayBuffer(file);
+
+        event.target.value = "";
+    };
+
+    /* =====================================================
        SAVE
     ===================================================== */
 
@@ -313,12 +507,56 @@ const CustomTable = () => {
                 statusOptions,
                 visibleColumns,
                 wrapEnabledColumns,
+                sortConfig,
+                columnWidths,
+                searchValue,
+                filterColumn,
+                filterValue,
+                pinnedColumns,
             })
         );
         setIsSaved(true);
         setTimeout(() => {
             setIsSaved(false);
         }, 2000);
+    };
+
+    /* =====================================================
+     Pin/Unpin handlers
+  ===================================================== */
+
+    const handlePinColumn = (columnId, position) => {
+        pushHistory();
+        setPinnedColumns((previous) => {
+            const left = previous.left.filter(
+                (id) => id !== columnId
+            );
+
+            const right = previous.right.filter(
+                (id) => id !== columnId
+            );
+
+            if (position === "left") {
+                return {
+                    left: [...left, columnId],
+                    right,
+                };
+            }
+
+            if (position === "right") {
+                return {
+                    left,
+                    right: [...right, columnId],
+                };
+            }
+
+            return {
+                left,
+                right,
+            };
+        });
+
+        setIsSaved(false);
     };
 
     /* =====================================================
@@ -330,14 +568,81 @@ const CustomTable = () => {
         columnId,
         value
     ) => {
+        const column = columns.find(
+            (item) => item.id === columnId
+        );
+
+        const errorKey = `${rowId}-${columnId}`;
+
+        // Phone number validation
+        if (
+            column?.name.toLowerCase() === "phone number" &&
+            value.trim() !== ""
+        ) {
+            const phoneRegex = /^\d{10}$/;
+
+            if (!phoneRegex.test(value.trim())) {
+                setCellErrors((previous) => ({
+                    ...previous,
+                    [errorKey]: "Phone number must be 10 digits",
+                }));
+            } else {
+                setCellErrors((previous) => {
+                    const updated = { ...previous };
+                    delete updated[errorKey];
+                    return updated;
+                });
+            }
+        } else if (
+            column?.name.toLowerCase() === "phone number"
+        ) {
+            setCellErrors((previous) => {
+                const updated = { ...previous };
+                delete updated[errorKey];
+                return updated;
+            });
+        }
+
+        // Email validation
+        if (
+            column?.name.toLowerCase() === "email" &&
+            value.trim() !== ""
+        ) {
+            const emailRegex =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailRegex.test(value.trim())) {
+                setCellErrors((previous) => ({
+                    ...previous,
+                    [errorKey]: "Invalid email address",
+                }));
+            } else {
+                setCellErrors((previous) => {
+                    const updated = { ...previous };
+                    delete updated[errorKey];
+                    return updated;
+                });
+            }
+        } else if (
+            column?.name.toLowerCase() === "email"
+        ) {
+            setCellErrors((previous) => {
+                const updated = { ...previous };
+                delete updated[errorKey];
+                return updated;
+            });
+        }
+
         const editKey =
             `${rowId}-${columnId}`;
+
         if (
             editingCellRef.current !== editKey
         ) {
             pushHistory();
             editingCellRef.current = editKey;
         }
+
         setRows((previous) =>
             previous.map((row) =>
                 row.id === rowId
@@ -351,6 +656,7 @@ const CustomTable = () => {
                     : row
             )
         );
+
         setIsSaved(false);
     };
 
@@ -388,11 +694,127 @@ const CustomTable = () => {
 
     const handleAddRow = () => {
         pushHistory();
-        const newRow = createRow(columns);
+        const nextOriginalIndex = rows.length
+            ? Math.max(
+                ...rows.map((row) => row.originalIndex ?? -1)
+            ) + 1
+            : 0;
+
+        const newRow = createRow(columns, nextOriginalIndex);
         setRows((previous) => [
             ...previous,
             newRow,
         ]);
+        setIsSaved(false);
+    };
+
+    /* =====================================================
+   Drag & Drop reorder colomn
+===================================================== */
+
+    const handleColumnDrop = (targetColumnId) => {
+        if (!draggedColumnId || draggedColumnId === targetColumnId) {
+            setDraggedColumnId(null);
+            return;
+        }
+
+        pushHistory();
+
+        setColumns((previousColumns) => {
+            const draggedIndex = previousColumns.findIndex(
+                (column) => column.id === draggedColumnId
+            );
+
+            const targetIndex = previousColumns.findIndex(
+                (column) => column.id === targetColumnId
+            );
+
+            if (
+                draggedIndex === -1 ||
+                targetIndex === -1
+            ) {
+                return previousColumns;
+            }
+
+            const updatedColumns = [...previousColumns];
+
+            const [draggedColumn] =
+                updatedColumns.splice(draggedIndex, 1);
+
+            const adjustedTargetIndex =
+                draggedIndex < targetIndex
+                    ? targetIndex - 1
+                    : targetIndex;
+
+            updatedColumns.splice(
+                adjustedTargetIndex,
+                0,
+                draggedColumn
+            );
+
+            return updatedColumns;
+        });
+
+        setDraggedColumnId(null);
+        setIsSaved(false);
+    };
+
+    // =====================================================
+    // Resize handler
+    // ===================================================== 
+
+    const handleColumnResize = (columnId, width) => {
+        setColumnWidths((previous) => ({
+            ...previous,
+            [columnId]: Math.max(100, width),
+        }));
+
+        setIsSaved(false);
+    };
+
+    // Resize start handler
+
+    const handleResizeStart = (event, columnId) => {
+        pushHistory();
+        event.preventDefault();
+        event.stopPropagation();
+
+        const startX = event.clientX;
+        const currentWidth =
+            columnWidths[columnId] ||
+            document.getElementById(`column-${columnId}`)?.offsetWidth ||
+            160;
+
+        setResizingColumnId(columnId);
+
+        const handleMouseMove = (moveEvent) => {
+            const newWidth = currentWidth + (moveEvent.clientX - startX);
+
+            handleColumnResize(columnId, newWidth);
+        };
+
+        const handleMouseUp = () => {
+            setResizingColumnId(null);
+            document.removeEventListener("mousemove", handleMouseMove);
+            document.removeEventListener("mouseup", handleMouseUp);
+        };
+
+        document.addEventListener("mousemove", handleMouseMove);
+        document.addEventListener("mouseup", handleMouseUp);
+    };
+
+    /* =====================================================
+  sort handler
+  ===================================================== */
+
+    const handleSort = (columnId, direction) => {
+        pushHistory();
+        setSortConfig({
+            columnId,
+            direction,
+        });
+
+        setShowSortOptions(false);
         setIsSaved(false);
     };
 
@@ -411,16 +833,28 @@ const CustomTable = () => {
     };
 
     const handleSelectAll = () => {
-        if (
-            selectedRows.length ===
-            filteredRows.length
-        ) {
-            setSelectedRows([]);
+        const allFilteredSelected = filteredRows.every(
+            (row) => selectedRows.includes(row.id)
+        );
+
+        if (allFilteredSelected) {
+            setSelectedRows((previous) =>
+                previous.filter(
+                    (id) =>
+                        !filteredRows.some(
+                            (row) => row.id === id
+                        )
+                )
+            );
         } else {
-            setSelectedRows(
-                filteredRows.map(
-                    (row) => row.id
-                ));
+            setSelectedRows((previous) => [
+                ...new Set([
+                    ...previous,
+                    ...filteredRows.map(
+                        (row) => row.id
+                    ),
+                ]),
+            ]);
         }
     };
 
@@ -561,6 +995,7 @@ const CustomTable = () => {
     const handleToggleColumn = (
         columnId
     ) => {
+        pushHistory();
         setVisibleColumns((previous) => {
             if (previous.includes(columnId)) {
                 if (previous.length === 1) {
@@ -586,6 +1021,7 @@ const CustomTable = () => {
     const handleToggleWrap = (
         columnId
     ) => {
+        pushHistory();
         setWrapEnabledColumns(
             (previous) => ({
                 ...previous,
@@ -696,6 +1132,15 @@ const CustomTable = () => {
                     ];
                     return updated;
                 });
+
+            setPinnedColumns((previous) => ({
+                left: previous.left.filter(
+                    (id) => id !== columnId
+                ),
+                right: previous.right.filter(
+                    (id) => id !== columnId
+                ),
+            }));
         }
         setDeleteConfirmation(null);
         setActiveColumnMenu(null);
@@ -846,54 +1291,153 @@ const CustomTable = () => {
     };
 
     /* =====================================================
+       RENAME STATUS
+    ===================================================== */
+
+    const handleRenameStatus = () => {
+        if (!statusToRename) return;
+
+        const newName = renameStatusName.trim();
+
+        if (!newName) return;
+
+        if (
+            statusOptions.some(
+                (status) =>
+                    status.id !== statusToRename.id &&
+                    status.name.toLowerCase() ===
+                    newName.toLowerCase()
+            )
+        ) {
+            return;
+        }
+
+        pushHistory();
+
+        const oldName = statusToRename.name;
+
+        setStatusOptions((previous) =>
+            previous.map((status) =>
+                status.id === statusToRename.id
+                    ? {
+                        ...status,
+                        name: newName,
+                    }
+                    : status
+            )
+        );
+
+        setRows((previousRows) =>
+            previousRows.map((row) => {
+                const updatedCells = {
+                    ...row.cells,
+                };
+
+                Object.keys(updatedCells).forEach(
+                    (columnId) => {
+                        const column = columns.find(
+                            (item) =>
+                                item.id === columnId
+                        );
+
+                        if (
+                            column?.type === "status" &&
+                            updatedCells[columnId] === oldName
+                        ) {
+                            updatedCells[columnId] = newName;
+                        }
+                    }
+                );
+
+                return {
+                    ...row,
+                    cells: updatedCells,
+                };
+            })
+        );
+
+        setStatusToRename(null);
+        setRenameStatusName("");
+        setIsSaved(false);
+    };
+
+    /* =====================================================
        FILTER
     ===================================================== */
 
     const filteredRows = rows.filter((row) => {
-        // Search
         if (searchValue.trim()) {
-            const search = searchValue
-                .trim()
-                .toLowerCase();
-            const matchesSearch = columns.some(
-                (column) => {
-                    if (
-                        !visibleColumns.includes(
-                            column.id
-                        )
-                    ) {
-                        return false;
-                    }
-                    const cellValue = String(
-                        row.cells[column.id] ?? ""
-                    ).toLowerCase();
-                    return cellValue.includes(search);
-                }
-            );
-            if (!matchesSearch) {
-                return false;
-            }
+            const search = searchValue.trim().toLowerCase();
+
+            const matchesSearch = columns.some((column) => {
+                if (!visibleColumns.includes(column.id)) return false;
+
+                const cellValue = String(
+                    row.cells[column.id] ?? ""
+                ).toLowerCase();
+
+                return cellValue.includes(search);
+            });
+
+            if (!matchesSearch) return false;
         }
 
-        // Filter
         if (filterColumn) {
             const cellValue = String(
                 row.cells[filterColumn] ?? ""
             )
                 .trim()
                 .toLowerCase();
-            const filter = filterValue
-                .trim()
-                .toLowerCase();
 
-            // If column selected but filter value empty,
-            // don't hide any rows.
+            const filter = filterValue.trim().toLowerCase();
+
             if (filter && !cellValue.includes(filter)) {
                 return false;
             }
         }
+
         return true;
     });
+
+    // =======================================
+    // Sorting
+    // =======================================
+
+    const sortedRows =
+        !sortConfig.columnId || !sortConfig.direction
+            ? filteredRows
+            : [...filteredRows].sort((a, b) => {
+                if (!sortConfig.columnId || !sortConfig.direction) {
+                    return 0;
+                }
+
+                // Original = unique ID / original row order
+                if (sortConfig.direction === "original") {
+                    return a.originalIndex - b.originalIndex;
+                }
+
+                const aValue = String(
+                    a.cells[sortConfig.columnId] ?? ""
+                ).trim();
+
+                const bValue = String(
+                    b.cells[sortConfig.columnId] ?? ""
+                ).trim();
+
+                const comparison = aValue.localeCompare(
+                    bValue,
+                    undefined,
+                    {
+                        numeric: true,
+                        sensitivity: "base",
+                    }
+                );
+
+                return sortConfig.direction === "asc"
+                    ? comparison
+                    : -comparison;
+            });
+
     const displayedColumns =
         columns.filter((column) =>
             visibleColumns.includes(
@@ -998,7 +1542,7 @@ const CustomTable = () => {
             rowIndex++
         ) {
             const row =
-                filteredRows[rowIndex];
+                sortedRows[rowIndex];
             if (!row) continue;
             const values = [];
             for (
@@ -1073,21 +1617,34 @@ const CustomTable = () => {
             cellSelectionStart.rowIndex;
         const startColumnIndex =
             cellSelectionStart.columnIndex;
+            const importedErrors = {};
         const updatedRows = [...rows];
+        const workingRows = [...sortedRows];
+
         while (
-            filteredRows.length <
-            startRowIndex +
-            pastedRows.length
+            workingRows.length <
+            startRowIndex + pastedRows.length
         ) {
-            const newRow =
-                createRow(columns);
+            const nextOriginalIndex = updatedRows.length
+                ? Math.max(
+                    ...updatedRows.map(
+                        (row) => row.originalIndex ?? -1
+                    )
+                ) + 1
+                : 0;
+
+            const newRow = createRow(
+                columns,
+                nextOriginalIndex
+            );
+
             updatedRows.push(newRow);
-            filteredRows.push(newRow);
+            workingRows.push(newRow);
         }
         pastedRows.forEach(
             (pastedRow, rowOffset) => {
                 const targetFilteredRow =
-                    filteredRows[
+                    workingRows[
                     startRowIndex +
                     rowOffset
                     ];
@@ -1124,20 +1681,41 @@ const CustomTable = () => {
                         ) {
                             return;
                         }
-                        updatedRows[
-                            actualRowIndex
-                        ] = {
-                            ...updatedRows[
-                            actualRowIndex
-                            ],
+                        updatedRows[actualRowIndex] = {
+                            ...updatedRows[actualRowIndex],
                             cells: {
-                                ...updatedRows[
-                                    actualRowIndex
-                                ].cells,
-                                [targetColumn.id]:
-                                    value,
+                                ...updatedRows[actualRowIndex].cells,
+                                [targetColumn.id]: value,
                             },
                         };
+
+                        if (
+                            targetColumn.id === "phone" ||
+                            targetColumn.id === "email"
+                        ) {
+                            const errorKey = `${updatedRows[actualRowIndex].id}-${targetColumn.id}`;
+
+                            if (targetColumn.id === "phone") {
+                                const phoneRegex = /^[0-9]{10}$/;
+
+                                if (!phoneRegex.test(String(value).trim())) {
+                                    importedErrors[errorKey] = "Invalid phone number";
+                                } else {
+                                    delete importedErrors[errorKey];
+                                }
+                            }
+
+                            if (targetColumn.id === "email") {
+                                const emailRegex =
+                                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                                if (!emailRegex.test(String(value).trim())) {
+                                    importedErrors[errorKey] = "Invalid email";
+                                } else {
+                                    delete importedErrors[errorKey];
+                                }
+                            }
+                        }
                     });
             });
         setRows(updatedRows);
@@ -1200,6 +1778,7 @@ const CustomTable = () => {
         rows,
         columns,
         filteredRows,
+        sortedRows,
         displayedColumns,
     ]);
 
@@ -1436,6 +2015,12 @@ const CustomTable = () => {
         return (
             <TextField
                 fullWidth
+                error={Boolean(
+                    cellErrors[`${row.id}-${column.id}`]
+                )}
+                helperText={
+                    cellErrors[`${row.id}-${column.id}`] || ""
+                }
                 multiline={
                     column.type === "text"
                 }
@@ -1642,6 +2227,37 @@ const CustomTable = () => {
                                     ? "Saved"
                                     : "Save Changes"}
                             </Button>
+
+                            <Button
+                                variant="outlined"
+                                startIcon={<Download size={18} />}
+                                onClick={handleExportExcel}
+                                sx={{
+                                    textTransform: "none",
+                                    borderRadius: "6px",
+                                }}
+                            >
+                                Export
+                            </Button>
+
+                            <Button
+                                variant="outlined"
+                                component="label"
+                                startIcon={<Upload size={18} />}
+                                sx={{
+                                    textTransform: "none",
+                                    borderRadius: "6px",
+                                }}
+                            >
+                                Import
+                                <input
+                                    type="file"
+                                    hidden
+                                    accept=".xlsx,.xls"
+                                    onChange={handleImportExcel}
+                                />
+                            </Button>
+
                         </Box>
                     </Box>
 
@@ -1945,15 +2561,53 @@ const CustomTable = () => {
                                             columnIndex
                                         ) => (
                                             <TableCell
+                                                id={`column-${column.id}`}
                                                 key={column.id}
+                                                draggable
+                                                onDragStart={() => {
+                                                    setDraggedColumnId(column.id);
+                                                }}
+                                                onDragOver={(event) => {
+                                                    event.preventDefault();
+                                                }}
+                                                onDrop={() => {
+                                                    handleColumnDrop(column.id);
+                                                }}
+                                                onDragEnd={() => {
+                                                    setDraggedColumnId(null);
+                                                }}
                                                 sx={{
-                                                    position: "relative",
-                                                    minWidth: 170,
+                                                    width: columnWidths[column.id] || 160,
+                                                    minWidth: columnWidths[column.id] || 160,
+                                                    position: pinnedColumns.right.includes(column.id)
+                                                        ? "sticky"
+                                                        : "relative",
+                                                    right: pinnedColumns.right.includes(column.id)
+                                                        ? pinnedColumns.right
+                                                            .slice(pinnedColumns.right.indexOf(column.id) + 1)
+                                                            .reduce(
+                                                                (total, id) =>
+                                                                    total + (columnWidths[id] || 160),
+                                                                0
+                                                            )
+                                                        : undefined,
+                                                    zIndex: pinnedColumns.right.includes(column.id)
+                                                        ? 6
+                                                        : undefined,
                                                     backgroundColor: darkMode
                                                         ? "#1e293b"
                                                         : "#f8fafc",
                                                     borderBottom: `1px solid ${borderColor}`,
                                                     color: textColor,
+                                                    opacity:
+                                                        draggedColumnId === column.id
+                                                            ? 0.5
+                                                            : 1,
+                                                    cursor: "grab",
+                                                    transition: "opacity 0.15s ease",
+                                                    "&:active": {
+                                                        cursor: "grabbing",
+                                                    },
                                                 }}
                                             >
                                                 <Box
@@ -2005,6 +2659,28 @@ const CustomTable = () => {
                                                         <MoreHorizontal size={16} />
                                                     </IconButton>
                                                 </Box>
+
+                                                <Box
+                                                    onMouseDown={(event) =>
+                                                        handleResizeStart(event, column.id)
+                                                    }
+                                                    sx={{
+                                                        position: "absolute",
+                                                        top: 0,
+                                                        right: 0,
+                                                        width: "2px",
+                                                        height: "100%",
+                                                        cursor: "col-resize",
+                                                        zIndex: 10,
+                                                        backgroundColor:
+                                                            resizingColumnId === column.id
+                                                                ? primary
+                                                                : "transparent",
+                                                        "&:hover": {
+                                                            backgroundColor: primary,
+                                                        },
+                                                    }}
+                                                />
 
                                                 {activeColumnMenu ===
                                                     column.id && (
@@ -2090,6 +2766,122 @@ const CustomTable = () => {
                                                                 ))}
 
                                                             <Divider sx={{ my: 0.5, }} />
+
+                                                            <Box sx={{ position: "relative" }}>
+                                                                <Button
+                                                                    fullWidth
+                                                                    startIcon={<Settings2 size={13} />}
+                                                                    onClick={() => setShowSortOptions((previous) => !previous)}
+                                                                    sx={{
+                                                                        justifyContent: "flex-start",
+                                                                        textTransform: "none",
+                                                                        fontSize: "12px",
+                                                                        color: textColor,
+                                                                    }}
+                                                                >
+                                                                    Sort
+                                                                </Button>
+
+                                                                {showSortOptions && (
+                                                                    <Box
+                                                                        sx={{
+                                                                            position: "absolute",
+                                                                            top: "100%",
+                                                                            left: 0,
+                                                                            width: "100%",
+                                                                            mt: 0.5,
+                                                                            p: 0.5,
+                                                                            borderRadius: "8px",
+                                                                            backgroundColor: darkMode ? "#1e293b" : "#ffffff",
+                                                                            border: `1px solid ${borderColor}`,
+                                                                            boxShadow: "0 8px 20px rgba(0,0,0,0.15)",
+                                                                            zIndex: 3100,
+                                                                        }}
+                                                                    >
+                                                                        <Button
+                                                                            fullWidth
+                                                                            onClick={() => handleSort(activeColumnMenu, "asc")}
+                                                                            sx={{
+                                                                                justifyContent: "flex-start",
+                                                                                textTransform: "none",
+                                                                                fontSize: "12px",
+                                                                                color: textColor,
+                                                                            }}
+                                                                        >
+                                                                            Ascending (A → Z)
+                                                                        </Button>
+
+                                                                        <Button
+                                                                            fullWidth
+                                                                            onClick={() => handleSort(activeColumnMenu, "desc")}
+                                                                            sx={{
+                                                                                justifyContent: "flex-start",
+                                                                                textTransform: "none",
+                                                                                fontSize: "12px",
+                                                                                color: textColor,
+                                                                            }}
+                                                                        >
+                                                                            Descending (Z → A)
+                                                                        </Button>
+
+                                                                        <Button
+                                                                            fullWidth
+                                                                            onClick={() => handleSort(activeColumnMenu, "original")}
+                                                                            sx={{
+                                                                                justifyContent: "flex-start",
+                                                                                textTransform: "none",
+                                                                                fontSize: "12px",
+                                                                                color: textColor,
+                                                                            }}
+                                                                        >
+                                                                            Original
+                                                                        </Button>
+                                                                    </Box>
+                                                                )}
+                                                            </Box>
+
+                                                            <Button
+                                                                fullWidth
+                                                                startIcon={
+                                                                    pinnedColumns.right.includes(column.id) ? (
+                                                                        <EyeOff size={13} />
+                                                                    ) : (
+                                                                        <Eye size={13} />
+                                                                    )
+                                                                }
+                                                                onClick={() => {
+                                                                    handlePinColumn(
+                                                                        column.id,
+                                                                        pinnedColumns.right.includes(column.id)
+                                                                            ? null
+                                                                            : "right"
+                                                                    );
+                                                                    setActiveColumnMenu(null);
+                                                                }}
+                                                                sx={{
+                                                                    width: "100%",
+                                                                    minHeight: 38,
+                                                                    justifyContent: "flex-start",
+                                                                    textTransform: "none",
+                                                                    fontSize: "13px",
+                                                                    fontWeight: 400,
+                                                                    color: textColor,
+                                                                    borderRadius: "7px",
+                                                                    px: 1.25,
+                                                                    gap: 1,
+                                                                    mb: -1,
+                                                                    transition: "background-color 0.15s ease",
+                                                                    "&:hover": {
+                                                                        backgroundColor: darkMode
+                                                                            ? "rgba(255, 255, 255, 0.08)"
+                                                                            : "#f1f5f9",
+                                                                    },
+                                                                }}
+                                                            >
+                                                                {pinnedColumns.right.includes(column.id)
+                                                                    ? "Unpin"
+                                                                    : "Pin"}
+                                                            </Button>
 
                                                             <Button
                                                                 fullWidth
@@ -2208,7 +3000,7 @@ const CustomTable = () => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {filteredRows.map(
+                                {sortedRows.map(
                                     (
                                         row,
                                         rowIndex
@@ -2245,11 +3037,35 @@ const CustomTable = () => {
                                                         key={column.id}
                                                         sx={{
                                                             p: 1,
+                                                            width: columnWidths[column.id] || 160,
+                                                            minWidth: columnWidths[column.id] || 160,
                                                             borderBottom: `1px solid ${borderColor}`,
                                                             backgroundColor: darkMode
                                                                 ? "#0f172a"
                                                                 : "#ffffff",
                                                             verticalAlign: "top",
+
+                                                            ...(pinnedColumns.right.includes(column.id) && {
+                                                                position: "sticky",
+                                                                right: pinnedColumns.right
+                                                                    .slice(
+                                                                        pinnedColumns.right.indexOf(column.id) + 1
+                                                                    )
+                                                                    .reduce(
+                                                                        (total, id) =>
+                                                                            total + (columnWidths[id] || 160),
+                                                                        0
+                                                                    ),
+                                                                zIndex: 4,
+                                                                boxShadow:
+                                                                    pinnedColumns.right[
+                                                                        pinnedColumns.right.length - 1
+                                                                    ] === column.id
+                                                                        ? darkMode
+                                                                            ? "-4px 0 8px rgba(0,0,0,0.25)"
+                                                                            : "-4px 0 8px rgba(15,23,42,0.08)"
+                                                                        : "none",
+                                                            }),
                                                         }}
                                                     >
                                                         {renderCell(
@@ -2480,15 +3296,29 @@ const CustomTable = () => {
                                     }}
                                 />
 
-                                <IconButton
-                                    size="small"
-                                    onClick={() =>
-                                        setStatusToDelete(status)
-                                    }
-                                    sx={{ color: subText, }}
-                                >
-                                    <Trash2 size={14} />
-                                </IconButton>
+                                <Box sx={{ display: "flex", gap: 0.5 }}>
+
+                                    <IconButton
+                                        size="small"
+                                        onClick={() => {
+                                            setStatusToRename(status);
+                                            setRenameStatusName(status.name);
+                                        }}
+                                        sx={{ color: subText }}
+                                    >
+                                        <Pencil size={14} />
+                                    </IconButton>
+
+                                    <IconButton
+                                        size="small"
+                                        onClick={() =>
+                                            setStatusToDelete(status)
+                                        }
+                                        sx={{ color: subText, }}
+                                    >
+                                        <Trash2 size={14} />
+                                    </IconButton>
+                                </Box>
                             </Box>
                         ))}
 
@@ -2566,6 +3396,80 @@ const CustomTable = () => {
                         }}
                     >
                         Close
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
+            <Dialog
+                open={Boolean(statusToRename)}
+                onClose={() => {
+                    setStatusToRename(null);
+                    setRenameStatusName("");
+                }}
+                PaperProps={{
+                    sx: {
+                        borderRadius: "6px",
+                        backgroundColor: darkMode
+                            ? "#1e293b"
+                            : "#ffffff",
+                        border: `1px solid ${borderColor}`,
+                    },
+                }}
+            >
+                <DialogTitle
+                    sx={{
+                        fontSize: "15px",
+                        color: textColor,
+                    }}
+                >
+                    Rename Status
+                </DialogTitle>
+
+                <DialogContent
+                    sx={{
+                        minWidth: { xs: 280, sm: 400 },
+                    }}
+                >
+                    <TextField
+                        fullWidth
+                        autoFocus
+                        size="small"
+                        label="Status name"
+                        value={renameStatusName}
+                        onChange={(event) =>
+                            setRenameStatusName(event.target.value)
+                        }
+                        onKeyDown={(event) => {
+                            if (event.key === "Enter") {
+                                handleRenameStatus();
+                            }
+                        }}
+                    />
+                </DialogContent>
+
+                <DialogActions>
+                    <Button
+                        onClick={() => {
+                            setStatusToRename(null);
+                            setRenameStatusName("");
+                        }}
+                        sx={{
+                            textTransform: "none",
+                        }}
+                    >
+                        Cancel
+                    </Button>
+
+                    <Button
+                        variant="contained"
+                        onClick={handleRenameStatus}
+                        disabled={!renameStatusName.trim()}
+                        sx={{
+                            textTransform: "none",
+                            backgroundColor: primary,
+                        }}
+                    >
+                        Rename
                     </Button>
                 </DialogActions>
             </Dialog>
