@@ -82,6 +82,8 @@ const CustomTable = () => {
         useState([]);
     const [draggedColumnId, setDraggedColumnId] =
         useState(null);
+    const [draggedRowId, setDraggedRowId] =
+        useState(null);
     const [columnWidths, setColumnWidths] =
         useState({});
     const [resizingColumnId, setResizingColumnId] =
@@ -708,9 +710,52 @@ const CustomTable = () => {
         setIsSaved(false);
     };
 
-    /* =====================================================
-   Drag & Drop reorder colomn
-===================================================== */
+    // =====================================================
+    // Drag & Drop reorder Row
+    // =====================================================
+
+    const handleRowDrop = (targetRowId) => {
+        if (!draggedRowId || draggedRowId === targetRowId) {
+            return;
+        }
+
+        pushHistory();
+
+        setRows((previous) => {
+            const draggedIndex = previous.findIndex(
+                (row) => row.id === draggedRowId
+            );
+
+            const targetIndex = previous.findIndex(
+                (row) => row.id === targetRowId
+            );
+
+            if (draggedIndex === -1 || targetIndex === -1) {
+                return previous;
+            }
+
+            const updatedRows = [...previous];
+            const [draggedRow] = updatedRows.splice(
+                draggedIndex,
+                1
+            );
+
+            updatedRows.splice(
+                targetIndex,
+                0,
+                draggedRow
+            );
+
+            return updatedRows;
+        });
+
+        setDraggedRowId(null);
+        setIsSaved(false);
+    };
+
+    // =====================================================
+    //    Drag & Drop reorder colomn
+    // =====================================================
 
     const handleColumnDrop = (targetColumnId) => {
         if (!draggedColumnId || draggedColumnId === targetColumnId) {
@@ -1617,7 +1662,7 @@ const CustomTable = () => {
             cellSelectionStart.rowIndex;
         const startColumnIndex =
             cellSelectionStart.columnIndex;
-            const importedErrors = {};
+        const importedErrors = {};
         const updatedRows = [...rows];
         const workingRows = [...sortedRows];
 
@@ -2594,9 +2639,23 @@ const CustomTable = () => {
                                                     zIndex: pinnedColumns.right.includes(column.id)
                                                         ? 6
                                                         : undefined,
-                                                    backgroundColor: darkMode
-                                                        ? "#1e293b"
-                                                        : "#f8fafc",
+                                                    backgroundColor:
+                                                        pinnedColumns.left.includes(column.id) ||
+                                                            pinnedColumns.right.includes(column.id)
+                                                            ? darkMode
+                                                                ? "rgba(59, 130, 246, 0.12)"
+                                                                : "rgba(59, 130, 246, 0.08)"
+                                                            : darkMode
+                                                                ? "#1e293b"
+                                                                : "#f8fafc",
+
+                                                    boxShadow:
+                                                        pinnedColumns.left.includes(column.id)
+                                                            ? "4px 0 10px -8px rgba(59, 130, 246, 0.6)"
+                                                            : pinnedColumns.right.includes(column.id)
+                                                                ? "-4px 0 10px -8px rgba(59, 130, 246, 0.6)"
+                                                                : "none",
+
                                                     borderBottom: `1px solid ${borderColor}`,
                                                     color: textColor,
                                                     opacity:
@@ -3008,6 +3067,21 @@ const CustomTable = () => {
                                         <TableRow
                                             key={row.id}
                                             hover
+                                            draggable
+                                            sx={{
+                                                opacity: draggedRowId === row.id ? 0.55 : 1,
+                                                backgroundColor:
+                                                    draggedRowId === row.id
+                                                        ? darkMode
+                                                            ? "rgba(59, 130, 246, 0.12)"
+                                                            : "rgba(59, 130, 246, 0.06)"
+                                                        : "transparent",
+                                                transition: "opacity 0.15s ease, background-color 0.15s ease",
+                                            }}
+                                            onDragStart={() => setDraggedRowId(row.id)}
+                                            onDragOver={(event) => event.preventDefault()}
+                                            onDrop={() => handleRowDrop(row.id)}
+                                            onDragEnd={() => setDraggedRowId(null)}
                                         >
                                             <TableCell
                                                 padding="checkbox"
@@ -3040,10 +3114,43 @@ const CustomTable = () => {
                                                             width: columnWidths[column.id] || 160,
                                                             minWidth: columnWidths[column.id] || 160,
                                                             borderBottom: `1px solid ${borderColor}`,
-                                                            backgroundColor: darkMode
-                                                                ? "#0f172a"
-                                                                : "#ffffff",
+                                                            backgroundColor:
+                                                                pinnedColumns.left.includes(column.id) ||
+                                                                    pinnedColumns.right.includes(column.id)
+                                                                    ? darkMode
+                                                                        ? "rgba(59, 130, 246, 0.10)"
+                                                                        : "rgba(59, 130, 246, 0.06)"
+                                                                    : darkMode
+                                                                        ? "#0f172a"
+                                                                        : "#ffffff",
+
                                                             verticalAlign: "top",
+
+                                                            ...(pinnedColumns.left.includes(column.id) && {
+                                                                position: "sticky",
+                                                                left:
+                                                                    48 +
+                                                                    displayedColumns
+                                                                        .slice(0, columnIndex)
+                                                                        .filter((col) =>
+                                                                            pinnedColumns.left.includes(col.id)
+                                                                        )
+                                                                        .reduce(
+                                                                            (total, col) =>
+                                                                                total +
+                                                                                (columnWidths[col.id] || 160),
+                                                                            0
+                                                                        ),
+                                                                zIndex: 4,
+                                                                boxShadow:
+                                                                    pinnedColumns.left[
+                                                                        pinnedColumns.left.length - 1
+                                                                    ] === column.id
+                                                                        ? darkMode
+                                                                            ? "4px 0 8px rgba(0,0,0,0.25)"
+                                                                            : "4px 0 8px rgba(15,23,42,0.08)"
+                                                                        : "none",
+                                                            }),
 
                                                             ...(pinnedColumns.right.includes(column.id) && {
                                                                 position: "sticky",
