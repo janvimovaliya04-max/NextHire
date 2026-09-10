@@ -261,6 +261,8 @@ const CustomTable = () => {
         }
         redoStackRef.current = [];
     };
+
+    // Undo
     const handleUndo = () => {
         if (!undoStackRef.current.length) return;
         const previous =
@@ -280,6 +282,8 @@ const CustomTable = () => {
         );
         setIsSaved(false);
     };
+
+    // Redo
     const handleRedo = () => {
         if (!redoStackRef.current.length) return;
         const next = redoStackRef.current.pop();
@@ -722,6 +726,18 @@ const CustomTable = () => {
         pushHistory();
 
         setRows((previous) => {
+            const draggedRow = sortedRows.find(
+                (row) => row.id === draggedRowId
+            );
+
+            const targetRow = sortedRows.find(
+                (row) => row.id === targetRowId
+            );
+
+            if (!draggedRow || !targetRow) {
+                return previous;
+            }
+
             const draggedIndex = previous.findIndex(
                 (row) => row.id === draggedRowId
             );
@@ -735,18 +751,27 @@ const CustomTable = () => {
             }
 
             const updatedRows = [...previous];
-            const [draggedRow] = updatedRows.splice(
-                draggedIndex,
-                1
+
+            updatedRows.splice(draggedIndex, 1);
+
+            const newTargetIndex = updatedRows.findIndex(
+                (row) => row.id === targetRowId
             );
 
             updatedRows.splice(
-                targetIndex,
+                newTargetIndex,
                 0,
                 draggedRow
             );
 
-            return updatedRows;
+            const reorderedRows = updatedRows.map(
+                (row, index) => ({
+                    ...row,
+                    originalIndex: index,
+                })
+            );
+
+            return reorderedRows;
         });
 
         setDraggedRowId(null);
@@ -3067,7 +3092,11 @@ const CustomTable = () => {
                                         <TableRow
                                             key={row.id}
                                             hover
-                                            draggable
+                                            draggable={
+                                                !sortConfig.columnId ||
+                                                !sortConfig.direction ||
+                                                sortConfig.direction === "original"
+                                            }
                                             sx={{
                                                 opacity: draggedRowId === row.id ? 0.55 : 1,
                                                 backgroundColor:
