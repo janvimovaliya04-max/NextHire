@@ -144,7 +144,7 @@ function App() {
           <Route path="/react-flow/custom-table" element={<CustomTableFlow />} />
           <Route path="/react-flow/calendar" element={<CalendarFlow />} />
           <Route path="/react-flow/analytics-charts" element={<AnalyticsChartsFlow />} />
-          <Route path="/react_flow/notes" element={<NotesFlow />} />
+          <Route path="/react-flow/notes" element={<NotesFlow />} />
 
           {/* 404 Fallback */}
           <Route
