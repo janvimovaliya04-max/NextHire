@@ -58,6 +58,14 @@ import InterviewerSettings from "./Pages/Interviewer Side/InterviewerSettings";
 import KeepNotes from "./Pages/Interviewer Side/KeepNotes";
 import InterviewerCalendar from "./Pages/Interviewer Side/InterviewerCalendar";
 
+/* React flow */
+
+import APIFlow from "./ReactFlow/API/APIFlow";
+import AntiCheatingFlow from "./ReactFlow/AntiCheating/AntiCheatingFlow";
+import CustomTableFlow from "./ReactFlow/CustomTable/CustomTableFlow";
+import CalendarFlow from "./ReactFlow/Calendar/CalendarFlow";
+import AnalyticsChartsFlow from "./ReactFlow/AnalyticsCharts/AnalyticsChartsFlow";
+
 function App() {
   return (
     <AuthProvider>
@@ -125,6 +133,14 @@ function App() {
             <Route path="/interviewer/keep-notes" element={<KeepNotes />} />
             <Route path="/interviewer/interviewer-calendar" element={<InterviewerCalendar />} />
           </Route>
+
+          {/* Raact flow routes */}
+
+          <Route path="/react-flow/api" element={<APIFlow />} />
+          <Route path="/react-flow/anti-cheating" element={<AntiCheatingFlow />} />
+          <Route path="/react-flow/custom-table" element={<CustomTableFlow />} />
+          <Route path="/react-flow/calendar" element={<CalendarFlow />} />
+          <Route path="/react-flow/analytics-charts" element={<AnalyticsChartsFlow />} />
 
           {/* 404 Fallback */}
           <Route
