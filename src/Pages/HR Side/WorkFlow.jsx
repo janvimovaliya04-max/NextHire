@@ -90,6 +90,24 @@ export default function WorkFlow() {
             >
                 Analytics-Chart Workflow
             </Button>
+
+            <Button
+                component={Link}
+                to="/react-flow/notes"
+                size="small"
+                sx={{
+                    px: { xs: 1.5, md: 2.2 },
+                    fontSize: { xs: ".75rem", md: ".82rem" },
+                    py: 0.8,
+                    borderRadius: "8px",
+                    textTransform: "none",
+                    fontWeight: 700,
+                    fontSize: "0.82rem",
+                }}
+            >
+                Notes Workflow
+            </Button>
+
         </HRLayout>
     )
 }

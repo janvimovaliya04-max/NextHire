@@ -66,6 +66,7 @@ import AntiCheatingFlow from "./ReactFlow/AntiCheating/AntiCheatingFlow";
 import CustomTableFlow from "./ReactFlow/CustomTable/CustomTableFlow";
 import CalendarFlow from "./ReactFlow/Calendar/CalendarFlow";
 import AnalyticsChartsFlow from "./ReactFlow/AnalyticsCharts/AnalyticsChartsFlow";
+import NotesFlow from "./ReactFlow/Notes/NotesFlow";
 
 function App() {
   return (
@@ -143,6 +144,7 @@ function App() {
           <Route path="/react-flow/custom-table" element={<CustomTableFlow />} />
           <Route path="/react-flow/calendar" element={<CalendarFlow />} />
           <Route path="/react-flow/analytics-charts" element={<AnalyticsChartsFlow />} />
+          <Route path="/react_flow/notes" element={<NotesFlow />} />
 
           {/* 404 Fallback */}
           <Route
