@@ -32,6 +32,7 @@ import {
   Sun,
   Moon,
   LogOut,
+  GitFork,
 } from "lucide-react";
 
 export default function HRLayout({ children }) {
@@ -149,6 +150,7 @@ export default function HRLayout({ children }) {
       items: [
         { path: "/hr/notes", label: "Keep Notes", icon: <Menu size={18} /> },
         { path: "/hr/settings", label: "Settings", icon: <Settings size={18} /> },
+        { path: "/hr/workflow", label: "Work-Flow Diagram", icon: <GitFork size={18} />  }
       ],
     },
   ];
@@ -172,6 +174,7 @@ export default function HRLayout({ children }) {
       case "/hr/notes": return "Keep Notes";
       case "/hr/schedule-calendar": return "Interview Calendar";
       case "/hr/custom-table": return "Candidate Table"
+      case "/hr/workflow": return "Work-Flow"
       default: return "HR Control Center";
     }
   };

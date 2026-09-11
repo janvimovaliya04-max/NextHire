@@ -3,7 +3,7 @@ import CandidateLayout from "../../Layouts/CandidateLayout";
 import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
 import { useState, useEffect, useRef } from "react";
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import Editor from "@monaco-editor/react";
 import useTabSwitchWarning from "../../hooks/useTabSwitchWarning";
 import WarningModal from "../../components/WarningModal";
