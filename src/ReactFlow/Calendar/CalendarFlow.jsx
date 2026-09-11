@@ -1,5 +1,6 @@
 import { useCallback } from "react";
-import HRLayout from "../../Layouts/HRLayout"
+import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 
 import {
     ReactFlow,
@@ -58,6 +59,16 @@ const nodeTypes = {
 };
 
 const CalendarFlow = () => {
+    const { darkMode } = useTheme();
+    const colors = useThemeColors();
+
+    const primary = colors.primary;
+    const textColor = colors.text;
+    const borderStyle = colors.border;
+    const background = colors.background;
+    const card = colors.card;
+    const subText = colors.subText;
+
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
@@ -78,332 +89,359 @@ const CalendarFlow = () => {
     );
 
     return (
-        <>
-            <HRLayout>
-                <div className="calendar-flow-wrapper">
-                   <style>{`
-    /* =========================
-       MAIN FLOW CONTAINER
-    ========================= */
+        <div
+            className="calendar-flow-wrapper"
+            style={{
+                "--flow-primary": primary,
+                "--flow-text": textColor,
+                "--flow-border": borderStyle,
+                "--flow-background": background,
+                "--flow-card": card,
+                "--flow-sub-text": subText,
+            }}
+        >
+            <style>{`
+                /* MAIN FLOW CONTAINER */
+
+                .calendar-flow-wrapper {
+                    width: 100%;
+                    height: calc(100vh - 80px);
+                    min-height: 600px;
+                    position: relative;
+                    overflow: hidden;
+                    background: var(--flow-background);
+                }
+
+                /* REACT FLOW */
+
+                .calendar-flow-wrapper .react-flow {
+                    width: 100%;
+                    height: 100%;
+                }
+
+                /* CUSTOM NODE */
 
-    .calendar-flow-wrapper {
-        width: 100%;
-        height: calc(100vh - 80px);
-        min-height: 600px;
-        position: relative;
-        overflow: hidden;
-        background: #f8fafc;
-    }
+                .calendar-flow-wrapper .custom-flow-node {
+                    width: 250px;
+                    min-width: 250px;
+                    min-height: 58px;
+                    box-sizing: border-box;
+
+                    padding: 14px 18px;
 
-    /* =========================
-       REACT FLOW
-    ========================= */
+                    background: var(--flow-card);
 
-    .calendar-flow-wrapper .react-flow {
-        width: 100%;
-        height: 100%;
-    }
+                    border: 2px solid var(--flow-primary);
+                    border-radius: 14px;
 
-    /* =========================
-       CUSTOM NODE
-    ========================= */
+                    box-shadow:
+                        0 6px 18px color-mix(
+                            in srgb,
+                            var(--flow-primary) 12%,
+                            transparent
+                        );
 
-    .custom-flow-node {
-        width: 250px;
-        min-width: 250px;
-        min-height: 58px;
-        box-sizing: border-box;
+                    color: var(--flow-text);
 
-        padding: 14px 18px;
+                    font-size: 14px;
+                    font-weight: 600;
 
-        background: #ffffff;
+                    text-align: center;
 
-        border: 2px solid #2563eb;
-        border-radius: 14px;
+                    position: relative;
 
-        box-shadow:
-            0 6px 18px rgba(37, 99, 235, 0.12);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
 
-        color: #1e293b;
+                    transition:
+                        transform 0.2s ease,
+                        box-shadow 0.2s ease,
+                        border-color 0.2s ease;
+                }
 
-        font-size: 14px;
-        font-weight: 600;
+                .calendar-flow-wrapper
+                .custom-flow-node:hover {
+                    transform: translateY(-3px);
 
-        text-align: center;
+                    border-color: var(--flow-primary);
 
-        position: relative;
+                    box-shadow:
+                        0 10px 25px color-mix(
+                            in srgb,
+                            var(--flow-primary) 20%,
+                            transparent
+                        );
+                }
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
+                /* START NODE */
 
-        transition:
-            transform 0.2s ease,
-            box-shadow 0.2s ease,
-            border-color 0.2s ease;
-    }
+                .calendar-flow-wrapper .start-node {
+                    width: 180px;
+                    min-width: 180px;
+                    min-height: 58px;
 
-    .custom-flow-node:hover {
-        transform: translateY(-3px);
+                    background: var(--flow-primary);
+                    border-color: var(--flow-primary);
 
-        border-color: #1d4ed8;
+                    color: #ffffff;
 
-        box-shadow:
-            0 10px 25px rgba(37, 99, 235, 0.20);
-    }
+                    border-radius: 16px;
 
-    /* =========================
-       START NODE
-    ========================= */
+                    box-shadow:
+                        0 8px 20px color-mix(
+                            in srgb,
+                            var(--flow-primary) 25%,
+                            transparent
+                        );
+                }
 
-    .start-node {
-        width: 180px;
-        min-width: 180px;
-        min-height: 58px;
+                .calendar-flow-wrapper
+                .start-node .node-dot {
+                    background: #ffffff;
+                }
 
-        background: #2563eb;
-        border-color: #2563eb;
+                /* OUTPUT NODE */
 
-        color: #ffffff;
+                .calendar-flow-wrapper .output-node {
+                    border-color: var(--flow-primary);
+                }
 
-        border-radius: 16px;
+                /* NODE CONTENT */
 
-        box-shadow:
-            0 8px 20px rgba(37, 99, 235, 0.25);
-    }
+                .calendar-flow-wrapper .node-content {
+                    display: flex;
 
-    .start-node .node-dot {
-        background: #ffffff;
-    }
+                    align-items: center;
+                    justify-content: center;
 
-    /* =========================
-       NODE CONTENT
-    ========================= */
+                    gap: 9px;
 
-    .node-content {
-        display: flex;
+                    width: 100%;
 
-        align-items: center;
-        justify-content: center;
+                    white-space: normal;
+                    overflow-wrap: anywhere;
+                    word-break: break-word;
+                }
 
-        gap: 9px;
+                .calendar-flow-wrapper .node-dot {
+                    width: 8px;
+                    height: 8px;
 
-        width: 100%;
+                    border-radius: 50%;
 
-        white-space: normal;
-        overflow-wrap: anywhere;
-        word-break: break-word;
-    }
+                    background: var(--flow-primary);
 
-    .node-dot {
-        width: 8px;
-        height: 8px;
+                    flex-shrink: 0;
+                }
 
-        border-radius: 50%;
+                /* HANDLES */
 
-        background: #2563eb;
+                .calendar-flow-wrapper .custom-handle {
+                    width: 9px;
+                    height: 9px;
 
-        flex-shrink: 0;
-    }
+                    background: var(--flow-primary);
 
-    /* =========================
-       HANDLES
-    ========================= */
+                    border: 2px solid var(--flow-card);
 
-    .custom-handle {
-        width: 9px;
-        height: 9px;
+                    box-shadow:
+                        0 0 0 1px var(--flow-primary);
+                }
 
-        background: #2563eb;
+                .calendar-flow-wrapper
+                .start-node .custom-handle {
+                    background: #ffffff;
 
-        border: 2px solid #ffffff;
+                    box-shadow:
+                        0 0 0 1px #ffffff;
+                }
 
-        box-shadow:
-            0 0 0 1px #2563eb;
-    }
+                /* EDGES */
 
-    .start-node .custom-handle {
-        background: #ffffff;
+                .calendar-flow-wrapper
+                .react-flow__edge-path {
+                    stroke: var(--flow-sub-text);
 
-        box-shadow:
-            0 0 0 1px #ffffff;
-    }
+                    stroke-width: 2;
 
-    /* =========================
-       EDGES
-    ========================= */
+                    transition:
+                        stroke 0.2s ease,
+                        stroke-width 0.2s ease;
+                }
 
-    .calendar-flow-wrapper
-    .react-flow__edge-path {
-        stroke: #64748b;
+                .calendar-flow-wrapper
+                .react-flow__edge:hover
+                .react-flow__edge-path {
+                    stroke: var(--flow-primary);
 
-        stroke-width: 2;
+                    stroke-width: 3;
+                }
 
-        transition:
-            stroke 0.2s ease,
-            stroke-width 0.2s ease;
-    }
+                /* EDGE LABEL */
 
-    .calendar-flow-wrapper
-    .react-flow__edge:hover
-    .react-flow__edge-path {
-        stroke: #2563eb;
+                .calendar-flow-wrapper
+                .react-flow__edge-text {
+                    fill: var(--flow-sub-text);
 
-        stroke-width: 3;
-    }
+                    font-size: 11px;
 
-    /* =========================
-       EDGE LABEL
-    ========================= */
+                    font-weight: 600;
+                }
 
-    .calendar-flow-wrapper
-    .react-flow__edge-text {
-        fill: #475569;
+                .calendar-flow-wrapper
+                .react-flow__edge-textbg {
+                    fill: var(--flow-card);
 
-        font-size: 11px;
+                    fill-opacity: 0.95;
+                }
 
-        font-weight: 600;
-    }
+                /* CONTROLS */
 
-    .calendar-flow-wrapper
-    .react-flow__edge-textbg {
-        fill: #ffffff;
+                .calendar-flow-wrapper
+                .react-flow__controls {
+                    border: 1px solid var(--flow-border);
 
-        fill-opacity: 0.95;
-    }
+                    border-radius: 10px;
 
-    /* =========================
-       CONTROLS
-    ========================= */
+                    overflow: hidden;
 
-    .calendar-flow-wrapper
-    .react-flow__controls {
-        border: 1px solid #e2e8f0;
+                    box-shadow:
+                        0 5px 15px color-mix(
+                            in srgb,
+                            var(--flow-text) 8%,
+                            transparent
+                        );
 
-        border-radius: 10px;
+                    position: absolute;
+                    left: 20px;
+                    bottom: 20px;
+                    z-index: 10;
+                }
 
-        overflow: hidden;
+                .calendar-flow-wrapper
+                .react-flow__controls-button {
+                    width: 34px;
+                    height: 34px;
 
-        box-shadow:
-            0 5px 15px rgba(15, 23, 42, 0.08);
+                    background: var(--flow-card);
 
-        position: absolute;
-        left: 20px;
-        bottom: 20px;
-        z-index: 10;
-    }
+                    border-bottom: 1px solid var(--flow-border);
 
-    .calendar-flow-wrapper
-    .react-flow__controls-button {
-        width: 34px;
-        height: 34px;
+                    color: var(--flow-text);
+                }
 
-        background: #ffffff;
-
-        border-bottom: 1px solid #e2e8f0;
-
-        color: #334155;
-    }
-
-    .calendar-flow-wrapper
-    .react-flow__controls-button:hover {
-        background: #eff6ff;
-
-        color: #2563eb;
-    }
-
-    /* =========================
-       MINIMAP
-    ========================= */
-
-    .calendar-flow-wrapper
-    .react-flow__minimap {
-        border: 1px solid #e2e8f0;
-
-        border-radius: 10px;
-
-        overflow: hidden;
-
-        box-shadow:
-            0 5px 15px rgba(15, 23, 42, 0.08);
-
-        position: absolute;
-        right: 20px;
-        bottom: 20px;
-        z-index: 10;
-    }
-
-    /* =========================
-       BACKGROUND
-    ========================= */
-
-    .calendar-flow-wrapper
-    .react-flow__background {
-        background: #f8fafc;
-    }
-
-    /* =========================
-       SELECTED NODE
-    ========================= */
-
-    .calendar-flow-wrapper
-    .react-flow__node.selected
-    .custom-flow-node {
-        border-color: #1d4ed8;
-
-        box-shadow:
-            0 0 0 3px rgba(37, 99, 235, 0.15),
-            0 10px 25px rgba(37, 99, 235, 0.18);
-    }
-
-    /* =========================
-       RESPONSIVE
-    ========================= */
-
-    @media (max-width: 768px) {
-        .calendar-flow-wrapper {
-            height: calc(100vh - 70px);
-            min-height: 500px;
-        }
-
-        .custom-flow-node {
-            min-width: 150px;
-            padding: 11px 14px;
-            font-size: 12px;
-        }
-
-        .start-node {
-            min-width: 125px;
-        }
-    }
-`}</style>
-
-                    <ReactFlow
-                        nodes={nodes}
-                        edges={edges}
-                        nodeTypes={nodeTypes}
-                        onNodesChange={onNodesChange}
-                        onEdgesChange={onEdgesChange}
-                        onConnect={onConnect}
-                        fitView
-                        fitViewOptions={{ padding: 0.25 }}
-                        nodesDraggable
-                        nodesConnectable
-                        edgesReconnectable
-                        deleteKeyCode={["Backspace", "Delete"]}
-                    >
-                        <Background gap={18} size={1} />
-
-                        <Controls />
-
-                        <MiniMap
-                            nodeColor="#2563eb"
-                            maskColor="rgba(248,250,252,0.75)"
-                        />
-                    </ReactFlow>
-                </div>
-            </ HRLayout>
-        </>
+                .calendar-flow-wrapper
+                .react-flow__controls-button:hover {
+                    background: color-mix(
+                        in srgb,
+                        var(--flow-primary) 8%,
+                        var(--flow-card)
+                    );
+
+                    color: var(--flow-primary);
+                }
+
+                /* MINIMAP */
+
+                .calendar-flow-wrapper
+                .react-flow__minimap {
+                    border: 1px solid var(--flow-border);
+
+                    border-radius: 10px;
+
+                    overflow: hidden;
+
+                    box-shadow:
+                        0 5px 15px color-mix(
+                            in srgb,
+                            var(--flow-text) 8%,
+                            transparent
+                        );
+
+                    position: absolute;
+                    right: 20px;
+                    bottom: 20px;
+                    z-index: 10;
+                }
+
+                /* BACKGROUND */
+
+                .calendar-flow-wrapper
+                .react-flow__background {
+                    background: var(--flow-background);
+                }
+
+                /* SELECTED NODE */
+
+                .calendar-flow-wrapper
+                .react-flow__node.selected
+                .custom-flow-node {
+                    border-color: var(--flow-primary);
+
+                    box-shadow:
+                        0 0 0 3px color-mix(
+                            in srgb,
+                            var(--flow-primary) 15%,
+                            transparent
+                        ),
+                        0 10px 25px color-mix(
+                            in srgb,
+                            var(--flow-primary) 18%,
+                            transparent
+                        );
+                }
+
+                /* RESPONSIVE */
+
+                @media (max-width: 768px) {
+                    .calendar-flow-wrapper {
+                        height: calc(100vh - 70px);
+                        min-height: 500px;
+                    }
+
+                    .calendar-flow-wrapper
+                    .custom-flow-node {
+                        min-width: 150px;
+                        padding: 11px 14px;
+                        font-size: 12px;
+                    }
+
+                    .calendar-flow-wrapper
+                    .start-node {
+                        min-width: 125px;
+                    }
+                }
+            `}</style>
+
+            <ReactFlow
+                nodes={nodes}
+                edges={edges}
+                nodeTypes={nodeTypes}
+                onNodesChange={onNodesChange}
+                onEdgesChange={onEdgesChange}
+                onConnect={onConnect}
+                fitView
+                fitViewOptions={{ padding: 0.25 }}
+                nodesDraggable
+                nodesConnectable
+                edgesReconnectable
+                deleteKeyCode={["Backspace", "Delete"]}
+            >
+                <Background gap={18} size={1} />
+
+                <Controls />
+
+                <MiniMap
+                    nodeColor={primary}
+                    maskColor={
+                        darkMode
+                            ? "rgba(15,23,42,0.75)"
+                            : "rgba(248,250,252,0.75)"
+                    }
+                />
+            </ReactFlow>
+        </div>
     );
 };
 

@@ -1,5 +1,6 @@
 import { useCallback } from "react";
-import HRLayout from "../../Layouts/HRLayout";
+import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 
 import {
     ReactFlow,
@@ -58,6 +59,16 @@ const nodeTypes = {
 };
 
 const AnalyticsChartsFlow = () => {
+    const { darkMode } = useTheme();
+    const colors = useThemeColors();
+
+    const primary = colors.primary;
+    const textColor = colors.text;
+    const borderStyle = colors.border;
+    const background = colors.background;
+    const card = colors.card;
+    const subText = colors.subText;
+
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
@@ -78,332 +89,353 @@ const AnalyticsChartsFlow = () => {
     );
 
     return (
-        <>
-            <HRLayout>
-                <div className="analytics-flow-wrapper">
-                    <style>{`
-    /* =========================
-       MAIN FLOW CONTAINER
-    ========================= */
+        <div
+            className="analytics-flow-wrapper"
+            style={{
+                "--flow-primary": primary,
+                "--flow-text": textColor,
+                "--flow-border": borderStyle,
+                "--flow-background": background,
+                "--flow-card": card,
+                "--flow-sub-text": subText,
+            }}
+        >
+            <style>{`
+                /* MAIN FLOW CONTAINER */
+
+                .analytics-flow-wrapper {
+                    width: 100%;
+                    height: calc(100vh - 80px);
+                    min-height: 600px;
+                    position: relative;
+                    overflow: hidden;
+                    background: var(--flow-background);
+                }
+
+                /* REACT FLOW */
 
-    .analytics-flow-wrapper {
-        width: 100%;
-        height: calc(100vh - 80px);
-        min-height: 600px;
-        position: relative;
-        overflow: hidden;
-        background: #f8fafc;
-    }
+                .analytics-flow-wrapper .react-flow {
+                    width: 100%;
+                    height: 100%;
+                }
+
+                /* CUSTOM NODE */
+
+                .analytics-flow-wrapper .custom-flow-node {
+                    width: 250px;
+                    min-width: 250px;
+                    min-height: 58px;
+                    box-sizing: border-box;
 
-    /* =========================
-       REACT FLOW
-    ========================= */
+                    padding: 14px 18px;
 
-    .analytics-flow-wrapper .react-flow {
-        width: 100%;
-        height: 100%;
-    }
+                    background: var(--flow-card);
 
-    /* =========================
-       CUSTOM NODE
-    ========================= */
+                    border: 2px solid var(--flow-primary);
+                    border-radius: 14px;
 
-    .custom-flow-node {
-        width: 250px;
-        min-width: 250px;
-        min-height: 58px;
-        box-sizing: border-box;
+                    box-shadow:
+                        0 6px 18px color-mix(
+                            in srgb,
+                            var(--flow-primary) 12%,
+                            transparent
+                        );
 
-        padding: 14px 18px;
+                    color: var(--flow-text);
 
-        background: #ffffff;
+                    font-size: 14px;
+                    font-weight: 600;
 
-        border: 2px solid #2563eb;
-        border-radius: 14px;
+                    text-align: center;
 
-        box-shadow:
-            0 6px 18px rgba(37, 99, 235, 0.12);
+                    position: relative;
 
-        color: #1e293b;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
 
-        font-size: 14px;
-        font-weight: 600;
+                    transition:
+                        transform 0.2s ease,
+                        box-shadow 0.2s ease,
+                        border-color 0.2s ease;
+                }
 
-        text-align: center;
+                .analytics-flow-wrapper
+                .custom-flow-node:hover {
+                    transform: translateY(-3px);
 
-        position: relative;
+                    border-color: var(--flow-primary);
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
+                    box-shadow:
+                        0 10px 25px color-mix(
+                            in srgb,
+                            var(--flow-primary) 20%,
+                            transparent
+                        );
+                }
 
-        transition:
-            transform 0.2s ease,
-            box-shadow 0.2s ease,
-            border-color 0.2s ease;
-    }
+                /* START NODE */
 
-    .custom-flow-node:hover {
-        transform: translateY(-3px);
+                .analytics-flow-wrapper .start-node {
+                    width: 180px;
+                    min-width: 180px;
+                    min-height: 58px;
 
-        border-color: #1d4ed8;
+                    background: var(--flow-primary);
+                    border-color: var(--flow-primary);
 
-        box-shadow:
-            0 10px 25px rgba(37, 99, 235, 0.20);
-    }
+                    color: #ffffff;
 
-    /* =========================
-       START NODE
-    ========================= */
+                    border-radius: 16px;
 
-    .start-node {
-        width: 180px;
-        min-width: 180px;
-        min-height: 58px;
+                    box-shadow:
+                        0 8px 20px color-mix(
+                            in srgb,
+                            var(--flow-primary) 25%,
+                            transparent
+                        );
+                }
 
-        background: #2563eb;
-        border-color: #2563eb;
+                .analytics-flow-wrapper
+                .start-node .node-dot {
+                    background: #ffffff;
+                }
 
-        color: #ffffff;
+                /* NODE CONTENT */
 
-        border-radius: 16px;
+                .analytics-flow-wrapper .node-content {
+                    display: flex;
 
-        box-shadow:
-            0 8px 20px rgba(37, 99, 235, 0.25);
-    }
+                    align-items: center;
+                    justify-content: center;
 
-    .start-node .node-dot {
-        background: #ffffff;
-    }
+                    gap: 9px;
 
-    /* =========================
-       NODE CONTENT
-    ========================= */
+                    width: 100%;
 
-    .node-content {
-        display: flex;
+                    white-space: normal;
+                    overflow-wrap: anywhere;
+                    word-break: break-word;
+                }
 
-        align-items: center;
-        justify-content: center;
+                .analytics-flow-wrapper .node-dot {
+                    width: 8px;
+                    height: 8px;
 
-        gap: 9px;
+                    border-radius: 50%;
 
-        width: 100%;
+                    background: var(--flow-primary);
 
-        white-space: normal;
-        overflow-wrap: anywhere;
-        word-break: break-word;
-    }
+                    flex-shrink: 0;
+                }
 
-    .node-dot {
-        width: 8px;
-        height: 8px;
+                /* HANDLES */
 
-        border-radius: 50%;
+                .analytics-flow-wrapper .custom-handle {
+                    width: 9px;
+                    height: 9px;
 
-        background: #2563eb;
+                    background: var(--flow-primary);
 
-        flex-shrink: 0;
-    }
+                    border: 2px solid var(--flow-card);
 
-    /* =========================
-       HANDLES
-    ========================= */
+                    box-shadow:
+                        0 0 0 1px var(--flow-primary);
+                }
 
-    .custom-handle {
-        width: 9px;
-        height: 9px;
+                .analytics-flow-wrapper
+                .start-node .custom-handle {
+                    background: #ffffff;
 
-        background: #2563eb;
+                    box-shadow:
+                        0 0 0 1px #ffffff;
+                }
 
-        border: 2px solid #ffffff;
+                /* EDGES */
 
-        box-shadow:
-            0 0 0 1px #2563eb;
-    }
+                .analytics-flow-wrapper
+                .react-flow__edge-path {
+                    stroke: var(--flow-sub-text);
 
-    .start-node .custom-handle {
-        background: #ffffff;
+                    stroke-width: 2;
 
-        box-shadow:
-            0 0 0 1px #ffffff;
-    }
+                    transition:
+                        stroke 0.2s ease,
+                        stroke-width 0.2s ease;
+                }
 
-    /* =========================
-       EDGES
-    ========================= */
+                .analytics-flow-wrapper
+                .react-flow__edge:hover
+                .react-flow__edge-path {
+                    stroke: var(--flow-primary);
 
-    .analytics-flow-wrapper
-    .react-flow__edge-path {
-        stroke: #64748b;
+                    stroke-width: 3;
+                }
 
-        stroke-width: 2;
+                /* EDGE LABEL */
 
-        transition:
-            stroke 0.2s ease,
-            stroke-width 0.2s ease;
-    }
+                .analytics-flow-wrapper
+                .react-flow__edge-text {
+                    fill: var(--flow-sub-text);
 
-    .analytics-flow-wrapper
-    .react-flow__edge:hover
-    .react-flow__edge-path {
-        stroke: #2563eb;
+                    font-size: 11px;
 
-        stroke-width: 3;
-    }
+                    font-weight: 600;
+                }
 
-    /* =========================
-       EDGE LABEL
-    ========================= */
+                .analytics-flow-wrapper
+                .react-flow__edge-textbg {
+                    fill: var(--flow-card);
 
-    .analytics-flow-wrapper
-    .react-flow__edge-text {
-        fill: #475569;
+                    fill-opacity: 0.95;
+                }
 
-        font-size: 11px;
+                /* CONTROLS */
 
-        font-weight: 600;
-    }
+                .analytics-flow-wrapper
+                .react-flow__controls {
+                    border: 1px solid var(--flow-border);
 
-    .analytics-flow-wrapper
-    .react-flow__edge-textbg {
-        fill: #ffffff;
+                    border-radius: 10px;
 
-        fill-opacity: 0.95;
-    }
+                    overflow: hidden;
 
-    /* =========================
-       CONTROLS
-    ========================= */
+                    box-shadow:
+                        0 5px 15px color-mix(
+                            in srgb,
+                            var(--flow-text) 8%,
+                            transparent
+                        );
 
-    .analytics-flow-wrapper
-    .react-flow__controls {
-        border: 1px solid #e2e8f0;
+                    position: absolute;
+                    left: 20px;
+                    bottom: 20px;
+                    z-index: 10;
+                }
 
-        border-radius: 10px;
+                .analytics-flow-wrapper
+                .react-flow__controls-button {
+                    width: 34px;
+                    height: 34px;
 
-        overflow: hidden;
+                    background: var(--flow-card);
 
-        box-shadow:
-            0 5px 15px rgba(15, 23, 42, 0.08);
+                    border-bottom: 1px solid var(--flow-border);
 
-        position: absolute;
-        left: 20px;
-        bottom: 20px;
-        z-index: 10;
-    }
+                    color: var(--flow-text);
+                }
 
-    .analytics-flow-wrapper
-    .react-flow__controls-button {
-        width: 34px;
-        height: 34px;
-
-        background: #ffffff;
-
-        border-bottom: 1px solid #e2e8f0;
-
-        color: #334155;
-    }
-
-    .analytics-flow-wrapper
-    .react-flow__controls-button:hover {
-        background: #eff6ff;
-
-        color: #2563eb;
-    }
-
-    /* =========================
-       MINIMAP
-    ========================= */
-
-    .analytics-flow-wrapper
-    .react-flow__minimap {
-        border: 1px solid #e2e8f0;
-
-        border-radius: 10px;
-
-        overflow: hidden;
-
-        box-shadow:
-            0 5px 15px rgba(15, 23, 42, 0.08);
-
-        position: absolute;
-        right: 20px;
-        bottom: 20px;
-        z-index: 10;
-    }
-
-    /* =========================
-       BACKGROUND
-    ========================= */
-
-    .analytics-flow-wrapper
-    .react-flow__background {
-        background: #f8fafc;
-    }
-
-    /* =========================
-       SELECTED NODE
-    ========================= */
-
-    .analytics-flow-wrapper
-    .react-flow__node.selected
-    .custom-flow-node {
-        border-color: #1d4ed8;
-
-        box-shadow:
-            0 0 0 3px rgba(37, 99, 235, 0.15),
-            0 10px 25px rgba(37, 99, 235, 0.18);
-    }
-
-    /* =========================
-       RESPONSIVE
-    ========================= */
-
-    @media (max-width: 768px) {
-        .analytics-flow-wrapper {
-            height: calc(100vh - 70px);
-            min-height: 500px;
-        }
-
-        .custom-flow-node {
-            min-width: 150px;
-            padding: 11px 14px;
-            font-size: 12px;
-        }
-
-        .start-node {
-            min-width: 125px;
-        }
-    }
-`}</style>
-
-                    <ReactFlow
-                        nodes={nodes}
-                        edges={edges}
-                        nodeTypes={nodeTypes}
-                        onNodesChange={onNodesChange}
-                        onEdgesChange={onEdgesChange}
-                        onConnect={onConnect}
-                        fitView
-                        fitViewOptions={{ padding: 0.25 }}
-                        nodesDraggable
-                        nodesConnectable
-                        edgesReconnectable
-                        deleteKeyCode={["Backspace", "Delete"]}
-                    >
-                        <Background gap={18} size={1} />
-
-                        <Controls />
-
-                        <MiniMap
-                            nodeColor="#2563eb"
-                            maskColor="rgba(248,250,252,0.75)"
-                        />
-                    </ReactFlow>
-                </div>
-            </HRLayout>
-        </>
+                .analytics-flow-wrapper
+                .react-flow__controls-button:hover {
+                    background: color-mix(
+                        in srgb,
+                        var(--flow-primary) 8%,
+                        var(--flow-card)
+                    );
+
+                    color: var(--flow-primary);
+                }
+
+                /* MINIMAP */
+
+                .analytics-flow-wrapper
+                .react-flow__minimap {
+                    border: 1px solid var(--flow-border);
+
+                    border-radius: 10px;
+
+                    overflow: hidden;
+
+                    box-shadow:
+                        0 5px 15px color-mix(
+                            in srgb,
+                            var(--flow-text) 8%,
+                            transparent
+                        );
+
+                    position: absolute;
+                    right: 20px;
+                    bottom: 20px;
+                    z-index: 10;
+                }
+
+                /* BACKGROUND */
+
+                .analytics-flow-wrapper
+                .react-flow__background {
+                    background: var(--flow-background);
+                }
+
+                /* SELECTED NODE */
+
+                .analytics-flow-wrapper
+                .react-flow__node.selected
+                .custom-flow-node {
+                    border-color: var(--flow-primary);
+
+                    box-shadow:
+                        0 0 0 3px color-mix(
+                            in srgb,
+                            var(--flow-primary) 15%,
+                            transparent
+                        ),
+                        0 10px 25px color-mix(
+                            in srgb,
+                            var(--flow-primary) 18%,
+                            transparent
+                        );
+                }
+
+                /* RESPONSIVE */
+
+                @media (max-width: 768px) {
+                    .analytics-flow-wrapper {
+                        height: calc(100vh - 70px);
+                        min-height: 500px;
+                    }
+
+                    .analytics-flow-wrapper
+                    .custom-flow-node {
+                        min-width: 150px;
+                        padding: 11px 14px;
+                        font-size: 12px;
+                    }
+
+                    .analytics-flow-wrapper
+                    .start-node {
+                        min-width: 125px;
+                    }
+                }
+            `}</style>
+
+            <ReactFlow
+                nodes={nodes}
+                edges={edges}
+                nodeTypes={nodeTypes}
+                onNodesChange={onNodesChange}
+                onEdgesChange={onEdgesChange}
+                onConnect={onConnect}
+                fitView
+                fitViewOptions={{ padding: 0.25 }}
+                nodesDraggable
+                nodesConnectable
+                edgesReconnectable
+                deleteKeyCode={["Backspace", "Delete"]}
+            >
+                <Background gap={18} size={1} />
+
+                <Controls />
+
+                <MiniMap
+                    nodeColor={primary}
+                    maskColor={
+                        darkMode
+                            ? "rgba(15,23,42,0.75)"
+                            : "rgba(248,250,252,0.75)"
+                    }
+                />
+            </ReactFlow>
+        </div>
     );
 };
 

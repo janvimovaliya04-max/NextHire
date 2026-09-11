@@ -1,6 +1,6 @@
 import { useCallback } from "react";
-
-import HRLayout from "../../Layouts/HRLayout";
+import { useTheme } from "../../context/ThemeContext";
+import useThemeColors from "../../hooks/useThemeColors";
 
 import {
     ReactFlow,
@@ -19,18 +19,15 @@ import "@xyflow/react/dist/style.css";
 import { initialNodes } from "./nodes";
 import initialEdges from "./edges";
 
-
-// ===============================
-// CUSTOM NODE
-// ===============================
-
 const CustomNode = ({ data, type }) => {
     const isInput = type === "input";
 
     return (
-        <div className={`custom-flow-node ${isInput ? "start-node" : ""}`}>
-
-            {/* Target Handle */}
+        <div
+            className={`custom-flow-node ${
+                isInput ? "start-node" : ""
+            }`}
+        >
             {!isInput && (
                 <Handle
                     type="target"
@@ -44,7 +41,6 @@ const CustomNode = ({ data, type }) => {
                 <span>{data.label}</span>
             </div>
 
-            {/* Source Handle */}
             <Handle
                 type="source"
                 position={Position.Bottom}
@@ -54,22 +50,21 @@ const CustomNode = ({ data, type }) => {
     );
 };
 
-
-// ===============================
-// NODE TYPES
-// ===============================
-
 const nodeTypes = {
     default: CustomNode,
     input: CustomNode,
 };
 
-
-// ===============================
-// API FLOW
-// ===============================
-
 const APIFlow = () => {
+    const { darkMode } = useTheme();
+    const colors = useThemeColors();
+
+    const primary = colors.primary;
+    const textColor = colors.text;
+    const borderStyle = colors.border;
+    const background = colors.background;
+    const card = colors.card;
+    const subText = colors.subText;
 
     const [nodes, setNodes, onNodesChange] =
         useNodesState(initialNodes);
@@ -77,8 +72,6 @@ const APIFlow = () => {
     const [edges, setEdges, onEdgesChange] =
         useEdgesState(initialEdges);
 
-
-    // Connect Nodes
     const onConnect = useCallback(
         (connection) => {
             setEdges((currentEdges) =>
@@ -94,383 +87,283 @@ const APIFlow = () => {
         [setEdges]
     );
 
-
     return (
-        <HRLayout>
-            <div className="api-flow-wrapper">
-
-                <style>{`
-
-                /* =========================
-                   MAIN FLOW CONTAINER
-                ========================= */
-
+        <div
+            className="api-flow-wrapper"
+            style={{
+                "--flow-primary": primary,
+                "--flow-text": textColor,
+                "--flow-border": borderStyle,
+                "--flow-background": background,
+                "--flow-card": card,
+                "--flow-sub-text": subText,
+            }}
+        >
+            <style>{`
+                /* MAIN FLOW CONTAINER */
                 .api-flow-wrapper {
-    width: 100%;
-    height: calc(100vh - 80px);
-    min-height: 600px;
-
-    position: relative;
-
-    overflow: hidden;
-
-    background: #f8fafc;
-}
-
-
-                /* =========================
-                   REACT FLOW
-                ========================= */
-
-                .api-flow-wrapper .react-flow {
-    width: 100%;
-    height: 100%;
-}
-
-
-                /* =========================
-                   CUSTOM NODE
-                ========================= */
-
-                .custom-flow-node {
-    width: 250px;
-    min-width: 250px;
-    min-height: 58px;
-    box-sizing: border-box;
-
-    padding: 14px 18px;
-
-    background: #ffffff;
-
-    border: 2px solid #2563eb;
-    border-radius: 14px;
-
-    box-shadow:
-        0 6px 18px rgba(37, 99, 235, 0.12);
-
-    color: #1e293b;
-
-    font-size: 14px;
-    font-weight: 600;
-
-    text-align: center;
-
-    position: relative;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        border-color 0.2s ease;
-}
-
-
-                .custom-flow-node:hover {
-                    transform: translateY(-3px);
-
-                    border-color: #1d4ed8;
-
-                    box-shadow:
-                        0 10px 25px rgba(37, 99, 235, 0.20);
+                    width: 100%;
+                    height: calc(100vh - 80px);
+                    min-height: 600px;
+                    position: relative;
+                    overflow: hidden;
+                    background: var(--flow-background);
                 }
 
+                /* REACT FLOW */
+                .api-flow-wrapper .react-flow {
+                    width: 100%;
+                    height: 100%;
+                }
 
-                /* =========================
-                   START NODE
-                ========================= */
+                /* CUSTOM NODE */
+                .api-flow-wrapper .custom-flow-node {
+                    width: 250px;
+                    min-width: 250px;
+                    min-height: 58px;
+                    box-sizing: border-box;
+                    padding: 14px 18px;
+                    background: var(--flow-card);
+                    border: 2px solid var(--flow-primary);
+                    border-radius: 14px;
+                    box-shadow:
+                        0 6px 18px color-mix(
+                            in srgb,
+                            var(--flow-primary) 12%,
+                            transparent
+                        );
+                    color: var(--flow-text);
+                    font-size: 14px;
+                    font-weight: 600;
+                    text-align: center;
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition:
+                        transform 0.2s ease,
+                        box-shadow 0.2s ease,
+                        border-color 0.2s ease;
+                }
 
-                .start-node {
-    width: 180px;
-    min-width: 180px;
-    min-height: 58px;
+                .api-flow-wrapper .custom-flow-node:hover {
+                    transform: translateY(-3px);
+                    border-color: var(--flow-primary);
+                    box-shadow:
+                        0 10px 25px color-mix(
+                            in srgb,
+                            var(--flow-primary) 20%,
+                            transparent
+                        );
+                }
 
-    background: #2563eb;
-    border-color: #2563eb;
+                /* START NODE */
+                .api-flow-wrapper .start-node {
+                    width: 180px;
+                    min-width: 180px;
+                    min-height: 58px;
+                    background: var(--flow-primary);
+                    border-color: var(--flow-primary);
+                    color: #ffffff;
+                    border-radius: 16px;
+                    box-shadow:
+                        0 8px 20px color-mix(
+                            in srgb,
+                            var(--flow-primary) 25%,
+                            transparent
+                        );
+                }
 
-    color: #ffffff;
-
-    border-radius: 16px;
-
-    box-shadow:
-        0 8px 20px rgba(37, 99, 235, 0.25);
-}
-
-
-                .start-node .node-dot {
+                .api-flow-wrapper .start-node .node-dot {
                     background: #ffffff;
                 }
 
+                /* NODE CONTENT */
+                .api-flow-wrapper .node-content {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 9px;
+                    width: 100%;
+                    white-space: normal;
+                    overflow-wrap: anywhere;
+                    word-break: break-word;
+                }
 
-                /* =========================
-                   NODE CONTENT
-                ========================= */
-
-                .node-content {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 9px;
-
-    width: 100%;
-
-    white-space: normal;
-    overflow-wrap: anywhere;
-    word-break: break-word;
-}
-
-
-                .node-dot {
+                .api-flow-wrapper .node-dot {
                     width: 8px;
                     height: 8px;
-
                     border-radius: 50%;
-
-                    background: #2563eb;
-
+                    background: var(--flow-primary);
                     flex-shrink: 0;
                 }
 
-
-                /* =========================
-                   HANDLES
-                ========================= */
-
-                .custom-handle {
+                /* HANDLES */
+                .api-flow-wrapper .custom-handle {
                     width: 9px;
                     height: 9px;
-
-                    background: #2563eb;
-
-                    border: 2px solid #ffffff;
-
+                    background: var(--flow-primary);
+                    border: 2px solid var(--flow-card);
                     box-shadow:
-                        0 0 0 1px #2563eb;
+                        0 0 0 1px var(--flow-primary);
                 }
 
-
-                .start-node .custom-handle {
+                .api-flow-wrapper .start-node .custom-handle {
                     background: #ffffff;
-
                     box-shadow:
                         0 0 0 1px #ffffff;
                 }
 
-
-                /* =========================
-                   EDGES
-                ========================= */
-
-                .api-flow-wrapper
-                .react-flow__edge-path {
-                    stroke: #64748b;
-
+                /* EDGES */
+                .api-flow-wrapper .react-flow__edge-path {
+                    stroke: var(--flow-sub-text);
                     stroke-width: 2;
-
                     transition:
                         stroke 0.2s ease,
                         stroke-width 0.2s ease;
                 }
 
-
                 .api-flow-wrapper
                 .react-flow__edge:hover
                 .react-flow__edge-path {
-                    stroke: #2563eb;
-
+                    stroke: var(--flow-primary);
                     stroke-width: 3;
                 }
 
-
-                /* =========================
-                   EDGE LABEL
-                ========================= */
-
-                .api-flow-wrapper
-                .react-flow__edge-text {
-                    fill: #475569;
-
+                /* EDGE LABEL */
+                .api-flow-wrapper .react-flow__edge-text {
+                    fill: var(--flow-sub-text);
                     font-size: 11px;
-
                     font-weight: 600;
                 }
 
-
-                .api-flow-wrapper
-                .react-flow__edge-textbg {
-                    fill: #ffffff;
-
+                .api-flow-wrapper .react-flow__edge-textbg {
+                    fill: var(--flow-card);
                     fill-opacity: 0.95;
                 }
 
-
-                /* =========================
-                   CONTROLS
-                ========================= */
-
+                /* CONTROLS */
                 .api-flow-wrapper .react-flow__controls {
-                    border: 1px solid #e2e8f0;
-
+                    border: 1px solid var(--flow-border);
                     border-radius: 10px;
-
                     overflow: hidden;
-
                     box-shadow:
-                        0 5px 15px rgba(15, 23, 42, 0.08);
+                        0 5px 15px color-mix(
+                            in srgb,
+                            var(--flow-text) 8%,
+                            transparent
+                        );
+                    position: absolute;
+                    left: 20px;
+                    bottom: 20px;
+                    z-index: 10;
                 }
-
 
                 .api-flow-wrapper .react-flow__controls-button {
                     width: 34px;
                     height: 34px;
-
-                    background: #ffffff;
-
-                    border-bottom: 1px solid #e2e8f0;
-
-                    color: #334155;
+                    background: var(--flow-card);
+                    border-bottom: 1px solid var(--flow-border);
+                    color: var(--flow-text);
                 }
-
 
                 .api-flow-wrapper
                 .react-flow__controls-button:hover {
-                    background: #eff6ff;
-
-                    color: #2563eb;
+                    background: color-mix(
+                        in srgb,
+                        var(--flow-primary) 8%,
+                        var(--flow-card)
+                    );
+                    color: var(--flow-primary);
                 }
 
-
-                /* =========================
-                   MINIMAP
-                ========================= */
-
+                /* MINIMAP */
                 .api-flow-wrapper .react-flow__minimap {
-                    border: 1px solid #e2e8f0;
-
+                    border: 1px solid var(--flow-border);
                     border-radius: 10px;
-
                     overflow: hidden;
-
                     box-shadow:
-                        0 5px 15px rgba(15, 23, 42, 0.08);
+                        0 5px 15px color-mix(
+                            in srgb,
+                            var(--flow-text) 8%,
+                            transparent
+                        );
+                    position: absolute;
+                    right: 20px;
+                    bottom: 20px;
+                    z-index: 10;
                 }
 
-
-                /* =========================
-                   BACKGROUND
-                ========================= */
-
-                .api-flow-wrapper
-                .react-flow__background {
-                    background: #f8fafc;
+                /* BACKGROUND */
+                .api-flow-wrapper .react-flow__background {
+                    background: var(--flow-background);
                 }
 
-
-                /* =========================
-                   SELECTED NODE
-                ========================= */
-
+                /* SELECTED NODE */
                 .api-flow-wrapper
                 .react-flow__node.selected
                 .custom-flow-node {
-                    border-color: #1d4ed8;
-
+                    border-color: var(--flow-primary);
                     box-shadow:
-                        0 0 0 3px rgba(37, 99, 235, 0.15),
-                        0 10px 25px rgba(37, 99, 235, 0.18);
+                        0 0 0 3px color-mix(
+                            in srgb,
+                            var(--flow-primary) 15%,
+                            transparent
+                        ),
+                        0 10px 25px color-mix(
+                            in srgb,
+                            var(--flow-primary) 18%,
+                            transparent
+                        );
                 }
 
-
-                /* =========================
-                   RESPONSIVE
-                ========================= */
-
+                /* RESPONSIVE */
                 @media (max-width: 768px) {
-
                     .api-flow-wrapper {
                         height: calc(100vh - 70px);
                         min-height: 500px;
                     }
 
-                    .custom-flow-node {
+                    .api-flow-wrapper .custom-flow-node {
                         min-width: 150px;
-
                         padding: 11px 14px;
-
                         font-size: 12px;
                     }
 
-                    .start-node {
+                    .api-flow-wrapper .start-node {
                         min-width: 125px;
                     }
                 }
-
-                .api-flow-wrapper .react-flow__controls {
-    position: absolute;
-    left: 20px;
-    bottom: 20px;
-
-    z-index: 10;
-}
-
-.api-flow-wrapper .react-flow__minimap {
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
-
-    z-index: 10;
-}
-
             `}</style>
 
+            <ReactFlow
+                nodes={nodes}
+                edges={edges}
+                nodeTypes={nodeTypes}
+                onNodesChange={onNodesChange}
+                onEdgesChange={onEdgesChange}
+                onConnect={onConnect}
+                fitView
+                fitViewOptions={{ padding: 0.2 }}
+                nodesDraggable
+                nodesConnectable
+                edgesReconnectable
+                deleteKeyCode={["Backspace", "Delete"]}
+            >
+                <Background gap={18} size={1} />
 
-                <ReactFlow
-                    nodes={nodes}
-                    edges={edges}
+                <Controls />
 
-                    nodeTypes={nodeTypes}
-
-                    onNodesChange={onNodesChange}
-                    onEdgesChange={onEdgesChange}
-                    onConnect={onConnect}
-
-                    fitView
-
-                    fitViewOptions={{
-                        padding: 0.2,
-                    }}
-
-                    nodesDraggable
-                    nodesConnectable
-
-                    edgesReconnectable
-
-                    deleteKeyCode={[
-                        "Backspace",
-                        "Delete",
-                    ]}
-                >
-
-                    <Background
-                        gap={18}
-                        size={1}
-                    />
-
-                    <Controls />
-
-                    <MiniMap
-                        nodeColor="#2563eb"
-                        maskColor="rgba(248,250,252,0.75)"
-                    />
-
-                </ReactFlow>
-
-            </div>
-        </HRLayout>
+                <MiniMap
+                    nodeColor={primary}
+                    maskColor={
+                        darkMode
+                            ? "rgba(15,23,42,0.75)"
+                            : "rgba(248,250,252,0.75)"
+                    }
+                />
+            </ReactFlow>
+        </div>
     );
 };
 
