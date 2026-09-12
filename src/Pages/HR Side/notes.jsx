@@ -19,27 +19,48 @@ import { Video } from 'lucide-react';
 import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
 import {
-    Box, Button, IconButton,
-    Container, Paper, Typography,
-    Divider, Menu, MenuItem,
-    ListItemIcon, ListItemText, Chip,
-    Dialog, DialogTitle, DialogContent, DialogActions
+    Box,
+    Button,
+    IconButton,
+    Container,
+    Paper,
+    Typography,
+    Divider,
+    Menu,
+    MenuItem,
+    ListItemIcon,
+    ListItemText,
+    Chip
 } from "@mui/material";
 import {
-    Bold, Italic, Strikethrough,
+    Bold,
+    Italic,
+    Strikethrough,
     Underline as UnderlineIcon,
-    Highlighter, Subscript as SubscriptIcon,
+    Highlighter,
+    Subscript as SubscriptIcon,
     Superscript as SuperscriptIcon,
-    Code, Undo, Redo, Save,
-    Image as ImageIcon, Link as LinkIcon,
-    FolderOpen, AlignLeft, AlignCenter,
-    AlignRight, List, ListOrdered, Quote,
-    Download, CheckSquare, FileText,
-    CloudCheck, Cloud, AtSign
+    Code,
+    Undo,
+    Redo,
+    Save,
+    Image as ImageIcon,
+    Link as LinkIcon,
+    FolderOpen,
+    AlignLeft,
+    AlignCenter,
+    AlignRight,
+    List,
+    ListOrdered,
+    Quote,
+    Download,
+    CheckSquare,
+    FileText,
+    CloudCheck,
+    Cloud,
+    AtSign
 } from "lucide-react";
 import SEO from "../../components/common/SEO"; // SEO Component Import Added
-
-import ReactDiffViewer from "react-diff-viewer-continued";
 
 export default function NotesEditorPage() {
     // NEW: theme now comes directly from hooks, not from props
@@ -57,11 +78,6 @@ export default function NotesEditorPage() {
     const secondaryColor = secondary || primary;
 
     const [savedStatus, setSavedStatus] = useState(false);
-
-    const [clearDialogOpen, setClearDialogOpen] = useState(false);
-    const [previousNote, setPreviousNote] = useState("");
-    const [currentNote, setCurrentNote] = useState("");
-
     const [, setForceUpdate] = useState({});
 
     // Feature 3: Auto-Save & Revision History State
@@ -122,61 +138,19 @@ export default function NotesEditorPage() {
 
     useEffect(() => {
         if (!editor) return;
-
-        let timer;
-
         const handler = () => {
             setForceUpdate({});
+            // Feature 3: Trigger Auto-Save simulation on change
             setSyncStatus("Unsaved changes...");
-
-            clearTimeout(timer);
-
-            timer = setTimeout(() => {
-                const htmlContent = editor.getHTML();
-
-                const tempDiv = document.createElement("div");
-                tempDiv.innerHTML = htmlContent;
-
-                const plainText = tempDiv.innerText;
-
-                const savedData = localStorage.getItem("hr_notes_data");
-
-                let previousSavedData = {};
-
-                if (savedData) {
-                    try {
-                        previousSavedData = JSON.parse(savedData);
-                    } catch (error) {
-                        console.error("Failed to read saved notes:", error);
-                    }
-                }
-
-                const savedTime = new Date().toLocaleTimeString([], {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                });
-
-                localStorage.setItem(
-                    "hr_notes_data",
-                    JSON.stringify({
-                        htmlContent,
-                        previousNote: previousSavedData.currentNote || "",
-                        currentNote: plainText,
-                        lastSavedTime: savedTime,
-                    })
-                );
-
-                setCurrentNote(plainText);
-                setLastSavedTime(savedTime);
+            const timer = setTimeout(() => {
                 setSyncStatus("All changes saved");
+                setLastSavedTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
             }, 2000);
+            return () => clearTimeout(timer);
         };
-
         editor.on("transaction", handler);
-
         return () => {
             editor.off("transaction", handler);
-            clearTimeout(timer);
         };
     }, [editor]);
 
@@ -184,87 +158,13 @@ export default function NotesEditorPage() {
         return null;
     }
 
-    useEffect(() => {
-        if (!editor) return;
-
-        const savedNoteData = localStorage.getItem("hr_notes_data");
-
-        if (!savedNoteData) return;
-
-        try {
-            const parsedData = JSON.parse(savedNoteData);
-
-            if (parsedData.htmlContent) {
-                editor.commands.setContent(parsedData.htmlContent);
-            }
-
-            if (parsedData.currentNote) {
-                setCurrentNote(parsedData.currentNote);
-            }
-
-            if (parsedData.previousNote) {
-                setPreviousNote(parsedData.previousNote);
-            }
-
-            if (parsedData.lastSavedTime) {
-                setLastSavedTime(parsedData.lastSavedTime);
-            }
-        } catch (error) {
-            console.error("Failed to restore saved notes:", error);
-        }
-    }, [editor]);
-
     const handleSave = () => {
         const htmlContent = editor.getHTML();
-
-        const tempDiv = document.createElement("div");
-        tempDiv.innerHTML = htmlContent;
-
-        const plainText = tempDiv.innerText;
-
-        setPreviousNote(currentNote);
-        setCurrentNote(plainText);
-
         console.log("Saved Notes HTML:", htmlContent);
-
-        localStorage.setItem(
-            "hr_notes_data",
-            JSON.stringify({
-                htmlContent,
-                previousNote: currentNote,
-                currentNote: plainText,
-                lastSavedTime: new Date().toLocaleTimeString([], {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                }),
-            })
-        );
-
         setSavedStatus(true);
         setSyncStatus("All changes saved");
-        setLastSavedTime(
-            new Date().toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit",
-            })
-        );
-
+        setLastSavedTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
         setTimeout(() => setSavedStatus(false), 2500);
-    };
-    const handleClearConfirm = () => {
-        localStorage.removeItem("hr_notes_data");
-
-        setPreviousNote("");
-        setCurrentNote("");
-        setLastSavedTime(null);
-        setSavedStatus(false);
-        setSyncStatus("All changes saved");
-
-        editor.commands.setContent(
-            "<p>Start writing HR notes, interview feedback, or meeting summaries here...</p>"
-        );
-
-        setClearDialogOpen(false);
     };
 
     // Feature 1: Export Handlers (Word / HTML fallback / Print PDF)
@@ -491,28 +391,6 @@ export default function NotesEditorPage() {
                             <MenuItem onClick={handleExportPDF} sx={{ fontSize: { xs: "0.82rem", sm: "0.9rem" } }}>Export as PDF (Print)</MenuItem>
                             <MenuItem onClick={handleExportWord} sx={{ fontSize: { xs: "0.82rem", sm: "0.9rem" } }}>Export as Word (.doc)</MenuItem>
                         </Menu>
-
-                        {/* Clear Saved Notes button */}
-
-                        <Button
-                            variant="outlined"
-                            onClick={() => setClearDialogOpen(true)}
-                            sx={{
-                                borderColor: borderStyle,
-                                color: subText,
-                                fontWeight: 700,
-                                borderRadius: "10px",
-                                textTransform: "none",
-                                px: { xs: 1.5, sm: 2 },
-                                fontSize: { xs: "0.78rem", sm: "0.875rem" },
-                                "&:hover": {
-                                    borderColor: primary,
-                                    bgcolor: `${primary}08`,
-                                },
-                            }}
-                        >
-                            Clear Saved Notes
-                        </Button>
 
                         {/* FIXED: removed duplicate sx keys (textTransform/fontWeight/borderRadius/px were repeated) */}
                         <Button
@@ -904,119 +782,7 @@ export default function NotesEditorPage() {
                         <EditorContent editor={editor} />
                     </Box>
                 </Paper>
-
-                {/* Diff Viewer */}
-
-                {previousNote && currentNote && (
-                    <Box
-                        elevation={0}
-                        sx={{
-                            p: 3,
-                            mt: 4,
-                            borderRadius: { xs: "16px", sm: "22px" },
-                            border: `1px solid ${borderStyle}`,
-                            bgcolor: cardColor,
-                            backdropFilter: "blur(12px)",
-                            overflow: "hidden",
-                            boxShadow: shadowColor,
-                            transition: "all 0.3s ease",
-                            "&:hover": {
-                                transform: "translateY(-3px)",
-                                boxShadow: darkMode
-                                    ? `0 18px 36px rgba(0,0,0,0.40), 0 8px 12px rgba(0,0,0,0.25)`
-                                    : `0 20px 40px rgba(15,23,42,0.12), 0 6px 12px rgba(15,23,42,0.08)`,
-                            },
-                        }}
-                    >
-                        <Typography
-                            sx={{
-                                fontSize: "18px",
-                                fontWeight: 800,
-                                mb: 1.5,
-                                color: colors.text,
-                            }}
-                        >
-                            Note Changes
-                        </Typography>
-
-                        <ReactDiffViewer
-                            oldValue={previousNote}
-                            newValue={currentNote}
-                            splitView={true}
-                            showDiffOnly={false}
-                            useDarkTheme={darkMode}
-                        />
-                    </Box>
-                )}
-
-                <Dialog
-                    open={clearDialogOpen}
-                    onClose={() => setClearDialogOpen(false)}
-                    PaperProps={{
-                        sx: {
-                            bgcolor: cardColor,
-                            borderRadius: "9px",
-                            border: `1px solid ${borderStyle}`,
-                            boxShadow: shadowColor,
-                            width: "100%",
-                            maxWidth: "420px",
-                        },
-                    }}
-                >
-                    <DialogTitle
-                        sx={{
-                            color: textColor,
-                            fontWeight: 700,
-                        }}
-                    >
-                        Clear Saved Notes?
-                    </DialogTitle>
-
-                    <DialogContent>
-                        <Typography
-                            sx={{
-                                color: subText,
-                                fontSize: "0.9rem",
-                                lineHeight: 1.6,
-                            }}
-                        >
-                            This will remove the saved note and its revision history.
-                            This action cannot be undone.
-                        </Typography>
-                    </DialogContent>
-
-                    <DialogActions sx={{ p: 2 }}>
-                        <Button
-                            onClick={() => setClearDialogOpen(false)}
-                            sx={{
-                                color: subText,
-                                textTransform: "none",
-                                fontWeight: 600,
-                            }}
-                        >
-                            Cancel
-                        </Button>
-
-                        <Button
-                            onClick={handleClearConfirm}
-                            variant="contained"
-                            sx={{
-                                bgcolor: primary,
-                                borderRadius: "9px",
-                                textTransform: "none",
-                                fontWeight: 700,
-                                "&:hover": {
-                                    bgcolor: primary,
-                                },
-                            }}
-                        >
-                            Clear Notes
-                        </Button>
-                    </DialogActions>
-                </Dialog>
-
             </Container>
-
         </HRLayout>
     );
 }
