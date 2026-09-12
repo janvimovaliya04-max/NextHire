@@ -6,6 +6,8 @@ import CandidateLayout from "../../Layouts/CandidateLayout";
 import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
 import { TextField } from "@mui/material";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import {
   useReactTable,
   getCoreRowModel,
@@ -18,7 +20,6 @@ import {
   Button,
   Avatar,
   Chip,
-  CircularProgress,
 } from "@mui/material";
 import {
   Calendar,
@@ -45,6 +46,83 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import SEO from "../../components/common/SEO";
+
+// InterviewSkeleton
+
+function InterviewSkeleton({ colors, borderStyle }) {
+  return (
+    <Paper
+      elevation={0}
+      sx={{
+        position: "relative",
+        p: { xs: 2, sm: 2.5, md: 3 },
+        borderRadius: 5,
+        bgcolor: colors.card,
+        border: `1px solid ${borderStyle}`,
+        boxShadow: colors.shadow,
+      }}
+    >
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
+          gap: 2,
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "flex-start",
+            gap: 2,
+            flex: 1,
+          }}
+        >
+          <Skeleton circle width={56} height={56} />
+
+          <Box sx={{ flex: 1 }}>
+            <Skeleton width="45%" height={22} borderRadius={5} />
+            <Skeleton width="35%" height={16} borderRadius={5} />
+
+            <Box sx={{ mt: 1 }}>
+              <Skeleton width="18%" height={14} borderRadius={5} />
+            </Box>
+
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: {
+                  xs: "repeat(2, 1fr)",
+                  sm: "1fr",
+                },
+                gap: 1.2,
+                mt: 1.5,
+              }}
+            >
+              <Skeleton width="85%" height={16} borderRadius={5} />
+              <Skeleton width="75%" height={16} borderRadius={5} />
+              <Skeleton width="60%" height={16} borderRadius={5} />
+              <Skeleton width="65%" height={16} borderRadius={5} />
+            </Box>
+          </Box>
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "row", sm: "column" },
+            alignItems: { xs: "center", sm: "flex-end" },
+            justifyContent: "space-between",
+            gap: 2,
+            minWidth: { sm: 180 },
+          }}
+        >
+          <Skeleton width={90} height={28} borderRadius={12} />
+          <Skeleton width={170} height={44} borderRadius={12} />
+        </Box>
+      </Box>
+    </Paper>
+  );
+}
 
 // Sortable wrapper for a single interview card
 function SortableInterviewCard({ interview, primary, secondary, textColor, subText, borderStyle, colors, statusColor }) {
@@ -291,6 +369,15 @@ export default function MyInterviews() {
   const subText = colors.subText;
   const borderStyle = colors.border;
 
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const [globalFilter, setGlobalFilter] = useState("");
   const PER_LOAD = 4;
 
@@ -493,21 +580,39 @@ export default function MyInterviews() {
           loader={
             <Box
               sx={{
-                display: "flex",
-                flexDirection: { xs: "column", sm: "row" },
-                alignItems: { xs: "center", sm: "center" },
-                bgcolor: colors.background || (darkMode ? "#0f172a" : "#f8fafc"),
-                gap: 2,
-                justifyContent: "center",
-                py: 3,
+                display: "grid",
+                gridTemplateColumns: { xs: "1fr", md: "repeat(2, 1fr)" },
+                gap: 3,
+                mt: 3,
               }}
             >
-              {/* ACCESSIBILITY FIXED */}
-              <CircularProgress sx={{ color: primary }} aria-label="Loading more interviews" />
+              {Array.from({ length: 2 }).map((_, index) => (
+                <InterviewSkeleton
+                  key={`interview-skeleton-${index}`}
+                  colors={colors}
+                  borderStyle={borderStyle}
+                />
+              ))}
             </Box>
           }
         >
-          {filteredInterviews.length > 0 ? (
+          {loading ? (
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: { xs: "1fr", md: "repeat(2, 1fr)" },
+                gap: 3,
+              }}
+            >
+              {Array.from({ length: 4 }).map((_, index) => (
+                <InterviewSkeleton
+                  key={`initial-interview-skeleton-${index}`}
+                  colors={colors}
+                  borderStyle={borderStyle}
+                />
+              ))}
+            </Box>
+          ) : filteredInterviews.length > 0 ? (
             <DndContext
               sensors={sensors}
               collisionDetection={closestCenter}

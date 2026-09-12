@@ -1,7 +1,8 @@
 import myapplications from "../../data/myApplications.json";
 import { Link } from "react-router-dom";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import CandidateLayout from "../../Layouts/CandidateLayout";
+import Skeleton from "react-loading-skeleton";
 import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
 import {
@@ -19,12 +20,84 @@ import {
 } from "lucide-react";
 import SEO from "../../components/common/SEO"; // SEO Component Import Added
 
+function ApplicationSkeleton({ colors, borderStyle }) {
+  return (
+    <Paper
+      elevation={0}
+      sx={{
+        p: { xs: 2, sm: 3, md: 3.5 },
+        borderRadius: { xs: 3, md: 5 },
+        bgcolor: colors.card,
+        border: `1px solid ${borderStyle}`,
+      }}
+    >
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
+          gap: { xs: 2.5, md: 4 },
+        }}
+      >
+        {/* Left side */}
+        <Box
+          sx={{
+            display: "flex",
+            gap: { xs: 1.5, sm: 2.5 },
+            alignItems: "center",
+            flex: 1,
+          }}
+        >
+          <Skeleton
+            circle
+            width={52}
+            height={52}
+          />
+
+          <Box sx={{ flex: 1 }}>
+            <Skeleton width="35%" height={20} />
+            <Skeleton width="25%" height={14} />
+            <Skeleton width="55%" height={17} />
+            <Skeleton width="40%" height={14} />
+          </Box>
+        </Box>
+
+        {/* Right side */}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", sm: "row", lg: "column" },
+            alignItems: { xs: "stretch", md: "flex-end" },
+            gap: 2,
+            minWidth: { md: 180 },
+          }}
+        >
+          <Skeleton width={90} height={26} borderRadius={12} />
+          <Skeleton width={120} height={15} />
+          <Skeleton
+            width={120}
+            height={40}
+            borderRadius={10}
+          />
+        </Box>
+      </Box>
+    </Paper>
+  );
+}
+
 export default function MyApplications() {
   const { darkMode } = useTheme();
   const colors = useThemeColors();
   const [activeFilter, setActiveFilter] = useState("All");
   const [globalFilter, setGlobalFilter] = useState("");
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 20 });
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const primary = colors.primary;
   const secondary = colors.secondary;
@@ -294,7 +367,15 @@ export default function MyApplications() {
         </Paper>
 
         <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
-          {filteredApplications.length > 0 ? (
+          {loading ? (
+            Array.from({ length: 5 }).map((_, index) => (
+              <ApplicationSkeleton
+                key={`application-skeleton-${index}`}
+                colors={colors}
+                borderStyle={borderStyle}
+              />
+            ))
+          ) : filteredApplications.length > 0 ? (
             currentApplications.map((job, index) => (
               <Paper
                 key={job.applicationId}

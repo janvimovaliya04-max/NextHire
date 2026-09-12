@@ -1,6 +1,7 @@
 import browseJobsData from "../../data/browseJobs.json";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { CircularProgress } from "@mui/material";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import CandidateLayout from "../../Layouts/CandidateLayout";
@@ -47,6 +48,90 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import SEO from "../../components/common/SEO";
+
+// JobCardSkeleton
+
+function JobCardSkeleton({ colors, borderStyle }) {
+  return (
+    <Grid
+      size={{ xs: 12, md: 6 }}
+      sx={{ display: "flex" }}
+    >
+      <Card
+        elevation={0}
+        sx={{
+          mt: 2,
+          width: "100%",
+          borderRadius: { xs: 3, sm: 4, md: 5 },
+          bgcolor: colors.card,
+          border: `1px solid ${borderStyle}`,
+          boxShadow: colors.shadow,
+        }}
+      >
+        <CardContent
+          sx={{
+            p: { xs: 2, sm: 3, md: 4 },
+          }}
+        >
+          {/* Header */}
+          <Box
+            sx={{
+              display: "flex",
+              gap: { xs: 1.5, sm: 2 },
+              mb: { xs: 2, sm: 2.5 },
+              alignItems: "center",
+            }}
+          >
+            <Skeleton
+              circle
+              width={44}
+              height={44}
+            />
+
+            <Box sx={{ flex: 1 }}>
+              <Skeleton width="70%" height={20} />
+              <Skeleton width="45%" height={15} />
+            </Box>
+          </Box>
+
+          {/* Job Information */}
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 1.2,
+              mb: 3,
+            }}
+          >
+            <Skeleton width="65%" height={17} />
+            <Skeleton width="55%" height={17} />
+            <Skeleton width="45%" height={17} />
+          </Box>
+
+          {/* Tags */}
+          <Box
+            sx={{
+              display: "flex",
+              gap: 1,
+              mb: 4,
+            }}
+          >
+            <Skeleton width={65} height={25} borderRadius={12} />
+            <Skeleton width={80} height={25} borderRadius={12} />
+            <Skeleton width={60} height={25} borderRadius={12} />
+          </Box>
+
+          {/* Button */}
+          <Skeleton
+            width="100%"
+            height={45}
+            borderRadius={10}
+          />
+        </CardContent>
+      </Card>
+    </Grid>
+  );
+}
 
 // Sortable wrapper for a single job card
 function SortableJobCard({ job, primary, secondary, textColor, subText, borderStyle, colors }) {
@@ -273,6 +358,14 @@ export default function BrowseJobs() {
   const colors = useThemeColors();
   const browseJobs = browseJobsData;
   const [restoreDone, setRestoreDone] = useState(false);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const JOBS_PER_LOAD = 10;
   const [visibleJobs, setVisibleJobs] = useState(JOBS_PER_LOAD);
@@ -545,15 +638,19 @@ export default function BrowseJobs() {
           hasMore={visibleJobs < orderedJobs.length}
           scrollThreshold={0.8}
           loader={
-            <Box sx={{ display: "flex", justifyContent: "center", py: { xs: 3, sm: 4 } }}>
-              {/* Progressbar fix: added aria-label */}
-              <CircularProgress
-                aria-label="Loading more job listings"
-                size={window.innerWidth < 600 ? 30 : 36}
-                thickness={4}
-                sx={{ color: primary }}
-              />
-            </Box>
+            <Grid
+              container
+              spacing={{ xs: 2, sm: 2.5, md: 3 }}
+              sx={{ mt: 0 }}
+            >
+              {Array.from({ length: 2 }).map((_, index) => (
+                <JobCardSkeleton
+                  key={`load-more-skeleton-${index}`}
+                  colors={colors}
+                  borderStyle={borderStyle}
+                />
+              ))}
+            </Grid>
           }
           endMessage={
             <Typography
@@ -574,18 +671,26 @@ export default function BrowseJobs() {
               strategy={rectSortingStrategy}
             >
               <Grid container spacing={{ xs: 2, sm: 2.5, md: 3 }}>
-                {displayedJobs.map((job) => (
-                  <SortableJobCard
-                    key={job.jobId}
-                    job={job}
-                    primary={primary}
-                    secondary={secondary}
-                    textColor={textColor}
-                    subText={subText}
-                    borderStyle={borderStyle}
-                    colors={colors}
-                  />
-                ))}
+                {loading
+                  ? Array.from({ length: 6 }).map((_, index) => (
+                    <JobCardSkeleton
+                      key={`skeleton-${index}`}
+                      colors={colors}
+                      borderStyle={borderStyle}
+                    />
+                  ))
+                  : displayedJobs.map((job) => (
+                    <SortableJobCard
+                      key={job.jobId}
+                      job={job}
+                      primary={primary}
+                      secondary={secondary}
+                      textColor={textColor}
+                      subText={subText}
+                      borderStyle={borderStyle}
+                      colors={colors}
+                    />
+                  ))}
               </Grid>
             </SortableContext>
           </DndContext>
