@@ -265,9 +265,18 @@ export default function Settings() {
             },
           }}
         >
-          <Grid container spacing={3} sx={{ alignItems: "center" }}>
+          <Grid
+            container
+            sx={{
+              alignItems: "center",
+              columnGap: 3,
+            }}
+          >
             {/* Left Side: Profile Info */}
-            <Grid size={{ xs: 12, sm: 6 }}>
+            <Grid
+              size={{ xs: 12, sm: 6, md: 4, lg: 4 }}
+              sx={{ minWidth: 0 }}
+            >
               <Box
                 sx={{
                   display: "flex",
@@ -330,14 +339,17 @@ export default function Settings() {
             </Grid>
 
             {/* Right Side: Stats / Info Cards */}
-            <Grid size={{ xs: 12, md: 4, lg: 8 }}>
+            <Grid
+              size={{ xs: 12, md: 8, lg: 8 }}
+              sx={{ minWidth: 0 }}
+            >
               <Box
                 sx={{
                   display: "grid",
                   gridTemplateColumns: {
                     xs: "1fr",
-                    sm: "repeat(2, 1fr)",
-                    md: "repeat(3, 1fr)",
+                    sm: "repeat(2, minmax(0, 1fr))",
+                    md: "repeat(3, minmax(0, 1fr))",
                   },
                   gap: 2,
                 }}

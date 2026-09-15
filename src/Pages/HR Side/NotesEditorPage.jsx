@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
@@ -55,6 +56,7 @@ export default function NotesEditorPage() {
     const inputColor = colors.input;
     const shadowColor = colors.shadow;
     const secondaryColor = secondary || primary;
+    const isWideScreen = useMediaQuery("(min-width: 1200px)");
 
     const [savedStatus, setSavedStatus] = useState(false);
 
@@ -942,7 +944,7 @@ export default function NotesEditorPage() {
                         <ReactDiffViewer
                             oldValue={previousNote}
                             newValue={currentNote}
-                            splitView={true}
+                            splitView={isWideScreen}
                             showDiffOnly={false}
                             useDarkTheme={darkMode}
                         />

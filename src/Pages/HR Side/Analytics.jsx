@@ -346,7 +346,7 @@ export default function Analytics() {
         {/* Dynamic Premium SVG Chart Area */}
         <Box
           sx={{
-            height: { xs: 220, sm: 260, md: 320 },
+            height: { xs: 220, sm: 260, md: 370 },
             borderRadius: 3,
             bgcolor: colors.background,
             border: `1px solid ${borderStyle}`,
@@ -362,7 +362,7 @@ export default function Analytics() {
           }}
         >
           {/* Simulated chart component */}
-          <ResponsiveContainer width="100%" height={320}>
+          <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={currentData.applications} style={{ outline: "none" }}>
               <defs>
                 <linearGradient id="colorApplications" x1="0" y1="0" x2="0" y2="1">
