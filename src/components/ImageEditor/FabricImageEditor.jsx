@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import { Canvas, FabricImage, Rect, FabricText, filters } from "fabric";
+import { Canvas, FabricImage, Rect, IText, filters } from "fabric";
 
 import {
     Box,
@@ -33,16 +33,14 @@ import useThemeColors from "../../hooks/useThemeColors";
 const CANVAS_WIDTH = 700;
 const CANVAS_HEIGHT = 450;
 
-/*
- * FabricImageEditor
- *
- * This component:
- * 1. Shows a floating image-editing toolbar.
- * 2. Uses Fabric.js for image editing.
- * 3. Supports crop, rotate, zoom, flip, brightness,
- *    contrast, grayscale, text and download.
- * 4. Sends the final edited image back to Tiptap.
- */
+
+// FabricImageEditor
+//  1. Shows a floating image-editing toolbar.
+//  2. Uses Fabric.js for image editing.
+//  3. Supports crop, rotate, zoom, flip, brightness,
+//      contrast, grayscale, text and download.
+//  4. Sends the final edited image back to Tiptap.
+
 export default function FabricImageEditor({
     imageSrc,
     anchorElement,
@@ -63,31 +61,29 @@ export default function FabricImageEditor({
     const inputColor = colors.input;
     const shadowColor = colors.shadow;
 
-    /*
-     * Floating toolbar position.
-     */
+
+    //  Floating toolbar position.
+
     const [toolbarPosition, setToolbarPosition] =
         useState(null);
 
-    /*
-     * Canvas editor visibility.
-     *
-     * Toolbar is visible immediately when an image
-     * is selected. Fabric canvas opens when an editing
-     * action is clicked.
-     */
+    // Canvas editor visibility.
+    //   Toolbar is visible immediately when an image
+    //   is selected. Fabric canvas opens when an editing
+    //   action is clicked.
+
     const [editorOpen, setEditorOpen] =
         useState(false);
 
-    /*
-     * Crop state.
-     */
+
+    //   Crop state.
+
     const [isCropping, setIsCropping] =
         useState(false);
 
-    /*
-     * Image filter states.
-     */
+
+    //  Image filter states.
+
     const [brightness, setBrightness] =
         useState(0);
 
@@ -97,21 +93,21 @@ export default function FabricImageEditor({
     const [isGrayscale, setIsGrayscale] =
         useState(false);
 
-    /*
-     * Calculate toolbar position according to
-     * selected Tiptap image.
-     */
+
+    //   Calculate toolbar position according to
+    //   selected Tiptap image.
+
     const updateToolbarPosition = useCallback(() => {
         if (!anchorElement) return;
 
         const imageBounds =
             anchorElement.getBoundingClientRect();
 
-        /*
-         * Toolbar dimensions are approximate.
-         * The toolbar will automatically move below
-         * the image if there is not enough space above it.
-         */
+
+        //  Toolbar dimensions are approximate.
+        //  The toolbar will automatically move below
+        //  the image if there is not enough space above it.
+
         const toolbarHeight = 52;
         const gap = 8;
 
@@ -301,11 +297,45 @@ export default function FabricImageEditor({
                     backgroundColor:
                         "transparent",
                     selection: true,
+                    skipTargetFind: false,
                 }
             );
 
+        // Allow keyboard input
+        fabricCanvas.upperCanvasEl.tabIndex = 0;
+
+        // Delete selected text with keyboard
+        fabricCanvas.upperCanvasEl.addEventListener("keydown", (event) => {
+            if (
+                event.key === "Delete" ||
+                event.key === "Backspace"
+            ) {
+                const activeObject =
+                    fabricCanvas.getActiveObject();
+
+                if (activeObject instanceof IText) {
+                    fabricCanvas.remove(activeObject);
+                    fabricCanvas.discardActiveObject();
+                    fabricCanvas.requestRenderAll();
+                }
+            }
+        });
+
         fabricCanvasRef.current =
             fabricCanvas;
+
+        // Enable text editing on double-click
+        fabricCanvas.on("mouse:dblclick", (event) => {
+            const target = event.target;
+
+            if (target instanceof IText) {
+                fabricCanvas.setActiveObject(target);
+                target.enterEditing();
+                target.selectAll();
+                fabricCanvas.upperCanvasEl.focus();
+                fabricCanvas.requestRenderAll();
+            }
+        });
 
         /*
          * Load selected image into Fabric.
@@ -620,7 +650,7 @@ export default function FabricImageEditor({
         }
 
         const text =
-            new FabricText(
+            new IText(
                 "Double click to edit",
                 {
                     left:
@@ -646,20 +676,19 @@ export default function FabricImageEditor({
                     fontWeight:
                         "600",
 
-                    editable:
-                        true,
-
-                    selectable:
-                        true,
+                    selectable: true,
+                    evented: true,
                 }
             );
 
         fabricCanvas.add(text);
 
-        fabricCanvas.setActiveObject(
-            text
-        );
+        fabricCanvas.setActiveObject(text);
 
+        // Start editing the new text
+        text.enterEditing();
+        text.selectAll();
+        fabricCanvas.upperCanvasEl.focus();
         fabricCanvas.requestRenderAll();
     };
 
@@ -678,11 +707,39 @@ export default function FabricImageEditor({
         const fabricCanvas =
             fabricCanvasRef.current;
 
-        if (
-            !image ||
-            !fabricCanvas ||
-            cropRectRef.current
-        ) {
+        //  Enable the actual image as the active Fabric object
+        //  while crop mode is active, so its rotation handle
+        //  can be used.
+
+        if (!image || !fabricCanvas) {
+            return;
+        }
+
+        image.set({
+            selectable: false,
+            evented: false,
+            hasControls: false,
+            hasBorders: false,
+        });
+
+        /*
+         * Show only the rotation control on the image.
+         * Resize controls are hidden because crop mode
+         * should control the crop area, not image dimensions.
+         */
+        image.setControlsVisibility({
+            mt: false,
+            mb: false,
+            ml: false,
+            mr: false,
+            tl: false,
+            tr: false,
+            bl: false,
+            br: false,
+            mtr: true,
+        });
+
+        if (cropRectRef.current) {
             return;
         }
 
@@ -725,6 +782,8 @@ export default function FabricImageEditor({
                 strokeDashArray:
                     [6, 4],
 
+                excludeFromExport: true,
+
                 cornerColor:
                     primary,
 
@@ -738,10 +797,10 @@ export default function FabricImageEditor({
                     false,
 
                 hasRotatingPoint:
-                    false,
+                    true,
 
                 lockRotation:
-                    true,
+                    false,
 
                 selectable:
                     true,
@@ -752,6 +811,51 @@ export default function FabricImageEditor({
 
         cropRectRef.current =
             cropRect;
+
+        let previousCropAngle = 0;
+
+        /*
+         * Apply only the rotation difference to the actual image.
+         * This prevents the image from rotating faster and faster
+         * during continuous mouse movement.
+         */
+        cropRect.on("rotating", () => {
+            const currentCropAngle =
+                cropRect.angle || 0;
+
+            const rotationDifference =
+                currentCropAngle -
+                previousCropAngle;
+
+            const currentImageAngle =
+                image.angle || 0;
+
+            image.set({
+                angle:
+                    currentImageAngle +
+                    rotationDifference,
+            });
+
+            image.setCoords();
+
+            /*
+             * Store the current crop angle so the next
+             * mouse movement applies only the new difference.
+             */
+            previousCropAngle =
+                currentCropAngle;
+
+            /*
+             * Keep the crop rectangle visually straight.
+             */
+            cropRect.set({
+                angle: 0,
+            });
+
+            previousCropAngle = 0;
+
+            fabricCanvas.requestRenderAll();
+        });
 
         fabricCanvas.add(
             cropRect
@@ -1015,41 +1119,38 @@ export default function FabricImageEditor({
      * Download current edited image.
      */
     const downloadImage = () => {
-        openEditor();
-
-        const fabricCanvas =
-            fabricCanvasRef.current;
+        const fabricCanvas = fabricCanvasRef.current;
 
         if (!fabricCanvas) {
             return;
         }
 
+        // Remove crop area before exporting
+        const cropRect = cropRectRef.current;
+
+        if (cropRect) {
+            fabricCanvas.remove(cropRect);
+            cropRectRef.current = null;
+        }
+
+        // Remove active selection controls
+        fabricCanvas.discardActiveObject();
+        fabricCanvas.requestRenderAll();
+
+        // Export only the actual canvas image
         const dataUrl =
             fabricCanvas.toDataURL({
                 format: "png",
-                quality: 1,
-                multiplier: 2,
+                multiplier: 1,
             });
 
         const link =
-            document.createElement(
-                "a"
-            );
+            document.createElement("a");
 
         link.href = dataUrl;
-
-        link.download =
-            "edited-image.png";
-
-        document.body.appendChild(
-            link
-        );
+        link.download = "edited-image.png";
 
         link.click();
-
-        document.body.removeChild(
-            link
-        );
     };
 
     /*
@@ -1059,28 +1160,36 @@ export default function FabricImageEditor({
         const fabricCanvas =
             fabricCanvasRef.current;
 
-        if (
-            !fabricCanvas ||
-            isCropping
-        ) {
+        if (!fabricCanvas) {
             return;
         }
 
+        // Remove temporary crop area
+        if (cropRectRef.current) {
+            fabricCanvas.remove(
+                cropRectRef.current
+            );
+
+            cropRectRef.current = null;
+        }
+
+        // Remove active Fabric selection
+        fabricCanvas.discardActiveObject();
+        fabricCanvas.requestRenderAll();
+
+        // Export edited image
         const dataUrl =
             fabricCanvas.toDataURL({
                 format: "png",
-
-                quality: 1,
-
-                multiplier: 2,
+                multiplier: 1,
             });
 
-        /*
-         * Send final image to NotesEditorPage.
-         */
-        if (onApply) {
-            onApply(dataUrl);
+        if (!dataUrl) {
+            return;
         }
+
+        // Send edited image to Tiptap
+        onApply(dataUrl);
     };
 
     /*

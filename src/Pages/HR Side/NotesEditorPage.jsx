@@ -185,15 +185,20 @@ export default function NotesEditorPage() {
         useState(null);
 
     /*
-   * Selected image position inside the Tiptap document.
-   *
-   * This helps us update the correct resizableImage node
-   * after Fabric.js finishes editing.
-   */
+    
+    Selected image position inside the Tiptap document.
+    
+    
+    
+    This helps us update the correct resizableImage node
+    
+    after Fabric.js finishes editing.
+    */
     const [selectedImagePosition, setSelectedImagePosition] =
         useState(null);
 
     /*
+    
      * Mock employee list for mentions.
      */
     const employeesList = recruitersData;
@@ -586,39 +591,39 @@ export default function NotesEditorPage() {
         if (type === "tech") {
             templateHtml =
                 `<h3>Technical Interview Feedback</h3>
-                <p><strong>Candidate Name:</strong> </p>
-                <p><strong>Position:</strong> Software Engineer</p>
-                <ul>
-                    <li><p>Coding & Problem Solving: </p></li>
-                    <li><p>System Design Knowledge: </p></li>
-                    <li><p>Communication & Cultural Fit: </p></li>
-                </ul>
-                <p><strong>Final Verdict:</strong> [Hire / Reject / Hold]</p>`;
+            <p><strong>Candidate Name:</strong> </p>
+            <p><strong>Position:</strong> Software Engineer</p>
+            <ul>
+                <li><p>Coding & Problem Solving: </p></li>
+                <li><p>System Design Knowledge: </p></li>
+                <li><p>Communication & Cultural Fit: </p></li>
+            </ul>
+            <p><strong>Final Verdict:</strong> [Hire / Reject / Hold]</p>`;
         }
 
         if (type === "hr") {
             templateHtml =
                 `<h3>HR Round Feedback</h3>
-                <p><strong>Candidate Name:</strong> </p>
-                <p><strong>Expected CTC:</strong> </p>
-                <p><strong>Notice Period:</strong> </p>
-                <ul>
-                    <li><p>Motivation & Background: </p></li>
-                    <li><p>Strengths: </p></li>
-                    <li><p>Areas of Concern: </p></li>
-                </ul>`;
+            <p><strong>Candidate Name:</strong> </p>
+            <p><strong>Expected CTC:</strong> </p>
+            <p><strong>Notice Period:</strong> </p>
+            <ul>
+                <li><p>Motivation & Background: </p></li>
+                <li><p>Strengths: </p></li>
+                <li><p>Areas of Concern: </p></li>
+            </ul>`;
         }
 
         if (type === "performance") {
             templateHtml =
                 `<h3>Team Performance Review</h3>
-                <p><strong>Employee Name:</strong> </p>
-                <p><strong>Review Period:</strong> Q1 / Q2 / Q3 / Q4</p>
-                <ul>
-                    <li><p>Key Achievements: </p></li>
-                    <li><p>Areas of Improvement: </p></li>
-                    <li><p>Goals for Next Cycle: </p></li>
-                </ul>`;
+            <p><strong>Employee Name:</strong> </p>
+            <p><strong>Review Period:</strong> Q1 / Q2 / Q3 / Q4</p>
+            <ul>
+                <li><p>Key Achievements: </p></li>
+                <li><p>Areas of Improvement: </p></li>
+                <li><p>Goals for Next Cycle: </p></li>
+            </ul>`;
         }
 
         editor
@@ -795,9 +800,11 @@ export default function NotesEditorPage() {
                 target.closest("img");
 
             /*
-  * If user clicked something other than
-  * an image, clear the selected image.
-  */
+    
+    If user clicked something other than
+    
+    an image, clear the selected image.
+    */
             if (!clickedImage) {
                 setSelectedImageElement(
                     null
@@ -825,19 +832,49 @@ export default function NotesEditorPage() {
                 clickedImage
             );
 
-            /*
- * Save the Tiptap document position of the
- * selected image so Fabric can update it later.
- */
+            // Save the Tiptap document position of the
+            // selected image so Fabric can update it later.
+
             try {
-                const imagePos =
+                const domPos =
                     editor.view.posAtDOM(
                         clickedImage,
                         0
                     );
 
+                let exactImagePos = null;
+
+                // Find the actual resizableImage node
+                for (
+                    let offset = -3;
+                    offset <= 3;
+                    offset++
+                ) {
+                    const candidatePos =
+                        domPos + offset;
+
+                    if (candidatePos < 0) {
+                        continue;
+                    }
+
+                    const candidateNode =
+                        editor.state.doc.nodeAt(
+                            candidatePos
+                        );
+
+                    if (
+                        candidateNode &&
+                        candidateNode.type.name === "image"
+                    ) {
+                        exactImagePos =
+                            candidatePos;
+
+                        break;
+                    }
+                }
+
                 setSelectedImagePosition(
-                    imagePos
+                    exactImagePos
                 );
             } catch (error) {
                 console.error(
@@ -875,142 +912,31 @@ export default function NotesEditorPage() {
         };
 
     /*
-   * Apply Fabric.js edited image back to Tiptap.
-   */
-    const handleApplyImageEdit =
-        (newDataUrl) => {
-            if (
-                !selectedImageElement ||
-                !newDataUrl
-            ) {
-                return;
-            }
+    Apply Fabric.js edited image back to Tiptap.
+    */
+    const handleApplyImageEdit = (newDataUrl) => {
+        if (!newDataUrl) {
+            return;
+        }
 
-            try {
-                /*
-                 * First use the position saved when the
-                 * image was clicked.
-                 */
-                let pos =
-                    selectedImagePosition;
+        // Update the currently selected Tiptap image
+        editor
+            .chain()
+            .focus()
+            .updateAttributes("image", {
+                src: newDataUrl,
+            })
+            .run();
 
-                let node =
-                    pos !== null
-                        ? editor.state.doc.nodeAt(
-                            pos
-                        )
-                        : null;
-
-                /*
-                 * If the saved position is no longer valid,
-                 * find the position again from the DOM image.
-                 */
-                if (
-                    !node ||
-                    node.type.name !==
-                    "resizableImage"
-                ) {
-                    const domPos =
-                        editor.view.posAtDOM(
-                            selectedImageElement,
-                            0
-                        );
-
-                    /*
-                     * Search a few nearby positions because
-                     * the resizable image extension can wrap
-                     * the actual <img> element.
-                     */
-                    const possiblePositions = [
-                        domPos,
-                        domPos - 1,
-                        domPos + 1,
-                        domPos - 2,
-                        domPos + 2,
-                    ];
-
-                    for (
-                        const candidatePos of possiblePositions
-                    ) {
-                        if (
-                            candidatePos < 0
-                        ) {
-                            continue;
-                        }
-
-                        const candidateNode =
-                            editor.state.doc.nodeAt(
-                                candidatePos
-                            );
-
-                        if (
-                            candidateNode &&
-                            candidateNode.type.name ===
-                            "resizableImage"
-                        ) {
-                            pos =
-                                candidatePos;
-
-                            node =
-                                candidateNode;
-
-                            break;
-                        }
-                    }
-                }
-
-                /*
-                 * Update only if the selected node is
-                 * actually a resizableImage.
-                 */
-                if (
-                    node &&
-                    node.type.name ===
-                    "resizableImage"
-                ) {
-                    editor
-                        .chain()
-                        .focus()
-                        .setNodeSelection(
-                            pos
-                        )
-                        .updateAttributes(
-                            "resizableImage",
-                            {
-                                src:
-                                    newDataUrl,
-                            }
-                        )
-                        .run();
-                }
-            } catch (error) {
-                console.error(
-                    "Failed to replace edited image:",
-                    error
-                );
-            }
-
-            /*
-             * Clear selected image after applying
-             * the edited result.
-             */
-            setSelectedImageSrc(
-                null
-            );
-
-            setSelectedImageElement(
-                null
-            );
-
-            setSelectedImagePosition(
-                null
-            );
-        };
+        setSelectedImageSrc(null);
+        setSelectedImageElement(null);
+        setSelectedImagePosition(null);
+    };
 
     /*
-     * Close Fabric.js image editor without applying
-     * the current changes.
-     */
+    Close Fabric.js image editor without applying
+    the current changes.
+    */
     const handleCloseImageEditor =
         () => {
             setSelectedImageSrc(
@@ -1024,11 +950,13 @@ export default function NotesEditorPage() {
             setSelectedImagePosition(
                 null
             );
+
         };
 
     /*
-     * Toolbar button style.
-     */
+    
+    Toolbar button style.
+    */
     const activeColor = primary;
 
     const getToolbarBtnSx = (
@@ -1074,24 +1002,27 @@ export default function NotesEditorPage() {
                     ? "#ffffff"
                     : primary,
         },
+
     });
 
     /*
-     * Menu styling.
-     */
+    
+    Menu styling.
+    */
     const menuPaperSx = {
         bgcolor: cardColor,
         color: textColor,
         borderRadius: "12px",
         border:
-            `1px solid ${borderStyle}`,
+            " 1px solid ${ borderStyle }",
         mt: 1,
         boxShadow: shadowColor,
     };
 
     /*
-     * Header outlined buttons.
-     */
+    
+    Header outlined buttons.
+    */
     const outlinedBtnSx = {
         borderColor: borderStyle,
         color: subText,
@@ -1109,10 +1040,10 @@ export default function NotesEditorPage() {
             sm: "0.875rem",
         },
 
-        "&:hover": {
+        "&": {
             borderColor: primary,
             bgcolor:
-                `${primary}08`,
+                "${ primary }08,"
         },
     };
 
@@ -2266,6 +2197,11 @@ export default function NotesEditorPage() {
                                 outline:
                                     "none",
 
+                                // Set cursor color
+                                caretColor:
+                                    primary,
+
+
                                 minHeight:
                                 {
                                     xs: "200px",
@@ -2580,5 +2516,6 @@ export default function NotesEditorPage() {
                 </Dialog>
             </Container>
         </HRLayout>
+
     );
 }
