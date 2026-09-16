@@ -3,6 +3,7 @@ const initialEdges = [
         id: "e1",
         source: "candidate",
         target: "join-interview",
+        type: "smoothstep",
     },
     {
         id: "e2",

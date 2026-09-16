@@ -4,7 +4,6 @@ const initialEdges = [
         source: "notes-start",
         target: "notes-page",
         type: "smoothstep",
-        animated: true,
     },
     {
         id: "e2",
