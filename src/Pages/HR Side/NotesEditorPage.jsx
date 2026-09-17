@@ -752,10 +752,9 @@ export default function NotesEditorPage() {
                     .chain()
                     .focus()
                     .updateAttributes(
-                        "resizableImage",
+                        "image",
                         {
-                            align:
-                                alignment,
+                            align: alignment,
                         }
                     )
                     .run();
@@ -926,6 +925,8 @@ export default function NotesEditorPage() {
             .updateAttributes("image", {
                 src: newDataUrl,
             })
+            .setTextSelection(editor.state.doc.content.size)
+            .blur()
             .run();
 
         setSelectedImageSrc(null);
@@ -1013,8 +1014,7 @@ export default function NotesEditorPage() {
         bgcolor: cardColor,
         color: textColor,
         borderRadius: "12px",
-        border:
-            " 1px solid ${ borderStyle }",
+        border: `1px solid ${borderStyle}`,
         mt: 1,
         boxShadow: shadowColor,
     };
@@ -1042,8 +1042,7 @@ export default function NotesEditorPage() {
 
         "&": {
             borderColor: primary,
-            bgcolor:
-                "${ primary }08,"
+            bgcolor: `${primary}08`,
         },
     };
 
@@ -2178,6 +2177,26 @@ export default function NotesEditorPage() {
                             handleEditorClick
                         }
                         sx={{
+
+                            // Remove image selection border
+                            "& .ProseMirror-selectednode": {
+                                outline: "none !important",
+                                border: "none !important",
+                            },
+
+                            "& .resizable-image-container": {
+                                border: "none !important",
+                                outline: "none !important",
+                            },
+
+                            "& .resizable-image-container img": {
+                                outline: "none !important",
+                                border: "none !important",
+                            },
+
+                            "& .node-image": {
+                                border: "none !important",
+                            },
                             p: {
                                 xs: 1.75,
                                 sm: 2.25,

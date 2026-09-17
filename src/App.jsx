@@ -45,6 +45,9 @@ import CandidateSettings from "./Pages/Candidate Side/CandidateSettings";
 import JoinInterviewC from "./Pages/Candidate Side/JoinInterviewC";
 import Notes from "./Pages/Candidate Side/Notes";
 import CandidateCalendar from "./Pages/Candidate Side/CandidateCalendar";
+import ResumeBuilder from "./Pages/Candidate Side/ResumeBuilder";
+import ResumeTemplates from "./Pages/Candidate Side/ResumeTemplates";
+import ResumePreview from "./Pages/Candidate Side/ResumePreview";
 
 /* Interviewer Side */
 import InterviewerDashboard from "./Pages/Interviewer Side/InterviewerDashboard";
@@ -120,6 +123,9 @@ function App() {
             <Route path="/candidate/join-interview-c" element={<JoinInterviewC />} />
             <Route path="/candidate/notes-c" element={<Notes />} />
             <Route path="/candidate/candidate-calendar" element={<CandidateCalendar />} />
+            <Route path="/candidate/resume-builder" element={<ResumeBuilder />} />
+            <Route path="/candidate/resume-preview/:templateId" element={<ResumePreview />}   />
+            <Route path="/candidate/resume-templates" element={<ResumeTemplates />} />
           </Route>
 
           {/* Interviewer Protected Routes */}

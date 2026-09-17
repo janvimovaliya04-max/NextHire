@@ -108,3 +108,27 @@ body.dark * {
     margin: 0 !important;
   }
 }
+
+/* Remove Tiptap image selection border */
+.ProseMirror img.ProseMirror-selectednode,
+.ProseMirror .ProseMirror-selectednode {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove focus outline from editor images */
+.ProseMirror img:focus,
+.ProseMirror .resizable-image-container:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove selected resizable image outline */
+.ProseMirror .resizable-image-container.ProseMirror-selectednode,
+.ProseMirror .resizable-image-container.ProseMirror-selectednode img {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}

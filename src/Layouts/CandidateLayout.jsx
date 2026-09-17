@@ -6,6 +6,7 @@ import { useCandidate } from "../context/CandidateContext";
 import { useAuth } from "../context/AuthContext";
 import useThemeColors from "../hooks/useThemeColors";
 import {
+  Book,
   User,
   Menu,
   LayoutDashboard,
@@ -112,6 +113,12 @@ export default function CandidateLayout({ children }) {
       ],
     },
     {
+      title: "Career Tools",
+      items: [
+        { path: "/candidate/resume-builder", label: "Create Your Resume", icon: <Book size={18} /> },
+      ],
+    },
+    {
       title: "Settings & System",
       items: [
         { path: "/candidate/notes-c", label: "Notes", icon: <Menu size={18} /> },
@@ -148,6 +155,8 @@ export default function CandidateLayout({ children }) {
         return "Apply For Job";
       case "/candidate/candidate-calendar":
         return "Candidate Calendar";
+      case "/candidate/resume-builder":
+        return "Resume Builder";
       default:
         return "Candidate Workspace";
     }
@@ -395,6 +404,25 @@ export default function CandidateLayout({ children }) {
             >
               <Calendar size={16} />
             </Link>
+
+            {/* Resume Builder */}
+            <Tooltip title="Create Your Resume">
+              <Link
+                to="/candidate/resume-builder"
+                aria-label="Create your resume"
+                className="p-2.5 rounded-xl border relative transition-all duration-200 flex items-center gap-2"
+                style={{
+                  backgroundColor: colors.input,
+                  color: primary,
+                  borderColor: borderStyle,
+                }}
+              >
+                <FileText size={16} />
+                <span className="hidden lg:inline text-sm font-semibold">
+                  Resume
+                </span>
+              </Link>
+            </Tooltip>
 
             {/* Theme switcher */}
             <button

@@ -460,34 +460,37 @@ export default function FabricImageEditor({
         );
     };
 
-    /*
-     * Rotate image.
-     */
+    // Rotate crop area or image
     const rotateImage = (degrees) => {
-        openEditor();
+        const cropRect = cropRectRef.current;
+        const image = imageObjectRef.current;
+        const fabricCanvas = fabricCanvasRef.current;
 
-        const image =
-            imageObjectRef.current;
-
-        const fabricCanvas =
-            fabricCanvasRef.current;
-
-        if (!image || !fabricCanvas) {
+        if (!fabricCanvas) {
             return;
         }
 
-        const currentAngle =
-            image.angle || 0;
+        // Rotate crop area during crop mode
+        if (isCropping && cropRect) {
+            cropRect.rotate(
+                (cropRect.angle || 0) + degrees
+            );
 
-        image.set({
-            angle:
-                currentAngle +
-                degrees,
-        });
+            cropRect.setCoords();
+            fabricCanvas.requestRenderAll();
 
-        image.setCoords();
+            return;
+        }
 
-        fabricCanvas.requestRenderAll();
+        // Rotate image during normal mode
+        if (image) {
+            image.rotate(
+                (image.angle || 0) + degrees
+            );
+
+            image.setCoords();
+            fabricCanvas.requestRenderAll();
+        }
     };
 
     /*
@@ -715,30 +718,13 @@ export default function FabricImageEditor({
             return;
         }
 
+        // Keep image fixed while cropping
         image.set({
             selectable: false,
             evented: false,
             hasControls: false,
             hasBorders: false,
         });
-
-        /*
-         * Show only the rotation control on the image.
-         * Resize controls are hidden because crop mode
-         * should control the crop area, not image dimensions.
-         */
-        image.setControlsVisibility({
-            mt: false,
-            mb: false,
-            ml: false,
-            mr: false,
-            tl: false,
-            tr: false,
-            bl: false,
-            br: false,
-            mtr: true,
-        });
-
         if (cropRectRef.current) {
             return;
         }
@@ -770,8 +756,7 @@ export default function FabricImageEditor({
                     imageBounds.height *
                     0.7,
 
-                fill:
-                    "rgba(0,0,0,0.18)",
+                fill: "rgba(255, 255, 255, 0.18)",
 
                 stroke:
                     primary,
@@ -811,51 +796,6 @@ export default function FabricImageEditor({
 
         cropRectRef.current =
             cropRect;
-
-        let previousCropAngle = 0;
-
-        /*
-         * Apply only the rotation difference to the actual image.
-         * This prevents the image from rotating faster and faster
-         * during continuous mouse movement.
-         */
-        cropRect.on("rotating", () => {
-            const currentCropAngle =
-                cropRect.angle || 0;
-
-            const rotationDifference =
-                currentCropAngle -
-                previousCropAngle;
-
-            const currentImageAngle =
-                image.angle || 0;
-
-            image.set({
-                angle:
-                    currentImageAngle +
-                    rotationDifference,
-            });
-
-            image.setCoords();
-
-            /*
-             * Store the current crop angle so the next
-             * mouse movement applies only the new difference.
-             */
-            previousCropAngle =
-                currentCropAngle;
-
-            /*
-             * Keep the crop rectangle visually straight.
-             */
-            cropRect.set({
-                angle: 0,
-            });
-
-            previousCropAngle = 0;
-
-            fabricCanvas.requestRenderAll();
-        });
 
         fabricCanvas.add(
             cropRect
@@ -953,6 +893,14 @@ export default function FabricImageEditor({
         /*
          * Export selected crop region.
          */
+
+        // Hide crop overlay before exporting
+        if (cropRectRef.current) {
+            cropRectRef.current.set({ visible: false });
+        }
+
+        fabricCanvasRef.current.renderAll();
+
         const croppedDataUrl =
             fabricCanvas.toDataURL({
                 format: "png",
@@ -973,6 +921,11 @@ export default function FabricImageEditor({
 
                 multiplier: 1,
             });
+
+        // Restore crop overlay after export
+        if (cropRectRef.current) {
+            cropRectRef.current.set({ visible: true });
+        }
 
         /*
          * Remove current crop rectangle.
@@ -1326,6 +1279,38 @@ export default function FabricImageEditor({
                 >
                     {isCropping ? (
                         <>
+
+                            <Tooltip title="Rotate crop area left">
+                                <IconButton
+                                    size="small"
+                                    onClick={() => rotateImage(-90)}
+                                    sx={toolButtonSx()}
+                                    aria-label="Rotate crop area left"
+                                >
+                                    <RotateCcw size={17} />
+                                </IconButton>
+                            </Tooltip>
+
+                            <Tooltip title="Rotate crop area right">
+                                <IconButton
+                                    size="small"
+                                    onClick={() => rotateImage(90)}
+                                    sx={toolButtonSx()}
+                                    aria-label="Rotate crop area right"
+                                >
+                                    <RotateCw size={17} />
+                                </IconButton>
+                            </Tooltip>
+
+                            <Divider
+                                orientation="vertical"
+                                flexItem
+                                sx={{
+                                    borderColor: borderStyle,
+                                    mx: 0.25,
+                                }}
+                            />
+
                             <Tooltip title="Apply Crop">
                                 <IconButton
                                     size="small"
