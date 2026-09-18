@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import CandidateLayout from "../../Layouts/CandidateLayout";
 import { useTheme } from "../../context/ThemeContext";
@@ -9,16 +9,33 @@ import SEO from "../../components/common/SEO";
 
 import { resumeTemplates } from "../../data/resumeTemplates";
 
+const RESUME_STORAGE_KEY = "nexthire-resume-data";
+
 export default function ResumeTemplates() {
     const location = useLocation();
     const navigate = useNavigate();
     const { darkMode } = useTheme();
     const colors = useThemeColors();
 
-    const resumeData = location.state?.resumeData;
+    const [resumeData, setResumeData] = useState(
+        location.state?.resumeData || null
+    );
 
     useEffect(() => {
-        if (!resumeData) {
+        if (resumeData) return;
+
+        const savedData = localStorage.getItem(RESUME_STORAGE_KEY);
+
+        if (savedData) {
+            try {
+                setResumeData(JSON.parse(savedData));
+            } catch (error) {
+                console.error("Failed to load resume data:", error);
+                navigate("/candidate/resume-builder", {
+                    replace: true,
+                });
+            }
+        } else {
             navigate("/candidate/resume-builder", {
                 replace: true,
             });
@@ -51,7 +68,11 @@ export default function ResumeTemplates() {
 
             <Box sx={{ mb: 3 }}>
                 <Button
-                    onClick={() => navigate(-1)}
+                    onClick={() =>
+                        navigate("/candidate/resume-builder", {
+                            state: { resumeData },
+                        })
+                    }
                     startIcon={<ArrowLeft size={16} />}
                     sx={{
                         textTransform: "none",

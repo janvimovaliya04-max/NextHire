@@ -1,8 +1,7 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CandidateLayout from "../../Layouts/CandidateLayout";
-import { useTheme } from "../../context/ThemeContext";
 import useThemeColors from "../../hooks/useThemeColors";
 import {
     Paper,
@@ -12,49 +11,78 @@ import {
     Box,
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import SEO from "../../components/common/SEO";
+
+const RESUME_STORAGE_KEY = "nexthire-resume-data";
 
 export default function ResumeBuilder() {
     const colors = useThemeColors();
     const navigate = useNavigate();
 
-    const [formData, setFormData] = useState({
-        fullName: "",
-        email: "",
-        phone: "",
-        location: "",
-        jobTitle: "",
-        summary: "",
+    const [formData, setFormData] = useState(() => {
+        const savedData = localStorage.getItem(RESUME_STORAGE_KEY);
 
-        // Education
-        degree: "",
-        institution: "",
-        startYear: "",
-        endYear: "",
-        grade: "",
+        if (savedData) {
+            try {
+                return JSON.parse(savedData);
+            } catch (error) {
+                console.error("Failed to load saved resume data:", error);
+            }
+        }
 
-        // Work Experience
-        companyName: "",
-        jobPosition: "",
-        experienceStartYear: "",
-        experienceEndYear: "",
-        jobDescription: "",
+        return {
+            fullName: "",
+            email: "",
+            phone: "",
+            location: "",
+            jobTitle: "",
+            summary: "",
 
-        skills: "",
+            education: [
+                {
+                    degree: "",
+                    institution: "",
+                    startYear: "",
+                    endYear: "",
+                    grade: "",
+                },
+            ],
 
-        // Projects
-        projectName: "",
-        projectTechStack: "",
-        projectDescription: "",
-        projectLink: "",
+            experience: [
+                {
+                    companyName: "",
+                    jobPosition: "",
+                    experienceStartYear: "",
+                    experienceEndYear: "",
+                    jobDescription: "",
+                },
+            ],
 
-        // Certifications & Languages
-        certifications: "",
-        languages: "",
-        linkedin: "",
-        github: "",
+            skills: [""],
+
+            projects: [
+                {
+                    projectName: "",
+                    projectTechStack: "",
+                    projectDescription: "",
+                    projectLink: "",
+                },
+            ],
+
+            certifications: "",
+            languages: "",
+            linkedin: "",
+            github: "",
+        };
     });
+
+    useEffect(() => {
+        localStorage.setItem(
+            RESUME_STORAGE_KEY,
+            JSON.stringify(formData)
+        );
+    }, [formData]);
 
     const [errors, setErrors] = useState({});
 
@@ -65,29 +93,49 @@ export default function ResumeBuilder() {
     const borderStyle = colors.border;
 
     const textFieldStyle = {
-        mb: { xs: 2, sm: 2.3, md: 2.5 },
+        mb: { xs: 1.2, sm: 1.5, md: 1.7 },
+
         "& .MuiInputLabel-root": {
             color: subText,
-            fontSize: { xs: ".85rem", sm: ".9rem", md: ".95rem" },
+            fontSize: {
+                xs: ".82rem",
+                sm: ".87rem",
+                md: ".92rem",
+            },
         },
+
         "& .MuiInputLabel-root.Mui-focused": {
             color: primary,
         },
+
         "& .MuiOutlinedInput-root": {
-            fontSize: { xs: ".85rem", sm: ".9rem", md: ".95rem" },
+            fontSize: {
+                xs: ".82rem",
+                sm: ".87rem",
+                md: ".92rem",
+            },
             color: textColor,
             backgroundColor: colors.input,
+
             "& fieldset": {
                 borderColor: borderStyle,
-                borderRadius: "10px",
+                borderRadius: "8px",
             },
+
             "&:hover fieldset": {
                 borderColor: primary,
             },
+
             "&.Mui-focused fieldset": {
                 borderColor: primary,
-                borderWidth: "2px",
+                borderWidth: "1.5px",
             },
+        },
+
+        "& .MuiFormHelperText-root": {
+            fontSize: "0.7rem",
+            marginLeft: "2px",
+            marginTop: "3px",
         },
     };
 
@@ -102,6 +150,146 @@ export default function ResumeBuilder() {
         setErrors((previous) => ({
             ...previous,
             [name]: "",
+        }));
+    };
+
+    const handleEducationChange = (index, event) => {
+        const { name, value } = event.target;
+
+        setFormData((previous) => ({
+            ...previous,
+            education: previous.education.map((item, itemIndex) =>
+                itemIndex === index
+                    ? { ...item, [name]: value }
+                    : item
+            ),
+        }));
+    };
+
+    const addEducation = () => {
+        setFormData((previous) => ({
+            ...previous,
+            education: [
+                ...previous.education,
+                {
+                    degree: "",
+                    institution: "",
+                    startYear: "",
+                    endYear: "",
+                    grade: "",
+                },
+            ],
+        }));
+    };
+
+    const removeEducation = (index) => {
+        setFormData((previous) => ({
+            ...previous,
+            education: previous.education.filter(
+                (_, itemIndex) => itemIndex !== index
+            ),
+        }));
+    };
+
+    const handleExperienceChange = (index, event) => {
+        const { name, value } = event.target;
+
+        setFormData((previous) => ({
+            ...previous,
+            experience: previous.experience.map((item, itemIndex) =>
+                itemIndex === index
+                    ? { ...item, [name]: value }
+                    : item
+            ),
+        }));
+    };
+
+    const addExperience = () => {
+        setFormData((previous) => ({
+            ...previous,
+            experience: [
+                ...previous.experience,
+                {
+                    companyName: "",
+                    jobPosition: "",
+                    experienceStartYear: "",
+                    experienceEndYear: "",
+                    jobDescription: "",
+                },
+            ],
+        }));
+    };
+
+    const removeExperience = (index) => {
+        setFormData((previous) => ({
+            ...previous,
+            experience: previous.experience.filter(
+                (_, itemIndex) => itemIndex !== index
+            ),
+        }));
+    };
+
+    const handleSkillChange = (index, event) => {
+        const { value } = event.target;
+
+        setFormData((previous) => ({
+            ...previous,
+            skills: previous.skills.map((skill, skillIndex) =>
+                skillIndex === index ? value : skill
+            ),
+        }));
+    };
+
+    const addSkill = () => {
+        setFormData((previous) => ({
+            ...previous,
+            skills: [...previous.skills, ""],
+        }));
+    };
+
+    const removeSkill = (index) => {
+        setFormData((previous) => ({
+            ...previous,
+            skills: previous.skills.filter(
+                (_, skillIndex) => skillIndex !== index
+            ),
+        }));
+    };
+
+    const handleProjectChange = (index, event) => {
+        const { name, value } = event.target;
+
+        setFormData((previous) => ({
+            ...previous,
+            projects: previous.projects.map((project, projectIndex) =>
+                projectIndex === index
+                    ? { ...project, [name]: value }
+                    : project
+            ),
+        }));
+    };
+
+    const addProject = () => {
+        setFormData((previous) => ({
+            ...previous,
+            projects: [
+                ...previous.projects,
+                {
+                    projectName: "",
+                    projectTechStack: "",
+                    projectDescription: "",
+                    projectLink: "",
+                },
+            ],
+        }));
+    };
+
+    const removeProject = (index) => {
+        setFormData((previous) => ({
+            ...previous,
+            projects: previous.projects.filter(
+                (_, projectIndex) => projectIndex !== index
+            ),
         }));
     };
 
@@ -136,61 +324,81 @@ export default function ResumeBuilder() {
             newErrors.summary = "Professional summary is required";
         }
 
-        if (!formData.degree.trim()) {
-            newErrors.degree = "Degree is required";
-        }
+        formData.education.forEach((education, index) => {
+            if (!education.degree.trim()) {
+                newErrors[`education.${index}.degree`] = "Degree is required";
+            }
 
-        if (!formData.institution.trim()) {
-            newErrors.institution = "Institution name is required";
-        }
+            if (!education.institution.trim()) {
+                newErrors[`education.${index}.institution`] =
+                    "Institution is required";
+            }
 
-        if (!formData.startYear.trim()) {
-            newErrors.startYear = "Start year is required";
-        }
+            if (!education.startYear.trim()) {
+                newErrors[`education.${index}.startYear`] =
+                    "Start year is required";
+            }
 
-        if (!formData.endYear.trim()) {
-            newErrors.endYear = "End year is required";
-        }
+            if (!education.endYear.trim()) {
+                newErrors[`education.${index}.endYear`] =
+                    "End year is required";
+            }
 
-        if (!formData.grade.trim()) {
-            newErrors.grade = "Grade is required";
-        }
+            if (!education.grade.trim()) {
+                newErrors[`education.${index}.grade`] =
+                    "Grade / CGPA is required";
+            }
+        });
 
-        if (!formData.companyName.trim()) {
-            newErrors.companyName = "Company name is required";
-        }
+        formData.experience.forEach((experience, index) => {
+            if (!experience.companyName.trim()) {
+                newErrors[`experience.${index}.companyName`] =
+                    "Company name is required";
+            }
 
-        if (!formData.jobPosition.trim()) {
-            newErrors.jobPosition = "Job position is required";
-        }
+            if (!experience.jobPosition.trim()) {
+                newErrors[`experience.${index}.jobPosition`] =
+                    "Job position is required";
+            }
 
-        if (!formData.experienceStartYear.trim()) {
-            newErrors.experienceStartYear = "Start year is required";
-        }
+            if (!experience.experienceStartYear.trim()) {
+                newErrors[`experience.${index}.experienceStartYear`] =
+                    "Start year is required";
+            }
 
-        if (!formData.experienceEndYear.trim()) {
-            newErrors.experienceEndYear = "End year is required";
-        }
+            if (!experience.experienceEndYear.trim()) {
+                newErrors[`experience.${index}.experienceEndYear`] =
+                    "End year is required";
+            }
 
-        if (!formData.jobDescription.trim()) {
-            newErrors.jobDescription = "Job description is required";
-        }
+            if (!experience.jobDescription.trim()) {
+                newErrors[`experience.${index}.jobDescription`] =
+                    "Job description is required";
+            }
+        });
 
-        if (!formData.skills.trim()) {
-            newErrors.skills = "Skills are required";
-        }
+        formData.skills.forEach((skill, index) => {
+            if (!skill.trim()) {
+                newErrors[`skills.${index}`] = "Skill is required";
+            }
+        });
 
-        if (!formData.projectName.trim()) {
-            newErrors.projectName = "Project name is required";
-        }
+        formData.projects.forEach((project, index) => {
+            if (!project.projectName.trim()) {
+                newErrors[`projects.${index}.projectName`] =
+                    "Project name is required";
+            }
 
-        if (!formData.projectTechStack.trim()) {
-            newErrors.projectTechStack = "Technology stack is required";
-        }
+            if (!project.projectTechStack.trim()) {
+                newErrors[`projects.${index}.projectTechStack`] =
+                    "Tech stack is required";
+            }
 
-        if (!formData.projectDescription.trim()) {
-            newErrors.projectDescription = "Project description is required";
-        }
+            if (!project.projectDescription.trim()) {
+                newErrors[`projects.${index}.projectDescription`] =
+                    "Project description is required";
+            }
+        });
 
         if (!formData.languages.trim()) {
             newErrors.languages = "Languages are required";
@@ -204,18 +412,25 @@ export default function ResumeBuilder() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        console.log("1. Button clicked");
+        const isValid = validateForm();
 
-        console.log("2. Navigating to templates");
+        console.log("Form Valid:", isValid);
+        console.log("Validation Errors:", errors);
 
-        navigate("/candidate/resume-templates", {
-            state: {
-                resumeData: formData,
-            },
-        });
+        if (isValid) {
+            localStorage.setItem(
+                RESUME_STORAGE_KEY,
+                JSON.stringify(formData)
+            );
 
-        console.log("3. Navigate called");
+            navigate("/candidate/resume-templates", {
+                state: { resumeData: formData },
+            });
+        } else {
+            console.log("Please fill all required fields.");
+        }
     };
+
     return (
         <CandidateLayout>
             <SEO
@@ -225,7 +440,7 @@ export default function ResumeBuilder() {
             />
 
             {/* Page Heading */}
-            <Box sx={{ maxWidth: "1000px", mx: "auto", mb: 3 }}>
+            <Box sx={{ maxWidth: "1000px", mx: "auto", mb: 2 }}>
                 <Typography
                     sx={{
                         color: textColor,
@@ -244,7 +459,7 @@ export default function ResumeBuilder() {
                 <Typography
                     sx={{
                         color: subText,
-                        mt: 0.8,
+                        mt: 0.4,
                         fontSize: { xs: ".85rem", sm: ".95rem" },
                     }}
                 >
@@ -258,7 +473,7 @@ export default function ResumeBuilder() {
                 onSubmit={handleSubmit}
                 elevation={0}
                 sx={{
-                    p: { xs: 1.5, sm: 2.5, md: 4, lg: 5 },
+                    p: { xs: 1.5, sm: 2, md: 2.5, lg: 3 },
                     maxWidth: "1000px",
                     mx: "auto",
                     borderRadius: { xs: 3, sm: 4, md: 5 },
@@ -269,7 +484,12 @@ export default function ResumeBuilder() {
                 }}
             >
                 {/* Section Heading */}
-                <Box sx={{ mb: 3 }}>
+                <Box sx={{
+                    mt: { xs: 2, sm: 2.5 },
+                    mb: 1.2,
+                    pb: 1,
+                    borderBottom: `1px solid ${borderStyle}`,
+                }}>
                     <Typography
                         sx={{
                             color: textColor,
@@ -291,7 +511,7 @@ export default function ResumeBuilder() {
                     </Typography>
                 </Box>
 
-                <Grid container spacing={{ xs: 1.5, sm: 2, md: 2.5 }}>
+                <Grid container spacing={{ xs: 0.75, sm: 1, md: 1.25 }}>
                     {/* Full Name */}
                     <Grid size={{ xs: 12, md: 6 }}>
                         <TextField
@@ -390,9 +610,9 @@ export default function ResumeBuilder() {
                 {/* Education Section */}
                 <Box
                     sx={{
-                        mt: { xs: 3, sm: 4 },
-                        mb: 2,
-                        pb: 1.5,
+                        mt: { xs: 2, sm: 2.5 },
+                        mb: 1.2,
+                        pb: 1,
                         borderBottom: `1px solid ${borderStyle}`,
                     }}
                 >
@@ -419,95 +639,157 @@ export default function ResumeBuilder() {
                     </Typography>
                 </Box>
 
-                <Grid container spacing={{ xs: 1, sm: 2 }}>
-                    {/* Degree */}
-                    <Grid size={{ xs: 12, sm: 6 }}>
-                        <TextField
-                            fullWidth
-                            required
-                            label="Degree"
-                            name="degree"
-                            value={formData.degree}
-                            onChange={handleChange}
-                            error={Boolean(errors.degree)}
-                            helperText={errors.degree}
-                            placeholder="e.g. Bachelor of Computer Applications"
-                            sx={textFieldStyle}
-                        />
-                    </Grid>
+                <Grid
+                    container
+                    spacing={{ xs: 0.5, sm: 0.75, md: 1 }}
+                    sx={{ width: "100%" }}
+                >
 
-                    {/* Institution */}
-                    <Grid size={{ xs: 12, sm: 6 }}>
-                        <TextField
-                            fullWidth
-                            required
-                            label="Institution"
-                            name="institution"
-                            value={formData.institution}
-                            onChange={handleChange}
-                            error={Boolean(errors.institution)}
-                            helperText={errors.institution}
-                            placeholder="e.g. Gujarat University"
-                            sx={textFieldStyle}
-                        />
-                    </Grid>
+                    {formData.education.map((education, index) => (
+                        <Box
+                            key={index}
+                            sx={{
+                                mb: 1.5,
+                                p: { xs: 1.5, sm: 2 },
+                                border: `1px solid ${borderStyle}`,
+                                borderRadius: "10px",
+                                width: "100%",
+                            }}
+                        >
+                            <Typography
+                                variant="h6"
+                                sx={{
+                                    color: textColor,
+                                    fontWeight: 700,
+                                    mb: 1.2,
+                                    fontSize: { xs: "0.95rem", sm: "1rem" },
+                                }}
+                            >
+                                Education {index + 1}
+                            </Typography>
 
-                    {/* Start Year */}
-                    <Grid size={{ xs: 12, sm: 6 }}>
-                        <TextField
-                            fullWidth
-                            required
-                            label="Start Year"
-                            name="startYear"
-                            value={formData.startYear}
-                            onChange={handleChange}
-                            error={Boolean(errors.startYear)}
-                            helperText={errors.startYear}
-                            placeholder="e.g. 2021"
-                            inputProps={{ maxLength: 4 }}
-                            sx={textFieldStyle}
-                        />
-                    </Grid>
+                            <Grid
+                                container
+                                spacing={{ xs: 1, sm: 1.5 }}
+                            >
+                                <Grid size={{ xs: 12, md: 6 }}>
+                                    <TextField
+                                        fullWidth
+                                        required
+                                        label="Degree"
+                                        name="degree"
+                                        value={education.degree}
+                                        onChange={(event) => handleEducationChange(index, event)}
+                                        error={Boolean(errors[`education.${index}.degree`])}
+                                        helperText={errors[`education.${index}.degree`]}
+                                        sx={textFieldStyle}
+                                    />
+                                </Grid>
 
-                    {/* End Year */}
-                    <Grid size={{ xs: 12, sm: 6 }}>
-                        <TextField
-                            fullWidth
-                            required
-                            label="End Year"
-                            name="endYear"
-                            value={formData.endYear}
-                            onChange={handleChange}
-                            error={Boolean(errors.endYear)}
-                            helperText={errors.endYear}
-                            placeholder="e.g. 2024 or Present"
-                            sx={textFieldStyle}
-                        />
-                    </Grid>
+                                <Grid size={{ xs: 12, md: 6 }}>
+                                    <TextField
+                                        fullWidth
+                                        required
+                                        label="Institution"
+                                        name="institution"
+                                        value={education.institution}
+                                        onChange={(event) => handleEducationChange(index, event)}
+                                        sx={textFieldStyle}
+                                    />
+                                </Grid>
 
-                    {/* Grade */}
-                    <Grid size={{ xs: 12, sm: 6 }}>
-                        <TextField
-                            fullWidth
-                            required
-                            label="Grade / CGPA / Percentage"
-                            name="grade"
-                            value={formData.grade}
-                            onChange={handleChange}
-                            error={Boolean(errors.grade)}
-                            helperText={errors.grade}
-                            placeholder="e.g. 8.5 CGPA or 85%"
-                            sx={textFieldStyle}
-                        />
-                    </Grid>
+                                <Grid size={{ xs: 12, md: 4 }}>
+                                    <TextField
+                                        fullWidth
+                                        required
+                                        label="Start Year"
+                                        name="startYear"
+                                        value={education.startYear}
+                                        onChange={(event) => handleEducationChange(index, event)}
+                                        sx={textFieldStyle}
+                                    />
+                                </Grid>
+
+                                <Grid size={{ xs: 12, md: 4 }}>
+                                    <TextField
+                                        fullWidth
+                                        required
+                                        label="End Year"
+                                        name="endYear"
+                                        value={education.endYear}
+                                        onChange={(event) => handleEducationChange(index, event)}
+                                        sx={textFieldStyle}
+                                    />
+                                </Grid>
+
+                                <Grid size={{ xs: 12, md: 4 }}>
+                                    <TextField
+                                        fullWidth
+                                        required
+                                        label="Grade / CGPA"
+                                        name="grade"
+                                        value={education.grade}
+                                        onChange={(event) => handleEducationChange(index, event)}
+                                        sx={textFieldStyle}
+                                    />
+                                </Grid>
+                            </Grid>
+
+                            {formData.education.length > 1 && (
+                                <Button
+                                    type="button"
+                                    color="inherit"
+                                    onClick={() => removeEducation(index)}
+                                    sx={{
+                                        mt: 1,
+                                        textTransform: "none",
+                                        color: subText,
+                                    }}
+                                >
+                                    Remove Education
+                                </Button>
+                            )}
+                        </Box>
+                    ))}
+
+                    <Box
+                        sx={{
+                            display: "flex",
+                            justifyContent: "flex-end",
+                            width: "100%",
+                            mb: 1.5,
+                            px: { xs: 1.2, sm: 1.5 },
+                            py: 0.5,
+                        }}
+                    >
+                        <Button
+                            type="button"
+                            variant="outlined"
+                            size="small"
+                            onClick={addEducation}
+                            sx={{
+                                textTransform: "none",
+                                fontWeight: 700,
+                                fontSize: { xs: "0.75rem", sm: "0.8rem" },
+                                px: { xs: 1.5, sm: 2 },
+                                py: 0.7,
+                                borderRadius: "8px",
+                                color: primary,
+                                borderColor: primary,
+                            }}
+                        >
+                            + Add
+                        </Button>
+                    </Box>
+
                 </Grid>
 
                 {/* Work Experience Section */}
                 <Box
                     sx={{
-                        mt: { xs: 3, sm: 4 },
-                        mb: 2,
-                        pb: 1.5,
+                        mt: { xs: 2, sm: 2.5 },
+                        mb: 1.2,
+                        pb: 1,
                         borderBottom: `1px solid ${borderStyle}`,
                     }}
                 >
@@ -534,97 +816,167 @@ export default function ResumeBuilder() {
                     </Typography>
                 </Box>
 
-                <Grid container spacing={{ xs: 1, sm: 2 }}>
-                    {/* Company Name */}
-                    <Grid size={{ xs: 12, sm: 6 }}>
-                        <TextField
-                            fullWidth
-                            required
-                            label="Company Name"
-                            name="companyName"
-                            value={formData.companyName}
-                            onChange={handleChange}
-                            error={Boolean(errors.companyName)}
-                            helperText={errors.companyName}
-                            placeholder="e.g. ABC Technologies"
-                            sx={textFieldStyle}
-                        />
-                    </Grid>
+                <Grid
+                    container
+                    spacing={{ xs: 0.5, sm: 0.75, md: 1 }}
+                    sx={{ width: "100%" }}
+                >
 
-                    {/* Job Position */}
-                    <Grid size={{ xs: 12, sm: 6 }}>
-                        <TextField
-                            fullWidth
-                            required
-                            label="Job Position"
-                            name="jobPosition"
-                            value={formData.jobPosition}
-                            onChange={handleChange}
-                            error={Boolean(errors.jobPosition)}
-                            helperText={errors.jobPosition}
-                            placeholder="e.g. Frontend Developer"
-                            sx={textFieldStyle}
-                        />
-                    </Grid>
+                    {formData.experience.map((experience, index) => (
+                        <Box
+                            key={index}
+                            sx={{
+                                mb: 1.5,
+                                p: { xs: 1.5, sm: 2 },
+                                border: `1px solid ${borderStyle}`,
+                                borderRadius: "10px",
+                                width: "100%",
+                            }}
+                        >
+                            <Typography
+                                variant="h6"
+                                sx={{
+                                    color: textColor,
+                                    fontWeight: 700,
+                                    mb: 1.2,
+                                    fontSize: { xs: "0.95rem", sm: "1rem" },
+                                }}
+                            >
+                                Work Experience {index + 1}
+                            </Typography>
 
-                    {/* Start Year */}
-                    <Grid size={{ xs: 12, sm: 6 }}>
-                        <TextField
-                            fullWidth
-                            required
-                            label="Start Year"
-                            name="experienceStartYear"
-                            value={formData.experienceStartYear}
-                            onChange={handleChange}
-                            error={Boolean(errors.experienceStartYear)}
-                            helperText={errors.experienceStartYear}
-                            placeholder="e.g. 2023"
-                            inputProps={{ maxLength: 4 }}
-                            sx={textFieldStyle}
-                        />
-                    </Grid>
+                            <Grid
+                                container
+                                spacing={{ xs: 1, sm: 1.5 }}
+                            >
+                                <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+                                    <TextField
+                                        fullWidth
+                                        required
+                                        label="Company Name"
+                                        name="companyName"
+                                        value={experience.companyName}
+                                        onChange={(event) =>
+                                            handleExperienceChange(index, event)
+                                        }
+                                        sx={textFieldStyle}
+                                    />
+                                </Grid>
 
-                    {/* End Year */}
-                    <Grid size={{ xs: 12, sm: 6 }}>
-                        <TextField
-                            fullWidth
-                            required
-                            label="End Year"
-                            name="experienceEndYear"
-                            value={formData.experienceEndYear}
-                            onChange={handleChange}
-                            error={Boolean(errors.experienceEndYear)}
-                            helperText={errors.experienceEndYear}
-                            placeholder="e.g. 2025 or Present"
-                            sx={textFieldStyle}
-                        />
-                    </Grid>
+                                <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+                                    <TextField
+                                        fullWidth
+                                        required
+                                        label="Job Position"
+                                        name="jobPosition"
+                                        value={experience.jobPosition}
+                                        onChange={(event) =>
+                                            handleExperienceChange(index, event)
+                                        }
+                                        sx={textFieldStyle}
+                                    />
+                                </Grid>
 
-                    {/* Job Description */}
-                    <Grid size={{ xs: 12 }}>
-                        <TextField
-                            fullWidth
-                            required
-                            multiline
-                            minRows={4}
-                            label="Job Description"
-                            name="jobDescription"
-                            value={formData.jobDescription}
-                            onChange={handleChange}
-                            error={Boolean(errors.jobDescription)}
-                            helperText={errors.jobDescription}
-                            placeholder="Describe your responsibilities and achievements..."
-                            sx={textFieldStyle}
-                        />
-                    </Grid>
+                                <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+                                    <TextField
+                                        fullWidth
+                                        required
+                                        label="Start Year"
+                                        name="experienceStartYear"
+                                        value={experience.experienceStartYear}
+                                        onChange={(event) =>
+                                            handleExperienceChange(index, event)
+                                        }
+                                        sx={textFieldStyle}
+                                    />
+                                </Grid>
+
+                                <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+                                    <TextField
+                                        fullWidth
+                                        required
+                                        label="End Year"
+                                        name="experienceEndYear"
+                                        value={experience.experienceEndYear}
+                                        onChange={(event) =>
+                                            handleExperienceChange(index, event)
+                                        }
+                                        sx={textFieldStyle}
+                                    />
+                                </Grid>
+
+                                <Grid size={{ xs: 12 }}>
+                                    <TextField
+                                        fullWidth
+                                        required
+                                        multiline
+                                        minRows={3}
+                                        label="Job Description"
+                                        name="jobDescription"
+                                        value={experience.jobDescription}
+                                        onChange={(event) =>
+                                            handleExperienceChange(index, event)
+                                        }
+                                        sx={textFieldStyle}
+                                    />
+                                </Grid>
+                            </Grid>
+
+                            {formData.experience.length > 1 && (
+                                <Button
+                                    type="button"
+                                    color="inherit"
+                                    onClick={() => removeExperience(index)}
+                                    sx={{
+                                        mt: 1,
+                                        textTransform: "none",
+                                        color: subText,
+                                    }}
+                                >
+                                    Remove Experience
+                                </Button>
+                            )}
+                        </Box>
+                    ))}
+
+                    <Box
+                        sx={{
+                            display: "flex",
+                            justifyContent: "flex-end",
+                            width: "100%",
+                            mb: 1.5,
+                            px: { xs: 1.2, sm: 1.5 },
+                            py: 0.5,
+                        }}
+                    >
+                        <Button
+                            type="button"
+                            variant="outlined"
+                            size="small"
+                            onClick={addExperience}
+                            sx={{
+                                textTransform: "none",
+                                fontWeight: 700,
+                                fontSize: { xs: "0.75rem", sm: "0.8rem" },
+                                px: { xs: 1.5, sm: 2 },
+                                py: 0.7,
+                                borderRadius: "8px",
+                                color: primary,
+                                borderColor: primary,
+                            }}
+                        >
+                            + Add
+                        </Button>
+                    </Box>
+
                 </Grid>
 
                 {/* Skills Section */}
                 <Box
                     sx={{
-                        mt: { xs: 3, sm: 4 },
-                        mb: 2,
-                        pb: 1.5,
+                        mt: { xs: 2, sm: 2.5 },
+                        mb: 1.2,
+                        pb: 1,
                         borderBottom: `1px solid ${borderStyle}`,
                     }}
                 >
@@ -651,33 +1003,85 @@ export default function ResumeBuilder() {
                     </Typography>
                 </Box>
 
-                <Grid container spacing={{ xs: 1, sm: 2 }}>
-                    <Grid size={{ xs: 12 }}>
-                        <TextField
-                            fullWidth
-                            required
-                            multiline
-                            minRows={3}
-                            label="Skills"
-                            name="skills"
-                            value={formData.skills}
-                            onChange={handleChange}
-                            error={Boolean(errors.skills)}
-                            helperText={
-                                errors.skills || "Separate multiple skills using commas."
-                            }
-                            placeholder="e.g. React, JavaScript, HTML, CSS, Git"
-                            sx={textFieldStyle}
-                        />
-                    </Grid>
+                <Grid
+                    container
+                    spacing={{ xs: 0.5, sm: 0.75, md: 1 }}
+                    sx={{ width: "100%" }}
+                >
+
+                    {formData.skills.map((skill, index) => (
+                        <Box
+                            key={index}
+                            sx={{
+                                display: "flex",
+                                gap: 2,
+                                mb: 2,
+                            }}
+                        >
+                            <TextField
+                                fullWidth
+                                required
+                                label={`Skill ${index + 1}`}
+                                value={skill}
+                                onChange={(event) => handleSkillChange(index, event)}
+                                sx={textFieldStyle}
+                            />
+
+                            {formData.skills.length > 1 && (
+                                <Button
+                                    type="button"
+                                    color="inherit"
+                                    onClick={() => removeSkill(index)}
+                                    sx={{
+                                        textTransform: "none",
+                                        color: subText,
+                                        whiteSpace: "nowrap",
+                                    }}
+                                >
+                                    Remove
+                                </Button>
+                            )}
+                        </Box>
+                    ))}
+
+                    <Box
+                        sx={{
+                            display: "flex",
+                            justifyContent: "flex-end",
+                            width: "100%",
+                            mb: 1.5,
+                            px: { xs: 1.2, sm: 1.5 },
+                            py: 0.5,
+                        }}
+                    >
+                        <Button
+                            type="button"
+                            variant="outlined"
+                            size="small"
+                            onClick={addSkill}
+                            sx={{
+                                textTransform: "none",
+                                fontWeight: 700,
+                                fontSize: { xs: "0.75rem", sm: "0.8rem" },
+                                px: { xs: 1.5, sm: 2 },
+                                py: 0.7,
+                                borderRadius: "8px",
+                                color: primary,
+                                borderColor: primary,
+                            }}
+                        >
+                            + Add
+                        </Button>
+                    </Box>
+
                 </Grid>
 
                 {/* Projects Section */}
                 <Box
                     sx={{
-                        mt: { xs: 3, sm: 4 },
-                        mb: 2,
-                        pb: 1.5,
+                        mt: { xs: 2, sm: 2.5 },
+                        mb: 1.2,
+                        pb: 1,
                         borderBottom: `1px solid ${borderStyle}`,
                     }}
                 >
@@ -704,77 +1108,148 @@ export default function ResumeBuilder() {
                     </Typography>
                 </Box>
 
-                <Grid container spacing={{ xs: 1, sm: 2 }}>
-                    {/* Project Name */}
-                    <Grid size={{ xs: 12, sm: 6 }}>
-                        <TextField
-                            fullWidth
-                            required
-                            label="Project Name"
-                            name="projectName"
-                            value={formData.projectName}
-                            onChange={handleChange}
-                            error={Boolean(errors.projectName)}
-                            helperText={errors.projectName}
-                            placeholder="e.g. NextHire"
-                            sx={textFieldStyle}
-                        />
-                    </Grid>
+                <Grid
+                    container
+                    spacing={{ xs: 0.5, sm: 0.75, md: 1 }}
+                    sx={{ width: "100%" }}
+                >
 
-                    {/* Technology Stack */}
-                    <Grid size={{ xs: 12, sm: 6 }}>
-                        <TextField
-                            fullWidth
-                            required
-                            label="Technology Stack"
-                            name="projectTechStack"
-                            value={formData.projectTechStack}
-                            onChange={handleChange}
-                            error={Boolean(errors.projectTechStack)}
-                            helperText={errors.projectTechStack}
-                            placeholder="e.g. React, MUI, JavaScript"
-                            sx={textFieldStyle}
-                        />
-                    </Grid>
+                    {formData.projects.map((project, index) => (
+                        <Box
+                            key={index}
+                            sx={{
+                                mb: 1.5,
+                                p: { xs: 1.5, sm: 2 },
+                                border: `1px solid ${borderStyle}`,
+                                borderRadius: "10px",
+                                width: "100%",
+                            }}
+                        >
+                            <Typography
+                                variant="h6"
+                                sx={{
+                                    color: textColor,
+                                    fontWeight: 700,
+                                    mb: 1.2,
+                                    fontSize: { xs: "0.95rem", sm: "1rem" },
+                                }}
+                            >
+                                Project {index + 1}
+                            </Typography>
 
-                    {/* Project Description */}
-                    <Grid size={{ xs: 12 }}>
-                        <TextField
-                            fullWidth
-                            required
-                            multiline
-                            minRows={4}
-                            label="Project Description"
-                            name="projectDescription"
-                            value={formData.projectDescription}
-                            onChange={handleChange}
-                            error={Boolean(errors.projectDescription)}
-                            helperText={errors.projectDescription}
-                            placeholder="Explain your project features and responsibilities..."
-                            sx={textFieldStyle}
-                        />
-                    </Grid>
+                            <Grid
+                                container
+                                spacing={{ xs: 1, sm: 1.5 }}
+                            >
+                                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                                    <TextField
+                                        fullWidth
+                                        required
+                                        label="Project Name"
+                                        name="projectName"
+                                        value={project.projectName}
+                                        onChange={(event) => handleProjectChange(index, event)}
+                                        sx={textFieldStyle}
+                                    />
+                                </Grid>
 
-                    {/* Project Link */}
-                    <Grid size={{ xs: 12 }}>
-                        <TextField
-                            fullWidth
-                            label="Project Link (Optional)"
-                            name="projectLink"
-                            value={formData.projectLink}
-                            onChange={handleChange}
-                            placeholder="https://github.com/your-project"
-                            sx={textFieldStyle}
-                        />
-                    </Grid>
+                                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                                    <TextField
+                                        fullWidth
+                                        required
+                                        label="Tech Stack"
+                                        name="projectTechStack"
+                                        value={project.projectTechStack}
+                                        onChange={(event) => handleProjectChange(index, event)}
+                                        sx={textFieldStyle}
+                                    />
+                                </Grid>
+
+
+                                <Grid size={{ xs: 12, sm: 12, md: 4 }}>
+                                    <TextField
+                                        fullWidth
+                                        label="Project Link (Optional)"
+                                        name="projectLink"
+                                        value={project.projectLink}
+                                        onChange={(event) => handleProjectChange(index, event)}
+                                        sx={textFieldStyle}
+                                    />
+                                </Grid>
+
+                                <Grid size={{ xs: 12 }}>
+                                    <TextField
+                                        fullWidth
+                                        required
+                                        multiline
+                                        minRows={3}
+                                        label="Project Description"
+                                        name="projectDescription"
+                                        value={project.projectDescription}
+                                        onChange={(event) =>
+                                            handleProjectChange(index, event)
+                                        }
+                                        sx={textFieldStyle}
+                                    />
+                                </Grid>
+
+                            </Grid>
+
+                            {formData.projects.length > 1 && (
+                                <Button
+                                    type="button"
+                                    color="inherit"
+                                    onClick={() => removeProject(index)}
+                                    sx={{
+                                        mt: 1,
+                                        textTransform: "none",
+                                        color: subText,
+                                    }}
+                                >
+                                    Remove Project
+                                </Button>
+                            )}
+                        </Box>
+                    ))}
+
+                    <Box
+                        sx={{
+                            display: "flex",
+                            justifyContent: "flex-end",
+                            width: "100%",
+                            mb: 1.5,
+                            px: { xs: 1.2, sm: 1.5 },
+                            py: 0.5,
+                        }}
+                    >
+                        <Button
+                            type="button"
+                            variant="outlined"
+                            size="small"
+                            onClick={addProject}
+                            sx={{
+                                textTransform: "none",
+                                fontWeight: 700,
+                                fontSize: { xs: "0.75rem", sm: "0.8rem" },
+                                px: { xs: 1.5, sm: 2 },
+                                py: 0.7,
+                                borderRadius: "8px",
+                                color: primary,
+                                borderColor: primary,
+                            }}
+                        >
+                            + Add
+                        </Button>
+                    </Box>
+
                 </Grid>
 
                 {/* Certifications & Languages Section */}
                 <Box
                     sx={{
-                        mt: { xs: 3, sm: 4 },
-                        mb: 2,
-                        pb: 1.5,
+                        mt: { xs: 2, sm: 2.5 },
+                        mb: 1.2,
+                        pb: 1,
                         borderBottom: `1px solid ${borderStyle}`,
                     }}
                 >
@@ -790,7 +1265,11 @@ export default function ResumeBuilder() {
                     </Typography>
                 </Box>
 
-                <Grid container spacing={{ xs: 1, sm: 2 }}>
+                <Grid
+                    container
+                    spacing={{ xs: 0.5, sm: 0.75, md: 1 }}
+                    sx={{ width: "100%" }}
+                >
                     {/* Certifications */}
                     <Grid size={{ xs: 12 }}>
                         <TextField
@@ -856,7 +1335,7 @@ export default function ResumeBuilder() {
                     sx={{
                         display: "flex",
                         justifyContent: "flex-end",
-                        mt: 2,
+                        mt: 1,
                     }}
                 >
                     <Button
