@@ -2712,8 +2712,10 @@ const CustomTable = () => {
                                                                     .value
                                                             )
                                                         }
-                                                        InputProps={{
-                                                            disableUnderline: true,
+                                                        slotProps={{
+                                                            input: {
+                                                                disableUnderline: true,
+                                                            },
                                                         }}
                                                         sx={{
                                                             flex: 1,
