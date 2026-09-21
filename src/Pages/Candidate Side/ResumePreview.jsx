@@ -1,12 +1,27 @@
-
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import CandidateLayout from "../../Layouts/CandidateLayout";
 import useThemeColors from "../../hooks/useThemeColors";
-import { Box, Button, Paper, Typography, Divider } from "@mui/material";
+import { Box, Button, Paper, Typography } from "@mui/material";
 import { ArrowLeft, Download } from "lucide-react";
 import SEO from "../../components/common/SEO";
 import html2pdf from "html2pdf.js";
 import { resumeTemplates } from "../../data/resumeTemplates";
+
+import ModernTemplate from "../../components/resume-templates/ModernTemplate";
+import ClassicTemplate from "../../components/resume-templates/ClassicTemplate";
+import TwoColumnTemplate from "../../components/resume-templates/TwoColumnTemplate";
+import MinimalTemplate from "../../components/resume-templates/MinimalTemplate";
+import CreativeTemplate from "../../components/resume-templates/CreativeTemplate";
+import AtsTemplate from "../../components/resume-templates/AtsTemplate";
+import ProfessionalTemplate from "../../components/resume-templates/ProfessionalTemplate";
+import ExecutiveTemplate from "../../components/resume-templates/ExecutiveTemplate";
+import TechTemplate from "../../components/resume-templates/TechTemplate";
+import StudentTemplate from "../../components/resume-templates/StudentTemplate";
+import ElegantTemplate from "../../components/resume-templates/ElegantTemplate";
+import CorporateTemplate from "../../components/resume-templates/CorporateTemplate";
+import SimpleTemplate from "../../components/resume-templates/SimpleTemplate";
+import ModernGreenTemplate from "../../components/resume-templates/ModernGreenTemplate";
+import BoldTemplate from "../../components/resume-templates/BoldTemplate";
 
 const RESUME_STORAGE_KEY = "nexthire-resume-data";
 
@@ -25,41 +40,63 @@ export default function ResumePreview() {
             (template) => template.id === templateId
         ) || resumeTemplates[0];
 
-    const templateStyles = {
-        modern: {
-            headerBg: selectedTemplate.accentColor,
-            headerColor: "#ffffff",
-            sectionColor: selectedTemplate.accentColor,
-            fontFamily: "Arial, sans-serif",
-        },
 
-        classic: {
-            headerBg: "transparent",
-            headerColor: "#222222",
-            sectionColor: "#222222",
-            fontFamily: "Georgia, serif",
-        },
+    const renderSelectedTemplate = () => {
+        const templateProps = {
+            resumeData,
+            selectedTemplate,
+        };
 
-        minimal: {
-            headerBg: "transparent",
-            headerColor: "#333333",
-            sectionColor: selectedTemplate.accentColor,
-            fontFamily: "Arial, sans-serif",
-        },
+        switch (selectedTemplate?.layout) {
+            case "modern":
+                return <ModernTemplate {...templateProps} />;
 
-        bold: {
-            headerBg: selectedTemplate.accentColor,
-            headerColor: "#ffffff",
-            sectionColor: selectedTemplate.accentColor,
-            fontFamily: "Arial, sans-serif",
-        },
+            case "classic":
+                return <ClassicTemplate {...templateProps} />;
+
+            case "two-column":
+                return <TwoColumnTemplate {...templateProps} />;
+
+            case "minimal":
+                return <MinimalTemplate {...templateProps} />;
+
+            case "creative":
+                return <CreativeTemplate {...templateProps} />;
+
+            case "professional":
+                return <ProfessionalTemplate {...templateProps} />;
+
+            case "executive":
+                return <ExecutiveTemplate {...templateProps} />;
+
+            case "tech":
+                return <TechTemplate {...templateProps} />;
+
+            case "student":
+                return <StudentTemplate {...templateProps} />;
+
+            case "elegant":
+                return <ElegantTemplate {...templateProps} />;
+
+            case "corporate":
+                return <CorporateTemplate {...templateProps} />;
+
+            case "simple":
+                return <SimpleTemplate {...templateProps} />;
+
+            case "modern-green":
+                return <ModernGreenTemplate {...templateProps} />;
+
+            case "bold":
+                return <BoldTemplate {...templateProps} />;
+
+            case "ats-friendly":
+                return <AtsTemplate {...templateProps} />;
+
+            default:
+                return <ModernTemplate {...templateProps} />;
+        }
     };
-
-    const currentStyle =
-        templateStyles[selectedTemplate.layout] ||
-        templateStyles.modern;
-
-    const isTwoColumn = selectedTemplate.layout === "two-column";
 
     const primary = colors.primary;
     const textColor = colors.text;
@@ -148,7 +185,7 @@ export default function ResumePreview() {
             >
                 <Button
                     onClick={() =>
-                        navigate("/candidate/resume-builder", {
+                        navigate("/candidate/resume-templates", {
                             state: { resumeData },
                         })
                     }
@@ -187,531 +224,16 @@ export default function ResumePreview() {
                 sx={{
                     maxWidth: "850px",
                     mx: "auto",
-                    p: { xs: 2.5, sm: 4, md: 6 },
+                    p: 0,
                     backgroundColor: "#ffffff",
                     color: "#333333",
                     borderRadius: { xs: 2, sm: 3 },
                     border: `1px solid ${borderStyle}`,
-                    fontFamily: currentStyle.fontFamily,
+                    overflow: "hidden",
                     boxSizing: "border-box",
                 }}
             >
-                {/* Main Layout */}
-                <Box
-                    sx={
-                        isTwoColumn
-                            ? {
-                                display: "grid",
-                                gridTemplateColumns: {
-                                    xs: "1fr",
-                                    md: "240px 1fr",
-                                },
-                                gap: 4,
-                            }
-                            : {}
-                    }
-                >
-                    {/* Sidebar */}
-                    {isTwoColumn && (
-                        <Box
-                            sx={{
-                                backgroundColor: selectedTemplate.accentColor,
-                                color: "#ffffff",
-                                p: 3,
-                                borderRadius: 2,
-                                height: "100%",
-                                alignSelf: "stretch",
-                            }}
-                        >
-                            <Typography
-                                sx={{
-                                    fontSize: "1.2rem",
-                                    fontWeight: 800,
-                                    mb: 3,
-                                }}
-                            >
-                                CONTACT
-                            </Typography>
-
-                            <Typography
-                                sx={{
-                                    mb: 2,
-                                    fontSize: "0.85rem",
-                                    wordBreak: "break-word",
-                                }}
-                            >
-                                {resumeData.email}
-                            </Typography>
-
-                            <Typography
-                                sx={{ mb: 2, fontSize: "0.85rem" }}
-                            >
-                                {resumeData.phone}
-                            </Typography>
-
-                            <Typography
-                                sx={{ mb: 3, fontSize: "0.85rem" }}
-                            >
-                                {resumeData.location}
-                            </Typography>
-
-                            {resumeData.linkedin && (
-                                <Typography
-                                    sx={{
-                                        mb: 2,
-                                        fontSize: "0.8rem",
-                                        wordBreak: "break-word",
-                                    }}
-                                >
-                                    {resumeData.linkedin}
-                                </Typography>
-                            )}
-
-                            {resumeData.github && (
-                                <Typography
-                                    sx={{
-                                        mb: 3,
-                                        fontSize: "0.8rem",
-                                        wordBreak: "break-word",
-                                    }}
-                                >
-                                    {resumeData.github}
-                                </Typography>
-                            )}
-
-                            <Divider
-                                sx={{
-                                    borderColor: "rgba(255,255,255,0.6)",
-                                    mb: 3,
-                                }}
-                            />
-
-                            <Typography
-                                sx={{
-                                    fontSize: "1.2rem",
-                                    fontWeight: 800,
-                                    mb: 2,
-                                }}
-                            >
-                                SKILLS
-                            </Typography>
-
-                            <Typography
-                                sx={{
-                                    fontSize: "0.85rem",
-                                    lineHeight: 2,
-                                }}
-                            >
-                                {resumeData.skills
-                                    ?.filter(Boolean)
-                                    .join(" • ")}
-                            </Typography>
-
-                            <Divider
-                                sx={{
-                                    borderColor: "rgba(255,255,255,0.6)",
-                                    my: 3,
-                                }}
-                            />
-
-                            <Typography
-                                sx={{
-                                    fontSize: "1.2rem",
-                                    fontWeight: 800,
-                                    mb: 2,
-                                }}
-                            >
-                                LANGUAGES
-                            </Typography>
-
-                            <Typography
-                                sx={{
-                                    fontSize: "0.85rem",
-                                    lineHeight: 1.8,
-                                }}
-                            >
-                                {resumeData.languages}
-                            </Typography>
-                        </Box>
-                    )}
-
-                    {/* Right Content */}
-                    <Box>
-                        {/* Personal Information */}
-                        <Box
-                            sx={{
-                                textAlign: isTwoColumn
-                                    ? "left"
-                                    : "center",
-                                mb: 3,
-                            }}
-                        >
-                            <Typography
-                                sx={{
-                                    fontSize: {
-                                        xs: "1.7rem",
-                                        sm: "2.2rem",
-                                    },
-                                    fontWeight: 800,
-                                    backgroundColor:
-                                        currentStyle.headerBg,
-                                    color: currentStyle.headerColor,
-                                    padding: 3,
-                                    borderRadius: 1,
-                                    wordBreak: "break-word",
-                                }}
-                            >
-                                {resumeData.fullName}
-                            </Typography>
-
-                            <Typography
-                                sx={{
-                                    fontSize: {
-                                        xs: "1rem",
-                                        sm: "1.2rem",
-                                    },
-                                    fontWeight: 600,
-                                    color: "#555555",
-                                    mt: 1,
-                                }}
-                            >
-                                {resumeData.jobTitle}
-                            </Typography>
-
-                            {!isTwoColumn && (
-                                <>
-                                    <Typography
-                                        sx={{
-                                            fontSize: "0.85rem",
-                                            color: "#555555",
-                                            mt: 1,
-                                        }}
-                                    >
-                                        {resumeData.email} |{" "}
-                                        {resumeData.phone} |{" "}
-                                        {resumeData.location}
-                                    </Typography>
-
-                                    <Typography
-                                        sx={{
-                                            fontSize: "0.85rem",
-                                            color: "#555555",
-                                            mt: 0.5,
-                                            wordBreak: "break-word",
-                                        }}
-                                    >
-                                        {resumeData.linkedin &&
-                                            `${resumeData.linkedin} `}
-                                        {resumeData.github &&
-                                            `| ${resumeData.github}`}
-                                    </Typography>
-                                </>
-                            )}
-                        </Box>
-
-                        <Divider
-                            sx={{
-                                borderColor: "#cccccc",
-                                mb: 3,
-                            }}
-                        />
-
-                        {/* Professional Summary */}
-                        {resumeData.summary && (
-                            <Box sx={{ mb: 3 }}>
-                                <Typography
-                                    sx={{
-                                        fontWeight: 800,
-                                        fontSize: "1.1rem",
-                                        color: currentStyle.sectionColor,
-                                        mb: 1,
-                                    }}
-                                >
-                                    PROFESSIONAL SUMMARY
-                                </Typography>
-
-                                <Typography
-                                    sx={{
-                                        fontSize: "0.9rem",
-                                        lineHeight: 1.7,
-                                        color: "#444444",
-                                        whiteSpace: "pre-line",
-                                    }}
-                                >
-                                    {resumeData.summary}
-                                </Typography>
-                            </Box>
-                        )}
-
-                        {/* Education */}
-                        <Box sx={{ mb: 3 }}>
-                            <Typography
-                                sx={{
-                                    fontWeight: 800,
-                                    fontSize: "1.1rem",
-                                    color: currentStyle.sectionColor,
-                                    mb: 1.5,
-                                }}
-                            >
-                                EDUCATION
-                            </Typography>
-
-                            {resumeData.education?.map(
-                                (education, index) => (
-                                    <Box
-                                        key={index}
-                                        sx={{ mb: 2 }}
-                                    >
-                                        <Typography
-                                            sx={{
-                                                fontWeight: 700,
-                                                color: "#333333",
-                                            }}
-                                        >
-                                            {education.degree}
-                                        </Typography>
-
-                                        <Typography
-                                            sx={{
-                                                color: "#555555",
-                                                fontSize: "0.9rem",
-                                            }}
-                                        >
-                                            {education.institution}
-                                        </Typography>
-
-                                        <Typography
-                                            sx={{
-                                                color: "#555555",
-                                                fontSize: "0.85rem",
-                                            }}
-                                        >
-                                            {education.startYear} -{" "}
-                                            {education.endYear}{" "}
-                                            {education.grade &&
-                                                `| ${education.grade}`}
-                                        </Typography>
-                                    </Box>
-                                )
-                            )}
-                        </Box>
-
-                        {/* Work Experience */}
-                        <Box sx={{ mb: 3 }}>
-                            <Typography
-                                sx={{
-                                    fontWeight: 800,
-                                    fontSize: "1.1rem",
-                                    color: currentStyle.sectionColor,
-                                    mb: 1.5,
-                                }}
-                            >
-                                WORK EXPERIENCE
-                            </Typography>
-
-                            {resumeData.experience?.map(
-                                (experience, index) => (
-                                    <Box
-                                        key={index}
-                                        sx={{ mb: 2 }}
-                                    >
-                                        <Typography
-                                            sx={{
-                                                fontWeight: 700,
-                                                color: "#333333",
-                                            }}
-                                        >
-                                            {experience.jobPosition}
-                                        </Typography>
-
-                                        <Typography
-                                            sx={{
-                                                color: "#555555",
-                                                fontSize: "0.9rem",
-                                            }}
-                                        >
-                                            {experience.companyName}
-                                        </Typography>
-
-                                        <Typography
-                                            sx={{
-                                                color: "#555555",
-                                                fontSize: "0.85rem",
-                                            }}
-                                        >
-                                            {
-                                                experience.experienceStartYear
-                                            }{" "}
-                                            -{" "}
-                                            {
-                                                experience.experienceEndYear
-                                            }
-                                        </Typography>
-
-                                        <Typography
-                                            sx={{
-                                                mt: 1,
-                                                fontSize: "0.9rem",
-                                                lineHeight: 1.7,
-                                                color: "#444444",
-                                                whiteSpace: "pre-line",
-                                            }}
-                                        >
-                                            {experience.jobDescription}
-                                        </Typography>
-                                    </Box>
-                                )
-                            )}
-                        </Box>
-
-                        {/* Skills */}
-                        {!isTwoColumn && (
-                            <Box sx={{ mb: 3 }}>
-                                <Typography
-                                    sx={{
-                                        fontWeight: 800,
-                                        fontSize: "1.1rem",
-                                        color: currentStyle.sectionColor,
-                                        mb: 1,
-                                    }}
-                                >
-                                    SKILLS
-                                </Typography>
-
-                                <Typography
-                                    sx={{
-                                        fontSize: "0.9rem",
-                                        color: "#444444",
-                                        lineHeight: 1.7,
-                                    }}
-                                >
-                                    {resumeData.skills
-                                        ?.filter(Boolean)
-                                        .join(" • ")}
-                                </Typography>
-                            </Box>
-                        )}
-
-                        {/* Projects */}
-                        <Box sx={{ mb: 3 }}>
-                            <Typography
-                                sx={{
-                                    fontWeight: 800,
-                                    fontSize: "1.1rem",
-                                    color: currentStyle.sectionColor,
-                                    mb: 1.5,
-                                }}
-                            >
-                                PROJECTS
-                            </Typography>
-
-                            {resumeData.projects?.map(
-                                (project, index) => (
-                                    <Box
-                                        key={index}
-                                        sx={{ mb: 2 }}
-                                    >
-                                        <Typography
-                                            sx={{
-                                                fontWeight: 700,
-                                                color: "#333333",
-                                            }}
-                                        >
-                                            {project.projectName}
-                                        </Typography>
-
-                                        <Typography
-                                            sx={{
-                                                color: "#555555",
-                                                fontSize: "0.85rem",
-                                            }}
-                                        >
-                                            Technologies:{" "}
-                                            {project.projectTechStack}
-                                        </Typography>
-
-                                        <Typography
-                                            sx={{
-                                                mt: 1,
-                                                fontSize: "0.9rem",
-                                                lineHeight: 1.7,
-                                                color: "#444444",
-                                                whiteSpace: "pre-line",
-                                            }}
-                                        >
-                                            {project.projectDescription}
-                                        </Typography>
-
-                                        {project.projectLink && (
-                                            <Typography
-                                                sx={{
-                                                    mt: 1,
-                                                    fontSize: "0.85rem",
-                                                    color: "#444444",
-                                                    wordBreak: "break-word",
-                                                }}
-                                            >
-                                                Project Link:{" "}
-                                                {project.projectLink}
-                                            </Typography>
-                                        )}
-                                    </Box>
-                                )
-                            )}
-                        </Box>
-
-                        {/* Certifications */}
-                        {resumeData.certifications && (
-                            <Box sx={{ mb: 3 }}>
-                                <Typography
-                                    sx={{
-                                        fontWeight: 800,
-                                        fontSize: "1.1rem",
-                                        color: currentStyle.sectionColor,
-                                        mb: 1,
-                                    }}
-                                >
-                                    CERTIFICATIONS
-                                </Typography>
-
-                                <Typography
-                                    sx={{
-                                        fontSize: "0.9rem",
-                                        color: "#444444",
-                                        whiteSpace: "pre-line",
-                                    }}
-                                >
-                                    {resumeData.certifications}
-                                </Typography>
-                            </Box>
-                        )}
-
-                        {/* Languages */}
-                        {!isTwoColumn && (
-                            <Box>
-                                <Typography
-                                    sx={{
-                                        fontWeight: 800,
-                                        fontSize: "1.1rem",
-                                        color: currentStyle.sectionColor,
-                                        mb: 1,
-                                    }}
-                                >
-                                    LANGUAGES
-                                </Typography>
-
-                                <Typography
-                                    sx={{
-                                        fontSize: "0.9rem",
-                                        color: "#444444",
-                                    }}
-                                >
-                                    {resumeData.languages}
-                                </Typography>
-                            </Box>
-                        )}
-                    </Box>
-                </Box>
+                {renderSelectedTemplate()}
             </Paper>
         </CandidateLayout>
     );

@@ -89,6 +89,10 @@ export default function ResumeTemplates() {
                     variant="h4"
                     sx={{
                         fontWeight: 800,
+                        fontSize: {
+                            xs: "1.7rem",
+                            sm: "2.2rem",
+                        },
                         color: textColor,
                         mb: 1,
                     }}
@@ -120,27 +124,45 @@ export default function ResumeTemplates() {
                         <Paper
                             key={template.id}
                             sx={{
-                                p: 3,
+                                p: { xs: 2, sm: 3 },
                                 border: `1px solid ${borderStyle}`,
                                 backgroundColor: colors.card,
                                 borderRadius: "16px",
-                                transition: "0.2s",
+                                transition:
+                                    "transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease",
+
+                                boxShadow: darkMode
+                                    ? "0 4px 16px rgba(0, 0, 0, 0.25)"
+                                    : "0 4px 16px rgba(0, 0, 0, 0.06)",
+
                                 "&:hover": {
                                     borderColor: primary,
-                                    transform: "translateY(-4px)",
+                                    transform: "translateY(-5px)",
+
+                                    boxShadow: darkMode
+                                        ? "0 8px 24px rgba(0, 0, 0, 0.4)"
+                                        : "0 8px 24px rgba(0, 0, 0, 0.12)",
                                 },
                             }}
                         >
                             <Box
                                 sx={{
-                                    height: 220,
+                                    height: { xs: 180, sm: 220 },
                                     mb: 2,
                                     borderRadius: "10px",
-                                    backgroundColor: `${template.accentColor}12`,
+                                    backgroundColor: darkMode
+                                        ? `${template.accentColor}20`
+                                        : `${template.accentColor}12`,
                                     border: `2px solid ${template.accentColor}`,
                                     display: "flex",
                                     alignItems: "center",
                                     justifyContent: "center",
+                                    transition: "transform 0.25s ease, box-shadow 0.25s ease",
+
+                                    "&:hover": {
+                                        transform: "scale(1.02)",
+                                        boxShadow: `0 4px 12px ${template.accentColor}25`,
+                                    },
                                 }}
                             >
                                 <Typography

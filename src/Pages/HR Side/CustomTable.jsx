@@ -2193,7 +2193,7 @@ const CustomTable = () => {
                     sx={{
                         width: "100%",
                         border: `1px solid ${borderColor}`,
-                        borderRadius: "6px",
+                        borderRadius: "12px",
                         background: glassBg,
                         overflow: "visible",
                     }}
