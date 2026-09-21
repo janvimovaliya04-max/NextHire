@@ -1,3 +1,4 @@
+
 import { Box, Typography, Divider } from "@mui/material";
 import ResumeSections from "./ResumeSections";
 
@@ -7,28 +8,68 @@ export default function CreativeTemplate({
 }) {
     const accentColor = selectedTemplate?.accentColor || "#7c3aed";
 
+    const contactDetails = [
+        resumeData.email,
+        resumeData.phone,
+        resumeData.location,
+    ]
+        .filter((item) => item && String(item).trim())
+        .join("  •  ");
+
+    const socialDetails = [
+        resumeData.linkedin,
+        resumeData.github,
+    ]
+        .filter((item) => item && String(item).trim())
+        .join("  •  ");
+
     return (
         <Box
             sx={{
-                backgroundColor: "#ffffff",
-                color: "#1f2937",
-                minHeight: "1120px",
-                padding: { xs: 3, sm: 5 },
                 position: "relative",
                 overflow: "hidden",
+                minHeight: "1120px",
+                padding: {
+                    xs: "30px 24px",
+                    sm: "45px 55px",
+                },
+                backgroundColor: "#ffffff",
+                color: "#1f2937",
+                overflowWrap: "anywhere",
             }}
         >
-            {/* Decorative Shape */}
+            {/* Decorative Shapes */}
             <Box
                 sx={{
                     position: "absolute",
-                    top: -100,
+                    top: -120,
                     right: -100,
-                    width: 280,
-                    height: 280,
+                    width: {
+                        xs: 220,
+                        sm: 300,
+                    },
+                    height: {
+                        xs: 220,
+                        sm: 300,
+                    },
                     borderRadius: "50%",
                     backgroundColor: accentColor,
-                    opacity: 0.12,
+                    opacity: 0.1,
+                    pointerEvents: "none",
+                }}
+            />
+
+            <Box
+                sx={{
+                    position: "absolute",
+                    bottom: -100,
+                    left: -120,
+                    width: 240,
+                    height: 240,
+                    borderRadius: "50%",
+                    border: `35px solid ${accentColor}`,
+                    opacity: 0.05,
+                    pointerEvents: "none",
                 }}
             />
 
@@ -36,12 +77,22 @@ export default function CreativeTemplate({
             <Box
                 sx={{
                     position: "relative",
-                    borderLeft: `8px solid ${accentColor}`,
-                    paddingLeft: 3,
-                    mb: 5,
+                    borderLeft: {
+                        xs: `5px solid ${accentColor}`,
+                        sm: `8px solid ${accentColor}`,
+                    },
+                    paddingLeft: {
+                        xs: 2,
+                        sm: 3,
+                    },
+                    marginBottom: {
+                        xs: 4,
+                        sm: 5,
+                    },
                 }}
             >
                 <Typography
+                    component="h1"
                     sx={{
                         fontSize: {
                             xs: "2rem",
@@ -50,56 +101,58 @@ export default function CreativeTemplate({
                         fontWeight: 900,
                         lineHeight: 1.1,
                         color: "#111827",
-                        letterSpacing: "-1px",
-                        wordBreak: "break-word",
+                        letterSpacing: {
+                            xs: "-0.8px",
+                            sm: "-1.2px",
+                        },
+                        overflowWrap: "anywhere",
                     }}
                 >
-                    {resumeData.fullName}
+                    {resumeData.fullName || "Your Name"}
                 </Typography>
 
-                {resumeData.jobTitle && (
+                {resumeData.jobTitle?.trim() && (
                     <Typography
                         sx={{
                             color: accentColor,
-                            fontSize: "1.1rem",
+                            fontSize: {
+                                xs: "0.95rem",
+                                sm: "1.1rem",
+                            },
                             fontWeight: 700,
-                            mt: 1.5,
+                            lineHeight: 1.5,
+                            marginTop: 1.5,
+                            overflowWrap: "anywhere",
                         }}
                     >
                         {resumeData.jobTitle}
                     </Typography>
                 )}
 
-                <Typography
-                    sx={{
-                        fontSize: "0.8rem",
-                        color: "#6b7280",
-                        mt: 2,
-                        lineHeight: 1.8,
-                        wordBreak: "break-word",
-                    }}
-                >
-                    {[
-                        resumeData.email,
-                        resumeData.phone,
-                        resumeData.location,
-                    ]
-                        .filter(Boolean)
-                        .join("  •  ")}
-                </Typography>
-
-                {(resumeData.linkedin || resumeData.github) && (
+                {contactDetails && (
                     <Typography
                         sx={{
-                            fontSize: "0.8rem",
+                            fontSize: "0.78rem",
                             color: "#6b7280",
+                            marginTop: 2,
                             lineHeight: 1.8,
-                            wordBreak: "break-word",
+                            overflowWrap: "anywhere",
                         }}
                     >
-                        {[resumeData.linkedin, resumeData.github]
-                            .filter(Boolean)
-                            .join("  •  ")}
+                        {contactDetails}
+                    </Typography>
+                )}
+
+                {socialDetails && (
+                    <Typography
+                        sx={{
+                            fontSize: "0.78rem",
+                            color: "#6b7280",
+                            lineHeight: 1.8,
+                            overflowWrap: "anywhere",
+                        }}
+                    >
+                        {socialDetails}
                     </Typography>
                 )}
             </Box>
@@ -107,18 +160,25 @@ export default function CreativeTemplate({
             {/* Creative Divider */}
             <Divider
                 sx={{
+                    position: "relative",
                     borderColor: accentColor,
                     borderBottomWidth: 3,
-                    mb: 4,
+                    marginBottom: {
+                        xs: 3,
+                        sm: 4,
+                    },
+                    opacity: 0.85,
                 }}
             />
 
             {/* Resume Sections */}
-            <ResumeSections
-                resumeData={resumeData} 
-                accentColor={accentColor}
-                variant="creative"
-            />
+            <Box sx={{ position: "relative" }}>
+                <ResumeSections
+                    resumeData={resumeData}
+                    accentColor={accentColor}
+                    variant="creative"
+                />
+            </Box>
         </Box>
     );
 }

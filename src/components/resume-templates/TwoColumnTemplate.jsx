@@ -1,3 +1,4 @@
+
 import { Box, Typography, Divider, Chip } from "@mui/material";
 import ResumeSections from "./ResumeSections";
 
@@ -7,17 +8,47 @@ export default function TwoColumnTemplate({
 }) {
     const accentColor = selectedTemplate?.accentColor || "#0f766e";
 
+    const contactDetails = [
+        resumeData.email,
+        resumeData.phone,
+        resumeData.location,
+        resumeData.linkedin,
+        resumeData.github,
+    ].filter((item) => item && String(item).trim());
+
+    const skills = resumeData.skills?.filter(
+        (skill) => skill && String(skill).trim()
+    ) || [];
+
+    const hasLanguages =
+        resumeData.languages &&
+        String(resumeData.languages).trim();
+
+    const sidebarHeadingSx = {
+        fontSize: "0.78rem",
+        fontWeight: 800,
+        textTransform: "uppercase",
+        letterSpacing: "1.5px",
+        marginBottom: 1.5,
+    };
+
+    const dividerSx = {
+        borderColor: "rgba(255,255,255,0.35)",
+        marginY: 3,
+    };
+
     return (
         <Box
             sx={{
                 display: "grid",
                 gridTemplateColumns: {
                     xs: "1fr",
-                    md: "260px 1fr",
+                    md: "minmax(220px, 260px) minmax(0, 1fr)",
                 },
                 minHeight: "1120px",
                 backgroundColor: "#ffffff",
                 color: "#1f2937",
+                overflow: "hidden",
             }}
         >
             {/* Left Sidebar */}
@@ -25,95 +56,79 @@ export default function TwoColumnTemplate({
                 sx={{
                     backgroundColor: accentColor,
                     color: "#ffffff",
-                    padding: { xs: 3, md: 3 },
+                    padding: {
+                        xs: "28px 24px",
+                        sm: "35px 30px",
+                    },
+                    minWidth: 0,
                 }}
             >
                 {/* Profile */}
                 <Typography
+                    component="h1"
                     sx={{
-                        fontSize: "1.6rem",
+                        fontSize: {
+                            xs: "1.65rem",
+                            sm: "1.85rem",
+                        },
                         fontWeight: 800,
                         lineHeight: 1.2,
-                        wordBreak: "break-word",
+                        letterSpacing: "-0.4px",
+                        overflowWrap: "anywhere",
                     }}
                 >
-                    {resumeData.fullName}
+                    {resumeData.fullName || "Your Name"}
                 </Typography>
 
-                {resumeData.jobTitle && (
+                {resumeData.jobTitle?.trim() && (
                     <Typography
                         sx={{
-                            fontSize: "0.95rem",
-                            mt: 1,
-                            opacity: 0.9,
-                            wordBreak: "break-word",
+                            fontSize: "0.9rem",
+                            fontWeight: 500,
+                            lineHeight: 1.5,
+                            marginTop: 1,
+                            opacity: 0.88,
+                            overflowWrap: "anywhere",
                         }}
                     >
                         {resumeData.jobTitle}
                     </Typography>
                 )}
 
-                <Divider
-                    sx={{
-                        borderColor: "rgba(255,255,255,0.5)",
-                        my: 3,
-                    }}
-                />
+                <Divider sx={dividerSx} />
 
                 {/* Contact */}
-                <Typography
-                    sx={{
-                        fontSize: "0.85rem",
-                        fontWeight: 700,
-                        textTransform: "uppercase",
-                        letterSpacing: "1px",
-                        mb: 1.5,
-                    }}
-                >
-                    Contact
-                </Typography>
-
-                {[
-                    resumeData.email,
-                    resumeData.phone,
-                    resumeData.location,
-                    resumeData.linkedin,
-                    resumeData.github,
-                ]
-                    .filter(Boolean)
-                    .map((item, index) => (
-                        <Typography
-                            key={`${item}-${index}`}
-                            sx={{
-                                fontSize: "0.78rem",
-                                mb: 1,
-                                lineHeight: 1.5,
-                                overflowWrap: "anywhere",
-                            }}
-                        >
-                            {item}
+                {contactDetails.length > 0 && (
+                    <>
+                        <Typography sx={sidebarHeadingSx}>
+                            Contact
                         </Typography>
-                    ))}
+
+                        <Box>
+                            {contactDetails.map((item, index) => (
+                                <Typography
+                                    key={`${item}-${index}`}
+                                    sx={{
+                                        fontSize: "0.74rem",
+                                        lineHeight: 1.6,
+                                        marginBottom: 1.1,
+                                        overflowWrap: "anywhere",
+                                        opacity: 0.94,
+                                    }}
+                                >
+                                    {item}
+                                </Typography>
+                            ))}
+                        </Box>
+                    </>
+                )}
 
                 {/* Skills */}
-                {resumeData.skills?.filter(Boolean).length > 0 && (
+                {skills.length > 0 && (
                     <>
-                        <Divider
-                            sx={{
-                                borderColor: "rgba(255,255,255,0.5)",
-                                my: 3,
-                            }}
-                        />
+                        <Divider sx={dividerSx} />
 
-                        <Typography
-                            sx={{
-                                fontSize: "0.85rem",
-                                fontWeight: 700,
-                                textTransform: "uppercase",
-                                letterSpacing: "1px",
-                                mb: 1.5,
-                            }}
-                        >
+                        <Typography sx={sidebarHeadingSx}>
                             Skills
                         </Typography>
 
@@ -124,67 +139,66 @@ export default function TwoColumnTemplate({
                                 gap: 0.8,
                             }}
                         >
-                            {resumeData.skills
-                                .filter(Boolean)
-                                .map((skill, index) => (
-                                    <Chip
-                                        key={`${skill}-${index}`}
-                                        label={skill}
-                                        size="small"
-                                        sx={{
-                                            color: "#ffffff",
-                                            border: "1px solid rgba(255,255,255,0.6)",
-                                            backgroundColor:
-                                                "rgba(255,255,255,0.12)",
-                                            fontSize: "0.7rem",
-                                        }}
-                                    />
-                                ))}
+                            {skills.map((skill, index) => (
+                                <Chip
+                                    key={`${skill}-${index}`}
+                                    label={skill}
+                                    size="small"
+                                    sx={{
+                                        height: "auto",
+                                        minHeight: 26,
+                                        maxWidth: "100%",
+                                        color: "#ffffff",
+                                        border: "1px solid rgba(255,255,255,0.55)",
+                                        backgroundColor:
+                                            "rgba(255,255,255,0.12)",
+                                        borderRadius: "5px",
+                                        "& .MuiChip-label": {
+                                            padding: "5px 8px",
+                                            fontSize: "0.68rem",
+                                            whiteSpace: "normal",
+                                            overflowWrap: "anywhere",
+                                        },
+                                    }}
+                                />
+                            ))}
                         </Box>
                     </>
                 )}
 
                 {/* Languages */}
-                {resumeData.languages &&
-                    String(resumeData.languages).trim() && (
-                        <>
-                            <Divider
-                                sx={{
-                                    borderColor: "rgba(255,255,255,0.5)",
-                                    my: 3,
-                                }}
-                            />
+                {hasLanguages && (
+                    <>
+                        <Divider sx={dividerSx} />
 
-                            <Typography
-                                sx={{
-                                    fontSize: "0.85rem",
-                                    fontWeight: 700,
-                                    textTransform: "uppercase",
-                                    letterSpacing: "1px",
-                                    mb: 1.5,
-                                }}
-                            >
-                                Languages
-                            </Typography>
+                        <Typography sx={sidebarHeadingSx}>
+                            Languages
+                        </Typography>
 
-                            <Typography
-                                sx={{
-                                    fontSize: "0.8rem",
-                                    lineHeight: 1.8,
-                                    whiteSpace: "pre-line",
-                                }}
-                            >
-                                {resumeData.languages}
-                            </Typography>
-                        </>
-                    )}
+                        <Typography
+                            sx={{
+                                fontSize: "0.78rem",
+                                lineHeight: 1.8,
+                                whiteSpace: "pre-line",
+                                overflowWrap: "anywhere",
+                                opacity: 0.95,
+                            }}
+                        >
+                            {resumeData.languages}
+                        </Typography>
+                    </>
+                )}
             </Box>
 
             {/* Right Content */}
             <Box
                 sx={{
-                    padding: { xs: 3, sm: 4 },
+                    padding: {
+                        xs: "30px 24px",
+                        sm: "40px 38px",
+                    },
                     minWidth: 0,
+                    backgroundColor: "#ffffff",
                 }}
             >
                 <ResumeSections

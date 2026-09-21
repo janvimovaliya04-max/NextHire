@@ -1,3 +1,4 @@
+
 import { Box, Typography, Divider } from "@mui/material";
 
 export default function ModernTemplate({
@@ -7,14 +8,37 @@ export default function ModernTemplate({
     const accentColor = selectedTemplate?.accentColor || "#1e40af";
 
     const sectionHeadingSx = {
-        fontSize: "1.05rem",
+        fontSize: "0.95rem",
         fontWeight: 800,
         color: accentColor,
         textTransform: "uppercase",
-        letterSpacing: "0.7px",
+        letterSpacing: "1px",
         borderBottom: `2px solid ${accentColor}`,
-        paddingBottom: "6px",
-        marginBottom: "14px",
+        paddingBottom: "7px",
+        marginBottom: "16px",
+    };
+
+    const contentTextSx = {
+        fontSize: "0.88rem",
+        lineHeight: 1.75,
+        color: "#374151",
+        whiteSpace: "pre-line",
+        overflowWrap: "anywhere",
+    };
+
+    const secondaryTextSx = {
+        fontSize: "0.85rem",
+        color: "#6b7280",
+        lineHeight: 1.6,
+        overflowWrap: "anywhere",
+    };
+
+    const itemTitleSx = {
+        fontSize: "0.98rem",
+        fontWeight: 700,
+        color: "#111827",
+        lineHeight: 1.5,
+        overflowWrap: "anywhere",
     };
 
     return (
@@ -24,6 +48,8 @@ export default function ModernTemplate({
                 color: "#333333",
                 fontFamily: "Arial, sans-serif",
                 minHeight: "1120px",
+                width: "100%",
+                boxSizing: "border-box",
             }}
         >
             {/* Header */}
@@ -31,7 +57,8 @@ export default function ModernTemplate({
                 sx={{
                     backgroundColor: accentColor,
                     color: "#ffffff",
-                    padding: { xs: 3, sm: 4 },
+                    px: { xs: 3, sm: 5 },
+                    py: { xs: 3.5, sm: 4.5 },
                     textAlign: "center",
                 }}
             >
@@ -42,28 +69,34 @@ export default function ModernTemplate({
                             sm: "2.4rem",
                         },
                         fontWeight: 800,
+                        lineHeight: 1.25,
+                        letterSpacing: "0.3px",
                         wordBreak: "break-word",
                     }}
                 >
-                    {resumeData.fullName}
+                    {resumeData.fullName || "Your Name"}
                 </Typography>
 
                 {resumeData.jobTitle && (
                     <Typography
                         sx={{
-                            fontSize: "1.1rem",
+                            fontSize: { xs: "0.95rem", sm: "1.05rem" },
                             mt: 1,
                             fontWeight: 600,
+                            lineHeight: 1.5,
+                            wordBreak: "break-word",
                         }}
                     >
                         {resumeData.jobTitle}
                     </Typography>
                 )}
 
+                {/* Contact Details */}
                 <Typography
                     sx={{
-                        fontSize: "0.85rem",
+                        fontSize: "0.8rem",
                         mt: 2,
+                        lineHeight: 1.8,
                         wordBreak: "break-word",
                     }}
                 >
@@ -76,18 +109,17 @@ export default function ModernTemplate({
                         .join(" | ")}
                 </Typography>
 
+                {/* Social Links */}
                 {(resumeData.linkedin || resumeData.github) && (
                     <Typography
                         sx={{
-                            fontSize: "0.8rem",
-                            mt: 1,
+                            fontSize: "0.78rem",
+                            mt: 0.5,
+                            lineHeight: 1.8,
                             wordBreak: "break-word",
                         }}
                     >
-                        {[
-                            resumeData.linkedin,
-                            resumeData.github,
-                        ]
+                        {[resumeData.linkedin, resumeData.github]
                             .filter(Boolean)
                             .join(" | ")}
                     </Typography>
@@ -97,23 +129,18 @@ export default function ModernTemplate({
             {/* Resume Content */}
             <Box
                 sx={{
-                    padding: { xs: 2.5, sm: 4 },
+                    px: { xs: 2.5, sm: 4.5 },
+                    py: { xs: 3, sm: 4 },
                 }}
             >
                 {/* Summary */}
-                {resumeData.summary && (
-                    <Box sx={{ mb: 3 }}>
+                {resumeData.summary?.trim() && (
+                    <Box sx={{ mb: 3.5 }}>
                         <Typography sx={sectionHeadingSx}>
                             Professional Summary
                         </Typography>
 
-                        <Typography
-                            sx={{
-                                fontSize: "0.9rem",
-                                lineHeight: 1.8,
-                                whiteSpace: "pre-line",
-                            }}
-                        >
+                        <Typography sx={contentTextSx}>
                             {resumeData.summary}
                         </Typography>
                     </Box>
@@ -121,36 +148,47 @@ export default function ModernTemplate({
 
                 {/* Education */}
                 {resumeData.education?.length > 0 && (
-                    <Box sx={{ mb: 3 }}>
+                    <Box sx={{ mb: 3.5 }}>
                         <Typography sx={sectionHeadingSx}>
                             Education
                         </Typography>
 
                         {resumeData.education.map((education, index) => (
-                            <Box key={index} sx={{ mb: 2 }}>
-                                <Typography sx={{ fontWeight: 700 }}>
+                            <Box
+                                key={index}
+                                sx={{
+                                    mb:
+                                        index ===
+                                            resumeData.education.length - 1
+                                            ? 0
+                                            : 2.5,
+                                }}
+                            >
+                                <Typography sx={itemTitleSx}>
                                     {education.degree}
                                 </Typography>
 
-                                <Typography
-                                    sx={{
-                                        fontSize: "0.9rem",
-                                        color: "#555555",
-                                    }}
-                                >
+                                <Typography sx={secondaryTextSx}>
                                     {education.institution}
                                 </Typography>
 
                                 <Typography
                                     sx={{
-                                        fontSize: "0.85rem",
-                                        color: "#666666",
+                                        ...secondaryTextSx,
+                                        fontSize: "0.8rem",
                                     }}
                                 >
-                                    {education.startYear} -{" "}
-                                    {education.endYear}
-                                    {education.grade &&
-                                        ` | ${education.grade}`}
+                                    {[
+                                        education.startYear &&
+                                            education.endYear
+                                            ? `${education.startYear} - ${education.endYear}`
+                                            : education.startYear ||
+                                            education.endYear,
+                                        education.grade &&
+                                        `Grade: ${education.grade}`,
+                                    ]
+                                        .filter(Boolean)
+                                        .join(" | ")}
                                 </Typography>
                             </Box>
                         ))}
@@ -159,43 +197,52 @@ export default function ModernTemplate({
 
                 {/* Experience */}
                 {resumeData.experience?.length > 0 && (
-                    <Box sx={{ mb: 3 }}>
+                    <Box sx={{ mb: 3.5 }}>
                         <Typography sx={sectionHeadingSx}>
                             Work Experience
                         </Typography>
 
                         {resumeData.experience.map((experience, index) => (
-                            <Box key={index} sx={{ mb: 2.5 }}>
-                                <Typography sx={{ fontWeight: 700 }}>
+                            <Box
+                                key={index}
+                                sx={{
+                                    mb:
+                                        index ===
+                                            resumeData.experience.length - 1
+                                            ? 0
+                                            : 3,
+                                }}
+                            >
+                                <Typography sx={itemTitleSx}>
                                     {experience.jobPosition}
                                 </Typography>
 
-                                <Typography
-                                    sx={{
-                                        fontSize: "0.9rem",
-                                        color: "#555555",
-                                    }}
-                                >
+                                <Typography sx={secondaryTextSx}>
                                     {experience.companyName}
                                 </Typography>
 
                                 <Typography
                                     sx={{
-                                        fontSize: "0.85rem",
-                                        color: "#666666",
+                                        ...secondaryTextSx,
+                                        fontSize: "0.8rem",
                                     }}
                                 >
-                                    {experience.experienceStartYear} -{" "}
-                                    {experience.experienceEndYear}
+                                    {[
+                                        experience.experienceStartYear &&
+                                            experience.experienceEndYear
+                                            ? `${experience.experienceStartYear} - ${experience.experienceEndYear}`
+                                            : experience.experienceStartYear ||
+                                            experience.experienceEndYear,
+                                    ]
+                                        .filter(Boolean)
+                                        .join("")}
                                 </Typography>
 
-                                {experience.jobDescription && (
+                                {experience.jobDescription?.trim() && (
                                     <Typography
                                         sx={{
+                                            ...contentTextSx,
                                             mt: 1,
-                                            fontSize: "0.9rem",
-                                            lineHeight: 1.7,
-                                            whiteSpace: "pre-line",
                                         }}
                                     >
                                         {experience.jobDescription}
@@ -208,17 +255,12 @@ export default function ModernTemplate({
 
                 {/* Skills */}
                 {resumeData.skills?.filter(Boolean).length > 0 && (
-                    <Box sx={{ mb: 3 }}>
+                    <Box sx={{ mb: 3.5 }}>
                         <Typography sx={sectionHeadingSx}>
                             Skills
                         </Typography>
 
-                        <Typography
-                            sx={{
-                                fontSize: "0.9rem",
-                                lineHeight: 1.8,
-                            }}
-                        >
+                        <Typography sx={contentTextSx}>
                             {resumeData.skills
                                 .filter(Boolean)
                                 .join(" • ")}
@@ -228,48 +270,56 @@ export default function ModernTemplate({
 
                 {/* Projects */}
                 {resumeData.projects?.length > 0 && (
-                    <Box sx={{ mb: 3 }}>
+                    <Box sx={{ mb: 3.5 }}>
                         <Typography sx={sectionHeadingSx}>
                             Projects
                         </Typography>
 
                         {resumeData.projects.map((project, index) => (
-                            <Box key={index} sx={{ mb: 2.5 }}>
-                                <Typography sx={{ fontWeight: 700 }}>
+                            <Box
+                                key={index}
+                                sx={{
+                                    mb:
+                                        index ===
+                                            resumeData.projects.length - 1
+                                            ? 0
+                                            : 3,
+                                }}
+                            >
+                                <Typography sx={itemTitleSx}>
                                     {project.projectName}
                                 </Typography>
 
-                                {project.projectTechStack && (
-                                    <Typography
-                                        sx={{
-                                            fontSize: "0.85rem",
-                                            color: "#555555",
-                                        }}
-                                    >
-                                        Technologies:{" "}
+                                {project.projectTechStack?.trim() && (
+                                    <Typography sx={secondaryTextSx}>
+                                        <Box
+                                            component="span"
+                                            sx={{ fontWeight: 700 }}
+                                        >
+                                            Technologies:
+                                        </Box>{" "}
                                         {project.projectTechStack}
                                     </Typography>
                                 )}
 
-                                {project.projectDescription && (
+                                {project.projectDescription?.trim() && (
                                     <Typography
                                         sx={{
+                                            ...contentTextSx,
                                             mt: 1,
-                                            fontSize: "0.9rem",
-                                            lineHeight: 1.7,
-                                            whiteSpace: "pre-line",
                                         }}
                                     >
                                         {project.projectDescription}
                                     </Typography>
                                 )}
 
-                                {project.projectLink && (
+                                {project.projectLink?.trim() && (
                                     <Typography
                                         sx={{
+                                            fontSize: "0.82rem",
+                                            color: accentColor,
                                             mt: 1,
-                                            fontSize: "0.85rem",
-                                            wordBreak: "break-word",
+                                            overflowWrap: "anywhere",
                                         }}
                                     >
                                         Project Link: {project.projectLink}
@@ -281,37 +331,26 @@ export default function ModernTemplate({
                 )}
 
                 {/* Certifications */}
-                {resumeData.certifications && (
-                    <Box sx={{ mb: 3 }}>
+                {resumeData.certifications?.trim() && (
+                    <Box sx={{ mb: 3.5 }}>
                         <Typography sx={sectionHeadingSx}>
                             Certifications
                         </Typography>
 
-                        <Typography
-                            sx={{
-                                fontSize: "0.9rem",
-                                lineHeight: 1.7,
-                                whiteSpace: "pre-line",
-                            }}
-                        >
+                        <Typography sx={contentTextSx}>
                             {resumeData.certifications}
                         </Typography>
                     </Box>
                 )}
 
                 {/* Languages */}
-                {resumeData.languages && (
-                    <Box sx={{ mb: 2 }}>
+                {resumeData.languages?.trim() && (
+                    <Box sx={{ mb: 1 }}>
                         <Typography sx={sectionHeadingSx}>
                             Languages
                         </Typography>
 
-                        <Typography
-                            sx={{
-                                fontSize: "0.9rem",
-                                lineHeight: 1.7,
-                            }}
-                        >
+                        <Typography sx={contentTextSx}>
                             {resumeData.languages}
                         </Typography>
                     </Box>

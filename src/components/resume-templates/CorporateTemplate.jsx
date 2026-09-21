@@ -8,14 +8,34 @@ export default function CorporateTemplate({
 }) {
     const accentColor = selectedTemplate?.accentColor || "#1e3a8a";
 
+    const contactDetails = [
+        resumeData.email,
+        resumeData.phone,
+        resumeData.location,
+    ]
+        .filter((item) => item && String(item).trim())
+        .join("  •  ");
+
+    const socialDetails = [
+        resumeData.linkedin,
+        resumeData.github,
+    ]
+        .filter((item) => item && String(item).trim())
+        .join("  •  ");
+
     return (
         <Box
             sx={{
                 backgroundColor: "#ffffff",
                 color: "#1f2937",
                 minHeight: "1120px",
-                p: { xs: 3, sm: 5, md: 6 },
-                fontFamily: "Arial, sans-serif",
+                padding: {
+                    xs: "24px 20px",
+                    sm: "40px 48px",
+                    md: "52px 64px",
+                },
+                fontFamily: "Arial, Helvetica, sans-serif",
+                overflowWrap: "anywhere",
             }}
         >
             {/* Corporate Header */}
@@ -23,69 +43,92 @@ export default function CorporateTemplate({
                 sx={{
                     backgroundColor: accentColor,
                     color: "#ffffff",
-                    p: { xs: 2.5, sm: 4 },
-                    borderRadius: 1,
-                    mb: 4,
+                    padding: {
+                        xs: "24px 22px",
+                        sm: "34px 38px",
+                    },
+                    borderRadius: "4px",
+                    borderLeft: "7px solid rgba(255,255,255,0.65)",
+                    marginBottom: {
+                        xs: 3,
+                        sm: 4,
+                    },
                 }}
             >
                 <Typography
+                    component="h1"
                     sx={{
-                        fontSize: { xs: "1.8rem", sm: "2.6rem" },
-                        fontWeight: 700,
-                        wordBreak: "break-word",
+                        fontSize: {
+                            xs: "1.8rem",
+                            sm: "2.5rem",
+                            md: "2.8rem",
+                        },
+                        fontWeight: 800,
+                        letterSpacing: "-0.6px",
+                        lineHeight: 1.2,
+                        overflowWrap: "anywhere",
                     }}
                 >
-                    {resumeData.fullName}
+                    {resumeData.fullName || "Your Name"}
                 </Typography>
 
-                {resumeData.jobTitle && (
+                {resumeData.jobTitle?.trim() && (
                     <Typography
                         sx={{
-                            fontSize: "1rem",
-                            mt: 1,
-                            opacity: 0.9,
+                            fontSize: {
+                                xs: "0.9rem",
+                                sm: "1.05rem",
+                            },
+                            fontWeight: 600,
+                            letterSpacing: "0.4px",
+                            color: "#dbeafe",
+                            marginTop: 1.2,
+                            lineHeight: 1.5,
+                            overflowWrap: "anywhere",
                         }}
                     >
                         {resumeData.jobTitle}
                     </Typography>
                 )}
 
-                <Typography
-                    sx={{
-                        fontSize: "0.78rem",
-                        mt: 2,
-                        lineHeight: 1.8,
-                        wordBreak: "break-word",
-                    }}
-                >
-                    {[
-                        resumeData.email,
-                        resumeData.phone,
-                        resumeData.location,
-                    ]
-                        .filter(Boolean)
-                        .join(" • ")}
-                </Typography>
-
-                {(resumeData.linkedin || resumeData.github) && (
+                {contactDetails && (
                     <Typography
                         sx={{
-                            fontSize: "0.78rem",
-                            lineHeight: 1.8,
-                            wordBreak: "break-word",
+                            fontSize: "0.76rem",
+                            color: "#f1f5f9",
+                            marginTop: 2.2,
+                            lineHeight: 1.9,
+                            overflowWrap: "anywhere",
                         }}
                     >
-                        {[resumeData.linkedin, resumeData.github]
-                            .filter(Boolean)
-                            .join(" • ")}
+                        {contactDetails}
+                    </Typography>
+                )}
+
+                {socialDetails && (
+                    <Typography
+                        sx={{
+                            fontSize: "0.76rem",
+                            color: "#dbeafe",
+                            lineHeight: 1.9,
+                            overflowWrap: "anywhere",
+                        }}
+                    >
+                        {socialDetails}
                     </Typography>
                 )}
             </Box>
 
+            {/* Header Divider */}
             <Divider
                 sx={{
                     borderColor: accentColor,
-                    mb: 4,
+                    borderBottomWidth: 2,
+                    marginBottom: {
+                        xs: 3,
+                        sm: 4,
+                    },
+                    opacity: 0.8,
                 }}
             />
 

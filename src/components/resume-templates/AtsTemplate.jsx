@@ -1,3 +1,4 @@
+
 import { Box, Typography, Divider } from "@mui/material";
 import ResumeSections from "./ResumeSections";
 
@@ -7,70 +8,96 @@ export default function AtsTemplate({
 }) {
     const accentColor = selectedTemplate?.accentColor || "#000000";
 
+    const contactDetails = [
+        resumeData.email,
+        resumeData.phone,
+        resumeData.location,
+        resumeData.linkedin,
+        resumeData.github,
+    ]
+        .filter((item) => item && String(item).trim())
+        .join(" | ");
+
     return (
         <Box
             sx={{
                 backgroundColor: "#ffffff",
                 color: "#000000",
                 minHeight: "1120px",
-                padding: { xs: 3, sm: 5 },
-                fontFamily: "Arial, sans-serif",
+                padding: {
+                    xs: "28px 22px",
+                    sm: "44px 54px",
+                    md: "56px 68px",
+                },
+                fontFamily: "Arial, Helvetica, sans-serif",
+                overflowWrap: "anywhere",
             }}
         >
-            {/* Header */}
+            {/* ATS Header */}
             <Box
                 sx={{
                     textAlign: "left",
-                    borderBottom: "1px solid #000000",
-                    pb: 2,
-                    mb: 3,
+                    borderBottom: "1.5px solid #000000",
+                    paddingBottom: {
+                        xs: 1.8,
+                        sm: 2.2,
+                    },
+                    marginBottom: {
+                        xs: 3,
+                        sm: 4,
+                    },
                 }}
             >
                 <Typography
+                    component="h1"
                     sx={{
                         fontSize: {
-                            xs: "1.8rem",
-                            sm: "2.4rem",
+                            xs: "1.75rem",
+                            sm: "2.35rem",
+                            md: "2.6rem",
                         },
                         fontWeight: 700,
                         textTransform: "uppercase",
-                        letterSpacing: "0.5px",
+                        letterSpacing: {
+                            xs: "0.3px",
+                            sm: "0.8px",
+                        },
                         lineHeight: 1.2,
-                        wordBreak: "break-word",
+                        overflowWrap: "anywhere",
                     }}
                 >
-                    {resumeData.fullName}
+                    {resumeData.fullName || "Your Name"}
                 </Typography>
 
-                {resumeData.jobTitle && (
+                {resumeData.jobTitle?.trim() && (
                     <Typography
                         sx={{
-                            fontSize: "1rem",
-                            mt: 1,
+                            fontSize: {
+                                xs: "0.9rem",
+                                sm: "1rem",
+                            },
+                            fontWeight: 600,
+                            marginTop: 1,
+                            lineHeight: 1.5,
+                            overflowWrap: "anywhere",
                         }}
                     >
                         {resumeData.jobTitle}
                     </Typography>
                 )}
 
-                <Typography
-                    sx={{
-                        fontSize: "0.78rem",
-                        mt: 1.5,
-                        lineHeight: 1.8,
-                        wordBreak: "break-word",
-                    }}
-                >
-                    {[
-                        resumeData.email,
-                        resumeData.phone,
-                        resumeData.location,
-                        resumeData.linkedin,
-                        resumeData.github,
-                    ]
-                        .filter(Boolean)
-                        .join(" | ")}
-                </Typography>
+                {contactDetails && (
+                    <Typography
+                        sx={{
+                            fontSize: "0.76rem",
+                            marginTop: 1.5,
+                            lineHeight: 1.9,
+                            overflowWrap: "anywhere",
+                        }}
+                    >
+                        {contactDetails}
+                    </Typography>
+                )}
             </Box>
 
             {/* ATS Resume Content */}

@@ -8,67 +8,100 @@ export default function StudentTemplate({
 }) {
     const accentColor = selectedTemplate?.accentColor || "#2563eb";
 
+    const contactDetails = [
+        resumeData.email,
+        resumeData.phone,
+        resumeData.location,
+        resumeData.linkedin,
+        resumeData.github,
+    ]
+        .filter((item) => item && String(item).trim())
+        .join("  |  ");
+
     return (
         <Box
             sx={{
                 backgroundColor: "#ffffff",
                 color: "#1e293b",
                 minHeight: "1120px",
-                p: { xs: 3, sm: 5, md: 6 },
-                fontFamily: "Arial, sans-serif",
+                padding: {
+                    xs: "28px 22px",
+                    sm: "45px 55px",
+                    md: "55px 65px",
+                },
+                fontFamily: "Arial, Helvetica, sans-serif",
+                overflowWrap: "anywhere",
             }}
         >
             {/* Student Header */}
-            <Box sx={{ mb: 3 }}>
+            <Box
+                sx={{
+                    marginBottom: {
+                        xs: 3,
+                        sm: 4,
+                    },
+                }}
+            >
                 <Typography
+                    component="h1"
                     sx={{
-                        fontSize: { xs: "2rem", sm: "2.7rem" },
+                        fontSize: {
+                            xs: "2rem",
+                            sm: "2.7rem",
+                        },
                         fontWeight: 700,
                         color: accentColor,
-                        wordBreak: "break-word",
+                        lineHeight: 1.2,
+                        letterSpacing: "-0.7px",
+                        overflowWrap: "anywhere",
                     }}
                 >
-                    {resumeData.fullName}
+                    {resumeData.fullName || "Your Name"}
                 </Typography>
 
-                {resumeData.jobTitle && (
+                {resumeData.jobTitle?.trim() && (
                     <Typography
                         sx={{
-                            fontSize: "1rem",
+                            fontSize: {
+                                xs: "0.9rem",
+                                sm: "1rem",
+                            },
                             color: "#64748b",
-                            mt: 0.5,
+                            fontWeight: 500,
+                            lineHeight: 1.5,
+                            marginTop: 0.7,
+                            overflowWrap: "anywhere",
                         }}
                     >
                         {resumeData.jobTitle}
                     </Typography>
                 )}
 
-                <Typography
-                    sx={{
-                        fontSize: "0.8rem",
-                        color: "#475569",
-                        mt: 1.5,
-                        lineHeight: 1.8,
-                        wordBreak: "break-word",
-                    }}
-                >
-                    {[
-                        resumeData.email,
-                        resumeData.phone,
-                        resumeData.location,
-                        resumeData.linkedin,
-                        resumeData.github,
-                    ]
-                        .filter(Boolean)
-                        .join(" | ")}
-                </Typography>
+                {contactDetails && (
+                    <Typography
+                        sx={{
+                            fontSize: "0.76rem",
+                            color: "#475569",
+                            marginTop: 1.8,
+                            lineHeight: 1.9,
+                            overflowWrap: "anywhere",
+                        }}
+                    >
+                        {contactDetails}
+                    </Typography>
+                )}
             </Box>
 
+            {/* Header Divider */}
             <Divider
                 sx={{
                     borderColor: accentColor,
                     borderBottomWidth: 2,
-                    mb: 3,
+                    marginBottom: {
+                        xs: 3,
+                        sm: 4,
+                    },
+                    opacity: 0.85,
                 }}
             />
 
