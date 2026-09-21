@@ -1,7 +1,18 @@
 import { useTheme } from "../context/ThemeContext";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
-import { Typography, Box, Divider, Tooltip } from "@mui/material";
+import {
+  Typography,
+  Box,
+  Divider,
+  Tooltip,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  Button,
+} from "@mui/material";
 import { useCandidate } from "../context/CandidateContext";
 import { useAuth } from "../context/AuthContext";
 import useThemeColors from "../hooks/useThemeColors";
@@ -45,6 +56,7 @@ export default function CandidateLayout({ children }) {
   const contentRef = useRef(null);
 
   const [mobileMenu, setMobileMenu] = useState(false);
+  const [openLogoutModal, setOpenLogoutModal] = useState(false);
 
   // Scroll content to top on navigation change
   useEffect(() => {
@@ -82,8 +94,18 @@ export default function CandidateLayout({ children }) {
     }
   };
 
-  const handleLogout = () => {
+  const handleOpenLogoutModal = () => {
     setMobileMenu(false);
+    setOpenLogoutModal(true);
+  };
+
+  const handleCloseLogoutModal = () => {
+    setOpenLogoutModal(false);
+  };
+
+  const handleConfirmLogout = () => {
+    setOpenLogoutModal(false);
+
     logout();
     localStorage.removeItem("candidate");
     navigate("/login?role=candidate");
@@ -321,7 +343,7 @@ export default function CandidateLayout({ children }) {
             </div>
           </div>
           <button
-            onClick={handleLogout}
+            onClick={handleOpenLogoutModal}
             className="md:hidden w-full mt-3 flex items-center justify-center gap-2 text-red-500 py-2 px-1 rounded-lg hover:bg-red-500/10 transition-colors"
           >
             <LogOut size={16} />
@@ -480,7 +502,7 @@ export default function CandidateLayout({ children }) {
 
             {/* Logout Action Button */}
             <button
-              onClick={handleLogout}
+              onClick={handleOpenLogoutModal}
               className="p-2.5 rounded-xl border flex items-center justify-center gap-2 font-semibold text-sm text-red-500 border-red-500/20 bg-red-500/5 hover:bg-red-500/10 hover:border-red-500/40 transition-all duration-300"
             >
               <LogOut size={16} />
@@ -505,6 +527,74 @@ export default function CandidateLayout({ children }) {
           </Box>
         </div>
       </main>
+
+      {/* Logout Confirmation Dialog */}
+      <Dialog
+        open={openLogoutModal}
+        onClose={handleCloseLogoutModal}
+        PaperProps={{
+          sx: {
+            borderRadius: "16px",
+            padding: "8px",
+            backgroundColor: colors.card,
+            color: textColor,
+            maxWidth: "400px",
+            width: "100%",
+            border: `1px solid ${borderStyle}`,
+          },
+        }}
+      >
+        <DialogTitle
+          sx={{
+            fontWeight: 700,
+            fontSize: "1.2rem",
+            color: textColor,
+          }}
+        >
+          Confirm Logout
+        </DialogTitle>
+
+        <DialogContent>
+          <DialogContentText
+            sx={{
+              color: subText,
+              fontSize: "0.95rem",
+            }}
+          >
+            Are you sure you want to log out of NextHire Candidate Space?
+          </DialogContentText>
+        </DialogContent>
+
+        <DialogActions sx={{ padding: "12px 20px" }}>
+          <Button
+            onClick={handleCloseLogoutModal}
+            sx={{
+              textTransform: "none",
+              fontWeight: 600,
+              color: subText,
+              borderRadius: "8px",
+            }}
+          >
+            Cancel
+          </Button>
+
+          <Button
+            onClick={handleConfirmLogout}
+            variant="contained"
+            color="error"
+            startIcon={<LogOut size={16} />}
+            sx={{
+              textTransform: "none",
+              fontWeight: 600,
+              borderRadius: "8px",
+              boxShadow: "none",
+            }}
+          >
+            Logout
+          </Button>
+        </DialogActions>
+      </Dialog>
+
     </div>
   );
 }
