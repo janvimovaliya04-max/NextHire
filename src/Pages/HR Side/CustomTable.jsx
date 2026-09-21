@@ -2123,10 +2123,10 @@ const CustomTable = () => {
                         columnIndex
                     )
                 }
-                InputLabelProps={{
-                    shrink:
-                        column.type ===
-                        "date",
+                slotProps={{
+                    inputLabel: {
+                        shrink: column.type === "date",
+                    },
                 }}
                 sx={{
                     "& .MuiOutlinedInput-root": {
@@ -2244,10 +2244,10 @@ const CustomTable = () => {
                             onChange={(event) =>
                                 setSearchValue(event.target.value)
                             }
-                            InputProps={{
-                                startAdornment: (
-                                    <Search size={17} />
-                                ),
+                            slotProps={{
+                                input: {
+                                    startAdornment: <Search size={17} />,
+                                },
                             }}
                             sx={{
                                 flex: 1,
