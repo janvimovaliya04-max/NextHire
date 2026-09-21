@@ -1,6 +1,5 @@
-
-import { Box, Typography, Chip, Divider } from "@mui/material";
-import { Code2, Mail, Phone, MapPin, Github, Linkedin } from "lucide-react";
+import { Box, Typography, Divider } from "@mui/material";
+import { Code2, Mail, Phone, MapPin } from "lucide-react";
 import ResumeSections from "./ResumeSections";
 
 export default function TechTemplate({
@@ -98,7 +97,6 @@ export default function TechTemplate({
                     >
                         {resumeData.github && (
                             <Box sx={{ display: "flex", gap: 0.7, alignItems: "center" }}>
-                                <Github size={14} color={accentColor} />
                                 <Typography sx={{ fontSize: "0.78rem" }}>
                                     {resumeData.github}
                                 </Typography>
@@ -107,7 +105,6 @@ export default function TechTemplate({
 
                         {resumeData.linkedin && (
                             <Box sx={{ display: "flex", gap: 0.7, alignItems: "center" }}>
-                                <Linkedin size={14} color={accentColor} />
                                 <Typography sx={{ fontSize: "0.78rem" }}>
                                     {resumeData.linkedin}
                                 </Typography>
