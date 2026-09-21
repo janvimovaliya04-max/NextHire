@@ -5,9 +5,15 @@ export default function ResumeSections({
     resumeData,
     accentColor = "#1e40af",
     variant = "modern",
-    showSkills = true,
-    showLanguages = true,
 }) {
+
+    const isTechVariant = variant === "tech";
+
+    const bodyTextColor = isTechVariant ? "#e2e8f0" : "#444444";
+    const primaryTextColor = isTechVariant ? "#f8fafc" : "#333333";
+    const secondaryTextColor = isTechVariant ? "#cbd5e1" : "#555555";
+    const mutedTextColor = isTechVariant ? "#94a3b8" : "#666666";
+
     const sectionHeadingSx = {
         fontSize: "1.05rem",
         fontWeight: 800,
@@ -36,7 +42,7 @@ export default function ResumeSections({
                             fontSize: "0.9rem",
                             lineHeight: 1.8,
                             whiteSpace: "pre-line",
-                            color: "#444444",
+                            color: bodyTextColor,
                         }}
                     >
                         {resumeData.summary}
@@ -56,7 +62,7 @@ export default function ResumeSections({
                             <Typography
                                 sx={{
                                     fontWeight: 700,
-                                    color: "#333333",
+                                    color: primaryTextColor,
                                 }}
                             >
                                 {education.degree}
@@ -65,7 +71,7 @@ export default function ResumeSections({
                             <Typography
                                 sx={{
                                     fontSize: "0.9rem",
-                                    color: "#555555",
+                                    color: secondaryTextColor,
                                 }}
                             >
                                 {education.institution}
@@ -74,7 +80,7 @@ export default function ResumeSections({
                             <Typography
                                 sx={{
                                     fontSize: "0.85rem",
-                                    color: "#666666",
+                                    color: mutedTextColor,
                                 }}
                             >
                                 {education.startYear} -{" "}
@@ -99,7 +105,7 @@ export default function ResumeSections({
                             <Typography
                                 sx={{
                                     fontWeight: 700,
-                                    color: "#333333",
+                                    color: primaryTextColor,
                                 }}
                             >
                                 {experience.jobPosition}
@@ -108,7 +114,7 @@ export default function ResumeSections({
                             <Typography
                                 sx={{
                                     fontSize: "0.9rem",
-                                    color: "#555555",
+                                    color: secondaryTextColor,
                                 }}
                             >
                                 {experience.companyName}
@@ -117,7 +123,7 @@ export default function ResumeSections({
                             <Typography
                                 sx={{
                                     fontSize: "0.85rem",
-                                    color: "#666666",
+                                    color: mutedTextColor,
                                 }}
                             >
                                 {experience.experienceStartYear} -{" "}
@@ -130,7 +136,7 @@ export default function ResumeSections({
                                         mt: 1,
                                         fontSize: "0.9rem",
                                         lineHeight: 1.7,
-                                        color: "#444444",
+                                        color: bodyTextColor,
                                         whiteSpace: "pre-line",
                                     }}
                                 >
@@ -153,7 +159,7 @@ export default function ResumeSections({
                         sx={{
                             fontSize: "0.9rem",
                             lineHeight: 1.8,
-                            color: "#444444",
+                            color: bodyTextColor,
                         }}
                     >
                         {resumeData.skills
@@ -175,7 +181,7 @@ export default function ResumeSections({
                             <Typography
                                 sx={{
                                     fontWeight: 700,
-                                    color: "#333333",
+                                    color: primaryTextColor,
                                 }}
                             >
                                 {project.projectName}
@@ -185,7 +191,7 @@ export default function ResumeSections({
                                 <Typography
                                     sx={{
                                         fontSize: "0.85rem",
-                                        color: "#555555",
+                                        color: secondaryTextColor,
                                     }}
                                 >
                                     Technologies:{" "}
@@ -199,7 +205,7 @@ export default function ResumeSections({
                                         mt: 1,
                                         fontSize: "0.9rem",
                                         lineHeight: 1.7,
-                                        color: "#444444",
+                                        color: bodyTextColor,
                                         whiteSpace: "pre-line",
                                     }}
                                 >
@@ -212,7 +218,7 @@ export default function ResumeSections({
                                     sx={{
                                         mt: 1,
                                         fontSize: "0.85rem",
-                                        color: "#444444",
+                                        color: bodyTextColor,
                                         wordBreak: "break-word",
                                     }}
                                 >
@@ -235,7 +241,7 @@ export default function ResumeSections({
                         sx={{
                             fontSize: "0.9rem",
                             lineHeight: 1.7,
-                            color: "#444444",
+                            color: bodyTextColor,
                             whiteSpace: "pre-line",
                         }}
                     >
@@ -255,7 +261,7 @@ export default function ResumeSections({
                         sx={{
                             fontSize: "0.9rem",
                             lineHeight: 1.7,
-                            color: "#444444",
+                            color: bodyTextColor,
                         }}
                     >
                         {resumeData.languages}

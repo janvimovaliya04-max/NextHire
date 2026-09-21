@@ -38,6 +38,7 @@ export default function ResumeBuilder() {
             location: "",
             jobTitle: "",
             summary: "",
+            profileImage: "",
 
             education: [
                 {
@@ -151,6 +152,37 @@ export default function ResumeBuilder() {
             ...previous,
             [name]: "",
         }));
+    };
+
+    const handleProfileImageChange = (event) => {
+        const file = event.target.files?.[0];
+
+        if (!file) return;
+
+        const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
+
+        if (!allowedTypes.includes(file.type)) {
+            alert("Please upload a JPG, PNG, or WEBP image.");
+            return;
+        }
+
+        const maxSize = 2 * 1024 * 1024;
+
+        if (file.size > maxSize) {
+            alert("Image size must be less than 2MB.");
+            return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+            setFormData((previous) => ({
+                ...previous,
+                profileImage: reader.result,
+            }));
+        };
+
+        reader.readAsDataURL(file);
     };
 
     const handleEducationChange = (index, event) => {
@@ -605,6 +637,103 @@ export default function ResumeBuilder() {
                             sx={textFieldStyle}
                         />
                     </Grid>
+
+                    {/* Profile Image */}
+                    <Grid size={{ xs: 12 }}>
+                        <Box
+                            sx={{
+                                border: `1px dashed ${borderStyle}`,
+                                borderRadius: "10px",
+                                padding: { xs: 2, sm: 2.5 },
+                                mb: 2,
+                            }}
+                        >
+                            <Typography
+                                sx={{
+                                    color: textColor,
+                                    fontWeight: 700,
+                                    fontSize: { xs: "0.9rem", sm: "1rem" },
+                                    mb: 0.5,
+                                }}
+                            >
+                                Profile Image (Optional)
+                            </Typography>
+
+                            <Typography
+                                sx={{
+                                    color: subText,
+                                    fontSize: "0.78rem",
+                                    mb: 1.5,
+                                }}
+                            >
+                                Upload a JPG, PNG, or WEBP image (maximum 2MB).
+                            </Typography>
+
+                            <Button
+                                component="label"
+                                variant="outlined"
+                                sx={{
+                                    textTransform: "none",
+                                    borderColor: primary,
+                                    color: primary,
+                                    borderRadius: "8px",
+                                    fontWeight: 600,
+                                }}
+                            >
+                                Choose Image
+
+                                <input
+                                    type="file"
+                                    hidden
+                                    accept="image/jpeg,image/png,image/webp"
+                                    onChange={handleProfileImageChange}
+                                />
+                            </Button>
+
+                            {formData.profileImage && (
+                                <Box
+                                    sx={{
+                                        mt: 2,
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: 2,
+                                        flexWrap: "wrap",
+                                    }}
+                                >
+                                    <Box
+                                        component="img"
+                                        src={formData.profileImage}
+                                        alt="Profile preview"
+                                        sx={{
+                                            width: 90,
+                                            height: 90,
+                                            objectFit: "cover",
+                                            borderRadius: "50%",
+                                            border: `2px solid ${primary}`,
+                                        }}
+                                    />
+
+                                    <Button
+                                        type="button"
+                                        color="inherit"
+                                        onClick={() =>
+                                            setFormData((previous) => ({
+                                                ...previous,
+                                                profileImage: "",
+                                            }))
+                                        }
+                                        sx={{
+                                            textTransform: "none",
+                                            color: subText,
+                                        }}
+                                    >
+                                        Remove Image
+                                    </Button>
+                                </Box>
+                            )}
+                        </Box>
+                    </Grid>
+
                 </Grid>
 
                 {/* Education Section */}

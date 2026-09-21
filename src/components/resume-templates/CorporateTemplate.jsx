@@ -53,69 +53,106 @@ export default function CorporateTemplate({
                         xs: 3,
                         sm: 4,
                     },
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    gap: 3,
                 }}
             >
-                <Typography
-                    component="h1"
+                {/* Left Header Content */}
+                <Box
                     sx={{
-                        fontSize: {
-                            xs: "1.8rem",
-                            sm: "2.5rem",
-                            md: "2.8rem",
-                        },
-                        fontWeight: 800,
-                        letterSpacing: "-0.6px",
-                        lineHeight: 1.2,
-                        overflowWrap: "anywhere",
+                        minWidth: 0,
+                        flex: 1,
                     }}
                 >
-                    {resumeData.fullName || "Your Name"}
-                </Typography>
-
-                {resumeData.jobTitle?.trim() && (
                     <Typography
+                        component="h1"
                         sx={{
                             fontSize: {
-                                xs: "0.9rem",
-                                sm: "1.05rem",
+                                xs: "1.8rem",
+                                sm: "2.5rem",
+                                md: "2.8rem",
                             },
-                            fontWeight: 600,
-                            letterSpacing: "0.4px",
-                            color: "#dbeafe",
-                            marginTop: 1.2,
-                            lineHeight: 1.5,
+                            fontWeight: 800,
+                            letterSpacing: "-0.6px",
+                            lineHeight: 1.2,
                             overflowWrap: "anywhere",
                         }}
                     >
-                        {resumeData.jobTitle}
+                        {resumeData.fullName || "Your Name"}
                     </Typography>
-                )}
 
-                {contactDetails && (
-                    <Typography
-                        sx={{
-                            fontSize: "0.76rem",
-                            color: "#f1f5f9",
-                            marginTop: 2.2,
-                            lineHeight: 1.9,
-                            overflowWrap: "anywhere",
-                        }}
-                    >
-                        {contactDetails}
-                    </Typography>
-                )}
+                    {resumeData.jobTitle?.trim() && (
+                        <Typography
+                            sx={{
+                                fontSize: {
+                                    xs: "0.9rem",
+                                    sm: "1.05rem",
+                                },
+                                fontWeight: 600,
+                                letterSpacing: "0.4px",
+                                color: "#dbeafe",
+                                marginTop: 1.2,
+                                lineHeight: 1.5,
+                                overflowWrap: "anywhere",
+                            }}
+                        >
+                            {resumeData.jobTitle}
+                        </Typography>
+                    )}
 
-                {socialDetails && (
-                    <Typography
+                    {contactDetails && (
+                        <Typography
+                            sx={{
+                                fontSize: "0.76rem",
+                                color: "#f1f5f9",
+                                marginTop: 2.2,
+                                lineHeight: 1.9,
+                                overflowWrap: "anywhere",
+                            }}
+                        >
+                            {contactDetails}
+                        </Typography>
+                    )}
+
+                    {socialDetails && (
+                        <Typography
+                            sx={{
+                                fontSize: "0.76rem",
+                                color: "#dbeafe",
+                                lineHeight: 1.9,
+                                overflowWrap: "anywhere",
+                            }}
+                        >
+                            {socialDetails}
+                        </Typography>
+                    )}
+                </Box>
+
+                {/* Right Profile Image - Square */}
+                {resumeData.profileImage && (
+                    <Box
+                        component="img"
+                        src={resumeData.profileImage}
+                        alt="Profile"
                         sx={{
-                            fontSize: "0.76rem",
-                            color: "#dbeafe",
-                            lineHeight: 1.9,
-                            overflowWrap: "anywhere",
+                            width: {
+                                xs: 75,
+                                sm: 115,
+                                md: 140,
+                            },
+                            height: {
+                                xs: 75,
+                                sm: 115,
+                                md: 140,
+                            },
+                            objectFit: "cover",
+                            borderRadius: "4px",
+                            border: "2px solid rgba(255,255,255,0.8)",
+                            flexShrink: 0,
                         }}
-                    >
-                        {socialDetails}
-                    </Typography>
+                    />
                 )}
             </Box>
 

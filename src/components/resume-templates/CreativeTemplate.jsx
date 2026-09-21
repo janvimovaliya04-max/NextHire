@@ -77,58 +77,105 @@ export default function CreativeTemplate({
             <Box
                 sx={{
                     position: "relative",
-                    borderLeft: {
-                        xs: `5px solid ${accentColor}`,
-                        sm: `8px solid ${accentColor}`,
-                    },
-                    paddingLeft: {
-                        xs: 2,
-                        sm: 3,
-                    },
                     marginBottom: {
-                        xs: 4,
-                        sm: 5,
+                        xs: 3,
+                        sm: 3.5,
                     },
                 }}
             >
-                <Typography
-                    component="h1"
+                {/* Profile + Name Row */}
+                <Box
                     sx={{
-                        fontSize: {
-                            xs: "2rem",
-                            sm: "3rem",
+                        display: "flex",
+                        alignItems: "flex-start",
+                        gap: {
+                            xs: 2,
+                            sm: 3,
                         },
-                        fontWeight: 900,
-                        lineHeight: 1.1,
-                        color: "#111827",
-                        letterSpacing: {
-                            xs: "-0.8px",
-                            sm: "-1.2px",
+                        borderLeft: {
+                            xs: `4px solid ${accentColor}`,
+                            sm: `6px solid ${accentColor}`,
                         },
-                        overflowWrap: "anywhere",
+                        paddingLeft: {
+                            xs: 2,
+                            sm: 3,
+                        },
                     }}
                 >
-                    {resumeData.fullName || "Your Name"}
-                </Typography>
+                    {/* Profile Image */}
+                    {resumeData.profileImage && (
+                        <Box
+                            component="img"
+                            src={resumeData.profileImage}
+                            alt="Profile"
+                            sx={{
+                                width: {
+                                    xs: 80,
+                                    sm: 100,
+                                },
+                                height: {
+                                    xs: 80,
+                                    sm: 100,
+                                },
+                                objectFit: "cover",
+                                borderRadius: "12px",
+                                border: `3px solid ${accentColor}`,
+                                flexShrink: 0,
+                            }}
+                        />
+                    )}
 
-                {resumeData.jobTitle?.trim() && (
-                    <Typography
+                    {/* Name + Job Title */}
+                    <Box
                         sx={{
-                            color: accentColor,
-                            fontSize: {
-                                xs: "0.95rem",
-                                sm: "1.1rem",
+                            minWidth: 0,
+                            paddingTop: {
+                                xs: 0.5,
+                                sm: 1,
                             },
-                            fontWeight: 700,
-                            lineHeight: 1.5,
-                            marginTop: 1.5,
-                            overflowWrap: "anywhere",
                         }}
                     >
-                        {resumeData.jobTitle}
-                    </Typography>
-                )}
+                        <Typography
+                            component="h1"
+                            sx={{
+                                fontSize: {
+                                    xs: "1.7rem",
+                                    sm: "3rem",
+                                },
+                                fontWeight: 900,
+                                lineHeight: 1.1,
+                                color: "#111827",
+                                letterSpacing: {
+                                    xs: "-0.6px",
+                                    sm: "-1.2px",
+                                },
+                                overflowWrap: "anywhere",
+                            }}
+                        >
+                            {resumeData.fullName || "Your Name"}
+                        </Typography>
 
+                        {resumeData.jobTitle?.trim() && (
+                            <Typography
+                                sx={{
+                                    color: accentColor,
+                                    fontSize: {
+                                        xs: "0.85rem",
+                                        sm: "1.1rem",
+                                    },
+                                    fontWeight: 700,
+                                    lineHeight: 1.5,
+                                    marginTop: 1.5,
+                                    overflowWrap: "anywhere",
+                                }}
+                            >
+                                {resumeData.jobTitle}
+                            </Typography>
+                        )}
+                    </Box>
+                </Box>
+
+                {/* Contact Details */}
                 {contactDetails && (
                     <Typography
                         sx={{
@@ -143,6 +190,7 @@ export default function CreativeTemplate({
                     </Typography>
                 )}
 
+                {/* Social Details */}
                 {socialDetails && (
                     <Typography
                         sx={{

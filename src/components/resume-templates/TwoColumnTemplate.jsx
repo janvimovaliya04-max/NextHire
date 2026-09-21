@@ -63,7 +63,30 @@ export default function TwoColumnTemplate({
                     minWidth: 0,
                 }}
             >
+
+
+                {/* Profile Image */}
+                {resumeData.profileImage && (
+                    <Box
+                        component="img"
+                        src={resumeData.profileImage}
+                        alt="Profile"
+                        sx={{
+                            alignItems: "center",
+                            width: 105,
+                            height: 105,
+                            objectFit: "cover",
+                            borderRadius: "50%",
+                            border: "3px solid rgba(255,255,255,0.8)",
+                            display: "block",
+                            marginBottom: 2.5,
+                            ml: 5,
+                        }}
+                    />
+                )}
+
                 {/* Profile */}
+
                 <Typography
                     component="h1"
                     sx={{
