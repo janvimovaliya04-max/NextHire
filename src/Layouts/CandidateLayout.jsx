@@ -532,16 +532,18 @@ export default function CandidateLayout({ children }) {
       <Dialog
         open={openLogoutModal}
         onClose={handleCloseLogoutModal}
-        PaperProps={{
-          sx: {
-            borderRadius: "16px",
-            padding: "8px",
-            backgroundColor: colors.card,
-            color: textColor,
-            maxWidth: "400px",
-            width: "100%",
-            border: `1px solid ${borderStyle}`,
-          },
+        slotProps={{
+          Paper: {
+            sx: {
+              borderRadius: "16px",
+              padding: "8px",
+              backgroundColor: colors.card,
+              color: textColor,
+              maxWidth: "400px",
+              width: "100%",
+              border: `1px solid ${borderStyle}`,
+            },
+          }
         }}
       >
         <DialogTitle

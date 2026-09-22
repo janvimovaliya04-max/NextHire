@@ -479,16 +479,18 @@ export default function InterviewerLayout({ children }) {
       <Dialog
         open={openLogoutModal}
         onClose={handleCloseLogoutModal}
-        PaperProps={{
-          sx: {
-            borderRadius: "16px",
-            padding: "8px",
-            backgroundColor: cardColor,
-            color: textColor,
-            maxWidth: "400px",
-            width: "100%",
-            border: `1px solid ${borderColor}`,
-          },
+        slotProps={{
+          Paper: {
+            sx: {
+              borderRadius: "16px",
+              padding: "8px",
+              backgroundColor: cardColor,
+              color: textColor,
+              maxWidth: "400px",
+              width: "100%",
+              border: `1px solid ${borderColor}`,
+            },
+          }
         }}
       >
         <DialogTitle sx={{ fontWeight: 700, fontSize: "1.2rem", color: textColor }}>

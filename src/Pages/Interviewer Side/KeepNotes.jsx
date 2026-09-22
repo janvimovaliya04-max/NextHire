@@ -664,8 +664,8 @@ export default function NotesEditorPage() {
                                     )
                                 }
                                 label={`${syncStatus} ${lastSavedTime
-                                        ? `(${lastSavedTime})`
-                                        : ""
+                                    ? `(${lastSavedTime})`
+                                    : ""
                                     }`}
                                 size="small"
                                 sx={{
@@ -715,7 +715,7 @@ export default function NotesEditorPage() {
                                 templateAnchorEl
                             )}
                             onClose={handleTemplateClose}
-                            PaperProps={{
+                            slotProps={{
                                 sx: menuPaperSx,
                             }}
                         >
@@ -800,7 +800,7 @@ export default function NotesEditorPage() {
                                 exportAnchorEl
                             )}
                             onClose={handleExportClose}
-                            PaperProps={{
+                            slotProps={{
                                 sx: menuPaperSx,
                             }}
                         >
@@ -1275,7 +1275,7 @@ export default function NotesEditorPage() {
                             onClose={() =>
                                 setMentionAnchorEl(null)
                             }
-                            PaperProps={{
+                            slotProps={{
                                 sx: {
                                     ...menuPaperSx,
                                     width: {
@@ -1431,7 +1431,7 @@ export default function NotesEditorPage() {
                                 imageAnchorEl
                             )}
                             onClose={handleImageClose}
-                            PaperProps={{
+                            slotProps={{
                                 sx: menuPaperSx,
                             }}
                         >
@@ -1719,7 +1719,7 @@ export default function NotesEditorPage() {
                     onClose={() =>
                         setClearDialogOpen(false)
                     }
-                    PaperProps={{
+                    slotProps={{
                         sx: {
                             bgcolor: cardColor,
                             color: textColor,

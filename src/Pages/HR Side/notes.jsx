@@ -468,7 +468,7 @@ export default function NotesEditorPage() {
                             anchorEl={templateAnchorEl}
                             open={Boolean(templateAnchorEl)}
                             onClose={handleTemplateClose}
-                            PaperProps={{ sx: menuPaperSx }}
+                            slotProps={{ sx: menuPaperSx }}
                         >
                             <MenuItem onClick={() => applyTemplate("tech")} sx={{ fontSize: { xs: "0.82rem", sm: "0.9rem" } }}>Technical Interview Template</MenuItem>
                             <MenuItem onClick={() => applyTemplate("hr")} sx={{ fontSize: { xs: "0.82rem", sm: "0.9rem" } }}>HR Round Feedback</MenuItem>
@@ -488,7 +488,7 @@ export default function NotesEditorPage() {
                             anchorEl={exportAnchorEl}
                             open={Boolean(exportAnchorEl)}
                             onClose={handleExportClose}
-                            PaperProps={{ sx: menuPaperSx }}
+                            slotProps={{ sx: menuPaperSx }}
                         >
                             <MenuItem onClick={handleExportPDF} sx={{ fontSize: { xs: "0.82rem", sm: "0.9rem" } }}>Export as PDF (Print)</MenuItem>
                             <MenuItem onClick={handleExportWord} sx={{ fontSize: { xs: "0.82rem", sm: "0.9rem" } }}>Export as Word (.doc)</MenuItem>
@@ -731,7 +731,7 @@ export default function NotesEditorPage() {
                             anchorEl={mentionAnchorEl}
                             open={Boolean(mentionAnchorEl)}
                             onClose={() => setMentionAnchorEl(null)}
-                            PaperProps={{
+                            slotProps={{
                                 sx: {
                                     ...menuPaperSx,
                                     width: { xs: "180px", sm: "220px" }
@@ -814,7 +814,7 @@ export default function NotesEditorPage() {
                             anchorEl={imageAnchorEl}
                             open={Boolean(imageAnchorEl)}
                             onClose={handleImageClose}
-                            PaperProps={{ sx: menuPaperSx }}
+                            ListOrdered={{ sx: menuPaperSx }}
                         >
                             <MenuItem onClick={handleAddImageByURL} sx={{ fontSize: { xs: "0.82rem", sm: "0.9rem" }, gap: 1.5 }}>
                                 <ListItemIcon sx={{ color: textColor, minWidth: "auto" }}><LinkIcon size={16} /></ListItemIcon>
@@ -954,7 +954,7 @@ export default function NotesEditorPage() {
                 <Dialog
                     open={clearDialogOpen}
                     onClose={() => setClearDialogOpen(false)}
-                    PaperProps={{
+                    slotProps={{
                         sx: {
                             bgcolor: cardColor,
                             borderRadius: "9px",

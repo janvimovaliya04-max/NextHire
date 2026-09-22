@@ -1234,7 +1234,7 @@ export default function NotesEditorPage() {
                             onClose={
                                 handleTemplateClose
                             }
-                            PaperProps={{
+                            slotProps={{
                                 sx:
                                     menuPaperSx,
                             }}
@@ -1301,7 +1301,7 @@ export default function NotesEditorPage() {
                             onClose={
                                 handleExportClose
                             }
-                            PaperProps={{
+                            slotProps={{
                                 sx:
                                     menuPaperSx,
                             }}
@@ -1886,7 +1886,7 @@ export default function NotesEditorPage() {
                                     null
                                 )
                             }
-                            PaperProps={{
+                            slotProps={{
                                 sx: {
                                     ...menuPaperSx,
                                     width: {
@@ -2044,7 +2044,7 @@ export default function NotesEditorPage() {
                             onClose={
                                 handleImageClose
                             }
-                            PaperProps={{
+                            slotProps={{
                                 sx:
                                     menuPaperSx,
                             }}
@@ -2423,7 +2423,7 @@ export default function NotesEditorPage() {
                             false
                         )
                     }
-                    PaperProps={{
+                    slotProps={{
                         sx: {
                             bgcolor:
                                 cardColor,

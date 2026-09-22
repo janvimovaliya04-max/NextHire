@@ -150,7 +150,7 @@ export default function HRLayout({ children }) {
       items: [
         { path: "/hr/notes", label: "Keep Notes", icon: <Menu size={18} /> },
         { path: "/hr/settings", label: "Settings", icon: <Settings size={18} /> },
-        { path: "/hr/workflow", label: "Work-Flow Diagram", icon: <GitFork size={18} />  }
+        { path: "/hr/workflow", label: "Work-Flow Diagram", icon: <GitFork size={18} /> }
       ],
     },
   ];
@@ -418,7 +418,7 @@ export default function HRLayout({ children }) {
             <Link
               to="/hr/schedule-calendar"
               className="p-2.5 rounded-xl border relative transition-all duration-200"
-               aria-label="Calendar"
+              aria-label="Calendar"
               style={{
                 backgroundColor: colors.input,
                 color: primary,
@@ -510,16 +510,18 @@ export default function HRLayout({ children }) {
       <Dialog
         open={openLogoutModal}
         onClose={handleCloseLogoutModal}
-        PaperProps={{
-          sx: {
-            borderRadius: "16px",
-            padding: "8px",
-            backgroundColor: colors.card,
-            color: textColor,
-            maxWidth: "400px",
-            width: "100%",
-            border: `1px solid ${borderStyle}`,
-          },
+        slotProps={{
+          Paper: {
+            sx: {
+              borderRadius: "16px",
+              padding: "8px",
+              backgroundColor: colors.card,
+              color: textColor,
+              maxWidth: "400px",
+              width: "100%",
+              border: `1px solid ${borderStyle}`,
+            },
+          }
         }}
       >
         <DialogTitle sx={{ fontWeight: 700, fontSize: "1.2rem", color: textColor }}>

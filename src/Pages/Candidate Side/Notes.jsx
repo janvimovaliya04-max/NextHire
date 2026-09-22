@@ -717,8 +717,8 @@ export default function NotesEditorPage() {
                                     )
                                 }
                                 label={`${syncStatus} ${lastSavedTime
-                                        ? `(${lastSavedTime})`
-                                        : ""
+                                    ? `(${lastSavedTime})`
+                                    : ""
                                     }`}
                                 size="small"
                                 sx={{
@@ -767,7 +767,7 @@ export default function NotesEditorPage() {
                                 templateAnchorEl
                             )}
                             onClose={handleTemplateClose}
-                            PaperProps={{
+                            slotProps={{
                                 sx: menuPaperSx,
                             }}
                         >
@@ -834,7 +834,7 @@ export default function NotesEditorPage() {
                                 exportAnchorEl
                             )}
                             onClose={handleExportClose}
-                            PaperProps={{
+                            slotProps={{
                                 sx: menuPaperSx,
                             }}
                         >
@@ -1365,14 +1365,16 @@ export default function NotesEditorPage() {
                                     null
                                 )
                             }
-                            PaperProps={{
-                                sx: {
-                                    ...menuPaperSx,
-                                    width: {
-                                        xs: "180px",
-                                        sm: "220px",
+                            slotProps={{
+                                Paper: {
+                                    sx: {
+                                        ...menuPaperSx,
+                                        width: {
+                                            xs: "180px",
+                                            sm: "220px",
+                                        },
                                     },
-                                },
+                                }
                             }}
                             MenuListProps={{
                                 sx: {
@@ -1534,7 +1536,7 @@ export default function NotesEditorPage() {
                                 imageAnchorEl
                             )}
                             onClose={handleImageClose}
-                            PaperProps={{
+                            slotProps={{
                                 sx: menuPaperSx,
                             }}
                         >
@@ -1853,20 +1855,17 @@ export default function NotesEditorPage() {
                     onClose={() =>
                         setClearDialogOpen(false)
                     }
-                    PaperProps={{
-                        sx: {
-                            bgcolor: cardColor,
-
-                            borderRadius: "9px",
-
-                            border: `1px solid ${borderStyle}`,
-
-                            boxShadow: shadowColor,
-
-                            width: "100%",
-
-                            maxWidth: "420px",
-                        },
+                    slotProps={{
+                        Paper: {
+                            sx: {
+                                bgcolor: cardColor,
+                                borderRadius: "9px",
+                                border: `1px solid ${borderStyle}`,
+                                boxShadow: shadowColor,
+                                width: "100%",
+                                maxWidth: "420px",
+                            },
+                        }
                     }}
                 >
                     <DialogTitle

@@ -3320,14 +3320,16 @@ const CustomTable = () => {
                 onClose={() =>
                     setDeleteConfirmation(null)
                 }
-                PaperProps={{
-                    sx: {
-                        borderRadius: "6px",
-                        backgroundColor: darkMode
-                            ? "#1e293b"
-                            : "#ffffff",
-                        border: `1px solid ${borderColor}`,
-                    },
+                slotProps={{
+                    Paper: {
+                        sx: {
+                            borderRadius: "6px",
+                            backgroundColor: darkMode
+                                ? "#1e293b"
+                                : "#ffffff",
+                            border: `1px solid ${borderColor}`,
+                        },
+                    }
                 }}
             >
                 <DialogTitle
@@ -3391,14 +3393,16 @@ const CustomTable = () => {
                 onClose={() =>
                     setShowStatusList(false)
                 }
-                PaperProps={{
-                    sx: {
-                        borderRadius: "6px",
-                        backgroundColor: darkMode
-                            ? "#1e293b"
-                            : "#ffffff",
-                        border: `1px solid ${borderColor}`,
-                    },
+                slotProps={{
+                    Paper: {
+                        sx: {
+                            borderRadius: "6px",
+                            backgroundColor: darkMode
+                                ? "#1e293b"
+                                : "#ffffff",
+                            border: `1px solid ${borderColor}`,
+                        },
+                    }
                 }}
             >
                 <DialogTitle
@@ -3544,14 +3548,16 @@ const CustomTable = () => {
                     setStatusToRename(null);
                     setRenameStatusName("");
                 }}
-                PaperProps={{
-                    sx: {
-                        borderRadius: "6px",
-                        backgroundColor: darkMode
-                            ? "#1e293b"
-                            : "#ffffff",
-                        border: `1px solid ${borderColor}`,
-                    },
+                slotProps={{
+                    Paper: {
+                        sx: {
+                            borderRadius: "6px",
+                            backgroundColor: darkMode
+                                ? "#1e293b"
+                                : "#ffffff",
+                            border: `1px solid ${borderColor}`,
+                        },
+                    }
                 }}
             >
                 <DialogTitle
