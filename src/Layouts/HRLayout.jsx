@@ -257,7 +257,7 @@ export default function HRLayout({ children }) {
         <div
           ref={sidebarRef}
           onScroll={handleSidebarScroll}
-          className="flex-1 overflow-y-auto sidebar-scroll pr-2"
+          className="flex-1 min-h-0 overflow-y-auto sidebar-scroll pr-2 pb-5"
         >
           <nav className="space-y-5">
             {navGroups.map((group) => (

@@ -361,8 +361,11 @@ export default function Recruiters() {
 
     // PATCH: Toggle Status Quick Action
     const handleStatusToggle = async (recruiter) => {
-        const recruiterId = recruiter.recruiterId || recruiter._id || recruiter.id;
-        const updatedStatus = recruiter.status === "Active" ? "On Leave" : "Active";
+        const recruiterId =
+            recruiter._id || recruiter.id || recruiter.recruiterId;
+
+        const updatedStatus =
+            recruiter.status === "Active" ? "On Leave" : "Active";
 
         try {
             const response = await api.patch(`/recruiters/${recruiterId}`, {
@@ -371,13 +374,16 @@ export default function Recruiters() {
 
             setRecruiters((prev) =>
                 prev.map((r) =>
-                    (r.recruiterId || r._id || r.id) === recruiterId
+                    (r._id || r.id || r.recruiterId) === recruiterId
                         ? { ...r, status: response.data.status || updatedStatus }
                         : r
                 )
             );
         } catch (error) {
-            console.error("Error updating recruiter status:", error);
+            console.error(
+                "Error updating recruiter status:",
+                error.response?.data || error.message
+            );
         }
     };
 

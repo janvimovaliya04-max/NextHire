@@ -361,7 +361,8 @@ export default function Settings() {
                     sx={{
                       height: "100%",
                       minHeight: 115,
-                      p: { xs: 2, md: 2 },
+                      mt: { xs: 1, md: 2 },
+                      p: { xs: 2, md: 3 },
                       borderRadius: { xs: 2.5, md: "18px" },
                       display: "flex",
                       flexDirection: "column",
